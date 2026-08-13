@@ -24,3 +24,17 @@ python -m unittest discover -s practice_01_kv_cache -p 'test_*.py'
 
 See [practice_01_kv_cache/README.md](practice_01_kv_cache/README.md) for the
 concepts, expected output, and suggested experiments.
+
+## Practice 02: estimate KV-cache memory
+
+This dependency-free command-line calculator estimates KV-cache memory from a
+model's layer count, KV-head layout, context length, batch size, and cache dtype.
+
+```bash
+python practice_02_kv_calculator/kv_calculator.py \
+  --layers 32 --kv-heads 8 --head-dim 128 \
+  --sequence-length 8192 --batch-size 1 --dtype bf16
+```
+
+See [practice_02_kv_calculator/README.md](practice_02_kv_calculator/README.md)
+for examples and guidance on finding the inputs in a model configuration.
