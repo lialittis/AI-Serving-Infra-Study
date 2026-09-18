@@ -53,3 +53,18 @@ View the archived benchmark comparison locally without an NPU:
 ```bash
 python3 practice_03_ascend_start/summarize_results.py
 ```
+
+## Practice 04: map logical tokens to physical KV blocks
+
+This pure-Python exercise implements only `BlockPool`, `Request`, and
+`BlockTable`. It shows how a request's token index maps to a physical block and
+offset, including noncontiguous allocation and block reuse. No model, NPU,
+PyTorch, or vLLM is required.
+
+```bash
+python3 practice_04_paged_kv_cache/paged_kv_cache.py
+python3 -m unittest discover -s practice_04_paged_kv_cache -p 'test_*.py' -v
+```
+
+See [practice_04_paged_kv_cache/README.md](practice_04_paged_kv_cache/README.md)
+for the mapping formula and the worked four-block example.
