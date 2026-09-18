@@ -1,6 +1,7 @@
 # AI Serving Infrastructure Study
 
-Small, CPU-friendly exercises for understanding how language-model serving works.
+Exercises for understanding language-model serving: CPU-friendly KV-cache
+exercises and a reproducible Ascend NPU inference and concurrency experiment.
 
 ## Practice 01: observe a KV cache
 
@@ -38,3 +39,17 @@ python practice_02_kv_calculator/kv_calculator.py \
 
 See [practice_02_kv_calculator/README.md](practice_02_kv_calculator/README.md)
 for examples and guidance on finding the inputs in a model configuration.
+
+## Practice 03: run small models on Ascend
+
+[practice_03_ascend_start/README.md](practice_03_ascend_start/README.md) provides
+Chinese-language reproduction instructions for Transformers, vLLM offline
+inference, HTTP serving, and a concurrency 1 vs 4 benchmark on `ascend910`.
+The [results and conclusions](practice_03_ascend_start/RESULTS.md) include original
+benchmark JSON, execution logs, environment metadata, and model fingerprints.
+
+View the archived benchmark comparison locally without an NPU:
+
+```bash
+python3 practice_03_ascend_start/summarize_results.py
+```

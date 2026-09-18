@@ -1,0 +1,37 @@
+{
+  "provenance": "Reconstructed from the commands in the user session; not embedded in the original benchmark JSON.",
+  "model_path": "/data/huggingface_home/hub/Qwen2.5-0.5B-Instruct",
+  "server": {
+    "source": "serve.sh and the workflow reported as completed by the user; original server startup log unavailable",
+    "served_model_name": "qwen-small",
+    "host": "127.0.0.1",
+    "port": 8000,
+    "tensor_parallel_size": 1,
+    "dtype": "bfloat16",
+    "max_model_len": 2048,
+    "max_num_seqs": 4,
+    "max_num_batched_tokens": 2048,
+    "gpu_memory_utilization": 0.3,
+    "enforce_eager": true,
+    "worker_multiproc_method": "spawn"
+  },
+  "client": {
+    "backend": "openai",
+    "base_url": "http://127.0.0.1:8000",
+    "endpoint": "/v1/completions",
+    "dataset_name": "random",
+    "input_len": 128,
+    "output_len": 64,
+    "random_range_ratio": 0,
+    "num_prompts": 20,
+    "num_warmups": 2,
+    "request_rate": "inf",
+    "temperature": 0,
+    "ignore_eos": true,
+    "save_detailed": false,
+    "runs": [
+      {"max_concurrency": 1, "seed": 1},
+      {"max_concurrency": 4, "seed": 4}
+    ]
+  }
+}
