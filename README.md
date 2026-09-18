@@ -68,3 +68,17 @@ python3 -m unittest discover -s practice_04_paged_kv_cache -p 'test_*.py' -v
 
 See [practice_04_paged_kv_cache/README.md](practice_04_paged_kv_cache/README.md)
 for the mapping formula and the worked four-block example.
+
+## Practice 05: observe block allocation lifetimes
+
+This single-threaded, pure-Python exercise traces allocation, writing, freeing,
+and reuse. Generation-tagged handles distinguish the same physical block's
+successive allocations and reject access through stale references.
+
+```bash
+python3 practice_05_block_lifecycle/block_lifecycle.py
+python3 -m unittest discover -s practice_05_block_lifecycle -p 'test_*.py' -v
+```
+
+See [practice_05_block_lifecycle/README.md](practice_05_block_lifecycle/README.md)
+for the lifecycle trace and the distinction between physical and allocation identity.
