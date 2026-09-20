@@ -1,0 +1,52 @@
+{
+  "/vllm-workspace/vllm-ascend/vllm_ascend/patch/platform/patch_balance_schedule.py": {
+    "sha256": "13e4407040d82ba29a35e12901551c94da0961439b23e507e73ccfe124e42ba5",
+    "excerpts": [
+      {
+        "start_line": 36,
+        "end_line": 58,
+        "text": "class BalanceScheduler(Scheduler):\n    def __init__(\n        self,\n        vllm_config,\n        kv_cache_config: KVCacheConfig,\n        structured_output_manager: StructuredOutputManager,\n        block_size: int,\n        hash_block_size: int | None = None,\n        mm_registry: MultiModalRegistry = MULTIMODAL_REGISTRY,\n        include_finished_set: bool = False,\n        log_stats: bool = False,\n    ) -> None:\n        super().__init__(\n            vllm_config,\n            kv_cache_config,\n            structured_output_manager,\n            block_size,\n            hash_block_size,\n            mm_registry,\n            include_finished_set,\n            log_stats,\n        )\n        self._balance_enabled = _balance_scheduling_enabled(vllm_config)"
+      },
+      {
+        "start_line": 71,
+        "end_line": 73,
+        "text": "    def schedule(self) -> SchedulerOutput:\n        if not self._balance_enabled:\n            return super().schedule()"
+      }
+    ]
+  },
+  "/vllm-workspace/vllm-ascend/vllm_ascend/attention/attention_v1.py": {
+    "sha256": "b21443d6c4340b1e697a56f6a1f559d15137c2e40888cbf94a4219a73ba01d4b",
+    "excerpts": [
+      {
+        "start_line": 138,
+        "end_line": 140,
+        "text": "    @staticmethod\n    def get_supported_kernel_block_sizes() -> list[int]:\n        return [128]"
+      }
+    ]
+  },
+  "/vllm-workspace/vllm/vllm/v1/worker/utils.py": {
+    "sha256": "c4c81ece4ceb8bc6ba210514b3680baeacff68f6c7a5f6e9d7e8cc1550b39151",
+    "excerpts": [
+      {
+        "start_line": 300,
+        "end_line": 326,
+        "text": "\n    # Case 1: if the block_size of kv cache manager is supported by all backends,\n    # return it directly.\n    if block_size_is_supported(backends, kv_manager_block_size):\n        return kv_manager_block_size\n\n    # Case 2: otherwise, the block_size must be an `int`-format supported size of\n    # at least one backend. Iterate over all `int`-format supported sizes in\n    # descending order and return the first one that is supported by all backends.\n    # Simple proof:\n    # If the supported size b is in MultipleOf(x_i) format for all attention\n    # backends i, and b a factor of kv_manager_block_size, then\n    # kv_manager_block_size also satisfies MultipleOf(x_i) for all i. We will\n    # return kv_manager_block_size in case 1.\n    all_int_supported_sizes = set(\n        supported_size\n        for backend in backends\n        for supported_size in backend.get_supported_kernel_block_sizes()\n        if isinstance(supported_size, int)\n    )\n\n    for supported_size in sorted(all_int_supported_sizes, reverse=True):\n        if kv_manager_block_size % supported_size != 0:\n            continue\n        if block_size_is_supported(backends, supported_size):\n            return supported_size\n    raise ValueError(f\"No common block size for {kv_manager_block_size}. \")"
+      }
+    ]
+  },
+  "/vllm-workspace/vllm/vllm/v1/core/sched/scheduler.py": {
+    "sha256": "4145257a7ecaf921026cf76d61d615c366d2cabcff9cb826a4c1ce32001edfa4",
+    "excerpts": [
+      {
+        "start_line": 310,
+        "end_line": 321,
+        "text": "    def schedule(self) -> SchedulerOutput:\n        # NOTE(woosuk) on the scheduling algorithm:\n        # There's no \"decoding phase\" nor \"prefill phase\" in the scheduler.\n        # Each request just has the num_computed_tokens and\n        # num_tokens_with_spec. num_tokens_with_spec =\n        # len(prompt_token_ids) + len(output_token_ids) + len(spec_token_ids).\n        # At each step, the scheduler tries to assign tokens to the requests\n        # so that each request's num_computed_tokens can catch up its\n        # num_tokens_with_spec. This is general enough to cover\n        # chunked prefills, prefix caching, speculative decoding,\n        # and the \"jump decoding\" optimization in the future.\n"
+      },
+      {
+        "start_line": 1750,
+        "end_line": 1771,
+        "text": "    def _free_request(\n        self, request: Request, delay_free_blocks: bool = False\n    ) -> dict[str, Any] | None:\n        assert request.is_finished()\n\n        connector_delay_free_blocks, kv_xfer_params = self._connector_finished(request)\n        self.encoder_cache_manager.free(request)\n        request_id = request.request_id\n        self.finished_req_ids.add(request_id)\n        if self.finished_req_ids_dict is not None:\n            self.finished_req_ids_dict[request.client_index].add(request_id)\n\n        delay_free_blocks |= connector_delay_free_blocks\n        if not delay_free_blocks:\n            self._free_blocks(request)\n\n        return kv_xfer_params\n\n    def _free_blocks(self, request: Request):\n        assert request.is_finished()\n        self.kv_cache_manager.free(request)\n        del self.requests[request.request_id]"
+      }
+    ]
+  }
+}

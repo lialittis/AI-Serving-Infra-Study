@@ -3,6 +3,9 @@
 Exercises for understanding language-model serving: CPU-friendly KV-cache
 exercises and a reproducible Ascend NPU inference and concurrency experiment.
 
+The next stage follows a real request through the installed vLLM / Ascend stack.
+See [REAL_SYSTEM_ROADMAP.md](REAL_SYSTEM_ROADMAP.md) for the recorded Practice 07–12 plan.
+
 ## Practice 01: observe a KV cache
 
 This practice implements a tiny decoder-only Transformer in plain PyTorch. It does
@@ -82,3 +85,25 @@ python3 -m unittest discover -s practice_05_block_lifecycle -p 'test_*.py' -v
 
 See [practice_05_block_lifecycle/README.md](practice_05_block_lifecycle/README.md)
 for the lifecycle trace and the distinction between physical and allocation identity.
+
+## Practice 06: detect a stale block access
+
+This pure-Python, single-threaded exercise deliberately reads A's old block
+reference after B has reused the physical block. A minimal generation check
+reports the request, block, expected generation, and current generation before
+the stale read can return B's data.
+
+```bash
+python3 practice_06_stale_block_access/stale_block_access.py
+python3 -m unittest discover -s practice_06_stale_block_access -p 'test_*.py' -v
+```
+
+See [practice_06_stale_block_access/README.md](practice_06_stale_block_access/README.md)
+for the deterministic lifetime violation and its diagnostic output.
+
+## Practice 07: trace a real vLLM-Ascend request
+
+Run one real HTTP request on Ascend and correlate the API, scheduler, worker,
+model runner, attention backend, and output with the installed source files.
+See [practice_07_real_request_trace/README.md](practice_07_real_request_trace/README.md)
+for remote execution, archived evidence, and the limits of a host-side trace.

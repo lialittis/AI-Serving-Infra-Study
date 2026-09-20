@@ -1,0 +1,40 @@
+{
+  "argv": [
+    "/usr/local/python3.12.13/bin/python",
+    "-m",
+    "vllm.entrypoints.cli.main",
+    "serve",
+    "/data/huggingface_home/hub/Qwen2.5-0.5B-Instruct",
+    "--served-model-name",
+    "qwen-trace",
+    "--host",
+    "127.0.0.1",
+    "--port",
+    "8007",
+    "--tensor-parallel-size",
+    "1",
+    "--dtype",
+    "bfloat16",
+    "--max-model-len",
+    "2048",
+    "--max-num-seqs",
+    "1",
+    "--max-num-batched-tokens",
+    "2048",
+    "--gpu-memory-utilization",
+    "0.3",
+    "--block-size",
+    "128",
+    "--enforce-eager",
+    "--no-enable-prefix-caching",
+    "--no-enable-chunked-prefill",
+    "--no-async-scheduling"
+  ],
+  "environment_overrides": {
+    "HF_HUB_OFFLINE": "1",
+    "TRANSFORMERS_OFFLINE": "1",
+    "VLLM_WORKER_MULTIPROC_METHOD": "spawn",
+    "P07_TRACE_DIR": "/data/tianchi/practice_07_real_request_trace/results/2026-09-20-run02/events",
+    "PYTHONPATH": "/data/tianchi/practice_07_real_request_trace:/usr/local/Ascend/cann-9.0.0/python/site-packages:/usr/local/Ascend/cann-9.0.0/opp/built-in/op_impl/ai_core/tbe:"
+  }
+}

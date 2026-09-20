@@ -1,0 +1,64 @@
+# Practice 07：实际请求追踪摘要
+
+- Engine request ID：`cmpl-practice07-single-request-0-a689fbf7`
+- 输入 / 输出 token：5 / 8
+- HTTP finish_reason：`length`
+- Scheduler 对象：`vllm_ascend.patch.platform.patch_balance_schedule.BalanceScheduler`
+- Executor：`vllm.v1.executor.uniproc_executor.UniProcExecutor`
+- Worker：`vllm_ascend.worker.worker.NPUWorker`
+- Runner：`vllm_ascend.worker.model_runner_v1.NPUModelRunner`
+- 模型：`vllm.model_executor.models.qwen2.Qwen2ForCausalLM`
+- Attention：`vllm_ascend.attention.attention_v1.AscendAttentionBackendImpl`
+- block_size：128（本轮不解析映射）
+
+## 实际进程与线程
+
+| 观察点 | PID | TID |
+|---|---:|---:|
+| api_receive | 277132 | 277132 |
+| schedule | 277458 | 277458 |
+| worker_call | 277458 | 277458 |
+| runner_call | 277458 | 277458 |
+| api_response | 277132 | 277132 |
+
+## 调度与模型输入
+
+| step | 本步前已计算 token | 本步调度 token | input_ids shape | positions shape |
+|---:|---:|---:|---|---|
+| 1 | 0 | 5 | [5] | [5] |
+| 2 | 5 | 1 | [1] | [1] |
+| 3 | 6 | 1 | [1] | [1] |
+| 4 | 7 | 1 | [1] | [1] |
+| 5 | 8 | 1 | [1] | [1] |
+| 6 | 9 | 1 | [1] | [1] |
+| 7 | 10 | 1 | [1] | [1] |
+| 8 | 11 | 1 | [1] | [1] |
+
+## 观察到的源码入口
+
+| 事件 | 实际源码位置 |
+|---|---|
+| api_receive | `/vllm-workspace/vllm/vllm/entrypoints/openai/completion/serving.py:125` `OpenAIServingCompletion._create_completion` |
+| api_response | `/vllm-workspace/vllm/vllm/entrypoints/openai/completion/serving.py:125` `OpenAIServingCompletion._create_completion` |
+| scheduler_config | `/vllm-workspace/vllm/vllm/v1/core/sched/scheduler.py:63` `Scheduler.__init__` |
+| engine_config | `/vllm-workspace/vllm/vllm/v1/engine/core.py:94` `EngineCore.__init__` |
+| scheduler_enqueue | `/vllm-workspace/vllm/vllm/v1/core/sched/scheduler.py:1665` `Scheduler.add_request` |
+| schedule | `/vllm-workspace/vllm/vllm/v1/core/sched/scheduler.py:310` `Scheduler.schedule` |
+| worker_call | `/vllm-workspace/vllm-ascend/vllm_ascend/worker/worker.py:474` `NPUWorker.execute_model` |
+| runner_call | `/vllm-workspace/vllm-ascend/vllm_ascend/worker/model_runner_v1.py:1903` `NPUModelRunner.execute_model` |
+| model_forward | `/vllm-workspace/vllm-ascend/vllm_ascend/worker/model_runner_v1.py:2756` `NPUModelRunner._model_forward` |
+| attention_first_layer | `/vllm-workspace/vllm-ascend/vllm_ascend/attention/attention_v1.py:1279` `AscendAttentionBackendImpl.forward` |
+| engine_output | `/vllm-workspace/vllm/vllm/v1/core/sched/scheduler.py:1248` `Scheduler.update_from_output` |
+| request_finish | `/vllm-workspace/vllm/vllm/v1/core/sched/scheduler.py:1750` `Scheduler._free_request` |
+| request_cleanup_return | `/vllm-workspace/vllm/vllm/v1/core/sched/scheduler.py:1768` `Scheduler._free_blocks` |
+
+## 证据边界
+
+- 使用 sys.setprofile/threading.setprofile 观察 Python call/return，不代表 NPU 完成时间。
+- 启动预热不计入用户请求的 model_forward/attention 事件，只保留真实 scheduler 执行期间的调用。
+- attention 只记录每个用户请求执行步的第一层，避免每层重复日志。
+- cleanup 只证明 scheduler 清理函数返回，不证明底层 NPU 内存被释放或清零。
+- 当前摘要的逐步关联针对单请求、同步调度、同进程 worker；其他配置需重新验证。
+- 这是带插桩的架构实验，不是性能基准。
+
+事件计数：`{"trace_installed": 3, "scheduler_config": 1, "engine_config": 1, "api_receive": 1, "scheduler_enqueue": 1, "schedule": 8, "worker_call": 8, "runner_call": 8, "model_forward": 8, "attention_first_layer": 8, "runner_return": 8, "worker_return": 8, "engine_output": 8, "request_finish": 1, "request_cleanup_return": 1, "api_response": 1}`
