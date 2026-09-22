@@ -1,0 +1,4 @@
+    PID    PPID    PGID COMMAND
+ 456740  456604  456740 /usr/local/python3.12.13/bin/python -m vllm.entrypoints.cli.main serve /data/huggingface_home/hub/Qwen2.5-0.5B-Instruct --served-model-name qwen-op-trace --host 127.0.0.1 --port 8009 --tensor-parallel-size 1 --dtype bfloat16 --max-model-len 2048 --max-num-seqs 1 --max-num-batched-tokens 2048 --gpu-memory-utilization 0.3 --block-size 128 --enforce-eager --no-enable-prefix-caching --no-enable-chunked-prefill --no-async-scheduling --profiler-config {"profiler": "torch", "torch_profiler_dir": "/data/tianchi/practice_09_operator_trace/results/2026-09-22-run01/profiler", "torch_profiler_with_stack": false, "ignore_frontend": true}
+ 457064  456740  456740 /usr/local/python3.12.13/bin/python -c from multiprocessing.resource_tracker import main;main(40)
+ 457065  456740  456740 VLLM::EngineCore

@@ -36,22 +36,28 @@ flowchart TD
 
 ## 实验顺序
 
-当前进度：**Practice 07、08 已在远端真实运行完成**。
+当前进度：**Practice 07、08、09 已在远端真实运行完成**。
 07 于 2026-09-20 完成请求路径追踪，见 [结果与证据](practice_07_real_request_trace/RESULTS.md)；
 08 于 2026-09-22 完成跨 block 的真实 KV 映射及第一层数据校验，
-见 [结果与证据](practice_08_real_kv_mapping/RESULTS.md)。09–12 尚未执行。
+见 [结果与证据](practice_08_real_kv_mapping/RESULTS.md)；
+09 同日完成 Python → PyTorch → CANN → NPU 的真实算子关联，
+见 [结果与证据](practice_09_operator_trace/RESULTS.md)。10–12 尚未执行。
+
+2026-09-22 根据用户的学习方向调整顺序：将算子调用与设备时间线提前为 Practice 09；
+原计划的释放复用、continuous batching 顺延。graph 对照与独立算子实验留到后续。
 
 | Practice | 主要问题 | 操作与预期证据 |
 |---|---|---|
 | 07：真实请求追踪 | prompt 经过哪些模块？ | 单请求生成少量 token，关联 API、scheduler、worker、runner 与输出的源码和事件 |
 | 08：真实 KV 映射 | token 写入哪个 KV block？ | 记录实际 block size、block table、slot mapping、KV tensor 布局 |
-| 09：真实释放和复用 | request 结束后 block 怎样回收？ | A/B 请求，追踪 block ID、引用计数、空闲队列；再开启 prefix caching 做对照 |
-| 10：continuous batching | 多个请求怎样共享一次执行？ | 长短请求交错到达，记录每轮请求集合、调度 token 数和完成情况 |
-| 11：NPU 时间线 | 时间花在哪里？ | profiler 区分 CPU 准备、搬运、算子下发和设备 kernel，之后比较 eager/graph |
-| 12：真实算子 | attention 怎样执行到 NPU？ | 从实际 backend 追踪调用，提取小规模真实算子实验，核对输入输出和 KV 更新 |
+| 09：真实算子与 NPU 时间线 | Python 调用怎样对应到设备执行？ | 预热后采集一个请求，关联第一层 KV 写入、attention 的 Python 范围、PyTorch 算子、CANN flow 与 NPU kernel |
+| 10：真实释放和复用 | request 结束后 block 怎样回收？ | A/B 请求，追踪 block ID、引用计数、空闲队列；再开启 prefix caching 做对照 |
+| 11：continuous batching | 多个请求怎样共享一次执行？ | 长短请求交错到达，记录每轮请求集合、调度 token 数和完成情况 |
+| 12：执行模式与独立算子 | graph 改变什么，真实算子能否单独复现？ | 基于 09 的时间线比较 eager/graph，再提取小规模算子实验，核对输入输出和 KV 更新 |
 
-09 特别区分 request 结束、引用计数归零、缓存淘汰、数据覆盖。
-11 之前的主机调用日志不能证明设备上的生命周期违规或 race。
+10 特别区分 request 结束、引用计数归零、缓存淘汰、数据覆盖。
+07/08 的主机调用日志不能证明设备上的生命周期违规或 race；09 的 profiler 也有观察开销，
+不能由一次正常 trace 推断原始运行绝无 race。
 多卡通信、HCCL、TP/PP、分离式 prefill/decode 留作单卡路径明确后的扩展，需要相应硬件。
 
 ## Practice 07 的完成标准

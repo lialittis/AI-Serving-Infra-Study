@@ -1,0 +1,667 @@
+{
+  "request_id": "cmpl-practice09-profile-0-9b57ff02",
+  "profiled_steps": [
+    3,
+    4
+  ],
+  "cpu_events": 6049,
+  "device_tasks": 772,
+  "kernel_csv_rows": 687,
+  "device_task_counts": {
+    "aclnnMatmul_MatMulCommon_MatMulV2": 146,
+    "AddRmsNormBias": 96,
+    "MEMCPY_ASYNC": 79,
+    "aclnnInplaceCopy_SliceAiCore_Slice": 74,
+    "aclnnAddmm_CastAiCore_Cast": 48,
+    "aclnnAddmm_MatMulCommon_MatMulV2": 48,
+    "_triton_rope": 48,
+    "ReshapeAndCacheNdKernel": 48,
+    "FusedInferAttentionScore": 48,
+    "SwiGlu": 48,
+    "aclnnContiguous_SliceAiCore_Slice": 24,
+    "aclnnInplaceCopy_CastAiCore_Cast": 8,
+    "EVENT_RECORD": 4,
+    "aclnnInplaceFillScalar_FillAiCore_Fill": 4,
+    "aclnnIndex_IndexAiCore_Index": 4,
+    "aclnnAdd_AddAiCore_Add": 4,
+    "aclnnIndexSelect_GatherV3AiCore_GatherV3": 4,
+    "aclnnRepeat_TileAiCore_Tile": 4,
+    "aclnnInplaceZero_ZerosLikeAiCore_ZerosLike": 4,
+    "aclnnGtScalar_CastAiCore_Cast": 4,
+    "aclnnGtScalar_GreaterAiCore_Greater": 4,
+    "token_bin_counts_and_mask_kernel": 3,
+    "_compute_slot_mapping_kernel": 2,
+    "aclnnSubs_SubAiCore_Sub": 2,
+    "aclnnEmbedding_GatherV2AiCore_GatherV2": 2,
+    "RmsNorm": 2,
+    "apply_all_penalties_kernel": 2,
+    "aclnnArgMax_ArgMaxV2AiCore_ArgMaxV2": 2,
+    "aclnnArgMax_CastAiCore_Cast": 2,
+    "PROFILING_ENABLE": 1,
+    "aclnnEqScalar_EqualAiCore_Equal": 1,
+    "aclnnInplaceMaskedFillScalar_MaskedFillAiCpu_MaskedFill": 1,
+    "PROFILING_DISABLE": 1
+  },
+  "examples": [
+    {
+      "phase": "prefill",
+      "step": 3,
+      "request_id": "cmpl-practice09-profile-0-9b57ff02",
+      "python_scope": {
+        "ph": "X",
+        "name": "P09/step=3/BaseDeviceAdaptor.reshape_and_cache",
+        "pid": 457065,
+        "tid": 457065,
+        "ts": "1790085076511272.830",
+        "dur": 149.591,
+        "cat": "cpu_op",
+        "args": {
+          "Sequence number": -1,
+          "Fwd thread id": 0
+        }
+      },
+      "python_source": {
+        "file": "/vllm-workspace/vllm-ascend/vllm_ascend/device/device_op.py",
+        "line": 43,
+        "function": "BaseDeviceAdaptor.reshape_and_cache"
+      },
+      "torch_operator": {
+        "ph": "X",
+        "name": "atb::_npu_reshape_and_cache",
+        "pid": 457065,
+        "tid": 457065,
+        "ts": "1790085076511333.906",
+        "dur": 48.813,
+        "cat": "cpu_op",
+        "args": {
+          "Sequence number": -1,
+          "Fwd thread id": 0
+        }
+      },
+      "host_launch_operator": {
+        "ph": "X",
+        "name": "ReshapeCacheOperation",
+        "pid": 457065,
+        "tid": 457065,
+        "ts": "1790085076511377.321",
+        "dur": 2.903,
+        "cat": "cpu_op",
+        "args": {
+          "Sequence number": -1,
+          "Fwd thread id": 0
+        }
+      },
+      "torch_flow_id": 1790085076511474334,
+      "cann_flow_id": "7103875907584",
+      "cann_launch_scopes": [
+        {
+          "name": "AscendCL@ReshapeAndCacheOperation::Execute",
+          "pid": 468034815,
+          "tid": 457380,
+          "ts": "1790085076511450.702",
+          "dur": 37.049,
+          "ph": "X",
+          "args": {
+            "Thread Id": 457380,
+            "Mode": "ACL_ATB",
+            "level": "acl",
+            "id": "ReshapeAndCacheOperation::Execute",
+            "item_id": "ReshapeAndCacheOperation::Execute",
+            "connection_id": 1653
+          }
+        },
+        {
+          "name": "Node@launch",
+          "pid": 468034815,
+          "tid": 457380,
+          "ts": "1790085076511457.227",
+          "dur": 12.237,
+          "ph": "X",
+          "args": {
+            "Thread Id": 457380,
+            "Mode": "launch",
+            "level": "node",
+            "id": "0",
+            "item_id": "ReshapeAndCacheNdKernel",
+            "connection_id": 1654
+          }
+        }
+      ],
+      "device_kernel": {
+        "name": "ReshapeAndCacheNdKernel",
+        "pid": 468034976,
+        "tid": 46,
+        "ts": "1790085076511474.334",
+        "dur": 10.2605,
+        "ph": "X",
+        "args": {
+          "Model Id": 4294967295,
+          "Task Type": "AI_VECTOR_CORE",
+          "Physic Stream Id": 46,
+          "Task Id": 1339,
+          "Batch Id": 0,
+          "Subtask Id": 4294967295,
+          "connection_id": 1654
+        }
+      },
+      "kernel_csv": {
+        "Device_id": "0",
+        "Model ID": "4294967295",
+        "Task ID": "1339",
+        "Stream ID": "46",
+        "Name": "ReshapeAndCacheNdKernel",
+        "Type": "ReshapeAndCacheNdKernel",
+        "OP State": "dynamic",
+        "Accelerator Core": "AI_VECTOR_CORE",
+        "Start Time(us)": "1790085076511474.334\t",
+        "Duration(us)": "10.261",
+        "Wait Time(us)": "102.960000",
+        "Block Num": "48",
+        "Mix Block Num": "0",
+        "HF32 Eligible": "NO",
+        "Input Shapes": "\"126,2,64;126,2,64;11781,128,2,64;11781,128,2,64;126\"",
+        "Input Data Types": "DT_BF16;DT_BF16;DT_BF16;DT_BF16;INT32",
+        "Input Formats": "ND;ND;ND;ND;ND",
+        "Output Shapes": "\"11781,128,2,64;11781,128,2,64\"",
+        "Output Data Types": "DT_BF16;DT_BF16",
+        "Output Formats": "ND;ND",
+        "Context ID": "N/A"
+      },
+      "associated_tasks": [
+        {
+          "name": "aclnnInplaceCopy_SliceAiCore_Slice",
+          "pid": 468034976,
+          "tid": 46,
+          "ts": "1790085076511368.650",
+          "dur": 2.54,
+          "ph": "X",
+          "args": {
+            "Model Id": 4294967295,
+            "Task Type": "AI_VECTOR_CORE",
+            "Physic Stream Id": 46,
+            "Task Id": 1338,
+            "Batch Id": 0,
+            "Subtask Id": 4294967295,
+            "connection_id": 1648
+          }
+        },
+        {
+          "name": "ReshapeAndCacheNdKernel",
+          "pid": 468034976,
+          "tid": 46,
+          "ts": "1790085076511474.334",
+          "dur": 10.2605,
+          "ph": "X",
+          "args": {
+            "Model Id": 4294967295,
+            "Task Type": "AI_VECTOR_CORE",
+            "Physic Stream Id": 46,
+            "Task Id": 1339,
+            "Batch Id": 0,
+            "Subtask Id": 4294967295,
+            "connection_id": 1654
+          }
+        }
+      ],
+      "kernel_start_after_torch_return_us": "91.615",
+      "kernel_start_after_python_return_us": "51.913"
+    },
+    {
+      "phase": "prefill",
+      "step": 3,
+      "request_id": "cmpl-practice09-profile-0-9b57ff02",
+      "python_scope": {
+        "ph": "X",
+        "name": "P09/step=3/AscendAttentionBackendImpl.forward_fused_infer_attention",
+        "pid": 457065,
+        "tid": 457065,
+        "ts": "1790085076511602.281",
+        "dur": 242.203,
+        "cat": "cpu_op",
+        "args": {
+          "Sequence number": -1,
+          "Fwd thread id": 0
+        }
+      },
+      "python_source": {
+        "file": "/vllm-workspace/vllm-ascend/vllm_ascend/attention/attention_v1.py",
+        "line": 1045,
+        "function": "AscendAttentionBackendImpl.forward_fused_infer_attention"
+      },
+      "torch_operator": {
+        "ph": "X",
+        "name": "npu::npu_fused_infer_attention_score",
+        "pid": 457065,
+        "tid": 457065,
+        "ts": "1790085076511690.589",
+        "dur": 104.388,
+        "cat": "cpu_op",
+        "args": {
+          "Sequence number": -1,
+          "Fwd thread id": 0
+        }
+      },
+      "host_launch_operator": {
+        "ph": "X",
+        "name": "aclnnFusedInferAttentionScoreV3",
+        "pid": 457065,
+        "tid": 457065,
+        "ts": "1790085076511787.601",
+        "dur": 3.57,
+        "cat": "cpu_op",
+        "args": {
+          "Sequence number": -1,
+          "Fwd thread id": 0
+        }
+      },
+      "torch_flow_id": 1790085076511891451,
+      "cann_flow_id": "7172595384320",
+      "cann_launch_scopes": [
+        {
+          "name": "AscendCL@aclnnInnerFusedInferAttentionScore",
+          "pid": 468034815,
+          "tid": 457380,
+          "ts": "1790085076511798.628",
+          "dur": 92.358,
+          "ph": "X",
+          "args": {
+            "Thread Id": 457380,
+            "Mode": "ACL_ASCENDC",
+            "level": "acl",
+            "id": "aclnnInnerFusedInferAttentionScore",
+            "item_id": "0",
+            "connection_id": 1661
+          }
+        },
+        {
+          "name": "Node@launch",
+          "pid": 468034815,
+          "tid": 457380,
+          "ts": "1790085076511843.890",
+          "dur": 39.424,
+          "ph": "X",
+          "args": {
+            "Thread Id": 457380,
+            "Mode": "launch",
+            "level": "node",
+            "id": "0",
+            "item_id": "FusedInferAttentionScore",
+            "connection_id": 1670
+          }
+        }
+      ],
+      "device_kernel": {
+        "name": "FusedInferAttentionScore",
+        "pid": 468034976,
+        "tid": 46,
+        "ts": "1790085076511891.451",
+        "dur": 29.401,
+        "ph": "X",
+        "args": {
+          "Model Id": 4294967295,
+          "Task Type": "MIX_AIC",
+          "Physic Stream Id": 46,
+          "Task Id": 1341,
+          "Batch Id": 0,
+          "Subtask Id": 0,
+          "connection_id": 1670
+        }
+      },
+      "kernel_csv": {
+        "Device_id": "0",
+        "Model ID": "4294967295",
+        "Task ID": "1341",
+        "Stream ID": "46",
+        "Name": "FusedInferAttentionScore",
+        "Type": "FusedInferAttentionScore",
+        "OP State": "dynamic",
+        "Accelerator Core": "MIX_AIC",
+        "Start Time(us)": "1790085076511891.451\t",
+        "Duration(us)": "29.401",
+        "Wait Time(us)": "47.950000",
+        "Block Num": "24",
+        "Mix Block Num": "48",
+        "HF32 Eligible": "NO",
+        "Input Shapes": "\"126,14,64;126,2,64;126,2,64;;2048,2048;1;1;;;;;;;;;;;;;;;;;;;;;;;;\"",
+        "Input Data Types": "DT_BF16;DT_BF16;DT_BF16;DT_UNDEFINED;INT8;INT64;INT64;DT_UNDEFINED;DT_UNDEFINED;DT_UNDEFINED;DT_UNDEFINED;DT_UNDEFINED;DT_UNDEFINED;DT_UNDEFINED;DT_UNDEFINED;DT_UNDEFINED;DT_UNDEFINED;DT_UNDEFINED;DT_UNDEFINED;DT_UNDEFINED;DT_UNDEFINED;DT_UNDEFINED;DT_UNDEFINED;DT_UNDEFINED;DT_UNDEFINED;DT_UNDEFINED;DT_UNDEFINED;DT_UNDEFINED;DT_UNDEFINED;DT_UNDEFINED;DT_UNDEFINED",
+        "Input Formats": "ND;ND;ND;NULL;ND;ND;ND;NULL;NULL;NULL;NULL;NULL;NULL;NULL;NULL;NULL;NULL;NULL;NULL;NULL;NULL;NULL;NULL;NULL;NULL;NULL;NULL;NULL;NULL;NULL;NULL",
+        "Output Shapes": "\"126,14,64;\"",
+        "Output Data Types": "DT_BF16;FLOAT",
+        "Output Formats": "ND;ND",
+        "Context ID": "0"
+      },
+      "associated_tasks": [
+        {
+          "name": "aclnnContiguous_SliceAiCore_Slice",
+          "pid": 468034976,
+          "tid": 46,
+          "ts": "1790085076511841.309",
+          "dur": 2.3,
+          "ph": "X",
+          "args": {
+            "Model Id": 4294967295,
+            "Task Type": "AI_VECTOR_CORE",
+            "Physic Stream Id": 46,
+            "Task Id": 1340,
+            "Batch Id": 0,
+            "Subtask Id": 4294967295,
+            "connection_id": 1668
+          }
+        },
+        {
+          "name": "FusedInferAttentionScore",
+          "pid": 468034976,
+          "tid": 46,
+          "ts": "1790085076511891.451",
+          "dur": 29.401,
+          "ph": "X",
+          "args": {
+            "Model Id": 4294967295,
+            "Task Type": "MIX_AIC",
+            "Physic Stream Id": 46,
+            "Task Id": 1341,
+            "Batch Id": 0,
+            "Subtask Id": 0,
+            "connection_id": 1670
+          }
+        }
+      ],
+      "kernel_start_after_torch_return_us": "96.474",
+      "kernel_start_after_python_return_us": "46.967"
+    },
+    {
+      "phase": "decode",
+      "step": 4,
+      "request_id": "cmpl-practice09-profile-0-9b57ff02",
+      "python_scope": {
+        "ph": "X",
+        "name": "P09/step=4/BaseDeviceAdaptor.reshape_and_cache",
+        "pid": 457065,
+        "tid": 457065,
+        "ts": "1790085076536368.566",
+        "dur": 106.053,
+        "cat": "cpu_op",
+        "args": {
+          "Sequence number": -1,
+          "Fwd thread id": 0
+        }
+      },
+      "python_source": {
+        "file": "/vllm-workspace/vllm-ascend/vllm_ascend/device/device_op.py",
+        "line": 43,
+        "function": "BaseDeviceAdaptor.reshape_and_cache"
+      },
+      "torch_operator": {
+        "ph": "X",
+        "name": "atb::_npu_reshape_and_cache",
+        "pid": 457065,
+        "tid": 457065,
+        "ts": "1790085076536425.821",
+        "dur": 26.146,
+        "cat": "cpu_op",
+        "args": {
+          "Sequence number": -1,
+          "Fwd thread id": 0
+        }
+      },
+      "host_launch_operator": {
+        "ph": "X",
+        "name": "ReshapeCacheOperation",
+        "pid": 457065,
+        "tid": 457065,
+        "ts": "1790085076536447.492",
+        "dur": 3.298,
+        "cat": "cpu_op",
+        "args": {
+          "Sequence number": -1,
+          "Fwd thread id": 0
+        }
+      },
+      "torch_flow_id": 1790085076536489175,
+      "cann_flow_id": "16771847290880",
+      "cann_launch_scopes": [
+        {
+          "name": "AscendCL@ReshapeAndCacheOperation::Execute",
+          "pid": 468034815,
+          "tid": 457380,
+          "ts": "1790085076536471.541",
+          "dur": 13.67,
+          "ph": "X",
+          "args": {
+            "Thread Id": 457380,
+            "Mode": "ACL_ATB",
+            "level": "acl",
+            "id": "ReshapeAndCacheOperation::Execute",
+            "item_id": "ReshapeAndCacheOperation::Execute",
+            "connection_id": 3904
+          }
+        },
+        {
+          "name": "Node@launch",
+          "pid": 468034815,
+          "tid": 457380,
+          "ts": "1790085076536473.302",
+          "dur": 5.146,
+          "ph": "X",
+          "args": {
+            "Thread Id": 457380,
+            "Mode": "launch",
+            "level": "node",
+            "id": "0",
+            "item_id": "ReshapeAndCacheNdKernel",
+            "connection_id": 3905
+          }
+        }
+      ],
+      "device_kernel": {
+        "name": "ReshapeAndCacheNdKernel",
+        "pid": 468034976,
+        "tid": 46,
+        "ts": "1790085076536489.175",
+        "dur": 1.86,
+        "ph": "X",
+        "args": {
+          "Model Id": 4294967295,
+          "Task Type": "AI_VECTOR_CORE",
+          "Physic Stream Id": 46,
+          "Task Id": 1764,
+          "Batch Id": 0,
+          "Subtask Id": 4294967295,
+          "connection_id": 3905
+        }
+      },
+      "kernel_csv": {
+        "Device_id": "0",
+        "Model ID": "4294967295",
+        "Task ID": "1764",
+        "Stream ID": "46",
+        "Name": "ReshapeAndCacheNdKernel",
+        "Type": "ReshapeAndCacheNdKernel",
+        "OP State": "dynamic",
+        "Accelerator Core": "AI_VECTOR_CORE",
+        "Start Time(us)": "1790085076536489.175\t",
+        "Duration(us)": "1.860",
+        "Wait Time(us)": "433.650000",
+        "Block Num": "1",
+        "Mix Block Num": "0",
+        "HF32 Eligible": "NO",
+        "Input Shapes": "\"1,2,64;1,2,64;11781,128,2,64;11781,128,2,64;1\"",
+        "Input Data Types": "DT_BF16;DT_BF16;DT_BF16;DT_BF16;INT32",
+        "Input Formats": "ND;ND;ND;ND;ND",
+        "Output Shapes": "\"11781,128,2,64;11781,128,2,64\"",
+        "Output Data Types": "DT_BF16;DT_BF16",
+        "Output Formats": "ND;ND",
+        "Context ID": "N/A"
+      },
+      "associated_tasks": [
+        {
+          "name": "ReshapeAndCacheNdKernel",
+          "pid": 468034976,
+          "tid": 46,
+          "ts": "1790085076536489.175",
+          "dur": 1.86,
+          "ph": "X",
+          "args": {
+            "Model Id": 4294967295,
+            "Task Type": "AI_VECTOR_CORE",
+            "Physic Stream Id": 46,
+            "Task Id": 1764,
+            "Batch Id": 0,
+            "Subtask Id": 4294967295,
+            "connection_id": 3905
+          }
+        }
+      ],
+      "kernel_start_after_torch_return_us": "37.208",
+      "kernel_start_after_python_return_us": "14.556"
+    },
+    {
+      "phase": "decode",
+      "step": 4,
+      "request_id": "cmpl-practice09-profile-0-9b57ff02",
+      "python_scope": {
+        "ph": "X",
+        "name": "P09/step=4/AscendAttentionBackendImpl.forward_fused_infer_attention",
+        "pid": 457065,
+        "tid": 457065,
+        "ts": "1790085076536656.641",
+        "dur": 190.506,
+        "cat": "cpu_op",
+        "args": {
+          "Sequence number": -1,
+          "Fwd thread id": 0
+        }
+      },
+      "python_source": {
+        "file": "/vllm-workspace/vllm-ascend/vllm_ascend/attention/attention_v1.py",
+        "line": 1045,
+        "function": "AscendAttentionBackendImpl.forward_fused_infer_attention"
+      },
+      "torch_operator": {
+        "ph": "X",
+        "name": "npu::npu_fused_infer_attention_score",
+        "pid": 457065,
+        "tid": 457065,
+        "ts": "1790085076536748.547",
+        "dur": 46.749,
+        "cat": "cpu_op",
+        "args": {
+          "Sequence number": -1,
+          "Fwd thread id": 0
+        }
+      },
+      "host_launch_operator": {
+        "ph": "X",
+        "name": "aclnnFusedInferAttentionScoreV3",
+        "pid": 457065,
+        "tid": 457065,
+        "ts": "1790085076536789.086",
+        "dur": 2.999,
+        "cat": "cpu_op",
+        "args": {
+          "Sequence number": -1,
+          "Fwd thread id": 0
+        }
+      },
+      "torch_flow_id": 1790085076536831168,
+      "cann_flow_id": "16793322127360",
+      "cann_launch_scopes": [
+        {
+          "name": "AscendCL@aclnnInnerFusedInferAttentionScore",
+          "pid": 468034815,
+          "tid": 457380,
+          "ts": "1790085076536797.642",
+          "dur": 27.364,
+          "ph": "X",
+          "args": {
+            "Thread Id": 457380,
+            "Mode": "ACL_ASCENDC",
+            "level": "acl",
+            "id": "aclnnInnerFusedInferAttentionScore",
+            "item_id": "0",
+            "connection_id": 3909
+          }
+        },
+        {
+          "name": "Node@launch",
+          "pid": 468034815,
+          "tid": 457380,
+          "ts": "1790085076536800.131",
+          "dur": 20.385,
+          "ph": "X",
+          "args": {
+            "Thread Id": 457380,
+            "Mode": "launch",
+            "level": "node",
+            "id": "0",
+            "item_id": "FusedInferAttentionScore",
+            "connection_id": 3910
+          }
+        }
+      ],
+      "device_kernel": {
+        "name": "FusedInferAttentionScore",
+        "pid": 468034976,
+        "tid": 46,
+        "ts": "1790085076536831.168",
+        "dur": 21.041,
+        "ph": "X",
+        "args": {
+          "Model Id": 4294967295,
+          "Task Type": "MIX_AIC",
+          "Physic Stream Id": 46,
+          "Task Id": 1765,
+          "Batch Id": 0,
+          "Subtask Id": 0,
+          "connection_id": 3910
+        }
+      },
+      "kernel_csv": {
+        "Device_id": "0",
+        "Model ID": "4294967295",
+        "Task ID": "1765",
+        "Stream ID": "46",
+        "Name": "FusedInferAttentionScore",
+        "Type": "FusedInferAttentionScore",
+        "OP State": "dynamic",
+        "Accelerator Core": "MIX_AIC",
+        "Start Time(us)": "1790085076536831.168\t",
+        "Duration(us)": "21.041",
+        "Wait Time(us)": "340.140000",
+        "Block Num": "24",
+        "Mix Block Num": "48",
+        "HF32 Eligible": "NO",
+        "Input Shapes": "\"1,14,64;11781,128,128;11781,128,128;;2048,2048;1;1;;;;;;;;1,16;;;;;;;;;;;;;;;;\"",
+        "Input Data Types": "DT_BF16;DT_BF16;DT_BF16;DT_UNDEFINED;INT8;INT64;INT64;DT_UNDEFINED;DT_UNDEFINED;DT_UNDEFINED;DT_UNDEFINED;DT_UNDEFINED;DT_UNDEFINED;DT_UNDEFINED;INT32;DT_UNDEFINED;DT_UNDEFINED;DT_UNDEFINED;DT_UNDEFINED;DT_UNDEFINED;DT_UNDEFINED;DT_UNDEFINED;DT_UNDEFINED;DT_UNDEFINED;DT_UNDEFINED;DT_UNDEFINED;DT_UNDEFINED;DT_UNDEFINED;DT_UNDEFINED;DT_UNDEFINED;DT_UNDEFINED",
+        "Input Formats": "ND;ND;ND;NULL;ND;ND;ND;NULL;NULL;NULL;NULL;NULL;NULL;NULL;ND;NULL;NULL;NULL;NULL;NULL;NULL;NULL;NULL;NULL;NULL;NULL;NULL;NULL;NULL;NULL;NULL",
+        "Output Shapes": "\"1,14,64;\"",
+        "Output Data Types": "DT_BF16;FLOAT",
+        "Output Formats": "ND;ND",
+        "Context ID": "0"
+      },
+      "associated_tasks": [
+        {
+          "name": "FusedInferAttentionScore",
+          "pid": 468034976,
+          "tid": 46,
+          "ts": "1790085076536831.168",
+          "dur": 21.041,
+          "ph": "X",
+          "args": {
+            "Model Id": 4294967295,
+            "Task Type": "MIX_AIC",
+            "Physic Stream Id": 46,
+            "Task Id": 1765,
+            "Batch Id": 0,
+            "Subtask Id": 0,
+            "connection_id": 3910
+          }
+        }
+      ],
+      "kernel_start_after_torch_return_us": "35.872",
+      "kernel_start_after_python_return_us": "-15.979"
+    }
+  ],
+  "trace_file": "profiler/rank0_457065_20260922135116405_ascend_pt/ASCEND_PROFILER_OUTPUT/trace_view.json",
+  "trace_sha256": "00bc262dd492b6f6e0f9661899d3330748c1204bb4483154efaf057961153b1f"
+}

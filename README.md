@@ -115,3 +115,10 @@ block IDs, CPU and NPU block tables, slot mapping, and the first layer's actual
 K/V data after the cache write.
 See [practice_08_real_kv_mapping/README.md](practice_08_real_kv_mapping/README.md)
 for the diagnostic procedure and its intentional device synchronization.
+
+## Practice 09: trace real operator execution
+
+Follow Python attention and KV-write calls through PyTorch operators and CANN
+launch events to actual NPU kernels. The archived profiler includes one prefill
+and one decode step, with verified flow IDs and a first-layer timeline excerpt.
+See [practice_09_operator_trace/README.md](practice_09_operator_trace/README.md).
