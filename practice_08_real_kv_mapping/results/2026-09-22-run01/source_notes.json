@@ -1,0 +1,62 @@
+{
+  "/vllm-workspace/vllm/vllm/v1/core/block_pool.py": {
+    "sha256": "c2a8eb59aaae2f15f7e75e5d14a68bd321730d2e62158c822af7179b85157347",
+    "excerpts": [
+      {
+        "start_line": 171,
+        "end_line": 178,
+        "text": "        self.cached_block_hash_to_block: BlockHashToBlockMap = BlockHashToBlockMap()\n\n        # To represent a placeholder block with block_id=0.\n        # The ref_cnt of null_block is not maintained, needs special care to\n        # avoid freeing it.\n        self.null_block = self.free_block_queue.popleft()\n        self.null_block.is_null = True\n"
+      },
+      {
+        "start_line": 173,
+        "end_line": 180,
+        "text": "        # To represent a placeholder block with block_id=0.\n        # The ref_cnt of null_block is not maintained, needs special care to\n        # avoid freeing it.\n        self.null_block = self.free_block_queue.popleft()\n        self.null_block.is_null = True\n\n        self.enable_kv_cache_events = enable_kv_cache_events\n        self.kv_event_queue: list[KVCacheEvent] = []"
+      },
+      {
+        "start_line": 174,
+        "end_line": 181,
+        "text": "        # The ref_cnt of null_block is not maintained, needs special care to\n        # avoid freeing it.\n        self.null_block = self.free_block_queue.popleft()\n        self.null_block.is_null = True\n\n        self.enable_kv_cache_events = enable_kv_cache_events\n        self.kv_event_queue: list[KVCacheEvent] = []\n"
+      }
+    ]
+  },
+  "/vllm-workspace/vllm-ascend/vllm_ascend/worker/block_table.py": {
+    "sha256": "c607a765df358981ae43cd3bb6d70db5a0e92672c9f0ff2a6a551f26c44331a4",
+    "excerpts": [
+      {
+        "start_line": 137,
+        "end_line": 160,
+        "text": "    def compute_slot_mapping(\n        self,\n        num_reqs: int,\n        query_start_loc: torch.Tensor,\n        positions: torch.Tensor,\n    ) -> None:\n        num_tokens = positions.shape[0]\n        total_cp_world_size = self.pcp_world_size * self.dcp_world_size\n        total_cp_rank = self.pcp_rank * self.dcp_world_size + self.dcp_rank\n        _compute_slot_mapping_kernel[(num_reqs + 1,)](\n            num_tokens,\n            self.max_num_batched_tokens,\n            query_start_loc,\n            positions,\n            self.block_table.gpu,\n            self.block_table.gpu.stride(0),\n            self.block_size,\n            self.slot_mapping.gpu,\n            TOTAL_CP_WORLD_SIZE=total_cp_world_size,\n            TOTAL_CP_RANK=total_cp_rank,\n            CP_KV_CACHE_INTERLEAVE_SIZE=self.cp_kv_cache_interleave_size,\n            PAD_ID=PAD_SLOT_ID,\n            BLOCK_SIZE=1024,\n        )"
+      },
+      {
+        "start_line": 368,
+        "end_line": 380,
+        "text": "    def compute_slot_mapping(\n        self,\n        num_reqs: int,\n        query_start_loc: torch.Tensor,\n        positions: torch.Tensor,\n        positions_compressed_list: list[np.ndarray] | None = None,\n        req_indices_compressed_list: list[np.ndarray] | None = None,\n    ) -> None:\n        for i, block_table in enumerate(self.block_tables):\n            if positions_compressed_list and req_indices_compressed_list:\n                block_table.compute_slot_mapping_draft(req_indices_compressed_list[i], positions_compressed_list[i])\n            else:\n                block_table.compute_slot_mapping(num_reqs, query_start_loc, positions)"
+      }
+    ]
+  },
+  "/vllm-workspace/vllm/vllm/v1/worker/block_table.py": {
+    "sha256": "b79a46abf8feb0e2ad9e9de64b55e6fc6d3597eadbd903993cbf4e3e74f1f324",
+    "excerpts": [
+      {
+        "start_line": 326,
+        "end_line": 380,
+        "text": "def _compute_slot_mapping_kernel(\n    num_tokens,\n    max_num_tokens,\n    query_start_loc_ptr,  # [num_reqs + 1], int32\n    positions_ptr,  # [num_tokens], int64\n    block_table_ptr,  # [max_num_reqs, max_num_blocks_per_req], int32 (flat)\n    block_table_stride,  # max_num_blocks_per_req\n    block_size,\n    slot_mapping_ptr,  # [max_num_tokens], int64\n    TOTAL_CP_WORLD_SIZE: tl.constexpr,\n    TOTAL_CP_RANK: tl.constexpr,\n    CP_KV_CACHE_INTERLEAVE_SIZE: tl.constexpr,\n    PAD_ID: tl.constexpr,\n    BLOCK_SIZE: tl.constexpr,\n):\n    req_idx = tl.program_id(0)\n\n    if req_idx == tl.num_programs(0) - 1:\n        # Pad remaining slots for CUDA graph compatibility.\n        for i in range(num_tokens, max_num_tokens, BLOCK_SIZE):\n            offsets = i + tl.arange(0, BLOCK_SIZE)\n            tl.store(\n                slot_mapping_ptr + offsets,\n                PAD_ID,\n                mask=offsets < max_num_tokens,\n            )\n        return\n\n    start_idx = tl.load(query_start_loc_ptr + req_idx).to(tl.int64)\n    end_idx = tl.load(query_start_loc_ptr + req_idx + 1).to(tl.int64)\n\n    virtual_block_size = block_size * TOTAL_CP_WORLD_SIZE\n    row_offset = req_idx * block_table_stride\n    for i in range(start_idx, end_idx, BLOCK_SIZE):\n        offsets = i + tl.arange(0, BLOCK_SIZE)\n        mask = offsets < end_idx\n        pos = tl.load(positions_ptr + offsets, mask=mask, other=0)\n        block_indices = pos // virtual_block_size\n        block_numbers = tl.load(block_table_ptr + row_offset + block_indices).to(\n            tl.int64\n        )\n\n        virtual_block_offsets = pos - block_indices * virtual_block_size\n        is_local = (\n            virtual_block_offsets // CP_KV_CACHE_INTERLEAVE_SIZE\n        ) % TOTAL_CP_WORLD_SIZE == TOTAL_CP_RANK\n        local_block_offsets = (\n            virtual_block_offsets // (TOTAL_CP_WORLD_SIZE * CP_KV_CACHE_INTERLEAVE_SIZE)\n        ) * CP_KV_CACHE_INTERLEAVE_SIZE + (\n            virtual_block_offsets % CP_KV_CACHE_INTERLEAVE_SIZE\n        )\n\n        slot_ids = block_numbers * block_size + local_block_offsets\n        slot_ids = tl.where(is_local, slot_ids, PAD_ID)\n        tl.store(slot_mapping_ptr + offsets, slot_ids, mask=mask)"
+      }
+    ]
+  },
+  "/vllm-workspace/vllm-ascend/vllm_ascend/device/device_op.py": {
+    "sha256": "4c6bc150fa2359614ec9b1a7e2894e7e4d18b06f1aae91c22585c4c7fb4178bc",
+    "excerpts": [
+      {
+        "start_line": 44,
+        "end_line": 47,
+        "text": "    def reshape_and_cache(cls, key, value, key_cache, value_cache, slot_mapping):\n        torch_npu._npu_reshape_and_cache(\n            key=key, value=value, key_cache=key_cache, value_cache=value_cache, slot_indices=slot_mapping\n        )"
+      },
+      {
+        "start_line": 787,
+        "end_line": 795,
+        "text": "    def reshape_and_cache(cls, key, value, key_cache, value_cache, slot_mapping):\n        torch_npu.npu_scatter_pa_kv_cache(\n            key=key.contiguous(),\n            value=value.contiguous(),\n            key_cache=key_cache,\n            value_cache=value_cache,\n            slot_mapping=slot_mapping.contiguous(),\n            cache_mode=\"Norm\",\n        )"
+      }
+    ]
+  }
+}

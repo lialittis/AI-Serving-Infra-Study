@@ -36,8 +36,10 @@ flowchart TD
 
 ## 实验顺序
 
-当前进度：**Practice 07 已于 2026-09-20 在远端真实运行完成**，
-见 [结果与证据](practice_07_real_request_trace/RESULTS.md)。08–12 尚未执行。
+当前进度：**Practice 07、08 已在远端真实运行完成**。
+07 于 2026-09-20 完成请求路径追踪，见 [结果与证据](practice_07_real_request_trace/RESULTS.md)；
+08 于 2026-09-22 完成跨 block 的真实 KV 映射及第一层数据校验，
+见 [结果与证据](practice_08_real_kv_mapping/RESULTS.md)。09–12 尚未执行。
 
 | Practice | 主要问题 | 操作与预期证据 |
 |---|---|---|

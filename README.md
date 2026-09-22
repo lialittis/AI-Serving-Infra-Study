@@ -107,3 +107,11 @@ Run one real HTTP request on Ascend and correlate the API, scheduler, worker,
 model runner, attention backend, and output with the installed source files.
 See [practice_07_real_request_trace/README.md](practice_07_real_request_trace/README.md)
 for remote execution, archived evidence, and the limits of a host-side trace.
+
+## Practice 08: trace real KV block mappings
+
+Follow a real request across a 128-token block boundary. Compare the KV manager's
+block IDs, CPU and NPU block tables, slot mapping, and the first layer's actual
+K/V data after the cache write.
+See [practice_08_real_kv_mapping/README.md](practice_08_real_kv_mapping/README.md)
+for the diagnostic procedure and its intentional device synchronization.
