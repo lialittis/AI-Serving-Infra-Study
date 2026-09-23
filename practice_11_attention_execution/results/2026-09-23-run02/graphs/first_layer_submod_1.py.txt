@@ -1,0 +1,7 @@
+
+
+
+def forward(self, query, s72 : torch.SymInt, key, value, output_2):
+    unified_attention_with_output = torch.ops.vllm.unified_attention_with_output(query, key, value, output_2, 'model.layers.0.self_attn.attn', kv_cache_dummy_dep = None);  query = key = value = output_2 = unified_attention_with_output = None
+    return ()
+    

@@ -1,0 +1,6 @@
+phase,python_scope,torch_operator,kernel,stream,task,duration_us,torch_flow,cann_flow
+prefill,P11/step=3/BaseDeviceAdaptor.reshape_and_cache,atb::_npu_reshape_and_cache,ReshapeAndCacheNdKernel,46,1486,9.4005,1790162642290708208,2851858284544
+prefill,P11/step=3/AscendAttentionBackendImpl.forward_fused_infer_attention,npu::npu_fused_infer_attention_score,FusedInferAttentionScore,46,1488,31.701,1790162642291346974,2920577761280
+prefill,P11/step=3/first_linear_after_attention,aten::linear,aclnnMatmul_MatMulCommon_MatMulV2,46,1490,7.7,1790162642292397936,2976412336128
+decode,P11/step=4/BaseDeviceAdaptor.reshape_and_cache,atb::_npu_reshape_and_cache,ReshapeAndCacheNdKernel,46,1907,1.94,1790162642331245169,16050292785152
+decode,P11/step=4/AscendAttentionBackendImpl.forward_fused_infer_attention,npu::npu_fused_infer_attention_score,FusedInferAttentionScore,46,1908,23.321,1790162642331799391,16071767621632

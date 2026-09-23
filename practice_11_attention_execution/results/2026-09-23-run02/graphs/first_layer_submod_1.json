@@ -1,0 +1,291 @@
+{
+  "stage": "first_layer_submod_1",
+  "pid": 542370,
+  "nodes": [
+    {
+      "name": "query",
+      "op": "placeholder",
+      "target": "query",
+      "args": [],
+      "kwargs": {},
+      "inputs": [],
+      "users": [
+        "unified_attention_with_output"
+      ],
+      "value": {
+        "shape": [
+          "s72",
+          "14",
+          "64"
+        ],
+        "dtype": "torch.bfloat16",
+        "device": "npu:0",
+        "stride": [
+          "1152",
+          "64",
+          "1"
+        ]
+      },
+      "module_stack": {
+        "140523783985184": [
+          "L['self'].layers.0",
+          "<class 'vllm.model_executor.models.qwen2.Qwen2DecoderLayer'>"
+        ],
+        "140523783835664": [
+          "L['self'].layers.0.self_attn",
+          "<class 'vllm.model_executor.models.qwen2.Qwen2Attention'>"
+        ],
+        "140523783987776": [
+          "L['self'].layers.0.self_attn.attn",
+          "<class 'vllm.model_executor.layers.attention.attention.Attention'>"
+        ]
+      },
+      "source_fn_stack": [
+        [
+          "view",
+          "view"
+        ]
+      ],
+      "stack_trace": "  File \"/vllm-workspace/vllm/vllm/model_executor/models/qwen2.py\", line 411, in forward\n    hidden_states, residual = layer(positions, hidden_states, residual)\n  File \"/vllm-workspace/vllm/vllm/model_executor/models/qwen2.py\", line 304, in forward\n    hidden_states = self.self_attn(\n  File \"/vllm-workspace/vllm/vllm/model_executor/models/qwen2.py\", line 234, in forward\n    attn_output = self.attn(q, k, v)\n  File \"/vllm-workspace/vllm/vllm/model_executor/layers/attention/attention.py\", line 455, in forward\n    query = query.view(-1, self.num_heads, self.head_size)\n",
+      "schema": "",
+      "schemas": {}
+    },
+    {
+      "name": "s72",
+      "op": "placeholder",
+      "target": "s72",
+      "args": [],
+      "kwargs": {},
+      "inputs": [],
+      "users": [],
+      "value": "s72",
+      "module_stack": {
+        "140523783836912": [
+          "L['self'].embed_tokens",
+          "<class 'vllm_ascend.ops.vocab_parallel_embedding.AscendVocabParallelEmbedding'>"
+        ]
+      },
+      "source_fn_stack": [],
+      "stack_trace": "  File \"/vllm-workspace/vllm/vllm/model_executor/models/qwen2.py\", line 400, in forward\n    hidden_states = self.embed_input_ids(input_ids)\n  File \"/vllm-workspace/vllm/vllm/model_executor/models/qwen2.py\", line 387, in embed_input_ids\n    return self.embed_tokens(input_ids)\n  File \"/vllm-workspace/vllm-ascend/vllm_ascend/ops/vocab_parallel_embedding.py\", line 167, in forward\n    return self._forward_origin(input_)\n  File \"/vllm-workspace/vllm-ascend/vllm_ascend/ops/vocab_parallel_embedding.py\", line 200, in _forward_origin\n    output_parallel = self.quant_method.embedding(self, masked_input.long())\n",
+      "schema": "",
+      "schemas": {}
+    },
+    {
+      "name": "key",
+      "op": "placeholder",
+      "target": "key",
+      "args": [],
+      "kwargs": {},
+      "inputs": [],
+      "users": [
+        "unified_attention_with_output"
+      ],
+      "value": {
+        "shape": [
+          "s72",
+          "2",
+          "64"
+        ],
+        "dtype": "torch.bfloat16",
+        "device": "npu:0",
+        "stride": [
+          "1152",
+          "64",
+          "1"
+        ]
+      },
+      "module_stack": {
+        "140523783985184": [
+          "L['self'].layers.0",
+          "<class 'vllm.model_executor.models.qwen2.Qwen2DecoderLayer'>"
+        ],
+        "140523783835664": [
+          "L['self'].layers.0.self_attn",
+          "<class 'vllm.model_executor.models.qwen2.Qwen2Attention'>"
+        ],
+        "140523783987776": [
+          "L['self'].layers.0.self_attn.attn",
+          "<class 'vllm.model_executor.layers.attention.attention.Attention'>"
+        ]
+      },
+      "source_fn_stack": [
+        [
+          "view_2",
+          "view"
+        ]
+      ],
+      "stack_trace": "  File \"/vllm-workspace/vllm/vllm/model_executor/models/qwen2.py\", line 411, in forward\n    hidden_states, residual = layer(positions, hidden_states, residual)\n  File \"/vllm-workspace/vllm/vllm/model_executor/models/qwen2.py\", line 304, in forward\n    hidden_states = self.self_attn(\n  File \"/vllm-workspace/vllm/vllm/model_executor/models/qwen2.py\", line 234, in forward\n    attn_output = self.attn(q, k, v)\n  File \"/vllm-workspace/vllm/vllm/model_executor/layers/attention/attention.py\", line 458, in forward\n    key = key.view(-1, self.num_kv_heads, self.head_size)\n",
+      "schema": "",
+      "schemas": {}
+    },
+    {
+      "name": "value",
+      "op": "placeholder",
+      "target": "value",
+      "args": [],
+      "kwargs": {},
+      "inputs": [],
+      "users": [
+        "unified_attention_with_output"
+      ],
+      "value": {
+        "shape": [
+          "s72",
+          "2",
+          "64"
+        ],
+        "dtype": "torch.bfloat16",
+        "device": "npu:0",
+        "stride": [
+          "1152",
+          "64",
+          "1"
+        ]
+      },
+      "module_stack": {
+        "140523783985184": [
+          "L['self'].layers.0",
+          "<class 'vllm.model_executor.models.qwen2.Qwen2DecoderLayer'>"
+        ],
+        "140523783835664": [
+          "L['self'].layers.0.self_attn",
+          "<class 'vllm.model_executor.models.qwen2.Qwen2Attention'>"
+        ],
+        "140523783987776": [
+          "L['self'].layers.0.self_attn.attn",
+          "<class 'vllm.model_executor.layers.attention.attention.Attention'>"
+        ]
+      },
+      "source_fn_stack": [
+        [
+          "view_3",
+          "view"
+        ]
+      ],
+      "stack_trace": "  File \"/vllm-workspace/vllm/vllm/model_executor/models/qwen2.py\", line 411, in forward\n    hidden_states, residual = layer(positions, hidden_states, residual)\n  File \"/vllm-workspace/vllm/vllm/model_executor/models/qwen2.py\", line 304, in forward\n    hidden_states = self.self_attn(\n  File \"/vllm-workspace/vllm/vllm/model_executor/models/qwen2.py\", line 234, in forward\n    attn_output = self.attn(q, k, v)\n  File \"/vllm-workspace/vllm/vllm/model_executor/layers/attention/attention.py\", line 460, in forward\n    value = value.view(-1, self.num_kv_heads, self.head_size_v)\n",
+      "schema": "",
+      "schemas": {}
+    },
+    {
+      "name": "output_2",
+      "op": "placeholder",
+      "target": "output_2",
+      "args": [],
+      "kwargs": {},
+      "inputs": [],
+      "users": [
+        "unified_attention_with_output"
+      ],
+      "value": {
+        "shape": [
+          "s72",
+          "14",
+          "64"
+        ],
+        "dtype": "torch.bfloat16",
+        "device": "npu:0",
+        "stride": [
+          "896",
+          "64",
+          "1"
+        ]
+      },
+      "module_stack": {
+        "140523783985184": [
+          "L['self'].layers.0",
+          "<class 'vllm.model_executor.models.qwen2.Qwen2DecoderLayer'>"
+        ],
+        "140523783835664": [
+          "L['self'].layers.0.self_attn",
+          "<class 'vllm.model_executor.models.qwen2.Qwen2Attention'>"
+        ],
+        "140523783987776": [
+          "L['self'].layers.0.self_attn.attn",
+          "<class 'vllm.model_executor.layers.attention.attention.Attention'>"
+        ]
+      },
+      "source_fn_stack": [
+        [
+          "view_1",
+          "view"
+        ]
+      ],
+      "stack_trace": "  File \"/vllm-workspace/vllm/vllm/model_executor/models/qwen2.py\", line 411, in forward\n    hidden_states, residual = layer(positions, hidden_states, residual)\n  File \"/vllm-workspace/vllm/vllm/model_executor/models/qwen2.py\", line 304, in forward\n    hidden_states = self.self_attn(\n  File \"/vllm-workspace/vllm/vllm/model_executor/models/qwen2.py\", line 234, in forward\n    attn_output = self.attn(q, k, v)\n  File \"/vllm-workspace/vllm/vllm/model_executor/layers/attention/attention.py\", line 456, in forward\n    output = output.view(-1, self.num_heads, self.head_size_v)\n",
+      "schema": "",
+      "schemas": {}
+    },
+    {
+      "name": "unified_attention_with_output",
+      "op": "call_function",
+      "target": "vllm.unified_attention_with_output",
+      "args": [
+        {
+          "node": "query"
+        },
+        {
+          "node": "key"
+        },
+        {
+          "node": "value"
+        },
+        {
+          "node": "output_2"
+        },
+        "model.layers.0.self_attn.attn"
+      ],
+      "kwargs": {
+        "kv_cache_dummy_dep": null
+      },
+      "inputs": [
+        "query",
+        "key",
+        "value",
+        "output_2"
+      ],
+      "users": [],
+      "value": null,
+      "module_stack": {
+        "140523783985184": [
+          "L['self'].layers.0",
+          "<class 'vllm.model_executor.models.qwen2.Qwen2DecoderLayer'>"
+        ],
+        "140523783835664": [
+          "L['self'].layers.0.self_attn",
+          "<class 'vllm.model_executor.models.qwen2.Qwen2Attention'>"
+        ],
+        "140523783987776": [
+          "L['self'].layers.0.self_attn.attn",
+          "<class 'vllm.model_executor.layers.attention.attention.Attention'>"
+        ]
+      },
+      "source_fn_stack": [
+        [
+          "unified_attention_with_output",
+          "vllm.unified_attention_with_output"
+        ]
+      ],
+      "stack_trace": "  File \"/vllm-workspace/vllm/vllm/model_executor/models/qwen2.py\", line 411, in forward\n    hidden_states, residual = layer(positions, hidden_states, residual)\n  File \"/vllm-workspace/vllm/vllm/model_executor/models/qwen2.py\", line 304, in forward\n    hidden_states = self.self_attn(\n  File \"/vllm-workspace/vllm/vllm/model_executor/models/qwen2.py\", line 234, in forward\n    attn_output = self.attn(q, k, v)\n  File \"/vllm-workspace/vllm/vllm/model_executor/layers/attention/attention.py\", line 493, in forward\n    torch.ops.vllm.unified_attention_with_output(\n",
+      "schema": "",
+      "schemas": {
+        "": "vllm::unified_attention_with_output(Tensor query, Tensor key, Tensor value, Tensor(a3!) output, str layer_name, Tensor? output_scale=None, Tensor(a6!)? output_block_scale=None, Tensor? kv_cache_dummy_dep=None) -> ()"
+      }
+    },
+    {
+      "name": "output",
+      "op": "output",
+      "target": "output",
+      "args": [
+        []
+      ],
+      "kwargs": {},
+      "inputs": [],
+      "users": [],
+      "value": null,
+      "module_stack": {},
+      "source_fn_stack": [],
+      "stack_trace": "",
+      "schema": "",
+      "schemas": {}
+    }
+  ]
+}

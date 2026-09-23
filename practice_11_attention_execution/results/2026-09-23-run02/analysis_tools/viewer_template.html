@@ -1,0 +1,32 @@
+<!doctype html><html lang="zh-CN"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Practice 11 · Attention 的真实执行</title>
+<style>
+body{font:16px/1.65 system-ui,sans-serif;background:#f4f7fa;color:#172f48;margin:0}header{padding:24px 30px;background:#172f48;color:white}h1{font-size:25px;margin:0}header p{margin:6px 0}main{max-width:1200px;margin:auto;padding:24px}
+button{font:inherit;padding:9px 24px;margin:0 8px 12px 0;border:1px solid #93abc5;border-radius:5px;cursor:pointer;background:white}button.active{background:#175dac;color:white}section{background:white;padding:20px;margin:16px 0;border-radius:8px}h2{font-size:20px;margin-top:0}table{border-collapse:collapse;width:100%;font-size:14px}td,th{padding:9px;border-bottom:1px solid #dae1e8;text-align:left;overflow-wrap:anywhere}pre{white-space:pre-wrap;font-size:13px;background:#f3f6fa;padding:14px}.note{border-left:4px solid #d17d16;background:#fff3dd;padding:12px 16px}a{color:#1760ad}.scroll{overflow:auto}object{width:100%;height:780px;background:white}.grid{display:grid;grid-template-columns:1fr 1fr;gap:15px}@media(max-width:850px){.grid{grid-template-columns:1fr}}
+</style>
+<header><h1>一个 FX attention 节点，怎样执行？</h1><p>真实 Qwen2.5-0.5B · Ascend 910B2C · 第一层 · 单请求 126 输入 / 2 输出</p><p>计算图 + 实际 tensor 存储 + profiler 关联证据</p></header>
+<main><button id="prefill">Prefill · 126 tokens</button><button id="decode">Decode · 1 token</button>
+<section><h2 id="title"></h2><p id="explanation"></p><p class="note" id="limit"></p></section>
+<section><h2>数据与存储</h2><div class="scroll"><table><thead><tr><th>对象</th><th>shape</th><th>storage pointer</th><th>storage offset</th><th>data pointer</th></tr></thead><tbody id="storage"></tbody></table></div><p id="slots"></p></section>
+<section><h2>第一层 attention 内的全部已关联设备任务</h2><p>这些任务通过真实 async_npu 和 HostToDevice 关联 ID 确认。拷贝任务不属于 kernel_details.csv 的计算 kernel 行。</p><div class="scroll"><table><thead><tr><th>主机操作</th><th>设备任务</th><th>Stream / Task</th><th>时长 μs</th></tr></thead><tbody id="tasks"></tbody></table></div></section>
+<section><h2>带实测地址与任务编号的展开图</h2><p>实线为数据/存储关系；虚线为已验证的设备执行先后关系。这是证据整理图，不是另一次 FX 导出。</p><a id="svg" target="_blank">单独打开 SVG 放大</a><object id="diagram" type="image/svg+xml"></object></section>
+<section><h2>原始证据</h2><p><a href="attention_evidence.json">完整对应关系 JSON</a> · <a href="first_layer_trace.json">第一层原始事件摘录</a> · <a href="replay_coverage.json">重放任务的关联缺口</a></p>
+<details><summary>当前阶段的 tensor / 上下文记录</summary><pre id="details"></pre></details>
+<p class="note">地址只用于本次存活区间内的存储对应；没有逐元素验证数据，没有读取 NPU slot 数值。Python 返回不是设备完成。采集含观测开销，不用于性能比较。</p></section></main>
+<script id="data" type="application/json">__EVIDENCE__</script><script>
+const data=JSON.parse(document.getElementById('data').textContent);
+const el=id=>document.getElementById(id), hex=n=>'0x'+n.toString(16);
+function row(parent, values){const tr=document.createElement('tr');for(const value of values){const td=document.createElement('td');td.textContent=value;tr.append(td);}parent.append(tr);}
+function show(name){const p=data.phases.find(p=>p.phase===name);for(const id of ['prefill','decode'])el(id).classList.toggle('active',id===name);
+el('title').textContent=name==='prefill'?'Prefill：当前 K/V 直接参与 attention':'Decode：从 KV cache 读取历史与当前 K/V';
+el('explanation').textContent=name==='prefill'?'先写入 KV cache；本次 PrefillNoCache 的 attention 使用当前 K/V，block_table 参数为 None。后续 O projection 的 Python 调用和 Matmul kernel 都可关联。':'将本轮 K/V 写入 cache 后，attention 使用 cache 的 view 与 block table，KV 长度为 127。后续分区直接进行 ACL graph replay。';
+el('limit').textContent=name==='prefill'?'已验证：上游分区输出 → attention 参数 → 同一 output 存储 → O projection 输入。':`已验证：attention output 与后续重放分区输入共享存储。本次 ${data.replayed_tasks} 个带 Model Id 的设备任务中，${data.replayed_tasks_without_torch_flow} 个缺少 torch flow，${data.replayed_tasks_without_cann_start} 个缺少 CANN 起点；尚不能把具体 Matmul 归属到这个 FX 节点。`;
+el('storage').replaceChildren();
+const items=[...Object.entries(p.attention_inputs),['K cache',p.context.kv_cache[0]],['V cache',p.context.kv_cache[1]],['FIA key 参数',p.fia_inputs.key],['FIA value 参数',p.fia_inputs.value],['后续分区 output_2',p.consumer_output_argument]];
+for(const [label,t] of items)row(el('storage'),[label,JSON.stringify(t.shape),hex(t.storage_ptr),t.storage_offset,hex(t.data_ptr)]);
+el('slots').textContent=`CPU block table = ${JSON.stringify(p.host_blocks.rows[0])}；根据主机表推导的 slot 范围为 ${p.expected_slots_from_host_table.join(' … ')}。未读取 NPU slot 数值。`;
+el('tasks').replaceChildren();for(const c of data.attention_tasks.filter(c=>c.phase===name)){const k=c.kernel;row(el('tasks'),[c.host_operator.name,k.name,`${k.args['Physic Stream Id']} / ${k.args['Task Id']}`,k.dur]);}
+el('diagram').data=name+'.svg';el('svg').href=name+'.svg';el('details').textContent=JSON.stringify(p,null,2);
+}
+el('prefill').onclick=()=>show('prefill');el('decode').onclick=()=>show('decode');show('prefill');
+</script></html>

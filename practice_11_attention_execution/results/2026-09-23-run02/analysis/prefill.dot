@@ -1,0 +1,19 @@
+digraph attention {
+rankdir=TB; graph [bgcolor="white", nodesep=0.4,ranksep=0.5];
+node [shape=box,style="rounded,filled",fillcolor="#e7f1ff",fontname="sans-serif",fontsize=11];
+edge [fontname="sans-serif",fontsize=10];
+producer [label="prefill: submod_0\ncompiled callable\nQ [126,14,64]; K/V [126,2,64]",fillcolor="#e7f1ff"];
+write [label="KV write\nReshapeAndCacheNdKernel\nstream 46 / task 1486",fillcolor="#e7f1ff"];
+cache [label="KV cache [11761, 128, 2, 64]\nK storage 0x12d37be78000\nV storage 0x12d392e04000",fillcolor="#e3f5e5"];
+metadata [label="Attention metadata\nblock table [1, 16]; slots [126]\nCPU table: [2]",fillcolor="#f0eefb"];
+fia [label="FusedInferAttentionScore\nKV length 126\nstream 46 / task 1488",fillcolor="#e7f1ff"];
+output [label="Shared output buffer [126,14,64]\nstorage 0x12c20018e200",fillcolor="#e3f5e5"];
+consumer [label="submod_2: view -> O projection\ninput storage verified\nPython call + Matmul task 1490 verified",fillcolor="#e7f1ff"];
+producer -> write [label="current K/V"];
+metadata -> write [label="slot mapping tensor"];
+write -> cache [label="writes"];
+producer -> fia [label="current Q/K/V"];
+write -> fia [label="device order verified on same stream",style=dashed,color="#ad5b00"];
+fia -> output [label="result copied into caller's buffer"];
+output -> consumer [label="same pointer / offset; view shares storage"];
+}

@@ -4,7 +4,7 @@ Exercises for understanding language-model serving: CPU-friendly KV-cache
 exercises and a reproducible Ascend NPU inference and concurrency experiment.
 
 The next stage follows a real request through the installed vLLM / Ascend stack.
-See [REAL_SYSTEM_ROADMAP.md](REAL_SYSTEM_ROADMAP.md) for the recorded Practice 07–13 plan.
+See [REAL_SYSTEM_ROADMAP.md](REAL_SYSTEM_ROADMAP.md) for the recorded Practice 07–14 plan.
 
 ## Practice 01: observe a KV cache
 
@@ -133,3 +133,12 @@ Export the actual Qwen2Model FX graph captured by vLLM on Ascend. Inspect all
 and the native compilation partitions. An offline node browser and a first-layer
 SVG connect the model graph to the operator execution studied in Practice 09.
 See [practice_10_model_graph/README.md](practice_10_model_graph/README.md).
+
+## Practice 11: connect an attention graph node to real execution
+
+Follow the first FX attention node through actual Q/K/V storage, hidden KV-cache
+context, cache writes, attention execution and its mutable output buffer. Compare
+prefill with decode under the same graph configuration as Practice 10, including
+the limits of attributing replayed device kernels to individual FX nodes.
+See [practice_11_attention_execution/README.md](practice_11_attention_execution/README.md)
+for reproduction, verified profiler links, and an offline phase comparison.

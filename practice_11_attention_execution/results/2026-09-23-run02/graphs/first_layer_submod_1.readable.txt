@@ -1,0 +1,6 @@
+class GraphModule(torch.nn.Module):
+    def forward(self, query: "bf16[s72, 14, 64]", s72: "Sym(s72)", key: "bf16[s72, 2, 64]", value: "bf16[s72, 2, 64]", output_2: "bf16[s72, 14, 64]"):
+        # File: /vllm-workspace/vllm/vllm/model_executor/layers/attention/attention.py:493 in forward, code: torch.ops.vllm.unified_attention_with_output(
+        unified_attention_with_output = torch.ops.vllm.unified_attention_with_output(query, key, value, output_2, 'model.layers.0.self_attn.attn', kv_cache_dummy_dep = None);  query = key = value = output_2 = unified_attention_with_output = None
+        return ()
+        
