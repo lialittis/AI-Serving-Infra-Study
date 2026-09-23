@@ -6,6 +6,15 @@ exercises and a reproducible Ascend NPU inference and concurrency experiment.
 The next stage follows a real request through the installed vLLM / Ascend stack.
 See [REAL_SYSTEM_ROADMAP.md](REAL_SYSTEM_ROADMAP.md) for the recorded Practice 07–14 plan.
 
+## Stage report: the complete inference journey
+
+Open the [offline HTML report](reports/inference_journey/index.html) in a local
+browser to walk through startup, prefill, decode and request cleanup. Interactive
+sequence diagrams connect CPU/NPU data movement, KV storage, operator dispatch,
+asynchronous execution and graph replay to the evidence from Practices 07–11.
+See the [report guide](reports/inference_journey/README.md) for viewing, rebuilding,
+standalone diagrams and the distinction between measured facts and source explanations.
+
 ## Practice 01: observe a KV cache
 
 This practice implements a tiny decoder-only Transformer in plain PyTorch. It does

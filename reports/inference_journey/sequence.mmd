@@ -1,0 +1,47 @@
+sequenceDiagram
+    autonumber
+    participant API as 客户端与 API · CPU
+    participant Scheduler as Scheduler · CPU
+    participant Runner as Runner 与 PyTorch · CPU
+    participant CANN as CANN 与主机队列
+    participant NPU as NPU stream
+    participant HBM as NPU HBM 存储
+    Note over API,HBM: startup / 教学时序，非原始 trace 时间轴
+    API->>Runner: 启动服务：加载本地模型与配置
+    Runner->>HBM: 权重驻留 NPU；建立 KV 存储池
+    Runner->>Runner: TorchDynamo 捕获模型 FX 图
+    Runner-)CANN: 49 个分区；为尺寸 1 捕获设备图
+    CANN-)NPU: 预热并执行捕获所需的设备工作
+    Runner->>API: 服务就绪，开始正式请求
+    Note over API,HBM: prefill / 教学时序，非原始 trace 时间轴
+    API->>Scheduler: 请求：126 个 token IDs，最多生成 2 个
+    Scheduler->>Scheduler: 调度 126 个位置；分配逻辑块到 B2
+    Scheduler->>Runner: 传入调度结果与 block IDs
+    Runner->>HBM: H2D：输入和索引缓冲
+    Runner-)CANN: 调用算子 / 入队；使用编译 callable
+    CANN-)NPU: CANN 出队、下发到 NPU stream
+    NPU->>HBM: Embedding → Norm → QKV → RoPE
+    NPU->>HBM: 首层：将新 K/V 写入持久 cache
+    HBM->>NPU: 首层 FIA：读取本轮 Q、K、V
+    NPU->>HBM: Attention output → view → O projection
+    NPU->>HBM: 残差 / MLP；继续其余层与 final norm
+    NPU->>HBM: LM head → penalty → argmax → token t₀
+    HBM->>Runner: D2H：取回采样 ID，等待所需结果就绪
+    Runner->>Scheduler: 更新：computed=126，output=1
+    Note over API,HBM: decode / 教学时序，非原始 trace 时间轴
+    Scheduler->>Runner: 调度 t₀：本轮只处理位置 126
+    Runner->>HBM: 准备单 token 输入、位置和 metadata
+    Runner-)CANN: 普通分区：ACL graph replay
+    CANN-)NPU: 提交图执行与 attention 设备任务
+    NPU->>HBM: 对 t₀ 计算 Q/K/V 与 RoPE
+    NPU->>HBM: 将 t₀ 的新 K/V 写入 cache
+    HBM->>NPU: FIA：新 Q 读取历史 + 当前 KV
+    NPU->>HBM: Attention 写 output；下一分区消费
+    NPU->>HBM: 24 层结束；LM head 与采样生成 t₁
+    HBM->>Runner: D2H：取得 t₁ 的 ID
+    Runner->>Scheduler: 达到输出长度：computed=127，output=2
+    Note over API,HBM: finish / 教学时序，非原始 trace 时间轴
+    Runner->>Scheduler: 返回 token IDs，判断停止条件
+    Scheduler->>Scheduler: 释放 request 对 block 的占用
+    Scheduler->>API: Engine 输出 → 反分词 → HTTP 响应
+    Scheduler->>Scheduler: 后续请求可复用块；真实 lifetime 待研究

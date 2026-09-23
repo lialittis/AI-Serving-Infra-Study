@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="971" viewBox="0 0 900 971" role="img">
+<title>prefill 请求时序 / 教学摘要</title>
+<desc>来自独立实验和归档源码的教学整理，不按真实时间缩放。泳道按职责划分；HBM 是存储。</desc>
+<style>text{font-family:system-ui,"Noto Sans CJK SC",sans-serif}</style>
+<rect width="900" height="971" fill="white"/><rect width="900" height="75" fill="#f1f5f2"/>
+<defs>
+<marker id="control" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10Z" fill="#687d88" stroke="#687d88"/></marker>
+<marker id="data" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10Z" fill="#3267b1" stroke="#3267b1"/></marker>
+<marker id="command" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10" fill="none" stroke="#ab6019"/></marker>
+<marker id="compute" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10Z" fill="#087d78" stroke="#087d78"/></marker>
+</defs>
+<text x="75" y="30" text-anchor="middle" font-size="12" fill="#284650">客户端 / API</text><line x1="75" x2="75" y1="60" y2="906" stroke="#bacbc7" stroke-dasharray="4 5"/>
+<text x="223" y="30" text-anchor="middle" font-size="12" fill="#284650">Scheduler</text><line x1="223" x2="223" y1="60" y2="906" stroke="#bacbc7" stroke-dasharray="4 5"/>
+<text x="371" y="30" text-anchor="middle" font-size="12" fill="#284650">Runner / PyTorch</text><line x1="371" x2="371" y1="60" y2="906" stroke="#bacbc7" stroke-dasharray="4 5"/>
+<text x="519" y="30" text-anchor="middle" font-size="12" fill="#284650">CANN / 队列</text><line x1="519" x2="519" y1="60" y2="906" stroke="#bacbc7" stroke-dasharray="4 5"/>
+<text x="667" y="30" text-anchor="middle" font-size="12" fill="#284650">NPU stream</text><line x1="667" x2="667" y1="60" y2="906" stroke="#bacbc7" stroke-dasharray="4 5"/>
+<text x="815" y="30" text-anchor="middle" font-size="12" fill="#284650">HBM 存储</text><line x1="815" x2="815" y1="60" y2="906" stroke="#bacbc7" stroke-dasharray="4 5"/>
+<text x="17" y="114" font-size="11" fill="#547078">01</text><text x="149.0" y="99" text-anchor="middle" font-size="12" fill="#294551">请求：126 个 token IDs，最多生成 2 个</text><path d="M75,115H223" fill="none" stroke="#3267b1" stroke-width="1.8"  marker-end="url(#data)"/>
+<text x="17" y="173" font-size="11" fill="#547078">02</text><text x="237" y="158" text-anchor="start" font-size="12" fill="#294551">调度 126 个位置；分配逻辑块到 B2</text><path d="M223,164h55v18h-55" fill="none" stroke="#687d88" stroke-width="1.8"  marker-end="url(#control)"/>
+<text x="17" y="232" font-size="11" fill="#547078">03</text><text x="297.0" y="217" text-anchor="middle" font-size="12" fill="#294551">传入调度结果与 block IDs</text><path d="M223,233H371" fill="none" stroke="#687d88" stroke-width="1.8"  marker-end="url(#control)"/>
+<text x="17" y="291" font-size="11" fill="#547078">04</text><text x="593.0" y="276" text-anchor="middle" font-size="12" fill="#294551">H2D：输入和索引缓冲</text><path d="M371,292H815" fill="none" stroke="#3267b1" stroke-width="1.8"  marker-end="url(#data)"/>
+<text x="17" y="350" font-size="11" fill="#547078">05</text><text x="445.0" y="335" text-anchor="middle" font-size="12" fill="#294551">调用算子 / 入队；使用编译 callable</text><path d="M371,351H519" fill="none" stroke="#ab6019" stroke-width="1.8" stroke-dasharray="6 4" marker-end="url(#command)"/>
+<text x="17" y="409" font-size="11" fill="#547078">06</text><text x="593.0" y="394" text-anchor="middle" font-size="12" fill="#294551">CANN 出队、下发到 NPU stream</text><path d="M519,410H667" fill="none" stroke="#ab6019" stroke-width="1.8" stroke-dasharray="6 4" marker-end="url(#command)"/>
+<text x="17" y="468" font-size="11" fill="#547078">07</text><text x="741.0" y="453" text-anchor="middle" font-size="12" fill="#294551">Embedding → Norm → QKV → RoPE</text><path d="M667,469H815" fill="none" stroke="#087d78" stroke-width="1.8"  marker-end="url(#compute)"/>
+<text x="17" y="527" font-size="11" fill="#547078">08</text><text x="741.0" y="512" text-anchor="middle" font-size="12" fill="#294551">首层：将新 K/V 写入持久 cache</text><path d="M667,528H815" fill="none" stroke="#087d78" stroke-width="1.8"  marker-end="url(#compute)"/>
+<text x="17" y="586" font-size="11" fill="#547078">09</text><text x="741.0" y="571" text-anchor="middle" font-size="12" fill="#294551">首层 FIA：读取本轮 Q、K、V</text><path d="M815,587H667" fill="none" stroke="#3267b1" stroke-width="1.8"  marker-end="url(#data)"/>
+<text x="17" y="645" font-size="11" fill="#547078">10</text><text x="741.0" y="630" text-anchor="middle" font-size="12" fill="#294551">Attention output → view → O projection</text><path d="M667,646H815" fill="none" stroke="#087d78" stroke-width="1.8"  marker-end="url(#compute)"/>
+<text x="17" y="704" font-size="11" fill="#547078">11</text><text x="741.0" y="689" text-anchor="middle" font-size="12" fill="#294551">残差 / MLP；继续其余层与 final norm</text><path d="M667,705H815" fill="none" stroke="#087d78" stroke-width="1.8"  marker-end="url(#compute)"/>
+<text x="17" y="763" font-size="11" fill="#547078">12</text><text x="741.0" y="748" text-anchor="middle" font-size="12" fill="#294551">LM head → penalty → argmax → token t₀</text><path d="M667,764H815" fill="none" stroke="#087d78" stroke-width="1.8"  marker-end="url(#compute)"/>
+<text x="17" y="822" font-size="11" fill="#547078">13</text><text x="593.0" y="807" text-anchor="middle" font-size="12" fill="#294551">D2H：取回采样 ID，等待所需结果就绪</text><path d="M815,823H371" fill="none" stroke="#3267b1" stroke-width="1.8"  marker-end="url(#data)"/>
+<text x="17" y="881" font-size="11" fill="#547078">14</text><text x="297.0" y="866" text-anchor="middle" font-size="12" fill="#294551">更新：computed=126，output=1</text><path d="M371,882H223" fill="none" stroke="#687d88" stroke-width="1.8"  marker-end="url(#control)"/>
+<text x="20" y="946" font-size="11" fill="#547078">prefill · 教学时序，不按时间比例。灰：控制；蓝：数据；橙色虚线：异步命令；绿：设备工作。</text></svg>
