@@ -54,7 +54,9 @@ flowchart TD
 见 [结果](practice_12_kv_block_reuse/RESULTS.md)。在原生小池基线上新增可切换的 eager /
 PIECEWISE graph，使用匹配请求与脚本重采集。两模式均保留192条直接KV/FIA链；
 graph的decode普通分区重放，488个重放任务仍缺少逐FX关联。
-prefix caching、并发和 async scheduling 对照仍待后续单独开展。
+新增run05/06逐事件及逐replay资源台账：输入/输出存储、捕获快照、原生event与slot准备链。
+发现启动阶段graph对象ID可复用，完成event也跨轮复用；以具体发生次序区分。
+隐藏workspace、完整逐ATen参数、prefix caching、并发和async scheduling仍待后续单独开展。
 
 2026-09-22 根据用户的学习方向调整顺序：将算子调用与设备时间线提前为 Practice 09；
 原计划的释放复用、continuous batching 顺延。graph 对照与独立算子实验留到后续。

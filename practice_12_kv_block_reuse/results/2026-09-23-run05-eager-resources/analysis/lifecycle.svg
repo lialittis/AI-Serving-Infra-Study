@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1080 235" role="img"><title>真实 B1 分配生命周期</title><desc>流程示意，间距不表示耗时。A 原生结果等待结束后才释放，B 随后复用。</desc><rect width="1080" height="235" fill="#f4f7f5"/><defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0 0L10 5L0 10" fill="#4c7775"/></marker></defs>
+<rect x="20" y="58" width="160" height="94" rx="8" fill="#e1efea" stroke="#b7cfca"/><text x="100" y="94" text-anchor="middle" font-family="sans-serif" font-size="15" fill="#173e45">A 分配 B1</text><text x="100" y="124" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#476569">ref_cnt = 1</text>
+<path d="M180,106h15" stroke="#4c7775" marker-end="url(#arrow)"/>
+<rect x="195" y="58" width="160" height="94" rx="8" fill="#e1efea" stroke="#b7cfca"/><text x="275" y="94" text-anchor="middle" font-family="sans-serif" font-size="15" fill="#173e45">A 访问 / 原生等待</text><text x="275" y="124" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#476569">24 层 · NPU→CPU</text>
+<path d="M355,106h15" stroke="#4c7775" marker-end="url(#arrow)"/>
+<rect x="370" y="58" width="160" height="94" rx="8" fill="#fff" stroke="#b7cfca"/><text x="450" y="94" text-anchor="middle" font-family="sans-serif" font-size="15" fill="#173e45">A 释放 B1</text><text x="450" y="124" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#476569">ref_cnt = 0</text>
+<path d="M530,106h15" stroke="#4c7775" marker-end="url(#arrow)"/>
+<rect x="545" y="58" width="160" height="94" rx="8" fill="#e1efea" stroke="#b7cfca"/><text x="625" y="94" text-anchor="middle" font-family="sans-serif" font-size="15" fill="#173e45">B 分配同一 B1</text><text x="625" y="124" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#476569">ref_cnt = 1</text>
+<path d="M705,106h15" stroke="#4c7775" marker-end="url(#arrow)"/>
+<rect x="720" y="58" width="160" height="94" rx="8" fill="#e1efea" stroke="#b7cfca"/><text x="800" y="94" text-anchor="middle" font-family="sans-serif" font-size="15" fill="#173e45">B 访问 / 原生等待</text><text x="800" y="124" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#476569">相同存储，新请求</text>
+<path d="M880,106h15" stroke="#4c7775" marker-end="url(#arrow)"/>
+<rect x="895" y="58" width="160" height="94" rx="8" fill="#fff" stroke="#b7cfca"/><text x="975" y="94" text-anchor="middle" font-family="sans-serif" font-size="15" fill="#173e45">B 释放 B1</text><text x="975" y="124" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#476569">ref_cnt = 0</text>
+<text x="20" y="198" font-family="sans-serif" font-size="13" fill="#426166">真实 allocator + 真实 NPU 任务；串行 eager 基线。没有人工 generation 字段，也没有额外插入设备等待。</text></svg>

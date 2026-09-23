@@ -2,9 +2,10 @@
 
 问题：**同一块真实 KV 存储先后交给 A、B 时，设备访问、原生结果等待、释放和再次使用是什么关系？切换执行模式会改变什么？**
 
-[打开离线对照页面](results/2026-09-23-mode-comparison/index.html) ·
-[对照结果](results/2026-09-23-mode-comparison/comparison.md) · [详细结论](RESULTS.md)。
+[打开离线对照页面](results/2026-09-23-resource-comparison/index.html) ·
+[对照结果](results/2026-09-23-resource-comparison/comparison.md) · [详细结论](RESULTS.md)。
 HTML 用本地浏览器打开，可切换 eager / graph，逐步播放各自的真实生命周期。
+新增[逐事件 / 逐次 replay 的资源记录](RESOURCE_RECORDS.md)：输入准备、存储身份、捕获快照、原生event与完成边界。
 
 ## 固定工作负载与模式开关
 
@@ -42,6 +43,10 @@ for mode in eager graph; do
     "practice_12_kv_block_reuse/results/my-$mode"
   python practice_12_kv_block_reuse/render_reuse.py \
     "practice_12_kv_block_reuse/results/my-$mode"
+  python practice_12_kv_block_reuse/audit_resources.py \
+    "practice_12_kv_block_reuse/results/my-$mode"
+  python practice_12_kv_block_reuse/render_resources.py \
+    "practice_12_kv_block_reuse/results/my-$mode"
 done
 
 python practice_12_kv_block_reuse/compare_modes.py \
@@ -55,21 +60,23 @@ python practice_12_kv_block_reuse/compare_modes.py \
 
 ## 本地离线复核
 
-主对照为 `2026-09-23-run03-eager` / `2026-09-23-run04-graph`，使用相同版本的观测脚本。
-早期有效基线run02保持原归档；失败pilot run01有明确排除记录，不参与对比。
+最新主对照为 `2026-09-23-run05-eager-resources` / `2026-09-23-run06-graph-resources`，
+使用相同版本的观测脚本。run02–04保持历史归档；旧记录不含完整资源字段，不追补伪造数据。
+失败pilot run01有明确排除记录，不参与对比。
 
 ```bash
 python3 practice_12_kv_block_reuse/compare_modes.py \
-  --eager practice_12_kv_block_reuse/results/2026-09-23-run03-eager \
-  --graph practice_12_kv_block_reuse/results/2026-09-23-run04-graph \
-  --output practice_12_kv_block_reuse/results/2026-09-23-mode-comparison
+  --eager practice_12_kv_block_reuse/results/2026-09-23-run05-eager-resources \
+  --graph practice_12_kv_block_reuse/results/2026-09-23-run06-graph-resources \
+  --output practice_12_kv_block_reuse/results/2026-09-23-resource-comparison
 python3 -m unittest discover -s practice_12_kv_block_reuse -p 'test_*.py' -v
 sha256sum -c practice_12_kv_block_reuse/SHA256SUMS
 ```
 
 离线分析只需Python≥3.7标准库，不需要torch/NPU。复用P07请求hook及P09–P11的分析辅助函数，
 需保留仓库结构。`compare_modes.py`会拒绝不同输入、模型/源码、观测脚本、非模式参数或profiler配置的比较。
-单轮重新分析、渲染仍使用 `analyze_reuse.py RUN` / `render_reuse.py RUN`。
+单轮生命周期使用 `analyze_reuse.py RUN` / `render_reuse.py RUN`；资源台账使用
+`audit_resources.py RUN` / `render_resources.py RUN`。旧run仍可分析生命周期，资源审计会明确要求重新采集。
 
 ## 怎样观测，怎样判断
 
@@ -78,7 +85,11 @@ sha256sum -c practice_12_kv_block_reuse/SHA256SUMS
 1. 真实allocate/free，ref_cnt、pool/block CPU对象身份、空闲队列前后状态。
 2. 所有24层cache存储与FIA参数，逐层KV写入和attention调用。
 3. 原生采样ID回传与`Event::synchronize`；不额外调用`.cpu()`、`.item()`、event query或设备等待。
-4. graph模式下ACL wrapper的runtime mode、捕获图对象身份，以及是否进入分区Python body。
+4. graph模式下ACL wrapper的runtime mode、捕获快照、每次NPUGraph.replay和输入/输出资源核对。
+5. ModelRunner输入/170个权重tensor存储、32次原生缓冲区拷贝、4条slot准备链、每次原生event的身份。
+
+每模式均保留完整profiler CPU事件/设备任务清单；每个ATen输入输出的全部地址与隐藏workspace
+生命周期仍未观测。详细字段、缺口和33项测试见[资源记录说明](RESOURCE_RECORDS.md)。
 
 free参数可能是迭代器，观测器不提前遍历；返回时读取函数自己建立的列表。
 分析使用同一profiler时间轴、真实flow ID、CANN connection ID与CSV，不按最近时间猜测kernel身份。

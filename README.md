@@ -162,3 +162,7 @@ See [practice_12_kv_block_reuse/README.md](practice_12_kv_block_reuse/README.md)
 for switchable eager / PIECEWISE graph runs, matched real-device evidence, and an
 offline comparison with both lifecycle viewers. Both modes retain all 192 direct
 KV/FIA links; replay-internal attribution limits are recorded separately.
+
+Practice 12 also records each observed eager event and each graph replay, including
+capture/current storage checks, native event identities and metadata preparation
+chains. See [the resource ledger guide](practice_12_kv_block_reuse/RESOURCE_RECORDS.md).

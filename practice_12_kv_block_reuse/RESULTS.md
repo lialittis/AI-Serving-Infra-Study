@@ -1,4 +1,22 @@
-# Practice 12：eager / graph 下的真实 KV 释放与复用
+# Practice 12：最新资源记录与结论
+
+2026-09-23 新增 run05-eager-resources / run06-graph-resources，补全逐观测事件与逐次replay的资源台账。
+[详细发现与证据边界](RESOURCE_RECORDS.md) · [交互对照入口](results/2026-09-23-resource-comparison/index.html)。
+
+- eager记录362个资源观测范围；graph记录512个，其中50个为实际replay。
+- 每次replay核对捕获基线、输入地址/布局、graph pool和输出存储；全部通过。
+- 两模式各核对4条block table H2D → slot mapping → 24层KV写入依赖链，以及4个原生完成边界。
+- 170个权重tensor在各轮forward中的存储元数据稳定；192条KV/FIA链仍完整。
+- 同一个Python graph对象ID曾出现在不同捕获记录中；同一个transfer event也在四轮中复用。
+  因此记录必须带发生次序，不能仅靠对象ID判断逻辑生命周期。
+- 所有CPU事件和设备任务都有清单；无flow的图任务、逐ATen完整tensor地址和隐藏workspace生命周期
+  仍明确保留为未知。可见地址核对通过，不等于完整资源安全证明。
+
+以下保留先前运行的独立结论，统计与时间属于各自归档，不混用为最新结果。
+
+---
+
+# 上轮对照 run03 / run04：eager / graph 下的真实 KV 释放与复用
 
 2026-09-23 在同一台 Ascend910B2C 上重新采集匹配对照：
 `run03-eager` / `run04-graph`。**两种模式都验证了同一 B1 的释放与复用，

@@ -1,0 +1,202 @@
+{
+  "resource_audits": [
+    {
+      "mode": "eager",
+      "observed_scopes": 362,
+      "replay_records": 0,
+      "capture_baselines": 0,
+      "native_completion_boundaries": 4,
+      "buffer_copy_records": 32,
+      "zero_length_copies": 4,
+      "verified_slot_preparation_chains": 4,
+      "cpu_events": 12432,
+      "device_tasks": 1542,
+      "unassociated_device_tasks": 2,
+      "kv_operator_chains": 192,
+      "weight_tensors": 170,
+      "weight_storage_stable": true,
+      "per_aten_tensor_addresses": false,
+      "hidden_workspace_lifetime_proven": false,
+      "additional_device_waits": false,
+      "device_values_read": false
+    },
+    {
+      "mode": "graph",
+      "observed_scopes": 512,
+      "replay_records": 50,
+      "capture_baselines": 50,
+      "native_completion_boundaries": 4,
+      "buffer_copy_records": 32,
+      "zero_length_copies": 4,
+      "verified_slot_preparation_chains": 4,
+      "cpu_events": 9338,
+      "device_tasks": 1692,
+      "unassociated_device_tasks": 590,
+      "kv_operator_chains": 192,
+      "weight_tensors": 170,
+      "weight_storage_stable": true,
+      "per_aten_tensor_addresses": false,
+      "hidden_workspace_lifetime_proven": false,
+      "additional_device_waits": false,
+      "device_values_read": false
+    }
+  ],
+  "runs": [
+    {
+      "mode": "eager",
+      "run": "2026-09-23-run05-eager-resources",
+      "trace_sha256": "5e880e0e20af21af174a2980e6f62cbe4be02fcb584a7d5225f4af2cc1777122",
+      "reused_block": 1,
+      "layers": 24,
+      "verified_kv_operator_chains": 192,
+      "scopes": 362,
+      "device_tasks": 1542,
+      "kernel_csv_rows": 1374,
+      "model_execute_tasks": 0,
+      "replayed_tasks": 0,
+      "replayed_without_torch_flow": 0,
+      "replayed_without_cann_start": 0,
+      "phases": {
+        "prefill": {
+          "execution": "eager",
+          "acl_dispatches": 0,
+          "partition_body_calls": 0
+        },
+        "decode": {
+          "execution": "eager",
+          "acl_dispatches": 0,
+          "partition_body_calls": 0
+        }
+      },
+      "responses": {
+        "A": {
+          "text": " syntax,",
+          "token_ids": [
+            [
+              [
+                19482
+              ]
+            ],
+            [
+              [
+                11
+              ]
+            ]
+          ],
+          "http_elapsed_ms": "144.659156"
+        },
+        "B": {
+          "text": " = class",
+          "token_ids": [
+            [
+              [
+                284
+              ]
+            ],
+            [
+              [
+                536
+              ]
+            ]
+          ],
+          "http_elapsed_ms": "123.38453"
+        }
+      },
+      "gap_last_A_access_to_free_us": "3570.206",
+      "gap_free_to_B_allocation_us": "6835.941",
+      "gap_last_A_access_to_first_B_access_us": "20594.924"
+    },
+    {
+      "mode": "graph",
+      "run": "2026-09-23-run06-graph-resources",
+      "trace_sha256": "244a5f111e557df8fc1d2e5ad6178663059d29c2bbbe171b6c1492a5e94d9909",
+      "reused_block": 1,
+      "layers": 24,
+      "verified_kv_operator_chains": 192,
+      "scopes": 512,
+      "device_tasks": 1692,
+      "kernel_csv_rows": 1374,
+      "model_execute_tasks": 50,
+      "replayed_tasks": 488,
+      "replayed_without_torch_flow": 488,
+      "replayed_without_cann_start": 488,
+      "phases": {
+        "prefill": {
+          "execution": "compiled_callable",
+          "acl_dispatches": 25,
+          "partition_body_calls": 25
+        },
+        "decode": {
+          "execution": "graph_replay",
+          "acl_dispatches": 25,
+          "partition_body_calls": 0
+        }
+      },
+      "responses": {
+        "A": {
+          "text": " syntax,",
+          "token_ids": [
+            [
+              [
+                19482
+              ]
+            ],
+            [
+              [
+                11
+              ]
+            ]
+          ],
+          "http_elapsed_ms": "131.540425"
+        },
+        "B": {
+          "text": " = class",
+          "token_ids": [
+            [
+              [
+                284
+              ]
+            ],
+            [
+              [
+                536
+              ]
+            ]
+          ],
+          "http_elapsed_ms": "127.744862"
+        }
+      },
+      "gap_last_A_access_to_free_us": "3569.0265",
+      "gap_free_to_B_allocation_us": "5672.737",
+      "gap_last_A_access_to_first_B_access_us": "19436.2575"
+    }
+  ],
+  "matching_requests": true,
+  "matching_sources": true,
+  "matching_instrumentation": true,
+  "same_output_tokens": true,
+  "conclusion": "Both modes verify native completion -> release -> reuse for all observed KV accesses. PIECEWISE keeps attention/KV outside replay; replay-internal attribution remains incomplete.",
+  "task_count_differences": {
+    "MODEL_EXECUTE": {
+      "eager": 0,
+      "graph": 50
+    },
+    "NOTIFY_RECORD": {
+      "eager": 0,
+      "graph": 50
+    },
+    "NOTIFY_WAIT": {
+      "eager": 0,
+      "graph": 50
+    },
+    "_triton_rope": {
+      "eager": 96,
+      "graph": 48
+    },
+    "_triton_rope_1": {
+      "eager": 0,
+      "graph": 48
+    }
+  },
+  "performance_comparison": false
+}
