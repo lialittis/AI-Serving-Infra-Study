@@ -4,7 +4,7 @@ Exercises for understanding language-model serving: CPU-friendly KV-cache
 exercises and a reproducible Ascend NPU inference and concurrency experiment.
 
 The next stage follows a real request through the installed vLLM / Ascend stack.
-See [REAL_SYSTEM_ROADMAP.md](REAL_SYSTEM_ROADMAP.md) for the recorded Practice 07–12 plan.
+See [REAL_SYSTEM_ROADMAP.md](REAL_SYSTEM_ROADMAP.md) for the recorded Practice 07–13 plan.
 
 ## Practice 01: observe a KV cache
 
@@ -125,3 +125,11 @@ See [practice_09_operator_trace/README.md](practice_09_operator_trace/README.md)
 The [complete operator flow](practice_09_operator_trace/OPERATOR_FLOW.md) extends
 the audit to all 33 observed device task names, four Triton kernels, ATen,
 torch-npu, ATB, custom C++ operations, memory transfers, and host task queues.
+
+## Practice 10: extract the real model computation graph
+
+Export the actual Qwen2Model FX graph captured by vLLM on Ascend. Inspect all
+24 decoder layers, tensor dependencies and shapes, mutable attention outputs,
+and the native compilation partitions. An offline node browser and a first-layer
+SVG connect the model graph to the operator execution studied in Practice 09.
+See [practice_10_model_graph/README.md](practice_10_model_graph/README.md).

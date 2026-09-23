@@ -1,0 +1,1937 @@
+{
+  "source": "/vllm-workspace/vllm/vllm/compilation/backends.py",
+  "line": 1014,
+  "compilation_config": "{'mode': <CompilationMode.VLLM_COMPILE: 3>, 'debug_dump_path': None, 'cache_dir': '', 'compile_cache_save_format': 'binary', 'backend': 'vllm_ascend.compilation.compiler_interface.AscendCompiler', 'custom_ops': ['all'], 'ir_enable_torch_wrap': False, 'splitting_ops': ['vllm::unified_attention_with_output', 'vllm::unified_mla_attention_with_output', 'vllm::mamba_mixer2', 'vllm::mamba_mixer', 'vllm::short_conv', 'vllm::linear_attention', 'vllm::plamo2_mamba_mixer', 'vllm::gdn_attention_core', 'vllm::gdn_attention_core_xpu', 'vllm::olmo_hybrid_gdn_full_forward', 'vllm::kda_attention', 'vllm::sparse_attn_indexer', 'vllm::rocm_aiter_sparse_attn_indexer', 'vllm::deepseek_v4_attention', 'vllm::unified_kv_cache_update', 'vllm::unified_mla_kv_cache_update', 'vllm::mla_forward', 'vllm::dsa_forward'], 'compile_mm_encoder': False, 'cudagraph_mm_encoder': False, 'encoder_cudagraph_token_budgets': [], 'encoder_cudagraph_max_vision_items_per_batch': 0, 'encoder_cudagraph_max_frames_per_batch': None, 'compile_sizes': [], 'compile_ranges_endpoints': [2048], 'inductor_compile_config': {'enable_auto_functionalized_v2': False, 'size_asserts': False, 'alignment_asserts': False, 'scalar_asserts': False, 'combo_kernels': True, 'benchmark_combo_kernel': True}, 'inductor_passes': {}, 'cudagraph_mode': <CUDAGraphMode.PIECEWISE: 1>, 'cudagraph_num_of_warmups': 1, 'cudagraph_capture_sizes': [1], 'cudagraph_copy_inputs': False, 'cudagraph_specialize_lora': True, 'use_inductor_graph_partition': False, 'pass_config': {'fuse_norm_quant': True, 'fuse_act_quant': True, 'fuse_attn_quant': False, 'enable_sp': False, 'fuse_gemm_comms': False, 'fuse_allreduce_rms': False, 'fuse_act_padding': False}, 'max_cudagraph_capture_size': 1, 'dynamic_shapes_config': {'type': <DynamicShapesType.BACKED: 'backed'>, 'evaluate_guards': False, 'assume_32_bit_indexing': False}, 'local_cache_dir': None, 'fast_moe_cold_start': True, 'static_all_moe_layers': []}",
+  "example_inputs": [
+    "s72",
+    {
+      "shape": [
+        "2048"
+      ],
+      "dtype": "torch.int32",
+      "device": "npu:0",
+      "stride": [
+        "1"
+      ]
+    },
+    {
+      "shape": [
+        "151936",
+        "896"
+      ],
+      "dtype": "torch.bfloat16",
+      "device": "npu:0",
+      "stride": [
+        "896",
+        "1"
+      ]
+    },
+    {
+      "shape": [
+        "896"
+      ],
+      "dtype": "torch.bfloat16",
+      "device": "npu:0",
+      "stride": [
+        "1"
+      ]
+    },
+    {
+      "shape": [
+        "1152"
+      ],
+      "dtype": "torch.bfloat16",
+      "device": "npu:0",
+      "stride": [
+        "1"
+      ]
+    },
+    {
+      "shape": [
+        "1152",
+        "896"
+      ],
+      "dtype": "torch.bfloat16",
+      "device": "npu:0",
+      "stride": [
+        "896",
+        "1"
+      ]
+    },
+    {
+      "shape": [
+        "32768",
+        "64"
+      ],
+      "dtype": "torch.bfloat16",
+      "device": "npu:0",
+      "stride": [
+        "64",
+        "1"
+      ]
+    },
+    "s80",
+    {
+      "shape": [
+        "2048"
+      ],
+      "dtype": "torch.int64",
+      "device": "npu:0",
+      "stride": [
+        "1"
+      ]
+    },
+    {
+      "shape": [
+        "896",
+        "896"
+      ],
+      "dtype": "torch.bfloat16",
+      "device": "npu:0",
+      "stride": [
+        "896",
+        "1"
+      ]
+    },
+    {
+      "shape": [
+        "896"
+      ],
+      "dtype": "torch.bfloat16",
+      "device": "npu:0",
+      "stride": [
+        "1"
+      ]
+    },
+    {
+      "shape": [
+        "9728",
+        "896"
+      ],
+      "dtype": "torch.bfloat16",
+      "device": "npu:0",
+      "stride": [
+        "896",
+        "1"
+      ]
+    },
+    {
+      "shape": [
+        "896",
+        "4864"
+      ],
+      "dtype": "torch.bfloat16",
+      "device": "npu:0",
+      "stride": [
+        "4864",
+        "1"
+      ]
+    },
+    {
+      "shape": [
+        "896"
+      ],
+      "dtype": "torch.bfloat16",
+      "device": "npu:0",
+      "stride": [
+        "1"
+      ]
+    },
+    {
+      "shape": [
+        "1152"
+      ],
+      "dtype": "torch.bfloat16",
+      "device": "npu:0",
+      "stride": [
+        "1"
+      ]
+    },
+    {
+      "shape": [
+        "1152",
+        "896"
+      ],
+      "dtype": "torch.bfloat16",
+      "device": "npu:0",
+      "stride": [
+        "896",
+        "1"
+      ]
+    },
+    {
+      "shape": [
+        "896",
+        "896"
+      ],
+      "dtype": "torch.bfloat16",
+      "device": "npu:0",
+      "stride": [
+        "896",
+        "1"
+      ]
+    },
+    {
+      "shape": [
+        "896"
+      ],
+      "dtype": "torch.bfloat16",
+      "device": "npu:0",
+      "stride": [
+        "1"
+      ]
+    },
+    {
+      "shape": [
+        "9728",
+        "896"
+      ],
+      "dtype": "torch.bfloat16",
+      "device": "npu:0",
+      "stride": [
+        "896",
+        "1"
+      ]
+    },
+    {
+      "shape": [
+        "896",
+        "4864"
+      ],
+      "dtype": "torch.bfloat16",
+      "device": "npu:0",
+      "stride": [
+        "4864",
+        "1"
+      ]
+    },
+    {
+      "shape": [
+        "896"
+      ],
+      "dtype": "torch.bfloat16",
+      "device": "npu:0",
+      "stride": [
+        "1"
+      ]
+    },
+    {
+      "shape": [
+        "1152"
+      ],
+      "dtype": "torch.bfloat16",
+      "device": "npu:0",
+      "stride": [
+        "1"
+      ]
+    },
+    {
+      "shape": [
+        "1152",
+        "896"
+      ],
+      "dtype": "torch.bfloat16",
+      "device": "npu:0",
+      "stride": [
+        "896",
+        "1"
+      ]
+    },
+    {
+      "shape": [
+        "896",
+        "896"
+      ],
+      "dtype": "torch.bfloat16",
+      "device": "npu:0",
+      "stride": [
+        "896",
+        "1"
+      ]
+    },
+    {
+      "shape": [
+        "896"
+      ],
+      "dtype": "torch.bfloat16",
+      "device": "npu:0",
+      "stride": [
+        "1"
+      ]
+    },
+    {
+      "shape": [
+        "9728",
+        "896"
+      ],
+      "dtype": "torch.bfloat16",
+      "device": "npu:0",
+      "stride": [
+        "896",
+        "1"
+      ]
+    },
+    {
+      "shape": [
+        "896",
+        "4864"
+      ],
+      "dtype": "torch.bfloat16",
+      "device": "npu:0",
+      "stride": [
+        "4864",
+        "1"
+      ]
+    },
+    {
+      "shape": [
+        "896"
+      ],
+      "dtype": "torch.bfloat16",
+      "device": "npu:0",
+      "stride": [
+        "1"
+      ]
+    },
+    {
+      "shape": [
+        "1152"
+      ],
+      "dtype": "torch.bfloat16",
+      "device": "npu:0",
+      "stride": [
+        "1"
+      ]
+    },
+    {
+      "shape": [
+        "1152",
+        "896"
+      ],
+      "dtype": "torch.bfloat16",
+      "device": "npu:0",
+      "stride": [
+        "896",
+        "1"
+      ]
+    },
+    {
+      "shape": [
+        "896",
+        "896"
+      ],
+      "dtype": "torch.bfloat16",
+      "device": "npu:0",
+      "stride": [
+        "896",
+        "1"
+      ]
+    },
+    {
+      "shape": [
+        "896"
+      ],
+      "dtype": "torch.bfloat16",
+      "device": "npu:0",
+      "stride": [
+        "1"
+      ]
+    },
+    {
+      "shape": [
+        "9728",
+        "896"
+      ],
+      "dtype": "torch.bfloat16",
+      "device": "npu:0",
+      "stride": [
+        "896",
+        "1"
+      ]
+    },
+    {
+      "shape": [
+        "896",
+        "4864"
+      ],
+      "dtype": "torch.bfloat16",
+      "device": "npu:0",
+      "stride": [
+        "4864",
+        "1"
+      ]
+    },
+    {
+      "shape": [
+        "896"
+      ],
+      "dtype": "torch.bfloat16",
+      "device": "npu:0",
+      "stride": [
+        "1"
+      ]
+    },
+    {
+      "shape": [
+        "1152"
+      ],
+      "dtype": "torch.bfloat16",
+      "device": "npu:0",
+      "stride": [
+        "1"
+      ]
+    },
+    {
+      "shape": [
+        "1152",
+        "896"
+      ],
+      "dtype": "torch.bfloat16",
+      "device": "npu:0",
+      "stride": [
+        "896",
+        "1"
+      ]
+    },
+    {
+      "shape": [
+        "896",
+        "896"
+      ],
+      "dtype": "torch.bfloat16",
+      "device": "npu:0",
+      "stride": [
+        "896",
+        "1"
+      ]
+    },
+    {
+      "shape": [
+        "896"
+      ],
+      "dtype": "torch.bfloat16",
+      "device": "npu:0",
+      "stride": [
+        "1"
+      ]
+    },
+    {
+      "shape": [
+        "9728",
+        "896"
+      ],
+      "dtype": "torch.bfloat16",
+      "device": "npu:0",
+      "stride": [
+        "896",
+        "1"
+      ]
+    },
+    {
+      "shape": [
+        "896",
+        "4864"
+      ],
+      "dtype": "torch.bfloat16",
+      "device": "npu:0",
+      "stride": [
+        "4864",
+        "1"
+      ]
+    },
+    {
+      "shape": [
+        "896"
+      ],
+      "dtype": "torch.bfloat16",
+      "device": "npu:0",
+      "stride": [
+        "1"
+      ]
+    },
+    {
+      "shape": [
+        "1152"
+      ],
+      "dtype": "torch.bfloat16",
+      "device": "npu:0",
+      "stride": [
+        "1"
+      ]
+    },
+    {
+      "shape": [
+        "1152",
+        "896"
+      ],
+      "dtype": "torch.bfloat16",
+      "device": "npu:0",
+      "stride": [
+        "896",
+        "1"
+      ]
+    },
+    {
+      "shape": [
+        "896",
+        "896"
+      ],
+      "dtype": "torch.bfloat16",
+      "device": "npu:0",
+      "stride": [
+        "896",
+        "1"
+      ]
+    },
+    {
+      "shape": [
+        "896"
+      ],
+      "dtype": "torch.bfloat16",
+      "device": "npu:0",
+      "stride": [
+        "1"
+      ]
+    },
+    {
+      "shape": [
+        "9728",
+        "896"
+      ],
+      "dtype": "torch.bfloat16",
+      "device": "npu:0",
+      "stride": [
+        "896",
+        "1"
+      ]
+    },
+    {
+      "shape": [
+        "896",
+        "4864"
+      ],
+      "dtype": "torch.bfloat16",
+      "device": "npu:0",
+      "stride": [
+        "4864",
+        "1"
+      ]
+    },
+    {
+      "shape": [
+        "896"
+      ],
+      "dtype": "torch.bfloat16",
+      "device": "npu:0",
+      "stride": [
+        "1"
+      ]
+    },
+    {
+      "shape": [
+        "1152"
+      ],
+      "dtype": "torch.bfloat16",
+      "device": "npu:0",
+      "stride": [
+        "1"
+      ]
+    },
+    {
+      "shape": [
+        "1152",
+        "896"
+      ],
+      "dtype": "torch.bfloat16",
+      "device": "npu:0",
+      "stride": [
+        "896",
+        "1"
+      ]
+    },
+    {
+      "shape": [
+        "896",
+        "896"
+      ],
+      "dtype": "torch.bfloat16",
+      "device": "npu:0",
+      "stride": [
+        "896",
+        "1"
+      ]
+    },
+    {
+      "shape": [
+        "896"
+      ],
+      "dtype": "torch.bfloat16",
+      "device": "npu:0",
+      "stride": [
+        "1"
+      ]
+    },
+    {
+      "shape": [
+        "9728",
+        "896"
+      ],
+      "dtype": "torch.bfloat16",
+      "device": "npu:0",
+      "stride": [
+        "896",
+        "1"
+      ]
+    },
+    {
+      "shape": [
+        "896",
+        "4864"
+      ],
+      "dtype": "torch.bfloat16",
+      "device": "npu:0",
+      "stride": [
+        "4864",
+        "1"
+      ]
+    },
+    {
+      "shape": [
+        "896"
+      ],
+      "dtype": "torch.bfloat16",
+      "device": "npu:0",
+      "stride": [
+        "1"
+      ]
+    },
+    {
+      "shape": [
+        "1152"
+      ],
+      "dtype": "torch.bfloat16",
+      "device": "npu:0",
+      "stride": [
+        "1"
+      ]
+    },
+    {
+      "shape": [
+        "1152",
+        "896"
+      ],
+      "dtype": "torch.bfloat16",
+      "device": "npu:0",
+      "stride": [
+        "896",
+        "1"
+      ]
+    },
+    {
+      "shape": [
+        "896",
+        "896"
+      ],
+      "dtype": "torch.bfloat16",
+      "device": "npu:0",
+      "stride": [
+        "896",
+        "1"
+      ]
+    },
+    {
+      "shape": [
+        "896"
+      ],
+      "dtype": "torch.bfloat16",
+      "device": "npu:0",
+      "stride": [
+        "1"
+      ]
+    },
+    {
+      "shape": [
+        "9728",
+        "896"
+      ],
+      "dtype": "torch.bfloat16",
+      "device": "npu:0",
+      "stride": [
+        "896",
+        "1"
+      ]
+    },
+    {
+      "shape": [
+        "896",
+        "4864"
+      ],
+      "dtype": "torch.bfloat16",
+      "device": "npu:0",
+      "stride": [
+        "4864",
+        "1"
+      ]
+    },
+    {
+      "shape": [
+        "896"
+      ],
+      "dtype": "torch.bfloat16",
+      "device": "npu:0",
+      "stride": [
+        "1"
+      ]
+    },
+    {
+      "shape": [
+        "1152"
+      ],
+      "dtype": "torch.bfloat16",
+      "device": "npu:0",
+      "stride": [
+        "1"
+      ]
+    },
+    {
+      "shape": [
+        "1152",
+        "896"
+      ],
+      "dtype": "torch.bfloat16",
+      "device": "npu:0",
+      "stride": [
+        "896",
+        "1"
+      ]
+    },
+    {
+      "shape": [
+        "896",
+        "896"
+      ],
+      "dtype": "torch.bfloat16",
+      "device": "npu:0",
+      "stride": [
+        "896",
+        "1"
+      ]
+    },
+    {
+      "shape": [
+        "896"
+      ],
+      "dtype": "torch.bfloat16",
+      "device": "npu:0",
+      "stride": [
+        "1"
+      ]
+    },
+    {
+      "shape": [
+        "9728",
+        "896"
+      ],
+      "dtype": "torch.bfloat16",
+      "device": "npu:0",
+      "stride": [
+        "896",
+        "1"
+      ]
+    },
+    {
+      "shape": [
+        "896",
+        "4864"
+      ],
+      "dtype": "torch.bfloat16",
+      "device": "npu:0",
+      "stride": [
+        "4864",
+        "1"
+      ]
+    },
+    {
+      "shape": [
+        "896"
+      ],
+      "dtype": "torch.bfloat16",
+      "device": "npu:0",
+      "stride": [
+        "1"
+      ]
+    },
+    {
+      "shape": [
+        "1152"
+      ],
+      "dtype": "torch.bfloat16",
+      "device": "npu:0",
+      "stride": [
+        "1"
+      ]
+    },
+    {
+      "shape": [
+        "1152",
+        "896"
+      ],
+      "dtype": "torch.bfloat16",
+      "device": "npu:0",
+      "stride": [
+        "896",
+        "1"
+      ]
+    },
+    {
+      "shape": [
+        "896",
+        "896"
+      ],
+      "dtype": "torch.bfloat16",
+      "device": "npu:0",
+      "stride": [
+        "896",
+        "1"
+      ]
+    },
+    {
+      "shape": [
+        "896"
+      ],
+      "dtype": "torch.bfloat16",
+      "device": "npu:0",
+      "stride": [
+        "1"
+      ]
+    },
+    {
+      "shape": [
+        "9728",
+        "896"
+      ],
+      "dtype": "torch.bfloat16",
+      "device": "npu:0",
+      "stride": [
+        "896",
+        "1"
+      ]
+    },
+    {
+      "shape": [
+        "896",
+        "4864"
+      ],
+      "dtype": "torch.bfloat16",
+      "device": "npu:0",
+      "stride": [
+        "4864",
+        "1"
+      ]
+    },
+    {
+      "shape": [
+        "896"
+      ],
+      "dtype": "torch.bfloat16",
+      "device": "npu:0",
+      "stride": [
+        "1"
+      ]
+    },
+    {
+      "shape": [
+        "1152"
+      ],
+      "dtype": "torch.bfloat16",
+      "device": "npu:0",
+      "stride": [
+        "1"
+      ]
+    },
+    {
+      "shape": [
+        "1152",
+        "896"
+      ],
+      "dtype": "torch.bfloat16",
+      "device": "npu:0",
+      "stride": [
+        "896",
+        "1"
+      ]
+    },
+    {
+      "shape": [
+        "896",
+        "896"
+      ],
+      "dtype": "torch.bfloat16",
+      "device": "npu:0",
+      "stride": [
+        "896",
+        "1"
+      ]
+    },
+    {
+      "shape": [
+        "896"
+      ],
+      "dtype": "torch.bfloat16",
+      "device": "npu:0",
+      "stride": [
+        "1"
+      ]
+    },
+    {
+      "shape": [
+        "9728",
+        "896"
+      ],
+      "dtype": "torch.bfloat16",
+      "device": "npu:0",
+      "stride": [
+        "896",
+        "1"
+      ]
+    },
+    {
+      "shape": [
+        "896",
+        "4864"
+      ],
+      "dtype": "torch.bfloat16",
+      "device": "npu:0",
+      "stride": [
+        "4864",
+        "1"
+      ]
+    },
+    {
+      "shape": [
+        "896"
+      ],
+      "dtype": "torch.bfloat16",
+      "device": "npu:0",
+      "stride": [
+        "1"
+      ]
+    },
+    {
+      "shape": [
+        "1152"
+      ],
+      "dtype": "torch.bfloat16",
+      "device": "npu:0",
+      "stride": [
+        "1"
+      ]
+    },
+    {
+      "shape": [
+        "1152",
+        "896"
+      ],
+      "dtype": "torch.bfloat16",
+      "device": "npu:0",
+      "stride": [
+        "896",
+        "1"
+      ]
+    },
+    {
+      "shape": [
+        "896",
+        "896"
+      ],
+      "dtype": "torch.bfloat16",
+      "device": "npu:0",
+      "stride": [
+        "896",
+        "1"
+      ]
+    },
+    {
+      "shape": [
+        "896"
+      ],
+      "dtype": "torch.bfloat16",
+      "device": "npu:0",
+      "stride": [
+        "1"
+      ]
+    },
+    {
+      "shape": [
+        "9728",
+        "896"
+      ],
+      "dtype": "torch.bfloat16",
+      "device": "npu:0",
+      "stride": [
+        "896",
+        "1"
+      ]
+    },
+    {
+      "shape": [
+        "896",
+        "4864"
+      ],
+      "dtype": "torch.bfloat16",
+      "device": "npu:0",
+      "stride": [
+        "4864",
+        "1"
+      ]
+    },
+    {
+      "shape": [
+        "896"
+      ],
+      "dtype": "torch.bfloat16",
+      "device": "npu:0",
+      "stride": [
+        "1"
+      ]
+    },
+    {
+      "shape": [
+        "1152"
+      ],
+      "dtype": "torch.bfloat16",
+      "device": "npu:0",
+      "stride": [
+        "1"
+      ]
+    },
+    {
+      "shape": [
+        "1152",
+        "896"
+      ],
+      "dtype": "torch.bfloat16",
+      "device": "npu:0",
+      "stride": [
+        "896",
+        "1"
+      ]
+    },
+    {
+      "shape": [
+        "896",
+        "896"
+      ],
+      "dtype": "torch.bfloat16",
+      "device": "npu:0",
+      "stride": [
+        "896",
+        "1"
+      ]
+    },
+    {
+      "shape": [
+        "896"
+      ],
+      "dtype": "torch.bfloat16",
+      "device": "npu:0",
+      "stride": [
+        "1"
+      ]
+    },
+    {
+      "shape": [
+        "9728",
+        "896"
+      ],
+      "dtype": "torch.bfloat16",
+      "device": "npu:0",
+      "stride": [
+        "896",
+        "1"
+      ]
+    },
+    {
+      "shape": [
+        "896",
+        "4864"
+      ],
+      "dtype": "torch.bfloat16",
+      "device": "npu:0",
+      "stride": [
+        "4864",
+        "1"
+      ]
+    },
+    {
+      "shape": [
+        "896"
+      ],
+      "dtype": "torch.bfloat16",
+      "device": "npu:0",
+      "stride": [
+        "1"
+      ]
+    },
+    {
+      "shape": [
+        "1152"
+      ],
+      "dtype": "torch.bfloat16",
+      "device": "npu:0",
+      "stride": [
+        "1"
+      ]
+    },
+    {
+      "shape": [
+        "1152",
+        "896"
+      ],
+      "dtype": "torch.bfloat16",
+      "device": "npu:0",
+      "stride": [
+        "896",
+        "1"
+      ]
+    },
+    {
+      "shape": [
+        "896",
+        "896"
+      ],
+      "dtype": "torch.bfloat16",
+      "device": "npu:0",
+      "stride": [
+        "896",
+        "1"
+      ]
+    },
+    {
+      "shape": [
+        "896"
+      ],
+      "dtype": "torch.bfloat16",
+      "device": "npu:0",
+      "stride": [
+        "1"
+      ]
+    },
+    {
+      "shape": [
+        "9728",
+        "896"
+      ],
+      "dtype": "torch.bfloat16",
+      "device": "npu:0",
+      "stride": [
+        "896",
+        "1"
+      ]
+    },
+    {
+      "shape": [
+        "896",
+        "4864"
+      ],
+      "dtype": "torch.bfloat16",
+      "device": "npu:0",
+      "stride": [
+        "4864",
+        "1"
+      ]
+    },
+    {
+      "shape": [
+        "896"
+      ],
+      "dtype": "torch.bfloat16",
+      "device": "npu:0",
+      "stride": [
+        "1"
+      ]
+    },
+    {
+      "shape": [
+        "1152"
+      ],
+      "dtype": "torch.bfloat16",
+      "device": "npu:0",
+      "stride": [
+        "1"
+      ]
+    },
+    {
+      "shape": [
+        "1152",
+        "896"
+      ],
+      "dtype": "torch.bfloat16",
+      "device": "npu:0",
+      "stride": [
+        "896",
+        "1"
+      ]
+    },
+    {
+      "shape": [
+        "896",
+        "896"
+      ],
+      "dtype": "torch.bfloat16",
+      "device": "npu:0",
+      "stride": [
+        "896",
+        "1"
+      ]
+    },
+    {
+      "shape": [
+        "896"
+      ],
+      "dtype": "torch.bfloat16",
+      "device": "npu:0",
+      "stride": [
+        "1"
+      ]
+    },
+    {
+      "shape": [
+        "9728",
+        "896"
+      ],
+      "dtype": "torch.bfloat16",
+      "device": "npu:0",
+      "stride": [
+        "896",
+        "1"
+      ]
+    },
+    {
+      "shape": [
+        "896",
+        "4864"
+      ],
+      "dtype": "torch.bfloat16",
+      "device": "npu:0",
+      "stride": [
+        "4864",
+        "1"
+      ]
+    },
+    {
+      "shape": [
+        "896"
+      ],
+      "dtype": "torch.bfloat16",
+      "device": "npu:0",
+      "stride": [
+        "1"
+      ]
+    },
+    {
+      "shape": [
+        "1152"
+      ],
+      "dtype": "torch.bfloat16",
+      "device": "npu:0",
+      "stride": [
+        "1"
+      ]
+    },
+    {
+      "shape": [
+        "1152",
+        "896"
+      ],
+      "dtype": "torch.bfloat16",
+      "device": "npu:0",
+      "stride": [
+        "896",
+        "1"
+      ]
+    },
+    {
+      "shape": [
+        "896",
+        "896"
+      ],
+      "dtype": "torch.bfloat16",
+      "device": "npu:0",
+      "stride": [
+        "896",
+        "1"
+      ]
+    },
+    {
+      "shape": [
+        "896"
+      ],
+      "dtype": "torch.bfloat16",
+      "device": "npu:0",
+      "stride": [
+        "1"
+      ]
+    },
+    {
+      "shape": [
+        "9728",
+        "896"
+      ],
+      "dtype": "torch.bfloat16",
+      "device": "npu:0",
+      "stride": [
+        "896",
+        "1"
+      ]
+    },
+    {
+      "shape": [
+        "896",
+        "4864"
+      ],
+      "dtype": "torch.bfloat16",
+      "device": "npu:0",
+      "stride": [
+        "4864",
+        "1"
+      ]
+    },
+    {
+      "shape": [
+        "896"
+      ],
+      "dtype": "torch.bfloat16",
+      "device": "npu:0",
+      "stride": [
+        "1"
+      ]
+    },
+    {
+      "shape": [
+        "1152"
+      ],
+      "dtype": "torch.bfloat16",
+      "device": "npu:0",
+      "stride": [
+        "1"
+      ]
+    },
+    {
+      "shape": [
+        "1152",
+        "896"
+      ],
+      "dtype": "torch.bfloat16",
+      "device": "npu:0",
+      "stride": [
+        "896",
+        "1"
+      ]
+    },
+    {
+      "shape": [
+        "896",
+        "896"
+      ],
+      "dtype": "torch.bfloat16",
+      "device": "npu:0",
+      "stride": [
+        "896",
+        "1"
+      ]
+    },
+    {
+      "shape": [
+        "896"
+      ],
+      "dtype": "torch.bfloat16",
+      "device": "npu:0",
+      "stride": [
+        "1"
+      ]
+    },
+    {
+      "shape": [
+        "9728",
+        "896"
+      ],
+      "dtype": "torch.bfloat16",
+      "device": "npu:0",
+      "stride": [
+        "896",
+        "1"
+      ]
+    },
+    {
+      "shape": [
+        "896",
+        "4864"
+      ],
+      "dtype": "torch.bfloat16",
+      "device": "npu:0",
+      "stride": [
+        "4864",
+        "1"
+      ]
+    },
+    {
+      "shape": [
+        "896"
+      ],
+      "dtype": "torch.bfloat16",
+      "device": "npu:0",
+      "stride": [
+        "1"
+      ]
+    },
+    {
+      "shape": [
+        "1152"
+      ],
+      "dtype": "torch.bfloat16",
+      "device": "npu:0",
+      "stride": [
+        "1"
+      ]
+    },
+    {
+      "shape": [
+        "1152",
+        "896"
+      ],
+      "dtype": "torch.bfloat16",
+      "device": "npu:0",
+      "stride": [
+        "896",
+        "1"
+      ]
+    },
+    {
+      "shape": [
+        "896",
+        "896"
+      ],
+      "dtype": "torch.bfloat16",
+      "device": "npu:0",
+      "stride": [
+        "896",
+        "1"
+      ]
+    },
+    {
+      "shape": [
+        "896"
+      ],
+      "dtype": "torch.bfloat16",
+      "device": "npu:0",
+      "stride": [
+        "1"
+      ]
+    },
+    {
+      "shape": [
+        "9728",
+        "896"
+      ],
+      "dtype": "torch.bfloat16",
+      "device": "npu:0",
+      "stride": [
+        "896",
+        "1"
+      ]
+    },
+    {
+      "shape": [
+        "896",
+        "4864"
+      ],
+      "dtype": "torch.bfloat16",
+      "device": "npu:0",
+      "stride": [
+        "4864",
+        "1"
+      ]
+    },
+    {
+      "shape": [
+        "896"
+      ],
+      "dtype": "torch.bfloat16",
+      "device": "npu:0",
+      "stride": [
+        "1"
+      ]
+    },
+    {
+      "shape": [
+        "1152"
+      ],
+      "dtype": "torch.bfloat16",
+      "device": "npu:0",
+      "stride": [
+        "1"
+      ]
+    },
+    {
+      "shape": [
+        "1152",
+        "896"
+      ],
+      "dtype": "torch.bfloat16",
+      "device": "npu:0",
+      "stride": [
+        "896",
+        "1"
+      ]
+    },
+    {
+      "shape": [
+        "896",
+        "896"
+      ],
+      "dtype": "torch.bfloat16",
+      "device": "npu:0",
+      "stride": [
+        "896",
+        "1"
+      ]
+    },
+    {
+      "shape": [
+        "896"
+      ],
+      "dtype": "torch.bfloat16",
+      "device": "npu:0",
+      "stride": [
+        "1"
+      ]
+    },
+    {
+      "shape": [
+        "9728",
+        "896"
+      ],
+      "dtype": "torch.bfloat16",
+      "device": "npu:0",
+      "stride": [
+        "896",
+        "1"
+      ]
+    },
+    {
+      "shape": [
+        "896",
+        "4864"
+      ],
+      "dtype": "torch.bfloat16",
+      "device": "npu:0",
+      "stride": [
+        "4864",
+        "1"
+      ]
+    },
+    {
+      "shape": [
+        "896"
+      ],
+      "dtype": "torch.bfloat16",
+      "device": "npu:0",
+      "stride": [
+        "1"
+      ]
+    },
+    {
+      "shape": [
+        "1152"
+      ],
+      "dtype": "torch.bfloat16",
+      "device": "npu:0",
+      "stride": [
+        "1"
+      ]
+    },
+    {
+      "shape": [
+        "1152",
+        "896"
+      ],
+      "dtype": "torch.bfloat16",
+      "device": "npu:0",
+      "stride": [
+        "896",
+        "1"
+      ]
+    },
+    {
+      "shape": [
+        "896",
+        "896"
+      ],
+      "dtype": "torch.bfloat16",
+      "device": "npu:0",
+      "stride": [
+        "896",
+        "1"
+      ]
+    },
+    {
+      "shape": [
+        "896"
+      ],
+      "dtype": "torch.bfloat16",
+      "device": "npu:0",
+      "stride": [
+        "1"
+      ]
+    },
+    {
+      "shape": [
+        "9728",
+        "896"
+      ],
+      "dtype": "torch.bfloat16",
+      "device": "npu:0",
+      "stride": [
+        "896",
+        "1"
+      ]
+    },
+    {
+      "shape": [
+        "896",
+        "4864"
+      ],
+      "dtype": "torch.bfloat16",
+      "device": "npu:0",
+      "stride": [
+        "4864",
+        "1"
+      ]
+    },
+    {
+      "shape": [
+        "896"
+      ],
+      "dtype": "torch.bfloat16",
+      "device": "npu:0",
+      "stride": [
+        "1"
+      ]
+    },
+    {
+      "shape": [
+        "1152"
+      ],
+      "dtype": "torch.bfloat16",
+      "device": "npu:0",
+      "stride": [
+        "1"
+      ]
+    },
+    {
+      "shape": [
+        "1152",
+        "896"
+      ],
+      "dtype": "torch.bfloat16",
+      "device": "npu:0",
+      "stride": [
+        "896",
+        "1"
+      ]
+    },
+    {
+      "shape": [
+        "896",
+        "896"
+      ],
+      "dtype": "torch.bfloat16",
+      "device": "npu:0",
+      "stride": [
+        "896",
+        "1"
+      ]
+    },
+    {
+      "shape": [
+        "896"
+      ],
+      "dtype": "torch.bfloat16",
+      "device": "npu:0",
+      "stride": [
+        "1"
+      ]
+    },
+    {
+      "shape": [
+        "9728",
+        "896"
+      ],
+      "dtype": "torch.bfloat16",
+      "device": "npu:0",
+      "stride": [
+        "896",
+        "1"
+      ]
+    },
+    {
+      "shape": [
+        "896",
+        "4864"
+      ],
+      "dtype": "torch.bfloat16",
+      "device": "npu:0",
+      "stride": [
+        "4864",
+        "1"
+      ]
+    },
+    {
+      "shape": [
+        "896"
+      ],
+      "dtype": "torch.bfloat16",
+      "device": "npu:0",
+      "stride": [
+        "1"
+      ]
+    },
+    {
+      "shape": [
+        "1152"
+      ],
+      "dtype": "torch.bfloat16",
+      "device": "npu:0",
+      "stride": [
+        "1"
+      ]
+    },
+    {
+      "shape": [
+        "1152",
+        "896"
+      ],
+      "dtype": "torch.bfloat16",
+      "device": "npu:0",
+      "stride": [
+        "896",
+        "1"
+      ]
+    },
+    {
+      "shape": [
+        "896",
+        "896"
+      ],
+      "dtype": "torch.bfloat16",
+      "device": "npu:0",
+      "stride": [
+        "896",
+        "1"
+      ]
+    },
+    {
+      "shape": [
+        "896"
+      ],
+      "dtype": "torch.bfloat16",
+      "device": "npu:0",
+      "stride": [
+        "1"
+      ]
+    },
+    {
+      "shape": [
+        "9728",
+        "896"
+      ],
+      "dtype": "torch.bfloat16",
+      "device": "npu:0",
+      "stride": [
+        "896",
+        "1"
+      ]
+    },
+    {
+      "shape": [
+        "896",
+        "4864"
+      ],
+      "dtype": "torch.bfloat16",
+      "device": "npu:0",
+      "stride": [
+        "4864",
+        "1"
+      ]
+    },
+    {
+      "shape": [
+        "896"
+      ],
+      "dtype": "torch.bfloat16",
+      "device": "npu:0",
+      "stride": [
+        "1"
+      ]
+    },
+    {
+      "shape": [
+        "1152"
+      ],
+      "dtype": "torch.bfloat16",
+      "device": "npu:0",
+      "stride": [
+        "1"
+      ]
+    },
+    {
+      "shape": [
+        "1152",
+        "896"
+      ],
+      "dtype": "torch.bfloat16",
+      "device": "npu:0",
+      "stride": [
+        "896",
+        "1"
+      ]
+    },
+    {
+      "shape": [
+        "896",
+        "896"
+      ],
+      "dtype": "torch.bfloat16",
+      "device": "npu:0",
+      "stride": [
+        "896",
+        "1"
+      ]
+    },
+    {
+      "shape": [
+        "896"
+      ],
+      "dtype": "torch.bfloat16",
+      "device": "npu:0",
+      "stride": [
+        "1"
+      ]
+    },
+    {
+      "shape": [
+        "9728",
+        "896"
+      ],
+      "dtype": "torch.bfloat16",
+      "device": "npu:0",
+      "stride": [
+        "896",
+        "1"
+      ]
+    },
+    {
+      "shape": [
+        "896",
+        "4864"
+      ],
+      "dtype": "torch.bfloat16",
+      "device": "npu:0",
+      "stride": [
+        "4864",
+        "1"
+      ]
+    },
+    {
+      "shape": [
+        "896"
+      ],
+      "dtype": "torch.bfloat16",
+      "device": "npu:0",
+      "stride": [
+        "1"
+      ]
+    },
+    {
+      "shape": [
+        "1152"
+      ],
+      "dtype": "torch.bfloat16",
+      "device": "npu:0",
+      "stride": [
+        "1"
+      ]
+    },
+    {
+      "shape": [
+        "1152",
+        "896"
+      ],
+      "dtype": "torch.bfloat16",
+      "device": "npu:0",
+      "stride": [
+        "896",
+        "1"
+      ]
+    },
+    {
+      "shape": [
+        "896",
+        "896"
+      ],
+      "dtype": "torch.bfloat16",
+      "device": "npu:0",
+      "stride": [
+        "896",
+        "1"
+      ]
+    },
+    {
+      "shape": [
+        "896"
+      ],
+      "dtype": "torch.bfloat16",
+      "device": "npu:0",
+      "stride": [
+        "1"
+      ]
+    },
+    {
+      "shape": [
+        "9728",
+        "896"
+      ],
+      "dtype": "torch.bfloat16",
+      "device": "npu:0",
+      "stride": [
+        "896",
+        "1"
+      ]
+    },
+    {
+      "shape": [
+        "896",
+        "4864"
+      ],
+      "dtype": "torch.bfloat16",
+      "device": "npu:0",
+      "stride": [
+        "4864",
+        "1"
+      ]
+    },
+    {
+      "shape": [
+        "896"
+      ],
+      "dtype": "torch.bfloat16",
+      "device": "npu:0",
+      "stride": [
+        "1"
+      ]
+    }
+  ],
+  "capture_phase": "startup compilation; not a per-request graph",
+  "graph_file": "model_graph_529365_1.json"
+}

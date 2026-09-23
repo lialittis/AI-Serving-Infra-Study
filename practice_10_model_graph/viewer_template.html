@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="zh-CN"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Practice 10 · 真实模型 FX 计算图</title>
+<style>
+body{font:16px/1.6 system-ui,sans-serif;color:#182b43;margin:0;background:#f5f7fb}
+header{padding:22px 30px;background:#152e4d;color:white}h1{font-size:24px;margin:0}header p{margin:5px 0}
+nav{padding:15px 30px;background:white;position:sticky;top:0;border-bottom:1px solid #ccc;z-index:1}
+input,select,button{font:inherit;padding:6px;margin-right:10px}input{width:300px}
+main{display:grid;grid-template-columns:minmax(310px,38%) 1fr;gap:18px;padding:20px}
+#list{max-height:75vh;overflow:auto}.node{display:block;width:100%;text-align:left;border:1px solid #d9e1ed;background:white;cursor:pointer;margin-bottom:6px;padding:10px;border-radius:5px}
+.node.active{border:2px solid #1764c0;background:#eaf3ff}small{color:#526982}article{background:white;padding:20px;border-radius:8px;min-width:0;overflow-wrap:anywhere}
+pre{white-space:pre-wrap;font-size:13px;background:#f4f6fa;padding:12px;overflow:auto}a{color:#075ca8}h2{font-size:20px}h3{font-size:17px}.links a{display:inline-block;margin:3px 10px 3px 0}
+.note{border-left:4px solid #d88020;padding:8px 14px;background:#fff6e8}details{margin-top:15px}#graph{width:100%;height:650px;border:1px solid #ddd;background:white}
+@media(max-width:800px){main{grid-template-columns:1fr}#list{max-height:35vh}input{width:200px}}
+</style>
+<header><h1>真实 Qwen2Model 的 FX 计算图</h1><p id="stats"></p><p>先选第 0 层，再点 q、k、v 或 attention，沿输入 / 使用者阅读。</p></header>
+<nav><label>范围 <select id="layer"><option value="0">第 0 层</option><option value="all">全部节点</option><option value="none">图输入 / embedding / 最终 norm</option></select></label><input id="search" placeholder="搜索算子、节点或源码路径" aria-label="搜索节点"><span id="count"></span></nav>
+<main><aside id="list"></aside><article id="detail"></article></main>
+<section style="padding:0 25px 30px"><h2>第一层的真实节点与边</h2><p>实线：FX 参数引用。橙色虚线：根据算子 schema 补充的原地写入依赖，不是原始 FX 返回值边。灰色：权重或上游输入。</p>
+<p><a href="first_layer.svg" target="_blank">单独打开 SVG 放大阅读</a> · <a href="whole_model.dot">下载完整模型 DOT</a></p>
+<object id="graph" type="image/svg+xml" data="first_layer.svg">如未安装 Graphviz，请运行 dot -Tsvg first_layer.dot -o first_layer.svg。</object>
+<details><summary>查看 49 个分区</summary><pre id="partitions"></pre></details>
+<p class="note">这张图输出 hidden states，不包含 HTTP、调度器、logits 与采样。自定义 attention 的 KV cache / metadata 来自运行上下文，不能从这张图展开所有内部算子。图也不是 NPU kernel 时间线。</p></section>
+<script id="data" type="application/json">__GRAPH_DATA__</script>
+<script>
+const data=JSON.parse(document.getElementById('data').textContent), byName=new Map(data.nodes.map(n=>[n.name,n]));
+const scope=document.getElementById('layer'), search=document.getElementById('search'), list=document.getElementById('list'), detail=document.getElementById('detail');
+for(let i=1;i<24;i++){const o=document.createElement('option');o.value=i;o.textContent=`第 ${i} 层`;scope.append(o);}
+document.getElementById('stats').textContent=`${data.summary.nodes} 个节点 · ${data.summary.edges} 条参数引用边 · 24 层 · ${data.summary.partitions} 个分区`;
+document.getElementById('partitions').textContent=JSON.stringify(data.partitions,null,2);
+function append(tag,text,parent=detail){const el=document.createElement(tag);el.textContent=text;parent.append(el);return el;}
+function links(title,names){append('h3',title);const box=append('div','');box.className='links';for(const name of names){const a=append('a',name,box);a.href='#'+name;}if(!names.length)append('small','无',box);}
+function show(name){const n=byName.get(name);if(!n)return;detail.replaceChildren();append('h2',n.name);append('p',n.op+' · '+n.target);append('pre',JSON.stringify(n.value,null,2));
+links('输入：这个节点读取谁的结果？',n.inputs);links('使用者：谁引用这个节点的返回值？',n.users);
+const effects=data.effects.filter(e=>e.writer===name||e.reader===name||e.buffer===name);if(effects.length){const p=append('p','这里存在原地写入：attention 返回 None，通过共享 output buffer 传递结果。FX 的 users 为空不代表算子无用。');p.className='note';append('pre',JSON.stringify(effects,null,2));}
+append('h3','实际参数');append('pre',JSON.stringify({args:n.args,kwargs:n.kwargs},null,2));append('h3','模块位置');append('pre',JSON.stringify(n.module_stack,null,2));append('h3','算子 schema');append('pre',n.schema||JSON.stringify(n.schemas,null,2));append('h3','捕获时的源码调用位置');append('pre',n.stack_trace||'此节点没有记录 stack_trace');
+for(const b of list.children)b.classList.toggle('active',b.dataset.name===name);}
+function render(){list.replaceChildren();const text=search.value.toLowerCase(),value=scope.value;let count=0;
+for(const n of data.nodes){const l=data.layers[n.name];if(value!=='all' && (value==='none'?l!==null:l!==Number(value)))continue;if(text&&!JSON.stringify(n).toLowerCase().includes(text))continue;
+const b=append('button','',list);b.className='node';b.dataset.name=n.name;append('strong',n.name,b);append('br','',b);append('small',n.target,b);b.onclick=()=>{location.hash=n.name;show(n.name);};count++;}
+document.getElementById('count').textContent=count+' 个节点';show(location.hash.slice(1)||'output_parallel_1');}
+scope.onchange=render;search.oninput=render;window.onhashchange=()=>show(location.hash.slice(1));render();
+</script></html>

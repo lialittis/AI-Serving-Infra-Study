@@ -36,27 +36,34 @@ flowchart TD
 
 ## 实验顺序
 
-当前进度：**Practice 07、08、09 已在远端真实运行完成**。
+当前进度：**Practice 07、08、09、10 已在远端真实运行完成**。
 07 于 2026-09-20 完成请求路径追踪，见 [结果与证据](practice_07_real_request_trace/RESULTS.md)；
 08 于 2026-09-22 完成跨 block 的真实 KV 映射及第一层数据校验，
 见 [结果与证据](practice_08_real_kv_mapping/RESULTS.md)；
 09 同日完成 Python → PyTorch → CANN → NPU 的真实算子关联，
 见 [结果与证据](practice_09_operator_trace/RESULTS.md)。同日进一步覆盖该 trace 的全部 33 种设备任务，
-形成 [完整算子执行流程图](practice_09_operator_trace/OPERATOR_FLOW.md)。10–12 尚未执行。
+形成 [完整算子执行流程图](practice_09_operator_trace/OPERATOR_FLOW.md)。
+2026-09-23 完成 **Practice 10：提取真实模型计算图**：24 层、852 个 FX 节点、49 个分区，
+已验证真实请求进入编译执行路径，见 [结果](practice_10_model_graph/RESULTS.md)。
 
 2026-09-22 根据用户的学习方向调整顺序：将算子调用与设备时间线提前为 Practice 09；
 原计划的释放复用、continuous batching 顺延。graph 对照与独立算子实验留到后续。
+
+2026-09-23 根据用户要求，下一步优先提取实际模型的计算图，建立节点、tensor 依赖、
+自定义算子边界与 vLLM 分图的对应关系。设备图与性能对照仍作为后续问题，
+不把 FX 计算图等同于 NPU Graph 或 profiler 时间线。
 
 | Practice | 主要问题 | 操作与预期证据 |
 |---|---|---|
 | 07：真实请求追踪 | prompt 经过哪些模块？ | 单请求生成少量 token，关联 API、scheduler、worker、runner 与输出的源码和事件 |
 | 08：真实 KV 映射 | token 写入哪个 KV block？ | 记录实际 block size、block table、slot mapping、KV tensor 布局 |
 | 09：真实算子与 NPU 时间线 | Python 调用怎样对应到设备执行？ | 预热后采集一个请求，关联第一层 KV 写入、attention 的 Python 范围、PyTorch 算子、CANN flow 与 NPU kernel |
-| 10：真实释放和复用 | request 结束后 block 怎样回收？ | A/B 请求，追踪 block ID、引用计数、空闲队列；再开启 prefix caching 做对照 |
-| 11：continuous batching | 多个请求怎样共享一次执行？ | 长短请求交错到达，记录每轮请求集合、调度 token 数和完成情况 |
-| 12：执行模式与独立算子 | graph 改变什么，真实算子能否单独复现？ | 基于 09 的时间线比较 eager/graph，再提取小规模算子实验，核对输入输出和 KV 更新 |
+| 10：真实模型计算图 | forward 的算子与 tensor 怎样连接？ | 导出实际 Dynamo FX 图、节点 shape/源码、attention 副作用边界和 vLLM 分区，验证真实请求运行 |
+| 11：真实释放和复用 | request 结束后 block 怎样回收？ | A/B 请求，追踪 block ID、引用计数、空闲队列；再开启 prefix caching 做对照 |
+| 12：continuous batching | 多个请求怎样共享一次执行？ | 长短请求交错到达，记录每轮请求集合、调度 token 数和完成情况 |
+| 13：执行模式与独立算子 | graph 改变什么，真实算子能否单独复现？ | 基于 09/10 比较 eager/graph 的设备时间线，再提取小规模算子实验，核对输入输出和 KV 更新 |
 
-10 特别区分 request 结束、引用计数归零、缓存淘汰、数据覆盖。
+11 特别区分 request 结束、引用计数归零、缓存淘汰、数据覆盖。
 07/08 的主机调用日志不能证明设备上的生命周期违规或 race；09 的 profiler 也有观察开销，
 不能由一次正常 trace 推断原始运行绝无 race。
 多卡通信、HCCL、TP/PP、分离式 prefill/decode 留作单卡路径明确后的扩展，需要相应硬件。
