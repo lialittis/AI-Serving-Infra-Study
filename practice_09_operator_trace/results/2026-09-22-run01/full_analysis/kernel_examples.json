@@ -1,0 +1,4687 @@
+[
+  {
+    "task": {
+      "trace_index": 9053,
+      "kernel": "PROFILING_ENABLE",
+      "task_type": "PROFILING_ENABLE",
+      "task_id": 12,
+      "stream_id": 49,
+      "device_start_us": "1790085076492710.724",
+      "device_duration_us": 0.0,
+      "phase": "profiler_control",
+      "host_operator": "",
+      "host_ancestry": [],
+      "host_start_us": "",
+      "host_duration_us": "",
+      "torch_flow_id": "",
+      "cann_flow_id": "",
+      "cann_launch": "",
+      "cann_connection_verified": false,
+      "kernel_csv_verified": false,
+      "route": "profiler_control"
+    },
+    "trace_events": [
+      {
+        "name": "PROFILING_ENABLE",
+        "pid": 468034976,
+        "tid": 49,
+        "ts": "1790085076492710.724",
+        "dur": 0.0,
+        "ph": "X",
+        "args": {
+          "Model Id": 4294967295,
+          "Task Type": "PROFILING_ENABLE",
+          "Physic Stream Id": 49,
+          "Task Id": 12,
+          "Batch Id": 0,
+          "Subtask Id": 4294967295,
+          "connection_id": 6269
+        }
+      }
+    ]
+  },
+  {
+    "task": {
+      "trace_index": 10437,
+      "kernel": "MEMCPY_ASYNC",
+      "task_type": "PCIE_DMA_SQE",
+      "task_id": 1300,
+      "stream_id": 46,
+      "device_start_us": "1790085076508253.986",
+      "device_duration_us": 2.7,
+      "phase": "step=3",
+      "host_operator": "acl_memcpy_host_to_device",
+      "host_ancestry": [
+        "P09/step=3/NPUModelRunner.execute_model",
+        "aten::copy_",
+        "acl_memcpy_host_to_device"
+      ],
+      "host_start_us": "1790085076508195.886",
+      "host_duration_us": 7.415,
+      "torch_flow_id": "1790085076508253986",
+      "cann_flow_id": "6481105649664",
+      "cann_launch": "AscendCL@aclrtMemcpyAsync",
+      "cann_connection_verified": true,
+      "kernel_csv_verified": false,
+      "route": "runtime_copy"
+    },
+    "trace_events": [
+      {
+        "name": "MEMCPY_ASYNC",
+        "pid": 468034976,
+        "tid": 46,
+        "ts": "1790085076508253.986",
+        "dur": 2.7,
+        "ph": "X",
+        "args": {
+          "Model Id": 4294967295,
+          "Task Type": "PCIE_DMA_SQE",
+          "Physic Stream Id": 46,
+          "Task Id": 1300,
+          "Batch Id": 0,
+          "Subtask Id": 4294967295,
+          "connection_id": 1509
+        }
+      },
+      {
+        "ph": "f",
+        "bp": "e",
+        "name": "torch_to_npu",
+        "id": 1790085076508253986,
+        "pid": 468034976,
+        "tid": 46,
+        "ts": "1790085076508253.986",
+        "cat": "async_npu"
+      },
+      {
+        "ph": "s",
+        "bp": "e",
+        "name": "torch_to_npu",
+        "id": 1790085076508253986,
+        "pid": 457065,
+        "tid": 457065,
+        "ts": "1790085076508195.886",
+        "cat": "async_npu"
+      },
+      {
+        "ph": "X",
+        "name": "acl_memcpy_host_to_device",
+        "pid": 457065,
+        "tid": 457065,
+        "ts": "1790085076508195.886",
+        "dur": 7.415,
+        "cat": "cpu_op",
+        "args": {
+          "Sequence number": -1,
+          "Fwd thread id": 0
+        }
+      },
+      {
+        "name": "HostToDevice6481105649664",
+        "pid": 468034976,
+        "tid": 46,
+        "ph": "f",
+        "cat": "HostToDevice",
+        "id": "6481105649664",
+        "ts": "1790085076508253.986",
+        "bp": "e"
+      },
+      {
+        "name": "HostToDevice6481105649664",
+        "pid": 468034815,
+        "tid": 457380,
+        "ph": "s",
+        "cat": "HostToDevice",
+        "id": "6481105649664",
+        "ts": "1790085076508217.018"
+      },
+      {
+        "name": "AscendCL@aclrtMemcpyAsync",
+        "pid": 468034815,
+        "tid": 457380,
+        "ts": "1790085076508217.018",
+        "dur": 13.562,
+        "ph": "X",
+        "args": {
+          "Thread Id": 457380,
+          "Mode": "ACL_RTS",
+          "level": "acl",
+          "id": "aclrtMemcpyAsync",
+          "item_id": "0",
+          "connection_id": 1509
+        }
+      },
+      {
+        "ph": "X",
+        "name": "P09/step=3/NPUModelRunner.execute_model",
+        "pid": 457065,
+        "tid": 457065,
+        "ts": "1790085076507560.922",
+        "dur": 23835.86,
+        "cat": "cpu_op",
+        "args": {
+          "Sequence number": -1,
+          "Fwd thread id": 0
+        }
+      },
+      {
+        "ph": "X",
+        "name": "aten::copy_",
+        "pid": 457065,
+        "tid": 457065,
+        "ts": "1790085076508188.374",
+        "dur": 34.695,
+        "cat": "cpu_op",
+        "args": {
+          "Sequence number": -1,
+          "Fwd thread id": 0
+        }
+      }
+    ]
+  },
+  {
+    "task": {
+      "trace_index": 9054,
+      "kernel": "EVENT_RECORD",
+      "task_type": "EVENT_RECORD",
+      "task_id": 1304,
+      "stream_id": 46,
+      "device_start_us": "1790085076508416.512",
+      "device_duration_us": 0.02,
+      "phase": "step=3",
+      "host_operator": "record_event",
+      "host_ancestry": [
+        "P09/step=3/NPUModelRunner.execute_model",
+        "record_event"
+      ],
+      "host_start_us": "1790085076508399.951",
+      "host_duration_us": 3.164,
+      "torch_flow_id": "1790085076508416512",
+      "cann_flow_id": "6515465388032",
+      "cann_launch": "AscendCL@aclrtRecordEvent",
+      "cann_connection_verified": true,
+      "kernel_csv_verified": false,
+      "route": "runtime_event"
+    },
+    "trace_events": [
+      {
+        "name": "EVENT_RECORD",
+        "pid": 468034976,
+        "tid": 46,
+        "ts": "1790085076508416.512",
+        "dur": 0.02,
+        "ph": "X",
+        "args": {
+          "Model Id": 4294967295,
+          "Task Type": "EVENT_RECORD",
+          "Physic Stream Id": 46,
+          "Task Id": 1304,
+          "Batch Id": 0,
+          "Subtask Id": 4294967295,
+          "connection_id": 1517
+        }
+      },
+      {
+        "ph": "f",
+        "bp": "e",
+        "name": "torch_to_npu",
+        "id": 1790085076508416512,
+        "pid": 468034976,
+        "tid": 46,
+        "ts": "1790085076508416.512",
+        "cat": "async_npu"
+      },
+      {
+        "ph": "s",
+        "bp": "e",
+        "name": "torch_to_npu",
+        "id": 1790085076508416512,
+        "pid": 457065,
+        "tid": 457065,
+        "ts": "1790085076508399.951",
+        "cat": "async_npu"
+      },
+      {
+        "ph": "X",
+        "name": "record_event",
+        "pid": 457065,
+        "tid": 457065,
+        "ts": "1790085076508399.951",
+        "dur": 3.164,
+        "cat": "cpu_op",
+        "args": {
+          "Sequence number": -1,
+          "Fwd thread id": 0
+        }
+      },
+      {
+        "name": "HostToDevice6515465388032",
+        "pid": 468034976,
+        "tid": 46,
+        "ph": "f",
+        "cat": "HostToDevice",
+        "id": "6515465388032",
+        "ts": "1790085076508416.512",
+        "bp": "e"
+      },
+      {
+        "name": "HostToDevice6515465388032",
+        "pid": 468034815,
+        "tid": 457380,
+        "ph": "s",
+        "cat": "HostToDevice",
+        "id": "6515465388032",
+        "ts": "1790085076508408.700"
+      },
+      {
+        "name": "AscendCL@aclrtRecordEvent",
+        "pid": 468034815,
+        "tid": 457380,
+        "ts": "1790085076508408.700",
+        "dur": 9.318,
+        "ph": "X",
+        "args": {
+          "Thread Id": 457380,
+          "Mode": "ACL_RTS",
+          "level": "acl",
+          "id": "aclrtRecordEvent",
+          "item_id": "0",
+          "connection_id": 1517
+        }
+      },
+      {
+        "ph": "X",
+        "name": "P09/step=3/NPUModelRunner.execute_model",
+        "pid": 457065,
+        "tid": 457065,
+        "ts": "1790085076507560.922",
+        "dur": 23835.86,
+        "cat": "cpu_op",
+        "args": {
+          "Sequence number": -1,
+          "Fwd thread id": 0
+        }
+      }
+    ]
+  },
+  {
+    "task": {
+      "trace_index": 9056,
+      "kernel": "aclnnInplaceFillScalar_FillAiCore_Fill",
+      "task_type": "AI_VECTOR_CORE",
+      "task_id": 1307,
+      "stream_id": 46,
+      "device_start_us": "1790085076508658.982",
+      "device_duration_us": 1.02,
+      "phase": "step=3",
+      "host_operator": "aclnnInplaceFillScalar",
+      "host_ancestry": [
+        "P09/step=3/NPUModelRunner.execute_model",
+        "aten::fill_",
+        "aclnnInplaceFillScalar"
+      ],
+      "host_start_us": "1790085076508619.829",
+      "host_duration_us": 3.108,
+      "torch_flow_id": "1790085076508658982",
+      "cann_flow_id": "6549825126400",
+      "cann_launch": "Node@launch",
+      "cann_connection_verified": true,
+      "kernel_csv_verified": true,
+      "route": "aten_to_aclnn"
+    },
+    "trace_events": [
+      {
+        "name": "aclnnInplaceFillScalar_FillAiCore_Fill",
+        "pid": 468034976,
+        "tid": 46,
+        "ts": "1790085076508658.982",
+        "dur": 1.02,
+        "ph": "X",
+        "args": {
+          "Model Id": 4294967295,
+          "Task Type": "AI_VECTOR_CORE",
+          "Physic Stream Id": 46,
+          "Task Id": 1307,
+          "Batch Id": 0,
+          "Subtask Id": 4294967295,
+          "connection_id": 1525
+        }
+      },
+      {
+        "ph": "f",
+        "bp": "e",
+        "name": "torch_to_npu",
+        "id": 1790085076508658982,
+        "pid": 468034976,
+        "tid": 46,
+        "ts": "1790085076508658.982",
+        "cat": "async_npu"
+      },
+      {
+        "ph": "s",
+        "bp": "e",
+        "name": "torch_to_npu",
+        "id": 1790085076508658982,
+        "pid": 457065,
+        "tid": 457065,
+        "ts": "1790085076508619.829",
+        "cat": "async_npu"
+      },
+      {
+        "ph": "X",
+        "name": "aclnnInplaceFillScalar",
+        "pid": 457065,
+        "tid": 457065,
+        "ts": "1790085076508619.829",
+        "dur": 3.108,
+        "cat": "cpu_op",
+        "args": {
+          "Sequence number": -1,
+          "Fwd thread id": 0
+        }
+      },
+      {
+        "name": "HostToDevice6549825126400",
+        "pid": 468034976,
+        "tid": 46,
+        "ph": "f",
+        "cat": "HostToDevice",
+        "id": "6549825126400",
+        "ts": "1790085076508658.982",
+        "bp": "e"
+      },
+      {
+        "name": "HostToDevice6549825126400",
+        "pid": 468034815,
+        "tid": 457380,
+        "ph": "s",
+        "cat": "HostToDevice",
+        "id": "6549825126400",
+        "ts": "1790085076508639.244"
+      },
+      {
+        "name": "Node@launch",
+        "pid": 468034815,
+        "tid": 457380,
+        "ts": "1790085076508639.244",
+        "dur": 13.343,
+        "ph": "X",
+        "args": {
+          "Thread Id": 457380,
+          "Mode": "launch",
+          "level": "node",
+          "id": "0",
+          "item_id": "aclnnInplaceFillScalar_FillAiCore_Fill",
+          "connection_id": 1525
+        }
+      },
+      {
+        "ph": "X",
+        "name": "P09/step=3/NPUModelRunner.execute_model",
+        "pid": 457065,
+        "tid": 457065,
+        "ts": "1790085076507560.922",
+        "dur": 23835.86,
+        "cat": "cpu_op",
+        "args": {
+          "Sequence number": -1,
+          "Fwd thread id": 0
+        }
+      },
+      {
+        "ph": "X",
+        "name": "aten::fill_",
+        "pid": 457065,
+        "tid": 457065,
+        "ts": "1790085076508605.469",
+        "dur": 18.002,
+        "cat": "cpu_op",
+        "args": {
+          "Sequence number": -1,
+          "Fwd thread id": 0
+        }
+      }
+    ]
+  },
+  {
+    "task": {
+      "trace_index": 9060,
+      "kernel": "aclnnIndex_IndexAiCore_Index",
+      "task_type": "AI_VECTOR_CORE",
+      "task_id": 1315,
+      "stream_id": 46,
+      "device_start_us": "1790085076508799.828",
+      "device_duration_us": 8.86,
+      "phase": "step=3",
+      "host_operator": "aclnnIndex",
+      "host_ancestry": [
+        "P09/step=3/NPUModelRunner.execute_model",
+        "aten::index",
+        "aclnnIndex"
+      ],
+      "host_start_us": "1790085076508772.654",
+      "host_duration_us": 2.466,
+      "torch_flow_id": "1790085076508799828",
+      "cann_flow_id": "6631429505024",
+      "cann_launch": "Node@launch",
+      "cann_connection_verified": true,
+      "kernel_csv_verified": true,
+      "route": "aten_to_aclnn"
+    },
+    "trace_events": [
+      {
+        "name": "aclnnIndex_IndexAiCore_Index",
+        "pid": 468034976,
+        "tid": 46,
+        "ts": "1790085076508799.828",
+        "dur": 8.86,
+        "ph": "X",
+        "args": {
+          "Model Id": 4294967295,
+          "Task Type": "AI_VECTOR_CORE",
+          "Physic Stream Id": 46,
+          "Task Id": 1315,
+          "Batch Id": 0,
+          "Subtask Id": 4294967295,
+          "connection_id": 1544
+        }
+      },
+      {
+        "ph": "f",
+        "bp": "e",
+        "name": "torch_to_npu",
+        "id": 1790085076508799828,
+        "pid": 468034976,
+        "tid": 46,
+        "ts": "1790085076508799.828",
+        "cat": "async_npu"
+      },
+      {
+        "ph": "s",
+        "bp": "e",
+        "name": "torch_to_npu",
+        "id": 1790085076508799828,
+        "pid": 457065,
+        "tid": 457065,
+        "ts": "1790085076508772.654",
+        "cat": "async_npu"
+      },
+      {
+        "ph": "X",
+        "name": "aclnnIndex",
+        "pid": 457065,
+        "tid": 457065,
+        "ts": "1790085076508772.654",
+        "dur": 2.466,
+        "cat": "cpu_op",
+        "args": {
+          "Sequence number": -1,
+          "Fwd thread id": 0
+        }
+      },
+      {
+        "name": "HostToDevice6631429505024",
+        "pid": 468034976,
+        "tid": 46,
+        "ph": "f",
+        "cat": "HostToDevice",
+        "id": "6631429505024",
+        "ts": "1790085076508799.828",
+        "bp": "e"
+      },
+      {
+        "name": "HostToDevice6631429505024",
+        "pid": 468034815,
+        "tid": 457380,
+        "ph": "s",
+        "cat": "HostToDevice",
+        "id": "6631429505024",
+        "ts": "1790085076508784.407"
+      },
+      {
+        "name": "Node@launch",
+        "pid": 468034815,
+        "tid": 457380,
+        "ts": "1790085076508784.407",
+        "dur": 5.12,
+        "ph": "X",
+        "args": {
+          "Thread Id": 457380,
+          "Mode": "launch",
+          "level": "node",
+          "id": "0",
+          "item_id": "aclnnIndex_IndexAiCore_Index",
+          "connection_id": 1544
+        }
+      },
+      {
+        "ph": "X",
+        "name": "P09/step=3/NPUModelRunner.execute_model",
+        "pid": 457065,
+        "tid": 457065,
+        "ts": "1790085076507560.922",
+        "dur": 23835.86,
+        "cat": "cpu_op",
+        "args": {
+          "Sequence number": -1,
+          "Fwd thread id": 0
+        }
+      },
+      {
+        "ph": "X",
+        "name": "aten::index",
+        "pid": 457065,
+        "tid": 457065,
+        "ts": "1790085076508757.572",
+        "dur": 18.314,
+        "cat": "cpu_op",
+        "args": {
+          "Sequence number": -1,
+          "Fwd thread id": 0
+        }
+      }
+    ]
+  },
+  {
+    "task": {
+      "trace_index": 9062,
+      "kernel": "aclnnInplaceCopy_CastAiCore_Cast",
+      "task_type": "AI_VECTOR_CORE",
+      "task_id": 1316,
+      "stream_id": 46,
+      "device_start_us": "1790085076508836.649",
+      "device_duration_us": 1.16,
+      "phase": "step=3",
+      "host_operator": "aclnnInplaceCopy",
+      "host_ancestry": [
+        "P09/step=3/NPUModelRunner.execute_model",
+        "aten::to",
+        "aten::_to_copy",
+        "aten::copy_",
+        "aclnnInplaceCopy"
+      ],
+      "host_start_us": "1790085076508788.620",
+      "host_duration_us": 1.992,
+      "torch_flow_id": "1790085076508836649",
+      "cann_flow_id": "6652904341504",
+      "cann_launch": "Node@launch",
+      "cann_connection_verified": true,
+      "kernel_csv_verified": true,
+      "route": "aten_to_aclnn"
+    },
+    "trace_events": [
+      {
+        "name": "aclnnInplaceCopy_CastAiCore_Cast",
+        "pid": 468034976,
+        "tid": 46,
+        "ts": "1790085076508836.649",
+        "dur": 1.16,
+        "ph": "X",
+        "args": {
+          "Model Id": 4294967295,
+          "Task Type": "AI_VECTOR_CORE",
+          "Physic Stream Id": 46,
+          "Task Id": 1316,
+          "Batch Id": 0,
+          "Subtask Id": 4294967295,
+          "connection_id": 1549
+        }
+      },
+      {
+        "ph": "f",
+        "bp": "e",
+        "name": "torch_to_npu",
+        "id": 1790085076508836649,
+        "pid": 468034976,
+        "tid": 46,
+        "ts": "1790085076508836.649",
+        "cat": "async_npu"
+      },
+      {
+        "ph": "s",
+        "bp": "e",
+        "name": "torch_to_npu",
+        "id": 1790085076508836649,
+        "pid": 457065,
+        "tid": 457065,
+        "ts": "1790085076508788.620",
+        "cat": "async_npu"
+      },
+      {
+        "ph": "X",
+        "name": "aclnnInplaceCopy",
+        "pid": 457065,
+        "tid": 457065,
+        "ts": "1790085076508788.620",
+        "dur": 1.992,
+        "cat": "cpu_op",
+        "args": {
+          "Sequence number": -1,
+          "Fwd thread id": 0
+        }
+      },
+      {
+        "name": "HostToDevice6652904341504",
+        "pid": 468034976,
+        "tid": 46,
+        "ph": "f",
+        "cat": "HostToDevice",
+        "id": "6652904341504",
+        "ts": "1790085076508836.649",
+        "bp": "e"
+      },
+      {
+        "name": "HostToDevice6652904341504",
+        "pid": 468034815,
+        "tid": 457380,
+        "ph": "s",
+        "cat": "HostToDevice",
+        "id": "6652904341504",
+        "ts": "1790085076508822.621"
+      },
+      {
+        "name": "Node@launch",
+        "pid": 468034815,
+        "tid": 457380,
+        "ts": "1790085076508822.621",
+        "dur": 3.881,
+        "ph": "X",
+        "args": {
+          "Thread Id": 457380,
+          "Mode": "launch",
+          "level": "node",
+          "id": "0",
+          "item_id": "aclnnInplaceCopy_CastAiCore_Cast",
+          "connection_id": 1549
+        }
+      },
+      {
+        "ph": "X",
+        "name": "P09/step=3/NPUModelRunner.execute_model",
+        "pid": 457065,
+        "tid": 457065,
+        "ts": "1790085076507560.922",
+        "dur": 23835.86,
+        "cat": "cpu_op",
+        "args": {
+          "Sequence number": -1,
+          "Fwd thread id": 0
+        }
+      },
+      {
+        "ph": "X",
+        "name": "aten::to",
+        "pid": 457065,
+        "tid": 457065,
+        "ts": "1790085076508780.875",
+        "dur": 10.666,
+        "cat": "cpu_op",
+        "args": {
+          "Sequence number": -1,
+          "Fwd thread id": 0
+        }
+      },
+      {
+        "ph": "X",
+        "name": "aten::_to_copy",
+        "pid": 457065,
+        "tid": 457065,
+        "ts": "1790085076508781.485",
+        "dur": 9.902,
+        "cat": "cpu_op",
+        "args": {
+          "Sequence number": -1,
+          "Fwd thread id": 0
+        }
+      },
+      {
+        "ph": "X",
+        "name": "aten::copy_",
+        "pid": 457065,
+        "tid": 457065,
+        "ts": "1790085076508785.180",
+        "dur": 5.952,
+        "cat": "cpu_op",
+        "args": {
+          "Sequence number": -1,
+          "Fwd thread id": 0
+        }
+      }
+    ]
+  },
+  {
+    "task": {
+      "trace_index": 9064,
+      "kernel": "aclnnAdd_AddAiCore_Add",
+      "task_type": "AI_VECTOR_CORE",
+      "task_id": 1317,
+      "stream_id": 46,
+      "device_start_us": "1790085076508843.369",
+      "device_duration_us": 2.64,
+      "phase": "step=3",
+      "host_operator": "aclnnAdd",
+      "host_ancestry": [
+        "P09/step=3/NPUModelRunner.execute_model",
+        "aten::add",
+        "aclnnAdd"
+      ],
+      "host_start_us": "1790085076508808.164",
+      "host_duration_us": 0.732,
+      "torch_flow_id": "1790085076508843369",
+      "cann_flow_id": "6678674145280",
+      "cann_launch": "Node@launch",
+      "cann_connection_verified": true,
+      "kernel_csv_verified": true,
+      "route": "aten_to_aclnn"
+    },
+    "trace_events": [
+      {
+        "name": "aclnnAdd_AddAiCore_Add",
+        "pid": 468034976,
+        "tid": 46,
+        "ts": "1790085076508843.369",
+        "dur": 2.64,
+        "ph": "X",
+        "args": {
+          "Model Id": 4294967295,
+          "Task Type": "AI_VECTOR_CORE",
+          "Physic Stream Id": 46,
+          "Task Id": 1317,
+          "Batch Id": 0,
+          "Subtask Id": 4294967295,
+          "connection_id": 1555
+        }
+      },
+      {
+        "ph": "f",
+        "bp": "e",
+        "name": "torch_to_npu",
+        "id": 1790085076508843369,
+        "pid": 468034976,
+        "tid": 46,
+        "ts": "1790085076508843.369",
+        "cat": "async_npu"
+      },
+      {
+        "ph": "s",
+        "bp": "e",
+        "name": "torch_to_npu",
+        "id": 1790085076508843369,
+        "pid": 457065,
+        "tid": 457065,
+        "ts": "1790085076508808.164",
+        "cat": "async_npu"
+      },
+      {
+        "ph": "X",
+        "name": "aclnnAdd",
+        "pid": 457065,
+        "tid": 457065,
+        "ts": "1790085076508808.164",
+        "dur": 0.732,
+        "cat": "cpu_op",
+        "args": {
+          "Sequence number": -1,
+          "Fwd thread id": 0
+        }
+      },
+      {
+        "name": "HostToDevice6678674145280",
+        "pid": 468034976,
+        "tid": 46,
+        "ph": "f",
+        "cat": "HostToDevice",
+        "id": "6678674145280",
+        "ts": "1790085076508843.369",
+        "bp": "e"
+      },
+      {
+        "name": "HostToDevice6678674145280",
+        "pid": 468034815,
+        "tid": 457380,
+        "ph": "s",
+        "cat": "HostToDevice",
+        "id": "6678674145280",
+        "ts": "1790085076508836.118"
+      },
+      {
+        "name": "Node@launch",
+        "pid": 468034815,
+        "tid": 457380,
+        "ts": "1790085076508836.118",
+        "dur": 7.488,
+        "ph": "X",
+        "args": {
+          "Thread Id": 457380,
+          "Mode": "launch",
+          "level": "node",
+          "id": "0",
+          "item_id": "aclnnAdd_AddAiCore_Add",
+          "connection_id": 1555
+        }
+      },
+      {
+        "ph": "X",
+        "name": "P09/step=3/NPUModelRunner.execute_model",
+        "pid": 457065,
+        "tid": 457065,
+        "ts": "1790085076507560.922",
+        "dur": 23835.86,
+        "cat": "cpu_op",
+        "args": {
+          "Sequence number": -1,
+          "Fwd thread id": 0
+        }
+      },
+      {
+        "ph": "X",
+        "name": "aten::add",
+        "pid": 457065,
+        "tid": 457065,
+        "ts": "1790085076508799.794",
+        "dur": 9.552,
+        "cat": "cpu_op",
+        "args": {
+          "Sequence number": -1,
+          "Fwd thread id": 0
+        }
+      }
+    ]
+  },
+  {
+    "task": {
+      "trace_index": 9068,
+      "kernel": "_compute_slot_mapping_kernel",
+      "task_type": "AI_VECTOR_CORE",
+      "task_id": 1321,
+      "stream_id": 46,
+      "device_start_us": "1790085076509158.742",
+      "device_duration_us": 120.425,
+      "phase": "step=3",
+      "host_operator": "_compute_slot_mapping_kernel",
+      "host_ancestry": [
+        "P09/step=3/NPUModelRunner.execute_model",
+        "_compute_slot_mapping_kernel"
+      ],
+      "host_start_us": "1790085076509132.137",
+      "host_duration_us": 4.365,
+      "torch_flow_id": "1790085076509158742",
+      "cann_flow_id": "6768868458496",
+      "cann_launch": "Node@launch",
+      "cann_connection_verified": true,
+      "kernel_csv_verified": true,
+      "route": "triton"
+    },
+    "trace_events": [
+      {
+        "name": "_compute_slot_mapping_kernel",
+        "pid": 468034976,
+        "tid": 46,
+        "ts": "1790085076509158.742",
+        "dur": 120.425,
+        "ph": "X",
+        "args": {
+          "Model Id": 4294967295,
+          "Task Type": "AI_VECTOR_CORE",
+          "Physic Stream Id": 46,
+          "Task Id": 1321,
+          "Batch Id": 0,
+          "Subtask Id": 4294967295,
+          "connection_id": 1576
+        }
+      },
+      {
+        "ph": "f",
+        "bp": "e",
+        "name": "torch_to_npu",
+        "id": 1790085076509158742,
+        "pid": 468034976,
+        "tid": 46,
+        "ts": "1790085076509158.742",
+        "cat": "async_npu"
+      },
+      {
+        "ph": "s",
+        "bp": "e",
+        "name": "torch_to_npu",
+        "id": 1790085076509158742,
+        "pid": 457065,
+        "tid": 457065,
+        "ts": "1790085076509132.137",
+        "cat": "async_npu"
+      },
+      {
+        "ph": "X",
+        "name": "_compute_slot_mapping_kernel",
+        "pid": 457065,
+        "tid": 457065,
+        "ts": "1790085076509132.137",
+        "dur": 4.365,
+        "cat": "cpu_op",
+        "args": {
+          "Sequence number": -1,
+          "Fwd thread id": 0
+        }
+      },
+      {
+        "name": "HostToDevice6768868458496",
+        "pid": 468034976,
+        "tid": 46,
+        "ph": "f",
+        "cat": "HostToDevice",
+        "id": "6768868458496",
+        "ts": "1790085076509158.742",
+        "bp": "e"
+      },
+      {
+        "name": "HostToDevice6768868458496",
+        "pid": 468034815,
+        "tid": 457380,
+        "ph": "s",
+        "cat": "HostToDevice",
+        "id": "6768868458496",
+        "ts": "1790085076509144.935"
+      },
+      {
+        "name": "Node@launch",
+        "pid": 468034815,
+        "tid": 457380,
+        "ts": "1790085076509144.935",
+        "dur": 6.173,
+        "ph": "X",
+        "args": {
+          "Thread Id": 457380,
+          "Mode": "launch",
+          "level": "node",
+          "id": "0",
+          "item_id": "_compute_slot_mapping_kernel",
+          "connection_id": 1576
+        }
+      },
+      {
+        "ph": "X",
+        "name": "P09/step=3/NPUModelRunner.execute_model",
+        "pid": 457065,
+        "tid": 457065,
+        "ts": "1790085076507560.922",
+        "dur": 23835.86,
+        "cat": "cpu_op",
+        "args": {
+          "Sequence number": -1,
+          "Fwd thread id": 0
+        }
+      }
+    ]
+  },
+  {
+    "task": {
+      "trace_index": 9070,
+      "kernel": "aclnnSubs_SubAiCore_Sub",
+      "task_type": "AI_VECTOR_CORE",
+      "task_id": 1322,
+      "stream_id": 46,
+      "device_start_us": "1790085076509279.187",
+      "device_duration_us": 1.2,
+      "phase": "step=3",
+      "host_operator": "aclnnSubs",
+      "host_ancestry": [
+        "P09/step=3/NPUModelRunner.execute_model",
+        "aten::sub",
+        "aclnnSubs"
+      ],
+      "host_start_us": "1790085076509183.822",
+      "host_duration_us": 2.416,
+      "torch_flow_id": "1790085076509279187",
+      "cann_flow_id": "6781753360384",
+      "cann_launch": "Node@launch",
+      "cann_connection_verified": true,
+      "kernel_csv_verified": true,
+      "route": "aten_to_aclnn"
+    },
+    "trace_events": [
+      {
+        "name": "aclnnSubs_SubAiCore_Sub",
+        "pid": 468034976,
+        "tid": 46,
+        "ts": "1790085076509279.187",
+        "dur": 1.2,
+        "ph": "X",
+        "args": {
+          "Model Id": 4294967295,
+          "Task Type": "AI_VECTOR_CORE",
+          "Physic Stream Id": 46,
+          "Task Id": 1322,
+          "Batch Id": 0,
+          "Subtask Id": 4294967295,
+          "connection_id": 1579
+        }
+      },
+      {
+        "ph": "f",
+        "bp": "e",
+        "name": "torch_to_npu",
+        "id": 1790085076509279187,
+        "pid": 468034976,
+        "tid": 46,
+        "ts": "1790085076509279.187",
+        "cat": "async_npu"
+      },
+      {
+        "ph": "s",
+        "bp": "e",
+        "name": "torch_to_npu",
+        "id": 1790085076509279187,
+        "pid": 457065,
+        "tid": 457065,
+        "ts": "1790085076509183.822",
+        "cat": "async_npu"
+      },
+      {
+        "ph": "X",
+        "name": "aclnnSubs",
+        "pid": 457065,
+        "tid": 457065,
+        "ts": "1790085076509183.822",
+        "dur": 2.416,
+        "cat": "cpu_op",
+        "args": {
+          "Sequence number": -1,
+          "Fwd thread id": 0
+        }
+      },
+      {
+        "name": "HostToDevice6781753360384",
+        "pid": 468034976,
+        "tid": 46,
+        "ph": "f",
+        "cat": "HostToDevice",
+        "id": "6781753360384",
+        "ts": "1790085076509279.187",
+        "bp": "e"
+      },
+      {
+        "name": "HostToDevice6781753360384",
+        "pid": 468034815,
+        "tid": 457380,
+        "ph": "s",
+        "cat": "HostToDevice",
+        "id": "6781753360384",
+        "ts": "1790085076509193.227"
+      },
+      {
+        "name": "Node@launch",
+        "pid": 468034815,
+        "tid": 457380,
+        "ts": "1790085076509193.227",
+        "dur": 6.174,
+        "ph": "X",
+        "args": {
+          "Thread Id": 457380,
+          "Mode": "launch",
+          "level": "node",
+          "id": "0",
+          "item_id": "aclnnSubs_SubAiCore_Sub",
+          "connection_id": 1579
+        }
+      },
+      {
+        "ph": "X",
+        "name": "P09/step=3/NPUModelRunner.execute_model",
+        "pid": 457065,
+        "tid": 457065,
+        "ts": "1790085076507560.922",
+        "dur": 23835.86,
+        "cat": "cpu_op",
+        "args": {
+          "Sequence number": -1,
+          "Fwd thread id": 0
+        }
+      },
+      {
+        "ph": "X",
+        "name": "aten::sub",
+        "pid": 457065,
+        "tid": 457065,
+        "ts": "1790085076509170.437",
+        "dur": 16.572,
+        "cat": "cpu_op",
+        "args": {
+          "Sequence number": -1,
+          "Fwd thread id": 0
+        }
+      }
+    ]
+  },
+  {
+    "task": {
+      "trace_index": 9072,
+      "kernel": "aclnnIndexSelect_GatherV3AiCore_GatherV3",
+      "task_type": "AI_VECTOR_CORE",
+      "task_id": 1324,
+      "stream_id": 46,
+      "device_start_us": "1790085076509658.782",
+      "device_duration_us": 11.7605,
+      "phase": "step=3",
+      "host_operator": "aclnnIndexSelect",
+      "host_ancestry": [
+        "P09/step=3/NPUModelRunner.execute_model",
+        "aten::index_select",
+        "aclnnIndexSelect"
+      ],
+      "host_start_us": "1790085076509631.979",
+      "host_duration_us": 2.56,
+      "torch_flow_id": "1790085076509658782",
+      "cann_flow_id": "6828998000640",
+      "cann_launch": "Node@launch",
+      "cann_connection_verified": true,
+      "kernel_csv_verified": true,
+      "route": "aten_to_aclnn"
+    },
+    "trace_events": [
+      {
+        "name": "aclnnIndexSelect_GatherV3AiCore_GatherV3",
+        "pid": 468034976,
+        "tid": 46,
+        "ts": "1790085076509658.782",
+        "dur": 11.7605,
+        "ph": "X",
+        "args": {
+          "Model Id": 4294967295,
+          "Task Type": "AI_VECTOR_CORE",
+          "Physic Stream Id": 46,
+          "Task Id": 1324,
+          "Batch Id": 0,
+          "Subtask Id": 4294967295,
+          "connection_id": 1590
+        }
+      },
+      {
+        "ph": "f",
+        "bp": "e",
+        "name": "torch_to_npu",
+        "id": 1790085076509658782,
+        "pid": 468034976,
+        "tid": 46,
+        "ts": "1790085076509658.782",
+        "cat": "async_npu"
+      },
+      {
+        "ph": "s",
+        "bp": "e",
+        "name": "torch_to_npu",
+        "id": 1790085076509658782,
+        "pid": 457065,
+        "tid": 457065,
+        "ts": "1790085076509631.979",
+        "cat": "async_npu"
+      },
+      {
+        "ph": "X",
+        "name": "aclnnIndexSelect",
+        "pid": 457065,
+        "tid": 457065,
+        "ts": "1790085076509631.979",
+        "dur": 2.56,
+        "cat": "cpu_op",
+        "args": {
+          "Sequence number": -1,
+          "Fwd thread id": 0
+        }
+      },
+      {
+        "name": "HostToDevice6828998000640",
+        "pid": 468034976,
+        "tid": 46,
+        "ph": "f",
+        "cat": "HostToDevice",
+        "id": "6828998000640",
+        "ts": "1790085076509658.782",
+        "bp": "e"
+      },
+      {
+        "name": "HostToDevice6828998000640",
+        "pid": 468034815,
+        "tid": 457380,
+        "ph": "s",
+        "cat": "HostToDevice",
+        "id": "6828998000640",
+        "ts": "1790085076509642.271"
+      },
+      {
+        "name": "Node@launch",
+        "pid": 468034815,
+        "tid": 457380,
+        "ts": "1790085076509642.271",
+        "dur": 6.018,
+        "ph": "X",
+        "args": {
+          "Thread Id": 457380,
+          "Mode": "launch",
+          "level": "node",
+          "id": "0",
+          "item_id": "aclnnIndexSelect_GatherV3AiCore_GatherV3",
+          "connection_id": 1590
+        }
+      },
+      {
+        "ph": "X",
+        "name": "P09/step=3/NPUModelRunner.execute_model",
+        "pid": 457065,
+        "tid": 457065,
+        "ts": "1790085076507560.922",
+        "dur": 23835.86,
+        "cat": "cpu_op",
+        "args": {
+          "Sequence number": -1,
+          "Fwd thread id": 0
+        }
+      },
+      {
+        "ph": "X",
+        "name": "aten::index_select",
+        "pid": 457065,
+        "tid": 457065,
+        "ts": "1790085076509622.079",
+        "dur": 13.808,
+        "cat": "cpu_op",
+        "args": {
+          "Sequence number": -1,
+          "Fwd thread id": 0
+        }
+      }
+    ]
+  },
+  {
+    "task": {
+      "trace_index": 9074,
+      "kernel": "aclnnRepeat_TileAiCore_Tile",
+      "task_type": "AI_VECTOR_CORE",
+      "task_id": 1325,
+      "stream_id": 46,
+      "device_start_us": "1790085076509670.562",
+      "device_duration_us": 9.1205,
+      "phase": "step=3",
+      "host_operator": "aclnnRepeat",
+      "host_ancestry": [
+        "P09/step=3/NPUModelRunner.execute_model",
+        "aten::repeat",
+        "aclnnRepeat"
+      ],
+      "host_start_us": "1790085076509650.482",
+      "host_duration_us": 0.895,
+      "torch_flow_id": "1790085076509670562",
+      "cann_flow_id": "6846177869824",
+      "cann_launch": "Node@launch",
+      "cann_connection_verified": true,
+      "kernel_csv_verified": true,
+      "route": "aten_to_aclnn"
+    },
+    "trace_events": [
+      {
+        "name": "aclnnRepeat_TileAiCore_Tile",
+        "pid": 468034976,
+        "tid": 46,
+        "ts": "1790085076509670.562",
+        "dur": 9.1205,
+        "ph": "X",
+        "args": {
+          "Model Id": 4294967295,
+          "Task Type": "AI_VECTOR_CORE",
+          "Physic Stream Id": 46,
+          "Task Id": 1325,
+          "Batch Id": 0,
+          "Subtask Id": 4294967295,
+          "connection_id": 1594
+        }
+      },
+      {
+        "ph": "f",
+        "bp": "e",
+        "name": "torch_to_npu",
+        "id": 1790085076509670562,
+        "pid": 468034976,
+        "tid": 46,
+        "ts": "1790085076509670.562",
+        "cat": "async_npu"
+      },
+      {
+        "ph": "s",
+        "bp": "e",
+        "name": "torch_to_npu",
+        "id": 1790085076509670562,
+        "pid": 457065,
+        "tid": 457065,
+        "ts": "1790085076509650.482",
+        "cat": "async_npu"
+      },
+      {
+        "ph": "X",
+        "name": "aclnnRepeat",
+        "pid": 457065,
+        "tid": 457065,
+        "ts": "1790085076509650.482",
+        "dur": 0.895,
+        "cat": "cpu_op",
+        "args": {
+          "Sequence number": -1,
+          "Fwd thread id": 0
+        }
+      },
+      {
+        "name": "HostToDevice6846177869824",
+        "pid": 468034976,
+        "tid": 46,
+        "ph": "f",
+        "cat": "HostToDevice",
+        "id": "6846177869824",
+        "ts": "1790085076509670.562",
+        "bp": "e"
+      },
+      {
+        "name": "HostToDevice6846177869824",
+        "pid": 468034815,
+        "tid": 457380,
+        "ph": "s",
+        "cat": "HostToDevice",
+        "id": "6846177869824",
+        "ts": "1790085076509654.138"
+      },
+      {
+        "name": "Node@launch",
+        "pid": 468034815,
+        "tid": 457380,
+        "ts": "1790085076509654.138",
+        "dur": 3.292,
+        "ph": "X",
+        "args": {
+          "Thread Id": 457380,
+          "Mode": "launch",
+          "level": "node",
+          "id": "0",
+          "item_id": "aclnnRepeat_TileAiCore_Tile",
+          "connection_id": 1594
+        }
+      },
+      {
+        "ph": "X",
+        "name": "P09/step=3/NPUModelRunner.execute_model",
+        "pid": 457065,
+        "tid": 457065,
+        "ts": "1790085076507560.922",
+        "dur": 23835.86,
+        "cat": "cpu_op",
+        "args": {
+          "Sequence number": -1,
+          "Fwd thread id": 0
+        }
+      },
+      {
+        "ph": "X",
+        "name": "aten::repeat",
+        "pid": 457065,
+        "tid": 457065,
+        "ts": "1790085076509644.423",
+        "dur": 7.189,
+        "cat": "cpu_op",
+        "args": {
+          "Sequence number": -1,
+          "Fwd thread id": 0
+        }
+      }
+    ]
+  },
+  {
+    "task": {
+      "trace_index": 9076,
+      "kernel": "aclnnInplaceCopy_SliceAiCore_Slice",
+      "task_type": "AI_VECTOR_CORE",
+      "task_id": 1326,
+      "stream_id": 46,
+      "device_start_us": "1790085076509864.070",
+      "device_duration_us": 3.0,
+      "phase": "step=3",
+      "host_operator": "aclnnInplaceCopy",
+      "host_ancestry": [
+        "P09/step=3/NPUModelRunner.execute_model",
+        "aten::copy_",
+        "aclnnInplaceCopy"
+      ],
+      "host_start_us": "1790085076509840.565",
+      "host_duration_us": 2.638,
+      "torch_flow_id": "1790085076509864070",
+      "cann_flow_id": "6863357739008",
+      "cann_launch": "Node@launch",
+      "cann_connection_verified": true,
+      "kernel_csv_verified": true,
+      "route": "aten_to_aclnn"
+    },
+    "trace_events": [
+      {
+        "name": "aclnnInplaceCopy_SliceAiCore_Slice",
+        "pid": 468034976,
+        "tid": 46,
+        "ts": "1790085076509864.070",
+        "dur": 3.0,
+        "ph": "X",
+        "args": {
+          "Model Id": 4294967295,
+          "Task Type": "AI_VECTOR_CORE",
+          "Physic Stream Id": 46,
+          "Task Id": 1326,
+          "Batch Id": 0,
+          "Subtask Id": 4294967295,
+          "connection_id": 1598
+        }
+      },
+      {
+        "ph": "f",
+        "bp": "e",
+        "name": "torch_to_npu",
+        "id": 1790085076509864070,
+        "pid": 468034976,
+        "tid": 46,
+        "ts": "1790085076509864.070",
+        "cat": "async_npu"
+      },
+      {
+        "ph": "s",
+        "bp": "e",
+        "name": "torch_to_npu",
+        "id": 1790085076509864070,
+        "pid": 457065,
+        "tid": 457065,
+        "ts": "1790085076509840.565",
+        "cat": "async_npu"
+      },
+      {
+        "ph": "X",
+        "name": "aclnnInplaceCopy",
+        "pid": 457065,
+        "tid": 457065,
+        "ts": "1790085076509840.565",
+        "dur": 2.638,
+        "cat": "cpu_op",
+        "args": {
+          "Sequence number": -1,
+          "Fwd thread id": 0
+        }
+      },
+      {
+        "name": "HostToDevice6863357739008",
+        "pid": 468034976,
+        "tid": 46,
+        "ph": "f",
+        "cat": "HostToDevice",
+        "id": "6863357739008",
+        "ts": "1790085076509864.070",
+        "bp": "e"
+      },
+      {
+        "name": "HostToDevice6863357739008",
+        "pid": 468034815,
+        "tid": 457380,
+        "ph": "s",
+        "cat": "HostToDevice",
+        "id": "6863357739008",
+        "ts": "1790085076509849.328"
+      },
+      {
+        "name": "Node@launch",
+        "pid": 468034815,
+        "tid": 457380,
+        "ts": "1790085076509849.328",
+        "dur": 4.203,
+        "ph": "X",
+        "args": {
+          "Thread Id": 457380,
+          "Mode": "launch",
+          "level": "node",
+          "id": "0",
+          "item_id": "aclnnInplaceCopy_SliceAiCore_Slice",
+          "connection_id": 1598
+        }
+      },
+      {
+        "ph": "X",
+        "name": "P09/step=3/NPUModelRunner.execute_model",
+        "pid": 457065,
+        "tid": 457065,
+        "ts": "1790085076507560.922",
+        "dur": 23835.86,
+        "cat": "cpu_op",
+        "args": {
+          "Sequence number": -1,
+          "Fwd thread id": 0
+        }
+      },
+      {
+        "ph": "X",
+        "name": "aten::copy_",
+        "pid": 457065,
+        "tid": 457065,
+        "ts": "1790085076509837.799",
+        "dur": 5.863,
+        "cat": "cpu_op",
+        "args": {
+          "Sequence number": -1,
+          "Fwd thread id": 0
+        }
+      }
+    ]
+  },
+  {
+    "task": {
+      "trace_index": 9086,
+      "kernel": "aclnnEmbedding_GatherV2AiCore_GatherV2",
+      "task_type": "AI_VECTOR_CORE",
+      "task_id": 1331,
+      "stream_id": 46,
+      "device_start_us": "1790085076510419.372",
+      "device_duration_us": 11.8005,
+      "phase": "step=3",
+      "host_operator": "aclnnEmbedding",
+      "host_ancestry": [
+        "P09/step=3/NPUModelRunner.execute_model",
+        "P09/step=3/NPUModelRunner._model_forward",
+        "aten::embedding",
+        "aclnnEmbedding"
+      ],
+      "host_start_us": "1790085076510408.346",
+      "host_duration_us": 2.37,
+      "torch_flow_id": "1790085076510419372",
+      "cann_flow_id": "6949257084928",
+      "cann_launch": "Node@launch",
+      "cann_connection_verified": true,
+      "kernel_csv_verified": true,
+      "route": "aten_to_aclnn"
+    },
+    "trace_events": [
+      {
+        "name": "aclnnEmbedding_GatherV2AiCore_GatherV2",
+        "pid": 468034976,
+        "tid": 46,
+        "ts": "1790085076510419.372",
+        "dur": 11.8005,
+        "ph": "X",
+        "args": {
+          "Model Id": 4294967295,
+          "Task Type": "AI_VECTOR_CORE",
+          "Physic Stream Id": 46,
+          "Task Id": 1331,
+          "Batch Id": 0,
+          "Subtask Id": 4294967295,
+          "connection_id": 1618
+        }
+      },
+      {
+        "ph": "f",
+        "bp": "e",
+        "name": "torch_to_npu",
+        "id": 1790085076510419372,
+        "pid": 468034976,
+        "tid": 46,
+        "ts": "1790085076510419.372",
+        "cat": "async_npu"
+      },
+      {
+        "ph": "s",
+        "bp": "e",
+        "name": "torch_to_npu",
+        "id": 1790085076510419372,
+        "pid": 457065,
+        "tid": 457065,
+        "ts": "1790085076510408.346",
+        "cat": "async_npu"
+      },
+      {
+        "ph": "X",
+        "name": "aclnnEmbedding",
+        "pid": 457065,
+        "tid": 457065,
+        "ts": "1790085076510408.346",
+        "dur": 2.37,
+        "cat": "cpu_op",
+        "args": {
+          "Sequence number": -1,
+          "Fwd thread id": 0
+        }
+      },
+      {
+        "name": "HostToDevice6949257084928",
+        "pid": 468034976,
+        "tid": 46,
+        "ph": "f",
+        "cat": "HostToDevice",
+        "id": "6949257084928",
+        "ts": "1790085076510419.372",
+        "bp": "e"
+      },
+      {
+        "name": "HostToDevice6949257084928",
+        "pid": 468034815,
+        "tid": 457380,
+        "ph": "s",
+        "cat": "HostToDevice",
+        "id": "6949257084928",
+        "ts": "1790085076510417.576"
+      },
+      {
+        "name": "Node@launch",
+        "pid": 468034815,
+        "tid": 457380,
+        "ts": "1790085076510417.576",
+        "dur": 3.685,
+        "ph": "X",
+        "args": {
+          "Thread Id": 457380,
+          "Mode": "launch",
+          "level": "node",
+          "id": "0",
+          "item_id": "aclnnEmbedding_GatherV2AiCore_GatherV2",
+          "connection_id": 1618
+        }
+      },
+      {
+        "ph": "X",
+        "name": "P09/step=3/NPUModelRunner.execute_model",
+        "pid": 457065,
+        "tid": 457065,
+        "ts": "1790085076507560.922",
+        "dur": 23835.86,
+        "cat": "cpu_op",
+        "args": {
+          "Sequence number": -1,
+          "Fwd thread id": 0
+        }
+      },
+      {
+        "ph": "X",
+        "name": "P09/step=3/NPUModelRunner._model_forward",
+        "pid": 457065,
+        "tid": 457065,
+        "ts": "1790085076510251.429",
+        "dur": 20798.138,
+        "cat": "cpu_op",
+        "args": {
+          "Sequence number": -1,
+          "Fwd thread id": 0
+        }
+      },
+      {
+        "ph": "X",
+        "name": "aten::embedding",
+        "pid": 457065,
+        "tid": 457065,
+        "ts": "1790085076510400.706",
+        "dur": 10.48,
+        "cat": "cpu_op",
+        "args": {
+          "Sequence number": -1,
+          "Fwd thread id": 0
+        }
+      }
+    ]
+  },
+  {
+    "task": {
+      "trace_index": 9088,
+      "kernel": "RmsNorm",
+      "task_type": "AI_VECTOR_CORE",
+      "task_id": 1332,
+      "stream_id": 46,
+      "device_start_us": "1790085076510554.778",
+      "device_duration_us": 15.1005,
+      "phase": "step=3",
+      "host_operator": "aclnnRmsNorm",
+      "host_ancestry": [
+        "P09/step=3/NPUModelRunner.execute_model",
+        "P09/step=3/NPUModelRunner._model_forward",
+        "npu::npu_rms_norm",
+        "aclnnRmsNorm"
+      ],
+      "host_start_us": "1790085076510524.141",
+      "host_duration_us": 2.328,
+      "torch_flow_id": "1790085076510554778",
+      "cann_flow_id": "6975026888704",
+      "cann_launch": "Node@launch",
+      "cann_connection_verified": true,
+      "kernel_csv_verified": true,
+      "route": "torch_npu"
+    },
+    "trace_events": [
+      {
+        "name": "RmsNorm",
+        "pid": 468034976,
+        "tid": 46,
+        "ts": "1790085076510554.778",
+        "dur": 15.1005,
+        "ph": "X",
+        "args": {
+          "Model Id": 4294967295,
+          "Task Type": "AI_VECTOR_CORE",
+          "Physic Stream Id": 46,
+          "Task Id": 1332,
+          "Batch Id": 0,
+          "Subtask Id": 4294967295,
+          "connection_id": 1624
+        }
+      },
+      {
+        "ph": "f",
+        "bp": "e",
+        "name": "torch_to_npu",
+        "id": 1790085076510554778,
+        "pid": 468034976,
+        "tid": 46,
+        "ts": "1790085076510554.778",
+        "cat": "async_npu"
+      },
+      {
+        "ph": "s",
+        "bp": "e",
+        "name": "torch_to_npu",
+        "id": 1790085076510554778,
+        "pid": 457065,
+        "tid": 457065,
+        "ts": "1790085076510524.141",
+        "cat": "async_npu"
+      },
+      {
+        "ph": "X",
+        "name": "aclnnRmsNorm",
+        "pid": 457065,
+        "tid": 457065,
+        "ts": "1790085076510524.141",
+        "dur": 2.328,
+        "cat": "cpu_op",
+        "args": {
+          "Sequence number": -1,
+          "Fwd thread id": 0
+        }
+      },
+      {
+        "name": "HostToDevice6975026888704",
+        "pid": 468034976,
+        "tid": 46,
+        "ph": "f",
+        "cat": "HostToDevice",
+        "id": "6975026888704",
+        "ts": "1790085076510554.778",
+        "bp": "e"
+      },
+      {
+        "name": "HostToDevice6975026888704",
+        "pid": 468034815,
+        "tid": 457380,
+        "ph": "s",
+        "cat": "HostToDevice",
+        "id": "6975026888704",
+        "ts": "1790085076510537.900"
+      },
+      {
+        "name": "Node@launch",
+        "pid": 468034815,
+        "tid": 457380,
+        "ts": "1790085076510537.900",
+        "dur": 7.239,
+        "ph": "X",
+        "args": {
+          "Thread Id": 457380,
+          "Mode": "launch",
+          "level": "node",
+          "id": "0",
+          "item_id": "RmsNorm",
+          "connection_id": 1624
+        }
+      },
+      {
+        "ph": "X",
+        "name": "P09/step=3/NPUModelRunner.execute_model",
+        "pid": 457065,
+        "tid": 457065,
+        "ts": "1790085076507560.922",
+        "dur": 23835.86,
+        "cat": "cpu_op",
+        "args": {
+          "Sequence number": -1,
+          "Fwd thread id": 0
+        }
+      },
+      {
+        "ph": "X",
+        "name": "P09/step=3/NPUModelRunner._model_forward",
+        "pid": 457065,
+        "tid": 457065,
+        "ts": "1790085076510251.429",
+        "dur": 20798.138,
+        "cat": "cpu_op",
+        "args": {
+          "Sequence number": -1,
+          "Fwd thread id": 0
+        }
+      },
+      {
+        "ph": "X",
+        "name": "npu::npu_rms_norm",
+        "pid": 457065,
+        "tid": 457065,
+        "ts": "1790085076510483.017",
+        "dur": 46.003,
+        "cat": "cpu_op",
+        "args": {
+          "Sequence number": -1,
+          "Fwd thread id": 0
+        }
+      }
+    ]
+  },
+  {
+    "task": {
+      "trace_index": 9090,
+      "kernel": "aclnnAddmm_CastAiCore_Cast",
+      "task_type": "AI_VECTOR_CORE",
+      "task_id": 1333,
+      "stream_id": 46,
+      "device_start_us": "1790085076510633.661",
+      "device_duration_us": 1.04,
+      "phase": "step=3",
+      "host_operator": "aclnnAddmm",
+      "host_ancestry": [
+        "P09/step=3/NPUModelRunner.execute_model",
+        "P09/step=3/NPUModelRunner._model_forward",
+        "vllm::unquantized_gemm",
+        "aten::linear",
+        "aten::addmm",
+        "aclnnAddmm"
+      ],
+      "host_start_us": "1790085076510609.421",
+      "host_duration_us": 2.25,
+      "torch_flow_id": "1790085076510633661",
+      "cann_flow_id": "6996501725184",
+      "cann_launch": "Node@launch",
+      "cann_connection_verified": true,
+      "kernel_csv_verified": true,
+      "route": "aten_to_aclnn"
+    },
+    "trace_events": [
+      {
+        "name": "aclnnAddmm_CastAiCore_Cast",
+        "pid": 468034976,
+        "tid": 46,
+        "ts": "1790085076510633.661",
+        "dur": 1.04,
+        "ph": "X",
+        "args": {
+          "Model Id": 4294967295,
+          "Task Type": "AI_VECTOR_CORE",
+          "Physic Stream Id": 46,
+          "Task Id": 1333,
+          "Batch Id": 0,
+          "Subtask Id": 4294967295,
+          "connection_id": 1629
+        }
+      },
+      {
+        "ph": "f",
+        "bp": "e",
+        "name": "torch_to_npu",
+        "id": 1790085076510633661,
+        "pid": 468034976,
+        "tid": 46,
+        "ts": "1790085076510633.661",
+        "cat": "async_npu"
+      },
+      {
+        "ph": "s",
+        "bp": "e",
+        "name": "torch_to_npu",
+        "id": 1790085076510633661,
+        "pid": 457065,
+        "tid": 457065,
+        "ts": "1790085076510609.421",
+        "cat": "async_npu"
+      },
+      {
+        "ph": "X",
+        "name": "aclnnAddmm",
+        "pid": 457065,
+        "tid": 457065,
+        "ts": "1790085076510609.421",
+        "dur": 2.25,
+        "cat": "cpu_op",
+        "args": {
+          "Sequence number": -1,
+          "Fwd thread id": 0
+        }
+      },
+      {
+        "name": "HostToDevice6996501725184",
+        "pid": 468034976,
+        "tid": 46,
+        "ph": "f",
+        "cat": "HostToDevice",
+        "id": "6996501725184",
+        "ts": "1790085076510633.661",
+        "bp": "e"
+      },
+      {
+        "name": "HostToDevice6996501725184",
+        "pid": 468034815,
+        "tid": 457380,
+        "ph": "s",
+        "cat": "HostToDevice",
+        "id": "6996501725184",
+        "ts": "1790085076510619.041"
+      },
+      {
+        "name": "Node@launch",
+        "pid": 468034815,
+        "tid": 457380,
+        "ts": "1790085076510619.041",
+        "dur": 4.017,
+        "ph": "X",
+        "args": {
+          "Thread Id": 457380,
+          "Mode": "launch",
+          "level": "node",
+          "id": "0",
+          "item_id": "aclnnAddmm_CastAiCore_Cast",
+          "connection_id": 1629
+        }
+      },
+      {
+        "ph": "X",
+        "name": "P09/step=3/NPUModelRunner.execute_model",
+        "pid": 457065,
+        "tid": 457065,
+        "ts": "1790085076507560.922",
+        "dur": 23835.86,
+        "cat": "cpu_op",
+        "args": {
+          "Sequence number": -1,
+          "Fwd thread id": 0
+        }
+      },
+      {
+        "ph": "X",
+        "name": "P09/step=3/NPUModelRunner._model_forward",
+        "pid": 457065,
+        "tid": 457065,
+        "ts": "1790085076510251.429",
+        "dur": 20798.138,
+        "cat": "cpu_op",
+        "args": {
+          "Sequence number": -1,
+          "Fwd thread id": 0
+        }
+      },
+      {
+        "ph": "X",
+        "name": "vllm::unquantized_gemm",
+        "pid": 457065,
+        "tid": 457065,
+        "ts": "1790085076510579.642",
+        "dur": 36.235,
+        "cat": "cpu_op",
+        "args": {
+          "Sequence number": -1,
+          "Fwd thread id": 0
+        }
+      },
+      {
+        "ph": "X",
+        "name": "aten::linear",
+        "pid": 457065,
+        "tid": 457065,
+        "ts": "1790085076510589.798",
+        "dur": 23.809,
+        "cat": "cpu_op",
+        "args": {
+          "Sequence number": -1,
+          "Fwd thread id": 0
+        }
+      },
+      {
+        "ph": "X",
+        "name": "aten::addmm",
+        "pid": 457065,
+        "tid": 457065,
+        "ts": "1790085076510600.616",
+        "dur": 12.43,
+        "cat": "cpu_op",
+        "args": {
+          "Sequence number": -1,
+          "Fwd thread id": 0
+        }
+      }
+    ]
+  },
+  {
+    "task": {
+      "trace_index": 9092,
+      "kernel": "aclnnAddmm_MatMulCommon_MatMulV2",
+      "task_type": "AI_CORE",
+      "task_id": 1334,
+      "stream_id": 46,
+      "device_start_us": "1790085076510636.961",
+      "device_duration_us": 8.9005,
+      "phase": "step=3",
+      "host_operator": "aclnnAddmm",
+      "host_ancestry": [
+        "P09/step=3/NPUModelRunner.execute_model",
+        "P09/step=3/NPUModelRunner._model_forward",
+        "vllm::unquantized_gemm",
+        "aten::linear",
+        "aten::addmm",
+        "aclnnAddmm"
+      ],
+      "host_start_us": "1790085076510609.421",
+      "host_duration_us": 2.25,
+      "torch_flow_id": "1790085076510636961",
+      "cann_flow_id": "7005091659776",
+      "cann_launch": "Node@launch",
+      "cann_connection_verified": true,
+      "kernel_csv_verified": true,
+      "route": "aten_to_aclnn"
+    },
+    "trace_events": [
+      {
+        "name": "aclnnAddmm_MatMulCommon_MatMulV2",
+        "pid": 468034976,
+        "tid": 46,
+        "ts": "1790085076510636.961",
+        "dur": 8.9005,
+        "ph": "X",
+        "args": {
+          "Model Id": 4294967295,
+          "Task Type": "AI_CORE",
+          "Physic Stream Id": 46,
+          "Task Id": 1334,
+          "Batch Id": 0,
+          "Subtask Id": 4294967295,
+          "connection_id": 1631
+        }
+      },
+      {
+        "ph": "f",
+        "bp": "e",
+        "name": "torch_to_npu",
+        "id": 1790085076510636961,
+        "pid": 468034976,
+        "tid": 46,
+        "ts": "1790085076510636.961",
+        "cat": "async_npu"
+      },
+      {
+        "ph": "s",
+        "bp": "e",
+        "name": "torch_to_npu",
+        "id": 1790085076510636961,
+        "pid": 457065,
+        "tid": 457065,
+        "ts": "1790085076510609.421",
+        "cat": "async_npu"
+      },
+      {
+        "ph": "X",
+        "name": "aclnnAddmm",
+        "pid": 457065,
+        "tid": 457065,
+        "ts": "1790085076510609.421",
+        "dur": 2.25,
+        "cat": "cpu_op",
+        "args": {
+          "Sequence number": -1,
+          "Fwd thread id": 0
+        }
+      },
+      {
+        "name": "HostToDevice7005091659776",
+        "pid": 468034976,
+        "tid": 46,
+        "ph": "f",
+        "cat": "HostToDevice",
+        "id": "7005091659776",
+        "ts": "1790085076510636.961",
+        "bp": "e"
+      },
+      {
+        "name": "HostToDevice7005091659776",
+        "pid": 468034815,
+        "tid": 457380,
+        "ph": "s",
+        "cat": "HostToDevice",
+        "id": "7005091659776",
+        "ts": "1790085076510623.541"
+      },
+      {
+        "name": "Node@launch",
+        "pid": 468034815,
+        "tid": 457380,
+        "ts": "1790085076510623.541",
+        "dur": 3.654,
+        "ph": "X",
+        "args": {
+          "Thread Id": 457380,
+          "Mode": "launch",
+          "level": "node",
+          "id": "0",
+          "item_id": "aclnnAddmm_MatMulCommon_MatMulV2",
+          "connection_id": 1631
+        }
+      },
+      {
+        "ph": "X",
+        "name": "P09/step=3/NPUModelRunner.execute_model",
+        "pid": 457065,
+        "tid": 457065,
+        "ts": "1790085076507560.922",
+        "dur": 23835.86,
+        "cat": "cpu_op",
+        "args": {
+          "Sequence number": -1,
+          "Fwd thread id": 0
+        }
+      },
+      {
+        "ph": "X",
+        "name": "P09/step=3/NPUModelRunner._model_forward",
+        "pid": 457065,
+        "tid": 457065,
+        "ts": "1790085076510251.429",
+        "dur": 20798.138,
+        "cat": "cpu_op",
+        "args": {
+          "Sequence number": -1,
+          "Fwd thread id": 0
+        }
+      },
+      {
+        "ph": "X",
+        "name": "vllm::unquantized_gemm",
+        "pid": 457065,
+        "tid": 457065,
+        "ts": "1790085076510579.642",
+        "dur": 36.235,
+        "cat": "cpu_op",
+        "args": {
+          "Sequence number": -1,
+          "Fwd thread id": 0
+        }
+      },
+      {
+        "ph": "X",
+        "name": "aten::linear",
+        "pid": 457065,
+        "tid": 457065,
+        "ts": "1790085076510589.798",
+        "dur": 23.809,
+        "cat": "cpu_op",
+        "args": {
+          "Sequence number": -1,
+          "Fwd thread id": 0
+        }
+      },
+      {
+        "ph": "X",
+        "name": "aten::addmm",
+        "pid": 457065,
+        "tid": 457065,
+        "ts": "1790085076510600.616",
+        "dur": 12.43,
+        "cat": "cpu_op",
+        "args": {
+          "Sequence number": -1,
+          "Fwd thread id": 0
+        }
+      }
+    ]
+  },
+  {
+    "task": {
+      "trace_index": 9098,
+      "kernel": "_triton_rope",
+      "task_type": "AI_VECTOR_CORE",
+      "task_id": 1337,
+      "stream_id": 46,
+      "device_start_us": "1790085076510921.232",
+      "device_duration_us": 13.4405,
+      "phase": "step=3",
+      "host_operator": "_triton_rope",
+      "host_ancestry": [
+        "P09/step=3/NPUModelRunner.execute_model",
+        "P09/step=3/NPUModelRunner._model_forward",
+        "vllm::npu_rotary_embedding",
+        "_triton_rope"
+      ],
+      "host_start_us": "1790085076510901.644",
+      "host_duration_us": 5.553,
+      "torch_flow_id": "1790085076510921232",
+      "cann_flow_id": "7065221201920",
+      "cann_launch": "Node@launch",
+      "cann_connection_verified": true,
+      "kernel_csv_verified": true,
+      "route": "triton"
+    },
+    "trace_events": [
+      {
+        "name": "_triton_rope",
+        "pid": 468034976,
+        "tid": 46,
+        "ts": "1790085076510921.232",
+        "dur": 13.4405,
+        "ph": "X",
+        "args": {
+          "Model Id": 4294967295,
+          "Task Type": "AI_VECTOR_CORE",
+          "Physic Stream Id": 46,
+          "Task Id": 1337,
+          "Batch Id": 0,
+          "Subtask Id": 4294967295,
+          "connection_id": 1645
+        }
+      },
+      {
+        "ph": "f",
+        "bp": "e",
+        "name": "torch_to_npu",
+        "id": 1790085076510921232,
+        "pid": 468034976,
+        "tid": 46,
+        "ts": "1790085076510921.232",
+        "cat": "async_npu"
+      },
+      {
+        "ph": "s",
+        "bp": "e",
+        "name": "torch_to_npu",
+        "id": 1790085076510921232,
+        "pid": 457065,
+        "tid": 457065,
+        "ts": "1790085076510901.644",
+        "cat": "async_npu"
+      },
+      {
+        "ph": "X",
+        "name": "_triton_rope",
+        "pid": 457065,
+        "tid": 457065,
+        "ts": "1790085076510901.644",
+        "dur": 5.553,
+        "cat": "cpu_op",
+        "args": {
+          "Sequence number": -1,
+          "Fwd thread id": 0
+        }
+      },
+      {
+        "name": "HostToDevice7065221201920",
+        "pid": 468034976,
+        "tid": 46,
+        "ph": "f",
+        "cat": "HostToDevice",
+        "id": "7065221201920",
+        "ts": "1790085076510921.232",
+        "bp": "e"
+      },
+      {
+        "name": "HostToDevice7065221201920",
+        "pid": 468034815,
+        "tid": 457380,
+        "ph": "s",
+        "cat": "HostToDevice",
+        "id": "7065221201920",
+        "ts": "1790085076510913.282"
+      },
+      {
+        "name": "Node@launch",
+        "pid": 468034815,
+        "tid": 457380,
+        "ts": "1790085076510913.282",
+        "dur": 2.84,
+        "ph": "X",
+        "args": {
+          "Thread Id": 457380,
+          "Mode": "launch",
+          "level": "node",
+          "id": "0",
+          "item_id": "_triton_rope",
+          "connection_id": 1645
+        }
+      },
+      {
+        "ph": "X",
+        "name": "P09/step=3/NPUModelRunner.execute_model",
+        "pid": 457065,
+        "tid": 457065,
+        "ts": "1790085076507560.922",
+        "dur": 23835.86,
+        "cat": "cpu_op",
+        "args": {
+          "Sequence number": -1,
+          "Fwd thread id": 0
+        }
+      },
+      {
+        "ph": "X",
+        "name": "P09/step=3/NPUModelRunner._model_forward",
+        "pid": 457065,
+        "tid": 457065,
+        "ts": "1790085076510251.429",
+        "dur": 20798.138,
+        "cat": "cpu_op",
+        "args": {
+          "Sequence number": -1,
+          "Fwd thread id": 0
+        }
+      },
+      {
+        "ph": "X",
+        "name": "vllm::npu_rotary_embedding",
+        "pid": 457065,
+        "tid": 457065,
+        "ts": "1790085076510670.415",
+        "dur": 260.374,
+        "cat": "cpu_op",
+        "args": {
+          "Sequence number": -1,
+          "Fwd thread id": 0
+        }
+      }
+    ]
+  },
+  {
+    "task": {
+      "trace_index": 9102,
+      "kernel": "ReshapeAndCacheNdKernel",
+      "task_type": "AI_VECTOR_CORE",
+      "task_id": 1339,
+      "stream_id": 46,
+      "device_start_us": "1790085076511474.334",
+      "device_duration_us": 10.2605,
+      "phase": "step=3",
+      "host_operator": "ReshapeCacheOperation",
+      "host_ancestry": [
+        "P09/step=3/NPUModelRunner.execute_model",
+        "P09/step=3/NPUModelRunner._model_forward",
+        "vllm::unified_attention_with_output",
+        "P09/step=3/AscendAttentionBackendImpl.forward",
+        "P09/step=3/AscendAttentionBackendImpl.reshape_and_cache",
+        "P09/step=3/BaseDeviceAdaptor.reshape_and_cache",
+        "atb::_npu_reshape_and_cache",
+        "ReshapeCacheOperation"
+      ],
+      "host_start_us": "1790085076511377.321",
+      "host_duration_us": 2.903,
+      "torch_flow_id": "1790085076511474334",
+      "cann_flow_id": "7103875907584",
+      "cann_launch": "Node@launch",
+      "cann_connection_verified": true,
+      "kernel_csv_verified": true,
+      "route": "atb"
+    },
+    "trace_events": [
+      {
+        "name": "ReshapeAndCacheNdKernel",
+        "pid": 468034976,
+        "tid": 46,
+        "ts": "1790085076511474.334",
+        "dur": 10.2605,
+        "ph": "X",
+        "args": {
+          "Model Id": 4294967295,
+          "Task Type": "AI_VECTOR_CORE",
+          "Physic Stream Id": 46,
+          "Task Id": 1339,
+          "Batch Id": 0,
+          "Subtask Id": 4294967295,
+          "connection_id": 1654
+        }
+      },
+      {
+        "ph": "f",
+        "bp": "e",
+        "name": "torch_to_npu",
+        "id": 1790085076511474334,
+        "pid": 468034976,
+        "tid": 46,
+        "ts": "1790085076511474.334",
+        "cat": "async_npu"
+      },
+      {
+        "ph": "s",
+        "bp": "e",
+        "name": "torch_to_npu",
+        "id": 1790085076511474334,
+        "pid": 457065,
+        "tid": 457065,
+        "ts": "1790085076511377.321",
+        "cat": "async_npu"
+      },
+      {
+        "ph": "X",
+        "name": "ReshapeCacheOperation",
+        "pid": 457065,
+        "tid": 457065,
+        "ts": "1790085076511377.321",
+        "dur": 2.903,
+        "cat": "cpu_op",
+        "args": {
+          "Sequence number": -1,
+          "Fwd thread id": 0
+        }
+      },
+      {
+        "name": "HostToDevice7103875907584",
+        "pid": 468034976,
+        "tid": 46,
+        "ph": "f",
+        "cat": "HostToDevice",
+        "id": "7103875907584",
+        "ts": "1790085076511474.334",
+        "bp": "e"
+      },
+      {
+        "name": "HostToDevice7103875907584",
+        "pid": 468034815,
+        "tid": 457380,
+        "ph": "s",
+        "cat": "HostToDevice",
+        "id": "7103875907584",
+        "ts": "1790085076511457.227"
+      },
+      {
+        "name": "Node@launch",
+        "pid": 468034815,
+        "tid": 457380,
+        "ts": "1790085076511457.227",
+        "dur": 12.237,
+        "ph": "X",
+        "args": {
+          "Thread Id": 457380,
+          "Mode": "launch",
+          "level": "node",
+          "id": "0",
+          "item_id": "ReshapeAndCacheNdKernel",
+          "connection_id": 1654
+        }
+      },
+      {
+        "ph": "X",
+        "name": "P09/step=3/NPUModelRunner.execute_model",
+        "pid": 457065,
+        "tid": 457065,
+        "ts": "1790085076507560.922",
+        "dur": 23835.86,
+        "cat": "cpu_op",
+        "args": {
+          "Sequence number": -1,
+          "Fwd thread id": 0
+        }
+      },
+      {
+        "ph": "X",
+        "name": "P09/step=3/NPUModelRunner._model_forward",
+        "pid": 457065,
+        "tid": 457065,
+        "ts": "1790085076510251.429",
+        "dur": 20798.138,
+        "cat": "cpu_op",
+        "args": {
+          "Sequence number": -1,
+          "Fwd thread id": 0
+        }
+      },
+      {
+        "ph": "X",
+        "name": "vllm::unified_attention_with_output",
+        "pid": 457065,
+        "tid": 457065,
+        "ts": "1790085076510975.439",
+        "dur": 1048.203,
+        "cat": "cpu_op",
+        "args": {
+          "Sequence number": -1,
+          "Fwd thread id": 0
+        }
+      },
+      {
+        "ph": "X",
+        "name": "P09/step=3/AscendAttentionBackendImpl.forward",
+        "pid": 457065,
+        "tid": 457065,
+        "ts": "1790085076511103.226",
+        "dur": 879.512,
+        "cat": "cpu_op",
+        "args": {
+          "Sequence number": -1,
+          "Fwd thread id": 0
+        }
+      },
+      {
+        "ph": "X",
+        "name": "P09/step=3/AscendAttentionBackendImpl.reshape_and_cache",
+        "pid": 457065,
+        "tid": 457065,
+        "ts": "1790085076511191.556",
+        "dur": 292.42,
+        "cat": "cpu_op",
+        "args": {
+          "Sequence number": -1,
+          "Fwd thread id": 0
+        }
+      },
+      {
+        "ph": "X",
+        "name": "P09/step=3/BaseDeviceAdaptor.reshape_and_cache",
+        "pid": 457065,
+        "tid": 457065,
+        "ts": "1790085076511272.830",
+        "dur": 149.591,
+        "cat": "cpu_op",
+        "args": {
+          "Sequence number": -1,
+          "Fwd thread id": 0
+        }
+      },
+      {
+        "ph": "X",
+        "name": "atb::_npu_reshape_and_cache",
+        "pid": 457065,
+        "tid": 457065,
+        "ts": "1790085076511333.906",
+        "dur": 48.813,
+        "cat": "cpu_op",
+        "args": {
+          "Sequence number": -1,
+          "Fwd thread id": 0
+        }
+      }
+    ]
+  },
+  {
+    "task": {
+      "trace_index": 9104,
+      "kernel": "aclnnContiguous_SliceAiCore_Slice",
+      "task_type": "AI_VECTOR_CORE",
+      "task_id": 1340,
+      "stream_id": 46,
+      "device_start_us": "1790085076511841.309",
+      "device_duration_us": 2.3,
+      "phase": "step=3",
+      "host_operator": "aclnnFusedInferAttentionScoreV3",
+      "host_ancestry": [
+        "P09/step=3/NPUModelRunner.execute_model",
+        "P09/step=3/NPUModelRunner._model_forward",
+        "vllm::unified_attention_with_output",
+        "P09/step=3/AscendAttentionBackendImpl.forward",
+        "P09/step=3/AscendAttentionBackendImpl.forward_impl",
+        "P09/step=3/AscendAttentionBackendImpl.forward_fused_infer_attention",
+        "npu::npu_fused_infer_attention_score",
+        "aclnnFusedInferAttentionScoreV3"
+      ],
+      "host_start_us": "1790085076511787.601",
+      "host_duration_us": 3.57,
+      "torch_flow_id": "1790085076511841309",
+      "cann_flow_id": "7164005449728",
+      "cann_launch": "Node@launch",
+      "cann_connection_verified": true,
+      "kernel_csv_verified": true,
+      "route": "torch_npu"
+    },
+    "trace_events": [
+      {
+        "name": "aclnnContiguous_SliceAiCore_Slice",
+        "pid": 468034976,
+        "tid": 46,
+        "ts": "1790085076511841.309",
+        "dur": 2.3,
+        "ph": "X",
+        "args": {
+          "Model Id": 4294967295,
+          "Task Type": "AI_VECTOR_CORE",
+          "Physic Stream Id": 46,
+          "Task Id": 1340,
+          "Batch Id": 0,
+          "Subtask Id": 4294967295,
+          "connection_id": 1668
+        }
+      },
+      {
+        "ph": "f",
+        "bp": "e",
+        "name": "torch_to_npu",
+        "id": 1790085076511841309,
+        "pid": 468034976,
+        "tid": 46,
+        "ts": "1790085076511841.309",
+        "cat": "async_npu"
+      },
+      {
+        "ph": "s",
+        "bp": "e",
+        "name": "torch_to_npu",
+        "id": 1790085076511841309,
+        "pid": 457065,
+        "tid": 457065,
+        "ts": "1790085076511787.601",
+        "cat": "async_npu"
+      },
+      {
+        "ph": "X",
+        "name": "aclnnFusedInferAttentionScoreV3",
+        "pid": 457065,
+        "tid": 457065,
+        "ts": "1790085076511787.601",
+        "dur": 3.57,
+        "cat": "cpu_op",
+        "args": {
+          "Sequence number": -1,
+          "Fwd thread id": 0
+        }
+      },
+      {
+        "name": "HostToDevice7164005449728",
+        "pid": 468034976,
+        "tid": 46,
+        "ph": "f",
+        "cat": "HostToDevice",
+        "id": "7164005449728",
+        "ts": "1790085076511841.309",
+        "bp": "e"
+      },
+      {
+        "name": "HostToDevice7164005449728",
+        "pid": 468034815,
+        "tid": 457380,
+        "ph": "s",
+        "cat": "HostToDevice",
+        "id": "7164005449728",
+        "ts": "1790085076511823.942"
+      },
+      {
+        "name": "Node@launch",
+        "pid": 468034815,
+        "tid": 457380,
+        "ts": "1790085076511823.942",
+        "dur": 10.362,
+        "ph": "X",
+        "args": {
+          "Thread Id": 457380,
+          "Mode": "launch",
+          "level": "node",
+          "id": "0",
+          "item_id": "aclnnContiguous_SliceAiCore_Slice",
+          "connection_id": 1668
+        }
+      },
+      {
+        "ph": "X",
+        "name": "P09/step=3/NPUModelRunner.execute_model",
+        "pid": 457065,
+        "tid": 457065,
+        "ts": "1790085076507560.922",
+        "dur": 23835.86,
+        "cat": "cpu_op",
+        "args": {
+          "Sequence number": -1,
+          "Fwd thread id": 0
+        }
+      },
+      {
+        "ph": "X",
+        "name": "P09/step=3/NPUModelRunner._model_forward",
+        "pid": 457065,
+        "tid": 457065,
+        "ts": "1790085076510251.429",
+        "dur": 20798.138,
+        "cat": "cpu_op",
+        "args": {
+          "Sequence number": -1,
+          "Fwd thread id": 0
+        }
+      },
+      {
+        "ph": "X",
+        "name": "vllm::unified_attention_with_output",
+        "pid": 457065,
+        "tid": 457065,
+        "ts": "1790085076510975.439",
+        "dur": 1048.203,
+        "cat": "cpu_op",
+        "args": {
+          "Sequence number": -1,
+          "Fwd thread id": 0
+        }
+      },
+      {
+        "ph": "X",
+        "name": "P09/step=3/AscendAttentionBackendImpl.forward",
+        "pid": 457065,
+        "tid": 457065,
+        "ts": "1790085076511103.226",
+        "dur": 879.512,
+        "cat": "cpu_op",
+        "args": {
+          "Sequence number": -1,
+          "Fwd thread id": 0
+        }
+      },
+      {
+        "ph": "X",
+        "name": "P09/step=3/AscendAttentionBackendImpl.forward_impl",
+        "pid": 457065,
+        "tid": 457065,
+        "ts": "1790085076511532.669",
+        "dur": 380.053,
+        "cat": "cpu_op",
+        "args": {
+          "Sequence number": -1,
+          "Fwd thread id": 0
+        }
+      },
+      {
+        "ph": "X",
+        "name": "P09/step=3/AscendAttentionBackendImpl.forward_fused_infer_attention",
+        "pid": 457065,
+        "tid": 457065,
+        "ts": "1790085076511602.281",
+        "dur": 242.203,
+        "cat": "cpu_op",
+        "args": {
+          "Sequence number": -1,
+          "Fwd thread id": 0
+        }
+      },
+      {
+        "ph": "X",
+        "name": "npu::npu_fused_infer_attention_score",
+        "pid": 457065,
+        "tid": 457065,
+        "ts": "1790085076511690.589",
+        "dur": 104.388,
+        "cat": "cpu_op",
+        "args": {
+          "Sequence number": -1,
+          "Fwd thread id": 0
+        }
+      }
+    ]
+  },
+  {
+    "task": {
+      "trace_index": 9106,
+      "kernel": "FusedInferAttentionScore",
+      "task_type": "MIX_AIC",
+      "task_id": 1341,
+      "stream_id": 46,
+      "device_start_us": "1790085076511891.451",
+      "device_duration_us": 29.401,
+      "phase": "step=3",
+      "host_operator": "aclnnFusedInferAttentionScoreV3",
+      "host_ancestry": [
+        "P09/step=3/NPUModelRunner.execute_model",
+        "P09/step=3/NPUModelRunner._model_forward",
+        "vllm::unified_attention_with_output",
+        "P09/step=3/AscendAttentionBackendImpl.forward",
+        "P09/step=3/AscendAttentionBackendImpl.forward_impl",
+        "P09/step=3/AscendAttentionBackendImpl.forward_fused_infer_attention",
+        "npu::npu_fused_infer_attention_score",
+        "aclnnFusedInferAttentionScoreV3"
+      ],
+      "host_start_us": "1790085076511787.601",
+      "host_duration_us": 3.57,
+      "torch_flow_id": "1790085076511891451",
+      "cann_flow_id": "7172595384320",
+      "cann_launch": "Node@launch",
+      "cann_connection_verified": true,
+      "kernel_csv_verified": true,
+      "route": "torch_npu"
+    },
+    "trace_events": [
+      {
+        "name": "FusedInferAttentionScore",
+        "pid": 468034976,
+        "tid": 46,
+        "ts": "1790085076511891.451",
+        "dur": 29.401,
+        "ph": "X",
+        "args": {
+          "Model Id": 4294967295,
+          "Task Type": "MIX_AIC",
+          "Physic Stream Id": 46,
+          "Task Id": 1341,
+          "Batch Id": 0,
+          "Subtask Id": 0,
+          "connection_id": 1670
+        }
+      },
+      {
+        "ph": "f",
+        "bp": "e",
+        "name": "torch_to_npu",
+        "id": 1790085076511891451,
+        "pid": 468034976,
+        "tid": 46,
+        "ts": "1790085076511891.451",
+        "cat": "async_npu"
+      },
+      {
+        "ph": "s",
+        "bp": "e",
+        "name": "torch_to_npu",
+        "id": 1790085076511891451,
+        "pid": 457065,
+        "tid": 457065,
+        "ts": "1790085076511787.601",
+        "cat": "async_npu"
+      },
+      {
+        "ph": "X",
+        "name": "aclnnFusedInferAttentionScoreV3",
+        "pid": 457065,
+        "tid": 457065,
+        "ts": "1790085076511787.601",
+        "dur": 3.57,
+        "cat": "cpu_op",
+        "args": {
+          "Sequence number": -1,
+          "Fwd thread id": 0
+        }
+      },
+      {
+        "name": "HostToDevice7172595384320",
+        "pid": 468034976,
+        "tid": 46,
+        "ph": "f",
+        "cat": "HostToDevice",
+        "id": "7172595384320",
+        "ts": "1790085076511891.451",
+        "bp": "e"
+      },
+      {
+        "name": "HostToDevice7172595384320",
+        "pid": 468034815,
+        "tid": 457380,
+        "ph": "s",
+        "cat": "HostToDevice",
+        "id": "7172595384320",
+        "ts": "1790085076511843.890"
+      },
+      {
+        "name": "Node@launch",
+        "pid": 468034815,
+        "tid": 457380,
+        "ts": "1790085076511843.890",
+        "dur": 39.424,
+        "ph": "X",
+        "args": {
+          "Thread Id": 457380,
+          "Mode": "launch",
+          "level": "node",
+          "id": "0",
+          "item_id": "FusedInferAttentionScore",
+          "connection_id": 1670
+        }
+      },
+      {
+        "ph": "X",
+        "name": "P09/step=3/NPUModelRunner.execute_model",
+        "pid": 457065,
+        "tid": 457065,
+        "ts": "1790085076507560.922",
+        "dur": 23835.86,
+        "cat": "cpu_op",
+        "args": {
+          "Sequence number": -1,
+          "Fwd thread id": 0
+        }
+      },
+      {
+        "ph": "X",
+        "name": "P09/step=3/NPUModelRunner._model_forward",
+        "pid": 457065,
+        "tid": 457065,
+        "ts": "1790085076510251.429",
+        "dur": 20798.138,
+        "cat": "cpu_op",
+        "args": {
+          "Sequence number": -1,
+          "Fwd thread id": 0
+        }
+      },
+      {
+        "ph": "X",
+        "name": "vllm::unified_attention_with_output",
+        "pid": 457065,
+        "tid": 457065,
+        "ts": "1790085076510975.439",
+        "dur": 1048.203,
+        "cat": "cpu_op",
+        "args": {
+          "Sequence number": -1,
+          "Fwd thread id": 0
+        }
+      },
+      {
+        "ph": "X",
+        "name": "P09/step=3/AscendAttentionBackendImpl.forward",
+        "pid": 457065,
+        "tid": 457065,
+        "ts": "1790085076511103.226",
+        "dur": 879.512,
+        "cat": "cpu_op",
+        "args": {
+          "Sequence number": -1,
+          "Fwd thread id": 0
+        }
+      },
+      {
+        "ph": "X",
+        "name": "P09/step=3/AscendAttentionBackendImpl.forward_impl",
+        "pid": 457065,
+        "tid": 457065,
+        "ts": "1790085076511532.669",
+        "dur": 380.053,
+        "cat": "cpu_op",
+        "args": {
+          "Sequence number": -1,
+          "Fwd thread id": 0
+        }
+      },
+      {
+        "ph": "X",
+        "name": "P09/step=3/AscendAttentionBackendImpl.forward_fused_infer_attention",
+        "pid": 457065,
+        "tid": 457065,
+        "ts": "1790085076511602.281",
+        "dur": 242.203,
+        "cat": "cpu_op",
+        "args": {
+          "Sequence number": -1,
+          "Fwd thread id": 0
+        }
+      },
+      {
+        "ph": "X",
+        "name": "npu::npu_fused_infer_attention_score",
+        "pid": 457065,
+        "tid": 457065,
+        "ts": "1790085076511690.589",
+        "dur": 104.388,
+        "cat": "cpu_op",
+        "args": {
+          "Sequence number": -1,
+          "Fwd thread id": 0
+        }
+      }
+    ]
+  },
+  {
+    "task": {
+      "trace_index": 9108,
+      "kernel": "aclnnMatmul_MatMulCommon_MatMulV2",
+      "task_type": "AI_CORE",
+      "task_id": 1343,
+      "stream_id": 46,
+      "device_start_us": "1790085076512117.120",
+      "device_duration_us": 7.28,
+      "phase": "step=3",
+      "host_operator": "aclnnMatmul",
+      "host_ancestry": [
+        "P09/step=3/NPUModelRunner.execute_model",
+        "P09/step=3/NPUModelRunner._model_forward",
+        "vllm::unquantized_gemm",
+        "aten::linear",
+        "aten::matmul",
+        "aclnnMatmul"
+      ],
+      "host_start_us": "1790085076512093.871",
+      "host_duration_us": 2.169,
+      "torch_flow_id": "1790085076512117120",
+      "cann_flow_id": "7228429959168",
+      "cann_launch": "Node@launch",
+      "cann_connection_verified": true,
+      "kernel_csv_verified": true,
+      "route": "aten_to_aclnn"
+    },
+    "trace_events": [
+      {
+        "name": "aclnnMatmul_MatMulCommon_MatMulV2",
+        "pid": 468034976,
+        "tid": 46,
+        "ts": "1790085076512117.120",
+        "dur": 7.28,
+        "ph": "X",
+        "args": {
+          "Model Id": 4294967295,
+          "Task Type": "AI_CORE",
+          "Physic Stream Id": 46,
+          "Task Id": 1343,
+          "Batch Id": 0,
+          "Subtask Id": 4294967295,
+          "connection_id": 1683
+        }
+      },
+      {
+        "ph": "f",
+        "bp": "e",
+        "name": "torch_to_npu",
+        "id": 1790085076512117120,
+        "pid": 468034976,
+        "tid": 46,
+        "ts": "1790085076512117.120",
+        "cat": "async_npu"
+      },
+      {
+        "ph": "s",
+        "bp": "e",
+        "name": "torch_to_npu",
+        "id": 1790085076512117120,
+        "pid": 457065,
+        "tid": 457065,
+        "ts": "1790085076512093.871",
+        "cat": "async_npu"
+      },
+      {
+        "ph": "X",
+        "name": "aclnnMatmul",
+        "pid": 457065,
+        "tid": 457065,
+        "ts": "1790085076512093.871",
+        "dur": 2.169,
+        "cat": "cpu_op",
+        "args": {
+          "Sequence number": -1,
+          "Fwd thread id": 0
+        }
+      },
+      {
+        "name": "HostToDevice7228429959168",
+        "pid": 468034976,
+        "tid": 46,
+        "ph": "f",
+        "cat": "HostToDevice",
+        "id": "7228429959168",
+        "ts": "1790085076512117.120",
+        "bp": "e"
+      },
+      {
+        "name": "HostToDevice7228429959168",
+        "pid": 468034815,
+        "tid": 457380,
+        "ph": "s",
+        "cat": "HostToDevice",
+        "id": "7228429959168",
+        "ts": "1790085076512105.457"
+      },
+      {
+        "name": "Node@launch",
+        "pid": 468034815,
+        "tid": 457380,
+        "ts": "1790085076512105.457",
+        "dur": 3.843,
+        "ph": "X",
+        "args": {
+          "Thread Id": 457380,
+          "Mode": "launch",
+          "level": "node",
+          "id": "0",
+          "item_id": "aclnnMatmul_MatMulCommon_MatMulV2",
+          "connection_id": 1683
+        }
+      },
+      {
+        "ph": "X",
+        "name": "P09/step=3/NPUModelRunner.execute_model",
+        "pid": 457065,
+        "tid": 457065,
+        "ts": "1790085076507560.922",
+        "dur": 23835.86,
+        "cat": "cpu_op",
+        "args": {
+          "Sequence number": -1,
+          "Fwd thread id": 0
+        }
+      },
+      {
+        "ph": "X",
+        "name": "P09/step=3/NPUModelRunner._model_forward",
+        "pid": 457065,
+        "tid": 457065,
+        "ts": "1790085076510251.429",
+        "dur": 20798.138,
+        "cat": "cpu_op",
+        "args": {
+          "Sequence number": -1,
+          "Fwd thread id": 0
+        }
+      },
+      {
+        "ph": "X",
+        "name": "vllm::unquantized_gemm",
+        "pid": 457065,
+        "tid": 457065,
+        "ts": "1790085076512070.932",
+        "dur": 28.65,
+        "cat": "cpu_op",
+        "args": {
+          "Sequence number": -1,
+          "Fwd thread id": 0
+        }
+      },
+      {
+        "ph": "X",
+        "name": "aten::linear",
+        "pid": 457065,
+        "tid": 457065,
+        "ts": "1790085076512076.817",
+        "dur": 20.481,
+        "cat": "cpu_op",
+        "args": {
+          "Sequence number": -1,
+          "Fwd thread id": 0
+        }
+      },
+      {
+        "ph": "X",
+        "name": "aten::matmul",
+        "pid": 457065,
+        "tid": 457065,
+        "ts": "1790085076512083.963",
+        "dur": 12.618,
+        "cat": "cpu_op",
+        "args": {
+          "Sequence number": -1,
+          "Fwd thread id": 0
+        }
+      }
+    ]
+  },
+  {
+    "task": {
+      "trace_index": 9110,
+      "kernel": "AddRmsNormBias",
+      "task_type": "AI_VECTOR_CORE",
+      "task_id": 1344,
+      "stream_id": 46,
+      "device_start_us": "1790085076512201.984",
+      "device_duration_us": 14.8005,
+      "phase": "step=3",
+      "host_operator": "aclnnAddRmsNormBias",
+      "host_ancestry": [
+        "P09/step=3/NPUModelRunner.execute_model",
+        "P09/step=3/NPUModelRunner._model_forward",
+        "_C_ascend::npu_add_rms_norm_bias",
+        "aclnnAddRmsNormBias"
+      ],
+      "host_start_us": "1790085076512174.540",
+      "host_duration_us": 3.055,
+      "torch_flow_id": "1790085076512201984",
+      "cann_flow_id": "7254199762944",
+      "cann_launch": "Node@launch",
+      "cann_connection_verified": true,
+      "kernel_csv_verified": true,
+      "route": "ascend_custom_cpp"
+    },
+    "trace_events": [
+      {
+        "name": "AddRmsNormBias",
+        "pid": 468034976,
+        "tid": 46,
+        "ts": "1790085076512201.984",
+        "dur": 14.8005,
+        "ph": "X",
+        "args": {
+          "Model Id": 4294967295,
+          "Task Type": "AI_VECTOR_CORE",
+          "Physic Stream Id": 46,
+          "Task Id": 1344,
+          "Batch Id": 0,
+          "Subtask Id": 4294967295,
+          "connection_id": 1689
+        }
+      },
+      {
+        "ph": "f",
+        "bp": "e",
+        "name": "torch_to_npu",
+        "id": 1790085076512201984,
+        "pid": 468034976,
+        "tid": 46,
+        "ts": "1790085076512201.984",
+        "cat": "async_npu"
+      },
+      {
+        "ph": "s",
+        "bp": "e",
+        "name": "torch_to_npu",
+        "id": 1790085076512201984,
+        "pid": 457065,
+        "tid": 457065,
+        "ts": "1790085076512174.540",
+        "cat": "async_npu"
+      },
+      {
+        "ph": "X",
+        "name": "aclnnAddRmsNormBias",
+        "pid": 457065,
+        "tid": 457065,
+        "ts": "1790085076512174.540",
+        "dur": 3.055,
+        "cat": "cpu_op",
+        "args": {
+          "Sequence number": -1,
+          "Fwd thread id": 0
+        }
+      },
+      {
+        "name": "HostToDevice7254199762944",
+        "pid": 468034976,
+        "tid": 46,
+        "ph": "f",
+        "cat": "HostToDevice",
+        "id": "7254199762944",
+        "ts": "1790085076512201.984",
+        "bp": "e"
+      },
+      {
+        "name": "HostToDevice7254199762944",
+        "pid": 468034815,
+        "tid": 457380,
+        "ph": "s",
+        "cat": "HostToDevice",
+        "id": "7254199762944",
+        "ts": "1790085076512184.921"
+      },
+      {
+        "name": "Node@launch",
+        "pid": 468034815,
+        "tid": 457380,
+        "ts": "1790085076512184.921",
+        "dur": 6.817,
+        "ph": "X",
+        "args": {
+          "Thread Id": 457380,
+          "Mode": "launch",
+          "level": "node",
+          "id": "0",
+          "item_id": "AddRmsNormBias",
+          "connection_id": 1689
+        }
+      },
+      {
+        "ph": "X",
+        "name": "P09/step=3/NPUModelRunner.execute_model",
+        "pid": 457065,
+        "tid": 457065,
+        "ts": "1790085076507560.922",
+        "dur": 23835.86,
+        "cat": "cpu_op",
+        "args": {
+          "Sequence number": -1,
+          "Fwd thread id": 0
+        }
+      },
+      {
+        "ph": "X",
+        "name": "P09/step=3/NPUModelRunner._model_forward",
+        "pid": 457065,
+        "tid": 457065,
+        "ts": "1790085076510251.429",
+        "dur": 20798.138,
+        "cat": "cpu_op",
+        "args": {
+          "Sequence number": -1,
+          "Fwd thread id": 0
+        }
+      },
+      {
+        "ph": "X",
+        "name": "_C_ascend::npu_add_rms_norm_bias",
+        "pid": 457065,
+        "tid": 457065,
+        "ts": "1790085076512146.847",
+        "dur": 32.534,
+        "cat": "cpu_op",
+        "args": {
+          "Sequence number": -1,
+          "Fwd thread id": 0
+        }
+      }
+    ]
+  },
+  {
+    "task": {
+      "trace_index": 9114,
+      "kernel": "SwiGlu",
+      "task_type": "AI_VECTOR_CORE",
+      "task_id": 1346,
+      "stream_id": 46,
+      "device_start_us": "1790085076512286.627",
+      "device_duration_us": 16.861,
+      "phase": "step=3",
+      "host_operator": "aclnnSwiGlu",
+      "host_ancestry": [
+        "P09/step=3/NPUModelRunner.execute_model",
+        "P09/step=3/NPUModelRunner._model_forward",
+        "npu::npu_swiglu",
+        "aclnnSwiGlu"
+      ],
+      "host_start_us": "1790085076512262.640",
+      "host_duration_us": 9.454,
+      "torch_flow_id": "1790085076512286627",
+      "cann_flow_id": "7301444403200",
+      "cann_launch": "Node@launch",
+      "cann_connection_verified": true,
+      "kernel_csv_verified": true,
+      "route": "torch_npu"
+    },
+    "trace_events": [
+      {
+        "name": "SwiGlu",
+        "pid": 468034976,
+        "tid": 46,
+        "ts": "1790085076512286.627",
+        "dur": 16.861,
+        "ph": "X",
+        "args": {
+          "Model Id": 4294967295,
+          "Task Type": "AI_VECTOR_CORE",
+          "Physic Stream Id": 46,
+          "Task Id": 1346,
+          "Batch Id": 0,
+          "Subtask Id": 4294967295,
+          "connection_id": 1700
+        }
+      },
+      {
+        "ph": "f",
+        "bp": "e",
+        "name": "torch_to_npu",
+        "id": 1790085076512286627,
+        "pid": 468034976,
+        "tid": 46,
+        "ts": "1790085076512286.627",
+        "cat": "async_npu"
+      },
+      {
+        "ph": "s",
+        "bp": "e",
+        "name": "torch_to_npu",
+        "id": 1790085076512286627,
+        "pid": 457065,
+        "tid": 457065,
+        "ts": "1790085076512262.640",
+        "cat": "async_npu"
+      },
+      {
+        "ph": "X",
+        "name": "aclnnSwiGlu",
+        "pid": 457065,
+        "tid": 457065,
+        "ts": "1790085076512262.640",
+        "dur": 9.454,
+        "cat": "cpu_op",
+        "args": {
+          "Sequence number": -1,
+          "Fwd thread id": 0
+        }
+      },
+      {
+        "name": "HostToDevice7301444403200",
+        "pid": 468034976,
+        "tid": 46,
+        "ph": "f",
+        "cat": "HostToDevice",
+        "id": "7301444403200",
+        "ts": "1790085076512286.627",
+        "bp": "e"
+      },
+      {
+        "name": "HostToDevice7301444403200",
+        "pid": 468034815,
+        "tid": 457380,
+        "ph": "s",
+        "cat": "HostToDevice",
+        "id": "7301444403200",
+        "ts": "1790085076512278.652"
+      },
+      {
+        "name": "Node@launch",
+        "pid": 468034815,
+        "tid": 457380,
+        "ts": "1790085076512278.652",
+        "dur": 4.347,
+        "ph": "X",
+        "args": {
+          "Thread Id": 457380,
+          "Mode": "launch",
+          "level": "node",
+          "id": "0",
+          "item_id": "SwiGlu",
+          "connection_id": 1700
+        }
+      },
+      {
+        "ph": "X",
+        "name": "P09/step=3/NPUModelRunner.execute_model",
+        "pid": 457065,
+        "tid": 457065,
+        "ts": "1790085076507560.922",
+        "dur": 23835.86,
+        "cat": "cpu_op",
+        "args": {
+          "Sequence number": -1,
+          "Fwd thread id": 0
+        }
+      },
+      {
+        "ph": "X",
+        "name": "P09/step=3/NPUModelRunner._model_forward",
+        "pid": 457065,
+        "tid": 457065,
+        "ts": "1790085076510251.429",
+        "dur": 20798.138,
+        "cat": "cpu_op",
+        "args": {
+          "Sequence number": -1,
+          "Fwd thread id": 0
+        }
+      },
+      {
+        "ph": "X",
+        "name": "npu::npu_swiglu",
+        "pid": 457065,
+        "tid": 457065,
+        "ts": "1790085076512248.868",
+        "dur": 24.852,
+        "cat": "cpu_op",
+        "args": {
+          "Sequence number": -1,
+          "Fwd thread id": 0
+        }
+      }
+    ]
+  },
+  {
+    "task": {
+      "trace_index": 9816,
+      "kernel": "aclnnInplaceZero_ZerosLikeAiCore_ZerosLike",
+      "task_type": "AI_VECTOR_CORE",
+      "task_id": 1720,
+      "stream_id": 46,
+      "device_start_us": "1790085076531822.288",
+      "device_duration_us": 7.3205,
+      "phase": "outside_annotated_model",
+      "host_operator": "aclnnInplaceZero",
+      "host_ancestry": [
+        "aten::zeros",
+        "aten::zero_",
+        "aclnnInplaceZero"
+      ],
+      "host_start_us": "1790085076531774.635",
+      "host_duration_us": 1.092,
+      "torch_flow_id": "1790085076531822288",
+      "cann_flow_id": "16037407883264",
+      "cann_launch": "Node@launch",
+      "cann_connection_verified": true,
+      "kernel_csv_verified": true,
+      "route": "aten_to_aclnn"
+    },
+    "trace_events": [
+      {
+        "name": "aclnnInplaceZero_ZerosLikeAiCore_ZerosLike",
+        "pid": 468034976,
+        "tid": 46,
+        "ts": "1790085076531822.288",
+        "dur": 7.3205,
+        "ph": "X",
+        "args": {
+          "Model Id": 4294967295,
+          "Task Type": "AI_VECTOR_CORE",
+          "Physic Stream Id": 46,
+          "Task Id": 1720,
+          "Batch Id": 0,
+          "Subtask Id": 4294967295,
+          "connection_id": 3734
+        }
+      },
+      {
+        "ph": "f",
+        "bp": "e",
+        "name": "torch_to_npu",
+        "id": 1790085076531822288,
+        "pid": 468034976,
+        "tid": 46,
+        "ts": "1790085076531822.288",
+        "cat": "async_npu"
+      },
+      {
+        "ph": "s",
+        "bp": "e",
+        "name": "torch_to_npu",
+        "id": 1790085076531822288,
+        "pid": 457065,
+        "tid": 457065,
+        "ts": "1790085076531774.635",
+        "cat": "async_npu"
+      },
+      {
+        "ph": "X",
+        "name": "aclnnInplaceZero",
+        "pid": 457065,
+        "tid": 457065,
+        "ts": "1790085076531774.635",
+        "dur": 1.092,
+        "cat": "cpu_op",
+        "args": {
+          "Sequence number": -1,
+          "Fwd thread id": 0
+        }
+      },
+      {
+        "name": "HostToDevice16037407883264",
+        "pid": 468034976,
+        "tid": 46,
+        "ph": "f",
+        "cat": "HostToDevice",
+        "id": "16037407883264",
+        "ts": "1790085076531822.288",
+        "bp": "e"
+      },
+      {
+        "name": "HostToDevice16037407883264",
+        "pid": 468034815,
+        "tid": 457380,
+        "ph": "s",
+        "cat": "HostToDevice",
+        "id": "16037407883264",
+        "ts": "1790085076531811.410"
+      },
+      {
+        "name": "Node@launch",
+        "pid": 468034815,
+        "tid": 457380,
+        "ts": "1790085076531811.410",
+        "dur": 4.256,
+        "ph": "X",
+        "args": {
+          "Thread Id": 457380,
+          "Mode": "launch",
+          "level": "node",
+          "id": "0",
+          "item_id": "aclnnInplaceZero_ZerosLikeAiCore_ZerosLike",
+          "connection_id": 3734
+        }
+      },
+      {
+        "ph": "X",
+        "name": "aten::zeros",
+        "pid": 457065,
+        "tid": 457065,
+        "ts": "1790085076531767.297",
+        "dur": 8.839,
+        "cat": "cpu_op",
+        "args": {
+          "Sequence number": -1,
+          "Fwd thread id": 0
+        }
+      },
+      {
+        "ph": "X",
+        "name": "aten::zero_",
+        "pid": 457065,
+        "tid": 457065,
+        "ts": "1790085076531771.611",
+        "dur": 4.304,
+        "cat": "cpu_op",
+        "args": {
+          "Sequence number": -1,
+          "Fwd thread id": 0
+        }
+      }
+    ]
+  },
+  {
+    "task": {
+      "trace_index": 9818,
+      "kernel": "token_bin_counts_and_mask_kernel",
+      "task_type": "AI_VECTOR_CORE",
+      "task_id": 1721,
+      "stream_id": 46,
+      "device_start_us": "1790085076531979.654",
+      "device_duration_us": 65.8625,
+      "phase": "outside_annotated_model",
+      "host_operator": "token_bin_counts_and_mask_kernel",
+      "host_ancestry": [
+        "token_bin_counts_and_mask_kernel"
+      ],
+      "host_start_us": "1790085076531951.811",
+      "host_duration_us": 10.088,
+      "torch_flow_id": "1790085076531979654",
+      "cann_flow_id": "16054587752448",
+      "cann_launch": "Node@launch",
+      "cann_connection_verified": true,
+      "kernel_csv_verified": true,
+      "route": "triton"
+    },
+    "trace_events": [
+      {
+        "name": "token_bin_counts_and_mask_kernel",
+        "pid": 468034976,
+        "tid": 46,
+        "ts": "1790085076531979.654",
+        "dur": 65.8625,
+        "ph": "X",
+        "args": {
+          "Model Id": 4294967295,
+          "Task Type": "AI_VECTOR_CORE",
+          "Physic Stream Id": 46,
+          "Task Id": 1721,
+          "Batch Id": 0,
+          "Subtask Id": 4294967295,
+          "connection_id": 3738
+        }
+      },
+      {
+        "ph": "f",
+        "bp": "e",
+        "name": "torch_to_npu",
+        "id": 1790085076531979654,
+        "pid": 468034976,
+        "tid": 46,
+        "ts": "1790085076531979.654",
+        "cat": "async_npu"
+      },
+      {
+        "ph": "s",
+        "bp": "e",
+        "name": "torch_to_npu",
+        "id": 1790085076531979654,
+        "pid": 457065,
+        "tid": 457065,
+        "ts": "1790085076531951.811",
+        "cat": "async_npu"
+      },
+      {
+        "ph": "X",
+        "name": "token_bin_counts_and_mask_kernel",
+        "pid": 457065,
+        "tid": 457065,
+        "ts": "1790085076531951.811",
+        "dur": 10.088,
+        "cat": "cpu_op",
+        "args": {
+          "Sequence number": -1,
+          "Fwd thread id": 0
+        }
+      },
+      {
+        "name": "HostToDevice16054587752448",
+        "pid": 468034976,
+        "tid": 46,
+        "ph": "f",
+        "cat": "HostToDevice",
+        "id": "16054587752448",
+        "ts": "1790085076531979.654",
+        "bp": "e"
+      },
+      {
+        "name": "HostToDevice16054587752448",
+        "pid": 468034815,
+        "tid": 457380,
+        "ph": "s",
+        "cat": "HostToDevice",
+        "id": "16054587752448",
+        "ts": "1790085076531968.038"
+      },
+      {
+        "name": "Node@launch",
+        "pid": 468034815,
+        "tid": 457380,
+        "ts": "1790085076531968.038",
+        "dur": 3.328,
+        "ph": "X",
+        "args": {
+          "Thread Id": 457380,
+          "Mode": "launch",
+          "level": "node",
+          "id": "0",
+          "item_id": "token_bin_counts_and_mask_kernel",
+          "connection_id": 3738
+        }
+      }
+    ]
+  },
+  {
+    "task": {
+      "trace_index": 9820,
+      "kernel": "aclnnGtScalar_CastAiCore_Cast",
+      "task_type": "AI_VECTOR_CORE",
+      "task_id": 1722,
+      "stream_id": 46,
+      "device_start_us": "1790085076532045.537",
+      "device_duration_us": 8.2605,
+      "phase": "outside_annotated_model",
+      "host_operator": "aclnnGtScalar",
+      "host_ancestry": [
+        "aten::gt",
+        "aclnnGtScalar"
+      ],
+      "host_start_us": "1790085076531978.507",
+      "host_duration_us": 1.57,
+      "torch_flow_id": "1790085076532045537",
+      "cann_flow_id": "16067472654336",
+      "cann_launch": "Node@launch",
+      "cann_connection_verified": true,
+      "kernel_csv_verified": true,
+      "route": "aten_to_aclnn"
+    },
+    "trace_events": [
+      {
+        "name": "aclnnGtScalar_CastAiCore_Cast",
+        "pid": 468034976,
+        "tid": 46,
+        "ts": "1790085076532045.537",
+        "dur": 8.2605,
+        "ph": "X",
+        "args": {
+          "Model Id": 4294967295,
+          "Task Type": "AI_VECTOR_CORE",
+          "Physic Stream Id": 46,
+          "Task Id": 1722,
+          "Batch Id": 0,
+          "Subtask Id": 4294967295,
+          "connection_id": 3741
+        }
+      },
+      {
+        "ph": "f",
+        "bp": "e",
+        "name": "torch_to_npu",
+        "id": 1790085076532045537,
+        "pid": 468034976,
+        "tid": 46,
+        "ts": "1790085076532045.537",
+        "cat": "async_npu"
+      },
+      {
+        "ph": "s",
+        "bp": "e",
+        "name": "torch_to_npu",
+        "id": 1790085076532045537,
+        "pid": 457065,
+        "tid": 457065,
+        "ts": "1790085076531978.507",
+        "cat": "async_npu"
+      },
+      {
+        "ph": "X",
+        "name": "aclnnGtScalar",
+        "pid": 457065,
+        "tid": 457065,
+        "ts": "1790085076531978.507",
+        "dur": 1.57,
+        "cat": "cpu_op",
+        "args": {
+          "Sequence number": -1,
+          "Fwd thread id": 0
+        }
+      },
+      {
+        "name": "HostToDevice16067472654336",
+        "pid": 468034976,
+        "tid": 46,
+        "ph": "f",
+        "cat": "HostToDevice",
+        "id": "16067472654336",
+        "ts": "1790085076532045.537",
+        "bp": "e"
+      },
+      {
+        "name": "HostToDevice16067472654336",
+        "pid": 468034815,
+        "tid": 457380,
+        "ph": "s",
+        "cat": "HostToDevice",
+        "id": "16067472654336",
+        "ts": "1790085076531989.607"
+      },
+      {
+        "name": "Node@launch",
+        "pid": 468034815,
+        "tid": 457380,
+        "ts": "1790085076531989.607",
+        "dur": 2.428,
+        "ph": "X",
+        "args": {
+          "Thread Id": 457380,
+          "Mode": "launch",
+          "level": "node",
+          "id": "0",
+          "item_id": "aclnnGtScalar_CastAiCore_Cast",
+          "connection_id": 3741
+        }
+      },
+      {
+        "ph": "X",
+        "name": "aten::gt",
+        "pid": 457065,
+        "tid": 457065,
+        "ts": "1790085076531972.565",
+        "dur": 9.061,
+        "cat": "cpu_op",
+        "args": {
+          "Sequence number": -1,
+          "Fwd thread id": 0
+        }
+      }
+    ]
+  },
+  {
+    "task": {
+      "trace_index": 9822,
+      "kernel": "aclnnGtScalar_GreaterAiCore_Greater",
+      "task_type": "AI_VECTOR_CORE",
+      "task_id": 1723,
+      "stream_id": 46,
+      "device_start_us": "1790085076532053.817",
+      "device_duration_us": 16.8405,
+      "phase": "outside_annotated_model",
+      "host_operator": "aclnnGtScalar",
+      "host_ancestry": [
+        "aten::gt",
+        "aclnnGtScalar"
+      ],
+      "host_start_us": "1790085076531978.507",
+      "host_duration_us": 1.57,
+      "torch_flow_id": "1790085076532053817",
+      "cann_flow_id": "16076062588928",
+      "cann_launch": "Node@launch",
+      "cann_connection_verified": true,
+      "kernel_csv_verified": true,
+      "route": "aten_to_aclnn"
+    },
+    "trace_events": [
+      {
+        "name": "aclnnGtScalar_GreaterAiCore_Greater",
+        "pid": 468034976,
+        "tid": 46,
+        "ts": "1790085076532053.817",
+        "dur": 16.8405,
+        "ph": "X",
+        "args": {
+          "Model Id": 4294967295,
+          "Task Type": "AI_VECTOR_CORE",
+          "Physic Stream Id": 46,
+          "Task Id": 1723,
+          "Batch Id": 0,
+          "Subtask Id": 4294967295,
+          "connection_id": 3743
+        }
+      },
+      {
+        "ph": "f",
+        "bp": "e",
+        "name": "torch_to_npu",
+        "id": 1790085076532053817,
+        "pid": 468034976,
+        "tid": 46,
+        "ts": "1790085076532053.817",
+        "cat": "async_npu"
+      },
+      {
+        "ph": "s",
+        "bp": "e",
+        "name": "torch_to_npu",
+        "id": 1790085076532053817,
+        "pid": 457065,
+        "tid": 457065,
+        "ts": "1790085076531978.507",
+        "cat": "async_npu"
+      },
+      {
+        "ph": "X",
+        "name": "aclnnGtScalar",
+        "pid": 457065,
+        "tid": 457065,
+        "ts": "1790085076531978.507",
+        "dur": 1.57,
+        "cat": "cpu_op",
+        "args": {
+          "Sequence number": -1,
+          "Fwd thread id": 0
+        }
+      },
+      {
+        "name": "HostToDevice16076062588928",
+        "pid": 468034976,
+        "tid": 46,
+        "ph": "f",
+        "cat": "HostToDevice",
+        "id": "16076062588928",
+        "ts": "1790085076532053.817",
+        "bp": "e"
+      },
+      {
+        "name": "HostToDevice16076062588928",
+        "pid": 468034815,
+        "tid": 457380,
+        "ph": "s",
+        "cat": "HostToDevice",
+        "id": "16076062588928",
+        "ts": "1790085076531993.358"
+      },
+      {
+        "name": "Node@launch",
+        "pid": 468034815,
+        "tid": 457380,
+        "ts": "1790085076531993.358",
+        "dur": 2.959,
+        "ph": "X",
+        "args": {
+          "Thread Id": 457380,
+          "Mode": "launch",
+          "level": "node",
+          "id": "0",
+          "item_id": "aclnnGtScalar_GreaterAiCore_Greater",
+          "connection_id": 3743
+        }
+      },
+      {
+        "ph": "X",
+        "name": "aten::gt",
+        "pid": 457065,
+        "tid": 457065,
+        "ts": "1790085076531972.565",
+        "dur": 9.061,
+        "cat": "cpu_op",
+        "args": {
+          "Sequence number": -1,
+          "Fwd thread id": 0
+        }
+      }
+    ]
+  },
+  {
+    "task": {
+      "trace_index": 9830,
+      "kernel": "apply_all_penalties_kernel",
+      "task_type": "AI_VECTOR_CORE",
+      "task_id": 1727,
+      "stream_id": 46,
+      "device_start_us": "1790085076532204.683",
+      "device_duration_us": 76.323,
+      "phase": "outside_annotated_model",
+      "host_operator": "apply_all_penalties_kernel",
+      "host_ancestry": [
+        "apply_all_penalties_kernel"
+      ],
+      "host_start_us": "1790085076532183.555",
+      "host_duration_us": 2.901,
+      "torch_flow_id": "1790085076532204683",
+      "cann_flow_id": "16157666967552",
+      "cann_launch": "Node@launch",
+      "cann_connection_verified": true,
+      "kernel_csv_verified": true,
+      "route": "triton"
+    },
+    "trace_events": [
+      {
+        "name": "apply_all_penalties_kernel",
+        "pid": 468034976,
+        "tid": 46,
+        "ts": "1790085076532204.683",
+        "dur": 76.323,
+        "ph": "X",
+        "args": {
+          "Model Id": 4294967295,
+          "Task Type": "AI_VECTOR_CORE",
+          "Physic Stream Id": 46,
+          "Task Id": 1727,
+          "Batch Id": 0,
+          "Subtask Id": 4294967295,
+          "connection_id": 3762
+        }
+      },
+      {
+        "ph": "f",
+        "bp": "e",
+        "name": "torch_to_npu",
+        "id": 1790085076532204683,
+        "pid": 468034976,
+        "tid": 46,
+        "ts": "1790085076532204.683",
+        "cat": "async_npu"
+      },
+      {
+        "ph": "s",
+        "bp": "e",
+        "name": "torch_to_npu",
+        "id": 1790085076532204683,
+        "pid": 457065,
+        "tid": 457065,
+        "ts": "1790085076532183.555",
+        "cat": "async_npu"
+      },
+      {
+        "ph": "X",
+        "name": "apply_all_penalties_kernel",
+        "pid": 457065,
+        "tid": 457065,
+        "ts": "1790085076532183.555",
+        "dur": 2.901,
+        "cat": "cpu_op",
+        "args": {
+          "Sequence number": -1,
+          "Fwd thread id": 0
+        }
+      },
+      {
+        "name": "HostToDevice16157666967552",
+        "pid": 468034976,
+        "tid": 46,
+        "ph": "f",
+        "cat": "HostToDevice",
+        "id": "16157666967552",
+        "ts": "1790085076532204.683",
+        "bp": "e"
+      },
+      {
+        "name": "HostToDevice16157666967552",
+        "pid": 468034815,
+        "tid": 457380,
+        "ph": "s",
+        "cat": "HostToDevice",
+        "id": "16157666967552",
+        "ts": "1790085076532191.996"
+      },
+      {
+        "name": "Node@launch",
+        "pid": 468034815,
+        "tid": 457380,
+        "ts": "1790085076532191.996",
+        "dur": 2.49,
+        "ph": "X",
+        "args": {
+          "Thread Id": 457380,
+          "Mode": "launch",
+          "level": "node",
+          "id": "0",
+          "item_id": "apply_all_penalties_kernel",
+          "connection_id": 3762
+        }
+      }
+    ]
+  },
+  {
+    "task": {
+      "trace_index": 9832,
+      "kernel": "aclnnArgMax_ArgMaxV2AiCore_ArgMaxV2",
+      "task_type": "AI_VECTOR_CORE",
+      "task_id": 1728,
+      "stream_id": 46,
+      "device_start_us": "1790085076532281.026",
+      "device_duration_us": 18.6405,
+      "phase": "outside_annotated_model",
+      "host_operator": "aclnnArgMax",
+      "host_ancestry": [
+        "aten::argmax",
+        "aten::argmax",
+        "aclnnArgMax"
+      ],
+      "host_start_us": "1790085076532220.326",
+      "host_duration_us": 2.464,
+      "torch_flow_id": "1790085076532281026",
+      "cann_flow_id": "16170551869440",
+      "cann_launch": "Node@launch",
+      "cann_connection_verified": true,
+      "kernel_csv_verified": true,
+      "route": "aten_to_aclnn"
+    },
+    "trace_events": [
+      {
+        "name": "aclnnArgMax_ArgMaxV2AiCore_ArgMaxV2",
+        "pid": 468034976,
+        "tid": 46,
+        "ts": "1790085076532281.026",
+        "dur": 18.6405,
+        "ph": "X",
+        "args": {
+          "Model Id": 4294967295,
+          "Task Type": "AI_VECTOR_CORE",
+          "Physic Stream Id": 46,
+          "Task Id": 1728,
+          "Batch Id": 0,
+          "Subtask Id": 4294967295,
+          "connection_id": 3765
+        }
+      },
+      {
+        "ph": "f",
+        "bp": "e",
+        "name": "torch_to_npu",
+        "id": 1790085076532281026,
+        "pid": 468034976,
+        "tid": 46,
+        "ts": "1790085076532281.026",
+        "cat": "async_npu"
+      },
+      {
+        "ph": "s",
+        "bp": "e",
+        "name": "torch_to_npu",
+        "id": 1790085076532281026,
+        "pid": 457065,
+        "tid": 457065,
+        "ts": "1790085076532220.326",
+        "cat": "async_npu"
+      },
+      {
+        "ph": "X",
+        "name": "aclnnArgMax",
+        "pid": 457065,
+        "tid": 457065,
+        "ts": "1790085076532220.326",
+        "dur": 2.464,
+        "cat": "cpu_op",
+        "args": {
+          "Sequence number": -1,
+          "Fwd thread id": 0
+        }
+      },
+      {
+        "name": "HostToDevice16170551869440",
+        "pid": 468034976,
+        "tid": 46,
+        "ph": "f",
+        "cat": "HostToDevice",
+        "id": "16170551869440",
+        "ts": "1790085076532281.026",
+        "bp": "e"
+      },
+      {
+        "name": "HostToDevice16170551869440",
+        "pid": 468034815,
+        "tid": 457380,
+        "ph": "s",
+        "cat": "HostToDevice",
+        "id": "16170551869440",
+        "ts": "1790085076532229.414"
+      },
+      {
+        "name": "Node@launch",
+        "pid": 468034815,
+        "tid": 457380,
+        "ts": "1790085076532229.414",
+        "dur": 6.732,
+        "ph": "X",
+        "args": {
+          "Thread Id": 457380,
+          "Mode": "launch",
+          "level": "node",
+          "id": "0",
+          "item_id": "aclnnArgMax_ArgMaxV2AiCore_ArgMaxV2",
+          "connection_id": 3765
+        }
+      },
+      {
+        "ph": "X",
+        "name": "aten::argmax",
+        "pid": 457065,
+        "tid": 457065,
+        "ts": "1790085076532204.795",
+        "dur": 19.364,
+        "cat": "cpu_op",
+        "args": {
+          "Sequence number": -1,
+          "Fwd thread id": 0
+        }
+      },
+      {
+        "ph": "X",
+        "name": "aten::argmax",
+        "pid": 457065,
+        "tid": 457065,
+        "ts": "1790085076532210.404",
+        "dur": 13.411,
+        "cat": "cpu_op",
+        "args": {
+          "Sequence number": -1,
+          "Fwd thread id": 0
+        }
+      }
+    ]
+  },
+  {
+    "task": {
+      "trace_index": 9834,
+      "kernel": "aclnnArgMax_CastAiCore_Cast",
+      "task_type": "AI_VECTOR_CORE",
+      "task_id": 1729,
+      "stream_id": 46,
+      "device_start_us": "1790085076532299.707",
+      "device_duration_us": 0.7205,
+      "phase": "outside_annotated_model",
+      "host_operator": "aclnnArgMax",
+      "host_ancestry": [
+        "aten::argmax",
+        "aten::argmax",
+        "aclnnArgMax"
+      ],
+      "host_start_us": "1790085076532220.326",
+      "host_duration_us": 2.464,
+      "torch_flow_id": "1790085076532299707",
+      "cann_flow_id": "16179141804032",
+      "cann_launch": "Node@launch",
+      "cann_connection_verified": true,
+      "kernel_csv_verified": true,
+      "route": "aten_to_aclnn"
+    },
+    "trace_events": [
+      {
+        "name": "aclnnArgMax_CastAiCore_Cast",
+        "pid": 468034976,
+        "tid": 46,
+        "ts": "1790085076532299.707",
+        "dur": 0.7205,
+        "ph": "X",
+        "args": {
+          "Model Id": 4294967295,
+          "Task Type": "AI_VECTOR_CORE",
+          "Physic Stream Id": 46,
+          "Task Id": 1729,
+          "Batch Id": 0,
+          "Subtask Id": 4294967295,
+          "connection_id": 3767
+        }
+      },
+      {
+        "ph": "f",
+        "bp": "e",
+        "name": "torch_to_npu",
+        "id": 1790085076532299707,
+        "pid": 468034976,
+        "tid": 46,
+        "ts": "1790085076532299.707",
+        "cat": "async_npu"
+      },
+      {
+        "ph": "s",
+        "bp": "e",
+        "name": "torch_to_npu",
+        "id": 1790085076532299707,
+        "pid": 457065,
+        "tid": 457065,
+        "ts": "1790085076532220.326",
+        "cat": "async_npu"
+      },
+      {
+        "ph": "X",
+        "name": "aclnnArgMax",
+        "pid": 457065,
+        "tid": 457065,
+        "ts": "1790085076532220.326",
+        "dur": 2.464,
+        "cat": "cpu_op",
+        "args": {
+          "Sequence number": -1,
+          "Fwd thread id": 0
+        }
+      },
+      {
+        "name": "HostToDevice16179141804032",
+        "pid": 468034976,
+        "tid": 46,
+        "ph": "f",
+        "cat": "HostToDevice",
+        "id": "16179141804032",
+        "ts": "1790085076532299.707",
+        "bp": "e"
+      },
+      {
+        "name": "HostToDevice16179141804032",
+        "pid": 468034815,
+        "tid": 457380,
+        "ph": "s",
+        "cat": "HostToDevice",
+        "id": "16179141804032",
+        "ts": "1790085076532236.954"
+      },
+      {
+        "name": "Node@launch",
+        "pid": 468034815,
+        "tid": 457380,
+        "ts": "1790085076532236.954",
+        "dur": 2.422,
+        "ph": "X",
+        "args": {
+          "Thread Id": 457380,
+          "Mode": "launch",
+          "level": "node",
+          "id": "0",
+          "item_id": "aclnnArgMax_CastAiCore_Cast",
+          "connection_id": 3767
+        }
+      },
+      {
+        "ph": "X",
+        "name": "aten::argmax",
+        "pid": 457065,
+        "tid": 457065,
+        "ts": "1790085076532204.795",
+        "dur": 19.364,
+        "cat": "cpu_op",
+        "args": {
+          "Sequence number": -1,
+          "Fwd thread id": 0
+        }
+      },
+      {
+        "ph": "X",
+        "name": "aten::argmax",
+        "pid": 457065,
+        "tid": 457065,
+        "ts": "1790085076532210.404",
+        "dur": 13.411,
+        "cat": "cpu_op",
+        "args": {
+          "Sequence number": -1,
+          "Fwd thread id": 0
+        }
+      }
+    ]
+  },
+  {
+    "task": {
+      "trace_index": 10406,
+      "kernel": "aclnnEqScalar_EqualAiCore_Equal",
+      "task_type": "AI_VECTOR_CORE",
+      "task_id": 2054,
+      "stream_id": 46,
+      "device_start_us": "1790085076557661.421",
+      "device_duration_us": 2.0805,
+      "phase": "outside_annotated_model",
+      "host_operator": "aclnnEqScalar",
+      "host_ancestry": [
+        "aten::eq",
+        "aclnnEqScalar"
+      ],
+      "host_start_us": "1790085076557627.729",
+      "host_duration_us": 0.843,
+      "torch_flow_id": "1790085076557661421",
+      "cann_flow_id": "23725399343104",
+      "cann_launch": "Node@launch",
+      "cann_connection_verified": true,
+      "kernel_csv_verified": true,
+      "route": "aten_to_aclnn"
+    },
+    "trace_events": [
+      {
+        "name": "aclnnEqScalar_EqualAiCore_Equal",
+        "pid": 468034976,
+        "tid": 46,
+        "ts": "1790085076557661.421",
+        "dur": 2.0805,
+        "ph": "X",
+        "args": {
+          "Model Id": 4294967295,
+          "Task Type": "AI_VECTOR_CORE",
+          "Physic Stream Id": 46,
+          "Task Id": 2054,
+          "Batch Id": 0,
+          "Subtask Id": 4294967295,
+          "connection_id": 5524
+        }
+      },
+      {
+        "ph": "f",
+        "bp": "e",
+        "name": "torch_to_npu",
+        "id": 1790085076557661421,
+        "pid": 468034976,
+        "tid": 46,
+        "ts": "1790085076557661.421",
+        "cat": "async_npu"
+      },
+      {
+        "ph": "s",
+        "bp": "e",
+        "name": "torch_to_npu",
+        "id": 1790085076557661421,
+        "pid": 457065,
+        "tid": 457065,
+        "ts": "1790085076557627.729",
+        "cat": "async_npu"
+      },
+      {
+        "ph": "X",
+        "name": "aclnnEqScalar",
+        "pid": 457065,
+        "tid": 457065,
+        "ts": "1790085076557627.729",
+        "dur": 0.843,
+        "cat": "cpu_op",
+        "args": {
+          "Sequence number": -1,
+          "Fwd thread id": 0
+        }
+      },
+      {
+        "name": "HostToDevice23725399343104",
+        "pid": 468034976,
+        "tid": 46,
+        "ph": "f",
+        "cat": "HostToDevice",
+        "id": "23725399343104",
+        "ts": "1790085076557661.421",
+        "bp": "e"
+      },
+      {
+        "name": "HostToDevice23725399343104",
+        "pid": 468034815,
+        "tid": 457380,
+        "ph": "s",
+        "cat": "HostToDevice",
+        "id": "23725399343104",
+        "ts": "1790085076557634.412"
+      },
+      {
+        "name": "Node@launch",
+        "pid": 468034815,
+        "tid": 457380,
+        "ts": "1790085076557634.412",
+        "dur": 4.574,
+        "ph": "X",
+        "args": {
+          "Thread Id": 457380,
+          "Mode": "launch",
+          "level": "node",
+          "id": "0",
+          "item_id": "aclnnEqScalar_EqualAiCore_Equal",
+          "connection_id": 5524
+        }
+      },
+      {
+        "ph": "X",
+        "name": "aten::eq",
+        "pid": 457065,
+        "tid": 457065,
+        "ts": "1790085076557622.984",
+        "dur": 6.013,
+        "cat": "cpu_op",
+        "args": {
+          "Sequence number": -1,
+          "Fwd thread id": 0
+        }
+      }
+    ]
+  },
+  {
+    "task": {
+      "trace_index": 10408,
+      "kernel": "aclnnInplaceMaskedFillScalar_MaskedFillAiCpu_MaskedFill",
+      "task_type": "AI_CPU",
+      "task_id": 2055,
+      "stream_id": 46,
+      "device_start_us": "1790085076557697.842",
+      "device_duration_us": 160.2065,
+      "phase": "outside_annotated_model",
+      "host_operator": "aclnnInplaceMaskedFillScalar",
+      "host_ancestry": [
+        "aten::masked_fill_",
+        "aclnnInplaceMaskedFillScalar"
+      ],
+      "host_start_us": "1790085076557666.023",
+      "host_duration_us": 2.451,
+      "torch_flow_id": "1790085076557697842",
+      "cann_flow_id": "23755464114176",
+      "cann_launch": "Node@launch",
+      "cann_connection_verified": true,
+      "kernel_csv_verified": true,
+      "route": "aten_to_aclnn"
+    },
+    "trace_events": [
+      {
+        "name": "aclnnInplaceMaskedFillScalar_MaskedFillAiCpu_MaskedFill",
+        "pid": 468034976,
+        "tid": 46,
+        "ts": "1790085076557697.842",
+        "dur": 160.2065,
+        "ph": "X",
+        "args": {
+          "Model Id": 4294967295,
+          "Task Type": "AI_CPU",
+          "Physic Stream Id": 46,
+          "Task Id": 2055,
+          "Batch Id": 0,
+          "Subtask Id": 4294967295,
+          "connection_id": 5531
+        }
+      },
+      {
+        "ph": "f",
+        "bp": "e",
+        "name": "torch_to_npu",
+        "id": 1790085076557697842,
+        "pid": 468034976,
+        "tid": 46,
+        "ts": "1790085076557697.842",
+        "cat": "async_npu"
+      },
+      {
+        "ph": "s",
+        "bp": "e",
+        "name": "torch_to_npu",
+        "id": 1790085076557697842,
+        "pid": 457065,
+        "tid": 457065,
+        "ts": "1790085076557666.023",
+        "cat": "async_npu"
+      },
+      {
+        "ph": "X",
+        "name": "aclnnInplaceMaskedFillScalar",
+        "pid": 457065,
+        "tid": 457065,
+        "ts": "1790085076557666.023",
+        "dur": 2.451,
+        "cat": "cpu_op",
+        "args": {
+          "Sequence number": -1,
+          "Fwd thread id": 0
+        }
+      },
+      {
+        "name": "HostToDevice23755464114176",
+        "pid": 468034976,
+        "tid": 46,
+        "ph": "f",
+        "cat": "HostToDevice",
+        "id": "23755464114176",
+        "ts": "1790085076557697.842",
+        "bp": "e"
+      },
+      {
+        "name": "HostToDevice23755464114176",
+        "pid": 468034815,
+        "tid": 457380,
+        "ph": "s",
+        "cat": "HostToDevice",
+        "id": "23755464114176",
+        "ts": "1790085076557680.480"
+      },
+      {
+        "name": "Node@launch",
+        "pid": 468034815,
+        "tid": 457380,
+        "ts": "1790085076557680.480",
+        "dur": 12.38,
+        "ph": "X",
+        "args": {
+          "Thread Id": 457380,
+          "Mode": "launch",
+          "level": "node",
+          "id": "0",
+          "item_id": "aclnnInplaceMaskedFillScalar_MaskedFillAiCpu_MaskedFill",
+          "connection_id": 5531
+        }
+      },
+      {
+        "ph": "X",
+        "name": "aten::masked_fill_",
+        "pid": 457065,
+        "tid": 457065,
+        "ts": "1790085076557631.925",
+        "dur": 37.121,
+        "cat": "cpu_op",
+        "args": {
+          "Sequence number": -1,
+          "Fwd thread id": 0
+        }
+      }
+    ]
+  },
+  {
+    "task": {
+      "trace_index": 10436,
+      "kernel": "PROFILING_DISABLE",
+      "task_type": "PROFILING_DISABLE",
+      "task_id": 13,
+      "stream_id": 49,
+      "device_start_us": "1790085076566319.327",
+      "device_duration_us": 0.0,
+      "phase": "profiler_control",
+      "host_operator": "",
+      "host_ancestry": [],
+      "host_start_us": "",
+      "host_duration_us": "",
+      "torch_flow_id": "",
+      "cann_flow_id": "",
+      "cann_launch": "",
+      "cann_connection_verified": false,
+      "kernel_csv_verified": false,
+      "route": "profiler_control"
+    },
+    "trace_events": [
+      {
+        "name": "PROFILING_DISABLE",
+        "pid": 468034976,
+        "tid": 49,
+        "ts": "1790085076566319.327",
+        "dur": 0.0,
+        "ph": "X",
+        "args": {
+          "Model Id": 4294967295,
+          "Task Type": "PROFILING_DISABLE",
+          "Physic Stream Id": 49,
+          "Task Id": 13,
+          "Batch Id": 0,
+          "Subtask Id": 4294967295,
+          "connection_id": 6269
+        }
+      }
+    ]
+  }
+]

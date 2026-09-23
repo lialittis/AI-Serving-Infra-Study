@@ -7,6 +7,10 @@
 
 已于 2026-09-22 在真实服务器运行通过。先看 [RESULTS.md](RESULTS.md)，再逐段阅读代码。
 
+**深化版入口：[完整算子执行流程图](OPERATOR_FLOW.md)。**
+复用同一份原始 trace，分析全部 33 种设备任务名称，覆盖 ATen、torch-npu、ATB、项目 C++ 自定义算子、
+4 种 Triton kernel，以及视图、分配、搬运、队列与同步。三张图分别说明模型计算、实现路径和异步执行边界。
+
 ## 先区分三种事件
 
 ```text
@@ -39,6 +43,8 @@ Python 函数返回不意味着对应设备任务已结束。一个 PyTorch 算�
 - `operator_trace.py`：复用 Practice 07 的请求事件；用 `torch.profiler.record_function`
   将真实 Python 函数范围写入同一条 profiler 时间线。
 - `summarize_profile.py`：读取导出文件，核对事件并生成可阅读的结果。
+- `analyze_all_ops.py`：关联全部设备任务与主机调用，验证两种设备 flow、CANN connection ID、kernel CSV 和队列事件。
+- `collect_operator_sources.py`：在远端只读核验并归档当前版本的模型、算子与配置源码，不启动模型。
 
 `P09/...` 范围是我们添加的主机注解；算子事件、关联线和设备任务来自安装的 Ascend profiler。
 不修改已安装的 vLLM 源码，不用自己的算子替换模型执行，不做 Practice 08 的 KV 数据 `.cpu()` 校验。
@@ -76,6 +82,30 @@ sha256sum -c SHA256SUMS
 时间戳使用 Decimal，避免 epoch 微秒转换为 float 后损失精度。
 7 项测试覆盖正常证据和缺失设备事件、断开的 flow、错误 task/时间及缺失 Python 范围。
 当前校验器针对本次版本与形状；其他版本改变事件名或后端路径时会明确失败，需要重新检查真实 trace。
+
+完整分析可在本地重建：
+
+```bash
+python3 practice_09_operator_trace/analyze_all_ops.py \
+  practice_09_operator_trace/results/2026-09-22-run01
+```
+
+输出位于该次运行的 `full_analysis/`。`device_tasks.csv` 逐条列出 772 个设备任务，
+`host_operators.csv` 列出全部 106 种主机事件名称，`kernel_examples.json` 保留每种设备任务的原始关联证据。
+`coverage.json` 保存覆盖数字和输入指纹；`queue_pairs.json` 保存全部 748 对入队/出队证据。
+完整分析另有 6 项测试，加上原有 7 项，共 13 项。
+
+对新采集目录，在原服务器上先运行源码归档，再运行完整分析：
+
+```bash
+python practice_09_operator_trace/collect_operator_sources.py \
+  practice_09_operator_trace/results/my-new-run
+python practice_09_operator_trace/analyze_all_ops.py \
+  practice_09_operator_trace/results/my-new-run
+```
+
+归档脚本要求所选文件的 Git HEAD、当次记录的源码和模型配置指纹一致。
+已有 `full_analysis/sources` 时拒绝覆盖。run01 的源码是在采集后补充核验的，不冒充当时的完整 Python 调用栈。
 
 ## 观测边界
 

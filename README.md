@@ -122,3 +122,6 @@ Follow Python attention and KV-write calls through PyTorch operators and CANN
 launch events to actual NPU kernels. The archived profiler includes one prefill
 and one decode step, with verified flow IDs and a first-layer timeline excerpt.
 See [practice_09_operator_trace/README.md](practice_09_operator_trace/README.md).
+The [complete operator flow](practice_09_operator_trace/OPERATOR_FLOW.md) extends
+the audit to all 33 observed device task names, four Triton kernels, ATen,
+torch-npu, ATB, custom C++ operations, memory transfers, and host task queues.

@@ -41,7 +41,8 @@ flowchart TD
 08 于 2026-09-22 完成跨 block 的真实 KV 映射及第一层数据校验，
 见 [结果与证据](practice_08_real_kv_mapping/RESULTS.md)；
 09 同日完成 Python → PyTorch → CANN → NPU 的真实算子关联，
-见 [结果与证据](practice_09_operator_trace/RESULTS.md)。10–12 尚未执行。
+见 [结果与证据](practice_09_operator_trace/RESULTS.md)。同日进一步覆盖该 trace 的全部 33 种设备任务，
+形成 [完整算子执行流程图](practice_09_operator_trace/OPERATOR_FLOW.md)。10–12 尚未执行。
 
 2026-09-22 根据用户的学习方向调整顺序：将算子调用与设备时间线提前为 Practice 09；
 原计划的释放复用、continuous batching 顺延。graph 对照与独立算子实验留到后续。

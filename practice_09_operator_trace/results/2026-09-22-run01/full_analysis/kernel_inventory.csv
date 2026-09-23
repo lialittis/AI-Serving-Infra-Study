@@ -1,0 +1,34 @@
+kernel,calls,routes,host_operators,task_types,kernel_csv_matches
+AddRmsNormBias,96,"[""ascend_custom_cpp""]","[""aclnnAddRmsNormBias""]","[""AI_VECTOR_CORE""]",96
+EVENT_RECORD,4,"[""runtime_event""]","[""record_event""]","[""EVENT_RECORD""]",0
+FusedInferAttentionScore,48,"[""torch_npu""]","[""aclnnFusedInferAttentionScoreV3""]","[""MIX_AIC""]",48
+MEMCPY_ASYNC,79,"[""runtime_copy""]","[""acl_memcpy_device_to_host"", ""acl_memcpy_host_to_device"", ""aclnnInplaceCopy""]","[""PCIE_DMA_SQE"", ""SDMA_SQE""]",0
+PROFILING_DISABLE,1,"[""profiler_control""]",[],"[""PROFILING_DISABLE""]",0
+PROFILING_ENABLE,1,"[""profiler_control""]",[],"[""PROFILING_ENABLE""]",0
+ReshapeAndCacheNdKernel,48,"[""atb""]","[""ReshapeCacheOperation""]","[""AI_VECTOR_CORE""]",48
+RmsNorm,2,"[""torch_npu""]","[""aclnnRmsNorm""]","[""AI_VECTOR_CORE""]",2
+SwiGlu,48,"[""torch_npu""]","[""aclnnSwiGlu""]","[""AI_VECTOR_CORE""]",48
+_compute_slot_mapping_kernel,2,"[""triton""]","[""_compute_slot_mapping_kernel""]","[""AI_VECTOR_CORE""]",2
+_triton_rope,48,"[""triton""]","[""_triton_rope""]","[""AI_VECTOR_CORE""]",48
+aclnnAdd_AddAiCore_Add,4,"[""aten_to_aclnn""]","[""aclnnAdd""]","[""AI_VECTOR_CORE""]",4
+aclnnAddmm_CastAiCore_Cast,48,"[""aten_to_aclnn""]","[""aclnnAddmm""]","[""AI_VECTOR_CORE""]",48
+aclnnAddmm_MatMulCommon_MatMulV2,48,"[""aten_to_aclnn""]","[""aclnnAddmm""]","[""AI_CORE""]",48
+aclnnArgMax_ArgMaxV2AiCore_ArgMaxV2,2,"[""aten_to_aclnn""]","[""aclnnArgMax""]","[""AI_VECTOR_CORE""]",2
+aclnnArgMax_CastAiCore_Cast,2,"[""aten_to_aclnn""]","[""aclnnArgMax""]","[""AI_VECTOR_CORE""]",2
+aclnnContiguous_SliceAiCore_Slice,24,"[""torch_npu""]","[""aclnnFusedInferAttentionScoreV3""]","[""AI_VECTOR_CORE""]",24
+aclnnEmbedding_GatherV2AiCore_GatherV2,2,"[""aten_to_aclnn""]","[""aclnnEmbedding""]","[""AI_VECTOR_CORE""]",2
+aclnnEqScalar_EqualAiCore_Equal,1,"[""aten_to_aclnn""]","[""aclnnEqScalar""]","[""AI_VECTOR_CORE""]",1
+aclnnGtScalar_CastAiCore_Cast,4,"[""aten_to_aclnn""]","[""aclnnGtScalar""]","[""AI_VECTOR_CORE""]",4
+aclnnGtScalar_GreaterAiCore_Greater,4,"[""aten_to_aclnn""]","[""aclnnGtScalar""]","[""AI_VECTOR_CORE""]",4
+aclnnIndexSelect_GatherV3AiCore_GatherV3,4,"[""aten_to_aclnn""]","[""aclnnIndexSelect""]","[""AI_VECTOR_CORE""]",4
+aclnnIndex_IndexAiCore_Index,4,"[""aten_to_aclnn""]","[""aclnnIndex""]","[""AI_VECTOR_CORE""]",4
+aclnnInplaceCopy_CastAiCore_Cast,8,"[""aten_to_aclnn""]","[""aclnnInplaceCopy""]","[""AI_VECTOR_CORE""]",8
+aclnnInplaceCopy_SliceAiCore_Slice,74,"[""atb"", ""aten_to_aclnn""]","[""aclnnInplaceCopy""]","[""AI_VECTOR_CORE""]",74
+aclnnInplaceFillScalar_FillAiCore_Fill,4,"[""aten_to_aclnn""]","[""aclnnInplaceFillScalar""]","[""AI_VECTOR_CORE""]",4
+aclnnInplaceMaskedFillScalar_MaskedFillAiCpu_MaskedFill,1,"[""aten_to_aclnn""]","[""aclnnInplaceMaskedFillScalar""]","[""AI_CPU""]",1
+aclnnInplaceZero_ZerosLikeAiCore_ZerosLike,4,"[""aten_to_aclnn""]","[""aclnnInplaceZero""]","[""AI_VECTOR_CORE""]",4
+aclnnMatmul_MatMulCommon_MatMulV2,146,"[""aten_to_aclnn""]","[""aclnnMatmul""]","[""AI_CORE""]",146
+aclnnRepeat_TileAiCore_Tile,4,"[""aten_to_aclnn""]","[""aclnnRepeat""]","[""AI_VECTOR_CORE""]",4
+aclnnSubs_SubAiCore_Sub,2,"[""aten_to_aclnn""]","[""aclnnSubs""]","[""AI_VECTOR_CORE""]",2
+apply_all_penalties_kernel,2,"[""triton""]","[""apply_all_penalties_kernel""]","[""AI_VECTOR_CORE""]",2
+token_bin_counts_and_mask_kernel,3,"[""triton""]","[""token_bin_counts_and_mask_kernel""]","[""AI_VECTOR_CORE""]",3
