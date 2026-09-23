@@ -151,3 +151,14 @@ prefill with decode under the same graph configuration as Practice 10, including
 the limits of attributing replayed device kernels to individual FX nodes.
 See [practice_11_attention_execution/README.md](practice_11_attention_execution/README.md)
 for reproduction, verified profiler links, and an offline phase comparison.
+
+## Practice 12: trace real KV block release and reuse
+
+Use a native two-block pool (one reserved null block, one usable block) to make
+two sequential requests reuse the same physical KV storage. Trace all 24 layers,
+reference counts and free queues, then connect device accesses to the native
+sampled-token transfer/wait and the allocator's release/reallocation boundaries.
+See [practice_12_kv_block_reuse/README.md](practice_12_kv_block_reuse/README.md)
+for switchable eager / PIECEWISE graph runs, matched real-device evidence, and an
+offline comparison with both lifecycle viewers. Both modes retain all 192 direct
+KV/FIA links; replay-internal attribution limits are recorded separately.

@@ -1,0 +1,80 @@
+[
+  {
+    "title": "A 分配 B1 完成",
+    "time_ms": "0.143468",
+    "owner": "A",
+    "detail": "ref_cnt 0→1；空闲队列 [1]→[]。真实 allocator 分配。"
+  },
+  {
+    "title": "A prefill 最后一次已观测 KV 访问结束",
+    "time_ms": "48.807545",
+    "owner": "A",
+    "detail": "24 层 prefill 的 KV 写入 / FIA 已关联；本步主要读取当前 K/V。"
+  },
+  {
+    "title": "A prefill 原生结果等待返回",
+    "time_ms": "51.256884",
+    "owner": "A",
+    "detail": "采样 ID 已通过原生路径拷到 CPU。第一个输出 token 将进入 decode。"
+  },
+  {
+    "title": "A decode 最后一次已观测 KV 访问结束",
+    "time_ms": "77.316465",
+    "owner": "A",
+    "detail": "第 23 层 FIA 完成；它通过 cache view 读取 B1 中历史及本轮 K/V。"
+  },
+  {
+    "title": "A MEMCPY_ASYNC 完成",
+    "time_ms": "79.20782",
+    "owner": "A",
+    "detail": "原生 _to_list 范围中的设备任务，通过实际 flow 关联。与 KV kernel 位于同一 stream。"
+  },
+  {
+    "title": "A EVENT_RECORD 完成",
+    "time_ms": "79.281203",
+    "owner": "A",
+    "detail": "原生 _to_list 范围中的设备任务，通过实际 flow 关联。与 KV kernel 位于同一 stream。"
+  },
+  {
+    "title": "A decode 原生 Event 等待返回",
+    "time_ms": "79.358617",
+    "owner": "A",
+    "detail": "本次 event 在 CPU 开始等待前已完成。不能将等待范围耗时直接当作 KV kernel 耗时。"
+  },
+  {
+    "title": "A 释放 B1 完成",
+    "time_ms": "79.91486",
+    "owner": "FREE",
+    "detail": "ref_cnt 1→0；空闲队列 []→[1]。这不是物理内存清零。"
+  },
+  {
+    "title": "B 分配同一 B1 完成",
+    "time_ms": "85.781487",
+    "owner": "B",
+    "detail": "同一个 CPU block 对象与 24 层相同的 K/V 设备存储，现在属于 B 的新一次分配。"
+  },
+  {
+    "title": "B 首次 KV 写入 kernel 开始",
+    "time_ms": "90.302924",
+    "owner": "B",
+    "detail": "本轮输入来自 B 的不同 prompt；写入目标仍为 B1。不读取设备值来比较 A/B 内容。"
+  },
+  {
+    "title": "B decode 最后一次已观测 KV 访问结束",
+    "time_ms": "158.538052",
+    "owner": "B",
+    "detail": "B 的四十八个 decode KV/FIA kernel 中最后一个结束。"
+  },
+  {
+    "title": "B decode 原生结果等待返回",
+    "time_ms": "160.524431",
+    "owner": "B",
+    "detail": "原生 D2H、event record、event synchronize 完成。"
+  },
+  {
+    "title": "B 释放 B1 完成",
+    "time_ms": "161.062402",
+    "owner": "FREE",
+    "detail": "空闲队列恢复 [1]，KV pool 仍存在，服务关闭发生在采集之后。"
+  }
+]
