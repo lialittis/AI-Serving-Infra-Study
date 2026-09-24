@@ -1,0 +1,17 @@
+{
+  "schema": 1,
+  "excluded": [
+    {
+      "name": "pilot-qwen-enabled",
+      "reason": "Single-request smoke run. It proved streams 44/46 and the async random kernel sequence, but the random branch completed before model kernels began; the first observer also did not span sample_tokens."
+    },
+    {
+      "name": "2026-09-24-qwen-enabled-b32",
+      "reason": "Batching smoke run captured five real scheduler steps, but preceded the sample_tokens scope fix and therefore cannot prove the q consumer identity."
+    }
+  ],
+  "retained_calibration": {
+    "name": "2026-09-24-qwen-enabled-b32-r02",
+    "reason": "Request-level seed creates one generator per sequence and 217-224 row-wise random compute tasks in full-batch steps. It is retained because this condition suppresses overlap despite two physical streams."
+  }
+}

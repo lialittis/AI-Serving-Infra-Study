@@ -1,0 +1,2037 @@
+{
+  "schema": 1,
+  "runs": {
+    "qwen_seeded_calibration": {
+      "directory": "2026-09-24-qwen-enabled-b32-r02",
+      "summary": {
+        "mode": "enabled",
+        "model": "Qwen2.5-0.5B-Instruct",
+        "batch_size": 32,
+        "steps": 5,
+        "device_tasks": 3173,
+        "compute_tasks": 2842,
+        "outside_scope_device_tasks": 0,
+        "physical_streams": [
+          "44",
+          "46"
+        ],
+        "overlap_steps": 0,
+        "total_model_random_overlap_us": "0",
+        "kernel_csv_rows_verified": 2842,
+        "graph_nodes": 3178,
+        "graph_edges": 3186,
+        "edges_by_kind": {
+          "event_sync": 5,
+          "host_after_wait": 5,
+          "data_contract": 5,
+          "stream_order": 3171
+        }
+      },
+      "steps": [
+        {
+          "step": 1,
+          "phase": "prefill-or-mixed",
+          "request_count": 1,
+          "scheduled_tokens": 12,
+          "branch_kind": "async_exponential",
+          "branch_stream": "44",
+          "forward_stream": "46",
+          "branch_compute_tasks": 7,
+          "forward_compute_tasks": 363,
+          "sampling_compute_tasks": 17,
+          "branch_start_us": "1790275176961393.951",
+          "branch_end_us": "1790275176961471.814",
+          "forward_start_us": "1790275176962095.899",
+          "forward_end_us": "1790275176980689.582",
+          "branch_to_forward_gap_us": "624.085",
+          "forward_to_branch_gap_us": "-19295.631",
+          "overlap_us": "0",
+          "overlap_intervals": []
+        },
+        {
+          "step": 2,
+          "phase": "prefill-or-mixed",
+          "request_count": 32,
+          "scheduled_tokens": 373,
+          "branch_kind": "async_exponential",
+          "branch_stream": "44",
+          "forward_stream": "46",
+          "branch_compute_tasks": 224,
+          "forward_compute_tasks": 387,
+          "sampling_compute_tasks": 20,
+          "branch_start_us": "1790275176989451.872",
+          "branch_end_us": "1790275176991526.575",
+          "forward_start_us": "1790275176991990.634",
+          "forward_end_us": "1790275177008021.935",
+          "branch_to_forward_gap_us": "464.059",
+          "forward_to_branch_gap_us": "-18570.063",
+          "overlap_us": "0",
+          "overlap_intervals": []
+        },
+        {
+          "step": 3,
+          "phase": "decode",
+          "request_count": 32,
+          "scheduled_tokens": 32,
+          "branch_kind": "async_exponential",
+          "branch_stream": "44",
+          "forward_stream": "46",
+          "branch_compute_tasks": 224,
+          "forward_compute_tasks": 339,
+          "sampling_compute_tasks": 20,
+          "branch_start_us": "1790275177014754.984",
+          "branch_end_us": "1790275177016735.583",
+          "forward_start_us": "1790275177017174.921",
+          "forward_end_us": "1790275177033541.695",
+          "branch_to_forward_gap_us": "439.338",
+          "forward_to_branch_gap_us": "-18786.711",
+          "overlap_us": "0",
+          "overlap_intervals": []
+        },
+        {
+          "step": 4,
+          "phase": "decode",
+          "request_count": 32,
+          "scheduled_tokens": 32,
+          "branch_kind": "async_exponential",
+          "branch_stream": "44",
+          "forward_stream": "46",
+          "branch_compute_tasks": 224,
+          "forward_compute_tasks": 339,
+          "sampling_compute_tasks": 20,
+          "branch_start_us": "1790275177040225.582",
+          "branch_end_us": "1790275177041979.793",
+          "forward_start_us": "1790275177042419.510",
+          "forward_end_us": "1790275177058850.987",
+          "branch_to_forward_gap_us": "439.717",
+          "forward_to_branch_gap_us": "-18625.405",
+          "overlap_us": "0",
+          "overlap_intervals": []
+        },
+        {
+          "step": 5,
+          "phase": "decode",
+          "request_count": 31,
+          "scheduled_tokens": 31,
+          "branch_kind": "async_exponential",
+          "branch_stream": "44",
+          "forward_stream": "46",
+          "branch_compute_tasks": 217,
+          "forward_compute_tasks": 339,
+          "sampling_compute_tasks": 20,
+          "branch_start_us": "1790275177065681.120",
+          "branch_end_us": "1790275177067693.801",
+          "forward_start_us": "1790275177068131.138",
+          "forward_end_us": "1790275177084299.584",
+          "branch_to_forward_gap_us": "437.337",
+          "forward_to_branch_gap_us": "-18618.464",
+          "overlap_us": "0",
+          "overlap_intervals": []
+        }
+      ],
+      "branch_observations": [
+        {
+          "step": 1,
+          "batch_size": 1,
+          "vocab_size": 151936,
+          "generator_count": 1
+        },
+        {
+          "step": 2,
+          "batch_size": 32,
+          "vocab_size": 151936,
+          "generator_count": 32
+        },
+        {
+          "step": 3,
+          "batch_size": 32,
+          "vocab_size": 151936,
+          "generator_count": 32
+        },
+        {
+          "step": 4,
+          "batch_size": 32,
+          "vocab_size": 151936,
+          "generator_count": 32
+        },
+        {
+          "step": 5,
+          "batch_size": 31,
+          "vocab_size": 151936,
+          "generator_count": 31
+        }
+      ]
+    },
+    "qwen_async": {
+      "directory": "2026-09-24-qwen-enabled-b32-r03",
+      "summary": {
+        "mode": "enabled",
+        "model": "Qwen2.5-0.5B-Instruct",
+        "batch_size": 32,
+        "steps": 5,
+        "device_tasks": 2189,
+        "compute_tasks": 1981,
+        "outside_scope_device_tasks": 0,
+        "physical_streams": [
+          "44",
+          "46"
+        ],
+        "overlap_steps": 4,
+        "total_model_random_overlap_us": "105.385",
+        "kernel_csv_rows_verified": 1981,
+        "graph_nodes": 2194,
+        "graph_edges": 2202,
+        "edges_by_kind": {
+          "event_sync": 5,
+          "host_after_wait": 5,
+          "data_contract": 5,
+          "stream_order": 2187
+        }
+      },
+      "steps": [
+        {
+          "step": 1,
+          "phase": "prefill-or-mixed",
+          "request_count": 1,
+          "scheduled_tokens": 12,
+          "branch_kind": "async_exponential",
+          "branch_stream": "44",
+          "forward_stream": "46",
+          "branch_compute_tasks": 7,
+          "forward_compute_tasks": 363,
+          "sampling_compute_tasks": 17,
+          "branch_start_us": "1790275359743185.100",
+          "branch_end_us": "1790275359743253.423",
+          "forward_start_us": "1790275359743808.245",
+          "forward_end_us": "1790275359761148.838",
+          "branch_to_forward_gap_us": "554.822",
+          "forward_to_branch_gap_us": "-17963.738",
+          "overlap_us": "0",
+          "overlap_intervals": []
+        },
+        {
+          "step": 2,
+          "phase": "prefill-or-mixed",
+          "request_count": 32,
+          "scheduled_tokens": 373,
+          "branch_kind": "async_exponential",
+          "branch_stream": "44",
+          "forward_stream": "46",
+          "branch_compute_tasks": 7,
+          "forward_compute_tasks": 387,
+          "sampling_compute_tasks": 20,
+          "branch_start_us": "1790275359769311.444",
+          "branch_end_us": "1790275359769881.887",
+          "forward_start_us": "1790275359769826.125",
+          "forward_end_us": "1790275359786024.893",
+          "branch_to_forward_gap_us": "-55.762",
+          "forward_to_branch_gap_us": "-16713.449",
+          "overlap_us": "31.841",
+          "overlap_intervals": [
+            {
+              "start_us": "1790275359769826.125",
+              "end_us": "1790275359769850.106",
+              "duration_us": "23.981"
+            },
+            {
+              "start_us": "1790275359769850.126",
+              "end_us": "1790275359769852.846",
+              "duration_us": "2.720"
+            },
+            {
+              "start_us": "1790275359769852.866",
+              "end_us": "1790275359769858.006",
+              "duration_us": "5.140"
+            }
+          ]
+        },
+        {
+          "step": 3,
+          "phase": "decode",
+          "request_count": 32,
+          "scheduled_tokens": 32,
+          "branch_kind": "async_exponential",
+          "branch_stream": "44",
+          "forward_stream": "46",
+          "branch_compute_tasks": 7,
+          "forward_compute_tasks": 339,
+          "sampling_compute_tasks": 20,
+          "branch_start_us": "1790275359792522.752",
+          "branch_end_us": "1790275359793105.616",
+          "forward_start_us": "1790275359793048.873",
+          "forward_end_us": "1790275359809652.077",
+          "branch_to_forward_gap_us": "-56.743",
+          "forward_to_branch_gap_us": "-17129.325",
+          "overlap_us": "28.202",
+          "overlap_intervals": [
+            {
+              "start_us": "1790275359793048.873",
+              "end_us": "1790275359793070.414",
+              "duration_us": "21.541"
+            },
+            {
+              "start_us": "1790275359793070.434",
+              "end_us": "1790275359793073.134",
+              "duration_us": "2.700"
+            },
+            {
+              "start_us": "1790275359793073.154",
+              "end_us": "1790275359793077.115",
+              "duration_us": "3.961"
+            }
+          ]
+        },
+        {
+          "step": 4,
+          "phase": "decode",
+          "request_count": 32,
+          "scheduled_tokens": 32,
+          "branch_kind": "async_exponential",
+          "branch_stream": "44",
+          "forward_stream": "46",
+          "branch_compute_tasks": 7,
+          "forward_compute_tasks": 339,
+          "sampling_compute_tasks": 20,
+          "branch_start_us": "1790275359816244.941",
+          "branch_end_us": "1790275359816816.224",
+          "forward_start_us": "1790275359816770.062",
+          "forward_end_us": "1790275359833139.296",
+          "branch_to_forward_gap_us": "-46.162",
+          "forward_to_branch_gap_us": "-16894.355",
+          "overlap_us": "22.721",
+          "overlap_intervals": [
+            {
+              "start_us": "1790275359816770.062",
+              "end_us": "1790275359816785.642",
+              "duration_us": "15.580"
+            },
+            {
+              "start_us": "1790275359816785.662",
+              "end_us": "1790275359816788.142",
+              "duration_us": "2.480"
+            },
+            {
+              "start_us": "1790275359816788.162",
+              "end_us": "1790275359816792.823",
+              "duration_us": "4.661"
+            }
+          ]
+        },
+        {
+          "step": 5,
+          "phase": "decode",
+          "request_count": 31,
+          "scheduled_tokens": 31,
+          "branch_kind": "async_exponential",
+          "branch_stream": "44",
+          "forward_stream": "46",
+          "branch_compute_tasks": 7,
+          "forward_compute_tasks": 339,
+          "sampling_compute_tasks": 20,
+          "branch_start_us": "1790275359839816.643",
+          "branch_end_us": "1790275359840374.585",
+          "forward_start_us": "1790275359840326.663",
+          "forward_end_us": "1790275359856498.710",
+          "branch_to_forward_gap_us": "-47.922",
+          "forward_to_branch_gap_us": "-16682.067",
+          "overlap_us": "22.621",
+          "overlap_intervals": [
+            {
+              "start_us": "1790275359840326.663",
+              "end_us": "1790275359840343.464",
+              "duration_us": "16.801"
+            },
+            {
+              "start_us": "1790275359840343.484",
+              "end_us": "1790275359840345.724",
+              "duration_us": "2.240"
+            },
+            {
+              "start_us": "1790275359840345.744",
+              "end_us": "1790275359840349.324",
+              "duration_us": "3.580"
+            }
+          ]
+        }
+      ],
+      "branch_observations": [
+        {
+          "step": 1,
+          "batch_size": 1,
+          "vocab_size": 151936,
+          "generator_count": 0
+        },
+        {
+          "step": 2,
+          "batch_size": 32,
+          "vocab_size": 151936,
+          "generator_count": 0
+        },
+        {
+          "step": 3,
+          "batch_size": 32,
+          "vocab_size": 151936,
+          "generator_count": 0
+        },
+        {
+          "step": 4,
+          "batch_size": 32,
+          "vocab_size": 151936,
+          "generator_count": 0
+        },
+        {
+          "step": 5,
+          "batch_size": 31,
+          "vocab_size": 151936,
+          "generator_count": 0
+        }
+      ]
+    },
+    "qwen_inline": {
+      "directory": "2026-09-24-qwen-disabled-b32-r02",
+      "summary": {
+        "mode": "disabled",
+        "model": "Qwen2.5-0.5B-Instruct",
+        "batch_size": 32,
+        "steps": 5,
+        "device_tasks": 2189,
+        "compute_tasks": 1981,
+        "outside_scope_device_tasks": 0,
+        "physical_streams": [
+          "44",
+          "46"
+        ],
+        "overlap_steps": 0,
+        "total_model_random_overlap_us": "0",
+        "kernel_csv_rows_verified": 1981,
+        "graph_nodes": 2189,
+        "graph_edges": 2197,
+        "edges_by_kind": {
+          "event_wait": 5,
+          "data_contract": 5,
+          "stream_order": 2187
+        }
+      },
+      "steps": [
+        {
+          "step": 1,
+          "phase": "prefill-or-mixed",
+          "request_count": 1,
+          "scheduled_tokens": 12,
+          "branch_kind": "inline_exponential",
+          "branch_stream": "44",
+          "forward_stream": "46",
+          "branch_compute_tasks": 7,
+          "forward_compute_tasks": 363,
+          "sampling_compute_tasks": 17,
+          "branch_start_us": "1790275468696218.057",
+          "branch_end_us": "1790275468696285.220",
+          "forward_start_us": "1790275468676071.892",
+          "forward_end_us": "1790275468694546.351",
+          "branch_to_forward_gap_us": "-20213.328",
+          "forward_to_branch_gap_us": "1671.706",
+          "overlap_us": "0",
+          "overlap_intervals": []
+        },
+        {
+          "step": 2,
+          "phase": "prefill-or-mixed",
+          "request_count": 32,
+          "scheduled_tokens": 373,
+          "branch_kind": "inline_exponential",
+          "branch_stream": "44",
+          "forward_stream": "46",
+          "branch_compute_tasks": 7,
+          "forward_compute_tasks": 387,
+          "sampling_compute_tasks": 20,
+          "branch_start_us": "1790275468720853.642",
+          "branch_end_us": "1790275468721416.105",
+          "forward_start_us": "1790275468702846.022",
+          "forward_end_us": "1790275468719105.933",
+          "branch_to_forward_gap_us": "-18570.083",
+          "forward_to_branch_gap_us": "1747.709",
+          "overlap_us": "0",
+          "overlap_intervals": []
+        },
+        {
+          "step": 3,
+          "phase": "decode",
+          "request_count": 32,
+          "scheduled_tokens": 32,
+          "branch_kind": "inline_exponential",
+          "branch_stream": "44",
+          "forward_stream": "46",
+          "branch_compute_tasks": 7,
+          "forward_compute_tasks": 339,
+          "sampling_compute_tasks": 20,
+          "branch_start_us": "1790275468745608.792",
+          "branch_end_us": "1790275468746173.415",
+          "forward_start_us": "1790275468725991.028",
+          "forward_end_us": "1790275468743863.242",
+          "branch_to_forward_gap_us": "-20182.387",
+          "forward_to_branch_gap_us": "1745.550",
+          "overlap_us": "0",
+          "overlap_intervals": []
+        },
+        {
+          "step": 4,
+          "phase": "decode",
+          "request_count": 32,
+          "scheduled_tokens": 32,
+          "branch_kind": "inline_exponential",
+          "branch_stream": "44",
+          "forward_stream": "46",
+          "branch_compute_tasks": 7,
+          "forward_compute_tasks": 339,
+          "sampling_compute_tasks": 20,
+          "branch_start_us": "1790275468768390.163",
+          "branch_end_us": "1790275468768951.225",
+          "forward_start_us": "1790275468750391.643",
+          "forward_end_us": "1790275468766677.574",
+          "branch_to_forward_gap_us": "-18559.582",
+          "forward_to_branch_gap_us": "1712.589",
+          "overlap_us": "0",
+          "overlap_intervals": []
+        },
+        {
+          "step": 5,
+          "phase": "decode",
+          "request_count": 31,
+          "scheduled_tokens": 31,
+          "branch_kind": "inline_exponential",
+          "branch_stream": "44",
+          "forward_stream": "46",
+          "branch_compute_tasks": 7,
+          "forward_compute_tasks": 339,
+          "sampling_compute_tasks": 20,
+          "branch_start_us": "1790275468791106.271",
+          "branch_end_us": "1790275468791655.613",
+          "forward_start_us": "1790275468773247.137",
+          "forward_end_us": "1790275468789385.242",
+          "branch_to_forward_gap_us": "-18408.476",
+          "forward_to_branch_gap_us": "1721.029",
+          "overlap_us": "0",
+          "overlap_intervals": []
+        }
+      ],
+      "branch_observations": [
+        {
+          "step": 1,
+          "generator_count": 0
+        },
+        {
+          "step": 2,
+          "generator_count": 0
+        },
+        {
+          "step": 3,
+          "generator_count": 0
+        },
+        {
+          "step": 4,
+          "generator_count": 0
+        },
+        {
+          "step": 5,
+          "generator_count": 0
+        }
+      ]
+    },
+    "llama_b32_threshold": {
+      "directory": "2026-09-24-llama-enabled-b32",
+      "summary": {
+        "mode": "enabled",
+        "model": "Llama-3.2-1B-Instruct",
+        "batch_size": 32,
+        "steps": 5,
+        "device_tasks": 3785,
+        "compute_tasks": 3491,
+        "outside_scope_device_tasks": 0,
+        "physical_streams": [
+          "44",
+          "46"
+        ],
+        "overlap_steps": 0,
+        "total_model_random_overlap_us": "0",
+        "kernel_csv_rows_verified": 3491,
+        "graph_nodes": 3790,
+        "graph_edges": 3798,
+        "edges_by_kind": {
+          "event_sync": 5,
+          "host_after_wait": 5,
+          "data_contract": 5,
+          "stream_order": 3783
+        }
+      },
+      "steps": [
+        {
+          "step": 1,
+          "phase": "prefill-or-mixed",
+          "request_count": 1,
+          "scheduled_tokens": 12,
+          "branch_kind": "async_exponential",
+          "branch_stream": "44",
+          "forward_stream": "46",
+          "branch_compute_tasks": 7,
+          "forward_compute_tasks": 675,
+          "sampling_compute_tasks": 9,
+          "branch_start_us": "1790275620084529.703",
+          "branch_end_us": "1790275620084607.046",
+          "forward_start_us": "1790275620085406.678",
+          "forward_end_us": "1790275620098197.769",
+          "branch_to_forward_gap_us": "799.632",
+          "forward_to_branch_gap_us": "-13668.066",
+          "overlap_us": "0",
+          "overlap_intervals": []
+        },
+        {
+          "step": 2,
+          "phase": "prefill-or-mixed",
+          "request_count": 32,
+          "scheduled_tokens": 373,
+          "branch_kind": "async_exponential",
+          "branch_stream": "44",
+          "forward_stream": "46",
+          "branch_compute_tasks": 7,
+          "forward_compute_tasks": 707,
+          "sampling_compute_tasks": 9,
+          "branch_start_us": "1790275620105830.054",
+          "branch_end_us": "1790275620106314.714",
+          "forward_start_us": "1790275620106357.915",
+          "forward_end_us": "1790275620117436.838",
+          "branch_to_forward_gap_us": "43.201",
+          "forward_to_branch_gap_us": "-11606.784",
+          "overlap_us": "0",
+          "overlap_intervals": []
+        },
+        {
+          "step": 3,
+          "phase": "decode",
+          "request_count": 32,
+          "scheduled_tokens": 32,
+          "branch_kind": "async_exponential",
+          "branch_stream": "44",
+          "forward_stream": "46",
+          "branch_compute_tasks": 7,
+          "forward_compute_tasks": 659,
+          "sampling_compute_tasks": 9,
+          "branch_start_us": "1790275620123174.608",
+          "branch_end_us": "1790275620123659.207",
+          "forward_start_us": "1790275620123741.890",
+          "forward_end_us": "1790275620135408.717",
+          "branch_to_forward_gap_us": "82.683",
+          "forward_to_branch_gap_us": "-12234.109",
+          "overlap_us": "0",
+          "overlap_intervals": []
+        },
+        {
+          "step": 4,
+          "phase": "decode",
+          "request_count": 32,
+          "scheduled_tokens": 32,
+          "branch_kind": "async_exponential",
+          "branch_stream": "44",
+          "forward_stream": "46",
+          "branch_compute_tasks": 7,
+          "forward_compute_tasks": 659,
+          "sampling_compute_tasks": 9,
+          "branch_start_us": "1790275620141582.644",
+          "branch_end_us": "1790275620142067.043",
+          "forward_start_us": "1790275620142152.266",
+          "forward_end_us": "1790275620153732.909",
+          "branch_to_forward_gap_us": "85.223",
+          "forward_to_branch_gap_us": "-12150.265",
+          "overlap_us": "0",
+          "overlap_intervals": []
+        },
+        {
+          "step": 5,
+          "phase": "decode",
+          "request_count": 31,
+          "scheduled_tokens": 31,
+          "branch_kind": "async_exponential",
+          "branch_stream": "44",
+          "forward_stream": "46",
+          "branch_compute_tasks": 7,
+          "forward_compute_tasks": 659,
+          "sampling_compute_tasks": 9,
+          "branch_start_us": "1790275620159849.254",
+          "branch_end_us": "1790275620160321.913",
+          "forward_start_us": "1790275620160417.877",
+          "forward_end_us": "1790275620171904.476",
+          "branch_to_forward_gap_us": "95.964",
+          "forward_to_branch_gap_us": "-12055.222",
+          "overlap_us": "0",
+          "overlap_intervals": []
+        }
+      ],
+      "branch_observations": [
+        {
+          "step": 1,
+          "batch_size": 1,
+          "vocab_size": 128256,
+          "generator_count": 0
+        },
+        {
+          "step": 2,
+          "batch_size": 32,
+          "vocab_size": 128256,
+          "generator_count": 0
+        },
+        {
+          "step": 3,
+          "batch_size": 32,
+          "vocab_size": 128256,
+          "generator_count": 0
+        },
+        {
+          "step": 4,
+          "batch_size": 32,
+          "vocab_size": 128256,
+          "generator_count": 0
+        },
+        {
+          "step": 5,
+          "batch_size": 31,
+          "vocab_size": 128256,
+          "generator_count": 0
+        }
+      ]
+    },
+    "llama_async": {
+      "directory": "2026-09-24-llama-enabled-b64",
+      "summary": {
+        "mode": "enabled",
+        "model": "Llama-3.2-1B-Instruct",
+        "batch_size": 64,
+        "steps": 5,
+        "device_tasks": 3785,
+        "compute_tasks": 3507,
+        "outside_scope_device_tasks": 0,
+        "physical_streams": [
+          "44",
+          "46"
+        ],
+        "overlap_steps": 4,
+        "total_model_random_overlap_us": "1082.181",
+        "kernel_csv_rows_verified": 3507,
+        "graph_nodes": 3790,
+        "graph_edges": 3798,
+        "edges_by_kind": {
+          "event_sync": 5,
+          "host_after_wait": 5,
+          "data_contract": 5,
+          "stream_order": 3783
+        }
+      },
+      "steps": [
+        {
+          "step": 1,
+          "phase": "prefill-or-mixed",
+          "request_count": 1,
+          "scheduled_tokens": 12,
+          "branch_kind": "async_exponential",
+          "branch_stream": "44",
+          "forward_stream": "46",
+          "branch_compute_tasks": 7,
+          "forward_compute_tasks": 675,
+          "sampling_compute_tasks": 9,
+          "branch_start_us": "1790275741496608.478",
+          "branch_end_us": "1790275741496678.601",
+          "forward_start_us": "1790275741497688.201",
+          "forward_end_us": "1790275741511887.349",
+          "branch_to_forward_gap_us": "1009.600",
+          "forward_to_branch_gap_us": "-15278.871",
+          "overlap_us": "0",
+          "overlap_intervals": []
+        },
+        {
+          "step": 2,
+          "phase": "prefill-or-mixed",
+          "request_count": 64,
+          "scheduled_tokens": 757,
+          "branch_kind": "async_exponential",
+          "branch_stream": "44",
+          "forward_stream": "46",
+          "branch_compute_tasks": 7,
+          "forward_compute_tasks": 723,
+          "sampling_compute_tasks": 9,
+          "branch_start_us": "1790275741523075.196",
+          "branch_end_us": "1790275741524073.896",
+          "forward_start_us": "1790275741523624.178",
+          "forward_end_us": "1790275741537548.155",
+          "branch_to_forward_gap_us": "-449.718",
+          "forward_to_branch_gap_us": "-14472.959",
+          "overlap_us": "289.612",
+          "overlap_intervals": [
+            {
+              "start_us": "1790275741523624.178",
+              "end_us": "1790275741523625.438",
+              "duration_us": "1.260"
+            },
+            {
+              "start_us": "1790275741523637.239",
+              "end_us": "1790275741523648.239",
+              "duration_us": "11.000"
+            },
+            {
+              "start_us": "1790275741523715.062",
+              "end_us": "1790275741523742.623",
+              "duration_us": "27.561"
+            },
+            {
+              "start_us": "1790275741523777.424",
+              "end_us": "1790275741523819.766",
+              "duration_us": "42.342"
+            },
+            {
+              "start_us": "1790275741523823.026",
+              "end_us": "1790275741523836.807",
+              "duration_us": "13.781"
+            },
+            {
+              "start_us": "1790275741523879.768",
+              "end_us": "1790275741523882.768",
+              "duration_us": "3.000"
+            },
+            {
+              "start_us": "1790275741523882.788",
+              "end_us": "1790275741523894.189",
+              "duration_us": "11.401"
+            },
+            {
+              "start_us": "1790275741523894.229",
+              "end_us": "1790275741523897.969",
+              "duration_us": "3.740"
+            },
+            {
+              "start_us": "1790275741523897.989",
+              "end_us": "1790275741523917.650",
+              "duration_us": "19.661"
+            },
+            {
+              "start_us": "1790275741523917.670",
+              "end_us": "1790275741523917.810",
+              "duration_us": "0.140"
+            },
+            {
+              "start_us": "1790275741523917.830",
+              "end_us": "1790275741523935.911",
+              "duration_us": "18.081"
+            },
+            {
+              "start_us": "1790275741523935.931",
+              "end_us": "1790275741523953.391",
+              "duration_us": "17.460"
+            },
+            {
+              "start_us": "1790275741523953.411",
+              "end_us": "1790275741523956.431",
+              "duration_us": "3.020"
+            },
+            {
+              "start_us": "1790275741523956.451",
+              "end_us": "1790275741523978.272",
+              "duration_us": "21.821"
+            },
+            {
+              "start_us": "1790275741523978.292",
+              "end_us": "1790275741523987.893",
+              "duration_us": "9.601"
+            },
+            {
+              "start_us": "1790275741523987.913",
+              "end_us": "1790275741524000.633",
+              "duration_us": "12.720"
+            },
+            {
+              "start_us": "1790275741524000.653",
+              "end_us": "1790275741524003.733",
+              "duration_us": "3.080"
+            },
+            {
+              "start_us": "1790275741524003.773",
+              "end_us": "1790275741524006.553",
+              "duration_us": "2.780"
+            },
+            {
+              "start_us": "1790275741524006.573",
+              "end_us": "1790275741524023.134",
+              "duration_us": "16.561"
+            },
+            {
+              "start_us": "1790275741524023.174",
+              "end_us": "1790275741524035.455",
+              "duration_us": "12.281"
+            },
+            {
+              "start_us": "1790275741524035.475",
+              "end_us": "1790275741524038.035",
+              "duration_us": "2.560"
+            },
+            {
+              "start_us": "1790275741524038.055",
+              "end_us": "1790275741524038.375",
+              "duration_us": "0.320"
+            },
+            {
+              "start_us": "1790275741524038.395",
+              "end_us": "1790275741524051.455",
+              "duration_us": "13.060"
+            },
+            {
+              "start_us": "1790275741524051.475",
+              "end_us": "1790275741524059.196",
+              "duration_us": "7.721"
+            },
+            {
+              "start_us": "1790275741524059.216",
+              "end_us": "1790275741524068.696",
+              "duration_us": "9.480"
+            },
+            {
+              "start_us": "1790275741524068.716",
+              "end_us": "1790275741524073.896",
+              "duration_us": "5.180"
+            }
+          ]
+        },
+        {
+          "step": 3,
+          "phase": "decode",
+          "request_count": 64,
+          "scheduled_tokens": 64,
+          "branch_kind": "async_exponential",
+          "branch_stream": "44",
+          "forward_stream": "46",
+          "branch_compute_tasks": 7,
+          "forward_compute_tasks": 659,
+          "sampling_compute_tasks": 9,
+          "branch_start_us": "1790275741545273.124",
+          "branch_end_us": "1790275741546267.983",
+          "forward_start_us": "1790275741545795.385",
+          "forward_end_us": "1790275741556278.644",
+          "branch_to_forward_gap_us": "-472.598",
+          "forward_to_branch_gap_us": "-11005.520",
+          "overlap_us": "283.910",
+          "overlap_intervals": [
+            {
+              "start_us": "1790275741545795.385",
+              "end_us": "1790275741545796.425",
+              "duration_us": "1.040"
+            },
+            {
+              "start_us": "1790275741545809.645",
+              "end_us": "1790275741545817.045",
+              "duration_us": "7.400"
+            },
+            {
+              "start_us": "1790275741545878.648",
+              "end_us": "1790275741545891.308",
+              "duration_us": "12.660"
+            },
+            {
+              "start_us": "1790275741545937.910",
+              "end_us": "1790275741545964.951",
+              "duration_us": "27.041"
+            },
+            {
+              "start_us": "1790275741545984.672",
+              "end_us": "1790275741545999.933",
+              "duration_us": "15.261"
+            },
+            {
+              "start_us": "1790275741546037.494",
+              "end_us": "1790275741546041.434",
+              "duration_us": "3.940"
+            },
+            {
+              "start_us": "1790275741546041.454",
+              "end_us": "1790275741546044.854",
+              "duration_us": "3.400"
+            },
+            {
+              "start_us": "1790275741546044.894",
+              "end_us": "1790275741546046.175",
+              "duration_us": "1.281"
+            },
+            {
+              "start_us": "1790275741546046.195",
+              "end_us": "1790275741546062.095",
+              "duration_us": "15.900"
+            },
+            {
+              "start_us": "1790275741546062.135",
+              "end_us": "1790275741546067.095",
+              "duration_us": "4.960"
+            },
+            {
+              "start_us": "1790275741546067.135",
+              "end_us": "1790275741546071.416",
+              "duration_us": "4.281"
+            },
+            {
+              "start_us": "1790275741546071.436",
+              "end_us": "1790275741546076.376",
+              "duration_us": "4.940"
+            },
+            {
+              "start_us": "1790275741546076.396",
+              "end_us": "1790275741546085.656",
+              "duration_us": "9.260"
+            },
+            {
+              "start_us": "1790275741546085.676",
+              "end_us": "1790275741546089.776",
+              "duration_us": "4.100"
+            },
+            {
+              "start_us": "1790275741546089.796",
+              "end_us": "1790275741546093.216",
+              "duration_us": "3.420"
+            },
+            {
+              "start_us": "1790275741546098.177",
+              "end_us": "1790275741546105.097",
+              "duration_us": "6.920"
+            },
+            {
+              "start_us": "1790275741546107.037",
+              "end_us": "1790275741546110.637",
+              "duration_us": "3.600"
+            },
+            {
+              "start_us": "1790275741546110.657",
+              "end_us": "1790275741546112.237",
+              "duration_us": "1.580"
+            },
+            {
+              "start_us": "1790275741546112.257",
+              "end_us": "1790275741546113.597",
+              "duration_us": "1.340"
+            },
+            {
+              "start_us": "1790275741546113.617",
+              "end_us": "1790275741546125.338",
+              "duration_us": "11.721"
+            },
+            {
+              "start_us": "1790275741546125.358",
+              "end_us": "1790275741546132.138",
+              "duration_us": "6.780"
+            },
+            {
+              "start_us": "1790275741546132.158",
+              "end_us": "1790275741546135.938",
+              "duration_us": "3.780"
+            },
+            {
+              "start_us": "1790275741546138.258",
+              "end_us": "1790275741546141.058",
+              "duration_us": "2.800"
+            },
+            {
+              "start_us": "1790275741546141.078",
+              "end_us": "1790275741546141.978",
+              "duration_us": "0.900"
+            },
+            {
+              "start_us": "1790275741546141.998",
+              "end_us": "1790275741546146.179",
+              "duration_us": "4.181"
+            },
+            {
+              "start_us": "1790275741546146.199",
+              "end_us": "1790275741546162.039",
+              "duration_us": "15.840"
+            },
+            {
+              "start_us": "1790275741546162.059",
+              "end_us": "1790275741546166.019",
+              "duration_us": "3.960"
+            },
+            {
+              "start_us": "1790275741546166.039",
+              "end_us": "1790275741546168.499",
+              "duration_us": "2.460"
+            },
+            {
+              "start_us": "1790275741546168.539",
+              "end_us": "1790275741546168.559",
+              "duration_us": "0.020"
+            },
+            {
+              "start_us": "1790275741546168.579",
+              "end_us": "1790275741546208.421",
+              "duration_us": "39.842"
+            },
+            {
+              "start_us": "1790275741546208.441",
+              "end_us": "1790275741546213.201",
+              "duration_us": "4.760"
+            },
+            {
+              "start_us": "1790275741546213.221",
+              "end_us": "1790275741546216.601",
+              "duration_us": "3.380"
+            },
+            {
+              "start_us": "1790275741546216.621",
+              "end_us": "1790275741546220.442",
+              "duration_us": "3.821"
+            },
+            {
+              "start_us": "1790275741546220.462",
+              "end_us": "1790275741546223.602",
+              "duration_us": "3.140"
+            },
+            {
+              "start_us": "1790275741546223.622",
+              "end_us": "1790275741546231.862",
+              "duration_us": "8.240"
+            },
+            {
+              "start_us": "1790275741546231.882",
+              "end_us": "1790275741546234.282",
+              "duration_us": "2.400"
+            },
+            {
+              "start_us": "1790275741546234.302",
+              "end_us": "1790275741546235.062",
+              "duration_us": "0.760"
+            },
+            {
+              "start_us": "1790275741546235.082",
+              "end_us": "1790275741546243.582",
+              "duration_us": "8.500"
+            },
+            {
+              "start_us": "1790275741546243.622",
+              "end_us": "1790275741546264.663",
+              "duration_us": "21.041"
+            },
+            {
+              "start_us": "1790275741546264.683",
+              "end_us": "1790275741546267.823",
+              "duration_us": "3.140"
+            },
+            {
+              "start_us": "1790275741546267.863",
+              "end_us": "1790275741546267.983",
+              "duration_us": "0.120"
+            }
+          ]
+        },
+        {
+          "step": 4,
+          "phase": "decode",
+          "request_count": 64,
+          "scheduled_tokens": 64,
+          "branch_kind": "async_exponential",
+          "branch_stream": "44",
+          "forward_stream": "46",
+          "branch_compute_tasks": 7,
+          "forward_compute_tasks": 659,
+          "sampling_compute_tasks": 9,
+          "branch_start_us": "1790275741564099.436",
+          "branch_end_us": "1790275741565079.996",
+          "forward_start_us": "1790275741564604.697",
+          "forward_end_us": "1790275741575125.417",
+          "branch_to_forward_gap_us": "-475.299",
+          "forward_to_branch_gap_us": "-11025.981",
+          "overlap_us": "241.229",
+          "overlap_intervals": [
+            {
+              "start_us": "1790275741564604.697",
+              "end_us": "1790275741564605.857",
+              "duration_us": "1.160"
+            },
+            {
+              "start_us": "1790275741564611.517",
+              "end_us": "1790275741564618.877",
+              "duration_us": "7.360"
+            },
+            {
+              "start_us": "1790275741564688.180",
+              "end_us": "1790275741564700.420",
+              "duration_us": "12.240"
+            },
+            {
+              "start_us": "1790275741564737.842",
+              "end_us": "1790275741564763.963",
+              "duration_us": "26.121"
+            },
+            {
+              "start_us": "1790275741564791.124",
+              "end_us": "1790275741564802.284",
+              "duration_us": "11.160"
+            },
+            {
+              "start_us": "1790275741564837.126",
+              "end_us": "1790275741564840.886",
+              "duration_us": "3.760"
+            },
+            {
+              "start_us": "1790275741564840.906",
+              "end_us": "1790275741564844.366",
+              "duration_us": "3.460"
+            },
+            {
+              "start_us": "1790275741564844.386",
+              "end_us": "1790275741564859.607",
+              "duration_us": "15.221"
+            },
+            {
+              "start_us": "1790275741564859.647",
+              "end_us": "1790275741564863.087",
+              "duration_us": "3.440"
+            },
+            {
+              "start_us": "1790275741564863.107",
+              "end_us": "1790275741564865.427",
+              "duration_us": "2.320"
+            },
+            {
+              "start_us": "1790275741564865.447",
+              "end_us": "1790275741564871.987",
+              "duration_us": "6.540"
+            },
+            {
+              "start_us": "1790275741564872.007",
+              "end_us": "1790275741564875.367",
+              "duration_us": "3.360"
+            },
+            {
+              "start_us": "1790275741564875.387",
+              "end_us": "1790275741564881.788",
+              "duration_us": "6.401"
+            },
+            {
+              "start_us": "1790275741564881.828",
+              "end_us": "1790275741564888.608",
+              "duration_us": "6.780"
+            },
+            {
+              "start_us": "1790275741564888.628",
+              "end_us": "1790275741564892.528",
+              "duration_us": "3.900"
+            },
+            {
+              "start_us": "1790275741564892.548",
+              "end_us": "1790275741564902.428",
+              "duration_us": "9.880"
+            },
+            {
+              "start_us": "1790275741564902.448",
+              "end_us": "1790275741564908.229",
+              "duration_us": "5.781"
+            },
+            {
+              "start_us": "1790275741564908.249",
+              "end_us": "1790275741564912.389",
+              "duration_us": "4.140"
+            },
+            {
+              "start_us": "1790275741564912.409",
+              "end_us": "1790275741564918.609",
+              "duration_us": "6.200"
+            },
+            {
+              "start_us": "1790275741564918.649",
+              "end_us": "1790275741564926.229",
+              "duration_us": "7.580"
+            },
+            {
+              "start_us": "1790275741564926.269",
+              "end_us": "1790275741564931.950",
+              "duration_us": "5.681"
+            },
+            {
+              "start_us": "1790275741564943.270",
+              "end_us": "1790275741564956.591",
+              "duration_us": "13.321"
+            },
+            {
+              "start_us": "1790275741564956.631",
+              "end_us": "1790275741564959.131",
+              "duration_us": "2.500"
+            },
+            {
+              "start_us": "1790275741564959.151",
+              "end_us": "1790275741564963.811",
+              "duration_us": "4.660"
+            },
+            {
+              "start_us": "1790275741564963.831",
+              "end_us": "1790275741564977.731",
+              "duration_us": "13.900"
+            },
+            {
+              "start_us": "1790275741564977.751",
+              "end_us": "1790275741564981.632",
+              "duration_us": "3.881"
+            },
+            {
+              "start_us": "1790275741564981.652",
+              "end_us": "1790275741564982.192",
+              "duration_us": "0.540"
+            },
+            {
+              "start_us": "1790275741564982.212",
+              "end_us": "1790275741564989.552",
+              "duration_us": "7.340"
+            },
+            {
+              "start_us": "1790275741564989.572",
+              "end_us": "1790275741564996.932",
+              "duration_us": "7.360"
+            },
+            {
+              "start_us": "1790275741564996.952",
+              "end_us": "1790275741564999.692",
+              "duration_us": "2.740"
+            },
+            {
+              "start_us": "1790275741564999.732",
+              "end_us": "1790275741565003.392",
+              "duration_us": "3.660"
+            },
+            {
+              "start_us": "1790275741565003.412",
+              "end_us": "1790275741565005.733",
+              "duration_us": "2.321"
+            },
+            {
+              "start_us": "1790275741565005.753",
+              "end_us": "1790275741565010.033",
+              "duration_us": "4.280"
+            },
+            {
+              "start_us": "1790275741565010.053",
+              "end_us": "1790275741565012.453",
+              "duration_us": "2.400"
+            },
+            {
+              "start_us": "1790275741565012.473",
+              "end_us": "1790275741565014.753",
+              "duration_us": "2.280"
+            },
+            {
+              "start_us": "1790275741565014.793",
+              "end_us": "1790275741565020.493",
+              "duration_us": "5.700"
+            },
+            {
+              "start_us": "1790275741565020.533",
+              "end_us": "1790275741565023.733",
+              "duration_us": "3.200"
+            },
+            {
+              "start_us": "1790275741565023.753",
+              "end_us": "1790275741565026.313",
+              "duration_us": "2.560"
+            },
+            {
+              "start_us": "1790275741565073.895",
+              "end_us": "1790275741565079.996",
+              "duration_us": "6.101"
+            }
+          ]
+        },
+        {
+          "step": 5,
+          "phase": "decode",
+          "request_count": 63,
+          "scheduled_tokens": 63,
+          "branch_kind": "async_exponential",
+          "branch_stream": "44",
+          "forward_stream": "46",
+          "branch_compute_tasks": 7,
+          "forward_compute_tasks": 659,
+          "sampling_compute_tasks": 9,
+          "branch_start_us": "1790275741582998.492",
+          "branch_end_us": "1790275741583994.312",
+          "forward_start_us": "1790275741583533.213",
+          "forward_end_us": "1790275741594055.814",
+          "branch_to_forward_gap_us": "-461.099",
+          "forward_to_branch_gap_us": "-11057.322",
+          "overlap_us": "267.430",
+          "overlap_intervals": [
+            {
+              "start_us": "1790275741583533.213",
+              "end_us": "1790275741583534.353",
+              "duration_us": "1.140"
+            },
+            {
+              "start_us": "1790275741583545.934",
+              "end_us": "1790275741583553.354",
+              "duration_us": "7.420"
+            },
+            {
+              "start_us": "1790275741583613.136",
+              "end_us": "1790275741583625.857",
+              "duration_us": "12.721"
+            },
+            {
+              "start_us": "1790275741583669.579",
+              "end_us": "1790275741583699.500",
+              "duration_us": "29.921"
+            },
+            {
+              "start_us": "1790275741583718.341",
+              "end_us": "1790275741583729.621",
+              "duration_us": "11.280"
+            },
+            {
+              "start_us": "1790275741583772.503",
+              "end_us": "1790275741583816.745",
+              "duration_us": "44.242"
+            },
+            {
+              "start_us": "1790275741583816.765",
+              "end_us": "1790275741583821.805",
+              "duration_us": "5.040"
+            },
+            {
+              "start_us": "1790275741583821.825",
+              "end_us": "1790275741583825.485",
+              "duration_us": "3.660"
+            },
+            {
+              "start_us": "1790275741583825.505",
+              "end_us": "1790275741583838.226",
+              "duration_us": "12.721"
+            },
+            {
+              "start_us": "1790275741583838.266",
+              "end_us": "1790275741583841.486",
+              "duration_us": "3.220"
+            },
+            {
+              "start_us": "1790275741583841.506",
+              "end_us": "1790275741583843.486",
+              "duration_us": "1.980"
+            },
+            {
+              "start_us": "1790275741583843.506",
+              "end_us": "1790275741583844.426",
+              "duration_us": "0.920"
+            },
+            {
+              "start_us": "1790275741583844.466",
+              "end_us": "1790275741583861.546",
+              "duration_us": "17.080"
+            },
+            {
+              "start_us": "1790275741583861.566",
+              "end_us": "1790275741583869.707",
+              "duration_us": "8.141"
+            },
+            {
+              "start_us": "1790275741583869.727",
+              "end_us": "1790275741583873.747",
+              "duration_us": "4.020"
+            },
+            {
+              "start_us": "1790275741583873.767",
+              "end_us": "1790275741583873.807",
+              "duration_us": "0.040"
+            },
+            {
+              "start_us": "1790275741583873.827",
+              "end_us": "1790275741583881.407",
+              "duration_us": "7.580"
+            },
+            {
+              "start_us": "1790275741583881.447",
+              "end_us": "1790275741583889.188",
+              "duration_us": "7.741"
+            },
+            {
+              "start_us": "1790275741583889.208",
+              "end_us": "1790275741583893.168",
+              "duration_us": "3.960"
+            },
+            {
+              "start_us": "1790275741583893.188",
+              "end_us": "1790275741583895.148",
+              "duration_us": "1.960"
+            },
+            {
+              "start_us": "1790275741583895.188",
+              "end_us": "1790275741583899.788",
+              "duration_us": "4.600"
+            },
+            {
+              "start_us": "1790275741583899.808",
+              "end_us": "1790275741583904.528",
+              "duration_us": "4.720"
+            },
+            {
+              "start_us": "1790275741583904.568",
+              "end_us": "1790275741583908.768",
+              "duration_us": "4.200"
+            },
+            {
+              "start_us": "1790275741583909.848",
+              "end_us": "1790275741583912.848",
+              "duration_us": "3.000"
+            },
+            {
+              "start_us": "1790275741583912.868",
+              "end_us": "1790275741583915.869",
+              "duration_us": "3.001"
+            },
+            {
+              "start_us": "1790275741583915.909",
+              "end_us": "1790275741583926.869",
+              "duration_us": "10.960"
+            },
+            {
+              "start_us": "1790275741583926.889",
+              "end_us": "1790275741583930.409",
+              "duration_us": "3.520"
+            },
+            {
+              "start_us": "1790275741583930.429",
+              "end_us": "1790275741583932.789",
+              "duration_us": "2.360"
+            },
+            {
+              "start_us": "1790275741583932.809",
+              "end_us": "1790275741583938.490",
+              "duration_us": "5.681"
+            },
+            {
+              "start_us": "1790275741583938.510",
+              "end_us": "1790275741583941.770",
+              "duration_us": "3.260"
+            },
+            {
+              "start_us": "1790275741583941.790",
+              "end_us": "1790275741583942.730",
+              "duration_us": "0.940"
+            },
+            {
+              "start_us": "1790275741583942.750",
+              "end_us": "1790275741583946.690",
+              "duration_us": "3.940"
+            },
+            {
+              "start_us": "1790275741583946.730",
+              "end_us": "1790275741583949.730",
+              "duration_us": "3.000"
+            },
+            {
+              "start_us": "1790275741583949.770",
+              "end_us": "1790275741583955.250",
+              "duration_us": "5.480"
+            },
+            {
+              "start_us": "1790275741583955.270",
+              "end_us": "1790275741583958.430",
+              "duration_us": "3.160"
+            },
+            {
+              "start_us": "1790275741583958.450",
+              "end_us": "1790275741583961.570",
+              "duration_us": "3.120"
+            },
+            {
+              "start_us": "1790275741583961.590",
+              "end_us": "1790275741583969.791",
+              "duration_us": "8.201"
+            },
+            {
+              "start_us": "1790275741583969.811",
+              "end_us": "1790275741583973.571",
+              "duration_us": "3.760"
+            },
+            {
+              "start_us": "1790275741583973.591",
+              "end_us": "1790275741583976.811",
+              "duration_us": "3.220"
+            },
+            {
+              "start_us": "1790275741583976.831",
+              "end_us": "1790275741583979.351",
+              "duration_us": "2.520"
+            }
+          ]
+        }
+      ],
+      "branch_observations": [
+        {
+          "step": 1,
+          "batch_size": 1,
+          "vocab_size": 128256,
+          "generator_count": 0
+        },
+        {
+          "step": 2,
+          "batch_size": 64,
+          "vocab_size": 128256,
+          "generator_count": 0
+        },
+        {
+          "step": 3,
+          "batch_size": 64,
+          "vocab_size": 128256,
+          "generator_count": 0
+        },
+        {
+          "step": 4,
+          "batch_size": 64,
+          "vocab_size": 128256,
+          "generator_count": 0
+        },
+        {
+          "step": 5,
+          "batch_size": 63,
+          "vocab_size": 128256,
+          "generator_count": 0
+        }
+      ]
+    },
+    "llama_inline": {
+      "directory": "2026-09-24-llama-disabled-b64",
+      "summary": {
+        "mode": "disabled",
+        "model": "Llama-3.2-1B-Instruct",
+        "batch_size": 64,
+        "steps": 5,
+        "device_tasks": 3785,
+        "compute_tasks": 3507,
+        "outside_scope_device_tasks": 0,
+        "physical_streams": [
+          "44",
+          "46"
+        ],
+        "overlap_steps": 1,
+        "total_model_random_overlap_us": "1052.263",
+        "kernel_csv_rows_verified": 3507,
+        "graph_nodes": 3785,
+        "graph_edges": 3793,
+        "edges_by_kind": {
+          "event_wait": 5,
+          "data_contract": 5,
+          "stream_order": 3783
+        }
+      },
+      "steps": [
+        {
+          "step": 1,
+          "phase": "prefill-or-mixed",
+          "request_count": 1,
+          "scheduled_tokens": 12,
+          "branch_kind": "inline_exponential",
+          "branch_stream": "44",
+          "forward_stream": "46",
+          "branch_compute_tasks": 7,
+          "forward_compute_tasks": 675,
+          "sampling_compute_tasks": 9,
+          "branch_start_us": "1790275843999155.750",
+          "branch_end_us": "1790275843999440.381",
+          "forward_start_us": "1790275843982141.829",
+          "forward_end_us": "1790275843997944.381",
+          "branch_to_forward_gap_us": "-17298.552",
+          "forward_to_branch_gap_us": "1211.369",
+          "overlap_us": "0",
+          "overlap_intervals": []
+        },
+        {
+          "step": 2,
+          "phase": "prefill-or-mixed",
+          "request_count": 64,
+          "scheduled_tokens": 757,
+          "branch_kind": "inline_exponential",
+          "branch_stream": "44",
+          "forward_stream": "46",
+          "branch_compute_tasks": 7,
+          "forward_compute_tasks": 723,
+          "sampling_compute_tasks": 9,
+          "branch_start_us": "1790275844020882.718",
+          "branch_end_us": "1790275844021940.021",
+          "forward_start_us": "1790275844009259.594",
+          "forward_end_us": "1790275844023202.651",
+          "branch_to_forward_gap_us": "-12680.427",
+          "forward_to_branch_gap_us": "-2319.933",
+          "overlap_us": "1052.263",
+          "overlap_intervals": [
+            {
+              "start_us": "1790275844020882.718",
+              "end_us": "1790275844021005.523",
+              "duration_us": "122.805"
+            },
+            {
+              "start_us": "1790275844021006.743",
+              "end_us": "1790275844021015.864",
+              "duration_us": "9.121"
+            },
+            {
+              "start_us": "1790275844021015.884",
+              "end_us": "1790275844021021.364",
+              "duration_us": "5.480"
+            },
+            {
+              "start_us": "1790275844021021.384",
+              "end_us": "1790275844021048.545",
+              "duration_us": "27.161"
+            },
+            {
+              "start_us": "1790275844021048.565",
+              "end_us": "1790275844021084.766",
+              "duration_us": "36.201"
+            },
+            {
+              "start_us": "1790275844021084.806",
+              "end_us": "1790275844021265.454",
+              "duration_us": "180.648"
+            },
+            {
+              "start_us": "1790275844021265.474",
+              "end_us": "1790275844021297.715",
+              "duration_us": "32.241"
+            },
+            {
+              "start_us": "1790275844021297.735",
+              "end_us": "1790275844021397.879",
+              "duration_us": "100.144"
+            },
+            {
+              "start_us": "1790275844021397.899",
+              "end_us": "1790275844021418.140",
+              "duration_us": "20.241"
+            },
+            {
+              "start_us": "1790275844021418.160",
+              "end_us": "1790275844021455.521",
+              "duration_us": "37.361"
+            },
+            {
+              "start_us": "1790275844021455.561",
+              "end_us": "1790275844021472.862",
+              "duration_us": "17.301"
+            },
+            {
+              "start_us": "1790275844021472.902",
+              "end_us": "1790275844021486.862",
+              "duration_us": "13.960"
+            },
+            {
+              "start_us": "1790275844021486.882",
+              "end_us": "1790275844021489.703",
+              "duration_us": "2.821"
+            },
+            {
+              "start_us": "1790275844021489.723",
+              "end_us": "1790275844021513.463",
+              "duration_us": "23.740"
+            },
+            {
+              "start_us": "1790275844021513.483",
+              "end_us": "1790275844021527.284",
+              "duration_us": "13.801"
+            },
+            {
+              "start_us": "1790275844021527.324",
+              "end_us": "1790275844021529.984",
+              "duration_us": "2.660"
+            },
+            {
+              "start_us": "1790275844021530.004",
+              "end_us": "1790275844021536.764",
+              "duration_us": "6.760"
+            },
+            {
+              "start_us": "1790275844021536.784",
+              "end_us": "1790275844021546.025",
+              "duration_us": "9.241"
+            },
+            {
+              "start_us": "1790275844021546.045",
+              "end_us": "1790275844021557.945",
+              "duration_us": "11.900"
+            },
+            {
+              "start_us": "1790275844021557.985",
+              "end_us": "1790275844021560.205",
+              "duration_us": "2.220"
+            },
+            {
+              "start_us": "1790275844021560.225",
+              "end_us": "1790275844021567.046",
+              "duration_us": "6.821"
+            },
+            {
+              "start_us": "1790275844021567.066",
+              "end_us": "1790275844021579.306",
+              "duration_us": "12.240"
+            },
+            {
+              "start_us": "1790275844021579.326",
+              "end_us": "1790275844021581.686",
+              "duration_us": "2.360"
+            },
+            {
+              "start_us": "1790275844021581.726",
+              "end_us": "1790275844021589.027",
+              "duration_us": "7.301"
+            },
+            {
+              "start_us": "1790275844021589.047",
+              "end_us": "1790275844021598.927",
+              "duration_us": "9.880"
+            },
+            {
+              "start_us": "1790275844021598.967",
+              "end_us": "1790275844021606.587",
+              "duration_us": "7.620"
+            },
+            {
+              "start_us": "1790275844021606.627",
+              "end_us": "1790275844021616.108",
+              "duration_us": "9.481"
+            },
+            {
+              "start_us": "1790275844021616.148",
+              "end_us": "1790275844021620.708",
+              "duration_us": "4.560"
+            },
+            {
+              "start_us": "1790275844021620.748",
+              "end_us": "1790275844021623.348",
+              "duration_us": "2.600"
+            },
+            {
+              "start_us": "1790275844021623.368",
+              "end_us": "1790275844021637.128",
+              "duration_us": "13.760"
+            },
+            {
+              "start_us": "1790275844021637.168",
+              "end_us": "1790275844021641.749",
+              "duration_us": "4.581"
+            },
+            {
+              "start_us": "1790275844021641.769",
+              "end_us": "1790275844021644.369",
+              "duration_us": "2.600"
+            },
+            {
+              "start_us": "1790275844021644.409",
+              "end_us": "1790275844021649.389",
+              "duration_us": "4.980"
+            },
+            {
+              "start_us": "1790275844021649.409",
+              "end_us": "1790275844021656.669",
+              "duration_us": "7.260"
+            },
+            {
+              "start_us": "1790275844021656.709",
+              "end_us": "1790275844021661.769",
+              "duration_us": "5.060"
+            },
+            {
+              "start_us": "1790275844021661.789",
+              "end_us": "1790275844021668.970",
+              "duration_us": "7.181"
+            },
+            {
+              "start_us": "1790275844021669.010",
+              "end_us": "1790275844021672.410",
+              "duration_us": "3.400"
+            },
+            {
+              "start_us": "1790275844021672.430",
+              "end_us": "1790275844021689.391",
+              "duration_us": "16.961"
+            },
+            {
+              "start_us": "1790275844021689.411",
+              "end_us": "1790275844021694.151",
+              "duration_us": "4.740"
+            },
+            {
+              "start_us": "1790275844021694.171",
+              "end_us": "1790275844021696.191",
+              "duration_us": "2.020"
+            },
+            {
+              "start_us": "1790275844021696.211",
+              "end_us": "1790275844021696.591",
+              "duration_us": "0.380"
+            },
+            {
+              "start_us": "1790275844021696.611",
+              "end_us": "1790275844021718.932",
+              "duration_us": "22.321"
+            },
+            {
+              "start_us": "1790275844021718.952",
+              "end_us": "1790275844021728.452",
+              "duration_us": "9.500"
+            },
+            {
+              "start_us": "1790275844021728.472",
+              "end_us": "1790275844021735.152",
+              "duration_us": "6.680"
+            },
+            {
+              "start_us": "1790275844021735.172",
+              "end_us": "1790275844021740.173",
+              "duration_us": "5.001"
+            },
+            {
+              "start_us": "1790275844021740.193",
+              "end_us": "1790275844021746.873",
+              "duration_us": "6.680"
+            },
+            {
+              "start_us": "1790275844021746.893",
+              "end_us": "1790275844021750.313",
+              "duration_us": "3.420"
+            },
+            {
+              "start_us": "1790275844021750.333",
+              "end_us": "1790275844021754.293",
+              "duration_us": "3.960"
+            },
+            {
+              "start_us": "1790275844021754.333",
+              "end_us": "1790275844021773.334",
+              "duration_us": "19.001"
+            },
+            {
+              "start_us": "1790275844021774.714",
+              "end_us": "1790275844021824.976",
+              "duration_us": "50.262"
+            },
+            {
+              "start_us": "1790275844021824.996",
+              "end_us": "1790275844021910.659",
+              "duration_us": "85.663"
+            },
+            {
+              "start_us": "1790275844021910.679",
+              "end_us": "1790275844021924.540",
+              "duration_us": "13.861"
+            },
+            {
+              "start_us": "1790275844021925.680",
+              "end_us": "1790275844021934.440",
+              "duration_us": "8.760"
+            },
+            {
+              "start_us": "1790275844021934.460",
+              "end_us": "1790275844021940.021",
+              "duration_us": "5.561"
+            }
+          ]
+        },
+        {
+          "step": 3,
+          "phase": "decode",
+          "request_count": 64,
+          "scheduled_tokens": 64,
+          "branch_kind": "inline_exponential",
+          "branch_stream": "44",
+          "forward_stream": "46",
+          "branch_compute_tasks": 7,
+          "forward_compute_tasks": 659,
+          "sampling_compute_tasks": 9,
+          "branch_start_us": "1790275844042665.849",
+          "branch_end_us": "1790275844043943.480",
+          "forward_start_us": "1790275844030920.080",
+          "forward_end_us": "1790275844041636.668",
+          "branch_to_forward_gap_us": "-13023.400",
+          "forward_to_branch_gap_us": "1029.181",
+          "overlap_us": "0",
+          "overlap_intervals": []
+        },
+        {
+          "step": 4,
+          "phase": "decode",
+          "request_count": 64,
+          "scheduled_tokens": 64,
+          "branch_kind": "inline_exponential",
+          "branch_stream": "44",
+          "forward_stream": "46",
+          "branch_compute_tasks": 7,
+          "forward_compute_tasks": 659,
+          "sampling_compute_tasks": 9,
+          "branch_start_us": "1790275844061009.803",
+          "branch_end_us": "1790275844062274.833",
+          "forward_start_us": "1790275844049520.423",
+          "forward_end_us": "1790275844060066.545",
+          "branch_to_forward_gap_us": "-12754.410",
+          "forward_to_branch_gap_us": "943.258",
+          "overlap_us": "0",
+          "overlap_intervals": []
+        },
+        {
+          "step": 5,
+          "phase": "decode",
+          "request_count": 63,
+          "scheduled_tokens": 63,
+          "branch_kind": "inline_exponential",
+          "branch_stream": "44",
+          "forward_stream": "46",
+          "branch_compute_tasks": 7,
+          "forward_compute_tasks": 659,
+          "sampling_compute_tasks": 9,
+          "branch_start_us": "1790275844080621.727",
+          "branch_end_us": "1790275844081851.936",
+          "forward_start_us": "1790275844067938.360",
+          "forward_end_us": "1790275844078555.724",
+          "branch_to_forward_gap_us": "-13913.576",
+          "forward_to_branch_gap_us": "2066.003",
+          "overlap_us": "0",
+          "overlap_intervals": []
+        }
+      ],
+      "branch_observations": [
+        {
+          "step": 1,
+          "generator_count": 0
+        },
+        {
+          "step": 2,
+          "generator_count": 0
+        },
+        {
+          "step": 3,
+          "generator_count": 0
+        },
+        {
+          "step": 4,
+          "generator_count": 0
+        },
+        {
+          "step": 5,
+          "generator_count": 0
+        }
+      ]
+    }
+  },
+  "observed_invariants": {
+    "physical_streams": [
+      "44",
+      "46"
+    ],
+    "default_model_stream": "46",
+    "random_stream": "44",
+    "random_kernel_sequence": [
+      "DSARandomUniform",
+      "Neg",
+      "Add",
+      "GreaterEqual",
+      "MaskedFill",
+      "Log",
+      "Mul"
+    ],
+    "qwen_async_overlap_steps": 4,
+    "llama_async_overlap_steps": 4
+  }
+}

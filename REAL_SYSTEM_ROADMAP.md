@@ -83,6 +83,12 @@ Practice 16随后补充同步消融：每轮等待与最后统一等待在无pro
 完整耗时中位数20.522ms与20.163ms；独立提前读取诊断56次均读到哨兵，最终等待后全量输出正确。
 另采144个计算任务及拷贝/event证据，明确提交更快不等于计算已完成。见[同步对照](practice_16_multistream_parallel/SYNC_COMPARISON.md)。
 
+同日继续完成Practice 17：在真实vLLM eager请求中定位Ascend sampler的指数随机数stream。
+Qwen batch 32与Llama batch 64的提前随机分支均在5个scheduler step中的4个与模型计算重叠，
+物理stream分别为44和46；另保留关闭开关、小batch和请求级seed对照，证明多stream不自动等于并行。
+图连接逐task stream顺序、设备event wait、Host event同步及实际被sampler消费的q tensor。
+见[结果](practice_17_vllm_multistream/RESULTS.md)。
+
 2026-09-22 根据用户的学习方向调整顺序：将算子调用与设备时间线提前为 Practice 09；
 原计划的释放复用、continuous batching 顺延。graph 对照与独立算子实验留到后续。
 

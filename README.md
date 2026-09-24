@@ -211,3 +211,14 @@ See [the guide](practice_16_multistream_parallel/README.md),
 Practice 16 also compares [per-round waits, a final join, and premature reads](practice_16_multistream_parallel/SYNC_COMPARISON.md).
 Unprofiled measurements separate submission from completed work; a separate
 trace verifies unchanged operators, ordered sample copies and actual waits.
+
+## Practice 17: reconstruct vLLM multi-stream execution
+
+Trigger the real vLLM-Ascend sampling branch on Qwen2.5-0.5B-Instruct and
+Llama-3.2-1B-Instruct. Batched eager requests execute exponential-random kernels
+on physical stream 44 while model kernels run on stream 46. The graph preserves
+per-stream order, event waits or host event synchronization, and the exact random
+tensor consumed by sampling. Matched controls show why a second stream does not
+always produce device overlap.
+See [the guide](practice_17_vllm_multistream/README.md) and
+[findings](practice_17_vllm_multistream/RESULTS.md).
