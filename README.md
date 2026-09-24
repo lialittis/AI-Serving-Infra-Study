@@ -4,7 +4,7 @@ Exercises for understanding language-model serving: CPU-friendly KV-cache
 exercises and a reproducible Ascend NPU inference and concurrency experiment.
 
 The next stage follows a real request through the installed vLLM / Ascend stack.
-See [REAL_SYSTEM_ROADMAP.md](REAL_SYSTEM_ROADMAP.md) for the recorded Practice 07–14 plan.
+See [REAL_SYSTEM_ROADMAP.md](REAL_SYSTEM_ROADMAP.md) for the recorded Practice 07–15 plan.
 
 ## Stage report: the complete inference journey
 
@@ -166,3 +166,14 @@ KV/FIA links; replay-internal attribution limits are recorded separately.
 Practice 12 also records each observed eager event and each graph replay, including
 capture/current storage checks, native event identities and metadata preparation
 chains. See [the resource ledger guide](practice_12_kv_block_reuse/RESOURCE_RECORDS.md).
+
+## Practice 13: observe CPU submission and NPU execution
+
+Record cold Triton compilation and binary registration, then follow a warm eager
+request through actual launcher/API parameters, CPU enqueue/dequeue, CANN launch,
+NPU execution and native result-transfer waits. The offline report includes
+operator timelines, tensor addresses, CPU/NPU overlap and all 1,444 correlated
+inference tasks. It distinguishes observed runtime registration from unobserved
+kernel-code DMA timing and hidden native argument bytes.
+See [the reproduction guide](practice_13_operator_submission/README.md) and
+[interactive report](practice_13_operator_submission/results/2026-09-24-run03/analysis/index.html).

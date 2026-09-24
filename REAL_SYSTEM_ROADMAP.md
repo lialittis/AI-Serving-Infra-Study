@@ -36,7 +36,7 @@ flowchart TD
 
 ## 实验顺序
 
-当前进度：**Practice 07–12 已在远端真实运行完成**。
+当前进度：**Practice 07–13 已在远端真实运行完成**。
 07 于 2026-09-20 完成请求路径追踪，见 [结果与证据](practice_07_real_request_trace/RESULTS.md)；
 08 于 2026-09-22 完成跨 block 的真实 KV 映射及第一层数据校验，
 见 [结果与证据](practice_08_real_kv_mapping/RESULTS.md)；
@@ -58,6 +58,12 @@ graph的decode普通分区重放，488个重放任务仍缺少逐FX关联。
 发现启动阶段graph对象ID可复用，完成event也跨轮复用；以具体发生次序区分。
 隐藏workspace、完整逐ATen参数、prefix caching、并发和async scheduling仍待后续单独开展。
 
+2026-09-24 按用户要求，Practice 13优先研究正常推理的CPU提交与运行时执行：
+隔离Triton冷缓存，记录编译、注册、真实参数、队列、CANN下发、NPU执行和CPU重叠活动。
+正式eager请求1444个设备任务均已关联，8次Triton编译发生于启动/预热；
+明确区分注册边界和未暴露的代码DMA、原生参数包字节。见[结果](practice_13_operator_submission/RESULTS.md)。
+原continuous batching和独立算子扩展顺延为14、15。
+
 2026-09-22 根据用户的学习方向调整顺序：将算子调用与设备时间线提前为 Practice 09；
 原计划的释放复用、continuous batching 顺延。graph 对照与独立算子实验留到后续。
 
@@ -76,8 +82,9 @@ graph的decode普通分区重放，488个重放任务仍缺少逐FX关联。
 | 10：真实模型计算图 | forward 的算子与 tensor 怎样连接？ | 导出实际 Dynamo FX 图、节点 shape/源码、attention 副作用边界和 vLLM 分区，验证真实请求运行 |
 | 11：attention 节点的真实执行 | 一个 FX 节点使用哪些存储、对应哪些设备任务？ | graph 模式下关联第一层 Q/K/V、上下文、KV 写入、output 与后续分区；区分直接调用与重放证据 |
 | 12：真实释放和复用 | request 结束后 block 怎样回收？ | 已完成串行 eager / PIECEWISE graph 匹配对照；关联24层设备访问、原生等待、引用计数和空闲队列。prefix caching 对照留待扩展 |
-| 13：continuous batching | 多个请求怎样共享一次执行？ | 长短请求交错到达，记录每轮请求集合、调度 token 数和完成情况 |
-| 14：执行模式与独立算子 | graph 改变什么，真实算子能否单独复现？ | 12已完成PIECEWISE对照；继续研究FULL graph、重放内部Model/Task关联与独立算子实验 |
+| 13：CPU提交与运行时执行 | 何时编译/注册，提交什么，CPU与NPU怎样重叠？ | 已完成冷编译与预热后eager推理；真实参数、队列correlation、CANN/NPU flow、结果回传等待及离线执行时间线 |
+| 14：continuous batching | 多个请求怎样共享一次执行？ | 长短请求交错到达，记录每轮请求集合、调度 token 数和完成情况 |
+| 15：执行模式与独立算子 | graph 改变什么，真实算子能否单独复现？ | 12已完成PIECEWISE对照；继续研究FULL graph、重放内部Model/Task关联与独立算子实验 |
 
 12 特别区分 request 结束、引用计数归零、缓存淘汰、数据覆盖。
 07/08 的主机调用日志不能证明设备上的生命周期违规或 race；09 的 profiler 也有观察开销，

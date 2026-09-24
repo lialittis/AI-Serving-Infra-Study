@@ -1,0 +1,43 @@
+{
+  "argv": [
+    "/usr/local/python3.12.13/bin/python",
+    "-m",
+    "vllm.entrypoints.cli.main",
+    "serve",
+    "/data/huggingface_home/hub/Qwen2.5-0.5B-Instruct",
+    "--served-model-name",
+    "qwen-submission",
+    "--host",
+    "127.0.0.1",
+    "--port",
+    "8013",
+    "--tensor-parallel-size",
+    "1",
+    "--dtype",
+    "bfloat16",
+    "--max-model-len",
+    "256",
+    "--max-num-seqs",
+    "1",
+    "--max-num-batched-tokens",
+    "256",
+    "--gpu-memory-utilization",
+    "0.3",
+    "--block-size",
+    "128",
+    "--enforce-eager",
+    "--no-enable-prefix-caching",
+    "--no-enable-chunked-prefill",
+    "--no-async-scheduling",
+    "--profiler-config",
+    "{\"profiler\": \"torch\", \"torch_profiler_dir\": \"/data/tianchi/practice_13_operator_submission/results/2026-09-24-run03/profiler\", \"torch_profiler_with_stack\": false, \"ignore_frontend\": true}"
+  ],
+  "environment_overrides": {
+    "HF_HUB_OFFLINE": "1",
+    "TRANSFORMERS_OFFLINE": "1",
+    "VLLM_WORKER_MULTIPROC_METHOD": "spawn",
+    "P13_TRACE_DIR": "/data/tianchi/practice_13_operator_submission/results/2026-09-24-run03/events",
+    "TRITON_CACHE_DIR": "/data/tianchi/practice_13_operator_submission/results/2026-09-24-run03/compiler_cache",
+    "PYTHONPATH": "/data/tianchi/practice_13_operator_submission:/data/tianchi/practice_07_real_request_trace:/usr/local/Ascend/cann-9.0.0/python/site-packages:/usr/local/Ascend/cann-9.0.0/opp/built-in/op_impl/ai_core/tbe:"
+  }
+}
