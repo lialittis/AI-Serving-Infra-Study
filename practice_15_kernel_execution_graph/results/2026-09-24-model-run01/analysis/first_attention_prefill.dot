@@ -1,0 +1,57 @@
+digraph execution {
+rankdir=TB;
+graph [label="prefill · first attention · observed execution", labelloc=t];
+node [shape=box, style=rounded, fontname="sans-serif", fontsize=10];
+edge [fontname="sans-serif", fontsize=8];
+subgraph cluster_host { label="host";
+"host:672358:672358:1790269978257417.283" [label="_triton_rope"];
+"host:672358:672358:1790269978258161.945" [label="aclnnInplaceCopy"];
+"host:672358:672358:1790269978258193.751" [label="ReshapeCacheOperation"];
+"host:672358:672358:1790269978258715.170" [label="aclnnFusedInferAttentionScoreV3"];
+"host:672358:672358:1790269978258855.290" [label="aclnnInplaceCopy"];
+}
+subgraph cluster_submission { label="submission";
+"submission:688494847:672669:1790269978257434.803" [label="Node@launch"];
+"submission:688494847:672669:1790269978258171.436" [label="Node@launch"];
+"submission:688494847:672669:1790269978258242.106" [label="Node@launch"];
+"submission:688494847:672669:1790269978258755.818" [label="Node@launch"];
+"submission:688494847:672669:1790269978258781.011" [label="Node@launch"];
+"submission:688494847:672669:1790269978258864.268" [label="AscendCL@aclnnInplaceCopy"];
+}
+subgraph cluster_kernel { label="kernel";
+"k:18484" [label="_triton_rope\nstream 46 / task 2011"];
+"k:18486" [label="aclnnInplaceCopy_SliceAiCore_Slice\nstream 46 / task 2012"];
+"k:18488" [label="ReshapeAndCacheNdKernel\nstream 46 / task 2013"];
+"k:18490" [label="aclnnContiguous_SliceAiCore_Slice\nstream 46 / task 2014"];
+"k:18492" [label="FusedInferAttentionScore\nstream 46 / task 2015"];
+"k:21045" [label="MEMCPY_ASYNC\nstream 46 / task 2016"];
+}
+"host:672358:672358:1790269978257417.283" -> "submission:688494847:672669:1790269978257434.803" [label="dispatch", color="#7d8792", style=solid];
+"submission:688494847:672669:1790269978257434.803" -> "k:18484" [label="launch", color="#7d8792", style=solid];
+"host:672358:672358:1790269978258161.945" -> "submission:688494847:672669:1790269978258171.436" [label="dispatch", color="#7d8792", style=solid];
+"submission:688494847:672669:1790269978258171.436" -> "k:18486" [label="launch", color="#7d8792", style=solid];
+"host:672358:672358:1790269978258193.751" -> "submission:688494847:672669:1790269978258242.106" [label="dispatch", color="#7d8792", style=solid];
+"submission:688494847:672669:1790269978258242.106" -> "k:18488" [label="launch", color="#7d8792", style=solid];
+"host:672358:672358:1790269978258715.170" -> "submission:688494847:672669:1790269978258755.818" [label="dispatch", color="#7d8792", style=solid];
+"submission:688494847:672669:1790269978258755.818" -> "k:18490" [label="launch", color="#7d8792", style=solid];
+"host:672358:672358:1790269978258715.170" -> "submission:688494847:672669:1790269978258781.011" [label="dispatch", color="#7d8792", style=solid];
+"submission:688494847:672669:1790269978258781.011" -> "k:18492" [label="launch", color="#7d8792", style=solid];
+"host:672358:672358:1790269978258855.290" -> "submission:688494847:672669:1790269978258864.268" [label="dispatch", color="#7d8792", style=solid];
+"submission:688494847:672669:1790269978258864.268" -> "k:21045" [label="launch", color="#7d8792", style=solid];
+"host:672358:672358:1790269978257417.283" -> "host:672358:672358:1790269978258161.945" [label="host_issue_order", color="#7d8792", style=solid];
+"host:672358:672358:1790269978258161.945" -> "host:672358:672358:1790269978258193.751" [label="host_issue_order", color="#7d8792", style=solid];
+"host:672358:672358:1790269978258193.751" -> "host:672358:672358:1790269978258715.170" [label="host_issue_order", color="#7d8792", style=solid];
+"host:672358:672358:1790269978258715.170" -> "host:672358:672358:1790269978258855.290" [label="host_issue_order", color="#7d8792", style=solid];
+"submission:688494847:672669:1790269978257434.803" -> "submission:688494847:672669:1790269978258171.436" [label="submission_order", color="#7d8792", style=solid];
+"submission:688494847:672669:1790269978258171.436" -> "submission:688494847:672669:1790269978258242.106" [label="submission_order", color="#7d8792", style=solid];
+"submission:688494847:672669:1790269978258242.106" -> "submission:688494847:672669:1790269978258755.818" [label="submission_order", color="#7d8792", style=solid];
+"submission:688494847:672669:1790269978258755.818" -> "submission:688494847:672669:1790269978258781.011" [label="submission_order", color="#7d8792", style=solid];
+"submission:688494847:672669:1790269978258781.011" -> "submission:688494847:672669:1790269978258864.268" [label="submission_order", color="#7d8792", style=solid];
+"k:18484" -> "k:18486" [label="stream_order", color="#607e9e", style=solid];
+"k:18486" -> "k:18488" [label="stream_order", color="#607e9e", style=solid];
+"k:18488" -> "k:18490" [label="stream_order", color="#607e9e", style=solid];
+"k:18490" -> "k:18492" [label="stream_order", color="#607e9e", style=solid];
+"k:18492" -> "k:21045" [label="stream_order", color="#607e9e", style=solid];
+"k:18484" -> "k:18488" [label="data_contract", color="#098366", style=solid];
+"k:18484" -> "k:18492" [label="data_contract", color="#098366", style=solid];
+}

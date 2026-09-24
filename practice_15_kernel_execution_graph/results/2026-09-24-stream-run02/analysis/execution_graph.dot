@@ -1,0 +1,24 @@
+digraph execution {
+rankdir=LR;
+node [shape=box, fontname="sans-serif"];
+"k:70" [label="aclnnAdds_AddAiCore_Add\nstream 44"];
+"k:72" [label="EVENT_RECORD\nstream 44\ngeneration 1"];
+"k:74" [label="EVENT_WAIT\nstream 43\ngeneration 1"];
+"k:76" [label="aclnnMuls_MulAiCore_Mul\nstream 43"];
+"k:78" [label="EVENT_RECORD\nstream 43\ngeneration 2"];
+"k:80" [label="EVENT_WAIT\nstream 44\ngeneration 2"];
+"k:82" [label="aclnnAdd_AddAiCore_Add\nstream 44"];
+"k:84" [label="EVENT_RECORD\nstream 44\ngeneration 3"];
+"wait:3" [label="CPU synchronize returned\nCPU"];
+"k:70" -> "k:72" [label="stream_order"];
+"k:72" -> "k:80" [label="stream_order"];
+"k:80" -> "k:82" [label="stream_order"];
+"k:82" -> "k:84" [label="stream_order"];
+"k:74" -> "k:76" [label="stream_order"];
+"k:76" -> "k:78" [label="stream_order"];
+"k:72" -> "k:74" [label="event_wait g1"];
+"k:78" -> "k:80" [label="event_wait g2"];
+"k:84" -> "wait:3" [label="event_sync"];
+"k:70" -> "k:76" [label="data_contract y"];
+"k:76" -> "k:82" [label="data_contract z"];
+}

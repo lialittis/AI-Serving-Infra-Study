@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="zh-CN"><meta charset="utf-8"><title>Kernel execution graph · Practice 15</title>
+<style>
+body{margin:0;background:#f4f6fa;color:#1b2c42;font:15px system-ui,sans-serif}header{padding:26px 32px;background:#14263e;color:white}h1{margin:0 0 12px;font-size:26px}p{line-height:1.65}main{padding:20px 28px}.controls{display:flex;gap:12px;flex-wrap:wrap;align-items:center;background:white;padding:16px;border-radius:10px}select,input,button{padding:8px;border:1px solid #a7b4c5;border-radius:5px;background:white}#summary{margin:16px 0}#viewport{overflow:auto;max-height:600px;background:white;border:1px solid #d9e0eb;border-radius:8px}svg text{font:12px system-ui,sans-serif}svg .task{cursor:pointer}svg .task:hover rect{stroke:#e07d12;stroke-width:3}#detail{white-space:pre-wrap;overflow:auto;max-height:480px;background:#13263d;color:#e6effa;padding:18px;border-radius:8px;font:12px/1.6 monospace}table{border-collapse:collapse;width:100%;background:white}td,th{text-align:left;padding:9px;border-bottom:1px solid #e1e6ed}tr{cursor:pointer}tr:hover{background:#eaf3ff}.legend{display:flex;gap:20px;margin:14px 0;flex-wrap:wrap}.muted{color:#59697c}a{color:#2169af}#limits{font-size:13px}.panel{margin:18px 0}button{cursor:pointer}
+</style>
+<header><h1>Kernel execution graph</h1><div>Practice 15 · CPU 提交 → NPU stream → 执行与数据关系</div></header>
+<main><div id="summary"></div>
+<div class="controls"><label>阶段 <select id="phase"></select></label><label>名称 <input id="search" placeholder="例如 rope / Attention / EVENT"></label><label>起点 <input id="offset" type="number" value="0" min="0" style="width:65px"></label><label>任务数 <select id="count"><option>24</option><option>60</option><option>120</option></select></label><button id="prev">上一页</button><button id="next">下一页</button></div>
+<div class="legend"><span style="color:#63809f">— stream 顺序</span><span style="color:#098366">— 数据契约 RAW</span><span style="color:#bf842b">┄ KV 存储候选关系</span><span style="color:#965dc5">— event 完成同步</span></div>
+<p class="muted">图按任务顺序排布，横向距离不代表耗时。每次显示选定范围的任务；过滤后没有显示的中间任务不会被自动连边。点击节点查看 CPU/队列/下发证据、stream 句柄和原始参数。</p>
+<div id="viewport"><svg id="graph"></svg></div>
+<div class="panel"><h3>选中任务的提交路径</h3><div id="chain" class="controls"></div></div>
+<div class="panel"><h3>节点与依赖证据</h3><div id="detail">点击图中的任意任务。</div></div>
+<div class="panel"><h3>所选任务的 host 提交链</h3><table><thead><tr><th>NPU task</th><th>主机算子</th><th>stream / task ID</th><th>设备耗时 μs</th></tr></thead><tbody id="rows"></tbody></table></div>
+<div class="panel"><h3>观测边界</h3><ul id="limits"></ul></div>
+</main><script id="data" type="application/json">__GRAPH_DATA__</script>
+<script>
+const D=JSON.parse(document.getElementById('data').textContent),byId=new Map(D.nodes.map(n=>[n.id,n]));
+function ns(s){const[a,b='']=String(s).split('.');return BigInt(a)*1000n+BigInt((b+'000').slice(0,3))}
+const all=D.nodes.filter(n=>n.kind==='kernel').sort((a,b)=>ns(a.start_us)<ns(b.start_us)?-1:ns(a.start_us)>ns(b.start_us)?1:0);
+const $=id=>document.getElementById(id),NS='http://www.w3.org/2000/svg';
+function el(tag,attrs,text){let e=document.createElementNS(NS,tag);for(const[k,v]of Object.entries(attrs||{}))e.setAttribute(k,v);if(text!==undefined)e.textContent=text;return e}
+for(const p of ['all',...new Set(all.map(n=>n.phase))]){let o=document.createElement('option');o.value=p;o.textContent=p;$('phase').append(o)}
+$('summary').textContent=`${D.summary.kernel_tasks} 个真实设备任务 · ${D.streams.length} 条物理 stream · ${D.summary.graph_edges} 条分类边 · 数据覆盖为局部，未知访问未补全`;
+for(const l of D.limits){let li=document.createElement('li');li.textContent=l;$('limits').append(li)}
+function detail(n){$('chain').replaceChildren();const links=D.edges.filter(e=>e.source===n.id||e.target===n.id);const launch=links.find(e=>e.kind==='launch');const sub=launch?byId.get(launch.source):null;const dispatch=sub?D.edges.find(e=>e.kind==='dispatch'&&e.target===sub.id):null;const stages=[['CPU 调用',dispatch?byId.get(dispatch.source)?.name:n.host_operator],['入队',n.queue?.correlation_id],['下发线程',n.queue?.dequeue?.tid],['CANN',sub?.name],['NPU stream / task',n.stream+' / '+n.task_id]];for(const [title,value]of stages){if(value===undefined||value===null)continue;const box=document.createElement('span');box.textContent=title+' → '+value;$('chain').append(box)}$('detail').textContent=JSON.stringify({node:n,host:dispatch?byId.get(dispatch.source):null,submission:sub,parameters:(n.scopes||[]).map(s=>(D.parameter_scopes||{})[s]).filter(Boolean),relations:links},null,2)}
+function draw(){const phase=$('phase').value,q=$('search').value.toLowerCase(),offset=Number($('offset').value)||0,count=Number($('count').value);const filtered=all.filter(n=>(phase==='all'||n.phase===phase)&&n.name.toLowerCase().includes(q));const chosen=filtered.slice(offset,offset+count);const lanes=[...new Set(chosen.map(n=>n.device_lane+':'+n.stream))];const svg=$('graph');svg.replaceChildren();const width=Math.max(900,chosen.length*190+140),height=Math.max(240,lanes.length*160+120);svg.setAttribute('width',width);svg.setAttribute('height',height);const positions=new Map();
+lanes.forEach((l,i)=>{svg.append(el('text',{x:12,y:100+i*160},'stream '+l.split(':').pop()))});
+chosen.forEach((n,i)=>positions.set(n.id,{x:130+i*190,y:100+lanes.indexOf(n.device_lane+':'+n.stream)*160}));
+const colors={stream_order:'#63809f',data_contract:'#098366',storage_candidate:'#bf842b',event_sync:'#965dc5',event_wait:'#965dc5'};
+for(const edge of D.edges){if(!colors[edge.kind]||!positions.has(edge.source)||!positions.has(edge.target))continue;const a=positions.get(edge.source),b=positions.get(edge.target),bend=edge.kind==='stream_order'?0:Math.min(65,25+Math.abs(b.x-a.x)*.08);const path=el('path',{d:`M${a.x+154},${a.y} C${a.x+172},${a.y-bend} ${b.x-25},${b.y-bend} ${b.x},${b.y}`,fill:'none',stroke:colors[edge.kind],'stroke-width':edge.kind==='stream_order'?1.5:2,'stroke-dasharray':edge.kind==='storage_candidate'?'5 3':''});path.append(el('title',{},edge.kind+' '+edge.semantics));svg.append(path);svg.append(el('path',{d:`M${b.x-6},${b.y-4} L${b.x},${b.y} L${b.x-6},${b.y+4}`,fill:'none',stroke:colors[edge.kind]}))}
+for(const n of chosen){const{x,y}=positions.get(n.id),g=el('g',{class:'task'});g.append(el('rect',{x,y:y-26,width:154,height:62,rx:6,fill:n.name.includes('EVENT')?'#f3ebfa':'#edf4fd',stroke:'#91aac6'}));g.append(el('text',{x:x+8,y:y-6},n.name.length>21?n.name.slice(0,19)+'…':n.name));g.append(el('text',{x:x+8,y:y+15},'task '+n.task_id+' · '+n.phase));g.append(el('title',{},n.name));g.onclick=()=>detail(n);svg.append(g)}
+$('rows').replaceChildren();for(const n of chosen){let tr=document.createElement('tr');for(const value of [n.name,n.host_operator,n.stream+' / '+n.task_id,(Number(ns(n.end_us)-ns(n.start_us))/1000).toFixed(3)]){let td=document.createElement('td');td.textContent=value;tr.append(td)}tr.onclick=()=>detail(n);$('rows').append(tr)}if(chosen.length)detail(chosen[0]);}
+for(const id of ['phase','search','offset','count'])$(id).addEventListener('input',draw);
+$('prev').onclick=()=>{$('offset').value=Math.max(0,Number($('offset').value)-Number($('count').value));draw()};$('next').onclick=()=>{$('offset').value=Number($('offset').value)+Number($('count').value);draw()};draw();
+</script></html>

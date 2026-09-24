@@ -4,7 +4,7 @@ Exercises for understanding language-model serving: CPU-friendly KV-cache
 exercises and a reproducible Ascend NPU inference and concurrency experiment.
 
 The next stage follows a real request through the installed vLLM / Ascend stack.
-See [REAL_SYSTEM_ROADMAP.md](REAL_SYSTEM_ROADMAP.md) for the recorded Practice 07–15 plan.
+See [REAL_SYSTEM_ROADMAP.md](REAL_SYSTEM_ROADMAP.md) for the recorded Practice 07–17 plan.
 
 ## Stage report: the complete inference journey
 
@@ -177,3 +177,13 @@ inference tasks. It distinguishes observed runtime registration from unobserved
 kernel-code DMA timing and hidden native argument bytes.
 See [the reproduction guide](practice_13_operator_submission/README.md) and
 [interactive report](practice_13_operator_submission/results/2026-09-24-run03/analysis/index.html).
+
+## Practice 15: reconstruct a kernel execution graph
+
+Connect a fresh eager model trace into typed host-dispatch, physical-stream,
+event-completion and scoped tensor-dependency edges. Browse all 1,444 device
+tasks, keeping partial data coverage explicit. A separate real-NPU two-stream
+probe verifies cross-stream event waits and repeated event generations.
+See [the guide](practice_15_kernel_execution_graph/README.md),
+[model graph](practice_15_kernel_execution_graph/results/2026-09-24-model-run01/analysis/index.html)
+and [two-stream graph](practice_15_kernel_execution_graph/results/2026-09-24-stream-run02/analysis/execution_graph.svg).
