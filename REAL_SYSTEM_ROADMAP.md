@@ -36,7 +36,7 @@ flowchart TD
 
 ## 实验顺序
 
-当前进度：**Practice 07–13、15 已在远端真实运行完成**。
+当前进度：**Practice 07–15 已在远端真实运行完成**。
 07 于 2026-09-20 完成请求路径追踪，见 [结果与证据](practice_07_real_request_trace/RESULTS.md)；
 08 于 2026-09-22 完成跨 block 的真实 KV 映射及第一层数据校验，
 见 [结果与证据](practice_08_real_kv_mapping/RESULTS.md)；
@@ -64,6 +64,11 @@ graph的decode普通分区重放，488个重放任务仍缺少逐FX关联。
 明确区分注册边界和未暴露的代码DMA、原生参数包字节。见[结果](practice_13_operator_submission/RESULTS.md)。
 原continuous batching和独立算子扩展顺延为14、15。
 
+同日按用户要求，Practice 14只研究KV池的实际初始化分配，不增加推理请求或模式对照。
+已核对24层48个K/V存储、allocator快照和887对CANN物理内存申请/映射，
+确认服务默认使用expandable segments，reshape与模型绑定复用原存储。
+见[逐步结果](practice_14_kv_pool_allocation/RESULTS.md)。后续batching与独立算子顺延为15、16。
+
 同日按用户要求，Practice 15优先构建调度层kernel execution graph。
 重新采集单请求eager模型，连接1444个任务的CPU/CANN下发、stream顺序、原生等待和局部数据关系；
 另以真实双stream控制实验验证event代次及跨流同步。完整数据依赖尚未覆盖，明确保留未知访问。
@@ -88,6 +93,7 @@ graph的decode普通分区重放，488个重放任务仍缺少逐FX关联。
 | 11：attention 节点的真实执行 | 一个 FX 节点使用哪些存储、对应哪些设备任务？ | graph 模式下关联第一层 Q/K/V、上下文、KV 写入、output 与后续分区；区分直接调用与重放证据 |
 | 12：真实释放和复用 | request 结束后 block 怎样回收？ | 已完成串行 eager / PIECEWISE graph 匹配对照；关联24层设备访问、原生等待、引用计数和空闲队列。prefix caching 对照留待扩展 |
 | 13：CPU提交与运行时执行 | 何时编译/注册，提交什么，CPU与NPU怎样重叠？ | 已完成冷编译与预热后eager推理；真实参数、队列correlation、CANN/NPU flow、结果回传等待及离线执行时间线 |
+| 14：KV池实际分配 | 初始化时谁申请内存，地址、物理句柄和KV tensor怎样对应？ | 已完成预算、48个存储、allocator历史、CANN物理申请/映射、reshape与绑定的逐项核验；不发送推理请求 |
 | 15：kernel execution graph | host提交怎样连接到stream、同步及数据关系？ | 已完成1444个eager设备任务的类型化图、局部RAW与KV存储候选边；独立双stream真实实验验证event复用和等待 |
 | 16：continuous batching | 多个请求怎样共享一次执行？ | 长短请求交错到达，记录每轮请求集合、调度 token 数和完成情况 |
 | 17：执行模式与独立算子 | graph 改变什么，真实算子能否单独复现？ | 12已完成PIECEWISE对照；继续研究FULL graph、重放内部Model/Task关联与独立算子实验 |

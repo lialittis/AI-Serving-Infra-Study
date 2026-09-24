@@ -178,6 +178,16 @@ kernel-code DMA timing and hidden native argument bytes.
 See [the reproduction guide](practice_13_operator_submission/README.md) and
 [interactive report](practice_13_operator_submission/results/2026-09-24-run03/analysis/index.html).
 
+## Practice 14: observe actual KV pool allocation
+
+Follow service initialization from the KV memory budget to raw K/V tensors,
+torch-npu allocator blocks, actual CANN physical-memory allocation and mapping,
+BF16 views and CPU block bookkeeping. The recorded expandable-segment path
+reuses an existing virtual address arena; all 48 K/V storages are reconciled
+against native calls and allocator snapshots. No inference request is sent.
+See [the focused reproduction guide](practice_14_kv_pool_allocation/README.md)
+and [six-step findings](practice_14_kv_pool_allocation/RESULTS.md).
+
 ## Practice 15: reconstruct a kernel execution graph
 
 Connect a fresh eager model trace into typed host-dispatch, physical-stream,
