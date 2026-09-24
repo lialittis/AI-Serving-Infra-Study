@@ -1,0 +1,5684 @@
+{
+  "captured_at_utc": "2026-09-24T18:01:13.756620+00:00",
+  "command": [
+    "/usr/local/python3.12.13/bin/python",
+    "practice_16_multistream_parallel/run_sync_comparison.py",
+    "--output",
+    "practice_16_multistream_parallel/results/2026-09-24-sync-run01"
+  ],
+  "torch_version": "2.10.0+cpu",
+  "torch_npu_version": "2.10.0",
+  "python": "3.12.13 (main, May 15 2026, 03:51:32) [GCC 12.3.1 (openEuler 12.3.1-105.oe2403sp3)]",
+  "device": "Ascend910B2C",
+  "pid": 680471,
+  "rounds": 4,
+  "pairs": 6,
+  "repeats": 7,
+  "environment": {
+    "ASCEND_HOME_PATH": "/usr/local/Ascend/cann-9.0.0",
+    "TASK_QUEUE_ENABLE": null,
+    "ASCEND_LAUNCH_BLOCKING": null,
+    "PYTORCH_NPU_ALLOC_CONF": null
+  },
+  "inputs": {
+    "mm": {
+      "address": "20616935636992",
+      "bytes": 33554432,
+      "shape": [
+        4096,
+        4096
+      ],
+      "dtype": "torch.float16",
+      "device": "npu:0",
+      "pinned": false
+    },
+    "mul": {
+      "address": "20616971288576",
+      "bytes": 268435456,
+      "shape": [
+        67108864
+      ],
+      "dtype": "torch.float32",
+      "device": "npu:0",
+      "pinned": false
+    }
+  },
+  "outputs": [
+    {
+      "mm": {
+        "address": "20617241821184",
+        "bytes": 33554432,
+        "shape": [
+          4096,
+          4096
+        ],
+        "dtype": "torch.float16",
+        "device": "npu:0",
+        "pinned": false
+      },
+      "mul": {
+        "address": "20617277472768",
+        "bytes": 268435456,
+        "shape": [
+          67108864
+        ],
+        "dtype": "torch.float32",
+        "device": "npu:0",
+        "pinned": false
+      }
+    },
+    {
+      "mm": {
+        "address": "20617548005376",
+        "bytes": 33554432,
+        "shape": [
+          4096,
+          4096
+        ],
+        "dtype": "torch.float16",
+        "device": "npu:0",
+        "pinned": false
+      },
+      "mul": {
+        "address": "20617583656960",
+        "bytes": 268435456,
+        "shape": [
+          67108864
+        ],
+        "dtype": "torch.float32",
+        "device": "npu:0",
+        "pinned": false
+      }
+    },
+    {
+      "mm": {
+        "address": "20617854189568",
+        "bytes": 33554432,
+        "shape": [
+          4096,
+          4096
+        ],
+        "dtype": "torch.float16",
+        "device": "npu:0",
+        "pinned": false
+      },
+      "mul": {
+        "address": "20623359213568",
+        "bytes": 268435456,
+        "shape": [
+          67108864
+        ],
+        "dtype": "torch.float32",
+        "device": "npu:0",
+        "pinned": false
+      }
+    },
+    {
+      "mm": {
+        "address": "20623629746176",
+        "bytes": 33554432,
+        "shape": [
+          4096,
+          4096
+        ],
+        "dtype": "torch.float16",
+        "device": "npu:0",
+        "pinned": false
+      },
+      "mul": {
+        "address": "20623665397760",
+        "bytes": 268435456,
+        "shape": [
+          67108864
+        ],
+        "dtype": "torch.float32",
+        "device": "npu:0",
+        "pinned": false
+      }
+    }
+  ],
+  "samples": [
+    {
+      "mm": {
+        "address": "7696581394432",
+        "bytes": 8,
+        "shape": [
+          4
+        ],
+        "dtype": "torch.float16",
+        "device": "cpu",
+        "pinned": true
+      },
+      "mul": {
+        "address": "7696583491584",
+        "bytes": 16,
+        "shape": [
+          4
+        ],
+        "dtype": "torch.float32",
+        "device": "cpu",
+        "pinned": true
+      }
+    },
+    {
+      "mm": {
+        "address": "7696585588736",
+        "bytes": 8,
+        "shape": [
+          4
+        ],
+        "dtype": "torch.float16",
+        "device": "cpu",
+        "pinned": true
+      },
+      "mul": {
+        "address": "7696587685888",
+        "bytes": 16,
+        "shape": [
+          4
+        ],
+        "dtype": "torch.float32",
+        "device": "cpu",
+        "pinned": true
+      }
+    },
+    {
+      "mm": {
+        "address": "7696589783040",
+        "bytes": 8,
+        "shape": [
+          4
+        ],
+        "dtype": "torch.float16",
+        "device": "cpu",
+        "pinned": true
+      },
+      "mul": {
+        "address": "7696591880192",
+        "bytes": 16,
+        "shape": [
+          4
+        ],
+        "dtype": "torch.float32",
+        "device": "cpu",
+        "pinned": true
+      }
+    },
+    {
+      "mm": {
+        "address": "7696593977344",
+        "bytes": 8,
+        "shape": [
+          4
+        ],
+        "dtype": "torch.float16",
+        "device": "cpu",
+        "pinned": true
+      },
+      "mul": {
+        "address": "7696596074496",
+        "bytes": 16,
+        "shape": [
+          4
+        ],
+        "dtype": "torch.float32",
+        "device": "cpu",
+        "pinned": true
+      }
+    }
+  ],
+  "source_sha256": {
+    "sources/run_sync_comparison.py": "cc98d6004fd11219ff6b3ae50bfcdad6543aa470f5b981cb28143c04e087b2e0",
+    "sources/streams.py": "241741b356db5006797dbec119007afb33b73b0e1753bfb06ab27c989c5bfac4"
+  },
+  "performance": [
+    {
+      "id": "bench-00-per_round",
+      "mode": "per_round",
+      "profiled": false,
+      "rounds": 4,
+      "pairs": 6,
+      "begin_ns": 4519628497767830,
+      "return_ns": 4519628518289488,
+      "complete_ns": 4519628518289759,
+      "issue_phase_ns": 20521658,
+      "completed_ns": 20521929,
+      "terminal_wait_ns": 271,
+      "host_wait_calls": 8,
+      "early_reads": [],
+      "checks": [
+        {
+          "round": 0,
+          "samples_after_join": {
+            "mm": [
+              1.0,
+              1.0,
+              1.0,
+              1.0
+            ],
+            "mul": [
+              0.375,
+              0.375,
+              0.375,
+              0.375
+            ]
+          },
+          "full_output_correct": {
+            "mm": true,
+            "mul": true
+          }
+        },
+        {
+          "round": 1,
+          "samples_after_join": {
+            "mm": [
+              1.0,
+              1.0,
+              1.0,
+              1.0
+            ],
+            "mul": [
+              0.375,
+              0.375,
+              0.375,
+              0.375
+            ]
+          },
+          "full_output_correct": {
+            "mm": true,
+            "mul": true
+          }
+        },
+        {
+          "round": 2,
+          "samples_after_join": {
+            "mm": [
+              1.0,
+              1.0,
+              1.0,
+              1.0
+            ],
+            "mul": [
+              0.375,
+              0.375,
+              0.375,
+              0.375
+            ]
+          },
+          "full_output_correct": {
+            "mm": true,
+            "mul": true
+          }
+        },
+        {
+          "round": 3,
+          "samples_after_join": {
+            "mm": [
+              1.0,
+              1.0,
+              1.0,
+              1.0
+            ],
+            "mul": [
+              0.375,
+              0.375,
+              0.375,
+              0.375
+            ]
+          },
+          "full_output_correct": {
+            "mm": true,
+            "mul": true
+          }
+        }
+      ]
+    },
+    {
+      "id": "bench-00-final_only",
+      "mode": "final_only",
+      "profiled": false,
+      "rounds": 4,
+      "pairs": 6,
+      "begin_ns": 4519628520397181,
+      "return_ns": 4519628521596656,
+      "complete_ns": 4519628540547189,
+      "issue_phase_ns": 1199475,
+      "completed_ns": 20150008,
+      "terminal_wait_ns": 18950533,
+      "host_wait_calls": 2,
+      "early_reads": [],
+      "checks": [
+        {
+          "round": 0,
+          "samples_after_join": {
+            "mm": [
+              1.0,
+              1.0,
+              1.0,
+              1.0
+            ],
+            "mul": [
+              0.375,
+              0.375,
+              0.375,
+              0.375
+            ]
+          },
+          "full_output_correct": {
+            "mm": true,
+            "mul": true
+          }
+        },
+        {
+          "round": 1,
+          "samples_after_join": {
+            "mm": [
+              1.0,
+              1.0,
+              1.0,
+              1.0
+            ],
+            "mul": [
+              0.375,
+              0.375,
+              0.375,
+              0.375
+            ]
+          },
+          "full_output_correct": {
+            "mm": true,
+            "mul": true
+          }
+        },
+        {
+          "round": 2,
+          "samples_after_join": {
+            "mm": [
+              1.0,
+              1.0,
+              1.0,
+              1.0
+            ],
+            "mul": [
+              0.375,
+              0.375,
+              0.375,
+              0.375
+            ]
+          },
+          "full_output_correct": {
+            "mm": true,
+            "mul": true
+          }
+        },
+        {
+          "round": 3,
+          "samples_after_join": {
+            "mm": [
+              1.0,
+              1.0,
+              1.0,
+              1.0
+            ],
+            "mul": [
+              0.375,
+              0.375,
+              0.375,
+              0.375
+            ]
+          },
+          "full_output_correct": {
+            "mm": true,
+            "mul": true
+          }
+        }
+      ]
+    },
+    {
+      "id": "bench-01-final_only",
+      "mode": "final_only",
+      "profiled": false,
+      "rounds": 4,
+      "pairs": 6,
+      "begin_ns": 4519628542657139,
+      "return_ns": 4519628543864326,
+      "complete_ns": 4519628562797170,
+      "issue_phase_ns": 1207187,
+      "completed_ns": 20140031,
+      "terminal_wait_ns": 18932844,
+      "host_wait_calls": 2,
+      "early_reads": [],
+      "checks": [
+        {
+          "round": 0,
+          "samples_after_join": {
+            "mm": [
+              1.0,
+              1.0,
+              1.0,
+              1.0
+            ],
+            "mul": [
+              0.375,
+              0.375,
+              0.375,
+              0.375
+            ]
+          },
+          "full_output_correct": {
+            "mm": true,
+            "mul": true
+          }
+        },
+        {
+          "round": 1,
+          "samples_after_join": {
+            "mm": [
+              1.0,
+              1.0,
+              1.0,
+              1.0
+            ],
+            "mul": [
+              0.375,
+              0.375,
+              0.375,
+              0.375
+            ]
+          },
+          "full_output_correct": {
+            "mm": true,
+            "mul": true
+          }
+        },
+        {
+          "round": 2,
+          "samples_after_join": {
+            "mm": [
+              1.0,
+              1.0,
+              1.0,
+              1.0
+            ],
+            "mul": [
+              0.375,
+              0.375,
+              0.375,
+              0.375
+            ]
+          },
+          "full_output_correct": {
+            "mm": true,
+            "mul": true
+          }
+        },
+        {
+          "round": 3,
+          "samples_after_join": {
+            "mm": [
+              1.0,
+              1.0,
+              1.0,
+              1.0
+            ],
+            "mul": [
+              0.375,
+              0.375,
+              0.375,
+              0.375
+            ]
+          },
+          "full_output_correct": {
+            "mm": true,
+            "mul": true
+          }
+        }
+      ]
+    },
+    {
+      "id": "bench-01-per_round",
+      "mode": "per_round",
+      "profiled": false,
+      "rounds": 4,
+      "pairs": 6,
+      "begin_ns": 4519628564972826,
+      "return_ns": 4519628585509996,
+      "complete_ns": 4519628585510413,
+      "issue_phase_ns": 20537170,
+      "completed_ns": 20537587,
+      "terminal_wait_ns": 417,
+      "host_wait_calls": 8,
+      "early_reads": [],
+      "checks": [
+        {
+          "round": 0,
+          "samples_after_join": {
+            "mm": [
+              1.0,
+              1.0,
+              1.0,
+              1.0
+            ],
+            "mul": [
+              0.375,
+              0.375,
+              0.375,
+              0.375
+            ]
+          },
+          "full_output_correct": {
+            "mm": true,
+            "mul": true
+          }
+        },
+        {
+          "round": 1,
+          "samples_after_join": {
+            "mm": [
+              1.0,
+              1.0,
+              1.0,
+              1.0
+            ],
+            "mul": [
+              0.375,
+              0.375,
+              0.375,
+              0.375
+            ]
+          },
+          "full_output_correct": {
+            "mm": true,
+            "mul": true
+          }
+        },
+        {
+          "round": 2,
+          "samples_after_join": {
+            "mm": [
+              1.0,
+              1.0,
+              1.0,
+              1.0
+            ],
+            "mul": [
+              0.375,
+              0.375,
+              0.375,
+              0.375
+            ]
+          },
+          "full_output_correct": {
+            "mm": true,
+            "mul": true
+          }
+        },
+        {
+          "round": 3,
+          "samples_after_join": {
+            "mm": [
+              1.0,
+              1.0,
+              1.0,
+              1.0
+            ],
+            "mul": [
+              0.375,
+              0.375,
+              0.375,
+              0.375
+            ]
+          },
+          "full_output_correct": {
+            "mm": true,
+            "mul": true
+          }
+        }
+      ]
+    },
+    {
+      "id": "bench-02-per_round",
+      "mode": "per_round",
+      "profiled": false,
+      "rounds": 4,
+      "pairs": 6,
+      "begin_ns": 4519628587645726,
+      "return_ns": 4519628608167629,
+      "complete_ns": 4519628608167826,
+      "issue_phase_ns": 20521903,
+      "completed_ns": 20522100,
+      "terminal_wait_ns": 197,
+      "host_wait_calls": 8,
+      "early_reads": [],
+      "checks": [
+        {
+          "round": 0,
+          "samples_after_join": {
+            "mm": [
+              1.0,
+              1.0,
+              1.0,
+              1.0
+            ],
+            "mul": [
+              0.375,
+              0.375,
+              0.375,
+              0.375
+            ]
+          },
+          "full_output_correct": {
+            "mm": true,
+            "mul": true
+          }
+        },
+        {
+          "round": 1,
+          "samples_after_join": {
+            "mm": [
+              1.0,
+              1.0,
+              1.0,
+              1.0
+            ],
+            "mul": [
+              0.375,
+              0.375,
+              0.375,
+              0.375
+            ]
+          },
+          "full_output_correct": {
+            "mm": true,
+            "mul": true
+          }
+        },
+        {
+          "round": 2,
+          "samples_after_join": {
+            "mm": [
+              1.0,
+              1.0,
+              1.0,
+              1.0
+            ],
+            "mul": [
+              0.375,
+              0.375,
+              0.375,
+              0.375
+            ]
+          },
+          "full_output_correct": {
+            "mm": true,
+            "mul": true
+          }
+        },
+        {
+          "round": 3,
+          "samples_after_join": {
+            "mm": [
+              1.0,
+              1.0,
+              1.0,
+              1.0
+            ],
+            "mul": [
+              0.375,
+              0.375,
+              0.375,
+              0.375
+            ]
+          },
+          "full_output_correct": {
+            "mm": true,
+            "mul": true
+          }
+        }
+      ]
+    },
+    {
+      "id": "bench-02-final_only",
+      "mode": "final_only",
+      "profiled": false,
+      "rounds": 4,
+      "pairs": 6,
+      "begin_ns": 4519628610285132,
+      "return_ns": 4519628611505582,
+      "complete_ns": 4519628630679438,
+      "issue_phase_ns": 1220450,
+      "completed_ns": 20394306,
+      "terminal_wait_ns": 19173856,
+      "host_wait_calls": 2,
+      "early_reads": [],
+      "checks": [
+        {
+          "round": 0,
+          "samples_after_join": {
+            "mm": [
+              1.0,
+              1.0,
+              1.0,
+              1.0
+            ],
+            "mul": [
+              0.375,
+              0.375,
+              0.375,
+              0.375
+            ]
+          },
+          "full_output_correct": {
+            "mm": true,
+            "mul": true
+          }
+        },
+        {
+          "round": 1,
+          "samples_after_join": {
+            "mm": [
+              1.0,
+              1.0,
+              1.0,
+              1.0
+            ],
+            "mul": [
+              0.375,
+              0.375,
+              0.375,
+              0.375
+            ]
+          },
+          "full_output_correct": {
+            "mm": true,
+            "mul": true
+          }
+        },
+        {
+          "round": 2,
+          "samples_after_join": {
+            "mm": [
+              1.0,
+              1.0,
+              1.0,
+              1.0
+            ],
+            "mul": [
+              0.375,
+              0.375,
+              0.375,
+              0.375
+            ]
+          },
+          "full_output_correct": {
+            "mm": true,
+            "mul": true
+          }
+        },
+        {
+          "round": 3,
+          "samples_after_join": {
+            "mm": [
+              1.0,
+              1.0,
+              1.0,
+              1.0
+            ],
+            "mul": [
+              0.375,
+              0.375,
+              0.375,
+              0.375
+            ]
+          },
+          "full_output_correct": {
+            "mm": true,
+            "mul": true
+          }
+        }
+      ]
+    },
+    {
+      "id": "bench-03-final_only",
+      "mode": "final_only",
+      "profiled": false,
+      "rounds": 4,
+      "pairs": 6,
+      "begin_ns": 4519628632850140,
+      "return_ns": 4519628634051735,
+      "complete_ns": 4519628653038351,
+      "issue_phase_ns": 1201595,
+      "completed_ns": 20188211,
+      "terminal_wait_ns": 18986616,
+      "host_wait_calls": 2,
+      "early_reads": [],
+      "checks": [
+        {
+          "round": 0,
+          "samples_after_join": {
+            "mm": [
+              1.0,
+              1.0,
+              1.0,
+              1.0
+            ],
+            "mul": [
+              0.375,
+              0.375,
+              0.375,
+              0.375
+            ]
+          },
+          "full_output_correct": {
+            "mm": true,
+            "mul": true
+          }
+        },
+        {
+          "round": 1,
+          "samples_after_join": {
+            "mm": [
+              1.0,
+              1.0,
+              1.0,
+              1.0
+            ],
+            "mul": [
+              0.375,
+              0.375,
+              0.375,
+              0.375
+            ]
+          },
+          "full_output_correct": {
+            "mm": true,
+            "mul": true
+          }
+        },
+        {
+          "round": 2,
+          "samples_after_join": {
+            "mm": [
+              1.0,
+              1.0,
+              1.0,
+              1.0
+            ],
+            "mul": [
+              0.375,
+              0.375,
+              0.375,
+              0.375
+            ]
+          },
+          "full_output_correct": {
+            "mm": true,
+            "mul": true
+          }
+        },
+        {
+          "round": 3,
+          "samples_after_join": {
+            "mm": [
+              1.0,
+              1.0,
+              1.0,
+              1.0
+            ],
+            "mul": [
+              0.375,
+              0.375,
+              0.375,
+              0.375
+            ]
+          },
+          "full_output_correct": {
+            "mm": true,
+            "mul": true
+          }
+        }
+      ]
+    },
+    {
+      "id": "bench-03-per_round",
+      "mode": "per_round",
+      "profiled": false,
+      "rounds": 4,
+      "pairs": 6,
+      "begin_ns": 4519628655199466,
+      "return_ns": 4519628675726561,
+      "complete_ns": 4519628675726780,
+      "issue_phase_ns": 20527095,
+      "completed_ns": 20527314,
+      "terminal_wait_ns": 219,
+      "host_wait_calls": 8,
+      "early_reads": [],
+      "checks": [
+        {
+          "round": 0,
+          "samples_after_join": {
+            "mm": [
+              1.0,
+              1.0,
+              1.0,
+              1.0
+            ],
+            "mul": [
+              0.375,
+              0.375,
+              0.375,
+              0.375
+            ]
+          },
+          "full_output_correct": {
+            "mm": true,
+            "mul": true
+          }
+        },
+        {
+          "round": 1,
+          "samples_after_join": {
+            "mm": [
+              1.0,
+              1.0,
+              1.0,
+              1.0
+            ],
+            "mul": [
+              0.375,
+              0.375,
+              0.375,
+              0.375
+            ]
+          },
+          "full_output_correct": {
+            "mm": true,
+            "mul": true
+          }
+        },
+        {
+          "round": 2,
+          "samples_after_join": {
+            "mm": [
+              1.0,
+              1.0,
+              1.0,
+              1.0
+            ],
+            "mul": [
+              0.375,
+              0.375,
+              0.375,
+              0.375
+            ]
+          },
+          "full_output_correct": {
+            "mm": true,
+            "mul": true
+          }
+        },
+        {
+          "round": 3,
+          "samples_after_join": {
+            "mm": [
+              1.0,
+              1.0,
+              1.0,
+              1.0
+            ],
+            "mul": [
+              0.375,
+              0.375,
+              0.375,
+              0.375
+            ]
+          },
+          "full_output_correct": {
+            "mm": true,
+            "mul": true
+          }
+        }
+      ]
+    },
+    {
+      "id": "bench-04-per_round",
+      "mode": "per_round",
+      "profiled": false,
+      "rounds": 4,
+      "pairs": 6,
+      "begin_ns": 4519628677810501,
+      "return_ns": 4519628698253601,
+      "complete_ns": 4519628698253809,
+      "issue_phase_ns": 20443100,
+      "completed_ns": 20443308,
+      "terminal_wait_ns": 208,
+      "host_wait_calls": 8,
+      "early_reads": [],
+      "checks": [
+        {
+          "round": 0,
+          "samples_after_join": {
+            "mm": [
+              1.0,
+              1.0,
+              1.0,
+              1.0
+            ],
+            "mul": [
+              0.375,
+              0.375,
+              0.375,
+              0.375
+            ]
+          },
+          "full_output_correct": {
+            "mm": true,
+            "mul": true
+          }
+        },
+        {
+          "round": 1,
+          "samples_after_join": {
+            "mm": [
+              1.0,
+              1.0,
+              1.0,
+              1.0
+            ],
+            "mul": [
+              0.375,
+              0.375,
+              0.375,
+              0.375
+            ]
+          },
+          "full_output_correct": {
+            "mm": true,
+            "mul": true
+          }
+        },
+        {
+          "round": 2,
+          "samples_after_join": {
+            "mm": [
+              1.0,
+              1.0,
+              1.0,
+              1.0
+            ],
+            "mul": [
+              0.375,
+              0.375,
+              0.375,
+              0.375
+            ]
+          },
+          "full_output_correct": {
+            "mm": true,
+            "mul": true
+          }
+        },
+        {
+          "round": 3,
+          "samples_after_join": {
+            "mm": [
+              1.0,
+              1.0,
+              1.0,
+              1.0
+            ],
+            "mul": [
+              0.375,
+              0.375,
+              0.375,
+              0.375
+            ]
+          },
+          "full_output_correct": {
+            "mm": true,
+            "mul": true
+          }
+        }
+      ]
+    },
+    {
+      "id": "bench-04-final_only",
+      "mode": "final_only",
+      "profiled": false,
+      "rounds": 4,
+      "pairs": 6,
+      "begin_ns": 4519628700347231,
+      "return_ns": 4519628701541259,
+      "complete_ns": 4519628720510459,
+      "issue_phase_ns": 1194028,
+      "completed_ns": 20163228,
+      "terminal_wait_ns": 18969200,
+      "host_wait_calls": 2,
+      "early_reads": [],
+      "checks": [
+        {
+          "round": 0,
+          "samples_after_join": {
+            "mm": [
+              1.0,
+              1.0,
+              1.0,
+              1.0
+            ],
+            "mul": [
+              0.375,
+              0.375,
+              0.375,
+              0.375
+            ]
+          },
+          "full_output_correct": {
+            "mm": true,
+            "mul": true
+          }
+        },
+        {
+          "round": 1,
+          "samples_after_join": {
+            "mm": [
+              1.0,
+              1.0,
+              1.0,
+              1.0
+            ],
+            "mul": [
+              0.375,
+              0.375,
+              0.375,
+              0.375
+            ]
+          },
+          "full_output_correct": {
+            "mm": true,
+            "mul": true
+          }
+        },
+        {
+          "round": 2,
+          "samples_after_join": {
+            "mm": [
+              1.0,
+              1.0,
+              1.0,
+              1.0
+            ],
+            "mul": [
+              0.375,
+              0.375,
+              0.375,
+              0.375
+            ]
+          },
+          "full_output_correct": {
+            "mm": true,
+            "mul": true
+          }
+        },
+        {
+          "round": 3,
+          "samples_after_join": {
+            "mm": [
+              1.0,
+              1.0,
+              1.0,
+              1.0
+            ],
+            "mul": [
+              0.375,
+              0.375,
+              0.375,
+              0.375
+            ]
+          },
+          "full_output_correct": {
+            "mm": true,
+            "mul": true
+          }
+        }
+      ]
+    },
+    {
+      "id": "bench-05-final_only",
+      "mode": "final_only",
+      "profiled": false,
+      "rounds": 4,
+      "pairs": 6,
+      "begin_ns": 4519628722692967,
+      "return_ns": 4519628723936037,
+      "complete_ns": 4519628742840702,
+      "issue_phase_ns": 1243070,
+      "completed_ns": 20147735,
+      "terminal_wait_ns": 18904665,
+      "host_wait_calls": 2,
+      "early_reads": [],
+      "checks": [
+        {
+          "round": 0,
+          "samples_after_join": {
+            "mm": [
+              1.0,
+              1.0,
+              1.0,
+              1.0
+            ],
+            "mul": [
+              0.375,
+              0.375,
+              0.375,
+              0.375
+            ]
+          },
+          "full_output_correct": {
+            "mm": true,
+            "mul": true
+          }
+        },
+        {
+          "round": 1,
+          "samples_after_join": {
+            "mm": [
+              1.0,
+              1.0,
+              1.0,
+              1.0
+            ],
+            "mul": [
+              0.375,
+              0.375,
+              0.375,
+              0.375
+            ]
+          },
+          "full_output_correct": {
+            "mm": true,
+            "mul": true
+          }
+        },
+        {
+          "round": 2,
+          "samples_after_join": {
+            "mm": [
+              1.0,
+              1.0,
+              1.0,
+              1.0
+            ],
+            "mul": [
+              0.375,
+              0.375,
+              0.375,
+              0.375
+            ]
+          },
+          "full_output_correct": {
+            "mm": true,
+            "mul": true
+          }
+        },
+        {
+          "round": 3,
+          "samples_after_join": {
+            "mm": [
+              1.0,
+              1.0,
+              1.0,
+              1.0
+            ],
+            "mul": [
+              0.375,
+              0.375,
+              0.375,
+              0.375
+            ]
+          },
+          "full_output_correct": {
+            "mm": true,
+            "mul": true
+          }
+        }
+      ]
+    },
+    {
+      "id": "bench-05-per_round",
+      "mode": "per_round",
+      "profiled": false,
+      "rounds": 4,
+      "pairs": 6,
+      "begin_ns": 4519628744985838,
+      "return_ns": 4519628765513354,
+      "complete_ns": 4519628765513572,
+      "issue_phase_ns": 20527516,
+      "completed_ns": 20527734,
+      "terminal_wait_ns": 218,
+      "host_wait_calls": 8,
+      "early_reads": [],
+      "checks": [
+        {
+          "round": 0,
+          "samples_after_join": {
+            "mm": [
+              1.0,
+              1.0,
+              1.0,
+              1.0
+            ],
+            "mul": [
+              0.375,
+              0.375,
+              0.375,
+              0.375
+            ]
+          },
+          "full_output_correct": {
+            "mm": true,
+            "mul": true
+          }
+        },
+        {
+          "round": 1,
+          "samples_after_join": {
+            "mm": [
+              1.0,
+              1.0,
+              1.0,
+              1.0
+            ],
+            "mul": [
+              0.375,
+              0.375,
+              0.375,
+              0.375
+            ]
+          },
+          "full_output_correct": {
+            "mm": true,
+            "mul": true
+          }
+        },
+        {
+          "round": 2,
+          "samples_after_join": {
+            "mm": [
+              1.0,
+              1.0,
+              1.0,
+              1.0
+            ],
+            "mul": [
+              0.375,
+              0.375,
+              0.375,
+              0.375
+            ]
+          },
+          "full_output_correct": {
+            "mm": true,
+            "mul": true
+          }
+        },
+        {
+          "round": 3,
+          "samples_after_join": {
+            "mm": [
+              1.0,
+              1.0,
+              1.0,
+              1.0
+            ],
+            "mul": [
+              0.375,
+              0.375,
+              0.375,
+              0.375
+            ]
+          },
+          "full_output_correct": {
+            "mm": true,
+            "mul": true
+          }
+        }
+      ]
+    },
+    {
+      "id": "bench-06-per_round",
+      "mode": "per_round",
+      "profiled": false,
+      "rounds": 4,
+      "pairs": 6,
+      "begin_ns": 4519628767615147,
+      "return_ns": 4519628788074023,
+      "complete_ns": 4519628788074424,
+      "issue_phase_ns": 20458876,
+      "completed_ns": 20459277,
+      "terminal_wait_ns": 401,
+      "host_wait_calls": 8,
+      "early_reads": [],
+      "checks": [
+        {
+          "round": 0,
+          "samples_after_join": {
+            "mm": [
+              1.0,
+              1.0,
+              1.0,
+              1.0
+            ],
+            "mul": [
+              0.375,
+              0.375,
+              0.375,
+              0.375
+            ]
+          },
+          "full_output_correct": {
+            "mm": true,
+            "mul": true
+          }
+        },
+        {
+          "round": 1,
+          "samples_after_join": {
+            "mm": [
+              1.0,
+              1.0,
+              1.0,
+              1.0
+            ],
+            "mul": [
+              0.375,
+              0.375,
+              0.375,
+              0.375
+            ]
+          },
+          "full_output_correct": {
+            "mm": true,
+            "mul": true
+          }
+        },
+        {
+          "round": 2,
+          "samples_after_join": {
+            "mm": [
+              1.0,
+              1.0,
+              1.0,
+              1.0
+            ],
+            "mul": [
+              0.375,
+              0.375,
+              0.375,
+              0.375
+            ]
+          },
+          "full_output_correct": {
+            "mm": true,
+            "mul": true
+          }
+        },
+        {
+          "round": 3,
+          "samples_after_join": {
+            "mm": [
+              1.0,
+              1.0,
+              1.0,
+              1.0
+            ],
+            "mul": [
+              0.375,
+              0.375,
+              0.375,
+              0.375
+            ]
+          },
+          "full_output_correct": {
+            "mm": true,
+            "mul": true
+          }
+        }
+      ]
+    },
+    {
+      "id": "bench-06-final_only",
+      "mode": "final_only",
+      "profiled": false,
+      "rounds": 4,
+      "pairs": 6,
+      "begin_ns": 4519628790158409,
+      "return_ns": 4519628791350475,
+      "complete_ns": 4519628810324046,
+      "issue_phase_ns": 1192066,
+      "completed_ns": 20165637,
+      "terminal_wait_ns": 18973571,
+      "host_wait_calls": 2,
+      "early_reads": [],
+      "checks": [
+        {
+          "round": 0,
+          "samples_after_join": {
+            "mm": [
+              1.0,
+              1.0,
+              1.0,
+              1.0
+            ],
+            "mul": [
+              0.375,
+              0.375,
+              0.375,
+              0.375
+            ]
+          },
+          "full_output_correct": {
+            "mm": true,
+            "mul": true
+          }
+        },
+        {
+          "round": 1,
+          "samples_after_join": {
+            "mm": [
+              1.0,
+              1.0,
+              1.0,
+              1.0
+            ],
+            "mul": [
+              0.375,
+              0.375,
+              0.375,
+              0.375
+            ]
+          },
+          "full_output_correct": {
+            "mm": true,
+            "mul": true
+          }
+        },
+        {
+          "round": 2,
+          "samples_after_join": {
+            "mm": [
+              1.0,
+              1.0,
+              1.0,
+              1.0
+            ],
+            "mul": [
+              0.375,
+              0.375,
+              0.375,
+              0.375
+            ]
+          },
+          "full_output_correct": {
+            "mm": true,
+            "mul": true
+          }
+        },
+        {
+          "round": 3,
+          "samples_after_join": {
+            "mm": [
+              1.0,
+              1.0,
+              1.0,
+              1.0
+            ],
+            "mul": [
+              0.375,
+              0.375,
+              0.375,
+              0.375
+            ]
+          },
+          "full_output_correct": {
+            "mm": true,
+            "mul": true
+          }
+        }
+      ]
+    }
+  ],
+  "diagnostics": [
+    {
+      "id": "diagnostic-00",
+      "mode": "early_read",
+      "profiled": false,
+      "rounds": 4,
+      "pairs": 6,
+      "begin_ns": 4519628812477094,
+      "return_ns": 4519628813789654,
+      "complete_ns": 4519628832627869,
+      "issue_phase_ns": 1312560,
+      "completed_ns": 20150775,
+      "terminal_wait_ns": 18838215,
+      "host_wait_calls": 2,
+      "early_reads": [
+        {
+          "round": 0,
+          "observed": {
+            "mm": [
+              -7.0,
+              -7.0,
+              -7.0,
+              -7.0
+            ],
+            "mul": [
+              -7.0,
+              -7.0,
+              -7.0,
+              -7.0
+            ]
+          },
+          "event_ready_after_read": {
+            "mm": false,
+            "mul": false
+          },
+          "read_start_ns": 4519628812810136,
+          "read_end_ns": 4519628812813167
+        },
+        {
+          "round": 1,
+          "observed": {
+            "mm": [
+              -7.0,
+              -7.0,
+              -7.0,
+              -7.0
+            ],
+            "mul": [
+              -7.0,
+              -7.0,
+              -7.0,
+              -7.0
+            ]
+          },
+          "event_ready_after_read": {
+            "mm": false,
+            "mul": false
+          },
+          "read_start_ns": 4519628813171913,
+          "read_end_ns": 4519628813173576
+        },
+        {
+          "round": 2,
+          "observed": {
+            "mm": [
+              -7.0,
+              -7.0,
+              -7.0,
+              -7.0
+            ],
+            "mul": [
+              -7.0,
+              -7.0,
+              -7.0,
+              -7.0
+            ]
+          },
+          "event_ready_after_read": {
+            "mm": false,
+            "mul": false
+          },
+          "read_start_ns": 4519628813475082,
+          "read_end_ns": 4519628813476571
+        },
+        {
+          "round": 3,
+          "observed": {
+            "mm": [
+              -7.0,
+              -7.0,
+              -7.0,
+              -7.0
+            ],
+            "mul": [
+              -7.0,
+              -7.0,
+              -7.0,
+              -7.0
+            ]
+          },
+          "event_ready_after_read": {
+            "mm": false,
+            "mul": false
+          },
+          "read_start_ns": 4519628813785680,
+          "read_end_ns": 4519628813787071
+        }
+      ],
+      "checks": [
+        {
+          "round": 0,
+          "samples_after_join": {
+            "mm": [
+              1.0,
+              1.0,
+              1.0,
+              1.0
+            ],
+            "mul": [
+              0.375,
+              0.375,
+              0.375,
+              0.375
+            ]
+          },
+          "full_output_correct": {
+            "mm": true,
+            "mul": true
+          }
+        },
+        {
+          "round": 1,
+          "samples_after_join": {
+            "mm": [
+              1.0,
+              1.0,
+              1.0,
+              1.0
+            ],
+            "mul": [
+              0.375,
+              0.375,
+              0.375,
+              0.375
+            ]
+          },
+          "full_output_correct": {
+            "mm": true,
+            "mul": true
+          }
+        },
+        {
+          "round": 2,
+          "samples_after_join": {
+            "mm": [
+              1.0,
+              1.0,
+              1.0,
+              1.0
+            ],
+            "mul": [
+              0.375,
+              0.375,
+              0.375,
+              0.375
+            ]
+          },
+          "full_output_correct": {
+            "mm": true,
+            "mul": true
+          }
+        },
+        {
+          "round": 3,
+          "samples_after_join": {
+            "mm": [
+              1.0,
+              1.0,
+              1.0,
+              1.0
+            ],
+            "mul": [
+              0.375,
+              0.375,
+              0.375,
+              0.375
+            ]
+          },
+          "full_output_correct": {
+            "mm": true,
+            "mul": true
+          }
+        }
+      ]
+    },
+    {
+      "id": "diagnostic-01",
+      "mode": "early_read",
+      "profiled": false,
+      "rounds": 4,
+      "pairs": 6,
+      "begin_ns": 4519628834757232,
+      "return_ns": 4519628835985246,
+      "complete_ns": 4519628855042354,
+      "issue_phase_ns": 1228014,
+      "completed_ns": 20285122,
+      "terminal_wait_ns": 19057108,
+      "host_wait_calls": 2,
+      "early_reads": [
+        {
+          "round": 0,
+          "observed": {
+            "mm": [
+              -7.0,
+              -7.0,
+              -7.0,
+              -7.0
+            ],
+            "mul": [
+              -7.0,
+              -7.0,
+              -7.0,
+              -7.0
+            ]
+          },
+          "event_ready_after_read": {
+            "mm": false,
+            "mul": false
+          },
+          "read_start_ns": 4519628835069266,
+          "read_end_ns": 4519628835070961
+        },
+        {
+          "round": 1,
+          "observed": {
+            "mm": [
+              -7.0,
+              -7.0,
+              -7.0,
+              -7.0
+            ],
+            "mul": [
+              -7.0,
+              -7.0,
+              -7.0,
+              -7.0
+            ]
+          },
+          "event_ready_after_read": {
+            "mm": false,
+            "mul": false
+          },
+          "read_start_ns": 4519628835374059,
+          "read_end_ns": 4519628835375591
+        },
+        {
+          "round": 2,
+          "observed": {
+            "mm": [
+              -7.0,
+              -7.0,
+              -7.0,
+              -7.0
+            ],
+            "mul": [
+              -7.0,
+              -7.0,
+              -7.0,
+              -7.0
+            ]
+          },
+          "event_ready_after_read": {
+            "mm": false,
+            "mul": false
+          },
+          "read_start_ns": 4519628835682967,
+          "read_end_ns": 4519628835684267
+        },
+        {
+          "round": 3,
+          "observed": {
+            "mm": [
+              -7.0,
+              -7.0,
+              -7.0,
+              -7.0
+            ],
+            "mul": [
+              -7.0,
+              -7.0,
+              -7.0,
+              -7.0
+            ]
+          },
+          "event_ready_after_read": {
+            "mm": false,
+            "mul": false
+          },
+          "read_start_ns": 4519628835981591,
+          "read_end_ns": 4519628835982735
+        }
+      ],
+      "checks": [
+        {
+          "round": 0,
+          "samples_after_join": {
+            "mm": [
+              1.0,
+              1.0,
+              1.0,
+              1.0
+            ],
+            "mul": [
+              0.375,
+              0.375,
+              0.375,
+              0.375
+            ]
+          },
+          "full_output_correct": {
+            "mm": true,
+            "mul": true
+          }
+        },
+        {
+          "round": 1,
+          "samples_after_join": {
+            "mm": [
+              1.0,
+              1.0,
+              1.0,
+              1.0
+            ],
+            "mul": [
+              0.375,
+              0.375,
+              0.375,
+              0.375
+            ]
+          },
+          "full_output_correct": {
+            "mm": true,
+            "mul": true
+          }
+        },
+        {
+          "round": 2,
+          "samples_after_join": {
+            "mm": [
+              1.0,
+              1.0,
+              1.0,
+              1.0
+            ],
+            "mul": [
+              0.375,
+              0.375,
+              0.375,
+              0.375
+            ]
+          },
+          "full_output_correct": {
+            "mm": true,
+            "mul": true
+          }
+        },
+        {
+          "round": 3,
+          "samples_after_join": {
+            "mm": [
+              1.0,
+              1.0,
+              1.0,
+              1.0
+            ],
+            "mul": [
+              0.375,
+              0.375,
+              0.375,
+              0.375
+            ]
+          },
+          "full_output_correct": {
+            "mm": true,
+            "mul": true
+          }
+        }
+      ]
+    },
+    {
+      "id": "diagnostic-02",
+      "mode": "early_read",
+      "profiled": false,
+      "rounds": 4,
+      "pairs": 6,
+      "begin_ns": 4519628857153295,
+      "return_ns": 4519628858440407,
+      "complete_ns": 4519628877310227,
+      "issue_phase_ns": 1287112,
+      "completed_ns": 20156932,
+      "terminal_wait_ns": 18869820,
+      "host_wait_calls": 2,
+      "early_reads": [
+        {
+          "round": 0,
+          "observed": {
+            "mm": [
+              -7.0,
+              -7.0,
+              -7.0,
+              -7.0
+            ],
+            "mul": [
+              -7.0,
+              -7.0,
+              -7.0,
+              -7.0
+            ]
+          },
+          "event_ready_after_read": {
+            "mm": false,
+            "mul": false
+          },
+          "read_start_ns": 4519628857487724,
+          "read_end_ns": 4519628857489439
+        },
+        {
+          "round": 1,
+          "observed": {
+            "mm": [
+              -7.0,
+              -7.0,
+              -7.0,
+              -7.0
+            ],
+            "mul": [
+              -7.0,
+              -7.0,
+              -7.0,
+              -7.0
+            ]
+          },
+          "event_ready_after_read": {
+            "mm": false,
+            "mul": false
+          },
+          "read_start_ns": 4519628857794066,
+          "read_end_ns": 4519628857795467
+        },
+        {
+          "round": 2,
+          "observed": {
+            "mm": [
+              -7.0,
+              -7.0,
+              -7.0,
+              -7.0
+            ],
+            "mul": [
+              -7.0,
+              -7.0,
+              -7.0,
+              -7.0
+            ]
+          },
+          "event_ready_after_read": {
+            "mm": false,
+            "mul": false
+          },
+          "read_start_ns": 4519628858112170,
+          "read_end_ns": 4519628858113584
+        },
+        {
+          "round": 3,
+          "observed": {
+            "mm": [
+              -7.0,
+              -7.0,
+              -7.0,
+              -7.0
+            ],
+            "mul": [
+              -7.0,
+              -7.0,
+              -7.0,
+              -7.0
+            ]
+          },
+          "event_ready_after_read": {
+            "mm": false,
+            "mul": false
+          },
+          "read_start_ns": 4519628858410695,
+          "read_end_ns": 4519628858411960
+        }
+      ],
+      "checks": [
+        {
+          "round": 0,
+          "samples_after_join": {
+            "mm": [
+              1.0,
+              1.0,
+              1.0,
+              1.0
+            ],
+            "mul": [
+              0.375,
+              0.375,
+              0.375,
+              0.375
+            ]
+          },
+          "full_output_correct": {
+            "mm": true,
+            "mul": true
+          }
+        },
+        {
+          "round": 1,
+          "samples_after_join": {
+            "mm": [
+              1.0,
+              1.0,
+              1.0,
+              1.0
+            ],
+            "mul": [
+              0.375,
+              0.375,
+              0.375,
+              0.375
+            ]
+          },
+          "full_output_correct": {
+            "mm": true,
+            "mul": true
+          }
+        },
+        {
+          "round": 2,
+          "samples_after_join": {
+            "mm": [
+              1.0,
+              1.0,
+              1.0,
+              1.0
+            ],
+            "mul": [
+              0.375,
+              0.375,
+              0.375,
+              0.375
+            ]
+          },
+          "full_output_correct": {
+            "mm": true,
+            "mul": true
+          }
+        },
+        {
+          "round": 3,
+          "samples_after_join": {
+            "mm": [
+              1.0,
+              1.0,
+              1.0,
+              1.0
+            ],
+            "mul": [
+              0.375,
+              0.375,
+              0.375,
+              0.375
+            ]
+          },
+          "full_output_correct": {
+            "mm": true,
+            "mul": true
+          }
+        }
+      ]
+    },
+    {
+      "id": "diagnostic-03",
+      "mode": "early_read",
+      "profiled": false,
+      "rounds": 4,
+      "pairs": 6,
+      "begin_ns": 4519628879436091,
+      "return_ns": 4519628880696046,
+      "complete_ns": 4519628899563356,
+      "issue_phase_ns": 1259955,
+      "completed_ns": 20127265,
+      "terminal_wait_ns": 18867310,
+      "host_wait_calls": 2,
+      "early_reads": [
+        {
+          "round": 0,
+          "observed": {
+            "mm": [
+              -7.0,
+              -7.0,
+              -7.0,
+              -7.0
+            ],
+            "mul": [
+              -7.0,
+              -7.0,
+              -7.0,
+              -7.0
+            ]
+          },
+          "event_ready_after_read": {
+            "mm": false,
+            "mul": false
+          },
+          "read_start_ns": 4519628879759703,
+          "read_end_ns": 4519628879761475
+        },
+        {
+          "round": 1,
+          "observed": {
+            "mm": [
+              -7.0,
+              -7.0,
+              -7.0,
+              -7.0
+            ],
+            "mul": [
+              -7.0,
+              -7.0,
+              -7.0,
+              -7.0
+            ]
+          },
+          "event_ready_after_read": {
+            "mm": false,
+            "mul": false
+          },
+          "read_start_ns": 4519628880069579,
+          "read_end_ns": 4519628880073094
+        },
+        {
+          "round": 2,
+          "observed": {
+            "mm": [
+              -7.0,
+              -7.0,
+              -7.0,
+              -7.0
+            ],
+            "mul": [
+              -7.0,
+              -7.0,
+              -7.0,
+              -7.0
+            ]
+          },
+          "event_ready_after_read": {
+            "mm": false,
+            "mul": false
+          },
+          "read_start_ns": 4519628880381582,
+          "read_end_ns": 4519628880382762
+        },
+        {
+          "round": 3,
+          "observed": {
+            "mm": [
+              -7.0,
+              -7.0,
+              -7.0,
+              -7.0
+            ],
+            "mul": [
+              -7.0,
+              -7.0,
+              -7.0,
+              -7.0
+            ]
+          },
+          "event_ready_after_read": {
+            "mm": false,
+            "mul": false
+          },
+          "read_start_ns": 4519628880684496,
+          "read_end_ns": 4519628880685681
+        }
+      ],
+      "checks": [
+        {
+          "round": 0,
+          "samples_after_join": {
+            "mm": [
+              1.0,
+              1.0,
+              1.0,
+              1.0
+            ],
+            "mul": [
+              0.375,
+              0.375,
+              0.375,
+              0.375
+            ]
+          },
+          "full_output_correct": {
+            "mm": true,
+            "mul": true
+          }
+        },
+        {
+          "round": 1,
+          "samples_after_join": {
+            "mm": [
+              1.0,
+              1.0,
+              1.0,
+              1.0
+            ],
+            "mul": [
+              0.375,
+              0.375,
+              0.375,
+              0.375
+            ]
+          },
+          "full_output_correct": {
+            "mm": true,
+            "mul": true
+          }
+        },
+        {
+          "round": 2,
+          "samples_after_join": {
+            "mm": [
+              1.0,
+              1.0,
+              1.0,
+              1.0
+            ],
+            "mul": [
+              0.375,
+              0.375,
+              0.375,
+              0.375
+            ]
+          },
+          "full_output_correct": {
+            "mm": true,
+            "mul": true
+          }
+        },
+        {
+          "round": 3,
+          "samples_after_join": {
+            "mm": [
+              1.0,
+              1.0,
+              1.0,
+              1.0
+            ],
+            "mul": [
+              0.375,
+              0.375,
+              0.375,
+              0.375
+            ]
+          },
+          "full_output_correct": {
+            "mm": true,
+            "mul": true
+          }
+        }
+      ]
+    },
+    {
+      "id": "diagnostic-04",
+      "mode": "early_read",
+      "profiled": false,
+      "rounds": 4,
+      "pairs": 6,
+      "begin_ns": 4519628901702366,
+      "return_ns": 4519628902954319,
+      "complete_ns": 4519628921848454,
+      "issue_phase_ns": 1251953,
+      "completed_ns": 20146088,
+      "terminal_wait_ns": 18894135,
+      "host_wait_calls": 2,
+      "early_reads": [
+        {
+          "round": 0,
+          "observed": {
+            "mm": [
+              -7.0,
+              -7.0,
+              -7.0,
+              -7.0
+            ],
+            "mul": [
+              -7.0,
+              -7.0,
+              -7.0,
+              -7.0
+            ]
+          },
+          "event_ready_after_read": {
+            "mm": false,
+            "mul": false
+          },
+          "read_start_ns": 4519628902036163,
+          "read_end_ns": 4519628902038160
+        },
+        {
+          "round": 1,
+          "observed": {
+            "mm": [
+              -7.0,
+              -7.0,
+              -7.0,
+              -7.0
+            ],
+            "mul": [
+              -7.0,
+              -7.0,
+              -7.0,
+              -7.0
+            ]
+          },
+          "event_ready_after_read": {
+            "mm": false,
+            "mul": false
+          },
+          "read_start_ns": 4519628902344216,
+          "read_end_ns": 4519628902345808
+        },
+        {
+          "round": 2,
+          "observed": {
+            "mm": [
+              -7.0,
+              -7.0,
+              -7.0,
+              -7.0
+            ],
+            "mul": [
+              -7.0,
+              -7.0,
+              -7.0,
+              -7.0
+            ]
+          },
+          "event_ready_after_read": {
+            "mm": false,
+            "mul": false
+          },
+          "read_start_ns": 4519628902639471,
+          "read_end_ns": 4519628902640867
+        },
+        {
+          "round": 3,
+          "observed": {
+            "mm": [
+              -7.0,
+              -7.0,
+              -7.0,
+              -7.0
+            ],
+            "mul": [
+              -7.0,
+              -7.0,
+              -7.0,
+              -7.0
+            ]
+          },
+          "event_ready_after_read": {
+            "mm": false,
+            "mul": false
+          },
+          "read_start_ns": 4519628902941712,
+          "read_end_ns": 4519628902943097
+        }
+      ],
+      "checks": [
+        {
+          "round": 0,
+          "samples_after_join": {
+            "mm": [
+              1.0,
+              1.0,
+              1.0,
+              1.0
+            ],
+            "mul": [
+              0.375,
+              0.375,
+              0.375,
+              0.375
+            ]
+          },
+          "full_output_correct": {
+            "mm": true,
+            "mul": true
+          }
+        },
+        {
+          "round": 1,
+          "samples_after_join": {
+            "mm": [
+              1.0,
+              1.0,
+              1.0,
+              1.0
+            ],
+            "mul": [
+              0.375,
+              0.375,
+              0.375,
+              0.375
+            ]
+          },
+          "full_output_correct": {
+            "mm": true,
+            "mul": true
+          }
+        },
+        {
+          "round": 2,
+          "samples_after_join": {
+            "mm": [
+              1.0,
+              1.0,
+              1.0,
+              1.0
+            ],
+            "mul": [
+              0.375,
+              0.375,
+              0.375,
+              0.375
+            ]
+          },
+          "full_output_correct": {
+            "mm": true,
+            "mul": true
+          }
+        },
+        {
+          "round": 3,
+          "samples_after_join": {
+            "mm": [
+              1.0,
+              1.0,
+              1.0,
+              1.0
+            ],
+            "mul": [
+              0.375,
+              0.375,
+              0.375,
+              0.375
+            ]
+          },
+          "full_output_correct": {
+            "mm": true,
+            "mul": true
+          }
+        }
+      ]
+    },
+    {
+      "id": "diagnostic-05",
+      "mode": "early_read",
+      "profiled": false,
+      "rounds": 4,
+      "pairs": 6,
+      "begin_ns": 4519628923974120,
+      "return_ns": 4519628925206136,
+      "complete_ns": 4519628944144923,
+      "issue_phase_ns": 1232016,
+      "completed_ns": 20170803,
+      "terminal_wait_ns": 18938787,
+      "host_wait_calls": 2,
+      "early_reads": [
+        {
+          "round": 0,
+          "observed": {
+            "mm": [
+              -7.0,
+              -7.0,
+              -7.0,
+              -7.0
+            ],
+            "mul": [
+              -7.0,
+              -7.0,
+              -7.0,
+              -7.0
+            ]
+          },
+          "event_ready_after_read": {
+            "mm": false,
+            "mul": false
+          },
+          "read_start_ns": 4519628924292872,
+          "read_end_ns": 4519628924294477
+        },
+        {
+          "round": 1,
+          "observed": {
+            "mm": [
+              -7.0,
+              -7.0,
+              -7.0,
+              -7.0
+            ],
+            "mul": [
+              -7.0,
+              -7.0,
+              -7.0,
+              -7.0
+            ]
+          },
+          "event_ready_after_read": {
+            "mm": false,
+            "mul": false
+          },
+          "read_start_ns": 4519628924591128,
+          "read_end_ns": 4519628924592468
+        },
+        {
+          "round": 2,
+          "observed": {
+            "mm": [
+              -7.0,
+              -7.0,
+              -7.0,
+              -7.0
+            ],
+            "mul": [
+              -7.0,
+              -7.0,
+              -7.0,
+              -7.0
+            ]
+          },
+          "event_ready_after_read": {
+            "mm": false,
+            "mul": false
+          },
+          "read_start_ns": 4519628924907093,
+          "read_end_ns": 4519628924908353
+        },
+        {
+          "round": 3,
+          "observed": {
+            "mm": [
+              -7.0,
+              -7.0,
+              -7.0,
+              -7.0
+            ],
+            "mul": [
+              -7.0,
+              -7.0,
+              -7.0,
+              -7.0
+            ]
+          },
+          "event_ready_after_read": {
+            "mm": false,
+            "mul": false
+          },
+          "read_start_ns": 4519628925201504,
+          "read_end_ns": 4519628925202693
+        }
+      ],
+      "checks": [
+        {
+          "round": 0,
+          "samples_after_join": {
+            "mm": [
+              1.0,
+              1.0,
+              1.0,
+              1.0
+            ],
+            "mul": [
+              0.375,
+              0.375,
+              0.375,
+              0.375
+            ]
+          },
+          "full_output_correct": {
+            "mm": true,
+            "mul": true
+          }
+        },
+        {
+          "round": 1,
+          "samples_after_join": {
+            "mm": [
+              1.0,
+              1.0,
+              1.0,
+              1.0
+            ],
+            "mul": [
+              0.375,
+              0.375,
+              0.375,
+              0.375
+            ]
+          },
+          "full_output_correct": {
+            "mm": true,
+            "mul": true
+          }
+        },
+        {
+          "round": 2,
+          "samples_after_join": {
+            "mm": [
+              1.0,
+              1.0,
+              1.0,
+              1.0
+            ],
+            "mul": [
+              0.375,
+              0.375,
+              0.375,
+              0.375
+            ]
+          },
+          "full_output_correct": {
+            "mm": true,
+            "mul": true
+          }
+        },
+        {
+          "round": 3,
+          "samples_after_join": {
+            "mm": [
+              1.0,
+              1.0,
+              1.0,
+              1.0
+            ],
+            "mul": [
+              0.375,
+              0.375,
+              0.375,
+              0.375
+            ]
+          },
+          "full_output_correct": {
+            "mm": true,
+            "mul": true
+          }
+        }
+      ]
+    },
+    {
+      "id": "diagnostic-06",
+      "mode": "early_read",
+      "profiled": false,
+      "rounds": 4,
+      "pairs": 6,
+      "begin_ns": 4519628946295611,
+      "return_ns": 4519628947551511,
+      "complete_ns": 4519628966432202,
+      "issue_phase_ns": 1255900,
+      "completed_ns": 20136591,
+      "terminal_wait_ns": 18880691,
+      "host_wait_calls": 2,
+      "early_reads": [
+        {
+          "round": 0,
+          "observed": {
+            "mm": [
+              -7.0,
+              -7.0,
+              -7.0,
+              -7.0
+            ],
+            "mul": [
+              -7.0,
+              -7.0,
+              -7.0,
+              -7.0
+            ]
+          },
+          "event_ready_after_read": {
+            "mm": false,
+            "mul": false
+          },
+          "read_start_ns": 4519628946619277,
+          "read_end_ns": 4519628946620875
+        },
+        {
+          "round": 1,
+          "observed": {
+            "mm": [
+              -7.0,
+              -7.0,
+              -7.0,
+              -7.0
+            ],
+            "mul": [
+              -7.0,
+              -7.0,
+              -7.0,
+              -7.0
+            ]
+          },
+          "event_ready_after_read": {
+            "mm": false,
+            "mul": false
+          },
+          "read_start_ns": 4519628946924529,
+          "read_end_ns": 4519628946926070
+        },
+        {
+          "round": 2,
+          "observed": {
+            "mm": [
+              -7.0,
+              -7.0,
+              -7.0,
+              -7.0
+            ],
+            "mul": [
+              -7.0,
+              -7.0,
+              -7.0,
+              -7.0
+            ]
+          },
+          "event_ready_after_read": {
+            "mm": false,
+            "mul": false
+          },
+          "read_start_ns": 4519628947240332,
+          "read_end_ns": 4519628947241753
+        },
+        {
+          "round": 3,
+          "observed": {
+            "mm": [
+              -7.0,
+              -7.0,
+              -7.0,
+              -7.0
+            ],
+            "mul": [
+              -7.0,
+              -7.0,
+              -7.0,
+              -7.0
+            ]
+          },
+          "event_ready_after_read": {
+            "mm": false,
+            "mul": false
+          },
+          "read_start_ns": 4519628947541487,
+          "read_end_ns": 4519628947542661
+        }
+      ],
+      "checks": [
+        {
+          "round": 0,
+          "samples_after_join": {
+            "mm": [
+              1.0,
+              1.0,
+              1.0,
+              1.0
+            ],
+            "mul": [
+              0.375,
+              0.375,
+              0.375,
+              0.375
+            ]
+          },
+          "full_output_correct": {
+            "mm": true,
+            "mul": true
+          }
+        },
+        {
+          "round": 1,
+          "samples_after_join": {
+            "mm": [
+              1.0,
+              1.0,
+              1.0,
+              1.0
+            ],
+            "mul": [
+              0.375,
+              0.375,
+              0.375,
+              0.375
+            ]
+          },
+          "full_output_correct": {
+            "mm": true,
+            "mul": true
+          }
+        },
+        {
+          "round": 2,
+          "samples_after_join": {
+            "mm": [
+              1.0,
+              1.0,
+              1.0,
+              1.0
+            ],
+            "mul": [
+              0.375,
+              0.375,
+              0.375,
+              0.375
+            ]
+          },
+          "full_output_correct": {
+            "mm": true,
+            "mul": true
+          }
+        },
+        {
+          "round": 3,
+          "samples_after_join": {
+            "mm": [
+              1.0,
+              1.0,
+              1.0,
+              1.0
+            ],
+            "mul": [
+              0.375,
+              0.375,
+              0.375,
+              0.375
+            ]
+          },
+          "full_output_correct": {
+            "mm": true,
+            "mul": true
+          }
+        }
+      ]
+    }
+  ],
+  "profiles": [
+    {
+      "id": "trace-per_round",
+      "mode": "per_round",
+      "profiled": true,
+      "rounds": 4,
+      "pairs": 6,
+      "begin_ns": 4519629080788947,
+      "return_ns": 4519629101821383,
+      "complete_ns": 4519629101821573,
+      "issue_phase_ns": 21032436,
+      "completed_ns": 21032626,
+      "terminal_wait_ns": 190,
+      "host_wait_calls": 8,
+      "early_reads": [],
+      "checks": [
+        {
+          "round": 0,
+          "samples_after_join": {
+            "mm": [
+              1.0,
+              1.0,
+              1.0,
+              1.0
+            ],
+            "mul": [
+              0.375,
+              0.375,
+              0.375,
+              0.375
+            ]
+          },
+          "full_output_correct": {
+            "mm": true,
+            "mul": true
+          }
+        },
+        {
+          "round": 1,
+          "samples_after_join": {
+            "mm": [
+              1.0,
+              1.0,
+              1.0,
+              1.0
+            ],
+            "mul": [
+              0.375,
+              0.375,
+              0.375,
+              0.375
+            ]
+          },
+          "full_output_correct": {
+            "mm": true,
+            "mul": true
+          }
+        },
+        {
+          "round": 2,
+          "samples_after_join": {
+            "mm": [
+              1.0,
+              1.0,
+              1.0,
+              1.0
+            ],
+            "mul": [
+              0.375,
+              0.375,
+              0.375,
+              0.375
+            ]
+          },
+          "full_output_correct": {
+            "mm": true,
+            "mul": true
+          }
+        },
+        {
+          "round": 3,
+          "samples_after_join": {
+            "mm": [
+              1.0,
+              1.0,
+              1.0,
+              1.0
+            ],
+            "mul": [
+              0.375,
+              0.375,
+              0.375,
+              0.375
+            ]
+          },
+          "full_output_correct": {
+            "mm": true,
+            "mul": true
+          }
+        }
+      ]
+    },
+    {
+      "id": "trace-final_only",
+      "mode": "final_only",
+      "profiled": true,
+      "rounds": 4,
+      "pairs": 6,
+      "begin_ns": 4519629104027985,
+      "return_ns": 4519629107538554,
+      "complete_ns": 4519629124378784,
+      "issue_phase_ns": 3510569,
+      "completed_ns": 20350799,
+      "terminal_wait_ns": 16840230,
+      "host_wait_calls": 2,
+      "early_reads": [],
+      "checks": [
+        {
+          "round": 0,
+          "samples_after_join": {
+            "mm": [
+              1.0,
+              1.0,
+              1.0,
+              1.0
+            ],
+            "mul": [
+              0.375,
+              0.375,
+              0.375,
+              0.375
+            ]
+          },
+          "full_output_correct": {
+            "mm": true,
+            "mul": true
+          }
+        },
+        {
+          "round": 1,
+          "samples_after_join": {
+            "mm": [
+              1.0,
+              1.0,
+              1.0,
+              1.0
+            ],
+            "mul": [
+              0.375,
+              0.375,
+              0.375,
+              0.375
+            ]
+          },
+          "full_output_correct": {
+            "mm": true,
+            "mul": true
+          }
+        },
+        {
+          "round": 2,
+          "samples_after_join": {
+            "mm": [
+              1.0,
+              1.0,
+              1.0,
+              1.0
+            ],
+            "mul": [
+              0.375,
+              0.375,
+              0.375,
+              0.375
+            ]
+          },
+          "full_output_correct": {
+            "mm": true,
+            "mul": true
+          }
+        },
+        {
+          "round": 3,
+          "samples_after_join": {
+            "mm": [
+              1.0,
+              1.0,
+              1.0,
+              1.0
+            ],
+            "mul": [
+              0.375,
+              0.375,
+              0.375,
+              0.375
+            ]
+          },
+          "full_output_correct": {
+            "mm": true,
+            "mul": true
+          }
+        }
+      ]
+    },
+    {
+      "id": "trace-early_read",
+      "mode": "early_read",
+      "profiled": true,
+      "rounds": 4,
+      "pairs": 6,
+      "begin_ns": 4519629126609359,
+      "return_ns": 4519629129472858,
+      "complete_ns": 4519629146968304,
+      "issue_phase_ns": 2863499,
+      "completed_ns": 20358945,
+      "terminal_wait_ns": 17495446,
+      "host_wait_calls": 2,
+      "early_reads": [
+        {
+          "round": 0,
+          "observed": {
+            "mm": [
+              -7.0,
+              -7.0,
+              -7.0,
+              -7.0
+            ],
+            "mul": [
+              -7.0,
+              -7.0,
+              -7.0,
+              -7.0
+            ]
+          },
+          "event_ready_after_read": {
+            "mm": false,
+            "mul": false
+          },
+          "read_start_ns": 4519629127400991,
+          "read_end_ns": 4519629127405152
+        },
+        {
+          "round": 1,
+          "observed": {
+            "mm": [
+              -7.0,
+              -7.0,
+              -7.0,
+              -7.0
+            ],
+            "mul": [
+              -7.0,
+              -7.0,
+              -7.0,
+              -7.0
+            ]
+          },
+          "event_ready_after_read": {
+            "mm": false,
+            "mul": false
+          },
+          "read_start_ns": 4519629128109983,
+          "read_end_ns": 4519629128113682
+        },
+        {
+          "round": 2,
+          "observed": {
+            "mm": [
+              -7.0,
+              -7.0,
+              -7.0,
+              -7.0
+            ],
+            "mul": [
+              -7.0,
+              -7.0,
+              -7.0,
+              -7.0
+            ]
+          },
+          "event_ready_after_read": {
+            "mm": false,
+            "mul": false
+          },
+          "read_start_ns": 4519629128772829,
+          "read_end_ns": 4519629128775979
+        },
+        {
+          "round": 3,
+          "observed": {
+            "mm": [
+              -7.0,
+              -7.0,
+              -7.0,
+              -7.0
+            ],
+            "mul": [
+              -7.0,
+              -7.0,
+              -7.0,
+              -7.0
+            ]
+          },
+          "event_ready_after_read": {
+            "mm": false,
+            "mul": false
+          },
+          "read_start_ns": 4519629129441537,
+          "read_end_ns": 4519629129445230
+        }
+      ],
+      "checks": [
+        {
+          "round": 0,
+          "samples_after_join": {
+            "mm": [
+              1.0,
+              1.0,
+              1.0,
+              1.0
+            ],
+            "mul": [
+              0.375,
+              0.375,
+              0.375,
+              0.375
+            ]
+          },
+          "full_output_correct": {
+            "mm": true,
+            "mul": true
+          }
+        },
+        {
+          "round": 1,
+          "samples_after_join": {
+            "mm": [
+              1.0,
+              1.0,
+              1.0,
+              1.0
+            ],
+            "mul": [
+              0.375,
+              0.375,
+              0.375,
+              0.375
+            ]
+          },
+          "full_output_correct": {
+            "mm": true,
+            "mul": true
+          }
+        },
+        {
+          "round": 2,
+          "samples_after_join": {
+            "mm": [
+              1.0,
+              1.0,
+              1.0,
+              1.0
+            ],
+            "mul": [
+              0.375,
+              0.375,
+              0.375,
+              0.375
+            ]
+          },
+          "full_output_correct": {
+            "mm": true,
+            "mul": true
+          }
+        },
+        {
+          "round": 3,
+          "samples_after_join": {
+            "mm": [
+              1.0,
+              1.0,
+              1.0,
+              1.0
+            ],
+            "mul": [
+              0.375,
+              0.375,
+              0.375,
+              0.375
+            ]
+          },
+          "full_output_correct": {
+            "mm": true,
+            "mul": true
+          }
+        }
+      ]
+    }
+  ],
+  "records": [
+    {
+      "label": "P16Sync/trace-per_round/r0/compute-mm-00",
+      "branch": "mm",
+      "kind": "compute",
+      "raw_stream_handle": "139762276343808",
+      "host_stream_id": "96",
+      "host_start_ns": 4519629080907915,
+      "batch": "trace-per_round",
+      "round": 0,
+      "host_end_ns": 4519629080992844
+    },
+    {
+      "label": "P16Sync/trace-per_round/r0/compute-mul-00",
+      "branch": "mul",
+      "kind": "compute",
+      "raw_stream_handle": "139762276352000",
+      "host_stream_id": "97",
+      "host_start_ns": 4519629081069526,
+      "batch": "trace-per_round",
+      "round": 0,
+      "host_end_ns": 4519629081114723
+    },
+    {
+      "label": "P16Sync/trace-per_round/r0/compute-mm-01",
+      "branch": "mm",
+      "kind": "compute",
+      "raw_stream_handle": "139762276343808",
+      "host_stream_id": "96",
+      "host_start_ns": 4519629081154714,
+      "batch": "trace-per_round",
+      "round": 0,
+      "host_end_ns": 4519629081174448
+    },
+    {
+      "label": "P16Sync/trace-per_round/r0/compute-mul-01",
+      "branch": "mul",
+      "kind": "compute",
+      "raw_stream_handle": "139762276352000",
+      "host_stream_id": "97",
+      "host_start_ns": 4519629081209522,
+      "batch": "trace-per_round",
+      "round": 0,
+      "host_end_ns": 4519629081221409
+    },
+    {
+      "label": "P16Sync/trace-per_round/r0/compute-mm-02",
+      "branch": "mm",
+      "kind": "compute",
+      "raw_stream_handle": "139762276343808",
+      "host_stream_id": "96",
+      "host_start_ns": 4519629081264072,
+      "batch": "trace-per_round",
+      "round": 0,
+      "host_end_ns": 4519629081279609
+    },
+    {
+      "label": "P16Sync/trace-per_round/r0/compute-mul-02",
+      "branch": "mul",
+      "kind": "compute",
+      "raw_stream_handle": "139762276352000",
+      "host_stream_id": "97",
+      "host_start_ns": 4519629081313076,
+      "batch": "trace-per_round",
+      "round": 0,
+      "host_end_ns": 4519629081322423
+    },
+    {
+      "label": "P16Sync/trace-per_round/r0/compute-mm-03",
+      "branch": "mm",
+      "kind": "compute",
+      "raw_stream_handle": "139762276343808",
+      "host_stream_id": "96",
+      "host_start_ns": 4519629081353532,
+      "batch": "trace-per_round",
+      "round": 0,
+      "host_end_ns": 4519629081362398
+    },
+    {
+      "label": "P16Sync/trace-per_round/r0/compute-mul-03",
+      "branch": "mul",
+      "kind": "compute",
+      "raw_stream_handle": "139762276352000",
+      "host_stream_id": "97",
+      "host_start_ns": 4519629081391687,
+      "batch": "trace-per_round",
+      "round": 0,
+      "host_end_ns": 4519629081400307
+    },
+    {
+      "label": "P16Sync/trace-per_round/r0/compute-mm-04",
+      "branch": "mm",
+      "kind": "compute",
+      "raw_stream_handle": "139762276343808",
+      "host_stream_id": "96",
+      "host_start_ns": 4519629081439078,
+      "batch": "trace-per_round",
+      "round": 0,
+      "host_end_ns": 4519629081450253
+    },
+    {
+      "label": "P16Sync/trace-per_round/r0/compute-mul-04",
+      "branch": "mul",
+      "kind": "compute",
+      "raw_stream_handle": "139762276352000",
+      "host_stream_id": "97",
+      "host_start_ns": 4519629081480308,
+      "batch": "trace-per_round",
+      "round": 0,
+      "host_end_ns": 4519629081490365
+    },
+    {
+      "label": "P16Sync/trace-per_round/r0/compute-mm-05",
+      "branch": "mm",
+      "kind": "compute",
+      "raw_stream_handle": "139762276343808",
+      "host_stream_id": "96",
+      "host_start_ns": 4519629081521385,
+      "batch": "trace-per_round",
+      "round": 0,
+      "host_end_ns": 4519629081530693
+    },
+    {
+      "label": "P16Sync/trace-per_round/r0/compute-mul-05",
+      "branch": "mul",
+      "kind": "compute",
+      "raw_stream_handle": "139762276352000",
+      "host_stream_id": "97",
+      "host_start_ns": 4519629081560599,
+      "batch": "trace-per_round",
+      "round": 0,
+      "host_end_ns": 4519629081572988
+    },
+    {
+      "label": "P16Sync/trace-per_round/r0/copy-mm",
+      "branch": "mm",
+      "kind": "copy",
+      "raw_stream_handle": "139762276343808",
+      "host_stream_id": "96",
+      "host_start_ns": 4519629081604644,
+      "batch": "trace-per_round",
+      "round": 0,
+      "host_end_ns": 4519629081728951
+    },
+    {
+      "label": "P16Sync/trace-per_round/r0/record-mm",
+      "branch": "mm",
+      "kind": "record",
+      "raw_stream_handle": "139762276343808",
+      "host_stream_id": "96",
+      "host_start_ns": 4519629081747592,
+      "batch": "trace-per_round",
+      "round": 0,
+      "event_handle": "139762927681280",
+      "host_end_ns": 4519629081773839
+    },
+    {
+      "label": "P16Sync/trace-per_round/r0/copy-mul",
+      "branch": "mul",
+      "kind": "copy",
+      "raw_stream_handle": "139762276352000",
+      "host_stream_id": "97",
+      "host_start_ns": 4519629081812737,
+      "batch": "trace-per_round",
+      "round": 0,
+      "host_end_ns": 4519629081833734
+    },
+    {
+      "label": "P16Sync/trace-per_round/r0/record-mul",
+      "branch": "mul",
+      "kind": "record",
+      "raw_stream_handle": "139762276352000",
+      "host_stream_id": "97",
+      "host_start_ns": 4519629081850005,
+      "batch": "trace-per_round",
+      "round": 0,
+      "event_handle": "139762927682048",
+      "host_end_ns": 4519629081868945
+    },
+    {
+      "label": "P16Sync/trace-per_round/r0/host_wait-mm",
+      "branch": "mm",
+      "kind": "host_wait",
+      "raw_stream_handle": "139762276343808",
+      "host_stream_id": "96",
+      "host_start_ns": 4519629081884839,
+      "batch": "trace-per_round",
+      "round": 0,
+      "host_end_ns": 4519629086102752
+    },
+    {
+      "label": "P16Sync/trace-per_round/r0/host_wait-mul",
+      "branch": "mul",
+      "kind": "host_wait",
+      "raw_stream_handle": "139762276352000",
+      "host_stream_id": "97",
+      "host_start_ns": 4519629086153841,
+      "batch": "trace-per_round",
+      "round": 0,
+      "host_end_ns": 4519629086205379
+    },
+    {
+      "label": "P16Sync/trace-per_round/r1/compute-mm-00",
+      "branch": "mm",
+      "kind": "compute",
+      "raw_stream_handle": "139762276343808",
+      "host_stream_id": "96",
+      "host_start_ns": 4519629086290103,
+      "batch": "trace-per_round",
+      "round": 1,
+      "host_end_ns": 4519629086333666
+    },
+    {
+      "label": "P16Sync/trace-per_round/r1/compute-mul-00",
+      "branch": "mul",
+      "kind": "compute",
+      "raw_stream_handle": "139762276352000",
+      "host_stream_id": "97",
+      "host_start_ns": 4519629086396656,
+      "batch": "trace-per_round",
+      "round": 1,
+      "host_end_ns": 4519629086429881
+    },
+    {
+      "label": "P16Sync/trace-per_round/r1/compute-mm-01",
+      "branch": "mm",
+      "kind": "compute",
+      "raw_stream_handle": "139762276343808",
+      "host_stream_id": "96",
+      "host_start_ns": 4519629086488785,
+      "batch": "trace-per_round",
+      "round": 1,
+      "host_end_ns": 4519629086506683
+    },
+    {
+      "label": "P16Sync/trace-per_round/r1/compute-mul-01",
+      "branch": "mul",
+      "kind": "compute",
+      "raw_stream_handle": "139762276352000",
+      "host_stream_id": "97",
+      "host_start_ns": 4519629086554494,
+      "batch": "trace-per_round",
+      "round": 1,
+      "host_end_ns": 4519629086582841
+    },
+    {
+      "label": "P16Sync/trace-per_round/r1/compute-mm-02",
+      "branch": "mm",
+      "kind": "compute",
+      "raw_stream_handle": "139762276343808",
+      "host_stream_id": "96",
+      "host_start_ns": 4519629086654465,
+      "batch": "trace-per_round",
+      "round": 1,
+      "host_end_ns": 4519629086672920
+    },
+    {
+      "label": "P16Sync/trace-per_round/r1/compute-mul-02",
+      "branch": "mul",
+      "kind": "compute",
+      "raw_stream_handle": "139762276352000",
+      "host_stream_id": "97",
+      "host_start_ns": 4519629086727262,
+      "batch": "trace-per_round",
+      "round": 1,
+      "host_end_ns": 4519629086744256
+    },
+    {
+      "label": "P16Sync/trace-per_round/r1/compute-mm-03",
+      "branch": "mm",
+      "kind": "compute",
+      "raw_stream_handle": "139762276343808",
+      "host_stream_id": "96",
+      "host_start_ns": 4519629086790613,
+      "batch": "trace-per_round",
+      "round": 1,
+      "host_end_ns": 4519629086810968
+    },
+    {
+      "label": "P16Sync/trace-per_round/r1/compute-mul-03",
+      "branch": "mul",
+      "kind": "compute",
+      "raw_stream_handle": "139762276352000",
+      "host_stream_id": "97",
+      "host_start_ns": 4519629086870962,
+      "batch": "trace-per_round",
+      "round": 1,
+      "host_end_ns": 4519629086884479
+    },
+    {
+      "label": "P16Sync/trace-per_round/r1/compute-mm-04",
+      "branch": "mm",
+      "kind": "compute",
+      "raw_stream_handle": "139762276343808",
+      "host_stream_id": "96",
+      "host_start_ns": 4519629086941045,
+      "batch": "trace-per_round",
+      "round": 1,
+      "host_end_ns": 4519629086959421
+    },
+    {
+      "label": "P16Sync/trace-per_round/r1/compute-mul-04",
+      "branch": "mul",
+      "kind": "compute",
+      "raw_stream_handle": "139762276352000",
+      "host_stream_id": "97",
+      "host_start_ns": 4519629087006840,
+      "batch": "trace-per_round",
+      "round": 1,
+      "host_end_ns": 4519629087023101
+    },
+    {
+      "label": "P16Sync/trace-per_round/r1/compute-mm-05",
+      "branch": "mm",
+      "kind": "compute",
+      "raw_stream_handle": "139762276343808",
+      "host_stream_id": "96",
+      "host_start_ns": 4519629087077099,
+      "batch": "trace-per_round",
+      "round": 1,
+      "host_end_ns": 4519629087095800
+    },
+    {
+      "label": "P16Sync/trace-per_round/r1/compute-mul-05",
+      "branch": "mul",
+      "kind": "compute",
+      "raw_stream_handle": "139762276352000",
+      "host_stream_id": "97",
+      "host_start_ns": 4519629087151098,
+      "batch": "trace-per_round",
+      "round": 1,
+      "host_end_ns": 4519629087171984
+    },
+    {
+      "label": "P16Sync/trace-per_round/r1/copy-mm",
+      "branch": "mm",
+      "kind": "copy",
+      "raw_stream_handle": "139762276343808",
+      "host_stream_id": "96",
+      "host_start_ns": 4519629087214482,
+      "batch": "trace-per_round",
+      "round": 1,
+      "host_end_ns": 4519629087271989
+    },
+    {
+      "label": "P16Sync/trace-per_round/r1/record-mm",
+      "branch": "mm",
+      "kind": "record",
+      "raw_stream_handle": "139762276343808",
+      "host_stream_id": "96",
+      "host_start_ns": 4519629087303801,
+      "batch": "trace-per_round",
+      "round": 1,
+      "event_handle": "139762927682816",
+      "host_end_ns": 4519629087332596
+    },
+    {
+      "label": "P16Sync/trace-per_round/r1/copy-mul",
+      "branch": "mul",
+      "kind": "copy",
+      "raw_stream_handle": "139762276352000",
+      "host_stream_id": "97",
+      "host_start_ns": 4519629087377025,
+      "batch": "trace-per_round",
+      "round": 1,
+      "host_end_ns": 4519629087403524
+    },
+    {
+      "label": "P16Sync/trace-per_round/r1/record-mul",
+      "branch": "mul",
+      "kind": "record",
+      "raw_stream_handle": "139762276352000",
+      "host_stream_id": "97",
+      "host_start_ns": 4519629087419279,
+      "batch": "trace-per_round",
+      "round": 1,
+      "event_handle": "139762927683584",
+      "host_end_ns": 4519629087436101
+    },
+    {
+      "label": "P16Sync/trace-per_round/r1/host_wait-mm",
+      "branch": "mm",
+      "kind": "host_wait",
+      "raw_stream_handle": "139762276343808",
+      "host_stream_id": "96",
+      "host_start_ns": 4519629087452614,
+      "batch": "trace-per_round",
+      "round": 1,
+      "host_end_ns": 4519629091426142
+    },
+    {
+      "label": "P16Sync/trace-per_round/r1/host_wait-mul",
+      "branch": "mul",
+      "kind": "host_wait",
+      "raw_stream_handle": "139762276352000",
+      "host_stream_id": "97",
+      "host_start_ns": 4519629091440472,
+      "batch": "trace-per_round",
+      "round": 1,
+      "host_end_ns": 4519629091453899
+    },
+    {
+      "label": "P16Sync/trace-per_round/r2/compute-mm-00",
+      "branch": "mm",
+      "kind": "compute",
+      "raw_stream_handle": "139762276343808",
+      "host_stream_id": "96",
+      "host_start_ns": 4519629091485820,
+      "batch": "trace-per_round",
+      "round": 2,
+      "host_end_ns": 4519629091504651
+    },
+    {
+      "label": "P16Sync/trace-per_round/r2/compute-mul-00",
+      "branch": "mul",
+      "kind": "compute",
+      "raw_stream_handle": "139762276352000",
+      "host_stream_id": "97",
+      "host_start_ns": 4519629091535568,
+      "batch": "trace-per_round",
+      "round": 2,
+      "host_end_ns": 4519629091548744
+    },
+    {
+      "label": "P16Sync/trace-per_round/r2/compute-mm-01",
+      "branch": "mm",
+      "kind": "compute",
+      "raw_stream_handle": "139762276343808",
+      "host_stream_id": "96",
+      "host_start_ns": 4519629091585507,
+      "batch": "trace-per_round",
+      "round": 2,
+      "host_end_ns": 4519629091602944
+    },
+    {
+      "label": "P16Sync/trace-per_round/r2/compute-mul-01",
+      "branch": "mul",
+      "kind": "compute",
+      "raw_stream_handle": "139762276352000",
+      "host_stream_id": "97",
+      "host_start_ns": 4519629091633814,
+      "batch": "trace-per_round",
+      "round": 2,
+      "host_end_ns": 4519629091642899
+    },
+    {
+      "label": "P16Sync/trace-per_round/r2/compute-mm-02",
+      "branch": "mm",
+      "kind": "compute",
+      "raw_stream_handle": "139762276343808",
+      "host_stream_id": "96",
+      "host_start_ns": 4519629091672148,
+      "batch": "trace-per_round",
+      "round": 2,
+      "host_end_ns": 4519629091683643
+    },
+    {
+      "label": "P16Sync/trace-per_round/r2/compute-mul-02",
+      "branch": "mul",
+      "kind": "compute",
+      "raw_stream_handle": "139762276352000",
+      "host_stream_id": "97",
+      "host_start_ns": 4519629091714179,
+      "batch": "trace-per_round",
+      "round": 2,
+      "host_end_ns": 4519629091722738
+    },
+    {
+      "label": "P16Sync/trace-per_round/r2/compute-mm-03",
+      "branch": "mm",
+      "kind": "compute",
+      "raw_stream_handle": "139762276343808",
+      "host_stream_id": "96",
+      "host_start_ns": 4519629091751717,
+      "batch": "trace-per_round",
+      "round": 2,
+      "host_end_ns": 4519629091760073
+    },
+    {
+      "label": "P16Sync/trace-per_round/r2/compute-mul-03",
+      "branch": "mul",
+      "kind": "compute",
+      "raw_stream_handle": "139762276352000",
+      "host_stream_id": "97",
+      "host_start_ns": 4519629091789915,
+      "batch": "trace-per_round",
+      "round": 2,
+      "host_end_ns": 4519629091799492
+    },
+    {
+      "label": "P16Sync/trace-per_round/r2/compute-mm-04",
+      "branch": "mm",
+      "kind": "compute",
+      "raw_stream_handle": "139762276343808",
+      "host_stream_id": "96",
+      "host_start_ns": 4519629091828184,
+      "batch": "trace-per_round",
+      "round": 2,
+      "host_end_ns": 4519629091838019
+    },
+    {
+      "label": "P16Sync/trace-per_round/r2/compute-mul-04",
+      "branch": "mul",
+      "kind": "compute",
+      "raw_stream_handle": "139762276352000",
+      "host_stream_id": "97",
+      "host_start_ns": 4519629091872344,
+      "batch": "trace-per_round",
+      "round": 2,
+      "host_end_ns": 4519629091883571
+    },
+    {
+      "label": "P16Sync/trace-per_round/r2/compute-mm-05",
+      "branch": "mm",
+      "kind": "compute",
+      "raw_stream_handle": "139762276343808",
+      "host_stream_id": "96",
+      "host_start_ns": 4519629091921966,
+      "batch": "trace-per_round",
+      "round": 2,
+      "host_end_ns": 4519629091932218
+    },
+    {
+      "label": "P16Sync/trace-per_round/r2/compute-mul-05",
+      "branch": "mul",
+      "kind": "compute",
+      "raw_stream_handle": "139762276352000",
+      "host_stream_id": "97",
+      "host_start_ns": 4519629091962971,
+      "batch": "trace-per_round",
+      "round": 2,
+      "host_end_ns": 4519629091971512
+    },
+    {
+      "label": "P16Sync/trace-per_round/r2/copy-mm",
+      "branch": "mm",
+      "kind": "copy",
+      "raw_stream_handle": "139762276343808",
+      "host_stream_id": "96",
+      "host_start_ns": 4519629092009627,
+      "batch": "trace-per_round",
+      "round": 2,
+      "host_end_ns": 4519629092038017
+    },
+    {
+      "label": "P16Sync/trace-per_round/r2/record-mm",
+      "branch": "mm",
+      "kind": "record",
+      "raw_stream_handle": "139762276343808",
+      "host_stream_id": "96",
+      "host_start_ns": 4519629092054891,
+      "batch": "trace-per_round",
+      "round": 2,
+      "event_handle": "139762927684352",
+      "host_end_ns": 4519629092072452
+    },
+    {
+      "label": "P16Sync/trace-per_round/r2/copy-mul",
+      "branch": "mul",
+      "kind": "copy",
+      "raw_stream_handle": "139762276352000",
+      "host_stream_id": "97",
+      "host_start_ns": 4519629092101843,
+      "batch": "trace-per_round",
+      "round": 2,
+      "host_end_ns": 4519629092120255
+    },
+    {
+      "label": "P16Sync/trace-per_round/r2/record-mul",
+      "branch": "mul",
+      "kind": "record",
+      "raw_stream_handle": "139762276352000",
+      "host_stream_id": "97",
+      "host_start_ns": 4519629092135412,
+      "batch": "trace-per_round",
+      "round": 2,
+      "event_handle": "139762927685120",
+      "host_end_ns": 4519629092154245
+    },
+    {
+      "label": "P16Sync/trace-per_round/r2/host_wait-mm",
+      "branch": "mm",
+      "kind": "host_wait",
+      "raw_stream_handle": "139762276343808",
+      "host_stream_id": "96",
+      "host_start_ns": 4519629092169627,
+      "batch": "trace-per_round",
+      "round": 2,
+      "host_end_ns": 4519629096620829
+    },
+    {
+      "label": "P16Sync/trace-per_round/r2/host_wait-mul",
+      "branch": "mul",
+      "kind": "host_wait",
+      "raw_stream_handle": "139762276352000",
+      "host_stream_id": "97",
+      "host_start_ns": 4519629096635283,
+      "batch": "trace-per_round",
+      "round": 2,
+      "host_end_ns": 4519629096648716
+    },
+    {
+      "label": "P16Sync/trace-per_round/r3/compute-mm-00",
+      "branch": "mm",
+      "kind": "compute",
+      "raw_stream_handle": "139762276343808",
+      "host_stream_id": "96",
+      "host_start_ns": 4519629096686469,
+      "batch": "trace-per_round",
+      "round": 3,
+      "host_end_ns": 4519629096702169
+    },
+    {
+      "label": "P16Sync/trace-per_round/r3/compute-mul-00",
+      "branch": "mul",
+      "kind": "compute",
+      "raw_stream_handle": "139762276352000",
+      "host_stream_id": "97",
+      "host_start_ns": 4519629096732985,
+      "batch": "trace-per_round",
+      "round": 3,
+      "host_end_ns": 4519629096747470
+    },
+    {
+      "label": "P16Sync/trace-per_round/r3/compute-mm-01",
+      "branch": "mm",
+      "kind": "compute",
+      "raw_stream_handle": "139762276343808",
+      "host_stream_id": "96",
+      "host_start_ns": 4519629096781716,
+      "batch": "trace-per_round",
+      "round": 3,
+      "host_end_ns": 4519629096790720
+    },
+    {
+      "label": "P16Sync/trace-per_round/r3/compute-mul-01",
+      "branch": "mul",
+      "kind": "compute",
+      "raw_stream_handle": "139762276352000",
+      "host_stream_id": "97",
+      "host_start_ns": 4519629096820811,
+      "batch": "trace-per_round",
+      "round": 3,
+      "host_end_ns": 4519629096831906
+    },
+    {
+      "label": "P16Sync/trace-per_round/r3/compute-mm-02",
+      "branch": "mm",
+      "kind": "compute",
+      "raw_stream_handle": "139762276343808",
+      "host_stream_id": "96",
+      "host_start_ns": 4519629096863112,
+      "batch": "trace-per_round",
+      "round": 3,
+      "host_end_ns": 4519629096871754
+    },
+    {
+      "label": "P16Sync/trace-per_round/r3/compute-mul-02",
+      "branch": "mul",
+      "kind": "compute",
+      "raw_stream_handle": "139762276352000",
+      "host_stream_id": "97",
+      "host_start_ns": 4519629096899407,
+      "batch": "trace-per_round",
+      "round": 3,
+      "host_end_ns": 4519629096907945
+    },
+    {
+      "label": "P16Sync/trace-per_round/r3/compute-mm-03",
+      "branch": "mm",
+      "kind": "compute",
+      "raw_stream_handle": "139762276343808",
+      "host_stream_id": "96",
+      "host_start_ns": 4519629096945889,
+      "batch": "trace-per_round",
+      "round": 3,
+      "host_end_ns": 4519629096954941
+    },
+    {
+      "label": "P16Sync/trace-per_round/r3/compute-mul-03",
+      "branch": "mul",
+      "kind": "compute",
+      "raw_stream_handle": "139762276352000",
+      "host_stream_id": "97",
+      "host_start_ns": 4519629096983841,
+      "batch": "trace-per_round",
+      "round": 3,
+      "host_end_ns": 4519629096992921
+    },
+    {
+      "label": "P16Sync/trace-per_round/r3/compute-mm-04",
+      "branch": "mm",
+      "kind": "compute",
+      "raw_stream_handle": "139762276343808",
+      "host_stream_id": "96",
+      "host_start_ns": 4519629097021775,
+      "batch": "trace-per_round",
+      "round": 3,
+      "host_end_ns": 4519629097033264
+    },
+    {
+      "label": "P16Sync/trace-per_round/r3/compute-mul-04",
+      "branch": "mul",
+      "kind": "compute",
+      "raw_stream_handle": "139762276352000",
+      "host_stream_id": "97",
+      "host_start_ns": 4519629097062833,
+      "batch": "trace-per_round",
+      "round": 3,
+      "host_end_ns": 4519629097071437
+    },
+    {
+      "label": "P16Sync/trace-per_round/r3/compute-mm-05",
+      "branch": "mm",
+      "kind": "compute",
+      "raw_stream_handle": "139762276343808",
+      "host_stream_id": "96",
+      "host_start_ns": 4519629097099443,
+      "batch": "trace-per_round",
+      "round": 3,
+      "host_end_ns": 4519629097107664
+    },
+    {
+      "label": "P16Sync/trace-per_round/r3/compute-mul-05",
+      "branch": "mul",
+      "kind": "compute",
+      "raw_stream_handle": "139762276352000",
+      "host_stream_id": "97",
+      "host_start_ns": 4519629097136342,
+      "batch": "trace-per_round",
+      "round": 3,
+      "host_end_ns": 4519629097147242
+    },
+    {
+      "label": "P16Sync/trace-per_round/r3/copy-mm",
+      "branch": "mm",
+      "kind": "copy",
+      "raw_stream_handle": "139762276343808",
+      "host_stream_id": "96",
+      "host_start_ns": 4519629097184732,
+      "batch": "trace-per_round",
+      "round": 3,
+      "host_end_ns": 4519629097206406
+    },
+    {
+      "label": "P16Sync/trace-per_round/r3/record-mm",
+      "branch": "mm",
+      "kind": "record",
+      "raw_stream_handle": "139762276343808",
+      "host_stream_id": "96",
+      "host_start_ns": 4519629097223113,
+      "batch": "trace-per_round",
+      "round": 3,
+      "event_handle": "139762927685888",
+      "host_end_ns": 4519629097242605
+    },
+    {
+      "label": "P16Sync/trace-per_round/r3/copy-mul",
+      "branch": "mul",
+      "kind": "copy",
+      "raw_stream_handle": "139762276352000",
+      "host_stream_id": "97",
+      "host_start_ns": 4519629097286845,
+      "batch": "trace-per_round",
+      "round": 3,
+      "host_end_ns": 4519629097306586
+    },
+    {
+      "label": "P16Sync/trace-per_round/r3/record-mul",
+      "branch": "mul",
+      "kind": "record",
+      "raw_stream_handle": "139762276352000",
+      "host_stream_id": "97",
+      "host_start_ns": 4519629097322474,
+      "batch": "trace-per_round",
+      "round": 3,
+      "event_handle": "139762927686656",
+      "host_end_ns": 4519629097352804
+    },
+    {
+      "label": "P16Sync/trace-per_round/r3/host_wait-mm",
+      "branch": "mm",
+      "kind": "host_wait",
+      "raw_stream_handle": "139762276343808",
+      "host_stream_id": "96",
+      "host_start_ns": 4519629097368172,
+      "batch": "trace-per_round",
+      "round": 3,
+      "host_end_ns": 4519629101775105
+    },
+    {
+      "label": "P16Sync/trace-per_round/r3/host_wait-mul",
+      "branch": "mul",
+      "kind": "host_wait",
+      "raw_stream_handle": "139762276352000",
+      "host_stream_id": "97",
+      "host_start_ns": 4519629101790905,
+      "batch": "trace-per_round",
+      "round": 3,
+      "host_end_ns": 4519629101805838
+    },
+    {
+      "label": "P16Sync/trace-final_only/r0/compute-mm-00",
+      "branch": "mm",
+      "kind": "compute",
+      "raw_stream_handle": "139762276343808",
+      "host_stream_id": "96",
+      "host_start_ns": 4519629104069711,
+      "batch": "trace-final_only",
+      "round": 0,
+      "host_end_ns": 4519629104082808
+    },
+    {
+      "label": "P16Sync/trace-final_only/r0/compute-mul-00",
+      "branch": "mul",
+      "kind": "compute",
+      "raw_stream_handle": "139762276352000",
+      "host_stream_id": "97",
+      "host_start_ns": 4519629104125610,
+      "batch": "trace-final_only",
+      "round": 0,
+      "host_end_ns": 4519629104138628
+    },
+    {
+      "label": "P16Sync/trace-final_only/r0/compute-mm-01",
+      "branch": "mm",
+      "kind": "compute",
+      "raw_stream_handle": "139762276343808",
+      "host_stream_id": "96",
+      "host_start_ns": 4519629104170812,
+      "batch": "trace-final_only",
+      "round": 0,
+      "host_end_ns": 4519629104179555
+    },
+    {
+      "label": "P16Sync/trace-final_only/r0/compute-mul-01",
+      "branch": "mul",
+      "kind": "compute",
+      "raw_stream_handle": "139762276352000",
+      "host_stream_id": "97",
+      "host_start_ns": 4519629104209624,
+      "batch": "trace-final_only",
+      "round": 0,
+      "host_end_ns": 4519629104218317
+    },
+    {
+      "label": "P16Sync/trace-final_only/r0/compute-mm-02",
+      "branch": "mm",
+      "kind": "compute",
+      "raw_stream_handle": "139762276343808",
+      "host_stream_id": "96",
+      "host_start_ns": 4519629104247561,
+      "batch": "trace-final_only",
+      "round": 0,
+      "host_end_ns": 4519629104257219
+    },
+    {
+      "label": "P16Sync/trace-final_only/r0/compute-mul-02",
+      "branch": "mul",
+      "kind": "compute",
+      "raw_stream_handle": "139762276352000",
+      "host_stream_id": "97",
+      "host_start_ns": 4519629104285677,
+      "batch": "trace-final_only",
+      "round": 0,
+      "host_end_ns": 4519629104293607
+    },
+    {
+      "label": "P16Sync/trace-final_only/r0/compute-mm-03",
+      "branch": "mm",
+      "kind": "compute",
+      "raw_stream_handle": "139762276343808",
+      "host_stream_id": "96",
+      "host_start_ns": 4519629104327614,
+      "batch": "trace-final_only",
+      "round": 0,
+      "host_end_ns": 4519629104338008
+    },
+    {
+      "label": "P16Sync/trace-final_only/r0/compute-mul-03",
+      "branch": "mul",
+      "kind": "compute",
+      "raw_stream_handle": "139762276352000",
+      "host_stream_id": "97",
+      "host_start_ns": 4519629104368738,
+      "batch": "trace-final_only",
+      "round": 0,
+      "host_end_ns": 4519629104377454
+    },
+    {
+      "label": "P16Sync/trace-final_only/r0/compute-mm-04",
+      "branch": "mm",
+      "kind": "compute",
+      "raw_stream_handle": "139762276343808",
+      "host_stream_id": "96",
+      "host_start_ns": 4519629104406195,
+      "batch": "trace-final_only",
+      "round": 0,
+      "host_end_ns": 4519629104415977
+    },
+    {
+      "label": "P16Sync/trace-final_only/r0/compute-mul-04",
+      "branch": "mul",
+      "kind": "compute",
+      "raw_stream_handle": "139762276352000",
+      "host_stream_id": "97",
+      "host_start_ns": 4519629104444377,
+      "batch": "trace-final_only",
+      "round": 0,
+      "host_end_ns": 4519629104452554
+    },
+    {
+      "label": "P16Sync/trace-final_only/r0/compute-mm-05",
+      "branch": "mm",
+      "kind": "compute",
+      "raw_stream_handle": "139762276343808",
+      "host_stream_id": "96",
+      "host_start_ns": 4519629104480877,
+      "batch": "trace-final_only",
+      "round": 0,
+      "host_end_ns": 4519629104489053
+    },
+    {
+      "label": "P16Sync/trace-final_only/r0/compute-mul-05",
+      "branch": "mul",
+      "kind": "compute",
+      "raw_stream_handle": "139762276352000",
+      "host_stream_id": "97",
+      "host_start_ns": 4519629104516706,
+      "batch": "trace-final_only",
+      "round": 0,
+      "host_end_ns": 4519629104524559
+    },
+    {
+      "label": "P16Sync/trace-final_only/r0/copy-mm",
+      "branch": "mm",
+      "kind": "copy",
+      "raw_stream_handle": "139762276343808",
+      "host_stream_id": "96",
+      "host_start_ns": 4519629104553617,
+      "batch": "trace-final_only",
+      "round": 0,
+      "host_end_ns": 4519629104582696
+    },
+    {
+      "label": "P16Sync/trace-final_only/r0/record-mm",
+      "branch": "mm",
+      "kind": "record",
+      "raw_stream_handle": "139762276343808",
+      "host_stream_id": "96",
+      "host_start_ns": 4519629104597763,
+      "batch": "trace-final_only",
+      "round": 0,
+      "event_handle": "139762927681280",
+      "host_end_ns": 4519629104625356
+    },
+    {
+      "label": "P16Sync/trace-final_only/r0/copy-mul",
+      "branch": "mul",
+      "kind": "copy",
+      "raw_stream_handle": "139762276352000",
+      "host_stream_id": "97",
+      "host_start_ns": 4519629104655685,
+      "batch": "trace-final_only",
+      "round": 0,
+      "host_end_ns": 4519629104687843
+    },
+    {
+      "label": "P16Sync/trace-final_only/r0/record-mul",
+      "branch": "mul",
+      "kind": "record",
+      "raw_stream_handle": "139762276352000",
+      "host_stream_id": "97",
+      "host_start_ns": 4519629104703674,
+      "batch": "trace-final_only",
+      "round": 0,
+      "event_handle": "139762927682048",
+      "host_end_ns": 4519629104725987
+    },
+    {
+      "label": "P16Sync/trace-final_only/r1/compute-mm-00",
+      "branch": "mm",
+      "kind": "compute",
+      "raw_stream_handle": "139762276343808",
+      "host_stream_id": "96",
+      "host_start_ns": 4519629104757618,
+      "batch": "trace-final_only",
+      "round": 1,
+      "host_end_ns": 4519629104769652
+    },
+    {
+      "label": "P16Sync/trace-final_only/r1/compute-mul-00",
+      "branch": "mul",
+      "kind": "compute",
+      "raw_stream_handle": "139762276352000",
+      "host_stream_id": "97",
+      "host_start_ns": 4519629104798627,
+      "batch": "trace-final_only",
+      "round": 1,
+      "host_end_ns": 4519629104807965
+    },
+    {
+      "label": "P16Sync/trace-final_only/r1/compute-mm-01",
+      "branch": "mm",
+      "kind": "compute",
+      "raw_stream_handle": "139762276343808",
+      "host_stream_id": "96",
+      "host_start_ns": 4519629104848196,
+      "batch": "trace-final_only",
+      "round": 1,
+      "host_end_ns": 4519629104858878
+    },
+    {
+      "label": "P16Sync/trace-final_only/r1/compute-mul-01",
+      "branch": "mul",
+      "kind": "compute",
+      "raw_stream_handle": "139762276352000",
+      "host_stream_id": "97",
+      "host_start_ns": 4519629104891496,
+      "batch": "trace-final_only",
+      "round": 1,
+      "host_end_ns": 4519629104901833
+    },
+    {
+      "label": "P16Sync/trace-final_only/r1/compute-mm-02",
+      "branch": "mm",
+      "kind": "compute",
+      "raw_stream_handle": "139762276343808",
+      "host_stream_id": "96",
+      "host_start_ns": 4519629104931711,
+      "batch": "trace-final_only",
+      "round": 1,
+      "host_end_ns": 4519629104940881
+    },
+    {
+      "label": "P16Sync/trace-final_only/r1/compute-mul-02",
+      "branch": "mul",
+      "kind": "compute",
+      "raw_stream_handle": "139762276352000",
+      "host_stream_id": "97",
+      "host_start_ns": 4519629104970715,
+      "batch": "trace-final_only",
+      "round": 1,
+      "host_end_ns": 4519629104981237
+    },
+    {
+      "label": "P16Sync/trace-final_only/r1/compute-mm-03",
+      "branch": "mm",
+      "kind": "compute",
+      "raw_stream_handle": "139762276343808",
+      "host_stream_id": "96",
+      "host_start_ns": 4519629105010871,
+      "batch": "trace-final_only",
+      "round": 1,
+      "host_end_ns": 4519629105019212
+    },
+    {
+      "label": "P16Sync/trace-final_only/r1/compute-mul-03",
+      "branch": "mul",
+      "kind": "compute",
+      "raw_stream_handle": "139762276352000",
+      "host_stream_id": "97",
+      "host_start_ns": 4519629105052099,
+      "batch": "trace-final_only",
+      "round": 1,
+      "host_end_ns": 4519629105060926
+    },
+    {
+      "label": "P16Sync/trace-final_only/r1/compute-mm-04",
+      "branch": "mm",
+      "kind": "compute",
+      "raw_stream_handle": "139762276343808",
+      "host_stream_id": "96",
+      "host_start_ns": 4519629105096543,
+      "batch": "trace-final_only",
+      "round": 1,
+      "host_end_ns": 4519629105104999
+    },
+    {
+      "label": "P16Sync/trace-final_only/r1/compute-mul-04",
+      "branch": "mul",
+      "kind": "compute",
+      "raw_stream_handle": "139762276352000",
+      "host_stream_id": "97",
+      "host_start_ns": 4519629105133313,
+      "batch": "trace-final_only",
+      "round": 1,
+      "host_end_ns": 4519629105142062
+    },
+    {
+      "label": "P16Sync/trace-final_only/r1/compute-mm-05",
+      "branch": "mm",
+      "kind": "compute",
+      "raw_stream_handle": "139762276343808",
+      "host_stream_id": "96",
+      "host_start_ns": 4519629105170610,
+      "batch": "trace-final_only",
+      "round": 1,
+      "host_end_ns": 4519629105178428
+    },
+    {
+      "label": "P16Sync/trace-final_only/r1/compute-mul-05",
+      "branch": "mul",
+      "kind": "compute",
+      "raw_stream_handle": "139762276352000",
+      "host_stream_id": "97",
+      "host_start_ns": 4519629105213354,
+      "batch": "trace-final_only",
+      "round": 1,
+      "host_end_ns": 4519629105221927
+    },
+    {
+      "label": "P16Sync/trace-final_only/r1/copy-mm",
+      "branch": "mm",
+      "kind": "copy",
+      "raw_stream_handle": "139762276343808",
+      "host_stream_id": "96",
+      "host_start_ns": 4519629105259944,
+      "batch": "trace-final_only",
+      "round": 1,
+      "host_end_ns": 4519629105279360
+    },
+    {
+      "label": "P16Sync/trace-final_only/r1/record-mm",
+      "branch": "mm",
+      "kind": "record",
+      "raw_stream_handle": "139762276343808",
+      "host_stream_id": "96",
+      "host_start_ns": 4519629105295799,
+      "batch": "trace-final_only",
+      "round": 1,
+      "event_handle": "139762927682816",
+      "host_end_ns": 4519629105323085
+    },
+    {
+      "label": "P16Sync/trace-final_only/r1/copy-mul",
+      "branch": "mul",
+      "kind": "copy",
+      "raw_stream_handle": "139762276352000",
+      "host_stream_id": "97",
+      "host_start_ns": 4519629105357292,
+      "batch": "trace-final_only",
+      "round": 1,
+      "host_end_ns": 4519629105375736
+    },
+    {
+      "label": "P16Sync/trace-final_only/r1/record-mul",
+      "branch": "mul",
+      "kind": "record",
+      "raw_stream_handle": "139762276352000",
+      "host_stream_id": "97",
+      "host_start_ns": 4519629105390876,
+      "batch": "trace-final_only",
+      "round": 1,
+      "event_handle": "139762927683584",
+      "host_end_ns": 4519629105406984
+    },
+    {
+      "label": "P16Sync/trace-final_only/r2/compute-mm-00",
+      "branch": "mm",
+      "kind": "compute",
+      "raw_stream_handle": "139762276343808",
+      "host_stream_id": "96",
+      "host_start_ns": 4519629105441574,
+      "batch": "trace-final_only",
+      "round": 2,
+      "host_end_ns": 4519629105453325
+    },
+    {
+      "label": "P16Sync/trace-final_only/r2/compute-mul-00",
+      "branch": "mul",
+      "kind": "compute",
+      "raw_stream_handle": "139762276352000",
+      "host_stream_id": "97",
+      "host_start_ns": 4519629105483204,
+      "batch": "trace-final_only",
+      "round": 2,
+      "host_end_ns": 4519629105491903
+    },
+    {
+      "label": "P16Sync/trace-final_only/r2/compute-mm-01",
+      "branch": "mm",
+      "kind": "compute",
+      "raw_stream_handle": "139762276343808",
+      "host_stream_id": "96",
+      "host_start_ns": 4519629105520440,
+      "batch": "trace-final_only",
+      "round": 2,
+      "host_end_ns": 4519629105531661
+    },
+    {
+      "label": "P16Sync/trace-final_only/r2/compute-mul-01",
+      "branch": "mul",
+      "kind": "compute",
+      "raw_stream_handle": "139762276352000",
+      "host_stream_id": "97",
+      "host_start_ns": 4519629105560037,
+      "batch": "trace-final_only",
+      "round": 2,
+      "host_end_ns": 4519629105569426
+    },
+    {
+      "label": "P16Sync/trace-final_only/r2/compute-mm-02",
+      "branch": "mm",
+      "kind": "compute",
+      "raw_stream_handle": "139762276343808",
+      "host_stream_id": "96",
+      "host_start_ns": 4519629105597947,
+      "batch": "trace-final_only",
+      "round": 2,
+      "host_end_ns": 4519629105607040
+    },
+    {
+      "label": "P16Sync/trace-final_only/r2/compute-mul-02",
+      "branch": "mul",
+      "kind": "compute",
+      "raw_stream_handle": "139762276352000",
+      "host_stream_id": "97",
+      "host_start_ns": 4519629105635628,
+      "batch": "trace-final_only",
+      "round": 2,
+      "host_end_ns": 4519629105648375
+    },
+    {
+      "label": "P16Sync/trace-final_only/r2/compute-mm-03",
+      "branch": "mm",
+      "kind": "compute",
+      "raw_stream_handle": "139762276343808",
+      "host_stream_id": "96",
+      "host_start_ns": 4519629105676259,
+      "batch": "trace-final_only",
+      "round": 2,
+      "host_end_ns": 4519629105686884
+    },
+    {
+      "label": "P16Sync/trace-final_only/r2/compute-mul-03",
+      "branch": "mul",
+      "kind": "compute",
+      "raw_stream_handle": "139762276352000",
+      "host_stream_id": "97",
+      "host_start_ns": 4519629105728965,
+      "batch": "trace-final_only",
+      "round": 2,
+      "host_end_ns": 4519629105738183
+    },
+    {
+      "label": "P16Sync/trace-final_only/r2/compute-mm-04",
+      "branch": "mm",
+      "kind": "compute",
+      "raw_stream_handle": "139762276343808",
+      "host_stream_id": "96",
+      "host_start_ns": 4519629105767366,
+      "batch": "trace-final_only",
+      "round": 2,
+      "host_end_ns": 4519629105776969
+    },
+    {
+      "label": "P16Sync/trace-final_only/r2/compute-mul-04",
+      "branch": "mul",
+      "kind": "compute",
+      "raw_stream_handle": "139762276352000",
+      "host_stream_id": "97",
+      "host_start_ns": 4519629105807070,
+      "batch": "trace-final_only",
+      "round": 2,
+      "host_end_ns": 4519629105815795
+    },
+    {
+      "label": "P16Sync/trace-final_only/r2/compute-mm-05",
+      "branch": "mm",
+      "kind": "compute",
+      "raw_stream_handle": "139762276343808",
+      "host_stream_id": "96",
+      "host_start_ns": 4519629105844661,
+      "batch": "trace-final_only",
+      "round": 2,
+      "host_end_ns": 4519629105854400
+    },
+    {
+      "label": "P16Sync/trace-final_only/r2/compute-mul-05",
+      "branch": "mul",
+      "kind": "compute",
+      "raw_stream_handle": "139762276352000",
+      "host_stream_id": "97",
+      "host_start_ns": 4519629105883091,
+      "batch": "trace-final_only",
+      "round": 2,
+      "host_end_ns": 4519629105891231
+    },
+    {
+      "label": "P16Sync/trace-final_only/r2/copy-mm",
+      "branch": "mm",
+      "kind": "copy",
+      "raw_stream_handle": "139762276343808",
+      "host_stream_id": "96",
+      "host_start_ns": 4519629105928989,
+      "batch": "trace-final_only",
+      "round": 2,
+      "host_end_ns": 4519629105953374
+    },
+    {
+      "label": "P16Sync/trace-final_only/r2/record-mm",
+      "branch": "mm",
+      "kind": "record",
+      "raw_stream_handle": "139762276343808",
+      "host_stream_id": "96",
+      "host_start_ns": 4519629105970770,
+      "batch": "trace-final_only",
+      "round": 2,
+      "event_handle": "139762927684352",
+      "host_end_ns": 4519629105987934
+    },
+    {
+      "label": "P16Sync/trace-final_only/r2/copy-mul",
+      "branch": "mul",
+      "kind": "copy",
+      "raw_stream_handle": "139762276352000",
+      "host_stream_id": "97",
+      "host_start_ns": 4519629106016605,
+      "batch": "trace-final_only",
+      "round": 2,
+      "host_end_ns": 4519629106034270
+    },
+    {
+      "label": "P16Sync/trace-final_only/r2/record-mul",
+      "branch": "mul",
+      "kind": "record",
+      "raw_stream_handle": "139762276352000",
+      "host_stream_id": "97",
+      "host_start_ns": 4519629106049752,
+      "batch": "trace-final_only",
+      "round": 2,
+      "event_handle": "139762927685120",
+      "host_end_ns": 4519629106067832
+    },
+    {
+      "label": "P16Sync/trace-final_only/r3/compute-mm-00",
+      "branch": "mm",
+      "kind": "compute",
+      "raw_stream_handle": "139762276343808",
+      "host_stream_id": "96",
+      "host_start_ns": 4519629106098651,
+      "batch": "trace-final_only",
+      "round": 3,
+      "host_end_ns": 4519629106109046
+    },
+    {
+      "label": "P16Sync/trace-final_only/r3/compute-mul-00",
+      "branch": "mul",
+      "kind": "compute",
+      "raw_stream_handle": "139762276352000",
+      "host_stream_id": "97",
+      "host_start_ns": 4519629106138624,
+      "batch": "trace-final_only",
+      "round": 3,
+      "host_end_ns": 4519629106147814
+    },
+    {
+      "label": "P16Sync/trace-final_only/r3/compute-mm-01",
+      "branch": "mm",
+      "kind": "compute",
+      "raw_stream_handle": "139762276343808",
+      "host_stream_id": "96",
+      "host_start_ns": 4519629106182920,
+      "batch": "trace-final_only",
+      "round": 3,
+      "host_end_ns": 4519629106193223
+    },
+    {
+      "label": "P16Sync/trace-final_only/r3/compute-mul-01",
+      "branch": "mul",
+      "kind": "compute",
+      "raw_stream_handle": "139762276352000",
+      "host_stream_id": "97",
+      "host_start_ns": 4519629106228277,
+      "batch": "trace-final_only",
+      "round": 3,
+      "host_end_ns": 4519629106236962
+    },
+    {
+      "label": "P16Sync/trace-final_only/r3/compute-mm-02",
+      "branch": "mm",
+      "kind": "compute",
+      "raw_stream_handle": "139762276343808",
+      "host_stream_id": "96",
+      "host_start_ns": 4519629106265584,
+      "batch": "trace-final_only",
+      "round": 3,
+      "host_end_ns": 4519629106277246
+    },
+    {
+      "label": "P16Sync/trace-final_only/r3/compute-mul-02",
+      "branch": "mul",
+      "kind": "compute",
+      "raw_stream_handle": "139762276352000",
+      "host_stream_id": "97",
+      "host_start_ns": 4519629106306165,
+      "batch": "trace-final_only",
+      "round": 3,
+      "host_end_ns": 4519629106316036
+    },
+    {
+      "label": "P16Sync/trace-final_only/r3/compute-mm-03",
+      "branch": "mm",
+      "kind": "compute",
+      "raw_stream_handle": "139762276343808",
+      "host_stream_id": "96",
+      "host_start_ns": 4519629106345645,
+      "batch": "trace-final_only",
+      "round": 3,
+      "host_end_ns": 4519629106353919
+    },
+    {
+      "label": "P16Sync/trace-final_only/r3/compute-mul-03",
+      "branch": "mul",
+      "kind": "compute",
+      "raw_stream_handle": "139762276352000",
+      "host_stream_id": "97",
+      "host_start_ns": 4519629106381750,
+      "batch": "trace-final_only",
+      "round": 3,
+      "host_end_ns": 4519629106391174
+    },
+    {
+      "label": "P16Sync/trace-final_only/r3/compute-mm-04",
+      "branch": "mm",
+      "kind": "compute",
+      "raw_stream_handle": "139762276343808",
+      "host_stream_id": "96",
+      "host_start_ns": 4519629106424677,
+      "batch": "trace-final_only",
+      "round": 3,
+      "host_end_ns": 4519629106433968
+    },
+    {
+      "label": "P16Sync/trace-final_only/r3/compute-mul-04",
+      "branch": "mul",
+      "kind": "compute",
+      "raw_stream_handle": "139762276352000",
+      "host_stream_id": "97",
+      "host_start_ns": 4519629106464218,
+      "batch": "trace-final_only",
+      "round": 3,
+      "host_end_ns": 4519629106474536
+    },
+    {
+      "label": "P16Sync/trace-final_only/r3/compute-mm-05",
+      "branch": "mm",
+      "kind": "compute",
+      "raw_stream_handle": "139762276343808",
+      "host_stream_id": "96",
+      "host_start_ns": 4519629106507256,
+      "batch": "trace-final_only",
+      "round": 3,
+      "host_end_ns": 4519629106525982
+    },
+    {
+      "label": "P16Sync/trace-final_only/r3/compute-mul-05",
+      "branch": "mul",
+      "kind": "compute",
+      "raw_stream_handle": "139762276352000",
+      "host_stream_id": "97",
+      "host_start_ns": 4519629106555345,
+      "batch": "trace-final_only",
+      "round": 3,
+      "host_end_ns": 4519629107350687
+    },
+    {
+      "label": "P16Sync/trace-final_only/r3/copy-mm",
+      "branch": "mm",
+      "kind": "copy",
+      "raw_stream_handle": "139762276343808",
+      "host_stream_id": "96",
+      "host_start_ns": 4519629107384562,
+      "batch": "trace-final_only",
+      "round": 3,
+      "host_end_ns": 4519629107405756
+    },
+    {
+      "label": "P16Sync/trace-final_only/r3/record-mm",
+      "branch": "mm",
+      "kind": "record",
+      "raw_stream_handle": "139762276343808",
+      "host_stream_id": "96",
+      "host_start_ns": 4519629107421615,
+      "batch": "trace-final_only",
+      "round": 3,
+      "event_handle": "139762927685888",
+      "host_end_ns": 4519629107446403
+    },
+    {
+      "label": "P16Sync/trace-final_only/r3/copy-mul",
+      "branch": "mul",
+      "kind": "copy",
+      "raw_stream_handle": "139762276352000",
+      "host_stream_id": "97",
+      "host_start_ns": 4519629107475300,
+      "batch": "trace-final_only",
+      "round": 3,
+      "host_end_ns": 4519629107492775
+    },
+    {
+      "label": "P16Sync/trace-final_only/r3/record-mul",
+      "branch": "mul",
+      "kind": "record",
+      "raw_stream_handle": "139762276352000",
+      "host_stream_id": "97",
+      "host_start_ns": 4519629107513008,
+      "batch": "trace-final_only",
+      "round": 3,
+      "event_handle": "139762927686656",
+      "host_end_ns": 4519629107529896
+    },
+    {
+      "label": "P16Sync/trace-final_only/r3/host_wait-mm",
+      "branch": "mm",
+      "kind": "host_wait",
+      "raw_stream_handle": "139762276343808",
+      "host_stream_id": "96",
+      "host_start_ns": 4519629107546024,
+      "batch": "trace-final_only",
+      "round": 3,
+      "host_end_ns": 4519629124283776
+    },
+    {
+      "label": "P16Sync/trace-final_only/r3/host_wait-mul",
+      "branch": "mul",
+      "kind": "host_wait",
+      "raw_stream_handle": "139762276352000",
+      "host_stream_id": "97",
+      "host_start_ns": 4519629124346044,
+      "batch": "trace-final_only",
+      "round": 3,
+      "host_end_ns": 4519629124370892
+    },
+    {
+      "label": "P16Sync/trace-early_read/r0/compute-mm-00",
+      "branch": "mm",
+      "kind": "compute",
+      "raw_stream_handle": "139762276343808",
+      "host_stream_id": "96",
+      "host_start_ns": 4519629126658314,
+      "batch": "trace-early_read",
+      "round": 0,
+      "host_end_ns": 4519629126680570
+    },
+    {
+      "label": "P16Sync/trace-early_read/r0/compute-mul-00",
+      "branch": "mul",
+      "kind": "compute",
+      "raw_stream_handle": "139762276352000",
+      "host_stream_id": "97",
+      "host_start_ns": 4519629126726854,
+      "batch": "trace-early_read",
+      "round": 0,
+      "host_end_ns": 4519629126747334
+    },
+    {
+      "label": "P16Sync/trace-early_read/r0/compute-mm-01",
+      "branch": "mm",
+      "kind": "compute",
+      "raw_stream_handle": "139762276343808",
+      "host_stream_id": "96",
+      "host_start_ns": 4519629126795595,
+      "batch": "trace-early_read",
+      "round": 0,
+      "host_end_ns": 4519629126810671
+    },
+    {
+      "label": "P16Sync/trace-early_read/r0/compute-mul-01",
+      "branch": "mul",
+      "kind": "compute",
+      "raw_stream_handle": "139762276352000",
+      "host_stream_id": "97",
+      "host_start_ns": 4519629126844929,
+      "batch": "trace-early_read",
+      "round": 0,
+      "host_end_ns": 4519629126855047
+    },
+    {
+      "label": "P16Sync/trace-early_read/r0/compute-mm-02",
+      "branch": "mm",
+      "kind": "compute",
+      "raw_stream_handle": "139762276343808",
+      "host_stream_id": "96",
+      "host_start_ns": 4519629126887134,
+      "batch": "trace-early_read",
+      "round": 0,
+      "host_end_ns": 4519629126896299
+    },
+    {
+      "label": "P16Sync/trace-early_read/r0/compute-mul-02",
+      "branch": "mul",
+      "kind": "compute",
+      "raw_stream_handle": "139762276352000",
+      "host_stream_id": "97",
+      "host_start_ns": 4519629126926085,
+      "batch": "trace-early_read",
+      "round": 0,
+      "host_end_ns": 4519629126934767
+    },
+    {
+      "label": "P16Sync/trace-early_read/r0/compute-mm-03",
+      "branch": "mm",
+      "kind": "compute",
+      "raw_stream_handle": "139762276343808",
+      "host_stream_id": "96",
+      "host_start_ns": 4519629126968795,
+      "batch": "trace-early_read",
+      "round": 0,
+      "host_end_ns": 4519629126978480
+    },
+    {
+      "label": "P16Sync/trace-early_read/r0/compute-mul-03",
+      "branch": "mul",
+      "kind": "compute",
+      "raw_stream_handle": "139762276352000",
+      "host_stream_id": "97",
+      "host_start_ns": 4519629127009758,
+      "batch": "trace-early_read",
+      "round": 0,
+      "host_end_ns": 4519629127018083
+    },
+    {
+      "label": "P16Sync/trace-early_read/r0/compute-mm-04",
+      "branch": "mm",
+      "kind": "compute",
+      "raw_stream_handle": "139762276343808",
+      "host_stream_id": "96",
+      "host_start_ns": 4519629127047112,
+      "batch": "trace-early_read",
+      "round": 0,
+      "host_end_ns": 4519629127055657
+    },
+    {
+      "label": "P16Sync/trace-early_read/r0/compute-mul-04",
+      "branch": "mul",
+      "kind": "compute",
+      "raw_stream_handle": "139762276352000",
+      "host_stream_id": "97",
+      "host_start_ns": 4519629127084395,
+      "batch": "trace-early_read",
+      "round": 0,
+      "host_end_ns": 4519629127094638
+    },
+    {
+      "label": "P16Sync/trace-early_read/r0/compute-mm-05",
+      "branch": "mm",
+      "kind": "compute",
+      "raw_stream_handle": "139762276343808",
+      "host_stream_id": "96",
+      "host_start_ns": 4519629127132650,
+      "batch": "trace-early_read",
+      "round": 0,
+      "host_end_ns": 4519629127142382
+    },
+    {
+      "label": "P16Sync/trace-early_read/r0/compute-mul-05",
+      "branch": "mul",
+      "kind": "compute",
+      "raw_stream_handle": "139762276352000",
+      "host_stream_id": "97",
+      "host_start_ns": 4519629127171487,
+      "batch": "trace-early_read",
+      "round": 0,
+      "host_end_ns": 4519629127181439
+    },
+    {
+      "label": "P16Sync/trace-early_read/r0/copy-mm",
+      "branch": "mm",
+      "kind": "copy",
+      "raw_stream_handle": "139762276343808",
+      "host_stream_id": "96",
+      "host_start_ns": 4519629127211228,
+      "batch": "trace-early_read",
+      "round": 0,
+      "host_end_ns": 4519629127262992
+    },
+    {
+      "label": "P16Sync/trace-early_read/r0/record-mm",
+      "branch": "mm",
+      "kind": "record",
+      "raw_stream_handle": "139762276343808",
+      "host_stream_id": "96",
+      "host_start_ns": 4519629127280106,
+      "batch": "trace-early_read",
+      "round": 0,
+      "event_handle": "139762927681280",
+      "host_end_ns": 4519629127301091
+    },
+    {
+      "label": "P16Sync/trace-early_read/r0/copy-mul",
+      "branch": "mul",
+      "kind": "copy",
+      "raw_stream_handle": "139762276352000",
+      "host_stream_id": "97",
+      "host_start_ns": 4519629127332623,
+      "batch": "trace-early_read",
+      "round": 0,
+      "host_end_ns": 4519629127351440
+    },
+    {
+      "label": "P16Sync/trace-early_read/r0/record-mul",
+      "branch": "mul",
+      "kind": "record",
+      "raw_stream_handle": "139762276352000",
+      "host_stream_id": "97",
+      "host_start_ns": 4519629127375821,
+      "batch": "trace-early_read",
+      "round": 0,
+      "event_handle": "139762927682048",
+      "host_end_ns": 4519629127392321
+    },
+    {
+      "label": "P16Sync/trace-early_read/r1/compute-mm-00",
+      "branch": "mm",
+      "kind": "compute",
+      "raw_stream_handle": "139762276343808",
+      "host_stream_id": "96",
+      "host_start_ns": 4519629127462178,
+      "batch": "trace-early_read",
+      "round": 1,
+      "host_end_ns": 4519629127473646
+    },
+    {
+      "label": "P16Sync/trace-early_read/r1/compute-mul-00",
+      "branch": "mul",
+      "kind": "compute",
+      "raw_stream_handle": "139762276352000",
+      "host_stream_id": "97",
+      "host_start_ns": 4519629127503689,
+      "batch": "trace-early_read",
+      "round": 1,
+      "host_end_ns": 4519629127518364
+    },
+    {
+      "label": "P16Sync/trace-early_read/r1/compute-mm-01",
+      "branch": "mm",
+      "kind": "compute",
+      "raw_stream_handle": "139762276343808",
+      "host_stream_id": "96",
+      "host_start_ns": 4519629127563042,
+      "batch": "trace-early_read",
+      "round": 1,
+      "host_end_ns": 4519629127572333
+    },
+    {
+      "label": "P16Sync/trace-early_read/r1/compute-mul-01",
+      "branch": "mul",
+      "kind": "compute",
+      "raw_stream_handle": "139762276352000",
+      "host_stream_id": "97",
+      "host_start_ns": 4519629127605505,
+      "batch": "trace-early_read",
+      "round": 1,
+      "host_end_ns": 4519629127614455
+    },
+    {
+      "label": "P16Sync/trace-early_read/r1/compute-mm-02",
+      "branch": "mm",
+      "kind": "compute",
+      "raw_stream_handle": "139762276343808",
+      "host_stream_id": "96",
+      "host_start_ns": 4519629127644391,
+      "batch": "trace-early_read",
+      "round": 1,
+      "host_end_ns": 4519629127653263
+    },
+    {
+      "label": "P16Sync/trace-early_read/r1/compute-mul-02",
+      "branch": "mul",
+      "kind": "compute",
+      "raw_stream_handle": "139762276352000",
+      "host_stream_id": "97",
+      "host_start_ns": 4519629127681590,
+      "batch": "trace-early_read",
+      "round": 1,
+      "host_end_ns": 4519629127690551
+    },
+    {
+      "label": "P16Sync/trace-early_read/r1/compute-mm-03",
+      "branch": "mm",
+      "kind": "compute",
+      "raw_stream_handle": "139762276343808",
+      "host_stream_id": "96",
+      "host_start_ns": 4519629127718749,
+      "batch": "trace-early_read",
+      "round": 1,
+      "host_end_ns": 4519629127727443
+    },
+    {
+      "label": "P16Sync/trace-early_read/r1/compute-mul-03",
+      "branch": "mul",
+      "kind": "compute",
+      "raw_stream_handle": "139762276352000",
+      "host_stream_id": "97",
+      "host_start_ns": 4519629127755957,
+      "batch": "trace-early_read",
+      "round": 1,
+      "host_end_ns": 4519629127763768
+    },
+    {
+      "label": "P16Sync/trace-early_read/r1/compute-mm-04",
+      "branch": "mm",
+      "kind": "compute",
+      "raw_stream_handle": "139762276343808",
+      "host_stream_id": "96",
+      "host_start_ns": 4519629127797161,
+      "batch": "trace-early_read",
+      "round": 1,
+      "host_end_ns": 4519629127807715
+    },
+    {
+      "label": "P16Sync/trace-early_read/r1/compute-mul-04",
+      "branch": "mul",
+      "kind": "compute",
+      "raw_stream_handle": "139762276352000",
+      "host_stream_id": "97",
+      "host_start_ns": 4519629127835971,
+      "batch": "trace-early_read",
+      "round": 1,
+      "host_end_ns": 4519629127844506
+    },
+    {
+      "label": "P16Sync/trace-early_read/r1/compute-mm-05",
+      "branch": "mm",
+      "kind": "compute",
+      "raw_stream_handle": "139762276343808",
+      "host_stream_id": "96",
+      "host_start_ns": 4519629127872126,
+      "batch": "trace-early_read",
+      "round": 1,
+      "host_end_ns": 4519629127879933
+    },
+    {
+      "label": "P16Sync/trace-early_read/r1/compute-mul-05",
+      "branch": "mul",
+      "kind": "compute",
+      "raw_stream_handle": "139762276352000",
+      "host_stream_id": "97",
+      "host_start_ns": 4519629127907666,
+      "batch": "trace-early_read",
+      "round": 1,
+      "host_end_ns": 4519629127916405
+    },
+    {
+      "label": "P16Sync/trace-early_read/r1/copy-mm",
+      "branch": "mm",
+      "kind": "copy",
+      "raw_stream_handle": "139762276343808",
+      "host_stream_id": "96",
+      "host_start_ns": 4519629127944441,
+      "batch": "trace-early_read",
+      "round": 1,
+      "host_end_ns": 4519629127965076
+    },
+    {
+      "label": "P16Sync/trace-early_read/r1/record-mm",
+      "branch": "mm",
+      "kind": "record",
+      "raw_stream_handle": "139762276343808",
+      "host_stream_id": "96",
+      "host_start_ns": 4519629127981113,
+      "batch": "trace-early_read",
+      "round": 1,
+      "event_handle": "139762927682816",
+      "host_end_ns": 4519629127998150
+    },
+    {
+      "label": "P16Sync/trace-early_read/r1/copy-mul",
+      "branch": "mul",
+      "kind": "copy",
+      "raw_stream_handle": "139762276352000",
+      "host_stream_id": "97",
+      "host_start_ns": 4519629128048374,
+      "batch": "trace-early_read",
+      "round": 1,
+      "host_end_ns": 4519629128069165
+    },
+    {
+      "label": "P16Sync/trace-early_read/r1/record-mul",
+      "branch": "mul",
+      "kind": "record",
+      "raw_stream_handle": "139762276352000",
+      "host_stream_id": "97",
+      "host_start_ns": 4519629128083681,
+      "batch": "trace-early_read",
+      "round": 1,
+      "event_handle": "139762927683584",
+      "host_end_ns": 4519629128101317
+    },
+    {
+      "label": "P16Sync/trace-early_read/r2/compute-mm-00",
+      "branch": "mm",
+      "kind": "compute",
+      "raw_stream_handle": "139762276343808",
+      "host_stream_id": "96",
+      "host_start_ns": 4519629128165285,
+      "batch": "trace-early_read",
+      "round": 2,
+      "host_end_ns": 4519629128180428
+    },
+    {
+      "label": "P16Sync/trace-early_read/r2/compute-mul-00",
+      "branch": "mul",
+      "kind": "compute",
+      "raw_stream_handle": "139762276352000",
+      "host_stream_id": "97",
+      "host_start_ns": 4519629128211516,
+      "batch": "trace-early_read",
+      "round": 2,
+      "host_end_ns": 4519629128221323
+    },
+    {
+      "label": "P16Sync/trace-early_read/r2/compute-mm-01",
+      "branch": "mm",
+      "kind": "compute",
+      "raw_stream_handle": "139762276343808",
+      "host_stream_id": "96",
+      "host_start_ns": 4519629128250495,
+      "batch": "trace-early_read",
+      "round": 2,
+      "host_end_ns": 4519629128259719
+    },
+    {
+      "label": "P16Sync/trace-early_read/r2/compute-mul-01",
+      "branch": "mul",
+      "kind": "compute",
+      "raw_stream_handle": "139762276352000",
+      "host_stream_id": "97",
+      "host_start_ns": 4519629128287832,
+      "batch": "trace-early_read",
+      "round": 2,
+      "host_end_ns": 4519629128296647
+    },
+    {
+      "label": "P16Sync/trace-early_read/r2/compute-mm-02",
+      "branch": "mm",
+      "kind": "compute",
+      "raw_stream_handle": "139762276343808",
+      "host_stream_id": "96",
+      "host_start_ns": 4519629128324024,
+      "batch": "trace-early_read",
+      "round": 2,
+      "host_end_ns": 4519629128332470
+    },
+    {
+      "label": "P16Sync/trace-early_read/r2/compute-mul-02",
+      "branch": "mul",
+      "kind": "compute",
+      "raw_stream_handle": "139762276352000",
+      "host_stream_id": "97",
+      "host_start_ns": 4519629128366023,
+      "batch": "trace-early_read",
+      "round": 2,
+      "host_end_ns": 4519629128374504
+    },
+    {
+      "label": "P16Sync/trace-early_read/r2/compute-mm-03",
+      "branch": "mm",
+      "kind": "compute",
+      "raw_stream_handle": "139762276343808",
+      "host_stream_id": "96",
+      "host_start_ns": 4519629128402847,
+      "batch": "trace-early_read",
+      "round": 2,
+      "host_end_ns": 4519629128411716
+    },
+    {
+      "label": "P16Sync/trace-early_read/r2/compute-mul-03",
+      "branch": "mul",
+      "kind": "compute",
+      "raw_stream_handle": "139762276352000",
+      "host_stream_id": "97",
+      "host_start_ns": 4519629128440780,
+      "batch": "trace-early_read",
+      "round": 2,
+      "host_end_ns": 4519629128450935
+    },
+    {
+      "label": "P16Sync/trace-early_read/r2/compute-mm-04",
+      "branch": "mm",
+      "kind": "compute",
+      "raw_stream_handle": "139762276343808",
+      "host_stream_id": "96",
+      "host_start_ns": 4519629128479666,
+      "batch": "trace-early_read",
+      "round": 2,
+      "host_end_ns": 4519629128488330
+    },
+    {
+      "label": "P16Sync/trace-early_read/r2/compute-mul-04",
+      "branch": "mul",
+      "kind": "compute",
+      "raw_stream_handle": "139762276352000",
+      "host_stream_id": "97",
+      "host_start_ns": 4519629128518041,
+      "batch": "trace-early_read",
+      "round": 2,
+      "host_end_ns": 4519629128526432
+    },
+    {
+      "label": "P16Sync/trace-early_read/r2/compute-mm-05",
+      "branch": "mm",
+      "kind": "compute",
+      "raw_stream_handle": "139762276343808",
+      "host_stream_id": "96",
+      "host_start_ns": 4519629128554343,
+      "batch": "trace-early_read",
+      "round": 2,
+      "host_end_ns": 4519629128563425
+    },
+    {
+      "label": "P16Sync/trace-early_read/r2/compute-mul-05",
+      "branch": "mul",
+      "kind": "compute",
+      "raw_stream_handle": "139762276352000",
+      "host_stream_id": "97",
+      "host_start_ns": 4519629128590860,
+      "batch": "trace-early_read",
+      "round": 2,
+      "host_end_ns": 4519629128598824
+    },
+    {
+      "label": "P16Sync/trace-early_read/r2/copy-mm",
+      "branch": "mm",
+      "kind": "copy",
+      "raw_stream_handle": "139762276343808",
+      "host_stream_id": "96",
+      "host_start_ns": 4519629128627396,
+      "batch": "trace-early_read",
+      "round": 2,
+      "host_end_ns": 4519629128647552
+    },
+    {
+      "label": "P16Sync/trace-early_read/r2/record-mm",
+      "branch": "mm",
+      "kind": "record",
+      "raw_stream_handle": "139762276343808",
+      "host_stream_id": "96",
+      "host_start_ns": 4519629128662808,
+      "batch": "trace-early_read",
+      "round": 2,
+      "event_handle": "139762927684352",
+      "host_end_ns": 4519629128679166
+    },
+    {
+      "label": "P16Sync/trace-early_read/r2/copy-mul",
+      "branch": "mul",
+      "kind": "copy",
+      "raw_stream_handle": "139762276352000",
+      "host_stream_id": "97",
+      "host_start_ns": 4519629128707372,
+      "batch": "trace-early_read",
+      "round": 2,
+      "host_end_ns": 4519629128724584
+    },
+    {
+      "label": "P16Sync/trace-early_read/r2/record-mul",
+      "branch": "mul",
+      "kind": "record",
+      "raw_stream_handle": "139762276352000",
+      "host_stream_id": "97",
+      "host_start_ns": 4519629128744860,
+      "batch": "trace-early_read",
+      "round": 2,
+      "event_handle": "139762927685120",
+      "host_end_ns": 4519629128764368
+    },
+    {
+      "label": "P16Sync/trace-early_read/r3/compute-mm-00",
+      "branch": "mm",
+      "kind": "compute",
+      "raw_stream_handle": "139762276343808",
+      "host_stream_id": "96",
+      "host_start_ns": 4519629128826385,
+      "batch": "trace-early_read",
+      "round": 3,
+      "host_end_ns": 4519629128836949
+    },
+    {
+      "label": "P16Sync/trace-early_read/r3/compute-mul-00",
+      "branch": "mul",
+      "kind": "compute",
+      "raw_stream_handle": "139762276352000",
+      "host_stream_id": "97",
+      "host_start_ns": 4519629128865875,
+      "batch": "trace-early_read",
+      "round": 3,
+      "host_end_ns": 4519629128874948
+    },
+    {
+      "label": "P16Sync/trace-early_read/r3/compute-mm-01",
+      "branch": "mm",
+      "kind": "compute",
+      "raw_stream_handle": "139762276343808",
+      "host_stream_id": "96",
+      "host_start_ns": 4519629128904914,
+      "batch": "trace-early_read",
+      "round": 3,
+      "host_end_ns": 4519629128918083
+    },
+    {
+      "label": "P16Sync/trace-early_read/r3/compute-mul-01",
+      "branch": "mul",
+      "kind": "compute",
+      "raw_stream_handle": "139762276352000",
+      "host_stream_id": "97",
+      "host_start_ns": 4519629128946813,
+      "batch": "trace-early_read",
+      "round": 3,
+      "host_end_ns": 4519629128955483
+    },
+    {
+      "label": "P16Sync/trace-early_read/r3/compute-mm-02",
+      "branch": "mm",
+      "kind": "compute",
+      "raw_stream_handle": "139762276343808",
+      "host_stream_id": "96",
+      "host_start_ns": 4519629128985045,
+      "batch": "trace-early_read",
+      "round": 3,
+      "host_end_ns": 4519629128994111
+    },
+    {
+      "label": "P16Sync/trace-early_read/r3/compute-mul-02",
+      "branch": "mul",
+      "kind": "compute",
+      "raw_stream_handle": "139762276352000",
+      "host_stream_id": "97",
+      "host_start_ns": 4519629129021927,
+      "batch": "trace-early_read",
+      "round": 3,
+      "host_end_ns": 4519629129030299
+    },
+    {
+      "label": "P16Sync/trace-early_read/r3/compute-mm-03",
+      "branch": "mm",
+      "kind": "compute",
+      "raw_stream_handle": "139762276343808",
+      "host_stream_id": "96",
+      "host_start_ns": 4519629129061410,
+      "batch": "trace-early_read",
+      "round": 3,
+      "host_end_ns": 4519629129072649
+    },
+    {
+      "label": "P16Sync/trace-early_read/r3/compute-mul-03",
+      "branch": "mul",
+      "kind": "compute",
+      "raw_stream_handle": "139762276352000",
+      "host_stream_id": "97",
+      "host_start_ns": 4519629129101348,
+      "batch": "trace-early_read",
+      "round": 3,
+      "host_end_ns": 4519629129109792
+    },
+    {
+      "label": "P16Sync/trace-early_read/r3/compute-mm-04",
+      "branch": "mm",
+      "kind": "compute",
+      "raw_stream_handle": "139762276343808",
+      "host_stream_id": "96",
+      "host_start_ns": 4519629129137676,
+      "batch": "trace-early_read",
+      "round": 3,
+      "host_end_ns": 4519629129147975
+    },
+    {
+      "label": "P16Sync/trace-early_read/r3/compute-mul-04",
+      "branch": "mul",
+      "kind": "compute",
+      "raw_stream_handle": "139762276352000",
+      "host_stream_id": "97",
+      "host_start_ns": 4519629129177280,
+      "batch": "trace-early_read",
+      "round": 3,
+      "host_end_ns": 4519629129185634
+    },
+    {
+      "label": "P16Sync/trace-early_read/r3/compute-mm-05",
+      "branch": "mm",
+      "kind": "compute",
+      "raw_stream_handle": "139762276343808",
+      "host_stream_id": "96",
+      "host_start_ns": 4519629129218218,
+      "batch": "trace-early_read",
+      "round": 3,
+      "host_end_ns": 4519629129228166
+    },
+    {
+      "label": "P16Sync/trace-early_read/r3/compute-mul-05",
+      "branch": "mul",
+      "kind": "compute",
+      "raw_stream_handle": "139762276352000",
+      "host_stream_id": "97",
+      "host_start_ns": 4519629129259451,
+      "batch": "trace-early_read",
+      "round": 3,
+      "host_end_ns": 4519629129268263
+    },
+    {
+      "label": "P16Sync/trace-early_read/r3/copy-mm",
+      "branch": "mm",
+      "kind": "copy",
+      "raw_stream_handle": "139762276343808",
+      "host_stream_id": "96",
+      "host_start_ns": 4519629129298654,
+      "batch": "trace-early_read",
+      "round": 3,
+      "host_end_ns": 4519629129318266
+    },
+    {
+      "label": "P16Sync/trace-early_read/r3/record-mm",
+      "branch": "mm",
+      "kind": "record",
+      "raw_stream_handle": "139762276343808",
+      "host_stream_id": "96",
+      "host_start_ns": 4519629129333340,
+      "batch": "trace-early_read",
+      "round": 3,
+      "event_handle": "139762927685888",
+      "host_end_ns": 4519629129350317
+    },
+    {
+      "label": "P16Sync/trace-early_read/r3/copy-mul",
+      "branch": "mul",
+      "kind": "copy",
+      "raw_stream_handle": "139762276352000",
+      "host_stream_id": "97",
+      "host_start_ns": 4519629129379144,
+      "batch": "trace-early_read",
+      "round": 3,
+      "host_end_ns": 4519629129401297
+    },
+    {
+      "label": "P16Sync/trace-early_read/r3/record-mul",
+      "branch": "mul",
+      "kind": "record",
+      "raw_stream_handle": "139762276352000",
+      "host_stream_id": "97",
+      "host_start_ns": 4519629129416803,
+      "batch": "trace-early_read",
+      "round": 3,
+      "event_handle": "139762927686656",
+      "host_end_ns": 4519629129432982
+    },
+    {
+      "label": "P16Sync/trace-early_read/r3/host_wait-mm",
+      "branch": "mm",
+      "kind": "host_wait",
+      "raw_stream_handle": "139762276343808",
+      "host_stream_id": "96",
+      "host_start_ns": 4519629129480513,
+      "batch": "trace-early_read",
+      "round": 3,
+      "host_end_ns": 4519629146887619
+    },
+    {
+      "label": "P16Sync/trace-early_read/r3/host_wait-mul",
+      "branch": "mul",
+      "kind": "host_wait",
+      "raw_stream_handle": "139762276352000",
+      "host_stream_id": "97",
+      "host_start_ns": 4519629146935667,
+      "batch": "trace-early_read",
+      "round": 3,
+      "host_end_ns": 4519629146960773
+    }
+  ],
+  "limits": [
+    "Only per-round host waits removed; initialization fence and stream ordering retained.",
+    "Every batch eventually waits for both streams before validation or storage reuse.",
+    "Early reads are deliberately invalid CPU consumption, not a claim of NPU arithmetic error.",
+    "Performance includes same per-round D2H samples/events in both modes, excludes validation."
+  ]
+}

@@ -6,6 +6,8 @@
 
 先打开[交互时间线](results/2026-09-24-run02/analysis/index.html)，或直接看[六轮 SVG](results/2026-09-24-run02/analysis/timeline.svg)，再读[结果说明](RESULTS.md)。HTML 离线可用，点击 kernel 可查看真实 CPU/CANN flow、物理 stream 和任务编号。
 
+新增[保留与去掉同步的实测对照](SYNC_COMPARISON.md)及[交互报告](results/2026-09-24-sync-run01/analysis/index.html)：区分每轮等待、最后统一等待和提前读取结果。性能在无profiler条件下测量，另采设备证据；原单流/双流数据保持为独立实验。
+
 ## 与 Practice 15 的区别
 
 Practice 15 的双 stream 控制实验是 `产生 y → 等待 → 消费 y`，有意用 event 将计算串起来。

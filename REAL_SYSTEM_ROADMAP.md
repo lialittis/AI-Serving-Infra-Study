@@ -79,6 +79,10 @@ graph的decode普通分区重放，488个重放任务仍缺少逐FX关联。
 单流为零，全部输出正确。总跨度仅小幅改善，明确区分重叠与加速。
 见[结果](practice_16_multistream_parallel/RESULTS.md)。batching与执行模式扩展顺延为17、18。
 
+Practice 16随后补充同步消融：每轮等待与最后统一等待在无profiler条件下各重复七次，
+完整耗时中位数20.522ms与20.163ms；独立提前读取诊断56次均读到哨兵，最终等待后全量输出正确。
+另采144个计算任务及拷贝/event证据，明确提交更快不等于计算已完成。见[同步对照](practice_16_multistream_parallel/SYNC_COMPARISON.md)。
+
 2026-09-22 根据用户的学习方向调整顺序：将算子调用与设备时间线提前为 Practice 09；
 原计划的释放复用、continuous batching 顺延。graph 对照与独立算子实验留到后续。
 

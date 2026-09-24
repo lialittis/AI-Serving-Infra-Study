@@ -207,3 +207,7 @@ elements. The offline timeline distinguishes observable parallelism from speedup
 See [the guide](practice_16_multistream_parallel/README.md),
 [findings](practice_16_multistream_parallel/RESULTS.md) and
 [interactive timeline](practice_16_multistream_parallel/results/2026-09-24-run02/analysis/index.html).
+
+Practice 16 also compares [per-round waits, a final join, and premature reads](practice_16_multistream_parallel/SYNC_COMPARISON.md).
+Unprofiled measurements separate submission from completed work; a separate
+trace verifies unchanged operators, ordered sample copies and actual waits.
