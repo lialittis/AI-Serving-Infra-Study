@@ -4,7 +4,7 @@ Exercises for understanding language-model serving: CPU-friendly KV-cache
 exercises and a reproducible Ascend NPU inference and concurrency experiment.
 
 The next stage follows a real request through the installed vLLM / Ascend stack.
-See [REAL_SYSTEM_ROADMAP.md](REAL_SYSTEM_ROADMAP.md) for the recorded Practice 07–17 plan.
+See [REAL_SYSTEM_ROADMAP.md](REAL_SYSTEM_ROADMAP.md) for the recorded Practice 07–18 plan.
 
 ## Stage report: the complete inference journey
 
@@ -197,3 +197,13 @@ probe verifies cross-stream event waits and repeated event generations.
 See [the guide](practice_15_kernel_execution_graph/README.md),
 [model graph](practice_15_kernel_execution_graph/results/2026-09-24-model-run01/analysis/index.html)
 and [two-stream graph](practice_15_kernel_execution_graph/results/2026-09-24-stream-run02/analysis/execution_graph.svg).
+
+## Practice 16: observe actual multi-stream compute overlap
+
+Run independent matrix and vector operators with identical inputs and submission
+order on one versus two NPU streams. Three paired trials verify real device
+interval overlap, exact host/CANN flows, terminal event waits and all output
+elements. The offline timeline distinguishes observable parallelism from speedup.
+See [the guide](practice_16_multistream_parallel/README.md),
+[findings](practice_16_multistream_parallel/RESULTS.md) and
+[interactive timeline](practice_16_multistream_parallel/results/2026-09-24-run02/analysis/index.html).

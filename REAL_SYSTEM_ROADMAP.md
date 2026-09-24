@@ -36,7 +36,7 @@ flowchart TD
 
 ## 实验顺序
 
-当前进度：**Practice 07–15 已在远端真实运行完成**。
+当前进度：**Practice 07–16 已在远端真实运行完成**。
 07 于 2026-09-20 完成请求路径追踪，见 [结果与证据](practice_07_real_request_trace/RESULTS.md)；
 08 于 2026-09-22 完成跨 block 的真实 KV 映射及第一层数据校验，
 见 [结果与证据](practice_08_real_kv_mapping/RESULTS.md)；
@@ -74,6 +74,11 @@ graph的decode普通分区重放，488个重放任务仍缺少逐FX关联。
 另以真实双stream控制实验验证event代次及跨流同步。完整数据依赖尚未覆盖，明确保留未知访问。
 见[结果](practice_15_kernel_execution_graph/RESULTS.md)。batching与执行模式扩展顺延为16、17。
 
+同日按用户要求，Practice 16优先演示真实多stream计算并行。
+独立矩阵/向量分支完成三轮单流与双流对照，72个计算任务逐项关联；双流每轮约3.3ms重叠，
+单流为零，全部输出正确。总跨度仅小幅改善，明确区分重叠与加速。
+见[结果](practice_16_multistream_parallel/RESULTS.md)。batching与执行模式扩展顺延为17、18。
+
 2026-09-22 根据用户的学习方向调整顺序：将算子调用与设备时间线提前为 Practice 09；
 原计划的释放复用、continuous batching 顺延。graph 对照与独立算子实验留到后续。
 
@@ -95,8 +100,9 @@ graph的decode普通分区重放，488个重放任务仍缺少逐FX关联。
 | 13：CPU提交与运行时执行 | 何时编译/注册，提交什么，CPU与NPU怎样重叠？ | 已完成冷编译与预热后eager推理；真实参数、队列correlation、CANN/NPU flow、结果回传等待及离线执行时间线 |
 | 14：KV池实际分配 | 初始化时谁申请内存，地址、物理句柄和KV tensor怎样对应？ | 已完成预算、48个存储、allocator历史、CANN物理申请/映射、reshape与绑定的逐项核验；不发送推理请求 |
 | 15：kernel execution graph | host提交怎样连接到stream、同步及数据关系？ | 已完成1444个eager设备任务的类型化图、局部RAW与KV存储候选边；独立双stream真实实验验证event复用和等待 |
-| 16：continuous batching | 多个请求怎样共享一次执行？ | 长短请求交错到达，记录每轮请求集合、调度 token 数和完成情况 |
-| 17：执行模式与独立算子 | graph 改变什么，真实算子能否单独复现？ | 12已完成PIECEWISE对照；继续研究FULL graph、重放内部Model/Task关联与独立算子实验 |
+| 16：真实多stream并行 | 两个独立算子是否在设备上重叠执行？ | 已完成三轮单流/双流对照，实际kernel区间交集、输出校验、终点event等待及离线时间线 |
+| 17：continuous batching | 多个请求怎样共享一次执行？ | 长短请求交错到达，记录每轮请求集合、调度 token 数和完成情况 |
+| 18：执行模式与独立算子 | graph 改变什么，真实算子能否单独复现？ | 12已完成PIECEWISE对照；继续研究FULL graph、重放内部Model/Task关联与独立算子实验 |
 
 12 特别区分 request 结束、引用计数归零、缓存淘汰、数据覆盖。
 07/08 的主机调用日志不能证明设备上的生命周期违规或 race；09 的 profiler 也有观察开销，

@@ -1,0 +1,389 @@
+{
+  "summary": {
+    "compute_tasks": 72,
+    "trial_count": 6,
+    "parallel_trials_with_overlap": 3,
+    "all_outputs_correct": true,
+    "terminal_event_waits": 9
+  },
+  "trials": [
+    {
+      "id": "01-serial",
+      "mode": "serial",
+      "physical_streams": [
+        "44"
+      ],
+      "compute_tasks": 12,
+      "host_elapsed_ns": 5598694,
+      "completion_boundaries": [
+        {
+          "stream": "44",
+          "event_handle": "140551924120320",
+          "record_label": "P16/01-serial/record-A",
+          "wait_label": "P16/01-serial/wait-A",
+          "device_record_end_us": "1790271762150610.568",
+          "host_wait_end_us": "1790271762150629.176"
+        }
+      ],
+      "start_us": "1790271762145388.159",
+      "end_us": "1790271762150610.528",
+      "device_span_us": "5222.369",
+      "branch_busy_us": {
+        "mm": "2690.948",
+        "mul": "2531.141"
+      },
+      "overlap_us": "0",
+      "overlap_fraction_shorter_branch": "0E+3",
+      "overlapping_pairs": 0,
+      "overlaps": []
+    },
+    {
+      "id": "01-parallel",
+      "mode": "parallel",
+      "physical_streams": [
+        "43",
+        "44"
+      ],
+      "compute_tasks": 12,
+      "host_elapsed_ns": 5079348,
+      "completion_boundaries": [
+        {
+          "stream": "44",
+          "event_handle": "140551924119552",
+          "record_label": "P16/01-parallel/record-A",
+          "wait_label": "P16/01-parallel/wait-A",
+          "device_record_end_us": "1790271762156396.400",
+          "host_wait_end_us": "1790271762156416.394"
+        },
+        {
+          "stream": "43",
+          "event_handle": "140551924121088",
+          "record_label": "P16/01-parallel/record-B",
+          "wait_label": "P16/01-parallel/wait-B",
+          "device_record_end_us": "1790271762154797.236",
+          "host_wait_end_us": "1790271762156447.616"
+        }
+      ],
+      "start_us": "1790271762151444.302",
+      "end_us": "1790271762156396.360",
+      "device_span_us": "4952.058",
+      "branch_busy_us": {
+        "mm": "4951.918",
+        "mul": "3293.632"
+      },
+      "overlap_us": "3293.572",
+      "overlap_fraction_shorter_branch": "0.9999817830285836426170258244",
+      "overlapping_pairs": 8,
+      "overlaps": [
+        {
+          "mm": "P16/01-parallel/mm-00",
+          "mul": "P16/01-parallel/mul-00",
+          "start_us": "1790271762151503.464",
+          "end_us": "1790271762152014.604",
+          "duration_us": "511.140"
+        },
+        {
+          "mm": "P16/01-parallel/mm-00",
+          "mul": "P16/01-parallel/mul-01",
+          "start_us": "1790271762152014.624",
+          "end_us": "1790271762152573.387",
+          "duration_us": "558.763"
+        },
+        {
+          "mm": "P16/01-parallel/mm-00",
+          "mul": "P16/01-parallel/mul-02",
+          "start_us": "1790271762152573.407",
+          "end_us": "1790271762152944.662",
+          "duration_us": "371.255"
+        },
+        {
+          "mm": "P16/01-parallel/mm-01",
+          "mul": "P16/01-parallel/mul-02",
+          "start_us": "1790271762152944.682",
+          "end_us": "1790271762153124.689",
+          "duration_us": "180.007"
+        },
+        {
+          "mm": "P16/01-parallel/mm-01",
+          "mul": "P16/01-parallel/mul-03",
+          "start_us": "1790271762153124.709",
+          "end_us": "1790271762153684.051",
+          "duration_us": "559.342"
+        },
+        {
+          "mm": "P16/01-parallel/mm-01",
+          "mul": "P16/01-parallel/mul-04",
+          "start_us": "1790271762153684.071",
+          "end_us": "1790271762154246.454",
+          "duration_us": "562.383"
+        },
+        {
+          "mm": "P16/01-parallel/mm-01",
+          "mul": "P16/01-parallel/mul-05",
+          "start_us": "1790271762154246.474",
+          "end_us": "1790271762154504.364",
+          "duration_us": "257.890"
+        },
+        {
+          "mm": "P16/01-parallel/mm-02",
+          "mul": "P16/01-parallel/mul-05",
+          "start_us": "1790271762154504.404",
+          "end_us": "1790271762154797.196",
+          "duration_us": "292.792"
+        }
+      ]
+    },
+    {
+      "id": "02-parallel",
+      "mode": "parallel",
+      "physical_streams": [
+        "43",
+        "44"
+      ],
+      "compute_tasks": 12,
+      "host_elapsed_ns": 5128945,
+      "completion_boundaries": [
+        {
+          "stream": "44",
+          "event_handle": "140551924121856",
+          "record_label": "P16/02-parallel/record-A",
+          "wait_label": "P16/02-parallel/wait-A",
+          "device_record_end_us": "1790271762162131.269",
+          "host_wait_end_us": "1790271762162149.449"
+        },
+        {
+          "stream": "43",
+          "event_handle": "140551924122624",
+          "record_label": "P16/02-parallel/record-B",
+          "wait_label": "P16/02-parallel/wait-B",
+          "device_record_end_us": "1790271762160477.463",
+          "host_wait_end_us": "1790271762162177.451"
+        }
+      ],
+      "start_us": "1790271762157126.869",
+      "end_us": "1790271762162131.229",
+      "device_span_us": "5004.360",
+      "branch_busy_us": {
+        "mm": "5004.260",
+        "mul": "3304.692"
+      },
+      "overlap_us": "3304.652",
+      "overlap_fraction_shorter_branch": "0.9999878959975695163119588754",
+      "overlapping_pairs": 8,
+      "overlaps": [
+        {
+          "mm": "P16/02-parallel/mm-00",
+          "mul": "P16/02-parallel/mul-00",
+          "start_us": "1790271762157172.631",
+          "end_us": "1790271762157678.051",
+          "duration_us": "505.420"
+        },
+        {
+          "mm": "P16/02-parallel/mm-00",
+          "mul": "P16/02-parallel/mul-01",
+          "start_us": "1790271762157678.071",
+          "end_us": "1790271762158240.853",
+          "duration_us": "562.782"
+        },
+        {
+          "mm": "P16/02-parallel/mm-00",
+          "mul": "P16/02-parallel/mul-02",
+          "start_us": "1790271762158240.873",
+          "end_us": "1790271762158713.632",
+          "duration_us": "472.759"
+        },
+        {
+          "mm": "P16/02-parallel/mm-01",
+          "mul": "P16/02-parallel/mul-02",
+          "start_us": "1790271762158713.652",
+          "end_us": "1790271762158797.316",
+          "duration_us": "83.664"
+        },
+        {
+          "mm": "P16/02-parallel/mm-01",
+          "mul": "P16/02-parallel/mul-03",
+          "start_us": "1790271762158797.336",
+          "end_us": "1790271762159351.918",
+          "duration_us": "554.582"
+        },
+        {
+          "mm": "P16/02-parallel/mm-01",
+          "mul": "P16/02-parallel/mul-04",
+          "start_us": "1790271762159351.938",
+          "end_us": "1790271762159913.700",
+          "duration_us": "561.762"
+        },
+        {
+          "mm": "P16/02-parallel/mm-01",
+          "mul": "P16/02-parallel/mul-05",
+          "start_us": "1790271762159913.720",
+          "end_us": "1790271762160361.778",
+          "duration_us": "448.058"
+        },
+        {
+          "mm": "P16/02-parallel/mm-02",
+          "mul": "P16/02-parallel/mul-05",
+          "start_us": "1790271762160361.798",
+          "end_us": "1790271762160477.423",
+          "duration_us": "115.625"
+        }
+      ]
+    },
+    {
+      "id": "02-serial",
+      "mode": "serial",
+      "physical_streams": [
+        "44"
+      ],
+      "compute_tasks": 12,
+      "host_elapsed_ns": 5325590,
+      "completion_boundaries": [
+        {
+          "stream": "44",
+          "event_handle": "140551924123392",
+          "record_label": "P16/02-serial/record-A",
+          "wait_label": "P16/02-serial/wait-A",
+          "device_record_end_us": "1790271762168081.887",
+          "host_wait_end_us": "1790271762168099.183"
+        }
+      ],
+      "start_us": "1790271762162856.698",
+      "end_us": "1790271762168081.847",
+      "device_span_us": "5225.149",
+      "branch_busy_us": {
+        "mm": "2690.828",
+        "mul": "2534.081"
+      },
+      "overlap_us": "0",
+      "overlap_fraction_shorter_branch": "0E+3",
+      "overlapping_pairs": 0,
+      "overlaps": []
+    },
+    {
+      "id": "03-serial",
+      "mode": "serial",
+      "physical_streams": [
+        "44"
+      ],
+      "compute_tasks": 12,
+      "host_elapsed_ns": 5321982,
+      "completion_boundaries": [
+        {
+          "stream": "44",
+          "event_handle": "140551924124160",
+          "record_label": "P16/03-serial/record-A",
+          "wait_label": "P16/03-serial/wait-A",
+          "device_record_end_us": "1790271762174048.505",
+          "host_wait_end_us": "1790271762174065.694"
+        }
+      ],
+      "start_us": "1790271762168826.796",
+      "end_us": "1790271762174048.465",
+      "device_span_us": "5221.669",
+      "branch_busy_us": {
+        "mm": "2690.428",
+        "mul": "2531.021"
+      },
+      "overlap_us": "0",
+      "overlap_fraction_shorter_branch": "0E+3",
+      "overlapping_pairs": 0,
+      "overlaps": []
+    },
+    {
+      "id": "03-parallel",
+      "mode": "parallel",
+      "physical_streams": [
+        "43",
+        "44"
+      ],
+      "compute_tasks": 12,
+      "host_elapsed_ns": 5108114,
+      "completion_boundaries": [
+        {
+          "stream": "44",
+          "event_handle": "140551314624512",
+          "record_label": "P16/03-parallel/record-A",
+          "wait_label": "P16/03-parallel/wait-A",
+          "device_record_end_us": "1790271762179751.493",
+          "host_wait_end_us": "1790271762179767.995"
+        },
+        {
+          "stream": "43",
+          "event_handle": "140551314625280",
+          "record_label": "P16/03-parallel/record-B",
+          "wait_label": "P16/03-parallel/wait-B",
+          "device_record_end_us": "1790271762178093.267",
+          "host_wait_end_us": "1790271762179799.041"
+        }
+      ],
+      "start_us": "1790271762174753.793",
+      "end_us": "1790271762179751.453",
+      "device_span_us": "4997.660",
+      "branch_busy_us": {
+        "mm": "4997.560",
+        "mul": "3294.052"
+      },
+      "overlap_us": "3294.012",
+      "overlap_fraction_shorter_branch": "0.9999878569008625243317348967",
+      "overlapping_pairs": 8,
+      "overlaps": [
+        {
+          "mm": "P16/03-parallel/mm-00",
+          "mul": "P16/03-parallel/mul-00",
+          "start_us": "1790271762174799.055",
+          "end_us": "1790271762175300.735",
+          "duration_us": "501.680"
+        },
+        {
+          "mm": "P16/03-parallel/mm-00",
+          "mul": "P16/03-parallel/mul-01",
+          "start_us": "1790271762175300.775",
+          "end_us": "1790271762175862.358",
+          "duration_us": "561.583"
+        },
+        {
+          "mm": "P16/03-parallel/mm-00",
+          "mul": "P16/03-parallel/mul-02",
+          "start_us": "1790271762175862.378",
+          "end_us": "1790271762176355.438",
+          "duration_us": "493.060"
+        },
+        {
+          "mm": "P16/03-parallel/mm-01",
+          "mul": "P16/03-parallel/mul-02",
+          "start_us": "1790271762176355.458",
+          "end_us": "1790271762176419.000",
+          "duration_us": "63.542"
+        },
+        {
+          "mm": "P16/03-parallel/mm-01",
+          "mul": "P16/03-parallel/mul-03",
+          "start_us": "1790271762176419.020",
+          "end_us": "1790271762176971.522",
+          "duration_us": "552.502"
+        },
+        {
+          "mm": "P16/03-parallel/mm-01",
+          "mul": "P16/03-parallel/mul-04",
+          "start_us": "1790271762176971.542",
+          "end_us": "1790271762177532.005",
+          "duration_us": "560.463"
+        },
+        {
+          "mm": "P16/03-parallel/mm-01",
+          "mul": "P16/03-parallel/mul-05",
+          "start_us": "1790271762177532.025",
+          "end_us": "1790271762177995.863",
+          "duration_us": "463.838"
+        },
+        {
+          "mm": "P16/03-parallel/mm-02",
+          "mul": "P16/03-parallel/mul-05",
+          "start_us": "1790271762177995.883",
+          "end_us": "1790271762178093.227",
+          "duration_us": "97.344"
+        }
+      ]
+    }
+  ]
+}

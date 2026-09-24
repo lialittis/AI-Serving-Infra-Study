@@ -1,0 +1,1857 @@
+{
+  "captured_at_utc": "2026-09-24T17:42:45.656135+00:00",
+  "command": [
+    "/usr/local/python3.12.13/bin/python",
+    "practice_16_multistream_parallel/run_parallel.py",
+    "--output",
+    "practice_16_multistream_parallel/results/2026-09-24-run02"
+  ],
+  "torch_version": "2.10.0+cpu",
+  "torch_npu_version": "2.10.0",
+  "python": "3.12.13 (main, May 15 2026, 03:51:32) [GCC 12.3.1 (openEuler 12.3.1-105.oe2403sp3)]",
+  "machine": "x86_64",
+  "device": "Ascend910B2C",
+  "environment": {
+    "ASCEND_HOME_PATH": "/usr/local/Ascend/cann-9.0.0",
+    "ASCEND_RT_VISIBLE_DEVICES": null,
+    "ASCEND_VISIBLE_DEVICES": null,
+    "TASK_QUEUE_ENABLE": null,
+    "ASCEND_LAUNCH_BLOCKING": null,
+    "PYTORCH_NPU_ALLOC_CONF": null
+  },
+  "allow_internal_format": {
+    "original": null,
+    "effective": false
+  },
+  "rounds": 3,
+  "pairs": 6,
+  "pid": 678505,
+  "trials": [
+    {
+      "id": "01-serial",
+      "mode": "serial",
+      "host_elapsed_ns": 5598694,
+      "pairs": 6
+    },
+    {
+      "id": "01-parallel",
+      "mode": "parallel",
+      "host_elapsed_ns": 5079348,
+      "pairs": 6
+    },
+    {
+      "id": "02-parallel",
+      "mode": "parallel",
+      "host_elapsed_ns": 5128945,
+      "pairs": 6
+    },
+    {
+      "id": "02-serial",
+      "mode": "serial",
+      "host_elapsed_ns": 5325590,
+      "pairs": 6
+    },
+    {
+      "id": "03-serial",
+      "mode": "serial",
+      "host_elapsed_ns": 5321982,
+      "pairs": 6
+    },
+    {
+      "id": "03-parallel",
+      "mode": "parallel",
+      "host_elapsed_ns": 5108114,
+      "pairs": 6
+    }
+  ],
+  "records": [
+    {
+      "label": "P16/01-serial/mm-00",
+      "trial": "01-serial",
+      "name": "mm-00",
+      "stream_name": "A",
+      "raw_stream_handle": "140551924371456",
+      "host_stream_id": "96",
+      "pid": 678505,
+      "sequence": 0,
+      "host_start_ns": 4518521104023602,
+      "kind": "compute",
+      "branch": "mm",
+      "reads": [
+        "matrix"
+      ],
+      "writes": [
+        "matrix_out"
+      ],
+      "host_end_ns": 4518521104155208
+    },
+    {
+      "label": "P16/01-serial/mul-00",
+      "trial": "01-serial",
+      "name": "mul-00",
+      "stream_name": "A",
+      "raw_stream_handle": "140551924371456",
+      "host_stream_id": "96",
+      "pid": 678505,
+      "sequence": 1,
+      "host_start_ns": 4518521104295855,
+      "kind": "compute",
+      "branch": "mul",
+      "reads": [
+        "vector"
+      ],
+      "writes": [
+        "vector_out"
+      ],
+      "host_end_ns": 4518521104345053
+    },
+    {
+      "label": "P16/01-serial/mm-01",
+      "trial": "01-serial",
+      "name": "mm-01",
+      "stream_name": "A",
+      "raw_stream_handle": "140551924371456",
+      "host_stream_id": "96",
+      "pid": 678505,
+      "sequence": 2,
+      "host_start_ns": 4518521104390016,
+      "kind": "compute",
+      "branch": "mm",
+      "reads": [
+        "matrix"
+      ],
+      "writes": [
+        "matrix_out"
+      ],
+      "host_end_ns": 4518521104403214
+    },
+    {
+      "label": "P16/01-serial/mul-01",
+      "trial": "01-serial",
+      "name": "mul-01",
+      "stream_name": "A",
+      "raw_stream_handle": "140551924371456",
+      "host_stream_id": "96",
+      "pid": 678505,
+      "sequence": 3,
+      "host_start_ns": 4518521104441417,
+      "kind": "compute",
+      "branch": "mul",
+      "reads": [
+        "vector"
+      ],
+      "writes": [
+        "vector_out"
+      ],
+      "host_end_ns": 4518521104452576
+    },
+    {
+      "label": "P16/01-serial/mm-02",
+      "trial": "01-serial",
+      "name": "mm-02",
+      "stream_name": "A",
+      "raw_stream_handle": "140551924371456",
+      "host_stream_id": "96",
+      "pid": 678505,
+      "sequence": 4,
+      "host_start_ns": 4518521104496413,
+      "kind": "compute",
+      "branch": "mm",
+      "reads": [
+        "matrix"
+      ],
+      "writes": [
+        "matrix_out"
+      ],
+      "host_end_ns": 4518521104510704
+    },
+    {
+      "label": "P16/01-serial/mul-02",
+      "trial": "01-serial",
+      "name": "mul-02",
+      "stream_name": "A",
+      "raw_stream_handle": "140551924371456",
+      "host_stream_id": "96",
+      "pid": 678505,
+      "sequence": 5,
+      "host_start_ns": 4518521104546277,
+      "kind": "compute",
+      "branch": "mul",
+      "reads": [
+        "vector"
+      ],
+      "writes": [
+        "vector_out"
+      ],
+      "host_end_ns": 4518521104556834
+    },
+    {
+      "label": "P16/01-serial/mm-03",
+      "trial": "01-serial",
+      "name": "mm-03",
+      "stream_name": "A",
+      "raw_stream_handle": "140551924371456",
+      "host_stream_id": "96",
+      "pid": 678505,
+      "sequence": 6,
+      "host_start_ns": 4518521104589884,
+      "kind": "compute",
+      "branch": "mm",
+      "reads": [
+        "matrix"
+      ],
+      "writes": [
+        "matrix_out"
+      ],
+      "host_end_ns": 4518521104600034
+    },
+    {
+      "label": "P16/01-serial/mul-03",
+      "trial": "01-serial",
+      "name": "mul-03",
+      "stream_name": "A",
+      "raw_stream_handle": "140551924371456",
+      "host_stream_id": "96",
+      "pid": 678505,
+      "sequence": 7,
+      "host_start_ns": 4518521104631905,
+      "kind": "compute",
+      "branch": "mul",
+      "reads": [
+        "vector"
+      ],
+      "writes": [
+        "vector_out"
+      ],
+      "host_end_ns": 4518521104641419
+    },
+    {
+      "label": "P16/01-serial/mm-04",
+      "trial": "01-serial",
+      "name": "mm-04",
+      "stream_name": "A",
+      "raw_stream_handle": "140551924371456",
+      "host_stream_id": "96",
+      "pid": 678505,
+      "sequence": 8,
+      "host_start_ns": 4518521104683384,
+      "kind": "compute",
+      "branch": "mm",
+      "reads": [
+        "matrix"
+      ],
+      "writes": [
+        "matrix_out"
+      ],
+      "host_end_ns": 4518521104697180
+    },
+    {
+      "label": "P16/01-serial/mul-04",
+      "trial": "01-serial",
+      "name": "mul-04",
+      "stream_name": "A",
+      "raw_stream_handle": "140551924371456",
+      "host_stream_id": "96",
+      "pid": 678505,
+      "sequence": 9,
+      "host_start_ns": 4518521104730431,
+      "kind": "compute",
+      "branch": "mul",
+      "reads": [
+        "vector"
+      ],
+      "writes": [
+        "vector_out"
+      ],
+      "host_end_ns": 4518521104741016
+    },
+    {
+      "label": "P16/01-serial/mm-05",
+      "trial": "01-serial",
+      "name": "mm-05",
+      "stream_name": "A",
+      "raw_stream_handle": "140551924371456",
+      "host_stream_id": "96",
+      "pid": 678505,
+      "sequence": 10,
+      "host_start_ns": 4518521104784331,
+      "kind": "compute",
+      "branch": "mm",
+      "reads": [
+        "matrix"
+      ],
+      "writes": [
+        "matrix_out"
+      ],
+      "host_end_ns": 4518521104794918
+    },
+    {
+      "label": "P16/01-serial/mul-05",
+      "trial": "01-serial",
+      "name": "mul-05",
+      "stream_name": "A",
+      "raw_stream_handle": "140551924371456",
+      "host_stream_id": "96",
+      "pid": 678505,
+      "sequence": 11,
+      "host_start_ns": 4518521104825786,
+      "kind": "compute",
+      "branch": "mul",
+      "reads": [
+        "vector"
+      ],
+      "writes": [
+        "vector_out"
+      ],
+      "host_end_ns": 4518521104835146
+    },
+    {
+      "label": "P16/01-serial/record-A",
+      "trial": "01-serial",
+      "name": "record-A",
+      "stream_name": "A",
+      "raw_stream_handle": "140551924371456",
+      "host_stream_id": "96",
+      "pid": 678505,
+      "sequence": 12,
+      "host_start_ns": 4518521104860742,
+      "kind": "event_record",
+      "event_handle": "140551924120320",
+      "host_end_ns": 4518521104913272
+    },
+    {
+      "label": "P16/01-serial/wait-A",
+      "trial": "01-serial",
+      "name": "wait-A",
+      "stream_name": "A",
+      "raw_stream_handle": "140551924371456",
+      "host_stream_id": "96",
+      "pid": 678505,
+      "sequence": 13,
+      "host_start_ns": 4518521104955944,
+      "kind": "host_wait",
+      "event_handle": "140551924120320",
+      "host_end_ns": 4518521109528406
+    },
+    {
+      "label": "P16/01-parallel/mm-00",
+      "trial": "01-parallel",
+      "name": "mm-00",
+      "stream_name": "A",
+      "raw_stream_handle": "140551924371456",
+      "host_stream_id": "96",
+      "pid": 678505,
+      "sequence": 14,
+      "host_start_ns": 4518521110304788,
+      "kind": "compute",
+      "branch": "mm",
+      "reads": [
+        "matrix"
+      ],
+      "writes": [
+        "matrix_out"
+      ],
+      "host_end_ns": 4518521110321912
+    },
+    {
+      "label": "P16/01-parallel/mul-00",
+      "trial": "01-parallel",
+      "name": "mul-00",
+      "stream_name": "B",
+      "raw_stream_handle": "140551924383744",
+      "host_stream_id": "97",
+      "pid": 678505,
+      "sequence": 15,
+      "host_start_ns": 4518521110366420,
+      "kind": "compute",
+      "branch": "mul",
+      "reads": [
+        "vector"
+      ],
+      "writes": [
+        "vector_out"
+      ],
+      "host_end_ns": 4518521110382703
+    },
+    {
+      "label": "P16/01-parallel/mm-01",
+      "trial": "01-parallel",
+      "name": "mm-01",
+      "stream_name": "A",
+      "raw_stream_handle": "140551924371456",
+      "host_stream_id": "96",
+      "pid": 678505,
+      "sequence": 16,
+      "host_start_ns": 4518521110417874,
+      "kind": "compute",
+      "branch": "mm",
+      "reads": [
+        "matrix"
+      ],
+      "writes": [
+        "matrix_out"
+      ],
+      "host_end_ns": 4518521110428823
+    },
+    {
+      "label": "P16/01-parallel/mul-01",
+      "trial": "01-parallel",
+      "name": "mul-01",
+      "stream_name": "B",
+      "raw_stream_handle": "140551924383744",
+      "host_stream_id": "97",
+      "pid": 678505,
+      "sequence": 17,
+      "host_start_ns": 4518521110461235,
+      "kind": "compute",
+      "branch": "mul",
+      "reads": [
+        "vector"
+      ],
+      "writes": [
+        "vector_out"
+      ],
+      "host_end_ns": 4518521110472076
+    },
+    {
+      "label": "P16/01-parallel/mm-02",
+      "trial": "01-parallel",
+      "name": "mm-02",
+      "stream_name": "A",
+      "raw_stream_handle": "140551924371456",
+      "host_stream_id": "96",
+      "pid": 678505,
+      "sequence": 18,
+      "host_start_ns": 4518521110511097,
+      "kind": "compute",
+      "branch": "mm",
+      "reads": [
+        "matrix"
+      ],
+      "writes": [
+        "matrix_out"
+      ],
+      "host_end_ns": 4518521110521041
+    },
+    {
+      "label": "P16/01-parallel/mul-02",
+      "trial": "01-parallel",
+      "name": "mul-02",
+      "stream_name": "B",
+      "raw_stream_handle": "140551924383744",
+      "host_stream_id": "97",
+      "pid": 678505,
+      "sequence": 19,
+      "host_start_ns": 4518521110553878,
+      "kind": "compute",
+      "branch": "mul",
+      "reads": [
+        "vector"
+      ],
+      "writes": [
+        "vector_out"
+      ],
+      "host_end_ns": 4518521110569349
+    },
+    {
+      "label": "P16/01-parallel/mm-03",
+      "trial": "01-parallel",
+      "name": "mm-03",
+      "stream_name": "A",
+      "raw_stream_handle": "140551924371456",
+      "host_stream_id": "96",
+      "pid": 678505,
+      "sequence": 20,
+      "host_start_ns": 4518521110602499,
+      "kind": "compute",
+      "branch": "mm",
+      "reads": [
+        "matrix"
+      ],
+      "writes": [
+        "matrix_out"
+      ],
+      "host_end_ns": 4518521110613461
+    },
+    {
+      "label": "P16/01-parallel/mul-03",
+      "trial": "01-parallel",
+      "name": "mul-03",
+      "stream_name": "B",
+      "raw_stream_handle": "140551924383744",
+      "host_stream_id": "97",
+      "pid": 678505,
+      "sequence": 21,
+      "host_start_ns": 4518521110645123,
+      "kind": "compute",
+      "branch": "mul",
+      "reads": [
+        "vector"
+      ],
+      "writes": [
+        "vector_out"
+      ],
+      "host_end_ns": 4518521110654369
+    },
+    {
+      "label": "P16/01-parallel/mm-04",
+      "trial": "01-parallel",
+      "name": "mm-04",
+      "stream_name": "A",
+      "raw_stream_handle": "140551924371456",
+      "host_stream_id": "96",
+      "pid": 678505,
+      "sequence": 22,
+      "host_start_ns": 4518521110692448,
+      "kind": "compute",
+      "branch": "mm",
+      "reads": [
+        "matrix"
+      ],
+      "writes": [
+        "matrix_out"
+      ],
+      "host_end_ns": 4518521110702210
+    },
+    {
+      "label": "P16/01-parallel/mul-04",
+      "trial": "01-parallel",
+      "name": "mul-04",
+      "stream_name": "B",
+      "raw_stream_handle": "140551924383744",
+      "host_stream_id": "97",
+      "pid": 678505,
+      "sequence": 23,
+      "host_start_ns": 4518521110734156,
+      "kind": "compute",
+      "branch": "mul",
+      "reads": [
+        "vector"
+      ],
+      "writes": [
+        "vector_out"
+      ],
+      "host_end_ns": 4518521110743911
+    },
+    {
+      "label": "P16/01-parallel/mm-05",
+      "trial": "01-parallel",
+      "name": "mm-05",
+      "stream_name": "A",
+      "raw_stream_handle": "140551924371456",
+      "host_stream_id": "96",
+      "pid": 678505,
+      "sequence": 24,
+      "host_start_ns": 4518521110781829,
+      "kind": "compute",
+      "branch": "mm",
+      "reads": [
+        "matrix"
+      ],
+      "writes": [
+        "matrix_out"
+      ],
+      "host_end_ns": 4518521110792555
+    },
+    {
+      "label": "P16/01-parallel/mul-05",
+      "trial": "01-parallel",
+      "name": "mul-05",
+      "stream_name": "B",
+      "raw_stream_handle": "140551924383744",
+      "host_stream_id": "97",
+      "pid": 678505,
+      "sequence": 25,
+      "host_start_ns": 4518521110825989,
+      "kind": "compute",
+      "branch": "mul",
+      "reads": [
+        "vector"
+      ],
+      "writes": [
+        "vector_out"
+      ],
+      "host_end_ns": 4518521110834964
+    },
+    {
+      "label": "P16/01-parallel/record-A",
+      "trial": "01-parallel",
+      "name": "record-A",
+      "stream_name": "A",
+      "raw_stream_handle": "140551924371456",
+      "host_stream_id": "96",
+      "pid": 678505,
+      "sequence": 26,
+      "host_start_ns": 4518521110856239,
+      "kind": "event_record",
+      "event_handle": "140551924119552",
+      "host_end_ns": 4518521110880657
+    },
+    {
+      "label": "P16/01-parallel/record-B",
+      "trial": "01-parallel",
+      "name": "record-B",
+      "stream_name": "B",
+      "raw_stream_handle": "140551924383744",
+      "host_stream_id": "97",
+      "pid": 678505,
+      "sequence": 27,
+      "host_start_ns": 4518521110903433,
+      "kind": "event_record",
+      "event_handle": "140551924121088",
+      "host_end_ns": 4518521110931348
+    },
+    {
+      "label": "P16/01-parallel/wait-A",
+      "trial": "01-parallel",
+      "name": "wait-A",
+      "stream_name": "A",
+      "raw_stream_handle": "140551924371456",
+      "host_stream_id": "96",
+      "pid": 678505,
+      "sequence": 28,
+      "host_start_ns": 4518521110946050,
+      "kind": "host_wait",
+      "event_handle": "140551924119552",
+      "host_end_ns": 4518521115311212
+    },
+    {
+      "label": "P16/01-parallel/wait-B",
+      "trial": "01-parallel",
+      "name": "wait-B",
+      "stream_name": "B",
+      "raw_stream_handle": "140551924383744",
+      "host_stream_id": "97",
+      "pid": 678505,
+      "sequence": 29,
+      "host_start_ns": 4518521115325137,
+      "kind": "host_wait",
+      "event_handle": "140551924121088",
+      "host_end_ns": 4518521115340918
+    },
+    {
+      "label": "P16/02-parallel/mm-00",
+      "trial": "02-parallel",
+      "name": "mm-00",
+      "stream_name": "A",
+      "raw_stream_handle": "140551924371456",
+      "host_stream_id": "96",
+      "pid": 678505,
+      "sequence": 30,
+      "host_start_ns": 4518521115977333,
+      "kind": "compute",
+      "branch": "mm",
+      "reads": [
+        "matrix"
+      ],
+      "writes": [
+        "matrix_out"
+      ],
+      "host_end_ns": 4518521115995800
+    },
+    {
+      "label": "P16/02-parallel/mul-00",
+      "trial": "02-parallel",
+      "name": "mul-00",
+      "stream_name": "B",
+      "raw_stream_handle": "140551924383744",
+      "host_stream_id": "97",
+      "pid": 678505,
+      "sequence": 31,
+      "host_start_ns": 4518521116039997,
+      "kind": "compute",
+      "branch": "mul",
+      "reads": [
+        "vector"
+      ],
+      "writes": [
+        "vector_out"
+      ],
+      "host_end_ns": 4518521116052210
+    },
+    {
+      "label": "P16/02-parallel/mm-01",
+      "trial": "02-parallel",
+      "name": "mm-01",
+      "stream_name": "A",
+      "raw_stream_handle": "140551924371456",
+      "host_stream_id": "96",
+      "pid": 678505,
+      "sequence": 32,
+      "host_start_ns": 4518521116091506,
+      "kind": "compute",
+      "branch": "mm",
+      "reads": [
+        "matrix"
+      ],
+      "writes": [
+        "matrix_out"
+      ],
+      "host_end_ns": 4518521116102819
+    },
+    {
+      "label": "P16/02-parallel/mul-01",
+      "trial": "02-parallel",
+      "name": "mul-01",
+      "stream_name": "B",
+      "raw_stream_handle": "140551924383744",
+      "host_stream_id": "97",
+      "pid": 678505,
+      "sequence": 33,
+      "host_start_ns": 4518521116135548,
+      "kind": "compute",
+      "branch": "mul",
+      "reads": [
+        "vector"
+      ],
+      "writes": [
+        "vector_out"
+      ],
+      "host_end_ns": 4518521116147249
+    },
+    {
+      "label": "P16/02-parallel/mm-02",
+      "trial": "02-parallel",
+      "name": "mm-02",
+      "stream_name": "A",
+      "raw_stream_handle": "140551924371456",
+      "host_stream_id": "96",
+      "pid": 678505,
+      "sequence": 34,
+      "host_start_ns": 4518521116187963,
+      "kind": "compute",
+      "branch": "mm",
+      "reads": [
+        "matrix"
+      ],
+      "writes": [
+        "matrix_out"
+      ],
+      "host_end_ns": 4518521116200030
+    },
+    {
+      "label": "P16/02-parallel/mul-02",
+      "trial": "02-parallel",
+      "name": "mul-02",
+      "stream_name": "B",
+      "raw_stream_handle": "140551924383744",
+      "host_stream_id": "97",
+      "pid": 678505,
+      "sequence": 35,
+      "host_start_ns": 4518521116232696,
+      "kind": "compute",
+      "branch": "mul",
+      "reads": [
+        "vector"
+      ],
+      "writes": [
+        "vector_out"
+      ],
+      "host_end_ns": 4518521116242593
+    },
+    {
+      "label": "P16/02-parallel/mm-03",
+      "trial": "02-parallel",
+      "name": "mm-03",
+      "stream_name": "A",
+      "raw_stream_handle": "140551924371456",
+      "host_stream_id": "96",
+      "pid": 678505,
+      "sequence": 36,
+      "host_start_ns": 4518521116273899,
+      "kind": "compute",
+      "branch": "mm",
+      "reads": [
+        "matrix"
+      ],
+      "writes": [
+        "matrix_out"
+      ],
+      "host_end_ns": 4518521116286141
+    },
+    {
+      "label": "P16/02-parallel/mul-03",
+      "trial": "02-parallel",
+      "name": "mul-03",
+      "stream_name": "B",
+      "raw_stream_handle": "140551924383744",
+      "host_stream_id": "97",
+      "pid": 678505,
+      "sequence": 37,
+      "host_start_ns": 4518521116324710,
+      "kind": "compute",
+      "branch": "mul",
+      "reads": [
+        "vector"
+      ],
+      "writes": [
+        "vector_out"
+      ],
+      "host_end_ns": 4518521116336620
+    },
+    {
+      "label": "P16/02-parallel/mm-04",
+      "trial": "02-parallel",
+      "name": "mm-04",
+      "stream_name": "A",
+      "raw_stream_handle": "140551924371456",
+      "host_stream_id": "96",
+      "pid": 678505,
+      "sequence": 38,
+      "host_start_ns": 4518521116368057,
+      "kind": "compute",
+      "branch": "mm",
+      "reads": [
+        "matrix"
+      ],
+      "writes": [
+        "matrix_out"
+      ],
+      "host_end_ns": 4518521116379349
+    },
+    {
+      "label": "P16/02-parallel/mul-04",
+      "trial": "02-parallel",
+      "name": "mul-04",
+      "stream_name": "B",
+      "raw_stream_handle": "140551924383744",
+      "host_stream_id": "97",
+      "pid": 678505,
+      "sequence": 39,
+      "host_start_ns": 4518521116410495,
+      "kind": "compute",
+      "branch": "mul",
+      "reads": [
+        "vector"
+      ],
+      "writes": [
+        "vector_out"
+      ],
+      "host_end_ns": 4518521116419757
+    },
+    {
+      "label": "P16/02-parallel/mm-05",
+      "trial": "02-parallel",
+      "name": "mm-05",
+      "stream_name": "A",
+      "raw_stream_handle": "140551924371456",
+      "host_stream_id": "96",
+      "pid": 678505,
+      "sequence": 40,
+      "host_start_ns": 4518521116449643,
+      "kind": "compute",
+      "branch": "mm",
+      "reads": [
+        "matrix"
+      ],
+      "writes": [
+        "matrix_out"
+      ],
+      "host_end_ns": 4518521116459736
+    },
+    {
+      "label": "P16/02-parallel/mul-05",
+      "trial": "02-parallel",
+      "name": "mul-05",
+      "stream_name": "B",
+      "raw_stream_handle": "140551924383744",
+      "host_stream_id": "97",
+      "pid": 678505,
+      "sequence": 41,
+      "host_start_ns": 4518521116490554,
+      "kind": "compute",
+      "branch": "mul",
+      "reads": [
+        "vector"
+      ],
+      "writes": [
+        "vector_out"
+      ],
+      "host_end_ns": 4518521116500133
+    },
+    {
+      "label": "P16/02-parallel/record-A",
+      "trial": "02-parallel",
+      "name": "record-A",
+      "stream_name": "A",
+      "raw_stream_handle": "140551924371456",
+      "host_stream_id": "96",
+      "pid": 678505,
+      "sequence": 42,
+      "host_start_ns": 4518521116518729,
+      "kind": "event_record",
+      "event_handle": "140551924121856",
+      "host_end_ns": 4518521116540929
+    },
+    {
+      "label": "P16/02-parallel/record-B",
+      "trial": "02-parallel",
+      "name": "record-B",
+      "stream_name": "B",
+      "raw_stream_handle": "140551924383744",
+      "host_stream_id": "97",
+      "pid": 678505,
+      "sequence": 43,
+      "host_start_ns": 4518521116556138,
+      "kind": "event_record",
+      "event_handle": "140551924122624",
+      "host_end_ns": 4518521116572931
+    },
+    {
+      "label": "P16/02-parallel/wait-A",
+      "trial": "02-parallel",
+      "name": "wait-A",
+      "stream_name": "A",
+      "raw_stream_handle": "140551924371456",
+      "host_stream_id": "96",
+      "pid": 678505,
+      "sequence": 44,
+      "host_start_ns": 4518521116586770,
+      "kind": "host_wait",
+      "event_handle": "140551924121856",
+      "host_end_ns": 4518521121044070
+    },
+    {
+      "label": "P16/02-parallel/wait-B",
+      "trial": "02-parallel",
+      "name": "wait-B",
+      "stream_name": "B",
+      "raw_stream_handle": "140551924383744",
+      "host_stream_id": "97",
+      "pid": 678505,
+      "sequence": 45,
+      "host_start_ns": 4518521121057327,
+      "kind": "host_wait",
+      "event_handle": "140551924122624",
+      "host_end_ns": 4518521121070837
+    },
+    {
+      "label": "P16/02-serial/mm-00",
+      "trial": "02-serial",
+      "name": "mm-00",
+      "stream_name": "A",
+      "raw_stream_handle": "140551924371456",
+      "host_stream_id": "96",
+      "pid": 678505,
+      "sequence": 46,
+      "host_start_ns": 4518521121719283,
+      "kind": "compute",
+      "branch": "mm",
+      "reads": [
+        "matrix"
+      ],
+      "writes": [
+        "matrix_out"
+      ],
+      "host_end_ns": 4518521121734072
+    },
+    {
+      "label": "P16/02-serial/mul-00",
+      "trial": "02-serial",
+      "name": "mul-00",
+      "stream_name": "A",
+      "raw_stream_handle": "140551924371456",
+      "host_stream_id": "96",
+      "pid": 678505,
+      "sequence": 47,
+      "host_start_ns": 4518521121770901,
+      "kind": "compute",
+      "branch": "mul",
+      "reads": [
+        "vector"
+      ],
+      "writes": [
+        "vector_out"
+      ],
+      "host_end_ns": 4518521121783744
+    },
+    {
+      "label": "P16/02-serial/mm-01",
+      "trial": "02-serial",
+      "name": "mm-01",
+      "stream_name": "A",
+      "raw_stream_handle": "140551924371456",
+      "host_stream_id": "96",
+      "pid": 678505,
+      "sequence": 48,
+      "host_start_ns": 4518521121816619,
+      "kind": "compute",
+      "branch": "mm",
+      "reads": [
+        "matrix"
+      ],
+      "writes": [
+        "matrix_out"
+      ],
+      "host_end_ns": 4518521121828660
+    },
+    {
+      "label": "P16/02-serial/mul-01",
+      "trial": "02-serial",
+      "name": "mul-01",
+      "stream_name": "A",
+      "raw_stream_handle": "140551924371456",
+      "host_stream_id": "96",
+      "pid": 678505,
+      "sequence": 49,
+      "host_start_ns": 4518521121860562,
+      "kind": "compute",
+      "branch": "mul",
+      "reads": [
+        "vector"
+      ],
+      "writes": [
+        "vector_out"
+      ],
+      "host_end_ns": 4518521121870028
+    },
+    {
+      "label": "P16/02-serial/mm-02",
+      "trial": "02-serial",
+      "name": "mm-02",
+      "stream_name": "A",
+      "raw_stream_handle": "140551924371456",
+      "host_stream_id": "96",
+      "pid": 678505,
+      "sequence": 50,
+      "host_start_ns": 4518521121901405,
+      "kind": "compute",
+      "branch": "mm",
+      "reads": [
+        "matrix"
+      ],
+      "writes": [
+        "matrix_out"
+      ],
+      "host_end_ns": 4518521121911487
+    },
+    {
+      "label": "P16/02-serial/mul-02",
+      "trial": "02-serial",
+      "name": "mul-02",
+      "stream_name": "A",
+      "raw_stream_handle": "140551924371456",
+      "host_stream_id": "96",
+      "pid": 678505,
+      "sequence": 51,
+      "host_start_ns": 4518521121941346,
+      "kind": "compute",
+      "branch": "mul",
+      "reads": [
+        "vector"
+      ],
+      "writes": [
+        "vector_out"
+      ],
+      "host_end_ns": 4518521121950827
+    },
+    {
+      "label": "P16/02-serial/mm-03",
+      "trial": "02-serial",
+      "name": "mm-03",
+      "stream_name": "A",
+      "raw_stream_handle": "140551924371456",
+      "host_stream_id": "96",
+      "pid": 678505,
+      "sequence": 52,
+      "host_start_ns": 4518521121987748,
+      "kind": "compute",
+      "branch": "mm",
+      "reads": [
+        "matrix"
+      ],
+      "writes": [
+        "matrix_out"
+      ],
+      "host_end_ns": 4518521121997907
+    },
+    {
+      "label": "P16/02-serial/mul-03",
+      "trial": "02-serial",
+      "name": "mul-03",
+      "stream_name": "A",
+      "raw_stream_handle": "140551924371456",
+      "host_stream_id": "96",
+      "pid": 678505,
+      "sequence": 53,
+      "host_start_ns": 4518521122028597,
+      "kind": "compute",
+      "branch": "mul",
+      "reads": [
+        "vector"
+      ],
+      "writes": [
+        "vector_out"
+      ],
+      "host_end_ns": 4518521122038266
+    },
+    {
+      "label": "P16/02-serial/mm-04",
+      "trial": "02-serial",
+      "name": "mm-04",
+      "stream_name": "A",
+      "raw_stream_handle": "140551924371456",
+      "host_stream_id": "96",
+      "pid": 678505,
+      "sequence": 54,
+      "host_start_ns": 4518521122069921,
+      "kind": "compute",
+      "branch": "mm",
+      "reads": [
+        "matrix"
+      ],
+      "writes": [
+        "matrix_out"
+      ],
+      "host_end_ns": 4518521122080023
+    },
+    {
+      "label": "P16/02-serial/mul-04",
+      "trial": "02-serial",
+      "name": "mul-04",
+      "stream_name": "A",
+      "raw_stream_handle": "140551924371456",
+      "host_stream_id": "96",
+      "pid": 678505,
+      "sequence": 55,
+      "host_start_ns": 4518521122110477,
+      "kind": "compute",
+      "branch": "mul",
+      "reads": [
+        "vector"
+      ],
+      "writes": [
+        "vector_out"
+      ],
+      "host_end_ns": 4518521122120588
+    },
+    {
+      "label": "P16/02-serial/mm-05",
+      "trial": "02-serial",
+      "name": "mm-05",
+      "stream_name": "A",
+      "raw_stream_handle": "140551924371456",
+      "host_stream_id": "96",
+      "pid": 678505,
+      "sequence": 56,
+      "host_start_ns": 4518521122151143,
+      "kind": "compute",
+      "branch": "mm",
+      "reads": [
+        "matrix"
+      ],
+      "writes": [
+        "matrix_out"
+      ],
+      "host_end_ns": 4518521122166595
+    },
+    {
+      "label": "P16/02-serial/mul-05",
+      "trial": "02-serial",
+      "name": "mul-05",
+      "stream_name": "A",
+      "raw_stream_handle": "140551924371456",
+      "host_stream_id": "96",
+      "pid": 678505,
+      "sequence": 57,
+      "host_start_ns": 4518521122197521,
+      "kind": "compute",
+      "branch": "mul",
+      "reads": [
+        "vector"
+      ],
+      "writes": [
+        "vector_out"
+      ],
+      "host_end_ns": 4518521122206553
+    },
+    {
+      "label": "P16/02-serial/record-A",
+      "trial": "02-serial",
+      "name": "record-A",
+      "stream_name": "A",
+      "raw_stream_handle": "140551924371456",
+      "host_stream_id": "96",
+      "pid": 678505,
+      "sequence": 58,
+      "host_start_ns": 4518521122237178,
+      "kind": "event_record",
+      "event_handle": "140551924123392",
+      "host_end_ns": 4518521122289929
+    },
+    {
+      "label": "P16/02-serial/wait-A",
+      "trial": "02-serial",
+      "name": "wait-A",
+      "stream_name": "A",
+      "raw_stream_handle": "140551924371456",
+      "host_stream_id": "96",
+      "pid": 678505,
+      "sequence": 59,
+      "host_start_ns": 4518521122305374,
+      "kind": "host_wait",
+      "event_handle": "140551924123392",
+      "host_end_ns": 4518521126999054
+    },
+    {
+      "label": "P16/03-serial/mm-00",
+      "trial": "03-serial",
+      "name": "mm-00",
+      "stream_name": "A",
+      "raw_stream_handle": "140551924371456",
+      "host_stream_id": "96",
+      "pid": 678505,
+      "sequence": 60,
+      "host_start_ns": 4518521127687685,
+      "kind": "compute",
+      "branch": "mm",
+      "reads": [
+        "matrix"
+      ],
+      "writes": [
+        "matrix_out"
+      ],
+      "host_end_ns": 4518521127702121
+    },
+    {
+      "label": "P16/03-serial/mul-00",
+      "trial": "03-serial",
+      "name": "mul-00",
+      "stream_name": "A",
+      "raw_stream_handle": "140551924371456",
+      "host_stream_id": "96",
+      "pid": 678505,
+      "sequence": 61,
+      "host_start_ns": 4518521127738580,
+      "kind": "compute",
+      "branch": "mul",
+      "reads": [
+        "vector"
+      ],
+      "writes": [
+        "vector_out"
+      ],
+      "host_end_ns": 4518521127752060
+    },
+    {
+      "label": "P16/03-serial/mm-01",
+      "trial": "03-serial",
+      "name": "mm-01",
+      "stream_name": "A",
+      "raw_stream_handle": "140551924371456",
+      "host_stream_id": "96",
+      "pid": 678505,
+      "sequence": 62,
+      "host_start_ns": 4518521127790712,
+      "kind": "compute",
+      "branch": "mm",
+      "reads": [
+        "matrix"
+      ],
+      "writes": [
+        "matrix_out"
+      ],
+      "host_end_ns": 4518521127802528
+    },
+    {
+      "label": "P16/03-serial/mul-01",
+      "trial": "03-serial",
+      "name": "mul-01",
+      "stream_name": "A",
+      "raw_stream_handle": "140551924371456",
+      "host_stream_id": "96",
+      "pid": 678505,
+      "sequence": 63,
+      "host_start_ns": 4518521127833903,
+      "kind": "compute",
+      "branch": "mul",
+      "reads": [
+        "vector"
+      ],
+      "writes": [
+        "vector_out"
+      ],
+      "host_end_ns": 4518521127843901
+    },
+    {
+      "label": "P16/03-serial/mm-02",
+      "trial": "03-serial",
+      "name": "mm-02",
+      "stream_name": "A",
+      "raw_stream_handle": "140551924371456",
+      "host_stream_id": "96",
+      "pid": 678505,
+      "sequence": 64,
+      "host_start_ns": 4518521127879420,
+      "kind": "compute",
+      "branch": "mm",
+      "reads": [
+        "matrix"
+      ],
+      "writes": [
+        "matrix_out"
+      ],
+      "host_end_ns": 4518521127889307
+    },
+    {
+      "label": "P16/03-serial/mul-02",
+      "trial": "03-serial",
+      "name": "mul-02",
+      "stream_name": "A",
+      "raw_stream_handle": "140551924371456",
+      "host_stream_id": "96",
+      "pid": 678505,
+      "sequence": 65,
+      "host_start_ns": 4518521127920289,
+      "kind": "compute",
+      "branch": "mul",
+      "reads": [
+        "vector"
+      ],
+      "writes": [
+        "vector_out"
+      ],
+      "host_end_ns": 4518521127929934
+    },
+    {
+      "label": "P16/03-serial/mm-03",
+      "trial": "03-serial",
+      "name": "mm-03",
+      "stream_name": "A",
+      "raw_stream_handle": "140551924371456",
+      "host_stream_id": "96",
+      "pid": 678505,
+      "sequence": 66,
+      "host_start_ns": 4518521127960788,
+      "kind": "compute",
+      "branch": "mm",
+      "reads": [
+        "matrix"
+      ],
+      "writes": [
+        "matrix_out"
+      ],
+      "host_end_ns": 4518521127973882
+    },
+    {
+      "label": "P16/03-serial/mul-03",
+      "trial": "03-serial",
+      "name": "mul-03",
+      "stream_name": "A",
+      "raw_stream_handle": "140551924371456",
+      "host_stream_id": "96",
+      "pid": 678505,
+      "sequence": 67,
+      "host_start_ns": 4518521128012496,
+      "kind": "compute",
+      "branch": "mul",
+      "reads": [
+        "vector"
+      ],
+      "writes": [
+        "vector_out"
+      ],
+      "host_end_ns": 4518521128026352
+    },
+    {
+      "label": "P16/03-serial/mm-04",
+      "trial": "03-serial",
+      "name": "mm-04",
+      "stream_name": "A",
+      "raw_stream_handle": "140551924371456",
+      "host_stream_id": "96",
+      "pid": 678505,
+      "sequence": 68,
+      "host_start_ns": 4518521128058346,
+      "kind": "compute",
+      "branch": "mm",
+      "reads": [
+        "matrix"
+      ],
+      "writes": [
+        "matrix_out"
+      ],
+      "host_end_ns": 4518521128070723
+    },
+    {
+      "label": "P16/03-serial/mul-04",
+      "trial": "03-serial",
+      "name": "mul-04",
+      "stream_name": "A",
+      "raw_stream_handle": "140551924371456",
+      "host_stream_id": "96",
+      "pid": 678505,
+      "sequence": 69,
+      "host_start_ns": 4518521128102150,
+      "kind": "compute",
+      "branch": "mul",
+      "reads": [
+        "vector"
+      ],
+      "writes": [
+        "vector_out"
+      ],
+      "host_end_ns": 4518521128112017
+    },
+    {
+      "label": "P16/03-serial/mm-05",
+      "trial": "03-serial",
+      "name": "mm-05",
+      "stream_name": "A",
+      "raw_stream_handle": "140551924371456",
+      "host_stream_id": "96",
+      "pid": 678505,
+      "sequence": 70,
+      "host_start_ns": 4518521128143158,
+      "kind": "compute",
+      "branch": "mm",
+      "reads": [
+        "matrix"
+      ],
+      "writes": [
+        "matrix_out"
+      ],
+      "host_end_ns": 4518521128152764
+    },
+    {
+      "label": "P16/03-serial/mul-05",
+      "trial": "03-serial",
+      "name": "mul-05",
+      "stream_name": "A",
+      "raw_stream_handle": "140551924371456",
+      "host_stream_id": "96",
+      "pid": 678505,
+      "sequence": 71,
+      "host_start_ns": 4518521128183164,
+      "kind": "compute",
+      "branch": "mul",
+      "reads": [
+        "vector"
+      ],
+      "writes": [
+        "vector_out"
+      ],
+      "host_end_ns": 4518521128192470
+    },
+    {
+      "label": "P16/03-serial/record-A",
+      "trial": "03-serial",
+      "name": "record-A",
+      "stream_name": "A",
+      "raw_stream_handle": "140551924371456",
+      "host_stream_id": "96",
+      "pid": 678505,
+      "sequence": 72,
+      "host_start_ns": 4518521128212678,
+      "kind": "event_record",
+      "event_handle": "140551924124160",
+      "host_end_ns": 4518521128244357
+    },
+    {
+      "label": "P16/03-serial/wait-A",
+      "trial": "03-serial",
+      "name": "wait-A",
+      "stream_name": "A",
+      "raw_stream_handle": "140551924371456",
+      "host_stream_id": "96",
+      "pid": 678505,
+      "sequence": 73,
+      "host_start_ns": 4518521128265368,
+      "kind": "host_wait",
+      "event_handle": "140551924124160",
+      "host_end_ns": 4518521132961728
+    },
+    {
+      "label": "P16/03-parallel/mm-00",
+      "trial": "03-parallel",
+      "name": "mm-00",
+      "stream_name": "A",
+      "raw_stream_handle": "140551924371456",
+      "host_stream_id": "96",
+      "pid": 678505,
+      "sequence": 74,
+      "host_start_ns": 4518521133618300,
+      "kind": "compute",
+      "branch": "mm",
+      "reads": [
+        "matrix"
+      ],
+      "writes": [
+        "matrix_out"
+      ],
+      "host_end_ns": 4518521133630802
+    },
+    {
+      "label": "P16/03-parallel/mul-00",
+      "trial": "03-parallel",
+      "name": "mul-00",
+      "stream_name": "B",
+      "raw_stream_handle": "140551924383744",
+      "host_stream_id": "97",
+      "pid": 678505,
+      "sequence": 75,
+      "host_start_ns": 4518521133665812,
+      "kind": "compute",
+      "branch": "mul",
+      "reads": [
+        "vector"
+      ],
+      "writes": [
+        "vector_out"
+      ],
+      "host_end_ns": 4518521133677355
+    },
+    {
+      "label": "P16/03-parallel/mm-01",
+      "trial": "03-parallel",
+      "name": "mm-01",
+      "stream_name": "A",
+      "raw_stream_handle": "140551924371456",
+      "host_stream_id": "96",
+      "pid": 678505,
+      "sequence": 76,
+      "host_start_ns": 4518521133710397,
+      "kind": "compute",
+      "branch": "mm",
+      "reads": [
+        "matrix"
+      ],
+      "writes": [
+        "matrix_out"
+      ],
+      "host_end_ns": 4518521133724095
+    },
+    {
+      "label": "P16/03-parallel/mul-01",
+      "trial": "03-parallel",
+      "name": "mul-01",
+      "stream_name": "B",
+      "raw_stream_handle": "140551924383744",
+      "host_stream_id": "97",
+      "pid": 678505,
+      "sequence": 77,
+      "host_start_ns": 4518521133754914,
+      "kind": "compute",
+      "branch": "mul",
+      "reads": [
+        "vector"
+      ],
+      "writes": [
+        "vector_out"
+      ],
+      "host_end_ns": 4518521133764499
+    },
+    {
+      "label": "P16/03-parallel/mm-02",
+      "trial": "03-parallel",
+      "name": "mm-02",
+      "stream_name": "A",
+      "raw_stream_handle": "140551924371456",
+      "host_stream_id": "96",
+      "pid": 678505,
+      "sequence": 78,
+      "host_start_ns": 4518521133795304,
+      "kind": "compute",
+      "branch": "mm",
+      "reads": [
+        "matrix"
+      ],
+      "writes": [
+        "matrix_out"
+      ],
+      "host_end_ns": 4518521133808601
+    },
+    {
+      "label": "P16/03-parallel/mul-02",
+      "trial": "03-parallel",
+      "name": "mul-02",
+      "stream_name": "B",
+      "raw_stream_handle": "140551924383744",
+      "host_stream_id": "97",
+      "pid": 678505,
+      "sequence": 79,
+      "host_start_ns": 4518521133842154,
+      "kind": "compute",
+      "branch": "mul",
+      "reads": [
+        "vector"
+      ],
+      "writes": [
+        "vector_out"
+      ],
+      "host_end_ns": 4518521133851766
+    },
+    {
+      "label": "P16/03-parallel/mm-03",
+      "trial": "03-parallel",
+      "name": "mm-03",
+      "stream_name": "A",
+      "raw_stream_handle": "140551924371456",
+      "host_stream_id": "96",
+      "pid": 678505,
+      "sequence": 80,
+      "host_start_ns": 4518521133883253,
+      "kind": "compute",
+      "branch": "mm",
+      "reads": [
+        "matrix"
+      ],
+      "writes": [
+        "matrix_out"
+      ],
+      "host_end_ns": 4518521133892750
+    },
+    {
+      "label": "P16/03-parallel/mul-03",
+      "trial": "03-parallel",
+      "name": "mul-03",
+      "stream_name": "B",
+      "raw_stream_handle": "140551924383744",
+      "host_stream_id": "97",
+      "pid": 678505,
+      "sequence": 81,
+      "host_start_ns": 4518521133924400,
+      "kind": "compute",
+      "branch": "mul",
+      "reads": [
+        "vector"
+      ],
+      "writes": [
+        "vector_out"
+      ],
+      "host_end_ns": 4518521133935546
+    },
+    {
+      "label": "P16/03-parallel/mm-04",
+      "trial": "03-parallel",
+      "name": "mm-04",
+      "stream_name": "A",
+      "raw_stream_handle": "140551924371456",
+      "host_stream_id": "96",
+      "pid": 678505,
+      "sequence": 82,
+      "host_start_ns": 4518521133967371,
+      "kind": "compute",
+      "branch": "mm",
+      "reads": [
+        "matrix"
+      ],
+      "writes": [
+        "matrix_out"
+      ],
+      "host_end_ns": 4518521133976824
+    },
+    {
+      "label": "P16/03-parallel/mul-04",
+      "trial": "03-parallel",
+      "name": "mul-04",
+      "stream_name": "B",
+      "raw_stream_handle": "140551924383744",
+      "host_stream_id": "97",
+      "pid": 678505,
+      "sequence": 83,
+      "host_start_ns": 4518521134006752,
+      "kind": "compute",
+      "branch": "mul",
+      "reads": [
+        "vector"
+      ],
+      "writes": [
+        "vector_out"
+      ],
+      "host_end_ns": 4518521134016179
+    },
+    {
+      "label": "P16/03-parallel/mm-05",
+      "trial": "03-parallel",
+      "name": "mm-05",
+      "stream_name": "A",
+      "raw_stream_handle": "140551924371456",
+      "host_stream_id": "96",
+      "pid": 678505,
+      "sequence": 84,
+      "host_start_ns": 4518521134047393,
+      "kind": "compute",
+      "branch": "mm",
+      "reads": [
+        "matrix"
+      ],
+      "writes": [
+        "matrix_out"
+      ],
+      "host_end_ns": 4518521134056588
+    },
+    {
+      "label": "P16/03-parallel/mul-05",
+      "trial": "03-parallel",
+      "name": "mul-05",
+      "stream_name": "B",
+      "raw_stream_handle": "140551924383744",
+      "host_stream_id": "97",
+      "pid": 678505,
+      "sequence": 85,
+      "host_start_ns": 4518521134086159,
+      "kind": "compute",
+      "branch": "mul",
+      "reads": [
+        "vector"
+      ],
+      "writes": [
+        "vector_out"
+      ],
+      "host_end_ns": 4518521134095062
+    },
+    {
+      "label": "P16/03-parallel/record-A",
+      "trial": "03-parallel",
+      "name": "record-A",
+      "stream_name": "A",
+      "raw_stream_handle": "140551924371456",
+      "host_stream_id": "96",
+      "pid": 678505,
+      "sequence": 86,
+      "host_start_ns": 4518521134114283,
+      "kind": "event_record",
+      "event_handle": "140551314624512",
+      "host_end_ns": 4518521134146932
+    },
+    {
+      "label": "P16/03-parallel/record-B",
+      "trial": "03-parallel",
+      "name": "record-B",
+      "stream_name": "B",
+      "raw_stream_handle": "140551924383744",
+      "host_stream_id": "97",
+      "pid": 678505,
+      "sequence": 87,
+      "host_start_ns": 4518521134162316,
+      "kind": "event_record",
+      "event_handle": "140551314625280",
+      "host_end_ns": 4518521134183309
+    },
+    {
+      "label": "P16/03-parallel/wait-A",
+      "trial": "03-parallel",
+      "name": "wait-A",
+      "stream_name": "A",
+      "raw_stream_handle": "140551924371456",
+      "host_stream_id": "96",
+      "pid": 678505,
+      "sequence": 88,
+      "host_start_ns": 4518521134197047,
+      "kind": "host_wait",
+      "event_handle": "140551314624512",
+      "host_end_ns": 4518521138663091
+    },
+    {
+      "label": "P16/03-parallel/wait-B",
+      "trial": "03-parallel",
+      "name": "wait-B",
+      "stream_name": "B",
+      "raw_stream_handle": "140551924383744",
+      "host_stream_id": "97",
+      "pid": 678505,
+      "sequence": 89,
+      "host_start_ns": 4518521138677152,
+      "kind": "host_wait",
+      "event_handle": "140551314625280",
+      "host_end_ns": 4518521138692301
+    }
+  ],
+  "checks": [
+    {
+      "trial": "01-serial",
+      "matrix_all_one": true,
+      "vector_all_point375": true
+    },
+    {
+      "trial": "01-parallel",
+      "matrix_all_one": true,
+      "vector_all_point375": true
+    },
+    {
+      "trial": "02-parallel",
+      "matrix_all_one": true,
+      "vector_all_point375": true
+    },
+    {
+      "trial": "02-serial",
+      "matrix_all_one": true,
+      "vector_all_point375": true
+    },
+    {
+      "trial": "03-serial",
+      "matrix_all_one": true,
+      "vector_all_point375": true
+    },
+    {
+      "trial": "03-parallel",
+      "matrix_all_one": true,
+      "vector_all_point375": true
+    }
+  ],
+  "resources": {
+    "matrix": {
+      "data_ptr": "20616935636992",
+      "storage_ptr": "20616935636992",
+      "bytes": 33554432,
+      "shape": [
+        4096,
+        4096
+      ],
+      "stride": [
+        4096,
+        1
+      ],
+      "dtype": "torch.float16",
+      "device": "npu:0"
+    },
+    "matrix_out": {
+      "data_ptr": "20616971288576",
+      "storage_ptr": "20616971288576",
+      "bytes": 33554432,
+      "shape": [
+        4096,
+        4096
+      ],
+      "stride": [
+        4096,
+        1
+      ],
+      "dtype": "torch.float16",
+      "device": "npu:0"
+    },
+    "vector": {
+      "data_ptr": "20617006940160",
+      "storage_ptr": "20617006940160",
+      "bytes": 268435456,
+      "shape": [
+        67108864
+      ],
+      "stride": [
+        1
+      ],
+      "dtype": "torch.float32",
+      "device": "npu:0"
+    },
+    "vector_out": {
+      "data_ptr": "20617277472768",
+      "storage_ptr": "20617277472768",
+      "bytes": 268435456,
+      "shape": [
+        67108864
+      ],
+      "stride": [
+        1
+      ],
+      "dtype": "torch.float32",
+      "device": "npu:0"
+    }
+  },
+  "source_sha256": {
+    "sources/run_parallel.py": "f9e011ea0ef8a0e5b5da5ee24c408790d77c1a4e329887e92a87f6e0262f9cb5",
+    "sources/streams.py": "241741b356db5006797dbec119007afb33b73b0e1753bfb06ab27c989c5bfac4"
+  },
+  "lifetime": "all storages retained through both terminal waits",
+  "workload": "independent matmul and scalar multiply; real torch-npu eager operators"
+}
