@@ -1,0 +1,2495 @@
+{
+  "captured_at_utc": "2026-09-24T18:21:09.227660+00:00",
+  "command": [
+    "/usr/local/python3.12.13/bin/python",
+    "practice_16_multistream_parallel/run_dependency.py",
+    "--output",
+    "practice_16_multistream_parallel/results/2026-09-24-dependency-run01"
+  ],
+  "torch_version": "2.10.0+cpu",
+  "torch_npu_version": "2.10.0",
+  "device": "Ascend910B2C",
+  "python": "3.12.13 (main, May 15 2026, 03:51:32) [GCC 12.3.1 (openEuler 12.3.1-105.oe2403sp3)]",
+  "pid": 682762,
+  "a_steps": 6,
+  "c_steps": 6,
+  "repeats": 7,
+  "profile_repeats": 3,
+  "resources": {
+    "X": {
+      "address": "20616935636992",
+      "bytes": 33554432,
+      "shape": [
+        4096,
+        4096
+      ],
+      "stride": [
+        4096,
+        1
+      ],
+      "dtype": "torch.float16",
+      "device": "npu:0"
+    },
+    "scratch": {
+      "address": "20616971288576",
+      "bytes": 33554432,
+      "shape": [
+        4096,
+        4096
+      ],
+      "stride": [
+        4096,
+        1
+      ],
+      "dtype": "torch.float16",
+      "device": "npu:0"
+    },
+    "Y": {
+      "address": "20617006940160",
+      "bytes": 33554432,
+      "shape": [
+        4096,
+        4096
+      ],
+      "stride": [
+        4096,
+        1
+      ],
+      "dtype": "torch.float16",
+      "device": "npu:0"
+    },
+    "Z": {
+      "address": "20617042591744",
+      "bytes": 33554432,
+      "shape": [
+        4096,
+        4096
+      ],
+      "stride": [
+        4096,
+        1
+      ],
+      "dtype": "torch.float16",
+      "device": "npu:0"
+    },
+    "V": {
+      "address": "20617078243328",
+      "bytes": 268435456,
+      "shape": [
+        67108864
+      ],
+      "stride": [
+        1
+      ],
+      "dtype": "torch.float32",
+      "device": "npu:0"
+    },
+    "W": {
+      "address": "20617348775936",
+      "bytes": 268435456,
+      "shape": [
+        67108864
+      ],
+      "stride": [
+        1
+      ],
+      "dtype": "torch.float32",
+      "device": "npu:0"
+    }
+  },
+  "environment": {
+    "ASCEND_HOME_PATH": "/usr/local/Ascend/cann-9.0.0",
+    "TASK_QUEUE_ENABLE": null,
+    "ASCEND_LAUNCH_BLOCKING": null
+  },
+  "measurements": [
+    {
+      "id": "bench-00-event_wait",
+      "mode": "event_wait",
+      "profiled": false,
+      "start_ns": 4520824320708432,
+      "submitted_ns": 4520824320855158,
+      "completed_ns": 4520824325872403,
+      "submission_ns": 146726,
+      "elapsed_ns": 5163971,
+      "host_join_calls": 3,
+      "cross_stream_wait_calls": 1,
+      "Y_correct": true,
+      "W_correct": true,
+      "Z_elements": 16777216,
+      "Z_correct_elements": 16777216,
+      "Z_old_value_elements": 0,
+      "Z_other_elements": 0,
+      "Z_first_eight": [
+        2.0,
+        2.0,
+        2.0,
+        2.0,
+        2.0,
+        2.0,
+        2.0,
+        2.0
+      ],
+      "recompute_after_join_correct": null
+    },
+    {
+      "id": "bench-00-no_wait",
+      "mode": "no_wait",
+      "profiled": false,
+      "start_ns": 4520824332322896,
+      "submitted_ns": 4520824332466038,
+      "completed_ns": 4520824337366859,
+      "submission_ns": 143142,
+      "elapsed_ns": 5043963,
+      "host_join_calls": 3,
+      "cross_stream_wait_calls": 0,
+      "Y_correct": true,
+      "W_correct": true,
+      "Z_elements": 16777216,
+      "Z_correct_elements": 0,
+      "Z_old_value_elements": 16777216,
+      "Z_other_elements": 0,
+      "Z_first_eight": [
+        -14.0,
+        -14.0,
+        -14.0,
+        -14.0,
+        -14.0,
+        -14.0,
+        -14.0,
+        -14.0
+      ],
+      "recompute_after_join_correct": true
+    },
+    {
+      "id": "bench-01-no_wait",
+      "mode": "no_wait",
+      "profiled": false,
+      "start_ns": 4520824343977647,
+      "submitted_ns": 4520824344109880,
+      "completed_ns": 4520824349068843,
+      "submission_ns": 132233,
+      "elapsed_ns": 5091196,
+      "host_join_calls": 3,
+      "cross_stream_wait_calls": 0,
+      "Y_correct": true,
+      "W_correct": true,
+      "Z_elements": 16777216,
+      "Z_correct_elements": 0,
+      "Z_old_value_elements": 16777216,
+      "Z_other_elements": 0,
+      "Z_first_eight": [
+        -14.0,
+        -14.0,
+        -14.0,
+        -14.0,
+        -14.0,
+        -14.0,
+        -14.0,
+        -14.0
+      ],
+      "recompute_after_join_correct": true
+    },
+    {
+      "id": "bench-01-event_wait",
+      "mode": "event_wait",
+      "profiled": false,
+      "start_ns": 4520824355703566,
+      "submitted_ns": 4520824355827633,
+      "completed_ns": 4520824360892098,
+      "submission_ns": 124067,
+      "elapsed_ns": 5188532,
+      "host_join_calls": 3,
+      "cross_stream_wait_calls": 1,
+      "Y_correct": true,
+      "W_correct": true,
+      "Z_elements": 16777216,
+      "Z_correct_elements": 16777216,
+      "Z_old_value_elements": 0,
+      "Z_other_elements": 0,
+      "Z_first_eight": [
+        2.0,
+        2.0,
+        2.0,
+        2.0,
+        2.0,
+        2.0,
+        2.0,
+        2.0
+      ],
+      "recompute_after_join_correct": null
+    },
+    {
+      "id": "bench-02-event_wait",
+      "mode": "event_wait",
+      "profiled": false,
+      "start_ns": 4520824367323505,
+      "submitted_ns": 4520824367446764,
+      "completed_ns": 4520824372532328,
+      "submission_ns": 123259,
+      "elapsed_ns": 5208823,
+      "host_join_calls": 3,
+      "cross_stream_wait_calls": 1,
+      "Y_correct": true,
+      "W_correct": true,
+      "Z_elements": 16777216,
+      "Z_correct_elements": 16777216,
+      "Z_old_value_elements": 0,
+      "Z_other_elements": 0,
+      "Z_first_eight": [
+        2.0,
+        2.0,
+        2.0,
+        2.0,
+        2.0,
+        2.0,
+        2.0,
+        2.0
+      ],
+      "recompute_after_join_correct": null
+    },
+    {
+      "id": "bench-02-no_wait",
+      "mode": "no_wait",
+      "profiled": false,
+      "start_ns": 4520824378956016,
+      "submitted_ns": 4520824379087184,
+      "completed_ns": 4520824384003898,
+      "submission_ns": 131168,
+      "elapsed_ns": 5047882,
+      "host_join_calls": 3,
+      "cross_stream_wait_calls": 0,
+      "Y_correct": true,
+      "W_correct": true,
+      "Z_elements": 16777216,
+      "Z_correct_elements": 0,
+      "Z_old_value_elements": 16777216,
+      "Z_other_elements": 0,
+      "Z_first_eight": [
+        -14.0,
+        -14.0,
+        -14.0,
+        -14.0,
+        -14.0,
+        -14.0,
+        -14.0,
+        -14.0
+      ],
+      "recompute_after_join_correct": true
+    },
+    {
+      "id": "bench-03-no_wait",
+      "mode": "no_wait",
+      "profiled": false,
+      "start_ns": 4520824390623906,
+      "submitted_ns": 4520824390754372,
+      "completed_ns": 4520824395656404,
+      "submission_ns": 130466,
+      "elapsed_ns": 5032498,
+      "host_join_calls": 3,
+      "cross_stream_wait_calls": 0,
+      "Y_correct": true,
+      "W_correct": true,
+      "Z_elements": 16777216,
+      "Z_correct_elements": 0,
+      "Z_old_value_elements": 16777216,
+      "Z_other_elements": 0,
+      "Z_first_eight": [
+        -14.0,
+        -14.0,
+        -14.0,
+        -14.0,
+        -14.0,
+        -14.0,
+        -14.0,
+        -14.0
+      ],
+      "recompute_after_join_correct": true
+    },
+    {
+      "id": "bench-03-event_wait",
+      "mode": "event_wait",
+      "profiled": false,
+      "start_ns": 4520824402250285,
+      "submitted_ns": 4520824402387587,
+      "completed_ns": 4520824407450066,
+      "submission_ns": 137302,
+      "elapsed_ns": 5199781,
+      "host_join_calls": 3,
+      "cross_stream_wait_calls": 1,
+      "Y_correct": true,
+      "W_correct": true,
+      "Z_elements": 16777216,
+      "Z_correct_elements": 16777216,
+      "Z_old_value_elements": 0,
+      "Z_other_elements": 0,
+      "Z_first_eight": [
+        2.0,
+        2.0,
+        2.0,
+        2.0,
+        2.0,
+        2.0,
+        2.0,
+        2.0
+      ],
+      "recompute_after_join_correct": null
+    },
+    {
+      "id": "bench-04-event_wait",
+      "mode": "event_wait",
+      "profiled": false,
+      "start_ns": 4520824413874381,
+      "submitted_ns": 4520824414001869,
+      "completed_ns": 4520824419010180,
+      "submission_ns": 127488,
+      "elapsed_ns": 5135799,
+      "host_join_calls": 3,
+      "cross_stream_wait_calls": 1,
+      "Y_correct": true,
+      "W_correct": true,
+      "Z_elements": 16777216,
+      "Z_correct_elements": 16777216,
+      "Z_old_value_elements": 0,
+      "Z_other_elements": 0,
+      "Z_first_eight": [
+        2.0,
+        2.0,
+        2.0,
+        2.0,
+        2.0,
+        2.0,
+        2.0,
+        2.0
+      ],
+      "recompute_after_join_correct": null
+    },
+    {
+      "id": "bench-04-no_wait",
+      "mode": "no_wait",
+      "profiled": false,
+      "start_ns": 4520824425433956,
+      "submitted_ns": 4520824425564856,
+      "completed_ns": 4520824430498454,
+      "submission_ns": 130900,
+      "elapsed_ns": 5064498,
+      "host_join_calls": 3,
+      "cross_stream_wait_calls": 0,
+      "Y_correct": true,
+      "W_correct": true,
+      "Z_elements": 16777216,
+      "Z_correct_elements": 0,
+      "Z_old_value_elements": 16777216,
+      "Z_other_elements": 0,
+      "Z_first_eight": [
+        -14.0,
+        -14.0,
+        -14.0,
+        -14.0,
+        -14.0,
+        -14.0,
+        -14.0,
+        -14.0
+      ],
+      "recompute_after_join_correct": true
+    },
+    {
+      "id": "bench-05-no_wait",
+      "mode": "no_wait",
+      "profiled": false,
+      "start_ns": 4520824437086558,
+      "submitted_ns": 4520824437212784,
+      "completed_ns": 4520824442208728,
+      "submission_ns": 126226,
+      "elapsed_ns": 5122170,
+      "host_join_calls": 3,
+      "cross_stream_wait_calls": 0,
+      "Y_correct": true,
+      "W_correct": true,
+      "Z_elements": 16777216,
+      "Z_correct_elements": 0,
+      "Z_old_value_elements": 16777216,
+      "Z_other_elements": 0,
+      "Z_first_eight": [
+        -14.0,
+        -14.0,
+        -14.0,
+        -14.0,
+        -14.0,
+        -14.0,
+        -14.0,
+        -14.0
+      ],
+      "recompute_after_join_correct": true
+    },
+    {
+      "id": "bench-05-event_wait",
+      "mode": "event_wait",
+      "profiled": false,
+      "start_ns": 4520824448822023,
+      "submitted_ns": 4520824448945183,
+      "completed_ns": 4520824454449960,
+      "submission_ns": 123160,
+      "elapsed_ns": 5627937,
+      "host_join_calls": 3,
+      "cross_stream_wait_calls": 1,
+      "Y_correct": true,
+      "W_correct": true,
+      "Z_elements": 16777216,
+      "Z_correct_elements": 16777216,
+      "Z_old_value_elements": 0,
+      "Z_other_elements": 0,
+      "Z_first_eight": [
+        2.0,
+        2.0,
+        2.0,
+        2.0,
+        2.0,
+        2.0,
+        2.0,
+        2.0
+      ],
+      "recompute_after_join_correct": null
+    },
+    {
+      "id": "bench-06-event_wait",
+      "mode": "event_wait",
+      "profiled": false,
+      "start_ns": 4520824460963715,
+      "submitted_ns": 4520824461122274,
+      "completed_ns": 4520824466185362,
+      "submission_ns": 158559,
+      "elapsed_ns": 5221647,
+      "host_join_calls": 3,
+      "cross_stream_wait_calls": 1,
+      "Y_correct": true,
+      "W_correct": true,
+      "Z_elements": 16777216,
+      "Z_correct_elements": 16777216,
+      "Z_old_value_elements": 0,
+      "Z_other_elements": 0,
+      "Z_first_eight": [
+        2.0,
+        2.0,
+        2.0,
+        2.0,
+        2.0,
+        2.0,
+        2.0,
+        2.0
+      ],
+      "recompute_after_join_correct": null
+    },
+    {
+      "id": "bench-06-no_wait",
+      "mode": "no_wait",
+      "profiled": false,
+      "start_ns": 4520824472621409,
+      "submitted_ns": 4520824472748760,
+      "completed_ns": 4520824477676819,
+      "submission_ns": 127351,
+      "elapsed_ns": 5055410,
+      "host_join_calls": 3,
+      "cross_stream_wait_calls": 0,
+      "Y_correct": true,
+      "W_correct": true,
+      "Z_elements": 16777216,
+      "Z_correct_elements": 0,
+      "Z_old_value_elements": 16777216,
+      "Z_other_elements": 0,
+      "Z_first_eight": [
+        -14.0,
+        -14.0,
+        -14.0,
+        -14.0,
+        -14.0,
+        -14.0,
+        -14.0,
+        -14.0
+      ],
+      "recompute_after_join_correct": true
+    }
+  ],
+  "profiles": [
+    {
+      "id": "trace-00-event_wait",
+      "mode": "event_wait",
+      "profiled": true,
+      "start_ns": 4520824592390643,
+      "submitted_ns": 4520824593037492,
+      "completed_ns": 4520824597708500,
+      "submission_ns": 646849,
+      "elapsed_ns": 5317857,
+      "host_join_calls": 3,
+      "cross_stream_wait_calls": 1,
+      "Y_correct": true,
+      "W_correct": true,
+      "Z_elements": 16777216,
+      "Z_correct_elements": 16777216,
+      "Z_old_value_elements": 0,
+      "Z_other_elements": 0,
+      "Z_first_eight": [
+        2.0,
+        2.0,
+        2.0,
+        2.0,
+        2.0,
+        2.0,
+        2.0,
+        2.0
+      ],
+      "recompute_after_join_correct": null
+    },
+    {
+      "id": "trace-00-no_wait",
+      "mode": "no_wait",
+      "profiled": true,
+      "start_ns": 4520824604331564,
+      "submitted_ns": 4520824604833043,
+      "completed_ns": 4520824609579407,
+      "submission_ns": 501479,
+      "elapsed_ns": 5247843,
+      "host_join_calls": 3,
+      "cross_stream_wait_calls": 0,
+      "Y_correct": true,
+      "W_correct": true,
+      "Z_elements": 16777216,
+      "Z_correct_elements": 0,
+      "Z_old_value_elements": 16777216,
+      "Z_other_elements": 0,
+      "Z_first_eight": [
+        -14.0,
+        -14.0,
+        -14.0,
+        -14.0,
+        -14.0,
+        -14.0,
+        -14.0,
+        -14.0
+      ],
+      "recompute_after_join_correct": true
+    },
+    {
+      "id": "trace-01-no_wait",
+      "mode": "no_wait",
+      "profiled": true,
+      "start_ns": 4520824616298102,
+      "submitted_ns": 4520824616789509,
+      "completed_ns": 4520824621543289,
+      "submission_ns": 491407,
+      "elapsed_ns": 5245187,
+      "host_join_calls": 3,
+      "cross_stream_wait_calls": 0,
+      "Y_correct": true,
+      "W_correct": true,
+      "Z_elements": 16777216,
+      "Z_correct_elements": 0,
+      "Z_old_value_elements": 16777216,
+      "Z_other_elements": 0,
+      "Z_first_eight": [
+        -14.0,
+        -14.0,
+        -14.0,
+        -14.0,
+        -14.0,
+        -14.0,
+        -14.0,
+        -14.0
+      ],
+      "recompute_after_join_correct": true
+    },
+    {
+      "id": "trace-01-event_wait",
+      "mode": "event_wait",
+      "profiled": true,
+      "start_ns": 4520824628239822,
+      "submitted_ns": 4520824628741584,
+      "completed_ns": 4520824633483881,
+      "submission_ns": 501762,
+      "elapsed_ns": 5244059,
+      "host_join_calls": 3,
+      "cross_stream_wait_calls": 1,
+      "Y_correct": true,
+      "W_correct": true,
+      "Z_elements": 16777216,
+      "Z_correct_elements": 16777216,
+      "Z_old_value_elements": 0,
+      "Z_other_elements": 0,
+      "Z_first_eight": [
+        2.0,
+        2.0,
+        2.0,
+        2.0,
+        2.0,
+        2.0,
+        2.0,
+        2.0
+      ],
+      "recompute_after_join_correct": null
+    },
+    {
+      "id": "trace-02-event_wait",
+      "mode": "event_wait",
+      "profiled": true,
+      "start_ns": 4520824639993335,
+      "submitted_ns": 4520824640533087,
+      "completed_ns": 4520824645294883,
+      "submission_ns": 539752,
+      "elapsed_ns": 5301548,
+      "host_join_calls": 3,
+      "cross_stream_wait_calls": 1,
+      "Y_correct": true,
+      "W_correct": true,
+      "Z_elements": 16777216,
+      "Z_correct_elements": 16777216,
+      "Z_old_value_elements": 0,
+      "Z_other_elements": 0,
+      "Z_first_eight": [
+        2.0,
+        2.0,
+        2.0,
+        2.0,
+        2.0,
+        2.0,
+        2.0,
+        2.0
+      ],
+      "recompute_after_join_correct": null
+    },
+    {
+      "id": "trace-02-no_wait",
+      "mode": "no_wait",
+      "profiled": true,
+      "start_ns": 4520824651784899,
+      "submitted_ns": 4520824652265064,
+      "completed_ns": 4520824657019030,
+      "submission_ns": 480165,
+      "elapsed_ns": 5234131,
+      "host_join_calls": 3,
+      "cross_stream_wait_calls": 0,
+      "Y_correct": true,
+      "W_correct": true,
+      "Z_elements": 16777216,
+      "Z_correct_elements": 0,
+      "Z_old_value_elements": 16777216,
+      "Z_other_elements": 0,
+      "Z_first_eight": [
+        -14.0,
+        -14.0,
+        -14.0,
+        -14.0,
+        -14.0,
+        -14.0,
+        -14.0,
+        -14.0
+      ],
+      "recompute_after_join_correct": true
+    }
+  ],
+  "records": [
+    {
+      "label": "P16Dep/trace-00-event_wait/backlog-00",
+      "trial": "trace-00-event_wait",
+      "branch": "A",
+      "name": "backlog-00",
+      "kind": "compute",
+      "raw_stream_handle": "139771902091264",
+      "host_stream_id": "96",
+      "host_start_ns": 4520824592448720,
+      "reads": [
+        "X"
+      ],
+      "writes": [
+        "scratch"
+      ],
+      "host_end_ns": 4520824592485941
+    },
+    {
+      "label": "P16Dep/trace-00-event_wait/backlog-01",
+      "trial": "trace-00-event_wait",
+      "branch": "A",
+      "name": "backlog-01",
+      "kind": "compute",
+      "raw_stream_handle": "139771902091264",
+      "host_stream_id": "96",
+      "host_start_ns": 4520824592527668,
+      "reads": [
+        "X"
+      ],
+      "writes": [
+        "scratch"
+      ],
+      "host_end_ns": 4520824592540485
+    },
+    {
+      "label": "P16Dep/trace-00-event_wait/backlog-02",
+      "trial": "trace-00-event_wait",
+      "branch": "A",
+      "name": "backlog-02",
+      "kind": "compute",
+      "raw_stream_handle": "139771902091264",
+      "host_stream_id": "96",
+      "host_start_ns": 4520824592562593,
+      "reads": [
+        "X"
+      ],
+      "writes": [
+        "scratch"
+      ],
+      "host_end_ns": 4520824592571105
+    },
+    {
+      "label": "P16Dep/trace-00-event_wait/backlog-03",
+      "trial": "trace-00-event_wait",
+      "branch": "A",
+      "name": "backlog-03",
+      "kind": "compute",
+      "raw_stream_handle": "139771902091264",
+      "host_stream_id": "96",
+      "host_start_ns": 4520824592586994,
+      "reads": [
+        "X"
+      ],
+      "writes": [
+        "scratch"
+      ],
+      "host_end_ns": 4520824592601727
+    },
+    {
+      "label": "P16Dep/trace-00-event_wait/backlog-04",
+      "trial": "trace-00-event_wait",
+      "branch": "A",
+      "name": "backlog-04",
+      "kind": "compute",
+      "raw_stream_handle": "139771902091264",
+      "host_stream_id": "96",
+      "host_start_ns": 4520824592619302,
+      "reads": [
+        "X"
+      ],
+      "writes": [
+        "scratch"
+      ],
+      "host_end_ns": 4520824592631042
+    },
+    {
+      "label": "P16Dep/trace-00-event_wait/produce-Y",
+      "trial": "trace-00-event_wait",
+      "branch": "A",
+      "name": "produce-Y",
+      "kind": "compute",
+      "raw_stream_handle": "139771902091264",
+      "host_stream_id": "96",
+      "host_start_ns": 4520824592645345,
+      "reads": [
+        "X"
+      ],
+      "writes": [
+        "Y"
+      ],
+      "host_end_ns": 4520824592653780
+    },
+    {
+      "label": "P16Dep/trace-00-event_wait/record-A",
+      "trial": "trace-00-event_wait",
+      "branch": "A",
+      "name": "record-A",
+      "kind": "record",
+      "raw_stream_handle": "139771902091264",
+      "host_stream_id": "96",
+      "host_start_ns": 4520824592669221,
+      "event_handle": "139771901910016",
+      "host_end_ns": 4520824592692358
+    },
+    {
+      "label": "P16Dep/trace-00-event_wait/wait-A",
+      "trial": "trace-00-event_wait",
+      "branch": "B",
+      "name": "wait-A",
+      "kind": "device_wait",
+      "raw_stream_handle": "139771902103552",
+      "host_stream_id": "97",
+      "host_start_ns": 4520824592731481,
+      "event_handle": "139771901910016",
+      "host_end_ns": 4520824592752265
+    },
+    {
+      "label": "P16Dep/trace-00-event_wait/consume-Y",
+      "trial": "trace-00-event_wait",
+      "branch": "B",
+      "name": "consume-Y",
+      "kind": "compute",
+      "raw_stream_handle": "139771902103552",
+      "host_stream_id": "97",
+      "host_start_ns": 4520824592766058,
+      "reads": [
+        "Y"
+      ],
+      "writes": [
+        "Z"
+      ],
+      "host_end_ns": 4520824592796024
+    },
+    {
+      "label": "P16Dep/trace-00-event_wait/record-B",
+      "trial": "trace-00-event_wait",
+      "branch": "B",
+      "name": "record-B",
+      "kind": "record",
+      "raw_stream_handle": "139771902103552",
+      "host_stream_id": "97",
+      "host_start_ns": 4520824592810407,
+      "event_handle": "139771901910784",
+      "host_end_ns": 4520824592826883
+    },
+    {
+      "label": "P16Dep/trace-00-event_wait/independent-00",
+      "trial": "trace-00-event_wait",
+      "branch": "C",
+      "name": "independent-00",
+      "kind": "compute",
+      "raw_stream_handle": "139771902111744",
+      "host_stream_id": "98",
+      "host_start_ns": 4520824592863078,
+      "reads": [
+        "V"
+      ],
+      "writes": [
+        "W"
+      ],
+      "host_end_ns": 4520824592874907
+    },
+    {
+      "label": "P16Dep/trace-00-event_wait/independent-01",
+      "trial": "trace-00-event_wait",
+      "branch": "C",
+      "name": "independent-01",
+      "kind": "compute",
+      "raw_stream_handle": "139771902111744",
+      "host_stream_id": "98",
+      "host_start_ns": 4520824592893209,
+      "reads": [
+        "V"
+      ],
+      "writes": [
+        "W"
+      ],
+      "host_end_ns": 4520824592906127
+    },
+    {
+      "label": "P16Dep/trace-00-event_wait/independent-02",
+      "trial": "trace-00-event_wait",
+      "branch": "C",
+      "name": "independent-02",
+      "kind": "compute",
+      "raw_stream_handle": "139771902111744",
+      "host_stream_id": "98",
+      "host_start_ns": 4520824592921507,
+      "reads": [
+        "V"
+      ],
+      "writes": [
+        "W"
+      ],
+      "host_end_ns": 4520824592930567
+    },
+    {
+      "label": "P16Dep/trace-00-event_wait/independent-03",
+      "trial": "trace-00-event_wait",
+      "branch": "C",
+      "name": "independent-03",
+      "kind": "compute",
+      "raw_stream_handle": "139771902111744",
+      "host_stream_id": "98",
+      "host_start_ns": 4520824592944939,
+      "reads": [
+        "V"
+      ],
+      "writes": [
+        "W"
+      ],
+      "host_end_ns": 4520824592953791
+    },
+    {
+      "label": "P16Dep/trace-00-event_wait/independent-04",
+      "trial": "trace-00-event_wait",
+      "branch": "C",
+      "name": "independent-04",
+      "kind": "compute",
+      "raw_stream_handle": "139771902111744",
+      "host_stream_id": "98",
+      "host_start_ns": 4520824592967563,
+      "reads": [
+        "V"
+      ],
+      "writes": [
+        "W"
+      ],
+      "host_end_ns": 4520824592975229
+    },
+    {
+      "label": "P16Dep/trace-00-event_wait/independent-05",
+      "trial": "trace-00-event_wait",
+      "branch": "C",
+      "name": "independent-05",
+      "kind": "compute",
+      "raw_stream_handle": "139771902111744",
+      "host_stream_id": "98",
+      "host_start_ns": 4520824592990129,
+      "reads": [
+        "V"
+      ],
+      "writes": [
+        "W"
+      ],
+      "host_end_ns": 4520824592998734
+    },
+    {
+      "label": "P16Dep/trace-00-event_wait/record-C",
+      "trial": "trace-00-event_wait",
+      "branch": "C",
+      "name": "record-C",
+      "kind": "record",
+      "raw_stream_handle": "139771902111744",
+      "host_stream_id": "98",
+      "host_start_ns": 4520824593012875,
+      "event_handle": "139771901911552",
+      "host_end_ns": 4520824593028962
+    },
+    {
+      "label": "P16Dep/trace-00-event_wait/join-A",
+      "trial": "trace-00-event_wait",
+      "branch": "A",
+      "name": "join-A",
+      "kind": "host_wait",
+      "raw_stream_handle": "139771902091264",
+      "host_stream_id": "96",
+      "host_start_ns": 4520824593045024,
+      "event_handle": "139771901910016",
+      "host_end_ns": 4520824597643254
+    },
+    {
+      "label": "P16Dep/trace-00-event_wait/join-B",
+      "trial": "trace-00-event_wait",
+      "branch": "B",
+      "name": "join-B",
+      "kind": "host_wait",
+      "raw_stream_handle": "139771902103552",
+      "host_stream_id": "97",
+      "host_start_ns": 4520824597659442,
+      "event_handle": "139771901910784",
+      "host_end_ns": 4520824597676220
+    },
+    {
+      "label": "P16Dep/trace-00-event_wait/join-C",
+      "trial": "trace-00-event_wait",
+      "branch": "C",
+      "name": "join-C",
+      "kind": "host_wait",
+      "raw_stream_handle": "139771902111744",
+      "host_stream_id": "98",
+      "host_start_ns": 4520824597689142,
+      "event_handle": "139771901911552",
+      "host_end_ns": 4520824597701900
+    },
+    {
+      "label": "P16Dep/trace-00-no_wait/backlog-00",
+      "trial": "trace-00-no_wait",
+      "branch": "A",
+      "name": "backlog-00",
+      "kind": "compute",
+      "raw_stream_handle": "139771902091264",
+      "host_stream_id": "96",
+      "host_start_ns": 4520824604373277,
+      "reads": [
+        "X"
+      ],
+      "writes": [
+        "scratch"
+      ],
+      "host_end_ns": 4520824604389864
+    },
+    {
+      "label": "P16Dep/trace-00-no_wait/backlog-01",
+      "trial": "trace-00-no_wait",
+      "branch": "A",
+      "name": "backlog-01",
+      "kind": "compute",
+      "raw_stream_handle": "139771902091264",
+      "host_stream_id": "96",
+      "host_start_ns": 4520824604411898,
+      "reads": [
+        "X"
+      ],
+      "writes": [
+        "scratch"
+      ],
+      "host_end_ns": 4520824604420675
+    },
+    {
+      "label": "P16Dep/trace-00-no_wait/backlog-02",
+      "trial": "trace-00-no_wait",
+      "branch": "A",
+      "name": "backlog-02",
+      "kind": "compute",
+      "raw_stream_handle": "139771902091264",
+      "host_stream_id": "96",
+      "host_start_ns": 4520824604436268,
+      "reads": [
+        "X"
+      ],
+      "writes": [
+        "scratch"
+      ],
+      "host_end_ns": 4520824604444445
+    },
+    {
+      "label": "P16Dep/trace-00-no_wait/backlog-03",
+      "trial": "trace-00-no_wait",
+      "branch": "A",
+      "name": "backlog-03",
+      "kind": "compute",
+      "raw_stream_handle": "139771902091264",
+      "host_stream_id": "96",
+      "host_start_ns": 4520824604458875,
+      "reads": [
+        "X"
+      ],
+      "writes": [
+        "scratch"
+      ],
+      "host_end_ns": 4520824604466986
+    },
+    {
+      "label": "P16Dep/trace-00-no_wait/backlog-04",
+      "trial": "trace-00-no_wait",
+      "branch": "A",
+      "name": "backlog-04",
+      "kind": "compute",
+      "raw_stream_handle": "139771902091264",
+      "host_stream_id": "96",
+      "host_start_ns": 4520824604481348,
+      "reads": [
+        "X"
+      ],
+      "writes": [
+        "scratch"
+      ],
+      "host_end_ns": 4520824604491780
+    },
+    {
+      "label": "P16Dep/trace-00-no_wait/produce-Y",
+      "trial": "trace-00-no_wait",
+      "branch": "A",
+      "name": "produce-Y",
+      "kind": "compute",
+      "raw_stream_handle": "139771902091264",
+      "host_stream_id": "96",
+      "host_start_ns": 4520824604506099,
+      "reads": [
+        "X"
+      ],
+      "writes": [
+        "Y"
+      ],
+      "host_end_ns": 4520824604514600
+    },
+    {
+      "label": "P16Dep/trace-00-no_wait/record-A",
+      "trial": "trace-00-no_wait",
+      "branch": "A",
+      "name": "record-A",
+      "kind": "record",
+      "raw_stream_handle": "139771902091264",
+      "host_stream_id": "96",
+      "host_start_ns": 4520824604528490,
+      "event_handle": "139771901910016",
+      "host_end_ns": 4520824604549233
+    },
+    {
+      "label": "P16Dep/trace-00-no_wait/consume-Y",
+      "trial": "trace-00-no_wait",
+      "branch": "B",
+      "name": "consume-Y",
+      "kind": "compute",
+      "raw_stream_handle": "139771902103552",
+      "host_stream_id": "97",
+      "host_start_ns": 4520824604584399,
+      "reads": [
+        "Y"
+      ],
+      "writes": [
+        "Z"
+      ],
+      "host_end_ns": 4520824604600136
+    },
+    {
+      "label": "P16Dep/trace-00-no_wait/record-B",
+      "trial": "trace-00-no_wait",
+      "branch": "B",
+      "name": "record-B",
+      "kind": "record",
+      "raw_stream_handle": "139771902103552",
+      "host_stream_id": "97",
+      "host_start_ns": 4520824604615090,
+      "event_handle": "139771901910784",
+      "host_end_ns": 4520824604630982
+    },
+    {
+      "label": "P16Dep/trace-00-no_wait/independent-00",
+      "trial": "trace-00-no_wait",
+      "branch": "C",
+      "name": "independent-00",
+      "kind": "compute",
+      "raw_stream_handle": "139771902111744",
+      "host_stream_id": "98",
+      "host_start_ns": 4520824604662573,
+      "reads": [
+        "V"
+      ],
+      "writes": [
+        "W"
+      ],
+      "host_end_ns": 4520824604673145
+    },
+    {
+      "label": "P16Dep/trace-00-no_wait/independent-01",
+      "trial": "trace-00-no_wait",
+      "branch": "C",
+      "name": "independent-01",
+      "kind": "compute",
+      "raw_stream_handle": "139771902111744",
+      "host_stream_id": "98",
+      "host_start_ns": 4520824604689574,
+      "reads": [
+        "V"
+      ],
+      "writes": [
+        "W"
+      ],
+      "host_end_ns": 4520824604699652
+    },
+    {
+      "label": "P16Dep/trace-00-no_wait/independent-02",
+      "trial": "trace-00-no_wait",
+      "branch": "C",
+      "name": "independent-02",
+      "kind": "compute",
+      "raw_stream_handle": "139771902111744",
+      "host_stream_id": "98",
+      "host_start_ns": 4520824604714120,
+      "reads": [
+        "V"
+      ],
+      "writes": [
+        "W"
+      ],
+      "host_end_ns": 4520824604722112
+    },
+    {
+      "label": "P16Dep/trace-00-no_wait/independent-03",
+      "trial": "trace-00-no_wait",
+      "branch": "C",
+      "name": "independent-03",
+      "kind": "compute",
+      "raw_stream_handle": "139771902111744",
+      "host_stream_id": "98",
+      "host_start_ns": 4520824604738149,
+      "reads": [
+        "V"
+      ],
+      "writes": [
+        "W"
+      ],
+      "host_end_ns": 4520824604750915
+    },
+    {
+      "label": "P16Dep/trace-00-no_wait/independent-04",
+      "trial": "trace-00-no_wait",
+      "branch": "C",
+      "name": "independent-04",
+      "kind": "compute",
+      "raw_stream_handle": "139771902111744",
+      "host_stream_id": "98",
+      "host_start_ns": 4520824604764426,
+      "reads": [
+        "V"
+      ],
+      "writes": [
+        "W"
+      ],
+      "host_end_ns": 4520824604772393
+    },
+    {
+      "label": "P16Dep/trace-00-no_wait/independent-05",
+      "trial": "trace-00-no_wait",
+      "branch": "C",
+      "name": "independent-05",
+      "kind": "compute",
+      "raw_stream_handle": "139771902111744",
+      "host_stream_id": "98",
+      "host_start_ns": 4520824604786920,
+      "reads": [
+        "V"
+      ],
+      "writes": [
+        "W"
+      ],
+      "host_end_ns": 4520824604794838
+    },
+    {
+      "label": "P16Dep/trace-00-no_wait/record-C",
+      "trial": "trace-00-no_wait",
+      "branch": "C",
+      "name": "record-C",
+      "kind": "record",
+      "raw_stream_handle": "139771902111744",
+      "host_stream_id": "98",
+      "host_start_ns": 4520824604807715,
+      "event_handle": "139771901911552",
+      "host_end_ns": 4520824604824312
+    },
+    {
+      "label": "P16Dep/trace-00-no_wait/join-A",
+      "trial": "trace-00-no_wait",
+      "branch": "A",
+      "name": "join-A",
+      "kind": "host_wait",
+      "raw_stream_handle": "139771902091264",
+      "host_stream_id": "96",
+      "host_start_ns": 4520824604840220,
+      "event_handle": "139771901910016",
+      "host_end_ns": 4520824609517937
+    },
+    {
+      "label": "P16Dep/trace-00-no_wait/join-B",
+      "trial": "trace-00-no_wait",
+      "branch": "B",
+      "name": "join-B",
+      "kind": "host_wait",
+      "raw_stream_handle": "139771902103552",
+      "host_stream_id": "97",
+      "host_start_ns": 4520824609532384,
+      "event_handle": "139771901910784",
+      "host_end_ns": 4520824609545098
+    },
+    {
+      "label": "P16Dep/trace-00-no_wait/join-C",
+      "trial": "trace-00-no_wait",
+      "branch": "C",
+      "name": "join-C",
+      "kind": "host_wait",
+      "raw_stream_handle": "139771902111744",
+      "host_stream_id": "98",
+      "host_start_ns": 4520824609558274,
+      "event_handle": "139771901911552",
+      "host_end_ns": 4520824609572171
+    },
+    {
+      "label": "P16Dep/trace-01-no_wait/backlog-00",
+      "trial": "trace-01-no_wait",
+      "branch": "A",
+      "name": "backlog-00",
+      "kind": "compute",
+      "raw_stream_handle": "139771902091264",
+      "host_stream_id": "96",
+      "host_start_ns": 4520824616330147,
+      "reads": [
+        "X"
+      ],
+      "writes": [
+        "scratch"
+      ],
+      "host_end_ns": 4520824616344349
+    },
+    {
+      "label": "P16Dep/trace-01-no_wait/backlog-01",
+      "trial": "trace-01-no_wait",
+      "branch": "A",
+      "name": "backlog-01",
+      "kind": "compute",
+      "raw_stream_handle": "139771902091264",
+      "host_stream_id": "96",
+      "host_start_ns": 4520824616366093,
+      "reads": [
+        "X"
+      ],
+      "writes": [
+        "scratch"
+      ],
+      "host_end_ns": 4520824616377117
+    },
+    {
+      "label": "P16Dep/trace-01-no_wait/backlog-02",
+      "trial": "trace-01-no_wait",
+      "branch": "A",
+      "name": "backlog-02",
+      "kind": "compute",
+      "raw_stream_handle": "139771902091264",
+      "host_stream_id": "96",
+      "host_start_ns": 4520824616393005,
+      "reads": [
+        "X"
+      ],
+      "writes": [
+        "scratch"
+      ],
+      "host_end_ns": 4520824616404394
+    },
+    {
+      "label": "P16Dep/trace-01-no_wait/backlog-03",
+      "trial": "trace-01-no_wait",
+      "branch": "A",
+      "name": "backlog-03",
+      "kind": "compute",
+      "raw_stream_handle": "139771902091264",
+      "host_stream_id": "96",
+      "host_start_ns": 4520824616420151,
+      "reads": [
+        "X"
+      ],
+      "writes": [
+        "scratch"
+      ],
+      "host_end_ns": 4520824616428399
+    },
+    {
+      "label": "P16Dep/trace-01-no_wait/backlog-04",
+      "trial": "trace-01-no_wait",
+      "branch": "A",
+      "name": "backlog-04",
+      "kind": "compute",
+      "raw_stream_handle": "139771902091264",
+      "host_stream_id": "96",
+      "host_start_ns": 4520824616442534,
+      "reads": [
+        "X"
+      ],
+      "writes": [
+        "scratch"
+      ],
+      "host_end_ns": 4520824616450767
+    },
+    {
+      "label": "P16Dep/trace-01-no_wait/produce-Y",
+      "trial": "trace-01-no_wait",
+      "branch": "A",
+      "name": "produce-Y",
+      "kind": "compute",
+      "raw_stream_handle": "139771902091264",
+      "host_stream_id": "96",
+      "host_start_ns": 4520824616464256,
+      "reads": [
+        "X"
+      ],
+      "writes": [
+        "Y"
+      ],
+      "host_end_ns": 4520824616472896
+    },
+    {
+      "label": "P16Dep/trace-01-no_wait/record-A",
+      "trial": "trace-01-no_wait",
+      "branch": "A",
+      "name": "record-A",
+      "kind": "record",
+      "raw_stream_handle": "139771902091264",
+      "host_stream_id": "96",
+      "host_start_ns": 4520824616487626,
+      "event_handle": "139771901910016",
+      "host_end_ns": 4520824616506987
+    },
+    {
+      "label": "P16Dep/trace-01-no_wait/consume-Y",
+      "trial": "trace-01-no_wait",
+      "branch": "B",
+      "name": "consume-Y",
+      "kind": "compute",
+      "raw_stream_handle": "139771902103552",
+      "host_stream_id": "97",
+      "host_start_ns": 4520824616541198,
+      "reads": [
+        "Y"
+      ],
+      "writes": [
+        "Z"
+      ],
+      "host_end_ns": 4520824616552821
+    },
+    {
+      "label": "P16Dep/trace-01-no_wait/record-B",
+      "trial": "trace-01-no_wait",
+      "branch": "B",
+      "name": "record-B",
+      "kind": "record",
+      "raw_stream_handle": "139771902103552",
+      "host_stream_id": "97",
+      "host_start_ns": 4520824616567818,
+      "event_handle": "139771901910784",
+      "host_end_ns": 4520824616584398
+    },
+    {
+      "label": "P16Dep/trace-01-no_wait/independent-00",
+      "trial": "trace-01-no_wait",
+      "branch": "C",
+      "name": "independent-00",
+      "kind": "compute",
+      "raw_stream_handle": "139771902111744",
+      "host_stream_id": "98",
+      "host_start_ns": 4520824616615807,
+      "reads": [
+        "V"
+      ],
+      "writes": [
+        "W"
+      ],
+      "host_end_ns": 4520824616626786
+    },
+    {
+      "label": "P16Dep/trace-01-no_wait/independent-01",
+      "trial": "trace-01-no_wait",
+      "branch": "C",
+      "name": "independent-01",
+      "kind": "compute",
+      "raw_stream_handle": "139771902111744",
+      "host_stream_id": "98",
+      "host_start_ns": 4520824616643684,
+      "reads": [
+        "V"
+      ],
+      "writes": [
+        "W"
+      ],
+      "host_end_ns": 4520824616658429
+    },
+    {
+      "label": "P16Dep/trace-01-no_wait/independent-02",
+      "trial": "trace-01-no_wait",
+      "branch": "C",
+      "name": "independent-02",
+      "kind": "compute",
+      "raw_stream_handle": "139771902111744",
+      "host_stream_id": "98",
+      "host_start_ns": 4520824616677064,
+      "reads": [
+        "V"
+      ],
+      "writes": [
+        "W"
+      ],
+      "host_end_ns": 4520824616685878
+    },
+    {
+      "label": "P16Dep/trace-01-no_wait/independent-03",
+      "trial": "trace-01-no_wait",
+      "branch": "C",
+      "name": "independent-03",
+      "kind": "compute",
+      "raw_stream_handle": "139771902111744",
+      "host_stream_id": "98",
+      "host_start_ns": 4520824616699782,
+      "reads": [
+        "V"
+      ],
+      "writes": [
+        "W"
+      ],
+      "host_end_ns": 4520824616707522
+    },
+    {
+      "label": "P16Dep/trace-01-no_wait/independent-04",
+      "trial": "trace-01-no_wait",
+      "branch": "C",
+      "name": "independent-04",
+      "kind": "compute",
+      "raw_stream_handle": "139771902111744",
+      "host_stream_id": "98",
+      "host_start_ns": 4520824616721811,
+      "reads": [
+        "V"
+      ],
+      "writes": [
+        "W"
+      ],
+      "host_end_ns": 4520824616730191
+    },
+    {
+      "label": "P16Dep/trace-01-no_wait/independent-05",
+      "trial": "trace-01-no_wait",
+      "branch": "C",
+      "name": "independent-05",
+      "kind": "compute",
+      "raw_stream_handle": "139771902111744",
+      "host_stream_id": "98",
+      "host_start_ns": 4520824616744092,
+      "reads": [
+        "V"
+      ],
+      "writes": [
+        "W"
+      ],
+      "host_end_ns": 4520824616752219
+    },
+    {
+      "label": "P16Dep/trace-01-no_wait/record-C",
+      "trial": "trace-01-no_wait",
+      "branch": "C",
+      "name": "record-C",
+      "kind": "record",
+      "raw_stream_handle": "139771902111744",
+      "host_stream_id": "98",
+      "host_start_ns": 4520824616765230,
+      "event_handle": "139771901911552",
+      "host_end_ns": 4520824616781463
+    },
+    {
+      "label": "P16Dep/trace-01-no_wait/join-A",
+      "trial": "trace-01-no_wait",
+      "branch": "A",
+      "name": "join-A",
+      "kind": "host_wait",
+      "raw_stream_handle": "139771902091264",
+      "host_stream_id": "96",
+      "host_start_ns": 4520824616797163,
+      "event_handle": "139771901910016",
+      "host_end_ns": 4520824621479905
+    },
+    {
+      "label": "P16Dep/trace-01-no_wait/join-B",
+      "trial": "trace-01-no_wait",
+      "branch": "B",
+      "name": "join-B",
+      "kind": "host_wait",
+      "raw_stream_handle": "139771902103552",
+      "host_stream_id": "97",
+      "host_start_ns": 4520824621495192,
+      "event_handle": "139771901910784",
+      "host_end_ns": 4520824621507993
+    },
+    {
+      "label": "P16Dep/trace-01-no_wait/join-C",
+      "trial": "trace-01-no_wait",
+      "branch": "C",
+      "name": "join-C",
+      "kind": "host_wait",
+      "raw_stream_handle": "139771902111744",
+      "host_stream_id": "98",
+      "host_start_ns": 4520824621520988,
+      "event_handle": "139771901911552",
+      "host_end_ns": 4520824621536600
+    },
+    {
+      "label": "P16Dep/trace-01-event_wait/backlog-00",
+      "trial": "trace-01-event_wait",
+      "branch": "A",
+      "name": "backlog-00",
+      "kind": "compute",
+      "raw_stream_handle": "139771902091264",
+      "host_stream_id": "96",
+      "host_start_ns": 4520824628269487,
+      "reads": [
+        "X"
+      ],
+      "writes": [
+        "scratch"
+      ],
+      "host_end_ns": 4520824628285037
+    },
+    {
+      "label": "P16Dep/trace-01-event_wait/backlog-01",
+      "trial": "trace-01-event_wait",
+      "branch": "A",
+      "name": "backlog-01",
+      "kind": "compute",
+      "raw_stream_handle": "139771902091264",
+      "host_stream_id": "96",
+      "host_start_ns": 4520824628304661,
+      "reads": [
+        "X"
+      ],
+      "writes": [
+        "scratch"
+      ],
+      "host_end_ns": 4520824628313708
+    },
+    {
+      "label": "P16Dep/trace-01-event_wait/backlog-02",
+      "trial": "trace-01-event_wait",
+      "branch": "A",
+      "name": "backlog-02",
+      "kind": "compute",
+      "raw_stream_handle": "139771902091264",
+      "host_stream_id": "96",
+      "host_start_ns": 4520824628330456,
+      "reads": [
+        "X"
+      ],
+      "writes": [
+        "scratch"
+      ],
+      "host_end_ns": 4520824628338017
+    },
+    {
+      "label": "P16Dep/trace-01-event_wait/backlog-03",
+      "trial": "trace-01-event_wait",
+      "branch": "A",
+      "name": "backlog-03",
+      "kind": "compute",
+      "raw_stream_handle": "139771902091264",
+      "host_stream_id": "96",
+      "host_start_ns": 4520824628353296,
+      "reads": [
+        "X"
+      ],
+      "writes": [
+        "scratch"
+      ],
+      "host_end_ns": 4520824628361170
+    },
+    {
+      "label": "P16Dep/trace-01-event_wait/backlog-04",
+      "trial": "trace-01-event_wait",
+      "branch": "A",
+      "name": "backlog-04",
+      "kind": "compute",
+      "raw_stream_handle": "139771902091264",
+      "host_stream_id": "96",
+      "host_start_ns": 4520824628374758,
+      "reads": [
+        "X"
+      ],
+      "writes": [
+        "scratch"
+      ],
+      "host_end_ns": 4520824628382910
+    },
+    {
+      "label": "P16Dep/trace-01-event_wait/produce-Y",
+      "trial": "trace-01-event_wait",
+      "branch": "A",
+      "name": "produce-Y",
+      "kind": "compute",
+      "raw_stream_handle": "139771902091264",
+      "host_stream_id": "96",
+      "host_start_ns": 4520824628396248,
+      "reads": [
+        "X"
+      ],
+      "writes": [
+        "Y"
+      ],
+      "host_end_ns": 4520824628404846
+    },
+    {
+      "label": "P16Dep/trace-01-event_wait/record-A",
+      "trial": "trace-01-event_wait",
+      "branch": "A",
+      "name": "record-A",
+      "kind": "record",
+      "raw_stream_handle": "139771902091264",
+      "host_stream_id": "96",
+      "host_start_ns": 4520824628417924,
+      "event_handle": "139771901910016",
+      "host_end_ns": 4520824628435119
+    },
+    {
+      "label": "P16Dep/trace-01-event_wait/wait-A",
+      "trial": "trace-01-event_wait",
+      "branch": "B",
+      "name": "wait-A",
+      "kind": "device_wait",
+      "raw_stream_handle": "139771902103552",
+      "host_stream_id": "97",
+      "host_start_ns": 4520824628469061,
+      "event_handle": "139771901910016",
+      "host_end_ns": 4520824628486679
+    },
+    {
+      "label": "P16Dep/trace-01-event_wait/consume-Y",
+      "trial": "trace-01-event_wait",
+      "branch": "B",
+      "name": "consume-Y",
+      "kind": "compute",
+      "raw_stream_handle": "139771902103552",
+      "host_stream_id": "97",
+      "host_start_ns": 4520824628499833,
+      "reads": [
+        "Y"
+      ],
+      "writes": [
+        "Z"
+      ],
+      "host_end_ns": 4520824628515855
+    },
+    {
+      "label": "P16Dep/trace-01-event_wait/record-B",
+      "trial": "trace-01-event_wait",
+      "branch": "B",
+      "name": "record-B",
+      "kind": "record",
+      "raw_stream_handle": "139771902103552",
+      "host_stream_id": "97",
+      "host_start_ns": 4520824628529792,
+      "event_handle": "139771901910784",
+      "host_end_ns": 4520824628545203
+    },
+    {
+      "label": "P16Dep/trace-01-event_wait/independent-00",
+      "trial": "trace-01-event_wait",
+      "branch": "C",
+      "name": "independent-00",
+      "kind": "compute",
+      "raw_stream_handle": "139771902111744",
+      "host_stream_id": "98",
+      "host_start_ns": 4520824628577229,
+      "reads": [
+        "V"
+      ],
+      "writes": [
+        "W"
+      ],
+      "host_end_ns": 4520824628586595
+    },
+    {
+      "label": "P16Dep/trace-01-event_wait/independent-01",
+      "trial": "trace-01-event_wait",
+      "branch": "C",
+      "name": "independent-01",
+      "kind": "compute",
+      "raw_stream_handle": "139771902111744",
+      "host_stream_id": "98",
+      "host_start_ns": 4520824628601974,
+      "reads": [
+        "V"
+      ],
+      "writes": [
+        "W"
+      ],
+      "host_end_ns": 4520824628609965
+    },
+    {
+      "label": "P16Dep/trace-01-event_wait/independent-02",
+      "trial": "trace-01-event_wait",
+      "branch": "C",
+      "name": "independent-02",
+      "kind": "compute",
+      "raw_stream_handle": "139771902111744",
+      "host_stream_id": "98",
+      "host_start_ns": 4520824628624245,
+      "reads": [
+        "V"
+      ],
+      "writes": [
+        "W"
+      ],
+      "host_end_ns": 4520824628632345
+    },
+    {
+      "label": "P16Dep/trace-01-event_wait/independent-03",
+      "trial": "trace-01-event_wait",
+      "branch": "C",
+      "name": "independent-03",
+      "kind": "compute",
+      "raw_stream_handle": "139771902111744",
+      "host_stream_id": "98",
+      "host_start_ns": 4520824628646701,
+      "reads": [
+        "V"
+      ],
+      "writes": [
+        "W"
+      ],
+      "host_end_ns": 4520824628655454
+    },
+    {
+      "label": "P16Dep/trace-01-event_wait/independent-04",
+      "trial": "trace-01-event_wait",
+      "branch": "C",
+      "name": "independent-04",
+      "kind": "compute",
+      "raw_stream_handle": "139771902111744",
+      "host_stream_id": "98",
+      "host_start_ns": 4520824628669193,
+      "reads": [
+        "V"
+      ],
+      "writes": [
+        "W"
+      ],
+      "host_end_ns": 4520824628676715
+    },
+    {
+      "label": "P16Dep/trace-01-event_wait/independent-05",
+      "trial": "trace-01-event_wait",
+      "branch": "C",
+      "name": "independent-05",
+      "kind": "compute",
+      "raw_stream_handle": "139771902111744",
+      "host_stream_id": "98",
+      "host_start_ns": 4520824628692954,
+      "reads": [
+        "V"
+      ],
+      "writes": [
+        "W"
+      ],
+      "host_end_ns": 4520824628701039
+    },
+    {
+      "label": "P16Dep/trace-01-event_wait/record-C",
+      "trial": "trace-01-event_wait",
+      "branch": "C",
+      "name": "record-C",
+      "kind": "record",
+      "raw_stream_handle": "139771902111744",
+      "host_stream_id": "98",
+      "host_start_ns": 4520824628713998,
+      "event_handle": "139771901911552",
+      "host_end_ns": 4520824628733363
+    },
+    {
+      "label": "P16Dep/trace-01-event_wait/join-A",
+      "trial": "trace-01-event_wait",
+      "branch": "A",
+      "name": "join-A",
+      "kind": "host_wait",
+      "raw_stream_handle": "139771902091264",
+      "host_stream_id": "96",
+      "host_start_ns": 4520824628748696,
+      "event_handle": "139771901910016",
+      "host_end_ns": 4520824633419346
+    },
+    {
+      "label": "P16Dep/trace-01-event_wait/join-B",
+      "trial": "trace-01-event_wait",
+      "branch": "B",
+      "name": "join-B",
+      "kind": "host_wait",
+      "raw_stream_handle": "139771902103552",
+      "host_stream_id": "97",
+      "host_start_ns": 4520824633433778,
+      "event_handle": "139771901910784",
+      "host_end_ns": 4520824633452017
+    },
+    {
+      "label": "P16Dep/trace-01-event_wait/join-C",
+      "trial": "trace-01-event_wait",
+      "branch": "C",
+      "name": "join-C",
+      "kind": "host_wait",
+      "raw_stream_handle": "139771902111744",
+      "host_stream_id": "98",
+      "host_start_ns": 4520824633464583,
+      "event_handle": "139771901911552",
+      "host_end_ns": 4520824633477329
+    },
+    {
+      "label": "P16Dep/trace-02-event_wait/backlog-00",
+      "trial": "trace-02-event_wait",
+      "branch": "A",
+      "name": "backlog-00",
+      "kind": "compute",
+      "raw_stream_handle": "139771902091264",
+      "host_stream_id": "96",
+      "host_start_ns": 4520824640035538,
+      "reads": [
+        "X"
+      ],
+      "writes": [
+        "scratch"
+      ],
+      "host_end_ns": 4520824640049098
+    },
+    {
+      "label": "P16Dep/trace-02-event_wait/backlog-01",
+      "trial": "trace-02-event_wait",
+      "branch": "A",
+      "name": "backlog-01",
+      "kind": "compute",
+      "raw_stream_handle": "139771902091264",
+      "host_stream_id": "96",
+      "host_start_ns": 4520824640070102,
+      "reads": [
+        "X"
+      ],
+      "writes": [
+        "scratch"
+      ],
+      "host_end_ns": 4520824640078656
+    },
+    {
+      "label": "P16Dep/trace-02-event_wait/backlog-02",
+      "trial": "trace-02-event_wait",
+      "branch": "A",
+      "name": "backlog-02",
+      "kind": "compute",
+      "raw_stream_handle": "139771902091264",
+      "host_stream_id": "96",
+      "host_start_ns": 4520824640095734,
+      "reads": [
+        "X"
+      ],
+      "writes": [
+        "scratch"
+      ],
+      "host_end_ns": 4520824640108040
+    },
+    {
+      "label": "P16Dep/trace-02-event_wait/backlog-03",
+      "trial": "trace-02-event_wait",
+      "branch": "A",
+      "name": "backlog-03",
+      "kind": "compute",
+      "raw_stream_handle": "139771902091264",
+      "host_stream_id": "96",
+      "host_start_ns": 4520824640122843,
+      "reads": [
+        "X"
+      ],
+      "writes": [
+        "scratch"
+      ],
+      "host_end_ns": 4520824640133547
+    },
+    {
+      "label": "P16Dep/trace-02-event_wait/backlog-04",
+      "trial": "trace-02-event_wait",
+      "branch": "A",
+      "name": "backlog-04",
+      "kind": "compute",
+      "raw_stream_handle": "139771902091264",
+      "host_stream_id": "96",
+      "host_start_ns": 4520824640147472,
+      "reads": [
+        "X"
+      ],
+      "writes": [
+        "scratch"
+      ],
+      "host_end_ns": 4520824640155117
+    },
+    {
+      "label": "P16Dep/trace-02-event_wait/produce-Y",
+      "trial": "trace-02-event_wait",
+      "branch": "A",
+      "name": "produce-Y",
+      "kind": "compute",
+      "raw_stream_handle": "139771902091264",
+      "host_stream_id": "96",
+      "host_start_ns": 4520824640168729,
+      "reads": [
+        "X"
+      ],
+      "writes": [
+        "Y"
+      ],
+      "host_end_ns": 4520824640176482
+    },
+    {
+      "label": "P16Dep/trace-02-event_wait/record-A",
+      "trial": "trace-02-event_wait",
+      "branch": "A",
+      "name": "record-A",
+      "kind": "record",
+      "raw_stream_handle": "139771902091264",
+      "host_stream_id": "96",
+      "host_start_ns": 4520824640192581,
+      "event_handle": "139771901910016",
+      "host_end_ns": 4520824640210408
+    },
+    {
+      "label": "P16Dep/trace-02-event_wait/wait-A",
+      "trial": "trace-02-event_wait",
+      "branch": "B",
+      "name": "wait-A",
+      "kind": "device_wait",
+      "raw_stream_handle": "139771902103552",
+      "host_stream_id": "97",
+      "host_start_ns": 4520824640245349,
+      "event_handle": "139771901910016",
+      "host_end_ns": 4520824640266883
+    },
+    {
+      "label": "P16Dep/trace-02-event_wait/consume-Y",
+      "trial": "trace-02-event_wait",
+      "branch": "B",
+      "name": "consume-Y",
+      "kind": "compute",
+      "raw_stream_handle": "139771902103552",
+      "host_stream_id": "97",
+      "host_start_ns": 4520824640280952,
+      "reads": [
+        "Y"
+      ],
+      "writes": [
+        "Z"
+      ],
+      "host_end_ns": 4520824640294907
+    },
+    {
+      "label": "P16Dep/trace-02-event_wait/record-B",
+      "trial": "trace-02-event_wait",
+      "branch": "B",
+      "name": "record-B",
+      "kind": "record",
+      "raw_stream_handle": "139771902103552",
+      "host_stream_id": "97",
+      "host_start_ns": 4520824640308533,
+      "event_handle": "139771901910784",
+      "host_end_ns": 4520824640328703
+    },
+    {
+      "label": "P16Dep/trace-02-event_wait/independent-00",
+      "trial": "trace-02-event_wait",
+      "branch": "C",
+      "name": "independent-00",
+      "kind": "compute",
+      "raw_stream_handle": "139771902111744",
+      "host_stream_id": "98",
+      "host_start_ns": 4520824640361771,
+      "reads": [
+        "V"
+      ],
+      "writes": [
+        "W"
+      ],
+      "host_end_ns": 4520824640371505
+    },
+    {
+      "label": "P16Dep/trace-02-event_wait/independent-01",
+      "trial": "trace-02-event_wait",
+      "branch": "C",
+      "name": "independent-01",
+      "kind": "compute",
+      "raw_stream_handle": "139771902111744",
+      "host_stream_id": "98",
+      "host_start_ns": 4520824640388753,
+      "reads": [
+        "V"
+      ],
+      "writes": [
+        "W"
+      ],
+      "host_end_ns": 4520824640396926
+    },
+    {
+      "label": "P16Dep/trace-02-event_wait/independent-02",
+      "trial": "trace-02-event_wait",
+      "branch": "C",
+      "name": "independent-02",
+      "kind": "compute",
+      "raw_stream_handle": "139771902111744",
+      "host_stream_id": "98",
+      "host_start_ns": 4520824640411310,
+      "reads": [
+        "V"
+      ],
+      "writes": [
+        "W"
+      ],
+      "host_end_ns": 4520824640421380
+    },
+    {
+      "label": "P16Dep/trace-02-event_wait/independent-03",
+      "trial": "trace-02-event_wait",
+      "branch": "C",
+      "name": "independent-03",
+      "kind": "compute",
+      "raw_stream_handle": "139771902111744",
+      "host_stream_id": "98",
+      "host_start_ns": 4520824640435133,
+      "reads": [
+        "V"
+      ],
+      "writes": [
+        "W"
+      ],
+      "host_end_ns": 4520824640442620
+    },
+    {
+      "label": "P16Dep/trace-02-event_wait/independent-04",
+      "trial": "trace-02-event_wait",
+      "branch": "C",
+      "name": "independent-04",
+      "kind": "compute",
+      "raw_stream_handle": "139771902111744",
+      "host_stream_id": "98",
+      "host_start_ns": 4520824640456584,
+      "reads": [
+        "V"
+      ],
+      "writes": [
+        "W"
+      ],
+      "host_end_ns": 4520824640468046
+    },
+    {
+      "label": "P16Dep/trace-02-event_wait/independent-05",
+      "trial": "trace-02-event_wait",
+      "branch": "C",
+      "name": "independent-05",
+      "kind": "compute",
+      "raw_stream_handle": "139771902111744",
+      "host_stream_id": "98",
+      "host_start_ns": 4520824640482820,
+      "reads": [
+        "V"
+      ],
+      "writes": [
+        "W"
+      ],
+      "host_end_ns": 4520824640491696
+    },
+    {
+      "label": "P16Dep/trace-02-event_wait/record-C",
+      "trial": "trace-02-event_wait",
+      "branch": "C",
+      "name": "record-C",
+      "kind": "record",
+      "raw_stream_handle": "139771902111744",
+      "host_stream_id": "98",
+      "host_start_ns": 4520824640504490,
+      "event_handle": "139771901911552",
+      "host_end_ns": 4520824640524401
+    },
+    {
+      "label": "P16Dep/trace-02-event_wait/join-A",
+      "trial": "trace-02-event_wait",
+      "branch": "A",
+      "name": "join-A",
+      "kind": "host_wait",
+      "raw_stream_handle": "139771902091264",
+      "host_stream_id": "96",
+      "host_start_ns": 4520824640540290,
+      "event_handle": "139771901910016",
+      "host_end_ns": 4520824645231596
+    },
+    {
+      "label": "P16Dep/trace-02-event_wait/join-B",
+      "trial": "trace-02-event_wait",
+      "branch": "B",
+      "name": "join-B",
+      "kind": "host_wait",
+      "raw_stream_handle": "139771902103552",
+      "host_stream_id": "97",
+      "host_start_ns": 4520824645246590,
+      "event_handle": "139771901910784",
+      "host_end_ns": 4520824645262557
+    },
+    {
+      "label": "P16Dep/trace-02-event_wait/join-C",
+      "trial": "trace-02-event_wait",
+      "branch": "C",
+      "name": "join-C",
+      "kind": "host_wait",
+      "raw_stream_handle": "139771902111744",
+      "host_stream_id": "98",
+      "host_start_ns": 4520824645275844,
+      "event_handle": "139771901911552",
+      "host_end_ns": 4520824645288021
+    },
+    {
+      "label": "P16Dep/trace-02-no_wait/backlog-00",
+      "trial": "trace-02-no_wait",
+      "branch": "A",
+      "name": "backlog-00",
+      "kind": "compute",
+      "raw_stream_handle": "139771902091264",
+      "host_stream_id": "96",
+      "host_start_ns": 4520824651817217,
+      "reads": [
+        "X"
+      ],
+      "writes": [
+        "scratch"
+      ],
+      "host_end_ns": 4520824651829247
+    },
+    {
+      "label": "P16Dep/trace-02-no_wait/backlog-01",
+      "trial": "trace-02-no_wait",
+      "branch": "A",
+      "name": "backlog-01",
+      "kind": "compute",
+      "raw_stream_handle": "139771902091264",
+      "host_stream_id": "96",
+      "host_start_ns": 4520824651849538,
+      "reads": [
+        "X"
+      ],
+      "writes": [
+        "scratch"
+      ],
+      "host_end_ns": 4520824651858297
+    },
+    {
+      "label": "P16Dep/trace-02-no_wait/backlog-02",
+      "trial": "trace-02-no_wait",
+      "branch": "A",
+      "name": "backlog-02",
+      "kind": "compute",
+      "raw_stream_handle": "139771902091264",
+      "host_stream_id": "96",
+      "host_start_ns": 4520824651873252,
+      "reads": [
+        "X"
+      ],
+      "writes": [
+        "scratch"
+      ],
+      "host_end_ns": 4520824651881097
+    },
+    {
+      "label": "P16Dep/trace-02-no_wait/backlog-03",
+      "trial": "trace-02-no_wait",
+      "branch": "A",
+      "name": "backlog-03",
+      "kind": "compute",
+      "raw_stream_handle": "139771902091264",
+      "host_stream_id": "96",
+      "host_start_ns": 4520824651895107,
+      "reads": [
+        "X"
+      ],
+      "writes": [
+        "scratch"
+      ],
+      "host_end_ns": 4520824651907212
+    },
+    {
+      "label": "P16Dep/trace-02-no_wait/backlog-04",
+      "trial": "trace-02-no_wait",
+      "branch": "A",
+      "name": "backlog-04",
+      "kind": "compute",
+      "raw_stream_handle": "139771902091264",
+      "host_stream_id": "96",
+      "host_start_ns": 4520824651923095,
+      "reads": [
+        "X"
+      ],
+      "writes": [
+        "scratch"
+      ],
+      "host_end_ns": 4520824651930891
+    },
+    {
+      "label": "P16Dep/trace-02-no_wait/produce-Y",
+      "trial": "trace-02-no_wait",
+      "branch": "A",
+      "name": "produce-Y",
+      "kind": "compute",
+      "raw_stream_handle": "139771902091264",
+      "host_stream_id": "96",
+      "host_start_ns": 4520824651944429,
+      "reads": [
+        "X"
+      ],
+      "writes": [
+        "Y"
+      ],
+      "host_end_ns": 4520824651952285
+    },
+    {
+      "label": "P16Dep/trace-02-no_wait/record-A",
+      "trial": "trace-02-no_wait",
+      "branch": "A",
+      "name": "record-A",
+      "kind": "record",
+      "raw_stream_handle": "139771902091264",
+      "host_stream_id": "96",
+      "host_start_ns": 4520824651965645,
+      "event_handle": "139771901910016",
+      "host_end_ns": 4520824651983464
+    },
+    {
+      "label": "P16Dep/trace-02-no_wait/consume-Y",
+      "trial": "trace-02-no_wait",
+      "branch": "B",
+      "name": "consume-Y",
+      "kind": "compute",
+      "raw_stream_handle": "139771902103552",
+      "host_stream_id": "97",
+      "host_start_ns": 4520824652023444,
+      "reads": [
+        "Y"
+      ],
+      "writes": [
+        "Z"
+      ],
+      "host_end_ns": 4520824652035001
+    },
+    {
+      "label": "P16Dep/trace-02-no_wait/record-B",
+      "trial": "trace-02-no_wait",
+      "branch": "B",
+      "name": "record-B",
+      "kind": "record",
+      "raw_stream_handle": "139771902103552",
+      "host_stream_id": "97",
+      "host_start_ns": 4520824652050426,
+      "event_handle": "139771901910784",
+      "host_end_ns": 4520824652070705
+    },
+    {
+      "label": "P16Dep/trace-02-no_wait/independent-00",
+      "trial": "trace-02-no_wait",
+      "branch": "C",
+      "name": "independent-00",
+      "kind": "compute",
+      "raw_stream_handle": "139771902111744",
+      "host_stream_id": "98",
+      "host_start_ns": 4520824652101536,
+      "reads": [
+        "V"
+      ],
+      "writes": [
+        "W"
+      ],
+      "host_end_ns": 4520824652110956
+    },
+    {
+      "label": "P16Dep/trace-02-no_wait/independent-01",
+      "trial": "trace-02-no_wait",
+      "branch": "C",
+      "name": "independent-01",
+      "kind": "compute",
+      "raw_stream_handle": "139771902111744",
+      "host_stream_id": "98",
+      "host_start_ns": 4520824652125944,
+      "reads": [
+        "V"
+      ],
+      "writes": [
+        "W"
+      ],
+      "host_end_ns": 4520824652137758
+    },
+    {
+      "label": "P16Dep/trace-02-no_wait/independent-02",
+      "trial": "trace-02-no_wait",
+      "branch": "C",
+      "name": "independent-02",
+      "kind": "compute",
+      "raw_stream_handle": "139771902111744",
+      "host_stream_id": "98",
+      "host_start_ns": 4520824652151967,
+      "reads": [
+        "V"
+      ],
+      "writes": [
+        "W"
+      ],
+      "host_end_ns": 4520824652160540
+    },
+    {
+      "label": "P16Dep/trace-02-no_wait/independent-03",
+      "trial": "trace-02-no_wait",
+      "branch": "C",
+      "name": "independent-03",
+      "kind": "compute",
+      "raw_stream_handle": "139771902111744",
+      "host_stream_id": "98",
+      "host_start_ns": 4520824652173959,
+      "reads": [
+        "V"
+      ],
+      "writes": [
+        "W"
+      ],
+      "host_end_ns": 4520824652182532
+    },
+    {
+      "label": "P16Dep/trace-02-no_wait/independent-04",
+      "trial": "trace-02-no_wait",
+      "branch": "C",
+      "name": "independent-04",
+      "kind": "compute",
+      "raw_stream_handle": "139771902111744",
+      "host_stream_id": "98",
+      "host_start_ns": 4520824652195958,
+      "reads": [
+        "V"
+      ],
+      "writes": [
+        "W"
+      ],
+      "host_end_ns": 4520824652204282
+    },
+    {
+      "label": "P16Dep/trace-02-no_wait/independent-05",
+      "trial": "trace-02-no_wait",
+      "branch": "C",
+      "name": "independent-05",
+      "kind": "compute",
+      "raw_stream_handle": "139771902111744",
+      "host_stream_id": "98",
+      "host_start_ns": 4520824652218276,
+      "reads": [
+        "V"
+      ],
+      "writes": [
+        "W"
+      ],
+      "host_end_ns": 4520824652226161
+    },
+    {
+      "label": "P16Dep/trace-02-no_wait/record-C",
+      "trial": "trace-02-no_wait",
+      "branch": "C",
+      "name": "record-C",
+      "kind": "record",
+      "raw_stream_handle": "139771902111744",
+      "host_stream_id": "98",
+      "host_start_ns": 4520824652239618,
+      "event_handle": "139771901911552",
+      "host_end_ns": 4520824652256652
+    },
+    {
+      "label": "P16Dep/trace-02-no_wait/join-A",
+      "trial": "trace-02-no_wait",
+      "branch": "A",
+      "name": "join-A",
+      "kind": "host_wait",
+      "raw_stream_handle": "139771902091264",
+      "host_stream_id": "96",
+      "host_start_ns": 4520824652272197,
+      "event_handle": "139771901910016",
+      "host_end_ns": 4520824656962395
+    },
+    {
+      "label": "P16Dep/trace-02-no_wait/join-B",
+      "trial": "trace-02-no_wait",
+      "branch": "B",
+      "name": "join-B",
+      "kind": "host_wait",
+      "raw_stream_handle": "139771902103552",
+      "host_stream_id": "97",
+      "host_start_ns": 4520824656975967,
+      "event_handle": "139771901910784",
+      "host_end_ns": 4520824656988026
+    },
+    {
+      "label": "P16Dep/trace-02-no_wait/join-C",
+      "trial": "trace-02-no_wait",
+      "branch": "C",
+      "name": "join-C",
+      "kind": "host_wait",
+      "raw_stream_handle": "139771902111744",
+      "host_stream_id": "98",
+      "host_start_ns": 4520824657000583,
+      "event_handle": "139771901911552",
+      "host_end_ns": 4520824657012341
+    }
+  ],
+  "source_sha256": {
+    "sources/run_dependency.py": "10050167cf29d1ba88744cf3eb171af2296a4f906a0dd6ab6ce70dc5af2fd46b",
+    "sources/streams.py": "241741b356db5006797dbec119007afb33b73b0e1753bfb06ab27c989c5bfac4"
+  },
+  "limits": [
+    "A has explicit queued matrix work to expose the missing-dependency window.",
+    "Only B wait_event(A_done) removed; initialization and final joins always retained.",
+    "No early CPU reads, no deallocation/reuse while kernels are pending.",
+    "Incorrect-path elapsed time is not a valid optimization result."
+  ]
+}

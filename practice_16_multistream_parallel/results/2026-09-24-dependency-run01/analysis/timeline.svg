@@ -1,0 +1,441 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1140 1182" role="img" aria-label="三 stream 依赖时间线">
+<rect width="100%" height="100%" fill="white"/>
+<style>text{font:13px system-ui,sans-serif;fill:#20314b}.task{cursor:pointer}.task:hover rect,.task:focus rect{stroke:#132d50;stroke-width:2}</style>
+<defs><marker id="arrow" markerWidth="7" markerHeight="7" refX="6" refY="3" orient="auto"><path d="M0 0 L6 3 L0 6" fill="none" stroke="#b5453d"/></marker></defs>
+<text x="175" y="22">设备执行时间（各轮独立归零，同一比例尺）；细竖线为 event record 标记</text>
+<path d="M175.000 37 V1174" stroke="#e1e7f0"/><text x="175.000" y="43">0.0 ms</text>
+<path d="M347.751 37 V1174" stroke="#e1e7f0"/><text x="347.751" y="43">1.0 ms</text>
+<path d="M520.503 37 V1174" stroke="#e1e7f0"/><text x="520.503" y="43">2.0 ms</text>
+<path d="M693.254 37 V1174" stroke="#e1e7f0"/><text x="693.254" y="43">3.0 ms</text>
+<path d="M866.005 37 V1174" stroke="#e1e7f0"/><text x="866.005" y="43">4.0 ms</text>
+<path d="M1038.757 37 V1174" stroke="#e1e7f0"/><text x="1038.757" y="43">5.0 ms</text>
+<text x="10" y="65" font-weight="700">保留 A→B 等待</text>
+<text x="10" y="96">A · stream 44</text>
+<path d="M175 104 H1100" stroke="#dbe3ed"/>
+<text x="10" y="133">B · stream 43</text>
+<path d="M175 141 H1100" stroke="#dbe3ed"/>
+<text x="10" y="170">C · stream 42</text>
+<path d="M175 178 H1100" stroke="#dbe3ed"/>
+<g><title>backlog-00 · 753.67 us · aclnnMm_MatMulV3Common_MatMulV3</title>
+<rect x="175.000" y="78" width="130.197" height="26" rx="3" fill="#749cda"/>
+<text x="178.000" y="95" style="fill:white;font-size:11px">00</text>
+</g>
+<g><title>backlog-01 · 1812.733 us · aclnnMm_MatMulV3Common_MatMulV3</title>
+<rect x="305.201" y="78" width="313.152" height="26" rx="3" fill="#749cda"/>
+<text x="308.201" y="95" style="fill:white;font-size:11px">01</text>
+</g>
+<g><title>backlog-02 · 1271.491 us · aclnnMm_MatMulV3Common_MatMulV3</title>
+<rect x="618.356" y="78" width="219.652" height="26" rx="3" fill="#749cda"/>
+<text x="621.356" y="95" style="fill:white;font-size:11px">02</text>
+</g>
+<g><title>backlog-03 · 427.297 us · aclnnMm_MatMulV3Common_MatMulV3</title>
+<rect x="838.012" y="78" width="73.816" height="26" rx="3" fill="#749cda"/>
+<text x="841.012" y="95" style="fill:white;font-size:11px">03</text>
+</g>
+<g><title>backlog-04 · 425.417 us · aclnnMm_MatMulV3Common_MatMulV3</title>
+<rect x="911.835" y="78" width="73.491" height="26" rx="3" fill="#749cda"/>
+<text x="914.835" y="95" style="fill:white;font-size:11px">04</text>
+</g>
+<g><title>produce-Y · 427.957 us · aclnnMm_MatMulV3Common_MatMulV3</title>
+<rect x="985.329" y="78" width="73.930" height="26" rx="3" fill="#235dba"/>
+<text x="988.329" y="95" style="fill:white;font-size:11px">Y=X@X</text>
+</g>
+<g><title>record-A · 0.02 us · EVENT_RECORD</title>
+<path d="M1059.263 76 V106" stroke="#23334b" stroke-width="1.5"/>
+</g>
+<g><title>wait-A · 4863.835 us · EVENT_WAIT</title>
+<rect x="219.112" y="115" width="840.234" height="26" rx="3" fill="#dbe3ed"/>
+<text x="222.112" y="132" style="fill:#20314b;font-size:11px">等待 A</text>
+</g>
+<g><title>consume-Y · 19.481 us · aclnnMuls_MulAiCore_Mul</title>
+<rect x="1059.363" y="115" width="3.365" height="26" rx="3" fill="#a34b97"/>
+</g>
+<g><title>record-B · 0.02 us · EVENT_RECORD</title>
+<path d="M1062.732 113 V143" stroke="#23334b" stroke-width="1.5"/>
+</g>
+<g><title>independent-00 · 601.224 us · aclnnMuls_MulAiCore_Mul</title>
+<rect x="241.678" y="152" width="103.862" height="26" rx="3" fill="#278c75"/>
+<text x="244.678" y="169" style="fill:white;font-size:11px">00</text>
+</g>
+<g><title>independent-01 · 563.522 us · aclnnMuls_MulAiCore_Mul</title>
+<rect x="345.544" y="152" width="97.349" height="26" rx="3" fill="#278c75"/>
+<text x="348.544" y="169" style="fill:white;font-size:11px">01</text>
+</g>
+<g><title>independent-02 · 561.783 us · aclnnMuls_MulAiCore_Mul</title>
+<rect x="442.896" y="152" width="97.049" height="26" rx="3" fill="#278c75"/>
+<text x="445.896" y="169" style="fill:white;font-size:11px">02</text>
+</g>
+<g><title>independent-03 · 542.741 us · aclnnMuls_MulAiCore_Mul</title>
+<rect x="539.952" y="152" width="93.759" height="26" rx="3" fill="#278c75"/>
+<text x="542.952" y="169" style="fill:white;font-size:11px">03</text>
+</g>
+<g><title>independent-04 · 547.982 us · aclnnMuls_MulAiCore_Mul</title>
+<rect x="633.718" y="152" width="94.665" height="26" rx="3" fill="#278c75"/>
+<text x="636.718" y="169" style="fill:white;font-size:11px">04</text>
+</g>
+<g><title>independent-05 · 560.143 us · aclnnMuls_MulAiCore_Mul</title>
+<rect x="728.386" y="152" width="96.765" height="26" rx="3" fill="#278c75"/>
+<text x="731.386" y="169" style="fill:white;font-size:11px">05</text>
+</g>
+<g><title>record-C · 0.02 us · EVENT_RECORD</title>
+<path d="M825.155 150 V180" stroke="#23334b" stroke-width="1.5"/>
+</g>
+<path d="M1059.267 105 L1059.346 112" stroke="#b5453d" stroke-width="1.5" marker-end="url(#arrow)"/>
+<text x="175" y="208">A 写入完成后，B 才开始读取 Y · A/C 计算重叠 3.377 ms</text>
+<text x="175" y="231">trace-00-event_wait · 完成后 Z 前四个值：[2.0, 2.0, 2.0, 2.0]</text>
+<text x="10" y="252" font-weight="700">删除 A→B 等待</text>
+<text x="10" y="283">A · stream 44</text>
+<path d="M175 291 H1100" stroke="#dbe3ed"/>
+<text x="10" y="320">B · stream 43</text>
+<path d="M175 328 H1100" stroke="#dbe3ed"/>
+<text x="10" y="357">C · stream 42</text>
+<path d="M175 365 H1100" stroke="#dbe3ed"/>
+<g><title>backlog-00 · 1103.624 us · aclnnMm_MatMulV3Common_MatMulV3</title>
+<rect x="175.000" y="265" width="190.653" height="26" rx="3" fill="#749cda"/>
+<text x="178.000" y="282" style="fill:white;font-size:11px">00</text>
+</g>
+<g><title>backlog-01 · 1570.303 us · aclnnMm_MatMulV3Common_MatMulV3</title>
+<rect x="365.656" y="265" width="271.272" height="26" rx="3" fill="#749cda"/>
+<text x="368.656" y="282" style="fill:white;font-size:11px">01</text>
+</g>
+<g><title>backlog-02 · 1140.986 us · aclnnMm_MatMulV3Common_MatMulV3</title>
+<rect x="636.931" y="265" width="197.107" height="26" rx="3" fill="#749cda"/>
+<text x="639.931" y="282" style="fill:white;font-size:11px">02</text>
+</g>
+<g><title>backlog-03 · 428.057 us · aclnnMm_MatMulV3Common_MatMulV3</title>
+<rect x="834.042" y="265" width="73.947" height="26" rx="3" fill="#749cda"/>
+<text x="837.042" y="282" style="fill:white;font-size:11px">03</text>
+</g>
+<g><title>backlog-04 · 425.937 us · aclnnMm_MatMulV3Common_MatMulV3</title>
+<rect x="907.992" y="265" width="73.581" height="26" rx="3" fill="#749cda"/>
+<text x="910.992" y="282" style="fill:white;font-size:11px">04</text>
+</g>
+<g><title>produce-Y · 425.377 us · aclnnMm_MatMulV3Common_MatMulV3</title>
+<rect x="981.577" y="265" width="73.484" height="26" rx="3" fill="#235dba"/>
+<text x="984.577" y="282" style="fill:white;font-size:11px">Y=X@X</text>
+</g>
+<g><title>record-A · 0.02 us · EVENT_RECORD</title>
+<path d="M1055.065 263 V293" stroke="#23334b" stroke-width="1.5"/>
+</g>
+<g><title>consume-Y · 27.721 us · aclnnMuls_MulAiCore_Mul</title>
+<rect x="211.200" y="302" width="4.789" height="26" rx="3" fill="#a34b97"/>
+</g>
+<g><title>record-B · 0.02 us · EVENT_RECORD</title>
+<path d="M215.992 300 V330" stroke="#23334b" stroke-width="1.5"/>
+</g>
+<g><title>independent-00 · 604.324 us · aclnnMuls_MulAiCore_Mul</title>
+<rect x="223.697" y="339" width="104.398" height="26" rx="3" fill="#278c75"/>
+<text x="226.697" y="356" style="fill:white;font-size:11px">00</text>
+</g>
+<g><title>independent-01 · 554.462 us · aclnnMuls_MulAiCore_Mul</title>
+<rect x="328.098" y="339" width="95.784" height="26" rx="3" fill="#278c75"/>
+<text x="331.098" y="356" style="fill:white;font-size:11px">01</text>
+</g>
+<g><title>independent-02 · 552.502 us · aclnnMuls_MulAiCore_Mul</title>
+<rect x="423.886" y="339" width="95.445" height="26" rx="3" fill="#278c75"/>
+<text x="426.886" y="356" style="fill:white;font-size:11px">02</text>
+</g>
+<g><title>independent-03 · 559.022 us · aclnnMuls_MulAiCore_Mul</title>
+<rect x="519.335" y="339" width="96.572" height="26" rx="3" fill="#278c75"/>
+<text x="522.335" y="356" style="fill:white;font-size:11px">03</text>
+</g>
+<g><title>independent-04 · 550.602 us · aclnnMuls_MulAiCore_Mul</title>
+<rect x="615.914" y="339" width="95.117" height="26" rx="3" fill="#278c75"/>
+<text x="618.914" y="356" style="fill:white;font-size:11px">04</text>
+</g>
+<g><title>independent-05 · 565.703 us · aclnnMuls_MulAiCore_Mul</title>
+<rect x="711.034" y="339" width="97.726" height="26" rx="3" fill="#278c75"/>
+<text x="714.034" y="356" style="fill:white;font-size:11px">05</text>
+</g>
+<g><title>record-C · 0.02 us · EVENT_RECORD</title>
+<path d="M808.764 337 V367" stroke="#23334b" stroke-width="1.5"/>
+</g>
+<text x="175" y="395">B 已经结束，A 才开始写入新 Y · A/C 计算重叠 3.387 ms</text>
+<text x="175" y="418">trace-00-no_wait · 完成后 Z 前四个值：[-14.0, -14.0, -14.0, -14.0]</text>
+<text x="10" y="439" font-weight="700">删除 A→B 等待</text>
+<text x="10" y="470">A · stream 44</text>
+<path d="M175 478 H1100" stroke="#dbe3ed"/>
+<text x="10" y="507">B · stream 43</text>
+<path d="M175 515 H1100" stroke="#dbe3ed"/>
+<text x="10" y="544">C · stream 42</text>
+<path d="M175 552 H1100" stroke="#dbe3ed"/>
+<g><title>backlog-00 · 1317.533 us · aclnnMm_MatMulV3Common_MatMulV3</title>
+<rect x="175.000" y="452" width="227.606" height="26" rx="3" fill="#749cda"/>
+<text x="178.000" y="469" style="fill:white;font-size:11px">00</text>
+</g>
+<g><title>backlog-01 · 1576.363 us · aclnnMm_MatMulV3Common_MatMulV3</title>
+<rect x="402.609" y="452" width="272.319" height="26" rx="3" fill="#749cda"/>
+<text x="405.609" y="469" style="fill:white;font-size:11px">01</text>
+</g>
+<g><title>backlog-02 · 927.397 us · aclnnMm_MatMulV3Common_MatMulV3</title>
+<rect x="674.931" y="452" width="160.209" height="26" rx="3" fill="#749cda"/>
+<text x="677.931" y="469" style="fill:white;font-size:11px">02</text>
+</g>
+<g><title>backlog-03 · 426.157 us · aclnnMm_MatMulV3Common_MatMulV3</title>
+<rect x="835.144" y="452" width="73.619" height="26" rx="3" fill="#749cda"/>
+<text x="838.144" y="469" style="fill:white;font-size:11px">03</text>
+</g>
+<g><title>backlog-04 · 426.357 us · aclnnMm_MatMulV3Common_MatMulV3</title>
+<rect x="908.766" y="452" width="73.654" height="26" rx="3" fill="#749cda"/>
+<text x="911.766" y="469" style="fill:white;font-size:11px">04</text>
+</g>
+<g><title>produce-Y · 427.497 us · aclnnMm_MatMulV3Common_MatMulV3</title>
+<rect x="982.424" y="452" width="73.851" height="26" rx="3" fill="#235dba"/>
+<text x="985.424" y="469" style="fill:white;font-size:11px">Y=X@X</text>
+</g>
+<g><title>record-A · 0.02 us · EVENT_RECORD</title>
+<path d="M1056.278 450 V480" stroke="#23334b" stroke-width="1.5"/>
+</g>
+<g><title>consume-Y · 26.301 us · aclnnMuls_MulAiCore_Mul</title>
+<rect x="211.117" y="489" width="4.544" height="26" rx="3" fill="#a34b97"/>
+</g>
+<g><title>record-B · 0.02 us · EVENT_RECORD</title>
+<path d="M215.664 487 V517" stroke="#23334b" stroke-width="1.5"/>
+</g>
+<g><title>independent-00 · 600.924 us · aclnnMuls_MulAiCore_Mul</title>
+<rect x="223.407" y="526" width="103.810" height="26" rx="3" fill="#278c75"/>
+<text x="226.407" y="543" style="fill:white;font-size:11px">00</text>
+</g>
+<g><title>independent-01 · 559.943 us · aclnnMuls_MulAiCore_Mul</title>
+<rect x="327.221" y="526" width="96.731" height="26" rx="3" fill="#278c75"/>
+<text x="330.221" y="543" style="fill:white;font-size:11px">01</text>
+</g>
+<g><title>independent-02 · 544.882 us · aclnnMuls_MulAiCore_Mul</title>
+<rect x="423.955" y="526" width="94.129" height="26" rx="3" fill="#278c75"/>
+<text x="426.955" y="543" style="fill:white;font-size:11px">02</text>
+</g>
+<g><title>independent-03 · 563.262 us · aclnnMuls_MulAiCore_Mul</title>
+<rect x="518.088" y="526" width="97.304" height="26" rx="3" fill="#278c75"/>
+<text x="521.088" y="543" style="fill:white;font-size:11px">03</text>
+</g>
+<g><title>independent-04 · 540.042 us · aclnnMuls_MulAiCore_Mul</title>
+<rect x="615.395" y="526" width="93.293" height="26" rx="3" fill="#278c75"/>
+<text x="618.395" y="543" style="fill:white;font-size:11px">04</text>
+</g>
+<g><title>independent-05 · 555.462 us · aclnnMuls_MulAiCore_Mul</title>
+<rect x="708.692" y="526" width="95.957" height="26" rx="3" fill="#278c75"/>
+<text x="711.692" y="543" style="fill:white;font-size:11px">05</text>
+</g>
+<g><title>record-C · 0.02 us · EVENT_RECORD</title>
+<path d="M804.652 524 V554" stroke="#23334b" stroke-width="1.5"/>
+</g>
+<text x="175" y="582">B 已经结束，A 才开始写入新 Y · A/C 计算重叠 3.364 ms</text>
+<text x="175" y="605">trace-01-no_wait · 完成后 Z 前四个值：[-14.0, -14.0, -14.0, -14.0]</text>
+<text x="10" y="626" font-weight="700">保留 A→B 等待</text>
+<text x="10" y="657">A · stream 44</text>
+<path d="M175 665 H1100" stroke="#dbe3ed"/>
+<text x="10" y="694">B · stream 43</text>
+<path d="M175 702 H1100" stroke="#dbe3ed"/>
+<text x="10" y="731">C · stream 42</text>
+<path d="M175 739 H1100" stroke="#dbe3ed"/>
+<g><title>backlog-00 · 1117.324 us · aclnnMm_MatMulV3Common_MatMulV3</title>
+<rect x="175.000" y="639" width="193.019" height="26" rx="3" fill="#749cda"/>
+<text x="178.000" y="656" style="fill:white;font-size:11px">00</text>
+</g>
+<g><title>backlog-01 · 1588.744 us · aclnnMm_MatMulV3Common_MatMulV3</title>
+<rect x="368.023" y="639" width="274.458" height="26" rx="3" fill="#749cda"/>
+<text x="371.023" y="656" style="fill:white;font-size:11px">01</text>
+</g>
+<g><title>backlog-02 · 1118.484 us · aclnnMm_MatMulV3Common_MatMulV3</title>
+<rect x="642.484" y="639" width="193.220" height="26" rx="3" fill="#749cda"/>
+<text x="645.484" y="656" style="fill:white;font-size:11px">02</text>
+</g>
+<g><title>backlog-03 · 423.717 us · aclnnMm_MatMulV3Common_MatMulV3</title>
+<rect x="835.707" y="639" width="73.198" height="26" rx="3" fill="#749cda"/>
+<text x="838.707" y="656" style="fill:white;font-size:11px">03</text>
+</g>
+<g><title>backlog-04 · 424.957 us · aclnnMm_MatMulV3Common_MatMulV3</title>
+<rect x="908.908" y="639" width="73.412" height="26" rx="3" fill="#749cda"/>
+<text x="911.908" y="656" style="fill:white;font-size:11px">04</text>
+</g>
+<g><title>produce-Y · 426.357 us · aclnnMm_MatMulV3Common_MatMulV3</title>
+<rect x="982.323" y="639" width="73.654" height="26" rx="3" fill="#235dba"/>
+<text x="985.323" y="656" style="fill:white;font-size:11px">Y=X@X</text>
+</g>
+<g><title>record-A · 0.02 us · EVENT_RECORD</title>
+<path d="M1055.980 637 V667" stroke="#23334b" stroke-width="1.5"/>
+</g>
+<g><title>wait-A · 4906.596 us · EVENT_WAIT</title>
+<rect x="208.436" y="676" width="847.621" height="26" rx="3" fill="#dbe3ed"/>
+<text x="211.436" y="693" style="fill:#20314b;font-size:11px">等待 A</text>
+</g>
+<g><title>consume-Y · 19.281 us · aclnnMuls_MulAiCore_Mul</title>
+<rect x="1056.060" y="676" width="3.331" height="26" rx="3" fill="#a34b97"/>
+</g>
+<g><title>record-B · 0.02 us · EVENT_RECORD</title>
+<path d="M1059.394 674 V704" stroke="#23334b" stroke-width="1.5"/>
+</g>
+<g><title>independent-00 · 600.164 us · aclnnMuls_MulAiCore_Mul</title>
+<rect x="225.884" y="713" width="103.679" height="26" rx="3" fill="#278c75"/>
+<text x="228.884" y="730" style="fill:white;font-size:11px">00</text>
+</g>
+<g><title>independent-01 · 547.382 us · aclnnMuls_MulAiCore_Mul</title>
+<rect x="329.567" y="713" width="94.561" height="26" rx="3" fill="#278c75"/>
+<text x="332.567" y="730" style="fill:white;font-size:11px">01</text>
+</g>
+<g><title>independent-02 · 553.282 us · aclnnMuls_MulAiCore_Mul</title>
+<rect x="424.131" y="713" width="95.580" height="26" rx="3" fill="#278c75"/>
+<text x="427.131" y="730" style="fill:white;font-size:11px">02</text>
+</g>
+<g><title>independent-03 · 558.443 us · aclnnMuls_MulAiCore_Mul</title>
+<rect x="519.718" y="713" width="96.472" height="26" rx="3" fill="#278c75"/>
+<text x="522.718" y="730" style="fill:white;font-size:11px">03</text>
+</g>
+<g><title>independent-04 · 547.302 us · aclnnMuls_MulAiCore_Mul</title>
+<rect x="616.193" y="713" width="94.547" height="26" rx="3" fill="#278c75"/>
+<text x="619.193" y="730" style="fill:white;font-size:11px">04</text>
+</g>
+<g><title>independent-05 · 569.562 us · aclnnMuls_MulAiCore_Mul</title>
+<rect x="710.744" y="713" width="98.393" height="26" rx="3" fill="#278c75"/>
+<text x="713.744" y="730" style="fill:white;font-size:11px">05</text>
+</g>
+<g><title>record-C · 0.0 us · EVENT_RECORD</title>
+<path d="M809.143 711 V741" stroke="#23334b" stroke-width="1.5"/>
+</g>
+<path d="M1055.984 666 L1056.056 673" stroke="#b5453d" stroke-width="1.5" marker-end="url(#arrow)"/>
+<text x="175" y="769">A 写入完成后，B 才开始读取 Y · A/C 计算重叠 3.376 ms</text>
+<text x="175" y="792">trace-01-event_wait · 完成后 Z 前四个值：[2.0, 2.0, 2.0, 2.0]</text>
+<text x="10" y="813" font-weight="700">保留 A→B 等待</text>
+<text x="10" y="844">A · stream 44</text>
+<path d="M175 852 H1100" stroke="#dbe3ed"/>
+<text x="10" y="881">B · stream 43</text>
+<path d="M175 889 H1100" stroke="#dbe3ed"/>
+<text x="10" y="918">C · stream 42</text>
+<path d="M175 926 H1100" stroke="#dbe3ed"/>
+<g><title>backlog-00 · 924.737 us · aclnnMm_MatMulV3Common_MatMulV3</title>
+<rect x="175.000" y="826" width="159.750" height="26" rx="3" fill="#749cda"/>
+<text x="178.000" y="843" style="fill:white;font-size:11px">00</text>
+</g>
+<g><title>backlog-01 · 1675.487 us · aclnnMm_MatMulV3Common_MatMulV3</title>
+<rect x="334.753" y="826" width="289.443" height="26" rx="3" fill="#749cda"/>
+<text x="337.753" y="843" style="fill:white;font-size:11px">01</text>
+</g>
+<g><title>backlog-02 · 1272.071 us · aclnnMm_MatMulV3Common_MatMulV3</title>
+<rect x="624.199" y="826" width="219.752" height="26" rx="3" fill="#749cda"/>
+<text x="627.199" y="843" style="fill:white;font-size:11px">02</text>
+</g>
+<g><title>backlog-03 · 426.917 us · aclnnMm_MatMulV3Common_MatMulV3</title>
+<rect x="843.954" y="826" width="73.750" height="26" rx="3" fill="#749cda"/>
+<text x="846.954" y="843" style="fill:white;font-size:11px">03</text>
+</g>
+<g><title>backlog-04 · 425.757 us · aclnnMm_MatMulV3Common_MatMulV3</title>
+<rect x="917.708" y="826" width="73.550" height="26" rx="3" fill="#749cda"/>
+<text x="920.708" y="843" style="fill:white;font-size:11px">04</text>
+</g>
+<g><title>produce-Y · 427.037 us · aclnnMm_MatMulV3Common_MatMulV3</title>
+<rect x="991.262" y="826" width="73.771" height="26" rx="3" fill="#235dba"/>
+<text x="994.262" y="843" style="fill:white;font-size:11px">Y=X@X</text>
+</g>
+<g><title>record-A · 0.02 us · EVENT_RECORD</title>
+<path d="M1065.037 824 V854" stroke="#23334b" stroke-width="1.5"/>
+</g>
+<g><title>wait-A · 4942.358 us · EVENT_WAIT</title>
+<rect x="211.317" y="863" width="853.799" height="26" rx="3" fill="#dbe3ed"/>
+<text x="214.317" y="880" style="fill:#20314b;font-size:11px">等待 A</text>
+</g>
+<g><title>consume-Y · 20.721 us · aclnnMuls_MulAiCore_Mul</title>
+<rect x="1065.130" y="863" width="3.580" height="26" rx="3" fill="#a34b97"/>
+</g>
+<g><title>record-B · 0.02 us · EVENT_RECORD</title>
+<path d="M1068.716 861 V891" stroke="#23334b" stroke-width="1.5"/>
+</g>
+<g><title>independent-00 · 604.084 us · aclnnMuls_MulAiCore_Mul</title>
+<rect x="230.984" y="900" width="104.356" height="26" rx="3" fill="#278c75"/>
+<text x="233.984" y="917" style="fill:white;font-size:11px">00</text>
+</g>
+<g><title>independent-01 · 571.123 us · aclnnMuls_MulAiCore_Mul</title>
+<rect x="335.344" y="900" width="98.662" height="26" rx="3" fill="#278c75"/>
+<text x="338.344" y="917" style="fill:white;font-size:11px">01</text>
+</g>
+<g><title>independent-02 · 566.542 us · aclnnMuls_MulAiCore_Mul</title>
+<rect x="434.010" y="900" width="97.871" height="26" rx="3" fill="#278c75"/>
+<text x="437.010" y="917" style="fill:white;font-size:11px">02</text>
+</g>
+<g><title>independent-03 · 549.542 us · aclnnMuls_MulAiCore_Mul</title>
+<rect x="531.884" y="900" width="94.934" height="26" rx="3" fill="#278c75"/>
+<text x="534.884" y="917" style="fill:white;font-size:11px">03</text>
+</g>
+<g><title>independent-04 · 564.623 us · aclnnMuls_MulAiCore_Mul</title>
+<rect x="626.821" y="900" width="97.539" height="26" rx="3" fill="#278c75"/>
+<text x="629.821" y="917" style="fill:white;font-size:11px">04</text>
+</g>
+<g><title>independent-05 · 563.423 us · aclnnMuls_MulAiCore_Mul</title>
+<rect x="724.364" y="900" width="97.332" height="26" rx="3" fill="#278c75"/>
+<text x="727.364" y="917" style="fill:white;font-size:11px">05</text>
+</g>
+<g><title>record-C · 0.02 us · EVENT_RECORD</title>
+<path d="M821.700 898 V928" stroke="#23334b" stroke-width="1.5"/>
+</g>
+<path d="M1065.040 853 L1065.116 860" stroke="#b5453d" stroke-width="1.5" marker-end="url(#arrow)"/>
+<text x="175" y="956">A 写入完成后，B 才开始读取 Y · A/C 计算重叠 3.419 ms</text>
+<text x="175" y="979">trace-02-event_wait · 完成后 Z 前四个值：[2.0, 2.0, 2.0, 2.0]</text>
+<text x="10" y="1000" font-weight="700">删除 A→B 等待</text>
+<text x="10" y="1031">A · stream 44</text>
+<path d="M175 1039 H1100" stroke="#dbe3ed"/>
+<text x="10" y="1068">B · stream 43</text>
+<path d="M175 1076 H1100" stroke="#dbe3ed"/>
+<text x="10" y="1105">C · stream 42</text>
+<path d="M175 1113 H1100" stroke="#dbe3ed"/>
+<g><title>backlog-00 · 1198.968 us · aclnnMm_MatMulV3Common_MatMulV3</title>
+<rect x="175.000" y="1013" width="207.123" height="26" rx="3" fill="#749cda"/>
+<text x="178.000" y="1030" style="fill:white;font-size:11px">00</text>
+</g>
+<g><title>backlog-01 · 1574.063 us · aclnnMm_MatMulV3Common_MatMulV3</title>
+<rect x="382.127" y="1013" width="271.921" height="26" rx="3" fill="#749cda"/>
+<text x="385.127" y="1030" style="fill:white;font-size:11px">01</text>
+</g>
+<g><title>backlog-02 · 1047.842 us · aclnnMm_MatMulV3Common_MatMulV3</title>
+<rect x="654.052" y="1013" width="181.016" height="26" rx="3" fill="#749cda"/>
+<text x="657.052" y="1030" style="fill:white;font-size:11px">02</text>
+</g>
+<g><title>backlog-03 · 427.317 us · aclnnMm_MatMulV3Common_MatMulV3</title>
+<rect x="835.075" y="1013" width="73.820" height="26" rx="3" fill="#749cda"/>
+<text x="838.075" y="1030" style="fill:white;font-size:11px">03</text>
+</g>
+<g><title>backlog-04 · 426.257 us · aclnnMm_MatMulV3Common_MatMulV3</title>
+<rect x="908.901" y="1013" width="73.636" height="26" rx="3" fill="#749cda"/>
+<text x="911.901" y="1030" style="fill:white;font-size:11px">04</text>
+</g>
+<g><title>produce-Y · 426.037 us · aclnnMm_MatMulV3Common_MatMulV3</title>
+<rect x="982.541" y="1013" width="73.598" height="26" rx="3" fill="#235dba"/>
+<text x="985.541" y="1030" style="fill:white;font-size:11px">Y=X@X</text>
+</g>
+<g><title>record-A · 0.02 us · EVENT_RECORD</title>
+<path d="M1056.146 1011 V1041" stroke="#23334b" stroke-width="1.5"/>
+</g>
+<g><title>consume-Y · 27.941 us · aclnnMuls_MulAiCore_Mul</title>
+<rect x="209.897" y="1050" width="4.827" height="26" rx="3" fill="#a34b97"/>
+</g>
+<g><title>record-B · 0.02 us · EVENT_RECORD</title>
+<path d="M215.273 1048 V1078" stroke="#23334b" stroke-width="1.5"/>
+</g>
+<g><title>independent-00 · 607.504 us · aclnnMuls_MulAiCore_Mul</title>
+<rect x="223.528" y="1087" width="104.947" height="26" rx="3" fill="#278c75"/>
+<text x="226.528" y="1104" style="fill:white;font-size:11px">00</text>
+</g>
+<g><title>independent-01 · 538.582 us · aclnnMuls_MulAiCore_Mul</title>
+<rect x="328.482" y="1087" width="93.041" height="26" rx="3" fill="#278c75"/>
+<text x="331.482" y="1104" style="fill:white;font-size:11px">01</text>
+</g>
+<g><title>independent-02 · 573.343 us · aclnnMuls_MulAiCore_Mul</title>
+<rect x="421.529" y="1087" width="99.046" height="26" rx="3" fill="#278c75"/>
+<text x="424.529" y="1104" style="fill:white;font-size:11px">02</text>
+</g>
+<g><title>independent-03 · 557.682 us · aclnnMuls_MulAiCore_Mul</title>
+<rect x="520.582" y="1087" width="96.340" height="26" rx="3" fill="#278c75"/>
+<text x="523.582" y="1104" style="fill:white;font-size:11px">03</text>
+</g>
+<g><title>independent-04 · 544.722 us · aclnnMuls_MulAiCore_Mul</title>
+<rect x="616.926" y="1087" width="94.101" height="26" rx="3" fill="#278c75"/>
+<text x="619.926" y="1104" style="fill:white;font-size:11px">04</text>
+</g>
+<g><title>independent-05 · 553.362 us · aclnnMuls_MulAiCore_Mul</title>
+<rect x="711.031" y="1087" width="95.594" height="26" rx="3" fill="#278c75"/>
+<text x="714.031" y="1104" style="fill:white;font-size:11px">05</text>
+</g>
+<g><title>record-C · 0.02 us · EVENT_RECORD</title>
+<path d="M806.628 1085 V1115" stroke="#23334b" stroke-width="1.5"/>
+</g>
+<text x="175" y="1143">B 已经结束，A 才开始写入新 Y · A/C 计算重叠 3.375 ms</text>
+<text x="175" y="1166">trace-02-no_wait · 完成后 Z 前四个值：[-14.0, -14.0, -14.0, -14.0]</text>
+</svg>

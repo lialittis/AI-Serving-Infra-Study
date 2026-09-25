@@ -212,6 +212,11 @@ Practice 16 also compares [per-round waits, a final join, and premature reads](p
 Unprofiled measurements separate submission from completed work; a separate
 trace verifies unchanged operators, ordered sample copies and actual waits.
 
+A further [three-stream dependency experiment](practice_16_multistream_parallel/CROSS_STREAM_DEPENDENCY.md)
+compares A producing Y, B consuming Y, and independent C. Removing only A→B's
+event wait leaves incorrect B output even after all streams finish; the correct
+event dependency still allows C to execute while B waits.
+
 ## Practice 17: reconstruct vLLM multi-stream execution
 
 Trigger the real vLLM-Ascend sampling branch on Qwen2.5-0.5B-Instruct and

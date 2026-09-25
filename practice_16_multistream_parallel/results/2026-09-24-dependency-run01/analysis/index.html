@@ -1,0 +1,516 @@
+<!doctype html><html lang="zh-CN"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Practice 16 · A→B 依赖与独立 C</title><style>
+body{margin:0;background:#f2f5fa;color:#20314b;font:16px/1.65 system-ui,sans-serif}main{max-width:1160px;margin:32px auto;padding:0 20px}h1{font-size:30px;line-height:1.4}h2{font-size:21px}.panel{background:white;border:1px solid #dce4ef;border-radius:12px;padding:20px;margin:20px 0}.scroll{overflow:auto}.trial svg{width:100%;min-width:800px;display:block}table{width:100%;border-collapse:collapse;white-space:nowrap;font-variant-numeric:tabular-nums}td,th{text-align:left;padding:9px;border-bottom:1px solid #e2e8f0}.muted{color:#52647d;font-size:14px}select{font:inherit;max-width:100%;padding:6px 10px}.legend{display:flex;gap:18px;flex-wrap:wrap}.swatch{display:inline-block;width:12px;height:12px;margin-right:5px}pre{white-space:pre-wrap;overflow-wrap:anywhere;background:#f2f5fa;padding:15px;font-size:13px}a{color:#235db9}[hidden]{display:none!important}@media(max-width:600px){main{padding:0 12px}.panel{padding:12px}h1{font-size:25px}}
+</style><main><p class="muted">PRACTICE 16 / CROSS-STREAM DEPENDENCY</p><h1>最后都等完了，为什么结果仍然错？</h1>
+<p>A 生成 <code>Y = X @ X = 1</code>，B 消费 <code>Z = Y × 2 = 2</code>；C 独立计算 <code>W = V × 1.5 = 0.375</code>。每次开始前 Y 初始化为 −7。唯一删除的依赖是 B 的 <code>wait_event(A_done)</code>，CPU 始终在 A/B/C 全部完成后读取结果。</p>
+<div class="panel"><h2>真实设备时间线</h2><div class="legend"><span><i class="swatch" style="background:#749cda"></i>A 的排队计算</span><span><i class="swatch" style="background:#235dba"></i>A 生成 Y</span><span><i class="swatch" style="background:#a34b97"></i>B 消费 Y</span><span><i class="swatch" style="background:#278c75"></i>C 独立计算</span><span><i class="swatch" style="background:#dbe3ed"></i>B 等待 A</span></div>
+<p class="muted">A 在生成 Y 前先做真实矩阵计算，以扩大缺依赖时的观察窗口。两种模式工作量相同；这是受控演示，不代表一般负载必然出现同样的错误频率。点击色块查看原始 flow 与任务编号。</p>
+<label for="trial">显示轮次：</label><select id="trial"><option value="all">全部轮次</option><option>trace-00-event_wait</option><option>trace-00-no_wait</option><option>trace-01-no_wait</option><option>trace-01-event_wait</option><option>trace-02-event_wait</option><option>trace-02-no_wait</option></select><div class="scroll"><section class="trial" data-trial="trace-00-event_wait"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1140 247" role="img" aria-label="三 stream 依赖时间线">
+<rect width="100%" height="100%" fill="white"/>
+<style>text{font:13px system-ui,sans-serif;fill:#20314b}.task{cursor:pointer}.task:hover rect,.task:focus rect{stroke:#132d50;stroke-width:2}</style>
+<defs><marker id="arrow" markerWidth="7" markerHeight="7" refX="6" refY="3" orient="auto"><path d="M0 0 L6 3 L0 6" fill="none" stroke="#b5453d"/></marker></defs>
+<text x="175" y="22">设备执行时间（各轮独立归零，同一比例尺）；细竖线为 event record 标记</text>
+<path d="M175.000 37 V239" stroke="#e1e7f0"/><text x="175.000" y="43">0.0 ms</text>
+<path d="M347.751 37 V239" stroke="#e1e7f0"/><text x="347.751" y="43">1.0 ms</text>
+<path d="M520.503 37 V239" stroke="#e1e7f0"/><text x="520.503" y="43">2.0 ms</text>
+<path d="M693.254 37 V239" stroke="#e1e7f0"/><text x="693.254" y="43">3.0 ms</text>
+<path d="M866.005 37 V239" stroke="#e1e7f0"/><text x="866.005" y="43">4.0 ms</text>
+<path d="M1038.757 37 V239" stroke="#e1e7f0"/><text x="1038.757" y="43">5.0 ms</text>
+<text x="10" y="65" font-weight="700">保留 A→B 等待</text>
+<text x="10" y="96">A · stream 44</text>
+<path d="M175 104 H1100" stroke="#dbe3ed"/>
+<text x="10" y="133">B · stream 43</text>
+<path d="M175 141 H1100" stroke="#dbe3ed"/>
+<text x="10" y="170">C · stream 42</text>
+<path d="M175 178 H1100" stroke="#dbe3ed"/>
+<g class="task" tabindex="0" data-label="P16Dep/trace-00-event_wait/backlog-00"><title>backlog-00 · 753.67 us · aclnnMm_MatMulV3Common_MatMulV3</title>
+<rect x="175.000" y="78" width="130.197" height="26" rx="3" fill="#749cda"/>
+<text x="178.000" y="95" style="fill:white;font-size:11px">00</text>
+</g>
+<g class="task" tabindex="0" data-label="P16Dep/trace-00-event_wait/backlog-01"><title>backlog-01 · 1812.733 us · aclnnMm_MatMulV3Common_MatMulV3</title>
+<rect x="305.201" y="78" width="313.152" height="26" rx="3" fill="#749cda"/>
+<text x="308.201" y="95" style="fill:white;font-size:11px">01</text>
+</g>
+<g class="task" tabindex="0" data-label="P16Dep/trace-00-event_wait/backlog-02"><title>backlog-02 · 1271.491 us · aclnnMm_MatMulV3Common_MatMulV3</title>
+<rect x="618.356" y="78" width="219.652" height="26" rx="3" fill="#749cda"/>
+<text x="621.356" y="95" style="fill:white;font-size:11px">02</text>
+</g>
+<g class="task" tabindex="0" data-label="P16Dep/trace-00-event_wait/backlog-03"><title>backlog-03 · 427.297 us · aclnnMm_MatMulV3Common_MatMulV3</title>
+<rect x="838.012" y="78" width="73.816" height="26" rx="3" fill="#749cda"/>
+<text x="841.012" y="95" style="fill:white;font-size:11px">03</text>
+</g>
+<g class="task" tabindex="0" data-label="P16Dep/trace-00-event_wait/backlog-04"><title>backlog-04 · 425.417 us · aclnnMm_MatMulV3Common_MatMulV3</title>
+<rect x="911.835" y="78" width="73.491" height="26" rx="3" fill="#749cda"/>
+<text x="914.835" y="95" style="fill:white;font-size:11px">04</text>
+</g>
+<g class="task" tabindex="0" data-label="P16Dep/trace-00-event_wait/produce-Y"><title>produce-Y · 427.957 us · aclnnMm_MatMulV3Common_MatMulV3</title>
+<rect x="985.329" y="78" width="73.930" height="26" rx="3" fill="#235dba"/>
+<text x="988.329" y="95" style="fill:white;font-size:11px">Y=X@X</text>
+</g>
+<g class="task" tabindex="0" data-label="P16Dep/trace-00-event_wait/record-A"><title>record-A · 0.02 us · EVENT_RECORD</title>
+<path d="M1059.263 76 V106" stroke="#23334b" stroke-width="1.5"/>
+</g>
+<g class="task" tabindex="0" data-label="P16Dep/trace-00-event_wait/wait-A"><title>wait-A · 4863.835 us · EVENT_WAIT</title>
+<rect x="219.112" y="115" width="840.234" height="26" rx="3" fill="#dbe3ed"/>
+<text x="222.112" y="132" style="fill:#20314b;font-size:11px">等待 A</text>
+</g>
+<g class="task" tabindex="0" data-label="P16Dep/trace-00-event_wait/consume-Y"><title>consume-Y · 19.481 us · aclnnMuls_MulAiCore_Mul</title>
+<rect x="1059.363" y="115" width="3.365" height="26" rx="3" fill="#a34b97"/>
+</g>
+<g class="task" tabindex="0" data-label="P16Dep/trace-00-event_wait/record-B"><title>record-B · 0.02 us · EVENT_RECORD</title>
+<path d="M1062.732 113 V143" stroke="#23334b" stroke-width="1.5"/>
+</g>
+<g class="task" tabindex="0" data-label="P16Dep/trace-00-event_wait/independent-00"><title>independent-00 · 601.224 us · aclnnMuls_MulAiCore_Mul</title>
+<rect x="241.678" y="152" width="103.862" height="26" rx="3" fill="#278c75"/>
+<text x="244.678" y="169" style="fill:white;font-size:11px">00</text>
+</g>
+<g class="task" tabindex="0" data-label="P16Dep/trace-00-event_wait/independent-01"><title>independent-01 · 563.522 us · aclnnMuls_MulAiCore_Mul</title>
+<rect x="345.544" y="152" width="97.349" height="26" rx="3" fill="#278c75"/>
+<text x="348.544" y="169" style="fill:white;font-size:11px">01</text>
+</g>
+<g class="task" tabindex="0" data-label="P16Dep/trace-00-event_wait/independent-02"><title>independent-02 · 561.783 us · aclnnMuls_MulAiCore_Mul</title>
+<rect x="442.896" y="152" width="97.049" height="26" rx="3" fill="#278c75"/>
+<text x="445.896" y="169" style="fill:white;font-size:11px">02</text>
+</g>
+<g class="task" tabindex="0" data-label="P16Dep/trace-00-event_wait/independent-03"><title>independent-03 · 542.741 us · aclnnMuls_MulAiCore_Mul</title>
+<rect x="539.952" y="152" width="93.759" height="26" rx="3" fill="#278c75"/>
+<text x="542.952" y="169" style="fill:white;font-size:11px">03</text>
+</g>
+<g class="task" tabindex="0" data-label="P16Dep/trace-00-event_wait/independent-04"><title>independent-04 · 547.982 us · aclnnMuls_MulAiCore_Mul</title>
+<rect x="633.718" y="152" width="94.665" height="26" rx="3" fill="#278c75"/>
+<text x="636.718" y="169" style="fill:white;font-size:11px">04</text>
+</g>
+<g class="task" tabindex="0" data-label="P16Dep/trace-00-event_wait/independent-05"><title>independent-05 · 560.143 us · aclnnMuls_MulAiCore_Mul</title>
+<rect x="728.386" y="152" width="96.765" height="26" rx="3" fill="#278c75"/>
+<text x="731.386" y="169" style="fill:white;font-size:11px">05</text>
+</g>
+<g class="task" tabindex="0" data-label="P16Dep/trace-00-event_wait/record-C"><title>record-C · 0.02 us · EVENT_RECORD</title>
+<path d="M825.155 150 V180" stroke="#23334b" stroke-width="1.5"/>
+</g>
+<path d="M1059.267 105 L1059.346 112" stroke="#b5453d" stroke-width="1.5" marker-end="url(#arrow)"/>
+<text x="175" y="208">A 写入完成后，B 才开始读取 Y · A/C 计算重叠 3.377 ms</text>
+<text x="175" y="231">trace-00-event_wait · 完成后 Z 前四个值：[2.0, 2.0, 2.0, 2.0]</text>
+</svg></section><section class="trial" data-trial="trace-00-no_wait"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1140 247" role="img" aria-label="三 stream 依赖时间线">
+<rect width="100%" height="100%" fill="white"/>
+<style>text{font:13px system-ui,sans-serif;fill:#20314b}.task{cursor:pointer}.task:hover rect,.task:focus rect{stroke:#132d50;stroke-width:2}</style>
+<defs><marker id="arrow" markerWidth="7" markerHeight="7" refX="6" refY="3" orient="auto"><path d="M0 0 L6 3 L0 6" fill="none" stroke="#b5453d"/></marker></defs>
+<text x="175" y="22">设备执行时间（各轮独立归零，同一比例尺）；细竖线为 event record 标记</text>
+<path d="M175.000 37 V239" stroke="#e1e7f0"/><text x="175.000" y="43">0.0 ms</text>
+<path d="M347.751 37 V239" stroke="#e1e7f0"/><text x="347.751" y="43">1.0 ms</text>
+<path d="M520.503 37 V239" stroke="#e1e7f0"/><text x="520.503" y="43">2.0 ms</text>
+<path d="M693.254 37 V239" stroke="#e1e7f0"/><text x="693.254" y="43">3.0 ms</text>
+<path d="M866.005 37 V239" stroke="#e1e7f0"/><text x="866.005" y="43">4.0 ms</text>
+<path d="M1038.757 37 V239" stroke="#e1e7f0"/><text x="1038.757" y="43">5.0 ms</text>
+<text x="10" y="65" font-weight="700">删除 A→B 等待</text>
+<text x="10" y="96">A · stream 44</text>
+<path d="M175 104 H1100" stroke="#dbe3ed"/>
+<text x="10" y="133">B · stream 43</text>
+<path d="M175 141 H1100" stroke="#dbe3ed"/>
+<text x="10" y="170">C · stream 42</text>
+<path d="M175 178 H1100" stroke="#dbe3ed"/>
+<g class="task" tabindex="0" data-label="P16Dep/trace-00-no_wait/backlog-00"><title>backlog-00 · 1103.624 us · aclnnMm_MatMulV3Common_MatMulV3</title>
+<rect x="175.000" y="78" width="190.653" height="26" rx="3" fill="#749cda"/>
+<text x="178.000" y="95" style="fill:white;font-size:11px">00</text>
+</g>
+<g class="task" tabindex="0" data-label="P16Dep/trace-00-no_wait/backlog-01"><title>backlog-01 · 1570.303 us · aclnnMm_MatMulV3Common_MatMulV3</title>
+<rect x="365.656" y="78" width="271.272" height="26" rx="3" fill="#749cda"/>
+<text x="368.656" y="95" style="fill:white;font-size:11px">01</text>
+</g>
+<g class="task" tabindex="0" data-label="P16Dep/trace-00-no_wait/backlog-02"><title>backlog-02 · 1140.986 us · aclnnMm_MatMulV3Common_MatMulV3</title>
+<rect x="636.931" y="78" width="197.107" height="26" rx="3" fill="#749cda"/>
+<text x="639.931" y="95" style="fill:white;font-size:11px">02</text>
+</g>
+<g class="task" tabindex="0" data-label="P16Dep/trace-00-no_wait/backlog-03"><title>backlog-03 · 428.057 us · aclnnMm_MatMulV3Common_MatMulV3</title>
+<rect x="834.042" y="78" width="73.947" height="26" rx="3" fill="#749cda"/>
+<text x="837.042" y="95" style="fill:white;font-size:11px">03</text>
+</g>
+<g class="task" tabindex="0" data-label="P16Dep/trace-00-no_wait/backlog-04"><title>backlog-04 · 425.937 us · aclnnMm_MatMulV3Common_MatMulV3</title>
+<rect x="907.992" y="78" width="73.581" height="26" rx="3" fill="#749cda"/>
+<text x="910.992" y="95" style="fill:white;font-size:11px">04</text>
+</g>
+<g class="task" tabindex="0" data-label="P16Dep/trace-00-no_wait/produce-Y"><title>produce-Y · 425.377 us · aclnnMm_MatMulV3Common_MatMulV3</title>
+<rect x="981.577" y="78" width="73.484" height="26" rx="3" fill="#235dba"/>
+<text x="984.577" y="95" style="fill:white;font-size:11px">Y=X@X</text>
+</g>
+<g class="task" tabindex="0" data-label="P16Dep/trace-00-no_wait/record-A"><title>record-A · 0.02 us · EVENT_RECORD</title>
+<path d="M1055.065 76 V106" stroke="#23334b" stroke-width="1.5"/>
+</g>
+<g class="task" tabindex="0" data-label="P16Dep/trace-00-no_wait/consume-Y"><title>consume-Y · 27.721 us · aclnnMuls_MulAiCore_Mul</title>
+<rect x="211.200" y="115" width="4.789" height="26" rx="3" fill="#a34b97"/>
+</g>
+<g class="task" tabindex="0" data-label="P16Dep/trace-00-no_wait/record-B"><title>record-B · 0.02 us · EVENT_RECORD</title>
+<path d="M215.992 113 V143" stroke="#23334b" stroke-width="1.5"/>
+</g>
+<g class="task" tabindex="0" data-label="P16Dep/trace-00-no_wait/independent-00"><title>independent-00 · 604.324 us · aclnnMuls_MulAiCore_Mul</title>
+<rect x="223.697" y="152" width="104.398" height="26" rx="3" fill="#278c75"/>
+<text x="226.697" y="169" style="fill:white;font-size:11px">00</text>
+</g>
+<g class="task" tabindex="0" data-label="P16Dep/trace-00-no_wait/independent-01"><title>independent-01 · 554.462 us · aclnnMuls_MulAiCore_Mul</title>
+<rect x="328.098" y="152" width="95.784" height="26" rx="3" fill="#278c75"/>
+<text x="331.098" y="169" style="fill:white;font-size:11px">01</text>
+</g>
+<g class="task" tabindex="0" data-label="P16Dep/trace-00-no_wait/independent-02"><title>independent-02 · 552.502 us · aclnnMuls_MulAiCore_Mul</title>
+<rect x="423.886" y="152" width="95.445" height="26" rx="3" fill="#278c75"/>
+<text x="426.886" y="169" style="fill:white;font-size:11px">02</text>
+</g>
+<g class="task" tabindex="0" data-label="P16Dep/trace-00-no_wait/independent-03"><title>independent-03 · 559.022 us · aclnnMuls_MulAiCore_Mul</title>
+<rect x="519.335" y="152" width="96.572" height="26" rx="3" fill="#278c75"/>
+<text x="522.335" y="169" style="fill:white;font-size:11px">03</text>
+</g>
+<g class="task" tabindex="0" data-label="P16Dep/trace-00-no_wait/independent-04"><title>independent-04 · 550.602 us · aclnnMuls_MulAiCore_Mul</title>
+<rect x="615.914" y="152" width="95.117" height="26" rx="3" fill="#278c75"/>
+<text x="618.914" y="169" style="fill:white;font-size:11px">04</text>
+</g>
+<g class="task" tabindex="0" data-label="P16Dep/trace-00-no_wait/independent-05"><title>independent-05 · 565.703 us · aclnnMuls_MulAiCore_Mul</title>
+<rect x="711.034" y="152" width="97.726" height="26" rx="3" fill="#278c75"/>
+<text x="714.034" y="169" style="fill:white;font-size:11px">05</text>
+</g>
+<g class="task" tabindex="0" data-label="P16Dep/trace-00-no_wait/record-C"><title>record-C · 0.02 us · EVENT_RECORD</title>
+<path d="M808.764 150 V180" stroke="#23334b" stroke-width="1.5"/>
+</g>
+<text x="175" y="208">B 已经结束，A 才开始写入新 Y · A/C 计算重叠 3.387 ms</text>
+<text x="175" y="231">trace-00-no_wait · 完成后 Z 前四个值：[-14.0, -14.0, -14.0, -14.0]</text>
+</svg></section><section class="trial" data-trial="trace-01-no_wait"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1140 247" role="img" aria-label="三 stream 依赖时间线">
+<rect width="100%" height="100%" fill="white"/>
+<style>text{font:13px system-ui,sans-serif;fill:#20314b}.task{cursor:pointer}.task:hover rect,.task:focus rect{stroke:#132d50;stroke-width:2}</style>
+<defs><marker id="arrow" markerWidth="7" markerHeight="7" refX="6" refY="3" orient="auto"><path d="M0 0 L6 3 L0 6" fill="none" stroke="#b5453d"/></marker></defs>
+<text x="175" y="22">设备执行时间（各轮独立归零，同一比例尺）；细竖线为 event record 标记</text>
+<path d="M175.000 37 V239" stroke="#e1e7f0"/><text x="175.000" y="43">0.0 ms</text>
+<path d="M347.751 37 V239" stroke="#e1e7f0"/><text x="347.751" y="43">1.0 ms</text>
+<path d="M520.503 37 V239" stroke="#e1e7f0"/><text x="520.503" y="43">2.0 ms</text>
+<path d="M693.254 37 V239" stroke="#e1e7f0"/><text x="693.254" y="43">3.0 ms</text>
+<path d="M866.005 37 V239" stroke="#e1e7f0"/><text x="866.005" y="43">4.0 ms</text>
+<path d="M1038.757 37 V239" stroke="#e1e7f0"/><text x="1038.757" y="43">5.0 ms</text>
+<text x="10" y="65" font-weight="700">删除 A→B 等待</text>
+<text x="10" y="96">A · stream 44</text>
+<path d="M175 104 H1100" stroke="#dbe3ed"/>
+<text x="10" y="133">B · stream 43</text>
+<path d="M175 141 H1100" stroke="#dbe3ed"/>
+<text x="10" y="170">C · stream 42</text>
+<path d="M175 178 H1100" stroke="#dbe3ed"/>
+<g class="task" tabindex="0" data-label="P16Dep/trace-01-no_wait/backlog-00"><title>backlog-00 · 1317.533 us · aclnnMm_MatMulV3Common_MatMulV3</title>
+<rect x="175.000" y="78" width="227.606" height="26" rx="3" fill="#749cda"/>
+<text x="178.000" y="95" style="fill:white;font-size:11px">00</text>
+</g>
+<g class="task" tabindex="0" data-label="P16Dep/trace-01-no_wait/backlog-01"><title>backlog-01 · 1576.363 us · aclnnMm_MatMulV3Common_MatMulV3</title>
+<rect x="402.609" y="78" width="272.319" height="26" rx="3" fill="#749cda"/>
+<text x="405.609" y="95" style="fill:white;font-size:11px">01</text>
+</g>
+<g class="task" tabindex="0" data-label="P16Dep/trace-01-no_wait/backlog-02"><title>backlog-02 · 927.397 us · aclnnMm_MatMulV3Common_MatMulV3</title>
+<rect x="674.931" y="78" width="160.209" height="26" rx="3" fill="#749cda"/>
+<text x="677.931" y="95" style="fill:white;font-size:11px">02</text>
+</g>
+<g class="task" tabindex="0" data-label="P16Dep/trace-01-no_wait/backlog-03"><title>backlog-03 · 426.157 us · aclnnMm_MatMulV3Common_MatMulV3</title>
+<rect x="835.144" y="78" width="73.619" height="26" rx="3" fill="#749cda"/>
+<text x="838.144" y="95" style="fill:white;font-size:11px">03</text>
+</g>
+<g class="task" tabindex="0" data-label="P16Dep/trace-01-no_wait/backlog-04"><title>backlog-04 · 426.357 us · aclnnMm_MatMulV3Common_MatMulV3</title>
+<rect x="908.766" y="78" width="73.654" height="26" rx="3" fill="#749cda"/>
+<text x="911.766" y="95" style="fill:white;font-size:11px">04</text>
+</g>
+<g class="task" tabindex="0" data-label="P16Dep/trace-01-no_wait/produce-Y"><title>produce-Y · 427.497 us · aclnnMm_MatMulV3Common_MatMulV3</title>
+<rect x="982.424" y="78" width="73.851" height="26" rx="3" fill="#235dba"/>
+<text x="985.424" y="95" style="fill:white;font-size:11px">Y=X@X</text>
+</g>
+<g class="task" tabindex="0" data-label="P16Dep/trace-01-no_wait/record-A"><title>record-A · 0.02 us · EVENT_RECORD</title>
+<path d="M1056.278 76 V106" stroke="#23334b" stroke-width="1.5"/>
+</g>
+<g class="task" tabindex="0" data-label="P16Dep/trace-01-no_wait/consume-Y"><title>consume-Y · 26.301 us · aclnnMuls_MulAiCore_Mul</title>
+<rect x="211.117" y="115" width="4.544" height="26" rx="3" fill="#a34b97"/>
+</g>
+<g class="task" tabindex="0" data-label="P16Dep/trace-01-no_wait/record-B"><title>record-B · 0.02 us · EVENT_RECORD</title>
+<path d="M215.664 113 V143" stroke="#23334b" stroke-width="1.5"/>
+</g>
+<g class="task" tabindex="0" data-label="P16Dep/trace-01-no_wait/independent-00"><title>independent-00 · 600.924 us · aclnnMuls_MulAiCore_Mul</title>
+<rect x="223.407" y="152" width="103.810" height="26" rx="3" fill="#278c75"/>
+<text x="226.407" y="169" style="fill:white;font-size:11px">00</text>
+</g>
+<g class="task" tabindex="0" data-label="P16Dep/trace-01-no_wait/independent-01"><title>independent-01 · 559.943 us · aclnnMuls_MulAiCore_Mul</title>
+<rect x="327.221" y="152" width="96.731" height="26" rx="3" fill="#278c75"/>
+<text x="330.221" y="169" style="fill:white;font-size:11px">01</text>
+</g>
+<g class="task" tabindex="0" data-label="P16Dep/trace-01-no_wait/independent-02"><title>independent-02 · 544.882 us · aclnnMuls_MulAiCore_Mul</title>
+<rect x="423.955" y="152" width="94.129" height="26" rx="3" fill="#278c75"/>
+<text x="426.955" y="169" style="fill:white;font-size:11px">02</text>
+</g>
+<g class="task" tabindex="0" data-label="P16Dep/trace-01-no_wait/independent-03"><title>independent-03 · 563.262 us · aclnnMuls_MulAiCore_Mul</title>
+<rect x="518.088" y="152" width="97.304" height="26" rx="3" fill="#278c75"/>
+<text x="521.088" y="169" style="fill:white;font-size:11px">03</text>
+</g>
+<g class="task" tabindex="0" data-label="P16Dep/trace-01-no_wait/independent-04"><title>independent-04 · 540.042 us · aclnnMuls_MulAiCore_Mul</title>
+<rect x="615.395" y="152" width="93.293" height="26" rx="3" fill="#278c75"/>
+<text x="618.395" y="169" style="fill:white;font-size:11px">04</text>
+</g>
+<g class="task" tabindex="0" data-label="P16Dep/trace-01-no_wait/independent-05"><title>independent-05 · 555.462 us · aclnnMuls_MulAiCore_Mul</title>
+<rect x="708.692" y="152" width="95.957" height="26" rx="3" fill="#278c75"/>
+<text x="711.692" y="169" style="fill:white;font-size:11px">05</text>
+</g>
+<g class="task" tabindex="0" data-label="P16Dep/trace-01-no_wait/record-C"><title>record-C · 0.02 us · EVENT_RECORD</title>
+<path d="M804.652 150 V180" stroke="#23334b" stroke-width="1.5"/>
+</g>
+<text x="175" y="208">B 已经结束，A 才开始写入新 Y · A/C 计算重叠 3.364 ms</text>
+<text x="175" y="231">trace-01-no_wait · 完成后 Z 前四个值：[-14.0, -14.0, -14.0, -14.0]</text>
+</svg></section><section class="trial" data-trial="trace-01-event_wait"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1140 247" role="img" aria-label="三 stream 依赖时间线">
+<rect width="100%" height="100%" fill="white"/>
+<style>text{font:13px system-ui,sans-serif;fill:#20314b}.task{cursor:pointer}.task:hover rect,.task:focus rect{stroke:#132d50;stroke-width:2}</style>
+<defs><marker id="arrow" markerWidth="7" markerHeight="7" refX="6" refY="3" orient="auto"><path d="M0 0 L6 3 L0 6" fill="none" stroke="#b5453d"/></marker></defs>
+<text x="175" y="22">设备执行时间（各轮独立归零，同一比例尺）；细竖线为 event record 标记</text>
+<path d="M175.000 37 V239" stroke="#e1e7f0"/><text x="175.000" y="43">0.0 ms</text>
+<path d="M347.751 37 V239" stroke="#e1e7f0"/><text x="347.751" y="43">1.0 ms</text>
+<path d="M520.503 37 V239" stroke="#e1e7f0"/><text x="520.503" y="43">2.0 ms</text>
+<path d="M693.254 37 V239" stroke="#e1e7f0"/><text x="693.254" y="43">3.0 ms</text>
+<path d="M866.005 37 V239" stroke="#e1e7f0"/><text x="866.005" y="43">4.0 ms</text>
+<path d="M1038.757 37 V239" stroke="#e1e7f0"/><text x="1038.757" y="43">5.0 ms</text>
+<text x="10" y="65" font-weight="700">保留 A→B 等待</text>
+<text x="10" y="96">A · stream 44</text>
+<path d="M175 104 H1100" stroke="#dbe3ed"/>
+<text x="10" y="133">B · stream 43</text>
+<path d="M175 141 H1100" stroke="#dbe3ed"/>
+<text x="10" y="170">C · stream 42</text>
+<path d="M175 178 H1100" stroke="#dbe3ed"/>
+<g class="task" tabindex="0" data-label="P16Dep/trace-01-event_wait/backlog-00"><title>backlog-00 · 1117.324 us · aclnnMm_MatMulV3Common_MatMulV3</title>
+<rect x="175.000" y="78" width="193.019" height="26" rx="3" fill="#749cda"/>
+<text x="178.000" y="95" style="fill:white;font-size:11px">00</text>
+</g>
+<g class="task" tabindex="0" data-label="P16Dep/trace-01-event_wait/backlog-01"><title>backlog-01 · 1588.744 us · aclnnMm_MatMulV3Common_MatMulV3</title>
+<rect x="368.023" y="78" width="274.458" height="26" rx="3" fill="#749cda"/>
+<text x="371.023" y="95" style="fill:white;font-size:11px">01</text>
+</g>
+<g class="task" tabindex="0" data-label="P16Dep/trace-01-event_wait/backlog-02"><title>backlog-02 · 1118.484 us · aclnnMm_MatMulV3Common_MatMulV3</title>
+<rect x="642.484" y="78" width="193.220" height="26" rx="3" fill="#749cda"/>
+<text x="645.484" y="95" style="fill:white;font-size:11px">02</text>
+</g>
+<g class="task" tabindex="0" data-label="P16Dep/trace-01-event_wait/backlog-03"><title>backlog-03 · 423.717 us · aclnnMm_MatMulV3Common_MatMulV3</title>
+<rect x="835.707" y="78" width="73.198" height="26" rx="3" fill="#749cda"/>
+<text x="838.707" y="95" style="fill:white;font-size:11px">03</text>
+</g>
+<g class="task" tabindex="0" data-label="P16Dep/trace-01-event_wait/backlog-04"><title>backlog-04 · 424.957 us · aclnnMm_MatMulV3Common_MatMulV3</title>
+<rect x="908.908" y="78" width="73.412" height="26" rx="3" fill="#749cda"/>
+<text x="911.908" y="95" style="fill:white;font-size:11px">04</text>
+</g>
+<g class="task" tabindex="0" data-label="P16Dep/trace-01-event_wait/produce-Y"><title>produce-Y · 426.357 us · aclnnMm_MatMulV3Common_MatMulV3</title>
+<rect x="982.323" y="78" width="73.654" height="26" rx="3" fill="#235dba"/>
+<text x="985.323" y="95" style="fill:white;font-size:11px">Y=X@X</text>
+</g>
+<g class="task" tabindex="0" data-label="P16Dep/trace-01-event_wait/record-A"><title>record-A · 0.02 us · EVENT_RECORD</title>
+<path d="M1055.980 76 V106" stroke="#23334b" stroke-width="1.5"/>
+</g>
+<g class="task" tabindex="0" data-label="P16Dep/trace-01-event_wait/wait-A"><title>wait-A · 4906.596 us · EVENT_WAIT</title>
+<rect x="208.436" y="115" width="847.621" height="26" rx="3" fill="#dbe3ed"/>
+<text x="211.436" y="132" style="fill:#20314b;font-size:11px">等待 A</text>
+</g>
+<g class="task" tabindex="0" data-label="P16Dep/trace-01-event_wait/consume-Y"><title>consume-Y · 19.281 us · aclnnMuls_MulAiCore_Mul</title>
+<rect x="1056.060" y="115" width="3.331" height="26" rx="3" fill="#a34b97"/>
+</g>
+<g class="task" tabindex="0" data-label="P16Dep/trace-01-event_wait/record-B"><title>record-B · 0.02 us · EVENT_RECORD</title>
+<path d="M1059.394 113 V143" stroke="#23334b" stroke-width="1.5"/>
+</g>
+<g class="task" tabindex="0" data-label="P16Dep/trace-01-event_wait/independent-00"><title>independent-00 · 600.164 us · aclnnMuls_MulAiCore_Mul</title>
+<rect x="225.884" y="152" width="103.679" height="26" rx="3" fill="#278c75"/>
+<text x="228.884" y="169" style="fill:white;font-size:11px">00</text>
+</g>
+<g class="task" tabindex="0" data-label="P16Dep/trace-01-event_wait/independent-01"><title>independent-01 · 547.382 us · aclnnMuls_MulAiCore_Mul</title>
+<rect x="329.567" y="152" width="94.561" height="26" rx="3" fill="#278c75"/>
+<text x="332.567" y="169" style="fill:white;font-size:11px">01</text>
+</g>
+<g class="task" tabindex="0" data-label="P16Dep/trace-01-event_wait/independent-02"><title>independent-02 · 553.282 us · aclnnMuls_MulAiCore_Mul</title>
+<rect x="424.131" y="152" width="95.580" height="26" rx="3" fill="#278c75"/>
+<text x="427.131" y="169" style="fill:white;font-size:11px">02</text>
+</g>
+<g class="task" tabindex="0" data-label="P16Dep/trace-01-event_wait/independent-03"><title>independent-03 · 558.443 us · aclnnMuls_MulAiCore_Mul</title>
+<rect x="519.718" y="152" width="96.472" height="26" rx="3" fill="#278c75"/>
+<text x="522.718" y="169" style="fill:white;font-size:11px">03</text>
+</g>
+<g class="task" tabindex="0" data-label="P16Dep/trace-01-event_wait/independent-04"><title>independent-04 · 547.302 us · aclnnMuls_MulAiCore_Mul</title>
+<rect x="616.193" y="152" width="94.547" height="26" rx="3" fill="#278c75"/>
+<text x="619.193" y="169" style="fill:white;font-size:11px">04</text>
+</g>
+<g class="task" tabindex="0" data-label="P16Dep/trace-01-event_wait/independent-05"><title>independent-05 · 569.562 us · aclnnMuls_MulAiCore_Mul</title>
+<rect x="710.744" y="152" width="98.393" height="26" rx="3" fill="#278c75"/>
+<text x="713.744" y="169" style="fill:white;font-size:11px">05</text>
+</g>
+<g class="task" tabindex="0" data-label="P16Dep/trace-01-event_wait/record-C"><title>record-C · 0.0 us · EVENT_RECORD</title>
+<path d="M809.143 150 V180" stroke="#23334b" stroke-width="1.5"/>
+</g>
+<path d="M1055.984 105 L1056.056 112" stroke="#b5453d" stroke-width="1.5" marker-end="url(#arrow)"/>
+<text x="175" y="208">A 写入完成后，B 才开始读取 Y · A/C 计算重叠 3.376 ms</text>
+<text x="175" y="231">trace-01-event_wait · 完成后 Z 前四个值：[2.0, 2.0, 2.0, 2.0]</text>
+</svg></section><section class="trial" data-trial="trace-02-event_wait"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1140 247" role="img" aria-label="三 stream 依赖时间线">
+<rect width="100%" height="100%" fill="white"/>
+<style>text{font:13px system-ui,sans-serif;fill:#20314b}.task{cursor:pointer}.task:hover rect,.task:focus rect{stroke:#132d50;stroke-width:2}</style>
+<defs><marker id="arrow" markerWidth="7" markerHeight="7" refX="6" refY="3" orient="auto"><path d="M0 0 L6 3 L0 6" fill="none" stroke="#b5453d"/></marker></defs>
+<text x="175" y="22">设备执行时间（各轮独立归零，同一比例尺）；细竖线为 event record 标记</text>
+<path d="M175.000 37 V239" stroke="#e1e7f0"/><text x="175.000" y="43">0.0 ms</text>
+<path d="M347.751 37 V239" stroke="#e1e7f0"/><text x="347.751" y="43">1.0 ms</text>
+<path d="M520.503 37 V239" stroke="#e1e7f0"/><text x="520.503" y="43">2.0 ms</text>
+<path d="M693.254 37 V239" stroke="#e1e7f0"/><text x="693.254" y="43">3.0 ms</text>
+<path d="M866.005 37 V239" stroke="#e1e7f0"/><text x="866.005" y="43">4.0 ms</text>
+<path d="M1038.757 37 V239" stroke="#e1e7f0"/><text x="1038.757" y="43">5.0 ms</text>
+<text x="10" y="65" font-weight="700">保留 A→B 等待</text>
+<text x="10" y="96">A · stream 44</text>
+<path d="M175 104 H1100" stroke="#dbe3ed"/>
+<text x="10" y="133">B · stream 43</text>
+<path d="M175 141 H1100" stroke="#dbe3ed"/>
+<text x="10" y="170">C · stream 42</text>
+<path d="M175 178 H1100" stroke="#dbe3ed"/>
+<g class="task" tabindex="0" data-label="P16Dep/trace-02-event_wait/backlog-00"><title>backlog-00 · 924.737 us · aclnnMm_MatMulV3Common_MatMulV3</title>
+<rect x="175.000" y="78" width="159.750" height="26" rx="3" fill="#749cda"/>
+<text x="178.000" y="95" style="fill:white;font-size:11px">00</text>
+</g>
+<g class="task" tabindex="0" data-label="P16Dep/trace-02-event_wait/backlog-01"><title>backlog-01 · 1675.487 us · aclnnMm_MatMulV3Common_MatMulV3</title>
+<rect x="334.753" y="78" width="289.443" height="26" rx="3" fill="#749cda"/>
+<text x="337.753" y="95" style="fill:white;font-size:11px">01</text>
+</g>
+<g class="task" tabindex="0" data-label="P16Dep/trace-02-event_wait/backlog-02"><title>backlog-02 · 1272.071 us · aclnnMm_MatMulV3Common_MatMulV3</title>
+<rect x="624.199" y="78" width="219.752" height="26" rx="3" fill="#749cda"/>
+<text x="627.199" y="95" style="fill:white;font-size:11px">02</text>
+</g>
+<g class="task" tabindex="0" data-label="P16Dep/trace-02-event_wait/backlog-03"><title>backlog-03 · 426.917 us · aclnnMm_MatMulV3Common_MatMulV3</title>
+<rect x="843.954" y="78" width="73.750" height="26" rx="3" fill="#749cda"/>
+<text x="846.954" y="95" style="fill:white;font-size:11px">03</text>
+</g>
+<g class="task" tabindex="0" data-label="P16Dep/trace-02-event_wait/backlog-04"><title>backlog-04 · 425.757 us · aclnnMm_MatMulV3Common_MatMulV3</title>
+<rect x="917.708" y="78" width="73.550" height="26" rx="3" fill="#749cda"/>
+<text x="920.708" y="95" style="fill:white;font-size:11px">04</text>
+</g>
+<g class="task" tabindex="0" data-label="P16Dep/trace-02-event_wait/produce-Y"><title>produce-Y · 427.037 us · aclnnMm_MatMulV3Common_MatMulV3</title>
+<rect x="991.262" y="78" width="73.771" height="26" rx="3" fill="#235dba"/>
+<text x="994.262" y="95" style="fill:white;font-size:11px">Y=X@X</text>
+</g>
+<g class="task" tabindex="0" data-label="P16Dep/trace-02-event_wait/record-A"><title>record-A · 0.02 us · EVENT_RECORD</title>
+<path d="M1065.037 76 V106" stroke="#23334b" stroke-width="1.5"/>
+</g>
+<g class="task" tabindex="0" data-label="P16Dep/trace-02-event_wait/wait-A"><title>wait-A · 4942.358 us · EVENT_WAIT</title>
+<rect x="211.317" y="115" width="853.799" height="26" rx="3" fill="#dbe3ed"/>
+<text x="214.317" y="132" style="fill:#20314b;font-size:11px">等待 A</text>
+</g>
+<g class="task" tabindex="0" data-label="P16Dep/trace-02-event_wait/consume-Y"><title>consume-Y · 20.721 us · aclnnMuls_MulAiCore_Mul</title>
+<rect x="1065.130" y="115" width="3.580" height="26" rx="3" fill="#a34b97"/>
+</g>
+<g class="task" tabindex="0" data-label="P16Dep/trace-02-event_wait/record-B"><title>record-B · 0.02 us · EVENT_RECORD</title>
+<path d="M1068.716 113 V143" stroke="#23334b" stroke-width="1.5"/>
+</g>
+<g class="task" tabindex="0" data-label="P16Dep/trace-02-event_wait/independent-00"><title>independent-00 · 604.084 us · aclnnMuls_MulAiCore_Mul</title>
+<rect x="230.984" y="152" width="104.356" height="26" rx="3" fill="#278c75"/>
+<text x="233.984" y="169" style="fill:white;font-size:11px">00</text>
+</g>
+<g class="task" tabindex="0" data-label="P16Dep/trace-02-event_wait/independent-01"><title>independent-01 · 571.123 us · aclnnMuls_MulAiCore_Mul</title>
+<rect x="335.344" y="152" width="98.662" height="26" rx="3" fill="#278c75"/>
+<text x="338.344" y="169" style="fill:white;font-size:11px">01</text>
+</g>
+<g class="task" tabindex="0" data-label="P16Dep/trace-02-event_wait/independent-02"><title>independent-02 · 566.542 us · aclnnMuls_MulAiCore_Mul</title>
+<rect x="434.010" y="152" width="97.871" height="26" rx="3" fill="#278c75"/>
+<text x="437.010" y="169" style="fill:white;font-size:11px">02</text>
+</g>
+<g class="task" tabindex="0" data-label="P16Dep/trace-02-event_wait/independent-03"><title>independent-03 · 549.542 us · aclnnMuls_MulAiCore_Mul</title>
+<rect x="531.884" y="152" width="94.934" height="26" rx="3" fill="#278c75"/>
+<text x="534.884" y="169" style="fill:white;font-size:11px">03</text>
+</g>
+<g class="task" tabindex="0" data-label="P16Dep/trace-02-event_wait/independent-04"><title>independent-04 · 564.623 us · aclnnMuls_MulAiCore_Mul</title>
+<rect x="626.821" y="152" width="97.539" height="26" rx="3" fill="#278c75"/>
+<text x="629.821" y="169" style="fill:white;font-size:11px">04</text>
+</g>
+<g class="task" tabindex="0" data-label="P16Dep/trace-02-event_wait/independent-05"><title>independent-05 · 563.423 us · aclnnMuls_MulAiCore_Mul</title>
+<rect x="724.364" y="152" width="97.332" height="26" rx="3" fill="#278c75"/>
+<text x="727.364" y="169" style="fill:white;font-size:11px">05</text>
+</g>
+<g class="task" tabindex="0" data-label="P16Dep/trace-02-event_wait/record-C"><title>record-C · 0.02 us · EVENT_RECORD</title>
+<path d="M821.700 150 V180" stroke="#23334b" stroke-width="1.5"/>
+</g>
+<path d="M1065.040 105 L1065.116 112" stroke="#b5453d" stroke-width="1.5" marker-end="url(#arrow)"/>
+<text x="175" y="208">A 写入完成后，B 才开始读取 Y · A/C 计算重叠 3.419 ms</text>
+<text x="175" y="231">trace-02-event_wait · 完成后 Z 前四个值：[2.0, 2.0, 2.0, 2.0]</text>
+</svg></section><section class="trial" data-trial="trace-02-no_wait"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1140 247" role="img" aria-label="三 stream 依赖时间线">
+<rect width="100%" height="100%" fill="white"/>
+<style>text{font:13px system-ui,sans-serif;fill:#20314b}.task{cursor:pointer}.task:hover rect,.task:focus rect{stroke:#132d50;stroke-width:2}</style>
+<defs><marker id="arrow" markerWidth="7" markerHeight="7" refX="6" refY="3" orient="auto"><path d="M0 0 L6 3 L0 6" fill="none" stroke="#b5453d"/></marker></defs>
+<text x="175" y="22">设备执行时间（各轮独立归零，同一比例尺）；细竖线为 event record 标记</text>
+<path d="M175.000 37 V239" stroke="#e1e7f0"/><text x="175.000" y="43">0.0 ms</text>
+<path d="M347.751 37 V239" stroke="#e1e7f0"/><text x="347.751" y="43">1.0 ms</text>
+<path d="M520.503 37 V239" stroke="#e1e7f0"/><text x="520.503" y="43">2.0 ms</text>
+<path d="M693.254 37 V239" stroke="#e1e7f0"/><text x="693.254" y="43">3.0 ms</text>
+<path d="M866.005 37 V239" stroke="#e1e7f0"/><text x="866.005" y="43">4.0 ms</text>
+<path d="M1038.757 37 V239" stroke="#e1e7f0"/><text x="1038.757" y="43">5.0 ms</text>
+<text x="10" y="65" font-weight="700">删除 A→B 等待</text>
+<text x="10" y="96">A · stream 44</text>
+<path d="M175 104 H1100" stroke="#dbe3ed"/>
+<text x="10" y="133">B · stream 43</text>
+<path d="M175 141 H1100" stroke="#dbe3ed"/>
+<text x="10" y="170">C · stream 42</text>
+<path d="M175 178 H1100" stroke="#dbe3ed"/>
+<g class="task" tabindex="0" data-label="P16Dep/trace-02-no_wait/backlog-00"><title>backlog-00 · 1198.968 us · aclnnMm_MatMulV3Common_MatMulV3</title>
+<rect x="175.000" y="78" width="207.123" height="26" rx="3" fill="#749cda"/>
+<text x="178.000" y="95" style="fill:white;font-size:11px">00</text>
+</g>
+<g class="task" tabindex="0" data-label="P16Dep/trace-02-no_wait/backlog-01"><title>backlog-01 · 1574.063 us · aclnnMm_MatMulV3Common_MatMulV3</title>
+<rect x="382.127" y="78" width="271.921" height="26" rx="3" fill="#749cda"/>
+<text x="385.127" y="95" style="fill:white;font-size:11px">01</text>
+</g>
+<g class="task" tabindex="0" data-label="P16Dep/trace-02-no_wait/backlog-02"><title>backlog-02 · 1047.842 us · aclnnMm_MatMulV3Common_MatMulV3</title>
+<rect x="654.052" y="78" width="181.016" height="26" rx="3" fill="#749cda"/>
+<text x="657.052" y="95" style="fill:white;font-size:11px">02</text>
+</g>
+<g class="task" tabindex="0" data-label="P16Dep/trace-02-no_wait/backlog-03"><title>backlog-03 · 427.317 us · aclnnMm_MatMulV3Common_MatMulV3</title>
+<rect x="835.075" y="78" width="73.820" height="26" rx="3" fill="#749cda"/>
+<text x="838.075" y="95" style="fill:white;font-size:11px">03</text>
+</g>
+<g class="task" tabindex="0" data-label="P16Dep/trace-02-no_wait/backlog-04"><title>backlog-04 · 426.257 us · aclnnMm_MatMulV3Common_MatMulV3</title>
+<rect x="908.901" y="78" width="73.636" height="26" rx="3" fill="#749cda"/>
+<text x="911.901" y="95" style="fill:white;font-size:11px">04</text>
+</g>
+<g class="task" tabindex="0" data-label="P16Dep/trace-02-no_wait/produce-Y"><title>produce-Y · 426.037 us · aclnnMm_MatMulV3Common_MatMulV3</title>
+<rect x="982.541" y="78" width="73.598" height="26" rx="3" fill="#235dba"/>
+<text x="985.541" y="95" style="fill:white;font-size:11px">Y=X@X</text>
+</g>
+<g class="task" tabindex="0" data-label="P16Dep/trace-02-no_wait/record-A"><title>record-A · 0.02 us · EVENT_RECORD</title>
+<path d="M1056.146 76 V106" stroke="#23334b" stroke-width="1.5"/>
+</g>
+<g class="task" tabindex="0" data-label="P16Dep/trace-02-no_wait/consume-Y"><title>consume-Y · 27.941 us · aclnnMuls_MulAiCore_Mul</title>
+<rect x="209.897" y="115" width="4.827" height="26" rx="3" fill="#a34b97"/>
+</g>
+<g class="task" tabindex="0" data-label="P16Dep/trace-02-no_wait/record-B"><title>record-B · 0.02 us · EVENT_RECORD</title>
+<path d="M215.273 113 V143" stroke="#23334b" stroke-width="1.5"/>
+</g>
+<g class="task" tabindex="0" data-label="P16Dep/trace-02-no_wait/independent-00"><title>independent-00 · 607.504 us · aclnnMuls_MulAiCore_Mul</title>
+<rect x="223.528" y="152" width="104.947" height="26" rx="3" fill="#278c75"/>
+<text x="226.528" y="169" style="fill:white;font-size:11px">00</text>
+</g>
+<g class="task" tabindex="0" data-label="P16Dep/trace-02-no_wait/independent-01"><title>independent-01 · 538.582 us · aclnnMuls_MulAiCore_Mul</title>
+<rect x="328.482" y="152" width="93.041" height="26" rx="3" fill="#278c75"/>
+<text x="331.482" y="169" style="fill:white;font-size:11px">01</text>
+</g>
+<g class="task" tabindex="0" data-label="P16Dep/trace-02-no_wait/independent-02"><title>independent-02 · 573.343 us · aclnnMuls_MulAiCore_Mul</title>
+<rect x="421.529" y="152" width="99.046" height="26" rx="3" fill="#278c75"/>
+<text x="424.529" y="169" style="fill:white;font-size:11px">02</text>
+</g>
+<g class="task" tabindex="0" data-label="P16Dep/trace-02-no_wait/independent-03"><title>independent-03 · 557.682 us · aclnnMuls_MulAiCore_Mul</title>
+<rect x="520.582" y="152" width="96.340" height="26" rx="3" fill="#278c75"/>
+<text x="523.582" y="169" style="fill:white;font-size:11px">03</text>
+</g>
+<g class="task" tabindex="0" data-label="P16Dep/trace-02-no_wait/independent-04"><title>independent-04 · 544.722 us · aclnnMuls_MulAiCore_Mul</title>
+<rect x="616.926" y="152" width="94.101" height="26" rx="3" fill="#278c75"/>
+<text x="619.926" y="169" style="fill:white;font-size:11px">04</text>
+</g>
+<g class="task" tabindex="0" data-label="P16Dep/trace-02-no_wait/independent-05"><title>independent-05 · 553.362 us · aclnnMuls_MulAiCore_Mul</title>
+<rect x="711.031" y="152" width="95.594" height="26" rx="3" fill="#278c75"/>
+<text x="714.031" y="169" style="fill:white;font-size:11px">05</text>
+</g>
+<g class="task" tabindex="0" data-label="P16Dep/trace-02-no_wait/record-C"><title>record-C · 0.02 us · EVENT_RECORD</title>
+<path d="M806.628 150 V180" stroke="#23334b" stroke-width="1.5"/>
+</g>
+<text x="175" y="208">B 已经结束，A 才开始写入新 Y · A/C 计算重叠 3.375 ms</text>
+<text x="175" y="231">trace-02-no_wait · 完成后 Z 前四个值：[-14.0, -14.0, -14.0, -14.0]</text>
+</svg></section></div></div>
+<div class="panel"><h2>完成后再检查，错误仍然存在</h2><div class="scroll"><table><thead><tr><th>策略</th><th>完整耗时中位数 ms</th><th>范围 ms</th><th>Z 全部正确</th><th>Z 全部为 −14</th></tr></thead><tbody><tr><td>保留 B.wait_event(A_done)</td><td>5.200</td><td>5.136–5.628</td><td>7 / 7</td><td>0 / 7</td></tr><tr><td>删除跨流等待</td><td>5.055</td><td>5.032–5.122</td><td>0 / 7</td><td>7 / 7</td></tr></tbody></table></div>
+<p>耗时来自单独的无 profiler 测量。删除依赖后的耗时不能作为有效优化成绩：程序没有完成正确的计算。</p>
+<p>缺少等待时，B 可能先用旧 Y=−7 算出 Z=−14。随后 A 把 Y 改成1，已经写出的 Z 不会自动改变。最终汇合只保证任务完成；重新执行一次 B，才能用新 Y 得到 Z=2。</p></div>
+<div class="panel"><h2>独立 C 是否继续工作</h2><p>在 3 / 3 个保留依赖的轮次中，观测到 C 在 B 的设备等待期间执行。<code>wait_event</code>建立 A→B 的顺序，不把整个 NPU 或 Host 全局阻塞；最后的 Host join 则负责安全读取与退出。</p>
+<p class="muted">矩形是 profiler 的设备任务区间，并非每个时钟周期的资源利用率。初始化、校验及完成后的修复重算不混入被测任务。</p></div>
+<div class="panel"><h2>选中任务的证据</h2><pre id="detail" aria-live="polite">点击上方任务色块。</pre></div>
+<p><a href="timeline.svg">六轮 SVG</a> · <a href="dependency_evidence.json">完整关联 JSON</a> · <a href="../../../CROSS_STREAM_DEPENDENCY.md">结论与复现</a> · <a href="../../../README.md">Practice 16</a></p>
+<script type="application/json" id="data">[{"label": "P16Dep/trace-00-event_wait/backlog-00", "trial": "trace-00-event_wait", "branch": "A", "operation": "backlog-00", "kind": "compute", "name": "aclnnMm_MatMulV3Common_MatMulV3", "task_type": "AI_CORE", "stream": "44", "device_lane": "699148704", "task_id": "112", "start_us": "1790274065633607.129", "end_us": "1790274065634360.799", "duration_us": "753.67", "trace_index": 1518, "host_trace_index": 4, "cann_trace_index": 1966, "torch_flow": "1790274065633607129", "cann_flow": "55834574848", "connection_id": "13", "cann_api": "Node@launch", "host_operator": "aclnnMm", "csv_row": 2}, {"label": "P16Dep/trace-00-event_wait/wait-A", "trial": "trace-00-event_wait", "branch": "B", "operation": "wait-A", "kind": "device_wait", "name": "EVENT_WAIT", "task_type": "EVENT_WAIT", "stream": "43", "device_lane": "699148704", "task_id": "56", "start_us": "1790274065633862.479", "end_us": "1790274065638726.314", "duration_us": "4863.835", "trace_index": 1520, "host_trace_index": 25, "cann_trace_index": 1995, "torch_flow": "1790274065633862479", "cann_flow": "180388626432", "connection_id": "42", "cann_api": "AscendCL@aclrtStreamWaitEvent", "host_operator": "wait_event"}, {"label": "P16Dep/trace-00-event_wait/independent-00", "trial": "trace-00-event_wait", "branch": "C", "operation": "independent-00", "kind": "compute", "name": "aclnnMuls_MulAiCore_Mul", "task_type": "AI_VECTOR_CORE", "stream": "42", "device_lane": "699148704", "task_id": "112", "start_us": "1790274065633993.105", "end_us": "1790274065634594.329", "duration_us": "601.224", "trace_index": 1522, "host_trace_index": 38, "cann_trace_index": 2003, "torch_flow": "1790274065633993105", "cann_flow": "214748364800", "connection_id": "50", "cann_api": "Node@launch", "host_operator": "aclnnMuls", "csv_row": 3}, {"label": "P16Dep/trace-00-event_wait/backlog-01", "trial": "trace-00-event_wait", "branch": "A", "operation": "backlog-01", "kind": "compute", "name": "aclnnMm_MatMulV3Common_MatMulV3", "task_type": "AI_CORE", "stream": "44", "device_lane": "699148704", "task_id": "113", "start_us": "1790274065634360.819", "end_us": "1790274065636173.552", "duration_us": "1812.733", "trace_index": 1524, "host_trace_index": 7, "cann_trace_index": 1971, "torch_flow": "1790274065634360819", "cann_flow": "77309411328", "connection_id": "18", "cann_api": "Node@launch", "host_operator": "aclnnMm", "csv_row": 4}, {"label": "P16Dep/trace-00-event_wait/independent-01", "trial": "trace-00-event_wait", "branch": "C", "operation": "independent-01", "kind": "compute", "name": "aclnnMuls_MulAiCore_Mul", "task_type": "AI_VECTOR_CORE", "stream": "42", "device_lane": "699148704", "task_id": "113", "start_us": "1790274065634594.349", "end_us": "1790274065635157.871", "duration_us": "563.522", "trace_index": 1526, "host_trace_index": 43, "cann_trace_index": 2007, "torch_flow": "1790274065634594349", "cann_flow": "231928233984", "connection_id": "54", "cann_api": "Node@launch", "host_operator": "aclnnMuls", "csv_row": 5}, {"label": "P16Dep/trace-00-event_wait/independent-02", "trial": "trace-00-event_wait", "branch": "C", "operation": "independent-02", "kind": "compute", "name": "aclnnMuls_MulAiCore_Mul", "task_type": "AI_VECTOR_CORE", "stream": "42", "device_lane": "699148704", "task_id": "114", "start_us": "1790274065635157.891", "end_us": "1790274065635719.674", "duration_us": "561.783", "trace_index": 1528, "host_trace_index": 48, "cann_trace_index": 2011, "torch_flow": "1790274065635157891", "cann_flow": "249108103168", "connection_id": "58", "cann_api": "Node@launch", "host_operator": "aclnnMuls", "csv_row": 6}, {"label": "P16Dep/trace-00-event_wait/independent-03", "trial": "trace-00-event_wait", "branch": "C", "operation": "independent-03", "kind": "compute", "name": "aclnnMuls_MulAiCore_Mul", "task_type": "AI_VECTOR_CORE", "stream": "42", "device_lane": "699148704", "task_id": "115", "start_us": "1790274065635719.714", "end_us": "1790274065636262.455", "duration_us": "542.741", "trace_index": 1530, "host_trace_index": 53, "cann_trace_index": 2015, "torch_flow": "1790274065635719714", "cann_flow": "266287972352", "connection_id": "62", "cann_api": "Node@launch", "host_operator": "aclnnMuls", "csv_row": 7}, {"label": "P16Dep/trace-00-event_wait/backlog-02", "trial": "trace-00-event_wait", "branch": "A", "operation": "backlog-02", "kind": "compute", "name": "aclnnMm_MatMulV3Common_MatMulV3", "task_type": "AI_CORE", "stream": "44", "device_lane": "699148704", "task_id": "114", "start_us": "1790274065636173.572", "end_us": "1790274065637445.063", "duration_us": "1271.491", "trace_index": 1532, "host_trace_index": 10, "cann_trace_index": 1976, "torch_flow": "1790274065636173572", "cann_flow": "98784247808", "connection_id": "23", "cann_api": "Node@launch", "host_operator": "aclnnMm", "csv_row": 8}, {"label": "P16Dep/trace-00-event_wait/independent-04", "trial": "trace-00-event_wait", "branch": "C", "operation": "independent-04", "kind": "compute", "name": "aclnnMuls_MulAiCore_Mul", "task_type": "AI_VECTOR_CORE", "stream": "42", "device_lane": "699148704", "task_id": "116", "start_us": "1790274065636262.495", "end_us": "1790274065636810.477", "duration_us": "547.982", "trace_index": 1534, "host_trace_index": 58, "cann_trace_index": 2019, "torch_flow": "1790274065636262495", "cann_flow": "283467841536", "connection_id": "66", "cann_api": "Node@launch", "host_operator": "aclnnMuls", "csv_row": 9}, {"label": "P16Dep/trace-00-event_wait/independent-05", "trial": "trace-00-event_wait", "branch": "C", "operation": "independent-05", "kind": "compute", "name": "aclnnMuls_MulAiCore_Mul", "task_type": "AI_VECTOR_CORE", "stream": "42", "device_lane": "699148704", "task_id": "117", "start_us": "1790274065636810.497", "end_us": "1790274065637370.640", "duration_us": "560.143", "trace_index": 1536, "host_trace_index": 63, "cann_trace_index": 2023, "torch_flow": "1790274065636810497", "cann_flow": "300647710720", "connection_id": "70", "cann_api": "Node@launch", "host_operator": "aclnnMuls", "csv_row": 10}, {"label": "P16Dep/trace-00-event_wait/record-C", "trial": "trace-00-event_wait", "branch": "C", "operation": "record-C", "kind": "record", "name": "EVENT_RECORD", "task_type": "EVENT_RECORD", "stream": "42", "device_lane": "699148704", "task_id": "118", "start_us": "1790274065637370.660", "end_us": "1790274065637370.680", "duration_us": "0.02", "trace_index": 1538, "host_trace_index": 66, "cann_trace_index": 2025, "torch_flow": "1790274065637370660", "cann_flow": "309237645312", "connection_id": "72", "cann_api": "AscendCL@aclrtRecordEvent", "host_operator": "record_event"}, {"label": "P16Dep/trace-00-event_wait/backlog-03", "trial": "trace-00-event_wait", "branch": "A", "operation": "backlog-03", "kind": "compute", "name": "aclnnMm_MatMulV3Common_MatMulV3", "task_type": "AI_CORE", "stream": "44", "device_lane": "699148704", "task_id": "115", "start_us": "1790274065637445.083", "end_us": "1790274065637872.380", "duration_us": "427.297", "trace_index": 1540, "host_trace_index": 13, "cann_trace_index": 1981, "torch_flow": "1790274065637445083", "cann_flow": "120259084288", "connection_id": "28", "cann_api": "Node@launch", "host_operator": "aclnnMm", "csv_row": 11}, {"label": "P16Dep/trace-00-event_wait/backlog-04", "trial": "trace-00-event_wait", "branch": "A", "operation": "backlog-04", "kind": "compute", "name": "aclnnMm_MatMulV3Common_MatMulV3", "task_type": "AI_CORE", "stream": "44", "device_lane": "699148704", "task_id": "116", "start_us": "1790274065637872.420", "end_us": "1790274065638297.837", "duration_us": "425.417", "trace_index": 1542, "host_trace_index": 16, "cann_trace_index": 1986, "torch_flow": "1790274065637872420", "cann_flow": "141733920768", "connection_id": "33", "cann_api": "Node@launch", "host_operator": "aclnnMm", "csv_row": 12}, {"label": "P16Dep/trace-00-event_wait/produce-Y", "trial": "trace-00-event_wait", "branch": "A", "operation": "produce-Y", "kind": "compute", "name": "aclnnMm_MatMulV3Common_MatMulV3", "task_type": "AI_CORE", "stream": "44", "device_lane": "699148704", "task_id": "117", "start_us": "1790274065638297.857", "end_us": "1790274065638725.814", "duration_us": "427.957", "trace_index": 1544, "host_trace_index": 19, "cann_trace_index": 1991, "torch_flow": "1790274065638297857", "cann_flow": "163208757248", "connection_id": "38", "cann_api": "Node@launch", "host_operator": "aclnnMm", "csv_row": 13}, {"label": "P16Dep/trace-00-event_wait/record-A", "trial": "trace-00-event_wait", "branch": "A", "operation": "record-A", "kind": "record", "name": "EVENT_RECORD", "task_type": "EVENT_RECORD", "stream": "44", "device_lane": "699148704", "task_id": "118", "start_us": "1790274065638725.834", "end_us": "1790274065638725.854", "duration_us": "0.02", "trace_index": 1546, "host_trace_index": 22, "cann_trace_index": 1994, "torch_flow": "1790274065638725834", "cann_flow": "176093659136", "connection_id": "41", "cann_api": "AscendCL@aclrtRecordEvent", "host_operator": "record_event"}, {"label": "P16Dep/trace-00-event_wait/consume-Y", "trial": "trace-00-event_wait", "branch": "B", "operation": "consume-Y", "kind": "compute", "name": "aclnnMuls_MulAiCore_Mul", "task_type": "AI_VECTOR_CORE", "stream": "43", "device_lane": "699148704", "task_id": "57", "start_us": "1790274065638726.414", "end_us": "1790274065638745.895", "duration_us": "19.481", "trace_index": 1548, "host_trace_index": 30, "cann_trace_index": 1998, "torch_flow": "1790274065638726414", "cann_flow": "193273528320", "connection_id": "45", "cann_api": "Node@launch", "host_operator": "aclnnMuls", "csv_row": 14}, {"label": "P16Dep/trace-00-event_wait/record-B", "trial": "trace-00-event_wait", "branch": "B", "operation": "record-B", "kind": "record", "name": "EVENT_RECORD", "task_type": "EVENT_RECORD", "stream": "43", "device_lane": "699148704", "task_id": "58", "start_us": "1790274065638745.915", "end_us": "1790274065638745.935", "duration_us": "0.02", "trace_index": 1550, "host_trace_index": 33, "cann_trace_index": 2000, "torch_flow": "1790274065638745915", "cann_flow": "201863462912", "connection_id": "47", "cann_api": "AscendCL@aclrtRecordEvent", "host_operator": "record_event"}, {"label": "P16Dep/trace-00-no_wait/backlog-00", "trial": "trace-00-no_wait", "branch": "A", "operation": "backlog-00", "kind": "compute", "name": "aclnnMm_MatMulV3Common_MatMulV3", "task_type": "AI_CORE", "stream": "44", "device_lane": "699148704", "task_id": "119", "start_us": "1790274065645511.905", "end_us": "1790274065646615.529", "duration_us": "1103.624", "trace_index": 1584, "host_trace_index": 127, "cann_trace_index": 2103, "torch_flow": "1790274065645511905", "cann_flow": "644245094400", "connection_id": "150", "cann_api": "Node@launch", "host_operator": "aclnnMm", "csv_row": 31}, {"label": "P16Dep/trace-00-no_wait/consume-Y", "trial": "trace-00-no_wait", "branch": "B", "operation": "consume-Y", "kind": "compute", "name": "aclnnMuls_MulAiCore_Mul", "task_type": "AI_VECTOR_CORE", "stream": "43", "device_lane": "699148704", "task_id": "59", "start_us": "1790274065645721.454", "end_us": "1790274065645749.175", "duration_us": "27.721", "trace_index": 1586, "host_trace_index": 150, "cann_trace_index": 2134, "torch_flow": "1790274065645721454", "cann_flow": "777389080576", "connection_id": "181", "cann_api": "Node@launch", "host_operator": "aclnnMuls", "csv_row": 32}, {"label": "P16Dep/trace-00-no_wait/record-B", "trial": "trace-00-no_wait", "branch": "B", "operation": "record-B", "kind": "record", "name": "EVENT_RECORD", "task_type": "EVENT_RECORD", "stream": "43", "device_lane": "699148704", "task_id": "60", "start_us": "1790274065645749.195", "end_us": "1790274065645749.215", "duration_us": "0.02", "trace_index": 1588, "host_trace_index": 153, "cann_trace_index": 2136, "torch_flow": "1790274065645749195", "cann_flow": "785979015168", "connection_id": "183", "cann_api": "AscendCL@aclrtRecordEvent", "host_operator": "record_event"}, {"label": "P16Dep/trace-00-no_wait/independent-00", "trial": "trace-00-no_wait", "branch": "C", "operation": "independent-00", "kind": "compute", "name": "aclnnMuls_MulAiCore_Mul", "task_type": "AI_VECTOR_CORE", "stream": "42", "device_lane": "699148704", "task_id": "119", "start_us": "1790274065645793.797", "end_us": "1790274065646398.121", "duration_us": "604.324", "trace_index": 1590, "host_trace_index": 158, "cann_trace_index": 2139, "torch_flow": "1790274065645793797", "cann_flow": "798863917056", "connection_id": "186", "cann_api": "Node@launch", "host_operator": "aclnnMuls", "csv_row": 33}, {"label": "P16Dep/trace-00-no_wait/independent-01", "trial": "trace-00-no_wait", "branch": "C", "operation": "independent-01", "kind": "compute", "name": "aclnnMuls_MulAiCore_Mul", "task_type": "AI_VECTOR_CORE", "stream": "42", "device_lane": "699148704", "task_id": "120", "start_us": "1790274065646398.141", "end_us": "1790274065646952.603", "duration_us": "554.462", "trace_index": 1592, "host_trace_index": 163, "cann_trace_index": 2143, "torch_flow": "1790274065646398141", "cann_flow": "816043786240", "connection_id": "190", "cann_api": "Node@launch", "host_operator": "aclnnMuls", "csv_row": 34}, {"label": "P16Dep/trace-00-no_wait/backlog-01", "trial": "trace-00-no_wait", "branch": "A", "operation": "backlog-01", "kind": "compute", "name": "aclnnMm_MatMulV3Common_MatMulV3", "task_type": "AI_CORE", "stream": "44", "device_lane": "699148704", "task_id": "120", "start_us": "1790274065646615.549", "end_us": "1790274065648185.852", "duration_us": "1570.303", "trace_index": 1594, "host_trace_index": 130, "cann_trace_index": 2108, "torch_flow": "1790274065646615549", "cann_flow": "665719930880", "connection_id": "155", "cann_api": "Node@launch", "host_operator": "aclnnMm", "csv_row": 35}, {"label": "P16Dep/trace-00-no_wait/independent-02", "trial": "trace-00-no_wait", "branch": "C", "operation": "independent-02", "kind": "compute", "name": "aclnnMuls_MulAiCore_Mul", "task_type": "AI_VECTOR_CORE", "stream": "42", "device_lane": "699148704", "task_id": "121", "start_us": "1790274065646952.623", "end_us": "1790274065647505.125", "duration_us": "552.502", "trace_index": 1596, "host_trace_index": 168, "cann_trace_index": 2147, "torch_flow": "1790274065646952623", "cann_flow": "833223655424", "connection_id": "194", "cann_api": "Node@launch", "host_operator": "aclnnMuls", "csv_row": 36}, {"label": "P16Dep/trace-00-no_wait/independent-03", "trial": "trace-00-no_wait", "branch": "C", "operation": "independent-03", "kind": "compute", "name": "aclnnMuls_MulAiCore_Mul", "task_type": "AI_VECTOR_CORE", "stream": "42", "device_lane": "699148704", "task_id": "122", "start_us": "1790274065647505.145", "end_us": "1790274065648064.167", "duration_us": "559.022", "trace_index": 1598, "host_trace_index": 173, "cann_trace_index": 2151, "torch_flow": "1790274065647505145", "cann_flow": "850403524608", "connection_id": "198", "cann_api": "Node@launch", "host_operator": "aclnnMuls", "csv_row": 37}, {"label": "P16Dep/trace-00-no_wait/independent-04", "trial": "trace-00-no_wait", "branch": "C", "operation": "independent-04", "kind": "compute", "name": "aclnnMuls_MulAiCore_Mul", "task_type": "AI_VECTOR_CORE", "stream": "42", "device_lane": "699148704", "task_id": "123", "start_us": "1790274065648064.207", "end_us": "1790274065648614.809", "duration_us": "550.602", "trace_index": 1600, "host_trace_index": 178, "cann_trace_index": 2155, "torch_flow": "1790274065648064207", "cann_flow": "867583393792", "connection_id": "202", "cann_api": "Node@launch", "host_operator": "aclnnMuls", "csv_row": 38}, {"label": "P16Dep/trace-00-no_wait/backlog-02", "trial": "trace-00-no_wait", "branch": "A", "operation": "backlog-02", "kind": "compute", "name": "aclnnMm_MatMulV3Common_MatMulV3", "task_type": "AI_CORE", "stream": "44", "device_lane": "699148704", "task_id": "121", "start_us": "1790274065648185.872", "end_us": "1790274065649326.858", "duration_us": "1140.986", "trace_index": 1602, "host_trace_index": 133, "cann_trace_index": 2113, "torch_flow": "1790274065648185872", "cann_flow": "687194767360", "connection_id": "160", "cann_api": "Node@launch", "host_operator": "aclnnMm", "csv_row": 39}, {"label": "P16Dep/trace-00-no_wait/independent-05", "trial": "trace-00-no_wait", "branch": "C", "operation": "independent-05", "kind": "compute", "name": "aclnnMuls_MulAiCore_Mul", "task_type": "AI_VECTOR_CORE", "stream": "42", "device_lane": "699148704", "task_id": "124", "start_us": "1790274065648614.829", "end_us": "1790274065649180.532", "duration_us": "565.703", "trace_index": 1604, "host_trace_index": 183, "cann_trace_index": 2159, "torch_flow": "1790274065648614829", "cann_flow": "884763262976", "connection_id": "206", "cann_api": "Node@launch", "host_operator": "aclnnMuls", "csv_row": 40}, {"label": "P16Dep/trace-00-no_wait/record-C", "trial": "trace-00-no_wait", "branch": "C", "operation": "record-C", "kind": "record", "name": "EVENT_RECORD", "task_type": "EVENT_RECORD", "stream": "42", "device_lane": "699148704", "task_id": "125", "start_us": "1790274065649180.552", "end_us": "1790274065649180.572", "duration_us": "0.02", "trace_index": 1606, "host_trace_index": 186, "cann_trace_index": 2161, "torch_flow": "1790274065649180552", "cann_flow": "893353197568", "connection_id": "208", "cann_api": "AscendCL@aclrtRecordEvent", "host_operator": "record_event"}, {"label": "P16Dep/trace-00-no_wait/backlog-03", "trial": "trace-00-no_wait", "branch": "A", "operation": "backlog-03", "kind": "compute", "name": "aclnnMm_MatMulV3Common_MatMulV3", "task_type": "AI_CORE", "stream": "44", "device_lane": "699148704", "task_id": "122", "start_us": "1790274065649326.878", "end_us": "1790274065649754.935", "duration_us": "428.057", "trace_index": 1608, "host_trace_index": 136, "cann_trace_index": 2118, "torch_flow": "1790274065649326878", "cann_flow": "708669603840", "connection_id": "165", "cann_api": "Node@launch", "host_operator": "aclnnMm", "csv_row": 41}, {"label": "P16Dep/trace-00-no_wait/backlog-04", "trial": "trace-00-no_wait", "branch": "A", "operation": "backlog-04", "kind": "compute", "name": "aclnnMm_MatMulV3Common_MatMulV3", "task_type": "AI_CORE", "stream": "44", "device_lane": "699148704", "task_id": "123", "start_us": "1790274065649754.955", "end_us": "1790274065650180.892", "duration_us": "425.937", "trace_index": 1610, "host_trace_index": 139, "cann_trace_index": 2123, "torch_flow": "1790274065649754955", "cann_flow": "730144440320", "connection_id": "170", "cann_api": "Node@launch", "host_operator": "aclnnMm", "csv_row": 42}, {"label": "P16Dep/trace-00-no_wait/produce-Y", "trial": "trace-00-no_wait", "branch": "A", "operation": "produce-Y", "kind": "compute", "name": "aclnnMm_MatMulV3Common_MatMulV3", "task_type": "AI_CORE", "stream": "44", "device_lane": "699148704", "task_id": "124", "start_us": "1790274065650180.912", "end_us": "1790274065650606.289", "duration_us": "425.377", "trace_index": 1612, "host_trace_index": 142, "cann_trace_index": 2128, "torch_flow": "1790274065650180912", "cann_flow": "751619276800", "connection_id": "175", "cann_api": "Node@launch", "host_operator": "aclnnMm", "csv_row": 43}, {"label": "P16Dep/trace-00-no_wait/record-A", "trial": "trace-00-no_wait", "branch": "A", "operation": "record-A", "kind": "record", "name": "EVENT_RECORD", "task_type": "EVENT_RECORD", "stream": "44", "device_lane": "699148704", "task_id": "125", "start_us": "1790274065650606.309", "end_us": "1790274065650606.329", "duration_us": "0.02", "trace_index": 1614, "host_trace_index": 145, "cann_trace_index": 2131, "torch_flow": "1790274065650606309", "cann_flow": "764504178688", "connection_id": "178", "cann_api": "AscendCL@aclrtRecordEvent", "host_operator": "record_event"}, {"label": "P16Dep/trace-01-no_wait/backlog-00", "trial": "trace-01-no_wait", "branch": "A", "operation": "backlog-00", "kind": "compute", "name": "aclnnMm_MatMulV3Common_MatMulV3", "task_type": "AI_CORE", "stream": "44", "device_lane": "699148704", "task_id": "126", "start_us": "1790274065657467.303", "end_us": "1790274065658784.836", "duration_us": "1317.533", "trace_index": 1656, "host_trace_index": 262, "cann_trace_index": 2256, "torch_flow": "1790274065657467303", "cann_flow": "1301375090688", "connection_id": "303", "cann_api": "Node@launch", "host_operator": "aclnnMm", "csv_row": 63}, {"label": "P16Dep/trace-01-no_wait/consume-Y", "trial": "trace-01-no_wait", "branch": "B", "operation": "consume-Y", "kind": "compute", "name": "aclnnMuls_MulAiCore_Mul", "task_type": "AI_VECTOR_CORE", "stream": "43", "device_lane": "699148704", "task_id": "63", "start_us": "1790274065657676.372", "end_us": "1790274065657702.673", "duration_us": "26.301", "trace_index": 1658, "host_trace_index": 285, "cann_trace_index": 2287, "torch_flow": "1790274065657676372", "cann_flow": "1434519076864", "connection_id": "334", "cann_api": "Node@launch", "host_operator": "aclnnMuls", "csv_row": 64}, {"label": "P16Dep/trace-01-no_wait/record-B", "trial": "trace-01-no_wait", "branch": "B", "operation": "record-B", "kind": "record", "name": "EVENT_RECORD", "task_type": "EVENT_RECORD", "stream": "43", "device_lane": "699148704", "task_id": "64", "start_us": "1790274065657702.693", "end_us": "1790274065657702.713", "duration_us": "0.02", "trace_index": 1660, "host_trace_index": 288, "cann_trace_index": 2289, "torch_flow": "1790274065657702693", "cann_flow": "1443109011456", "connection_id": "336", "cann_api": "AscendCL@aclrtRecordEvent", "host_operator": "record_event"}, {"label": "P16Dep/trace-01-no_wait/independent-00", "trial": "trace-01-no_wait", "branch": "C", "operation": "independent-00", "kind": "compute", "name": "aclnnMuls_MulAiCore_Mul", "task_type": "AI_VECTOR_CORE", "stream": "42", "device_lane": "699148704", "task_id": "126", "start_us": "1790274065657747.514", "end_us": "1790274065658348.438", "duration_us": "600.924", "trace_index": 1662, "host_trace_index": 293, "cann_trace_index": 2292, "torch_flow": "1790274065657747514", "cann_flow": "1455993913344", "connection_id": "339", "cann_api": "Node@launch", "host_operator": "aclnnMuls", "csv_row": 65}, {"label": "P16Dep/trace-01-no_wait/independent-01", "trial": "trace-01-no_wait", "branch": "C", "operation": "independent-01", "kind": "compute", "name": "aclnnMuls_MulAiCore_Mul", "task_type": "AI_VECTOR_CORE", "stream": "42", "device_lane": "699148704", "task_id": "127", "start_us": "1790274065658348.458", "end_us": "1790274065658908.401", "duration_us": "559.943", "trace_index": 1664, "host_trace_index": 298, "cann_trace_index": 2296, "torch_flow": "1790274065658348458", "cann_flow": "1473173782528", "connection_id": "343", "cann_api": "Node@launch", "host_operator": "aclnnMuls", "csv_row": 66}, {"label": "P16Dep/trace-01-no_wait/backlog-01", "trial": "trace-01-no_wait", "branch": "A", "operation": "backlog-01", "kind": "compute", "name": "aclnnMm_MatMulV3Common_MatMulV3", "task_type": "AI_CORE", "stream": "44", "device_lane": "699148704", "task_id": "127", "start_us": "1790274065658784.856", "end_us": "1790274065660361.219", "duration_us": "1576.363", "trace_index": 1666, "host_trace_index": 265, "cann_trace_index": 2261, "torch_flow": "1790274065658784856", "cann_flow": "1322849927168", "connection_id": "308", "cann_api": "Node@launch", "host_operator": "aclnnMm", "csv_row": 67}, {"label": "P16Dep/trace-01-no_wait/independent-02", "trial": "trace-01-no_wait", "branch": "C", "operation": "independent-02", "kind": "compute", "name": "aclnnMuls_MulAiCore_Mul", "task_type": "AI_VECTOR_CORE", "stream": "42", "device_lane": "699148704", "task_id": "128", "start_us": "1790274065658908.421", "end_us": "1790274065659453.303", "duration_us": "544.882", "trace_index": 1668, "host_trace_index": 303, "cann_trace_index": 2300, "torch_flow": "1790274065658908421", "cann_flow": "1490353651712", "connection_id": "347", "cann_api": "Node@launch", "host_operator": "aclnnMuls", "csv_row": 68}, {"label": "P16Dep/trace-01-no_wait/independent-03", "trial": "trace-01-no_wait", "branch": "C", "operation": "independent-03", "kind": "compute", "name": "aclnnMuls_MulAiCore_Mul", "task_type": "AI_VECTOR_CORE", "stream": "42", "device_lane": "699148704", "task_id": "129", "start_us": "1790274065659453.323", "end_us": "1790274065660016.585", "duration_us": "563.262", "trace_index": 1670, "host_trace_index": 308, "cann_trace_index": 2304, "torch_flow": "1790274065659453323", "cann_flow": "1507533520896", "connection_id": "351", "cann_api": "Node@launch", "host_operator": "aclnnMuls", "csv_row": 69}, {"label": "P16Dep/trace-01-no_wait/independent-04", "trial": "trace-01-no_wait", "branch": "C", "operation": "independent-04", "kind": "compute", "name": "aclnnMuls_MulAiCore_Mul", "task_type": "AI_VECTOR_CORE", "stream": "42", "device_lane": "699148704", "task_id": "130", "start_us": "1790274065660016.605", "end_us": "1790274065660556.647", "duration_us": "540.042", "trace_index": 1672, "host_trace_index": 313, "cann_trace_index": 2308, "torch_flow": "1790274065660016605", "cann_flow": "1524713390080", "connection_id": "355", "cann_api": "Node@launch", "host_operator": "aclnnMuls", "csv_row": 70}, {"label": "P16Dep/trace-01-no_wait/backlog-02", "trial": "trace-01-no_wait", "branch": "A", "operation": "backlog-02", "kind": "compute", "name": "aclnnMm_MatMulV3Common_MatMulV3", "task_type": "AI_CORE", "stream": "44", "device_lane": "699148704", "task_id": "128", "start_us": "1790274065660361.239", "end_us": "1790274065661288.636", "duration_us": "927.397", "trace_index": 1674, "host_trace_index": 268, "cann_trace_index": 2266, "torch_flow": "1790274065660361239", "cann_flow": "1344324763648", "connection_id": "313", "cann_api": "Node@launch", "host_operator": "aclnnMm", "csv_row": 71}, {"label": "P16Dep/trace-01-no_wait/independent-05", "trial": "trace-01-no_wait", "branch": "C", "operation": "independent-05", "kind": "compute", "name": "aclnnMuls_MulAiCore_Mul", "task_type": "AI_VECTOR_CORE", "stream": "42", "device_lane": "699148704", "task_id": "131", "start_us": "1790274065660556.667", "end_us": "1790274065661112.129", "duration_us": "555.462", "trace_index": 1676, "host_trace_index": 318, "cann_trace_index": 2312, "torch_flow": "1790274065660556667", "cann_flow": "1541893259264", "connection_id": "359", "cann_api": "Node@launch", "host_operator": "aclnnMuls", "csv_row": 72}, {"label": "P16Dep/trace-01-no_wait/record-C", "trial": "trace-01-no_wait", "branch": "C", "operation": "record-C", "kind": "record", "name": "EVENT_RECORD", "task_type": "EVENT_RECORD", "stream": "42", "device_lane": "699148704", "task_id": "132", "start_us": "1790274065661112.149", "end_us": "1790274065661112.169", "duration_us": "0.02", "trace_index": 1678, "host_trace_index": 321, "cann_trace_index": 2314, "torch_flow": "1790274065661112149", "cann_flow": "1550483193856", "connection_id": "361", "cann_api": "AscendCL@aclrtRecordEvent", "host_operator": "record_event"}, {"label": "P16Dep/trace-01-no_wait/backlog-03", "trial": "trace-01-no_wait", "branch": "A", "operation": "backlog-03", "kind": "compute", "name": "aclnnMm_MatMulV3Common_MatMulV3", "task_type": "AI_CORE", "stream": "44", "device_lane": "699148704", "task_id": "129", "start_us": "1790274065661288.656", "end_us": "1790274065661714.813", "duration_us": "426.157", "trace_index": 1680, "host_trace_index": 271, "cann_trace_index": 2271, "torch_flow": "1790274065661288656", "cann_flow": "1365799600128", "connection_id": "318", "cann_api": "Node@launch", "host_operator": "aclnnMm", "csv_row": 73}, {"label": "P16Dep/trace-01-no_wait/backlog-04", "trial": "trace-01-no_wait", "branch": "A", "operation": "backlog-04", "kind": "compute", "name": "aclnnMm_MatMulV3Common_MatMulV3", "task_type": "AI_CORE", "stream": "44", "device_lane": "699148704", "task_id": "130", "start_us": "1790274065661714.833", "end_us": "1790274065662141.190", "duration_us": "426.357", "trace_index": 1682, "host_trace_index": 274, "cann_trace_index": 2276, "torch_flow": "1790274065661714833", "cann_flow": "1387274436608", "connection_id": "323", "cann_api": "Node@launch", "host_operator": "aclnnMm", "csv_row": 74}, {"label": "P16Dep/trace-01-no_wait/produce-Y", "trial": "trace-01-no_wait", "branch": "A", "operation": "produce-Y", "kind": "compute", "name": "aclnnMm_MatMulV3Common_MatMulV3", "task_type": "AI_CORE", "stream": "44", "device_lane": "699148704", "task_id": "131", "start_us": "1790274065662141.210", "end_us": "1790274065662568.707", "duration_us": "427.497", "trace_index": 1684, "host_trace_index": 277, "cann_trace_index": 2281, "torch_flow": "1790274065662141210", "cann_flow": "1408749273088", "connection_id": "328", "cann_api": "Node@launch", "host_operator": "aclnnMm", "csv_row": 75}, {"label": "P16Dep/trace-01-no_wait/record-A", "trial": "trace-01-no_wait", "branch": "A", "operation": "record-A", "kind": "record", "name": "EVENT_RECORD", "task_type": "EVENT_RECORD", "stream": "44", "device_lane": "699148704", "task_id": "132", "start_us": "1790274065662568.727", "end_us": "1790274065662568.747", "duration_us": "0.02", "trace_index": 1686, "host_trace_index": 280, "cann_trace_index": 2284, "torch_flow": "1790274065662568727", "cann_flow": "1421634174976", "connection_id": "331", "cann_api": "AscendCL@aclrtRecordEvent", "host_operator": "record_event"}, {"label": "P16Dep/trace-01-event_wait/backlog-00", "trial": "trace-01-event_wait", "branch": "A", "operation": "backlog-00", "kind": "compute", "name": "aclnnMm_MatMulV3Common_MatMulV3", "task_type": "AI_CORE", "stream": "44", "device_lane": "699148704", "task_id": "133", "start_us": "1790274065669406.421", "end_us": "1790274065670523.745", "duration_us": "1117.324", "trace_index": 1728, "host_trace_index": 397, "cann_trace_index": 2409, "torch_flow": "1790274065669406421", "cann_flow": "1958505086976", "connection_id": "456", "cann_api": "Node@launch", "host_operator": "aclnnMm", "csv_row": 95}, {"label": "P16Dep/trace-01-event_wait/wait-A", "trial": "trace-01-event_wait", "branch": "B", "operation": "wait-A", "kind": "device_wait", "name": "EVENT_WAIT", "task_type": "EVENT_WAIT", "stream": "43", "device_lane": "699148704", "task_id": "67", "start_us": "1790274065669599.968", "end_us": "1790274065674506.564", "duration_us": "4906.596", "trace_index": 1730, "host_trace_index": 418, "cann_trace_index": 2438, "torch_flow": "1790274065669599968", "cann_flow": "2083059138560", "connection_id": "485", "cann_api": "AscendCL@aclrtStreamWaitEvent", "host_operator": "wait_event"}, {"label": "P16Dep/trace-01-event_wait/independent-00", "trial": "trace-01-event_wait", "branch": "C", "operation": "independent-00", "kind": "compute", "name": "aclnnMuls_MulAiCore_Mul", "task_type": "AI_VECTOR_CORE", "stream": "42", "device_lane": "699148704", "task_id": "133", "start_us": "1790274065669700.972", "end_us": "1790274065670301.136", "duration_us": "600.164", "trace_index": 1732, "host_trace_index": 431, "cann_trace_index": 2446, "torch_flow": "1790274065669700972", "cann_flow": "2117418876928", "connection_id": "493", "cann_api": "Node@launch", "host_operator": "aclnnMuls", "csv_row": 96}, {"label": "P16Dep/trace-01-event_wait/independent-01", "trial": "trace-01-event_wait", "branch": "C", "operation": "independent-01", "kind": "compute", "name": "aclnnMuls_MulAiCore_Mul", "task_type": "AI_VECTOR_CORE", "stream": "42", "device_lane": "699148704", "task_id": "134", "start_us": "1790274065670301.156", "end_us": "1790274065670848.538", "duration_us": "547.382", "trace_index": 1734, "host_trace_index": 436, "cann_trace_index": 2450, "torch_flow": "1790274065670301156", "cann_flow": "2134598746112", "connection_id": "497", "cann_api": "Node@launch", "host_operator": "aclnnMuls", "csv_row": 97}, {"label": "P16Dep/trace-01-event_wait/backlog-01", "trial": "trace-01-event_wait", "branch": "A", "operation": "backlog-01", "kind": "compute", "name": "aclnnMm_MatMulV3Common_MatMulV3", "task_type": "AI_CORE", "stream": "44", "device_lane": "699148704", "task_id": "134", "start_us": "1790274065670523.765", "end_us": "1790274065672112.509", "duration_us": "1588.744", "trace_index": 1736, "host_trace_index": 400, "cann_trace_index": 2414, "torch_flow": "1790274065670523765", "cann_flow": "1979979923456", "connection_id": "461", "cann_api": "Node@launch", "host_operator": "aclnnMm", "csv_row": 98}, {"label": "P16Dep/trace-01-event_wait/independent-02", "trial": "trace-01-event_wait", "branch": "C", "operation": "independent-02", "kind": "compute", "name": "aclnnMuls_MulAiCore_Mul", "task_type": "AI_VECTOR_CORE", "stream": "42", "device_lane": "699148704", "task_id": "135", "start_us": "1790274065670848.558", "end_us": "1790274065671401.840", "duration_us": "553.282", "trace_index": 1738, "host_trace_index": 441, "cann_trace_index": 2454, "torch_flow": "1790274065670848558", "cann_flow": "2151778615296", "connection_id": "501", "cann_api": "Node@launch", "host_operator": "aclnnMuls", "csv_row": 99}, {"label": "P16Dep/trace-01-event_wait/independent-03", "trial": "trace-01-event_wait", "branch": "C", "operation": "independent-03", "kind": "compute", "name": "aclnnMuls_MulAiCore_Mul", "task_type": "AI_VECTOR_CORE", "stream": "42", "device_lane": "699148704", "task_id": "136", "start_us": "1790274065671401.880", "end_us": "1790274065671960.323", "duration_us": "558.443", "trace_index": 1740, "host_trace_index": 446, "cann_trace_index": 2458, "torch_flow": "1790274065671401880", "cann_flow": "2168958484480", "connection_id": "505", "cann_api": "Node@launch", "host_operator": "aclnnMuls", "csv_row": 100}, {"label": "P16Dep/trace-01-event_wait/independent-04", "trial": "trace-01-event_wait", "branch": "C", "operation": "independent-04", "kind": "compute", "name": "aclnnMuls_MulAiCore_Mul", "task_type": "AI_VECTOR_CORE", "stream": "42", "device_lane": "699148704", "task_id": "137", "start_us": "1790274065671960.343", "end_us": "1790274065672507.645", "duration_us": "547.302", "trace_index": 1742, "host_trace_index": 451, "cann_trace_index": 2462, "torch_flow": "1790274065671960343", "cann_flow": "2186138353664", "connection_id": "509", "cann_api": "Node@launch", "host_operator": "aclnnMuls", "csv_row": 101}, {"label": "P16Dep/trace-01-event_wait/backlog-02", "trial": "trace-01-event_wait", "branch": "A", "operation": "backlog-02", "kind": "compute", "name": "aclnnMm_MatMulV3Common_MatMulV3", "task_type": "AI_CORE", "stream": "44", "device_lane": "699148704", "task_id": "135", "start_us": "1790274065672112.529", "end_us": "1790274065673231.013", "duration_us": "1118.484", "trace_index": 1744, "host_trace_index": 403, "cann_trace_index": 2419, "torch_flow": "1790274065672112529", "cann_flow": "2001454759936", "connection_id": "466", "cann_api": "Node@launch", "host_operator": "aclnnMm", "csv_row": 102}, {"label": "P16Dep/trace-01-event_wait/independent-05", "trial": "trace-01-event_wait", "branch": "C", "operation": "independent-05", "kind": "compute", "name": "aclnnMuls_MulAiCore_Mul", "task_type": "AI_VECTOR_CORE", "stream": "42", "device_lane": "699148704", "task_id": "138", "start_us": "1790274065672507.665", "end_us": "1790274065673077.227", "duration_us": "569.562", "trace_index": 1746, "host_trace_index": 456, "cann_trace_index": 2466, "torch_flow": "1790274065672507665", "cann_flow": "2203318222848", "connection_id": "513", "cann_api": "Node@launch", "host_operator": "aclnnMuls", "csv_row": 103}, {"label": "P16Dep/trace-01-event_wait/record-C", "trial": "trace-01-event_wait", "branch": "C", "operation": "record-C", "kind": "record", "name": "EVENT_RECORD", "task_type": "EVENT_RECORD", "stream": "42", "device_lane": "699148704", "task_id": "139", "start_us": "1790274065673077.267", "end_us": "1790274065673077.267", "duration_us": "0.0", "trace_index": 1748, "host_trace_index": 459, "cann_trace_index": 2468, "torch_flow": "1790274065673077267", "cann_flow": "2211908157440", "connection_id": "515", "cann_api": "AscendCL@aclrtRecordEvent", "host_operator": "record_event"}, {"label": "P16Dep/trace-01-event_wait/backlog-03", "trial": "trace-01-event_wait", "branch": "A", "operation": "backlog-03", "kind": "compute", "name": "aclnnMm_MatMulV3Common_MatMulV3", "task_type": "AI_CORE", "stream": "44", "device_lane": "699148704", "task_id": "136", "start_us": "1790274065673231.033", "end_us": "1790274065673654.750", "duration_us": "423.717", "trace_index": 1750, "host_trace_index": 406, "cann_trace_index": 2424, "torch_flow": "1790274065673231033", "cann_flow": "2022929596416", "connection_id": "471", "cann_api": "Node@launch", "host_operator": "aclnnMm", "csv_row": 104}, {"label": "P16Dep/trace-01-event_wait/backlog-04", "trial": "trace-01-event_wait", "branch": "A", "operation": "backlog-04", "kind": "compute", "name": "aclnnMm_MatMulV3Common_MatMulV3", "task_type": "AI_CORE", "stream": "44", "device_lane": "699148704", "task_id": "137", "start_us": "1790274065673654.770", "end_us": "1790274065674079.727", "duration_us": "424.957", "trace_index": 1752, "host_trace_index": 409, "cann_trace_index": 2429, "torch_flow": "1790274065673654770", "cann_flow": "2044404432896", "connection_id": "476", "cann_api": "Node@launch", "host_operator": "aclnnMm", "csv_row": 105}, {"label": "P16Dep/trace-01-event_wait/produce-Y", "trial": "trace-01-event_wait", "branch": "A", "operation": "produce-Y", "kind": "compute", "name": "aclnnMm_MatMulV3Common_MatMulV3", "task_type": "AI_CORE", "stream": "44", "device_lane": "699148704", "task_id": "138", "start_us": "1790274065674079.747", "end_us": "1790274065674506.104", "duration_us": "426.357", "trace_index": 1754, "host_trace_index": 412, "cann_trace_index": 2434, "torch_flow": "1790274065674079747", "cann_flow": "2065879269376", "connection_id": "481", "cann_api": "Node@launch", "host_operator": "aclnnMm", "csv_row": 106}, {"label": "P16Dep/trace-01-event_wait/record-A", "trial": "trace-01-event_wait", "branch": "A", "operation": "record-A", "kind": "record", "name": "EVENT_RECORD", "task_type": "EVENT_RECORD", "stream": "44", "device_lane": "699148704", "task_id": "139", "start_us": "1790274065674506.124", "end_us": "1790274065674506.144", "duration_us": "0.02", "trace_index": 1756, "host_trace_index": 415, "cann_trace_index": 2437, "torch_flow": "1790274065674506124", "cann_flow": "2078764171264", "connection_id": "484", "cann_api": "AscendCL@aclrtRecordEvent", "host_operator": "record_event"}, {"label": "P16Dep/trace-01-event_wait/consume-Y", "trial": "trace-01-event_wait", "branch": "B", "operation": "consume-Y", "kind": "compute", "name": "aclnnMuls_MulAiCore_Mul", "task_type": "AI_VECTOR_CORE", "stream": "43", "device_lane": "699148704", "task_id": "68", "start_us": "1790274065674506.584", "end_us": "1790274065674525.865", "duration_us": "19.281", "trace_index": 1758, "host_trace_index": 423, "cann_trace_index": 2441, "torch_flow": "1790274065674506584", "cann_flow": "2095944040448", "connection_id": "488", "cann_api": "Node@launch", "host_operator": "aclnnMuls", "csv_row": 107}, {"label": "P16Dep/trace-01-event_wait/record-B", "trial": "trace-01-event_wait", "branch": "B", "operation": "record-B", "kind": "record", "name": "EVENT_RECORD", "task_type": "EVENT_RECORD", "stream": "43", "device_lane": "699148704", "task_id": "69", "start_us": "1790274065674525.885", "end_us": "1790274065674525.905", "duration_us": "0.02", "trace_index": 1760, "host_trace_index": 426, "cann_trace_index": 2443, "torch_flow": "1790274065674525885", "cann_flow": "2104533975040", "connection_id": "490", "cann_api": "AscendCL@aclrtRecordEvent", "host_operator": "record_event"}, {"label": "P16Dep/trace-02-event_wait/backlog-00", "trial": "trace-02-event_wait", "branch": "A", "operation": "backlog-00", "kind": "compute", "name": "aclnnMm_MatMulV3Common_MatMulV3", "task_type": "AI_CORE", "stream": "44", "device_lane": "699148704", "task_id": "140", "start_us": "1790274065681168.891", "end_us": "1790274065682093.628", "duration_us": "924.737", "trace_index": 1794, "host_trace_index": 520, "cann_trace_index": 2546, "torch_flow": "1790274065681168891", "cann_flow": "2546915606528", "connection_id": "593", "cann_api": "Node@launch", "host_operator": "aclnnMm", "csv_row": 124}, {"label": "P16Dep/trace-02-event_wait/wait-A", "trial": "trace-02-event_wait", "branch": "B", "operation": "wait-A", "kind": "device_wait", "name": "EVENT_WAIT", "task_type": "EVENT_WAIT", "stream": "43", "device_lane": "699148704", "task_id": "70", "start_us": "1790274065681379.119", "end_us": "1790274065686321.477", "duration_us": "4942.358", "trace_index": 1796, "host_trace_index": 541, "cann_trace_index": 2575, "torch_flow": "1790274065681379119", "cann_flow": "2671469658112", "connection_id": "622", "cann_api": "AscendCL@aclrtStreamWaitEvent", "host_operator": "wait_event"}, {"label": "P16Dep/trace-02-event_wait/independent-00", "trial": "trace-02-event_wait", "branch": "C", "operation": "independent-00", "kind": "compute", "name": "aclnnMuls_MulAiCore_Mul", "task_type": "AI_VECTOR_CORE", "stream": "42", "device_lane": "699148704", "task_id": "140", "start_us": "1790274065681492.964", "end_us": "1790274065682097.048", "duration_us": "604.084", "trace_index": 1798, "host_trace_index": 554, "cann_trace_index": 2583, "torch_flow": "1790274065681492964", "cann_flow": "2705829396480", "connection_id": "630", "cann_api": "Node@launch", "host_operator": "aclnnMuls", "csv_row": 125}, {"label": "P16Dep/trace-02-event_wait/backlog-01", "trial": "trace-02-event_wait", "branch": "A", "operation": "backlog-01", "kind": "compute", "name": "aclnnMm_MatMulV3Common_MatMulV3", "task_type": "AI_CORE", "stream": "44", "device_lane": "699148704", "task_id": "141", "start_us": "1790274065682093.648", "end_us": "1790274065683769.135", "duration_us": "1675.487", "trace_index": 1800, "host_trace_index": 523, "cann_trace_index": 2551, "torch_flow": "1790274065682093648", "cann_flow": "2568390443008", "connection_id": "598", "cann_api": "Node@launch", "host_operator": "aclnnMm", "csv_row": 126}, {"label": "P16Dep/trace-02-event_wait/independent-01", "trial": "trace-02-event_wait", "branch": "C", "operation": "independent-01", "kind": "compute", "name": "aclnnMuls_MulAiCore_Mul", "task_type": "AI_VECTOR_CORE", "stream": "42", "device_lane": "699148704", "task_id": "141", "start_us": "1790274065682097.068", "end_us": "1790274065682668.191", "duration_us": "571.123", "trace_index": 1802, "host_trace_index": 559, "cann_trace_index": 2587, "torch_flow": "1790274065682097068", "cann_flow": "2723009265664", "connection_id": "634", "cann_api": "Node@launch", "host_operator": "aclnnMuls", "csv_row": 127}, {"label": "P16Dep/trace-02-event_wait/independent-02", "trial": "trace-02-event_wait", "branch": "C", "operation": "independent-02", "kind": "compute", "name": "aclnnMuls_MulAiCore_Mul", "task_type": "AI_VECTOR_CORE", "stream": "42", "device_lane": "699148704", "task_id": "142", "start_us": "1790274065682668.211", "end_us": "1790274065683234.753", "duration_us": "566.542", "trace_index": 1804, "host_trace_index": 564, "cann_trace_index": 2591, "torch_flow": "1790274065682668211", "cann_flow": "2740189134848", "connection_id": "638", "cann_api": "Node@launch", "host_operator": "aclnnMuls", "csv_row": 128}, {"label": "P16Dep/trace-02-event_wait/independent-03", "trial": "trace-02-event_wait", "branch": "C", "operation": "independent-03", "kind": "compute", "name": "aclnnMuls_MulAiCore_Mul", "task_type": "AI_VECTOR_CORE", "stream": "42", "device_lane": "699148704", "task_id": "143", "start_us": "1790274065683234.773", "end_us": "1790274065683784.315", "duration_us": "549.542", "trace_index": 1806, "host_trace_index": 569, "cann_trace_index": 2595, "torch_flow": "1790274065683234773", "cann_flow": "2757369004032", "connection_id": "642", "cann_api": "Node@launch", "host_operator": "aclnnMuls", "csv_row": 129}, {"label": "P16Dep/trace-02-event_wait/backlog-02", "trial": "trace-02-event_wait", "branch": "A", "operation": "backlog-02", "kind": "compute", "name": "aclnnMm_MatMulV3Common_MatMulV3", "task_type": "AI_CORE", "stream": "44", "device_lane": "699148704", "task_id": "142", "start_us": "1790274065683769.155", "end_us": "1790274065685041.226", "duration_us": "1272.071", "trace_index": 1808, "host_trace_index": 526, "cann_trace_index": 2556, "torch_flow": "1790274065683769155", "cann_flow": "2589865279488", "connection_id": "603", "cann_api": "Node@launch", "host_operator": "aclnnMm", "csv_row": 130}, {"label": "P16Dep/trace-02-event_wait/independent-04", "trial": "trace-02-event_wait", "branch": "C", "operation": "independent-04", "kind": "compute", "name": "aclnnMuls_MulAiCore_Mul", "task_type": "AI_VECTOR_CORE", "stream": "42", "device_lane": "699148704", "task_id": "144", "start_us": "1790274065683784.335", "end_us": "1790274065684348.958", "duration_us": "564.623", "trace_index": 1810, "host_trace_index": 574, "cann_trace_index": 2599, "torch_flow": "1790274065683784335", "cann_flow": "2774548873216", "connection_id": "646", "cann_api": "Node@launch", "host_operator": "aclnnMuls", "csv_row": 131}, {"label": "P16Dep/trace-02-event_wait/independent-05", "trial": "trace-02-event_wait", "branch": "C", "operation": "independent-05", "kind": "compute", "name": "aclnnMuls_MulAiCore_Mul", "task_type": "AI_VECTOR_CORE", "stream": "42", "device_lane": "699148704", "task_id": "145", "start_us": "1790274065684348.978", "end_us": "1790274065684912.401", "duration_us": "563.423", "trace_index": 1812, "host_trace_index": 579, "cann_trace_index": 2603, "torch_flow": "1790274065684348978", "cann_flow": "2791728742400", "connection_id": "650", "cann_api": "Node@launch", "host_operator": "aclnnMuls", "csv_row": 132}, {"label": "P16Dep/trace-02-event_wait/record-C", "trial": "trace-02-event_wait", "branch": "C", "operation": "record-C", "kind": "record", "name": "EVENT_RECORD", "task_type": "EVENT_RECORD", "stream": "42", "device_lane": "699148704", "task_id": "146", "start_us": "1790274065684912.421", "end_us": "1790274065684912.441", "duration_us": "0.02", "trace_index": 1814, "host_trace_index": 582, "cann_trace_index": 2605, "torch_flow": "1790274065684912421", "cann_flow": "2800318676992", "connection_id": "652", "cann_api": "AscendCL@aclrtRecordEvent", "host_operator": "record_event"}, {"label": "P16Dep/trace-02-event_wait/backlog-03", "trial": "trace-02-event_wait", "branch": "A", "operation": "backlog-03", "kind": "compute", "name": "aclnnMm_MatMulV3Common_MatMulV3", "task_type": "AI_CORE", "stream": "44", "device_lane": "699148704", "task_id": "143", "start_us": "1790274065685041.246", "end_us": "1790274065685468.163", "duration_us": "426.917", "trace_index": 1816, "host_trace_index": 529, "cann_trace_index": 2561, "torch_flow": "1790274065685041246", "cann_flow": "2611340115968", "connection_id": "608", "cann_api": "Node@launch", "host_operator": "aclnnMm", "csv_row": 133}, {"label": "P16Dep/trace-02-event_wait/backlog-04", "trial": "trace-02-event_wait", "branch": "A", "operation": "backlog-04", "kind": "compute", "name": "aclnnMm_MatMulV3Common_MatMulV3", "task_type": "AI_CORE", "stream": "44", "device_lane": "699148704", "task_id": "144", "start_us": "1790274065685468.183", "end_us": "1790274065685893.940", "duration_us": "425.757", "trace_index": 1818, "host_trace_index": 532, "cann_trace_index": 2566, "torch_flow": "1790274065685468183", "cann_flow": "2632814952448", "connection_id": "613", "cann_api": "Node@launch", "host_operator": "aclnnMm", "csv_row": 134}, {"label": "P16Dep/trace-02-event_wait/produce-Y", "trial": "trace-02-event_wait", "branch": "A", "operation": "produce-Y", "kind": "compute", "name": "aclnnMm_MatMulV3Common_MatMulV3", "task_type": "AI_CORE", "stream": "44", "device_lane": "699148704", "task_id": "145", "start_us": "1790274065685893.960", "end_us": "1790274065686320.997", "duration_us": "427.037", "trace_index": 1820, "host_trace_index": 535, "cann_trace_index": 2571, "torch_flow": "1790274065685893960", "cann_flow": "2654289788928", "connection_id": "618", "cann_api": "Node@launch", "host_operator": "aclnnMm", "csv_row": 135}, {"label": "P16Dep/trace-02-event_wait/record-A", "trial": "trace-02-event_wait", "branch": "A", "operation": "record-A", "kind": "record", "name": "EVENT_RECORD", "task_type": "EVENT_RECORD", "stream": "44", "device_lane": "699148704", "task_id": "146", "start_us": "1790274065686321.017", "end_us": "1790274065686321.037", "duration_us": "0.02", "trace_index": 1822, "host_trace_index": 538, "cann_trace_index": 2574, "torch_flow": "1790274065686321017", "cann_flow": "2667174690816", "connection_id": "621", "cann_api": "AscendCL@aclrtRecordEvent", "host_operator": "record_event"}, {"label": "P16Dep/trace-02-event_wait/consume-Y", "trial": "trace-02-event_wait", "branch": "B", "operation": "consume-Y", "kind": "compute", "name": "aclnnMuls_MulAiCore_Mul", "task_type": "AI_VECTOR_CORE", "stream": "43", "device_lane": "699148704", "task_id": "71", "start_us": "1790274065686321.557", "end_us": "1790274065686342.278", "duration_us": "20.721", "trace_index": 1824, "host_trace_index": 546, "cann_trace_index": 2578, "torch_flow": "1790274065686321557", "cann_flow": "2684354560000", "connection_id": "625", "cann_api": "Node@launch", "host_operator": "aclnnMuls", "csv_row": 136}, {"label": "P16Dep/trace-02-event_wait/record-B", "trial": "trace-02-event_wait", "branch": "B", "operation": "record-B", "kind": "record", "name": "EVENT_RECORD", "task_type": "EVENT_RECORD", "stream": "43", "device_lane": "699148704", "task_id": "72", "start_us": "1790274065686342.318", "end_us": "1790274065686342.338", "duration_us": "0.02", "trace_index": 1826, "host_trace_index": 549, "cann_trace_index": 2580, "torch_flow": "1790274065686342318", "cann_flow": "2692944494592", "connection_id": "627", "cann_api": "AscendCL@aclrtRecordEvent", "host_operator": "record_event"}, {"label": "P16Dep/trace-02-no_wait/backlog-00", "trial": "trace-02-no_wait", "branch": "A", "operation": "backlog-00", "kind": "compute", "name": "aclnnMm_MatMulV3Common_MatMulV3", "task_type": "AI_CORE", "stream": "44", "device_lane": "699148704", "task_id": "147", "start_us": "1790274065692952.742", "end_us": "1790274065694151.710", "duration_us": "1198.968", "trace_index": 1860, "host_trace_index": 643, "cann_trace_index": 2683, "torch_flow": "1790274065692952742", "cann_flow": "3135326126080", "connection_id": "730", "cann_api": "Node@launch", "host_operator": "aclnnMm", "csv_row": 153}, {"label": "P16Dep/trace-02-no_wait/consume-Y", "trial": "trace-02-no_wait", "branch": "B", "operation": "consume-Y", "kind": "compute", "name": "aclnnMuls_MulAiCore_Mul", "task_type": "AI_VECTOR_CORE", "stream": "43", "device_lane": "699148704", "task_id": "73", "start_us": "1790274065693154.750", "end_us": "1790274065693182.691", "duration_us": "27.941", "trace_index": 1862, "host_trace_index": 666, "cann_trace_index": 2714, "torch_flow": "1790274065693154750", "cann_flow": "3272765079552", "connection_id": "762", "cann_api": "Node@launch", "host_operator": "aclnnMuls", "csv_row": 154}, {"label": "P16Dep/trace-02-no_wait/record-B", "trial": "trace-02-no_wait", "branch": "B", "operation": "record-B", "kind": "record", "name": "EVENT_RECORD", "task_type": "EVENT_RECORD", "stream": "43", "device_lane": "699148704", "task_id": "74", "start_us": "1790274065693185.871", "end_us": "1790274065693185.891", "duration_us": "0.02", "trace_index": 1864, "host_trace_index": 669, "cann_trace_index": 2716, "torch_flow": "1790274065693185871", "cann_flow": "3281355014144", "connection_id": "764", "cann_api": "AscendCL@aclrtRecordEvent", "host_operator": "record_event"}, {"label": "P16Dep/trace-02-no_wait/independent-00", "trial": "trace-02-no_wait", "branch": "C", "operation": "independent-00", "kind": "compute", "name": "aclnnMuls_MulAiCore_Mul", "task_type": "AI_VECTOR_CORE", "stream": "42", "device_lane": "699148704", "task_id": "147", "start_us": "1790274065693233.653", "end_us": "1790274065693841.157", "duration_us": "607.504", "trace_index": 1866, "host_trace_index": 674, "cann_trace_index": 2719, "torch_flow": "1790274065693233653", "cann_flow": "3294239916032", "connection_id": "767", "cann_api": "Node@launch", "host_operator": "aclnnMuls", "csv_row": 155}, {"label": "P16Dep/trace-02-no_wait/independent-01", "trial": "trace-02-no_wait", "branch": "C", "operation": "independent-01", "kind": "compute", "name": "aclnnMuls_MulAiCore_Mul", "task_type": "AI_VECTOR_CORE", "stream": "42", "device_lane": "699148704", "task_id": "148", "start_us": "1790274065693841.197", "end_us": "1790274065694379.779", "duration_us": "538.582", "trace_index": 1868, "host_trace_index": 679, "cann_trace_index": 2723, "torch_flow": "1790274065693841197", "cann_flow": "3320009719808", "connection_id": "773", "cann_api": "Node@launch", "host_operator": "aclnnMuls", "csv_row": 156}, {"label": "P16Dep/trace-02-no_wait/backlog-01", "trial": "trace-02-no_wait", "branch": "A", "operation": "backlog-01", "kind": "compute", "name": "aclnnMm_MatMulV3Common_MatMulV3", "task_type": "AI_CORE", "stream": "44", "device_lane": "699148704", "task_id": "148", "start_us": "1790274065694151.730", "end_us": "1790274065695725.793", "duration_us": "1574.063", "trace_index": 1870, "host_trace_index": 646, "cann_trace_index": 2688, "torch_flow": "1790274065694151730", "cann_flow": "3156800962560", "connection_id": "735", "cann_api": "Node@launch", "host_operator": "aclnnMm", "csv_row": 157}, {"label": "P16Dep/trace-02-no_wait/independent-02", "trial": "trace-02-no_wait", "branch": "C", "operation": "independent-02", "kind": "compute", "name": "aclnnMuls_MulAiCore_Mul", "task_type": "AI_VECTOR_CORE", "stream": "42", "device_lane": "699148704", "task_id": "149", "start_us": "1790274065694379.819", "end_us": "1790274065694953.162", "duration_us": "573.343", "trace_index": 1872, "host_trace_index": 684, "cann_trace_index": 2727, "torch_flow": "1790274065694379819", "cann_flow": "3350074490880", "connection_id": "780", "cann_api": "Node@launch", "host_operator": "aclnnMuls", "csv_row": 158}, {"label": "P16Dep/trace-02-no_wait/independent-03", "trial": "trace-02-no_wait", "branch": "C", "operation": "independent-03", "kind": "compute", "name": "aclnnMuls_MulAiCore_Mul", "task_type": "AI_VECTOR_CORE", "stream": "42", "device_lane": "699148704", "task_id": "150", "start_us": "1790274065694953.202", "end_us": "1790274065695510.884", "duration_us": "557.682", "trace_index": 1874, "host_trace_index": 689, "cann_trace_index": 2731, "torch_flow": "1790274065694953202", "cann_flow": "3367254360064", "connection_id": "784", "cann_api": "Node@launch", "host_operator": "aclnnMuls", "csv_row": 159}, {"label": "P16Dep/trace-02-no_wait/independent-04", "trial": "trace-02-no_wait", "branch": "C", "operation": "independent-04", "kind": "compute", "name": "aclnnMuls_MulAiCore_Mul", "task_type": "AI_VECTOR_CORE", "stream": "42", "device_lane": "699148704", "task_id": "151", "start_us": "1790274065695510.904", "end_us": "1790274065696055.626", "duration_us": "544.722", "trace_index": 1876, "host_trace_index": 694, "cann_trace_index": 2735, "torch_flow": "1790274065695510904", "cann_flow": "3384434229248", "connection_id": "788", "cann_api": "Node@launch", "host_operator": "aclnnMuls", "csv_row": 160}, {"label": "P16Dep/trace-02-no_wait/backlog-02", "trial": "trace-02-no_wait", "branch": "A", "operation": "backlog-02", "kind": "compute", "name": "aclnnMm_MatMulV3Common_MatMulV3", "task_type": "AI_CORE", "stream": "44", "device_lane": "699148704", "task_id": "149", "start_us": "1790274065695725.813", "end_us": "1790274065696773.655", "duration_us": "1047.842", "trace_index": 1878, "host_trace_index": 649, "cann_trace_index": 2693, "torch_flow": "1790274065695725813", "cann_flow": "3178275799040", "connection_id": "740", "cann_api": "Node@launch", "host_operator": "aclnnMm", "csv_row": 161}, {"label": "P16Dep/trace-02-no_wait/independent-05", "trial": "trace-02-no_wait", "branch": "C", "operation": "independent-05", "kind": "compute", "name": "aclnnMuls_MulAiCore_Mul", "task_type": "AI_VECTOR_CORE", "stream": "42", "device_lane": "699148704", "task_id": "152", "start_us": "1790274065696055.646", "end_us": "1790274065696609.008", "duration_us": "553.362", "trace_index": 1880, "host_trace_index": 699, "cann_trace_index": 2739, "torch_flow": "1790274065696055646", "cann_flow": "3401614098432", "connection_id": "792", "cann_api": "Node@launch", "host_operator": "aclnnMuls", "csv_row": 162}, {"label": "P16Dep/trace-02-no_wait/record-C", "trial": "trace-02-no_wait", "branch": "C", "operation": "record-C", "kind": "record", "name": "EVENT_RECORD", "task_type": "EVENT_RECORD", "stream": "42", "device_lane": "699148704", "task_id": "153", "start_us": "1790274065696609.028", "end_us": "1790274065696609.048", "duration_us": "0.02", "trace_index": 1882, "host_trace_index": 702, "cann_trace_index": 2741, "torch_flow": "1790274065696609028", "cann_flow": "3410204033024", "connection_id": "794", "cann_api": "AscendCL@aclrtRecordEvent", "host_operator": "record_event"}, {"label": "P16Dep/trace-02-no_wait/backlog-03", "trial": "trace-02-no_wait", "branch": "A", "operation": "backlog-03", "kind": "compute", "name": "aclnnMm_MatMulV3Common_MatMulV3", "task_type": "AI_CORE", "stream": "44", "device_lane": "699148704", "task_id": "150", "start_us": "1790274065696773.695", "end_us": "1790274065697201.012", "duration_us": "427.317", "trace_index": 1884, "host_trace_index": 652, "cann_trace_index": 2698, "torch_flow": "1790274065696773695", "cann_flow": "3199750635520", "connection_id": "745", "cann_api": "Node@launch", "host_operator": "aclnnMm", "csv_row": 163}, {"label": "P16Dep/trace-02-no_wait/backlog-04", "trial": "trace-02-no_wait", "branch": "A", "operation": "backlog-04", "kind": "compute", "name": "aclnnMm_MatMulV3Common_MatMulV3", "task_type": "AI_CORE", "stream": "44", "device_lane": "699148704", "task_id": "151", "start_us": "1790274065697201.052", "end_us": "1790274065697627.309", "duration_us": "426.257", "trace_index": 1886, "host_trace_index": 655, "cann_trace_index": 2703, "torch_flow": "1790274065697201052", "cann_flow": "3225520439296", "connection_id": "751", "cann_api": "Node@launch", "host_operator": "aclnnMm", "csv_row": 164}, {"label": "P16Dep/trace-02-no_wait/produce-Y", "trial": "trace-02-no_wait", "branch": "A", "operation": "produce-Y", "kind": "compute", "name": "aclnnMm_MatMulV3Common_MatMulV3", "task_type": "AI_CORE", "stream": "44", "device_lane": "699148704", "task_id": "152", "start_us": "1790274065697627.329", "end_us": "1790274065698053.366", "duration_us": "426.037", "trace_index": 1888, "host_trace_index": 658, "cann_trace_index": 2708, "torch_flow": "1790274065697627329", "cann_flow": "3246995275776", "connection_id": "756", "cann_api": "Node@launch", "host_operator": "aclnnMm", "csv_row": 165}, {"label": "P16Dep/trace-02-no_wait/record-A", "trial": "trace-02-no_wait", "branch": "A", "operation": "record-A", "kind": "record", "name": "EVENT_RECORD", "task_type": "EVENT_RECORD", "stream": "44", "device_lane": "699148704", "task_id": "153", "start_us": "1790274065698053.406", "end_us": "1790274065698053.426", "duration_us": "0.02", "trace_index": 1890, "host_trace_index": 661, "cann_trace_index": 2711, "torch_flow": "1790274065698053406", "cann_flow": "3259880177664", "connection_id": "759", "cann_api": "AscendCL@aclrtRecordEvent", "host_operator": "record_event"}]</script><script>
+const tasks=JSON.parse(document.getElementById('data').textContent),byLabel=new Map(tasks.map(t=>[t.label,t]));
+document.getElementById('trial').addEventListener('change',e=>document.querySelectorAll('.trial').forEach(s=>s.hidden=e.target.value!=='all'&&s.dataset.trial!==e.target.value));
+function show(n){document.getElementById('detail').textContent=JSON.stringify(byLabel.get(n.dataset.label),null,2)}
+document.querySelectorAll('.task').forEach(n=>{n.addEventListener('click',()=>show(n));n.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();show(n)}})});
+</script></main></html>

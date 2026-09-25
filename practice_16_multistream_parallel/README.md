@@ -8,6 +8,8 @@
 
 新增[保留与去掉同步的实测对照](SYNC_COMPARISON.md)及[交互报告](results/2026-09-24-sync-run01/analysis/index.html)：区分每轮等待、最后统一等待和提前读取结果。性能在无profiler条件下测量，另采设备证据；原单流/双流数据保持为独立实验。
 
+继续新增[三个stream的依赖实验](CROSS_STREAM_DEPENDENCY.md)及[交互时间线](results/2026-09-24-dependency-run01/analysis/index.html)：A生成Y，B消费Y，C独立计算。只删除A→B等待，最终全部完成后B仍可能保留错误结果；保留等待时C仍可并行。
+
 ## 与 Practice 15 的区别
 
 Practice 15 的双 stream 控制实验是 `产生 y → 等待 → 消费 y`，有意用 event 将计算串起来。
