@@ -248,6 +248,16 @@ See [the guide](practice_18_kernel_data_dag/README.md),
 [findings](practice_18_kernel_data_dag/RESULTS.md) and
 [offline interactive graph](practice_18_kernel_data_dag/report/index.html).
 
+## Practice 19: inspect core usage inside a real KV kernel
+
+Query the actual Cube/Vector capacity, vary token counts for the installed ATB
+KV-write operator, and join each call to its exact device task and core fields.
+Keep completed-work timings separate from pipeline profiling. All 100 full-pool
+checks pass; reported Vector cores rise to 48 and remain capped for larger inputs.
+See [the guide](practice_19_kernel_core_usage/README.md),
+[findings](practice_19_kernel_core_usage/RESULTS.md) and
+[offline report](practice_19_kernel_core_usage/results/2026-09-28-run01/analysis/index.html).
+
 ## Practice 20: trace real KV offload and reload overlap
 
 Run the installed Ascend SimpleCPUOffload path with a bounded CPU/NPU cache,

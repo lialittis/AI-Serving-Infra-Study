@@ -117,6 +117,7 @@ Qwen batch 32与Llama batch 64的提前随机分支均在5个scheduler step中�
 | 16：真实多stream并行 | 两个独立算子是否在设备上重叠执行？ | 已完成三轮单流/双流对照，实际kernel区间交集、输出校验、终点event等待及离线时间线 |
 | 17：vLLM真实多stream | 模型与采样分支怎样并行？ | 已完成Qwen/Llama随机数stream与model stream、同步、消费数据的关联及匹配对照 |
 | 18：全模型kernel数据DAG | 数据依赖、关键路径和stream分配怎样分析？ | 已实现全任务tensor边界投影、KV索引契约、关键路径及离线分配；native内部workspace缺口使精确数据DAG仍未完成 |
+| 19：真实kernel核数 | 一个KV写入kernel使用多少核？ | 已查询24 Cube/48 Vector，隔离真实ATB写入并改变tokens；60个精确任务、100次完整池校验、独立完成计时与流水线指标；逐物理核时间线仍未知 |
 
 2026-09-28 根据用户要求，Practice 18 改为全模型 kernel 数据依赖与调度分析。
 四轮真实 eager 采集覆盖 1,444 个设备任务、四次 forward 的全部 24 层。
