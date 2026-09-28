@@ -19,7 +19,7 @@ def save(path, value):
     path.write_text(json.dumps(value, ensure_ascii=False, indent=2) + "\n")
 
 
-def main():
+def main(observer_dir=None):
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--model", default="/data/huggingface_home/hub/Qwen2.5-0.5B-Instruct")
     parser.add_argument("--port", type=int, default=8013)
@@ -40,6 +40,13 @@ def main():
         content = (root / name).read_bytes()
         (snapshot / name).write_bytes(content)
         hashes["instrumentation/" + name] = hashlib.sha256(content).hexdigest()
+    if observer_dir is not None:
+        observer_snapshot = snapshot / "dependency_observer"
+        observer_snapshot.mkdir()
+        for name in ("sitecustomize.py", "dependency_trace.py", "run_capture.py", "collect_contracts.py"):
+            content = (observer_dir / name).read_bytes()
+            (observer_snapshot / name).write_bytes(content)
+            hashes["instrumentation/dependency_observer/" + name] = hashlib.sha256(content).hexdigest()
     base_hooks = root.parent / "practice_07_real_request_trace/trace_hooks.py"
     content = base_hooks.read_bytes()
     (snapshot / "trace_hooks.py").write_bytes(content)
@@ -57,17 +64,25 @@ def main():
                        "torch_profiler_with_stack": False, "ignore_frontend": True}
     command += ["--profiler-config", json.dumps(profiler_config)]
     env = os.environ.copy()
-    for key in ("P07_TRACE_DIR", "P08_TRACE_DIR", "P09_TRACE_DIR", "P10_GRAPH_DIR", "P11_TRACE_DIR", "P12_TRACE_DIR"):
-        env.pop(key, None)
+    for key in list(env):
+        if key == 'P10_GRAPH_DIR' or (key.startswith('P') and key.endswith('_TRACE_DIR')):
+            env.pop(key, None)
     env.update(HF_HUB_OFFLINE="1", TRANSFORMERS_OFFLINE="1",
                VLLM_WORKER_MULTIPROC_METHOD="spawn", P13_TRACE_DIR=str(output / "events"),
                TRITON_CACHE_DIR=str(output / "compiler_cache"),
                PYTHONPATH=os.pathsep.join([str(root), str(base_hooks.parent), env.get("PYTHONPATH", "")]))
+    if observer_dir is not None:
+        env["P18_TRACE_DIR"] = str(output / "events")
+        env["PYTHONPATH"] = str(observer_dir) + os.pathsep + env["PYTHONPATH"]
     save(output / "command.json", {"argv": command,
+         "dependency_observer": str(observer_dir) if observer_dir else None,
          "environment_overrides": {key: env[key] for key in (
-             "HF_HUB_OFFLINE", "TRANSFORMERS_OFFLINE", "VLLM_WORKER_MULTIPROC_METHOD", "P13_TRACE_DIR", "TRITON_CACHE_DIR", "PYTHONPATH")}})
+             "HF_HUB_OFFLINE", "TRANSFORMERS_OFFLINE", "VLLM_WORKER_MULTIPROC_METHOD", "P13_TRACE_DIR", "TRITON_CACHE_DIR", "PYTHONPATH", "P18_TRACE_DIR") if key in env}})
     from collect_sources import collect_sources
     collect_sources(output)
+    if observer_dir is not None:
+        subprocess.run([sys.executable, str(observer_dir / "collect_contracts.py"),
+                        "--output", str(output)], check=True)
     save(output / "cache_before.json", {"triton_cache_exists": (output / "compiler_cache").exists(),
          "note": "new isolated Triton cache; no shared cache deleted"})
     from transformers import AutoTokenizer

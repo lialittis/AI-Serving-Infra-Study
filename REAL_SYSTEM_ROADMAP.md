@@ -115,8 +115,13 @@ Qwen batch 32与Llama batch 64的提前随机分支均在5个scheduler step中�
 | 14：KV池实际分配 | 初始化时谁申请内存，地址、物理句柄和KV tensor怎样对应？ | 已完成预算、48个存储、allocator历史、CANN物理申请/映射、reshape与绑定的逐项核验；不发送推理请求 |
 | 15：kernel execution graph | host提交怎样连接到stream、同步及数据关系？ | 已完成1444个eager设备任务的类型化图、局部RAW与KV存储候选边；独立双stream真实实验验证event复用和等待 |
 | 16：真实多stream并行 | 两个独立算子是否在设备上重叠执行？ | 已完成三轮单流/双流对照，实际kernel区间交集、输出校验、终点event等待及离线时间线 |
-| 17：continuous batching | 多个请求怎样共享一次执行？ | 长短请求交错到达，记录每轮请求集合、调度 token 数和完成情况 |
-| 18：执行模式与独立算子 | graph 改变什么，真实算子能否单独复现？ | 12已完成PIECEWISE对照；继续研究FULL graph、重放内部Model/Task关联与独立算子实验 |
+| 17：vLLM真实多stream | 模型与采样分支怎样并行？ | 已完成Qwen/Llama随机数stream与model stream、同步、消费数据的关联及匹配对照 |
+| 18：全模型kernel数据DAG | 数据依赖、关键路径和stream分配怎样分析？ | 已实现全任务tensor边界投影、KV索引契约、关键路径及离线分配；native内部workspace缺口使精确数据DAG仍未完成 |
+
+2026-09-28 根据用户要求，Practice 18 改为全模型 kernel 数据依赖与调度分析。
+四轮真实 eager 采集覆盖 1,444 个设备任务、四次 forward 的全部 24 层。
+结果与严格完整性边界见 [Practice 18](practice_18_kernel_data_dag/README.md)。
+原 continuous batching、FULL graph 及重放内部关联实验保留为后续任务。
 
 12 特别区分 request 结束、引用计数归零、缓存淘汰、数据覆盖。
 07/08 的主机调用日志不能证明设备上的生命周期违规或 race；09 的 profiler 也有观察开销，

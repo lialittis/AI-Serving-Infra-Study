@@ -1,0 +1,669 @@
+{
+  "audit": {
+    "dispatch_calls": 5449,
+    "device_tasks": 1444,
+    "dispatcher_reentry_scopes": {
+      "runner": 4,
+      "linear": 384,
+      "rope_impl": 96,
+      "attention": 96,
+      "sample": 4
+    },
+    "forward_tasks": 1260,
+    "attributed_tasks": 1436,
+    "unattributed_task_names": {
+      "EVENT_RECORD": 8
+    },
+    "unobserved_tasks": [
+      "n0004",
+      "n0432",
+      "n0753",
+      "n0769",
+      "n1090",
+      "n1106",
+      "n1427",
+      "n1443"
+    ],
+    "multikernel_scopes": 156,
+    "unknown_contract_tasks": [],
+    "kv_slot_launches_reconstructed": 4,
+    "contract_status": {
+      "operator_boundary": 977,
+      "triton_tensor_bounds": 111,
+      "indexed_kv_cpu_contract": 96,
+      "native_attention_boundary": 24,
+      "native_attention_kv_cpu_contract": 72
+    },
+    "complete_task_inventory": true,
+    "complete_exact_data_dag": false,
+    "native_workspace_observed": false,
+    "exact_kv_indices_observed": false,
+    "kv_indices_from_cpu_source_contract": true,
+    "live_stream_reassignment_eligible": false
+  },
+  "edge_counts": {
+    "observed": {
+      "stream_order": 1443
+    },
+    "projected": {
+      "opaque_internal_order": 156,
+      "RAW": 3344,
+      "WAW": 261,
+      "allocation_reuse": 5660,
+      "WAR": 234,
+      "unknown_access_barrier": 11516,
+      "host_phase_boundary": 59410
+    },
+    "certified": {
+      "stream_order": 1443
+    }
+  },
+  "assumptions": [
+    "Projected graph uses public operator boundary reads/writes, not native kernel memory traces.",
+    "Native private/global workspace and allocator stream ownership are not fully observed.",
+    "Tensor view byte sets describe possible public accesses; unsupported large strided sets use a bounding range.",
+    "KV indices reconstructed from CPU staging and synchronous source equivalence are contracts, not device memory traces.",
+    "Inputs read without a writer in this window are external; initialization is not proven.",
+    "Multi-kernel operator reads occur at first member and writes at last member, with internal order retained.",
+    "Unknown task accesses and host phase boundaries remain barriers.",
+    "Certified graph retains observed FIFO order until exact dependency audit passes.",
+    "Measured durations include instrumentation; fixed-duration schedules ignore resource contention and host release delays."
+  ],
+  "analysis": {
+    "request": {
+      "observed": {
+        "nodes": 1444,
+        "edges": 1443,
+        "measured_window_ns": 1883878698,
+        "work_ns": 11505395,
+        "critical_path_ns": 11505395,
+        "work_over_span": 1.0,
+        "asap_peak_active": 1,
+        "schedules": [
+          {
+            "stream_count": 1,
+            "event_cost_ns": 0,
+            "makespan_ns": 11505395,
+            "lower_bound_ns": 11505395,
+            "event_waits": 0
+          },
+          {
+            "stream_count": 2,
+            "event_cost_ns": 0,
+            "makespan_ns": 11505395,
+            "lower_bound_ns": 11505395,
+            "event_waits": 0
+          },
+          {
+            "stream_count": 4,
+            "event_cost_ns": 0,
+            "makespan_ns": 11505395,
+            "lower_bound_ns": 11505395,
+            "event_waits": 0
+          },
+          {
+            "stream_count": 8,
+            "event_cost_ns": 0,
+            "makespan_ns": 11505395,
+            "lower_bound_ns": 11505395,
+            "event_waits": 0
+          }
+        ]
+      },
+      "projected": {
+        "nodes": 1444,
+        "edges": 80581,
+        "measured_window_ns": 1883878698,
+        "work_ns": 11505395,
+        "critical_path_ns": 10717598,
+        "work_over_span": 1.073504996175449,
+        "asap_peak_active": 10,
+        "schedules": [
+          {
+            "stream_count": 1,
+            "event_cost_ns": 0,
+            "makespan_ns": 11505395,
+            "lower_bound_ns": 11505395,
+            "event_waits": 0
+          },
+          {
+            "stream_count": 2,
+            "event_cost_ns": 0,
+            "makespan_ns": 10722838,
+            "lower_bound_ns": 10717598,
+            "event_waits": 206
+          },
+          {
+            "stream_count": 4,
+            "event_cost_ns": 0,
+            "makespan_ns": 10717598,
+            "lower_bound_ns": 10717598,
+            "event_waits": 227
+          },
+          {
+            "stream_count": 8,
+            "event_cost_ns": 0,
+            "makespan_ns": 10717598,
+            "lower_bound_ns": 10717598,
+            "event_waits": 229
+          }
+        ]
+      },
+      "certified": {
+        "nodes": 1444,
+        "edges": 1443,
+        "measured_window_ns": 1883878698,
+        "work_ns": 11505395,
+        "critical_path_ns": 11505395,
+        "work_over_span": 1.0,
+        "asap_peak_active": 1,
+        "schedules": [
+          {
+            "stream_count": 1,
+            "event_cost_ns": 0,
+            "makespan_ns": 11505395,
+            "lower_bound_ns": 11505395,
+            "event_waits": 0
+          },
+          {
+            "stream_count": 2,
+            "event_cost_ns": 0,
+            "makespan_ns": 11505395,
+            "lower_bound_ns": 11505395,
+            "event_waits": 0
+          },
+          {
+            "stream_count": 4,
+            "event_cost_ns": 0,
+            "makespan_ns": 11505395,
+            "lower_bound_ns": 11505395,
+            "event_waits": 0
+          },
+          {
+            "stream_count": 8,
+            "event_cost_ns": 0,
+            "makespan_ns": 11505395,
+            "lower_bound_ns": 11505395,
+            "event_waits": 0
+          }
+        ]
+      }
+    },
+    "decode-1/forward": {
+      "observed": {
+        "nodes": 291,
+        "edges": 290,
+        "measured_window_ns": 404035713,
+        "work_ns": 2025632,
+        "critical_path_ns": 2025632,
+        "work_over_span": 1.0,
+        "asap_peak_active": 1,
+        "schedules": [
+          {
+            "stream_count": 1,
+            "event_cost_ns": 0,
+            "makespan_ns": 2025632,
+            "lower_bound_ns": 2025632,
+            "event_waits": 0
+          },
+          {
+            "stream_count": 2,
+            "event_cost_ns": 0,
+            "makespan_ns": 2025632,
+            "lower_bound_ns": 2025632,
+            "event_waits": 0
+          },
+          {
+            "stream_count": 4,
+            "event_cost_ns": 0,
+            "makespan_ns": 2025632,
+            "lower_bound_ns": 2025632,
+            "event_waits": 0
+          },
+          {
+            "stream_count": 8,
+            "event_cost_ns": 0,
+            "makespan_ns": 2025632,
+            "lower_bound_ns": 2025632,
+            "event_waits": 0
+          }
+        ]
+      },
+      "projected": {
+        "nodes": 291,
+        "edges": 1331,
+        "measured_window_ns": 404035713,
+        "work_ns": 2025632,
+        "critical_path_ns": 2025632,
+        "work_over_span": 1.0,
+        "asap_peak_active": 1,
+        "schedules": [
+          {
+            "stream_count": 1,
+            "event_cost_ns": 0,
+            "makespan_ns": 2025632,
+            "lower_bound_ns": 2025632,
+            "event_waits": 0
+          },
+          {
+            "stream_count": 2,
+            "event_cost_ns": 0,
+            "makespan_ns": 2025632,
+            "lower_bound_ns": 2025632,
+            "event_waits": 0
+          },
+          {
+            "stream_count": 4,
+            "event_cost_ns": 0,
+            "makespan_ns": 2025632,
+            "lower_bound_ns": 2025632,
+            "event_waits": 0
+          },
+          {
+            "stream_count": 8,
+            "event_cost_ns": 0,
+            "makespan_ns": 2025632,
+            "lower_bound_ns": 2025632,
+            "event_waits": 0
+          }
+        ]
+      },
+      "certified": {
+        "nodes": 291,
+        "edges": 290,
+        "measured_window_ns": 404035713,
+        "work_ns": 2025632,
+        "critical_path_ns": 2025632,
+        "work_over_span": 1.0,
+        "asap_peak_active": 1,
+        "schedules": [
+          {
+            "stream_count": 1,
+            "event_cost_ns": 0,
+            "makespan_ns": 2025632,
+            "lower_bound_ns": 2025632,
+            "event_waits": 0
+          },
+          {
+            "stream_count": 2,
+            "event_cost_ns": 0,
+            "makespan_ns": 2025632,
+            "lower_bound_ns": 2025632,
+            "event_waits": 0
+          },
+          {
+            "stream_count": 4,
+            "event_cost_ns": 0,
+            "makespan_ns": 2025632,
+            "lower_bound_ns": 2025632,
+            "event_waits": 0
+          },
+          {
+            "stream_count": 8,
+            "event_cost_ns": 0,
+            "makespan_ns": 2025632,
+            "lower_bound_ns": 2025632,
+            "event_waits": 0
+          }
+        ]
+      }
+    },
+    "decode-2/forward": {
+      "observed": {
+        "nodes": 291,
+        "edges": 290,
+        "measured_window_ns": 405058374,
+        "work_ns": 2016843,
+        "critical_path_ns": 2016843,
+        "work_over_span": 1.0,
+        "asap_peak_active": 1,
+        "schedules": [
+          {
+            "stream_count": 1,
+            "event_cost_ns": 0,
+            "makespan_ns": 2016843,
+            "lower_bound_ns": 2016843,
+            "event_waits": 0
+          },
+          {
+            "stream_count": 2,
+            "event_cost_ns": 0,
+            "makespan_ns": 2016843,
+            "lower_bound_ns": 2016843,
+            "event_waits": 0
+          },
+          {
+            "stream_count": 4,
+            "event_cost_ns": 0,
+            "makespan_ns": 2016843,
+            "lower_bound_ns": 2016843,
+            "event_waits": 0
+          },
+          {
+            "stream_count": 8,
+            "event_cost_ns": 0,
+            "makespan_ns": 2016843,
+            "lower_bound_ns": 2016843,
+            "event_waits": 0
+          }
+        ]
+      },
+      "projected": {
+        "nodes": 291,
+        "edges": 1331,
+        "measured_window_ns": 405058374,
+        "work_ns": 2016843,
+        "critical_path_ns": 2016843,
+        "work_over_span": 1.0,
+        "asap_peak_active": 1,
+        "schedules": [
+          {
+            "stream_count": 1,
+            "event_cost_ns": 0,
+            "makespan_ns": 2016843,
+            "lower_bound_ns": 2016843,
+            "event_waits": 0
+          },
+          {
+            "stream_count": 2,
+            "event_cost_ns": 0,
+            "makespan_ns": 2016843,
+            "lower_bound_ns": 2016843,
+            "event_waits": 0
+          },
+          {
+            "stream_count": 4,
+            "event_cost_ns": 0,
+            "makespan_ns": 2016843,
+            "lower_bound_ns": 2016843,
+            "event_waits": 0
+          },
+          {
+            "stream_count": 8,
+            "event_cost_ns": 0,
+            "makespan_ns": 2016843,
+            "lower_bound_ns": 2016843,
+            "event_waits": 0
+          }
+        ]
+      },
+      "certified": {
+        "nodes": 291,
+        "edges": 290,
+        "measured_window_ns": 405058374,
+        "work_ns": 2016843,
+        "critical_path_ns": 2016843,
+        "work_over_span": 1.0,
+        "asap_peak_active": 1,
+        "schedules": [
+          {
+            "stream_count": 1,
+            "event_cost_ns": 0,
+            "makespan_ns": 2016843,
+            "lower_bound_ns": 2016843,
+            "event_waits": 0
+          },
+          {
+            "stream_count": 2,
+            "event_cost_ns": 0,
+            "makespan_ns": 2016843,
+            "lower_bound_ns": 2016843,
+            "event_waits": 0
+          },
+          {
+            "stream_count": 4,
+            "event_cost_ns": 0,
+            "makespan_ns": 2016843,
+            "lower_bound_ns": 2016843,
+            "event_waits": 0
+          },
+          {
+            "stream_count": 8,
+            "event_cost_ns": 0,
+            "makespan_ns": 2016843,
+            "lower_bound_ns": 2016843,
+            "event_waits": 0
+          }
+        ]
+      }
+    },
+    "decode-3/forward": {
+      "observed": {
+        "nodes": 291,
+        "edges": 290,
+        "measured_window_ns": 397634518,
+        "work_ns": 2010558,
+        "critical_path_ns": 2010558,
+        "work_over_span": 1.0,
+        "asap_peak_active": 1,
+        "schedules": [
+          {
+            "stream_count": 1,
+            "event_cost_ns": 0,
+            "makespan_ns": 2010558,
+            "lower_bound_ns": 2010558,
+            "event_waits": 0
+          },
+          {
+            "stream_count": 2,
+            "event_cost_ns": 0,
+            "makespan_ns": 2010558,
+            "lower_bound_ns": 2010558,
+            "event_waits": 0
+          },
+          {
+            "stream_count": 4,
+            "event_cost_ns": 0,
+            "makespan_ns": 2010558,
+            "lower_bound_ns": 2010558,
+            "event_waits": 0
+          },
+          {
+            "stream_count": 8,
+            "event_cost_ns": 0,
+            "makespan_ns": 2010558,
+            "lower_bound_ns": 2010558,
+            "event_waits": 0
+          }
+        ]
+      },
+      "projected": {
+        "nodes": 291,
+        "edges": 1331,
+        "measured_window_ns": 397634518,
+        "work_ns": 2010558,
+        "critical_path_ns": 2010558,
+        "work_over_span": 1.0,
+        "asap_peak_active": 1,
+        "schedules": [
+          {
+            "stream_count": 1,
+            "event_cost_ns": 0,
+            "makespan_ns": 2010558,
+            "lower_bound_ns": 2010558,
+            "event_waits": 0
+          },
+          {
+            "stream_count": 2,
+            "event_cost_ns": 0,
+            "makespan_ns": 2010558,
+            "lower_bound_ns": 2010558,
+            "event_waits": 0
+          },
+          {
+            "stream_count": 4,
+            "event_cost_ns": 0,
+            "makespan_ns": 2010558,
+            "lower_bound_ns": 2010558,
+            "event_waits": 0
+          },
+          {
+            "stream_count": 8,
+            "event_cost_ns": 0,
+            "makespan_ns": 2010558,
+            "lower_bound_ns": 2010558,
+            "event_waits": 0
+          }
+        ]
+      },
+      "certified": {
+        "nodes": 291,
+        "edges": 290,
+        "measured_window_ns": 397634518,
+        "work_ns": 2010558,
+        "critical_path_ns": 2010558,
+        "work_over_span": 1.0,
+        "asap_peak_active": 1,
+        "schedules": [
+          {
+            "stream_count": 1,
+            "event_cost_ns": 0,
+            "makespan_ns": 2010558,
+            "lower_bound_ns": 2010558,
+            "event_waits": 0
+          },
+          {
+            "stream_count": 2,
+            "event_cost_ns": 0,
+            "makespan_ns": 2010558,
+            "lower_bound_ns": 2010558,
+            "event_waits": 0
+          },
+          {
+            "stream_count": 4,
+            "event_cost_ns": 0,
+            "makespan_ns": 2010558,
+            "lower_bound_ns": 2010558,
+            "event_waits": 0
+          },
+          {
+            "stream_count": 8,
+            "event_cost_ns": 0,
+            "makespan_ns": 2010558,
+            "lower_bound_ns": 2010558,
+            "event_waits": 0
+          }
+        ]
+      }
+    },
+    "prefill/forward": {
+      "observed": {
+        "nodes": 387,
+        "edges": 386,
+        "measured_window_ns": 429527772,
+        "work_ns": 2459959,
+        "critical_path_ns": 2459959,
+        "work_over_span": 1.0,
+        "asap_peak_active": 1,
+        "schedules": [
+          {
+            "stream_count": 1,
+            "event_cost_ns": 0,
+            "makespan_ns": 2459959,
+            "lower_bound_ns": 2459959,
+            "event_waits": 0
+          },
+          {
+            "stream_count": 2,
+            "event_cost_ns": 0,
+            "makespan_ns": 2459959,
+            "lower_bound_ns": 2459959,
+            "event_waits": 0
+          },
+          {
+            "stream_count": 4,
+            "event_cost_ns": 0,
+            "makespan_ns": 2459959,
+            "lower_bound_ns": 2459959,
+            "event_waits": 0
+          },
+          {
+            "stream_count": 8,
+            "event_cost_ns": 0,
+            "makespan_ns": 2459959,
+            "lower_bound_ns": 2459959,
+            "event_waits": 0
+          }
+        ]
+      },
+      "projected": {
+        "nodes": 387,
+        "edges": 4122,
+        "measured_window_ns": 429527772,
+        "work_ns": 2459959,
+        "critical_path_ns": 2261990,
+        "work_over_span": 1.0875198387260774,
+        "asap_peak_active": 2,
+        "schedules": [
+          {
+            "stream_count": 1,
+            "event_cost_ns": 0,
+            "makespan_ns": 2459959,
+            "lower_bound_ns": 2459959,
+            "event_waits": 0
+          },
+          {
+            "stream_count": 2,
+            "event_cost_ns": 0,
+            "makespan_ns": 2261990,
+            "lower_bound_ns": 2261990,
+            "event_waits": 96
+          },
+          {
+            "stream_count": 4,
+            "event_cost_ns": 0,
+            "makespan_ns": 2261990,
+            "lower_bound_ns": 2261990,
+            "event_waits": 96
+          },
+          {
+            "stream_count": 8,
+            "event_cost_ns": 0,
+            "makespan_ns": 2261990,
+            "lower_bound_ns": 2261990,
+            "event_waits": 96
+          }
+        ]
+      },
+      "certified": {
+        "nodes": 387,
+        "edges": 386,
+        "measured_window_ns": 429527772,
+        "work_ns": 2459959,
+        "critical_path_ns": 2459959,
+        "work_over_span": 1.0,
+        "asap_peak_active": 1,
+        "schedules": [
+          {
+            "stream_count": 1,
+            "event_cost_ns": 0,
+            "makespan_ns": 2459959,
+            "lower_bound_ns": 2459959,
+            "event_waits": 0
+          },
+          {
+            "stream_count": 2,
+            "event_cost_ns": 0,
+            "makespan_ns": 2459959,
+            "lower_bound_ns": 2459959,
+            "event_waits": 0
+          },
+          {
+            "stream_count": 4,
+            "event_cost_ns": 0,
+            "makespan_ns": 2459959,
+            "lower_bound_ns": 2459959,
+            "event_waits": 0
+          },
+          {
+            "stream_count": 8,
+            "event_cost_ns": 0,
+            "makespan_ns": 2459959,
+            "lower_bound_ns": 2459959,
+            "event_waits": 0
+          }
+        ]
+      }
+    }
+  }
+}

@@ -232,3 +232,14 @@ tensor consumed by sampling. Matched controls show why a second stream does not
 always produce device overlap.
 See [the guide](practice_17_vllm_multistream/README.md) and
 [findings](practice_17_vllm_multistream/RESULTS.md).
+
+## Practice 18: analyze full-model kernel data dependencies
+
+Capture dispatcher inputs, outputs, mutations and storage generations across a
+complete eager Qwen request. Reconstruct tensor hazards and KV index contracts,
+then analyze critical paths and propose offline stream/event schedules while
+keeping each native call on one stream. All 1,444 device tasks are covered;
+native internal workspace still prevents claiming a complete exact data DAG.
+See [the guide](practice_18_kernel_data_dag/README.md),
+[findings](practice_18_kernel_data_dag/RESULTS.md) and
+[offline interactive graph](practice_18_kernel_data_dag/report/index.html).
