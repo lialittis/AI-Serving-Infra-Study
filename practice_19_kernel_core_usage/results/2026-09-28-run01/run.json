@@ -1,0 +1,3216 @@
+{
+  "captured_at_utc": "2026-09-28T11:57:08.143085+00:00",
+  "command": [
+    "/usr/local/python3.12.13/bin/python",
+    "practice_19_kernel_core_usage/run_core_probe.py",
+    "--output",
+    "practice_19_kernel_core_usage/results/2026-09-28-run01"
+  ],
+  "torch_version": "2.10.0+cpu",
+  "torch_npu_version": "2.10.0",
+  "python": "3.12.13 (main, May 15 2026, 03:51:32) [GCC 12.3.1 (openEuler 12.3.1-105.oe2403sp3)]",
+  "machine": "x86_64",
+  "hardware": {
+    "name": "Ascend910B2C",
+    "cube_core_num": 24,
+    "vector_core_num": 48,
+    "multi_processor_count": 48,
+    "total_memory": 65452113920,
+    "L2_cache_size": 201326592
+  },
+  "operator_schema": "atb::_npu_reshape_and_cache(Tensor key, Tensor value, Tensor(a!) key_cache, Tensor(b!) value_cache, Tensor slot_indices) -> ()",
+  "config": {
+    "tokens": [
+      1,
+      4,
+      10,
+      16,
+      24,
+      32,
+      48,
+      64,
+      128,
+      256
+    ],
+    "rounds": 7,
+    "iterations": 100,
+    "profile_repeats": 3,
+    "block_size": 128,
+    "num_blocks": 8,
+    "kv_heads": 2,
+    "head_size": 64,
+    "dtype": "torch.bfloat16",
+    "sentinel": -7,
+    "slot_pattern": "128 + arange(tokens)",
+    "raw_stream_handle": "140209937956864",
+    "allow_internal_format": false
+  },
+  "resources": {
+    "key_cache": {
+      "shape": [
+        8,
+        128,
+        2,
+        64
+      ],
+      "stride": [
+        16384,
+        128,
+        64,
+        1
+      ],
+      "dtype": "torch.bfloat16",
+      "device": "npu:0",
+      "data_ptr": "20616935636992",
+      "storage_ptr": "20616935636992",
+      "bytes": 262144
+    },
+    "value_cache": {
+      "shape": [
+        8,
+        128,
+        2,
+        64
+      ],
+      "stride": [
+        16384,
+        128,
+        64,
+        1
+      ],
+      "dtype": "torch.bfloat16",
+      "device": "npu:0",
+      "data_ptr": "20616935899648",
+      "storage_ptr": "20616935899648",
+      "bytes": 262144
+    },
+    "cases": {
+      "1": {
+        "key": {
+          "shape": [
+            1,
+            2,
+            64
+          ],
+          "stride": [
+            128,
+            64,
+            1
+          ],
+          "dtype": "torch.bfloat16",
+          "device": "npu:0",
+          "data_ptr": "20616936162304",
+          "storage_ptr": "20616936162304",
+          "bytes": 256
+        },
+        "value": {
+          "shape": [
+            1,
+            2,
+            64
+          ],
+          "stride": [
+            128,
+            64,
+            1
+          ],
+          "dtype": "torch.bfloat16",
+          "device": "npu:0",
+          "data_ptr": "20616936162816",
+          "storage_ptr": "20616936162816",
+          "bytes": 256
+        },
+        "slots": {
+          "shape": [
+            1
+          ],
+          "stride": [
+            1
+          ],
+          "dtype": "torch.int32",
+          "device": "npu:0",
+          "data_ptr": "20616936163328",
+          "storage_ptr": "20616936163328",
+          "bytes": 4
+        }
+      },
+      "4": {
+        "key": {
+          "shape": [
+            4,
+            2,
+            64
+          ],
+          "stride": [
+            128,
+            64,
+            1
+          ],
+          "dtype": "torch.bfloat16",
+          "device": "npu:0",
+          "data_ptr": "20616936163840",
+          "storage_ptr": "20616936163840",
+          "bytes": 1024
+        },
+        "value": {
+          "shape": [
+            4,
+            2,
+            64
+          ],
+          "stride": [
+            128,
+            64,
+            1
+          ],
+          "dtype": "torch.bfloat16",
+          "device": "npu:0",
+          "data_ptr": "20616936165376",
+          "storage_ptr": "20616936165376",
+          "bytes": 1024
+        },
+        "slots": {
+          "shape": [
+            4
+          ],
+          "stride": [
+            1
+          ],
+          "dtype": "torch.int32",
+          "device": "npu:0",
+          "data_ptr": "20616936166912",
+          "storage_ptr": "20616936166912",
+          "bytes": 16
+        }
+      },
+      "10": {
+        "key": {
+          "shape": [
+            10,
+            2,
+            64
+          ],
+          "stride": [
+            128,
+            64,
+            1
+          ],
+          "dtype": "torch.bfloat16",
+          "device": "npu:0",
+          "data_ptr": "20616936167424",
+          "storage_ptr": "20616936167424",
+          "bytes": 2560
+        },
+        "value": {
+          "shape": [
+            10,
+            2,
+            64
+          ],
+          "stride": [
+            128,
+            64,
+            1
+          ],
+          "dtype": "torch.bfloat16",
+          "device": "npu:0",
+          "data_ptr": "20616936170496",
+          "storage_ptr": "20616936170496",
+          "bytes": 2560
+        },
+        "slots": {
+          "shape": [
+            10
+          ],
+          "stride": [
+            1
+          ],
+          "dtype": "torch.int32",
+          "device": "npu:0",
+          "data_ptr": "20616936173568",
+          "storage_ptr": "20616936173568",
+          "bytes": 40
+        }
+      },
+      "16": {
+        "key": {
+          "shape": [
+            16,
+            2,
+            64
+          ],
+          "stride": [
+            128,
+            64,
+            1
+          ],
+          "dtype": "torch.bfloat16",
+          "device": "npu:0",
+          "data_ptr": "20616936174080",
+          "storage_ptr": "20616936174080",
+          "bytes": 4096
+        },
+        "value": {
+          "shape": [
+            16,
+            2,
+            64
+          ],
+          "stride": [
+            128,
+            64,
+            1
+          ],
+          "dtype": "torch.bfloat16",
+          "device": "npu:0",
+          "data_ptr": "20616936178688",
+          "storage_ptr": "20616936178688",
+          "bytes": 4096
+        },
+        "slots": {
+          "shape": [
+            16
+          ],
+          "stride": [
+            1
+          ],
+          "dtype": "torch.int32",
+          "device": "npu:0",
+          "data_ptr": "20616936183296",
+          "storage_ptr": "20616936183296",
+          "bytes": 64
+        }
+      },
+      "24": {
+        "key": {
+          "shape": [
+            24,
+            2,
+            64
+          ],
+          "stride": [
+            128,
+            64,
+            1
+          ],
+          "dtype": "torch.bfloat16",
+          "device": "npu:0",
+          "data_ptr": "20616936183808",
+          "storage_ptr": "20616936183808",
+          "bytes": 6144
+        },
+        "value": {
+          "shape": [
+            24,
+            2,
+            64
+          ],
+          "stride": [
+            128,
+            64,
+            1
+          ],
+          "dtype": "torch.bfloat16",
+          "device": "npu:0",
+          "data_ptr": "20616936190464",
+          "storage_ptr": "20616936190464",
+          "bytes": 6144
+        },
+        "slots": {
+          "shape": [
+            24
+          ],
+          "stride": [
+            1
+          ],
+          "dtype": "torch.int32",
+          "device": "npu:0",
+          "data_ptr": "20616936197120",
+          "storage_ptr": "20616936197120",
+          "bytes": 96
+        }
+      },
+      "32": {
+        "key": {
+          "shape": [
+            32,
+            2,
+            64
+          ],
+          "stride": [
+            128,
+            64,
+            1
+          ],
+          "dtype": "torch.bfloat16",
+          "device": "npu:0",
+          "data_ptr": "20616936197632",
+          "storage_ptr": "20616936197632",
+          "bytes": 8192
+        },
+        "value": {
+          "shape": [
+            32,
+            2,
+            64
+          ],
+          "stride": [
+            128,
+            64,
+            1
+          ],
+          "dtype": "torch.bfloat16",
+          "device": "npu:0",
+          "data_ptr": "20616936206336",
+          "storage_ptr": "20616936206336",
+          "bytes": 8192
+        },
+        "slots": {
+          "shape": [
+            32
+          ],
+          "stride": [
+            1
+          ],
+          "dtype": "torch.int32",
+          "device": "npu:0",
+          "data_ptr": "20616936215040",
+          "storage_ptr": "20616936215040",
+          "bytes": 128
+        }
+      },
+      "48": {
+        "key": {
+          "shape": [
+            48,
+            2,
+            64
+          ],
+          "stride": [
+            128,
+            64,
+            1
+          ],
+          "dtype": "torch.bfloat16",
+          "device": "npu:0",
+          "data_ptr": "20616936215552",
+          "storage_ptr": "20616936215552",
+          "bytes": 12288
+        },
+        "value": {
+          "shape": [
+            48,
+            2,
+            64
+          ],
+          "stride": [
+            128,
+            64,
+            1
+          ],
+          "dtype": "torch.bfloat16",
+          "device": "npu:0",
+          "data_ptr": "20616936228352",
+          "storage_ptr": "20616936228352",
+          "bytes": 12288
+        },
+        "slots": {
+          "shape": [
+            48
+          ],
+          "stride": [
+            1
+          ],
+          "dtype": "torch.int32",
+          "device": "npu:0",
+          "data_ptr": "20616936241152",
+          "storage_ptr": "20616936241152",
+          "bytes": 192
+        }
+      },
+      "64": {
+        "key": {
+          "shape": [
+            64,
+            2,
+            64
+          ],
+          "stride": [
+            128,
+            64,
+            1
+          ],
+          "dtype": "torch.bfloat16",
+          "device": "npu:0",
+          "data_ptr": "20616936241664",
+          "storage_ptr": "20616936241664",
+          "bytes": 16384
+        },
+        "value": {
+          "shape": [
+            64,
+            2,
+            64
+          ],
+          "stride": [
+            128,
+            64,
+            1
+          ],
+          "dtype": "torch.bfloat16",
+          "device": "npu:0",
+          "data_ptr": "20616936258560",
+          "storage_ptr": "20616936258560",
+          "bytes": 16384
+        },
+        "slots": {
+          "shape": [
+            64
+          ],
+          "stride": [
+            1
+          ],
+          "dtype": "torch.int32",
+          "device": "npu:0",
+          "data_ptr": "20616936275456",
+          "storage_ptr": "20616936275456",
+          "bytes": 256
+        }
+      },
+      "128": {
+        "key": {
+          "shape": [
+            128,
+            2,
+            64
+          ],
+          "stride": [
+            128,
+            64,
+            1
+          ],
+          "dtype": "torch.bfloat16",
+          "device": "npu:0",
+          "data_ptr": "20616936275968",
+          "storage_ptr": "20616936275968",
+          "bytes": 32768
+        },
+        "value": {
+          "shape": [
+            128,
+            2,
+            64
+          ],
+          "stride": [
+            128,
+            64,
+            1
+          ],
+          "dtype": "torch.bfloat16",
+          "device": "npu:0",
+          "data_ptr": "20616936309248",
+          "storage_ptr": "20616936309248",
+          "bytes": 32768
+        },
+        "slots": {
+          "shape": [
+            128
+          ],
+          "stride": [
+            1
+          ],
+          "dtype": "torch.int32",
+          "device": "npu:0",
+          "data_ptr": "20616936342528",
+          "storage_ptr": "20616936342528",
+          "bytes": 512
+        }
+      },
+      "256": {
+        "key": {
+          "shape": [
+            256,
+            2,
+            64
+          ],
+          "stride": [
+            128,
+            64,
+            1
+          ],
+          "dtype": "torch.bfloat16",
+          "device": "npu:0",
+          "data_ptr": "20616936343552",
+          "storage_ptr": "20616936343552",
+          "bytes": 65536
+        },
+        "value": {
+          "shape": [
+            256,
+            2,
+            64
+          ],
+          "stride": [
+            128,
+            64,
+            1
+          ],
+          "dtype": "torch.bfloat16",
+          "device": "npu:0",
+          "data_ptr": "20616936409600",
+          "storage_ptr": "20616936409600",
+          "bytes": 65536
+        },
+        "slots": {
+          "shape": [
+            256
+          ],
+          "stride": [
+            1
+          ],
+          "dtype": "torch.int32",
+          "device": "npu:0",
+          "data_ptr": "20616936475648",
+          "storage_ptr": "20616936475648",
+          "bytes": 1024
+        }
+      }
+    }
+  },
+  "source_sha256": {
+    "sources/profiler_config.py": "c5a87fedf46ec92701afdd9d6a6d42b0afd072ebbce399ac6d011aea8d7ac3f9",
+    "sources/device_utils.py": "dc6b6763a6127c0a057a5e5f4f962bc94182e8a0697b446d5a8faeab35c9b058",
+    "sources/atb_ops.py": "3d3ef09da748bb4ca4502a0c54372f321afe6a65b397a74ccc3a8474b9de6222",
+    "sources/streams.py": "241741b356db5006797dbec119007afb33b73b0e1753bfb06ab27c989c5bfac4",
+    "sources/run_core_probe.py": "dba1c89cfc155e8df91a8aeb09a011f45285959f4e65c0efe43faac38b61a476"
+  },
+  "trials": [
+    {
+      "label": "timing/0/256",
+      "round": 0,
+      "tokens": 256,
+      "iterations": 100,
+      "begin_ns": 4843379032193652,
+      "submitted_ns": 4843379033107565,
+      "finished_ns": 4843379033459297,
+      "submit_ns": 913913,
+      "completed_ns": 1265645,
+      "final_wait": true
+    },
+    {
+      "label": "timing/0/32",
+      "round": 0,
+      "tokens": 32,
+      "iterations": 100,
+      "begin_ns": 4843379033835997,
+      "submitted_ns": 4843379034702113,
+      "finished_ns": 4843379034728895,
+      "submit_ns": 866116,
+      "completed_ns": 892898,
+      "final_wait": true
+    },
+    {
+      "label": "timing/0/48",
+      "round": 0,
+      "tokens": 48,
+      "iterations": 100,
+      "begin_ns": 4843379034991893,
+      "submitted_ns": 4843379035843418,
+      "finished_ns": 4843379035871557,
+      "submit_ns": 851525,
+      "completed_ns": 879664,
+      "final_wait": true
+    },
+    {
+      "label": "timing/0/10",
+      "round": 0,
+      "tokens": 10,
+      "iterations": 100,
+      "begin_ns": 4843379036143895,
+      "submitted_ns": 4843379036992885,
+      "finished_ns": 4843379037023927,
+      "submit_ns": 848990,
+      "completed_ns": 880032,
+      "final_wait": true
+    },
+    {
+      "label": "timing/0/16",
+      "round": 0,
+      "tokens": 16,
+      "iterations": 100,
+      "begin_ns": 4843379037273944,
+      "submitted_ns": 4843379038135566,
+      "finished_ns": 4843379038165127,
+      "submit_ns": 861622,
+      "completed_ns": 891183,
+      "final_wait": true
+    },
+    {
+      "label": "timing/0/64",
+      "round": 0,
+      "tokens": 64,
+      "iterations": 100,
+      "begin_ns": 4843379038405488,
+      "submitted_ns": 4843379039269808,
+      "finished_ns": 4843379039304393,
+      "submit_ns": 864320,
+      "completed_ns": 898905,
+      "final_wait": true
+    },
+    {
+      "label": "timing/0/24",
+      "round": 0,
+      "tokens": 24,
+      "iterations": 100,
+      "begin_ns": 4843379039565033,
+      "submitted_ns": 4843379040464949,
+      "finished_ns": 4843379100380198,
+      "submit_ns": 899916,
+      "completed_ns": 60815165,
+      "final_wait": true
+    },
+    {
+      "label": "timing/0/4",
+      "round": 0,
+      "tokens": 4,
+      "iterations": 100,
+      "begin_ns": 4843379100717229,
+      "submitted_ns": 4843379101601830,
+      "finished_ns": 4843379101631546,
+      "submit_ns": 884601,
+      "completed_ns": 914317,
+      "final_wait": true
+    },
+    {
+      "label": "timing/0/128",
+      "round": 0,
+      "tokens": 128,
+      "iterations": 100,
+      "begin_ns": 4843379101871912,
+      "submitted_ns": 4843379102725567,
+      "finished_ns": 4843379102759712,
+      "submit_ns": 853655,
+      "completed_ns": 887800,
+      "final_wait": true
+    },
+    {
+      "label": "timing/0/1",
+      "round": 0,
+      "tokens": 1,
+      "iterations": 100,
+      "begin_ns": 4843379103031050,
+      "submitted_ns": 4843379103886487,
+      "finished_ns": 4843379103919252,
+      "submit_ns": 855437,
+      "completed_ns": 888202,
+      "final_wait": true
+    },
+    {
+      "label": "timing/1/64",
+      "round": 1,
+      "tokens": 64,
+      "iterations": 100,
+      "begin_ns": 4843379104177183,
+      "submitted_ns": 4843379105036052,
+      "finished_ns": 4843379105069161,
+      "submit_ns": 858869,
+      "completed_ns": 891978,
+      "final_wait": true
+    },
+    {
+      "label": "timing/1/48",
+      "round": 1,
+      "tokens": 48,
+      "iterations": 100,
+      "begin_ns": 4843379105336210,
+      "submitted_ns": 4843379106197347,
+      "finished_ns": 4843379106233785,
+      "submit_ns": 861137,
+      "completed_ns": 897575,
+      "final_wait": true
+    },
+    {
+      "label": "timing/1/4",
+      "round": 1,
+      "tokens": 4,
+      "iterations": 100,
+      "begin_ns": 4843379106490863,
+      "submitted_ns": 4843379107342774,
+      "finished_ns": 4843379107378333,
+      "submit_ns": 851911,
+      "completed_ns": 887470,
+      "final_wait": true
+    },
+    {
+      "label": "timing/1/32",
+      "round": 1,
+      "tokens": 32,
+      "iterations": 100,
+      "begin_ns": 4843379107606130,
+      "submitted_ns": 4843379108466169,
+      "finished_ns": 4843379108492659,
+      "submit_ns": 860039,
+      "completed_ns": 886529,
+      "final_wait": true
+    },
+    {
+      "label": "timing/1/16",
+      "round": 1,
+      "tokens": 16,
+      "iterations": 100,
+      "begin_ns": 4843379108755343,
+      "submitted_ns": 4843379109585737,
+      "finished_ns": 4843379109627314,
+      "submit_ns": 830394,
+      "completed_ns": 871971,
+      "final_wait": true
+    },
+    {
+      "label": "timing/1/128",
+      "round": 1,
+      "tokens": 128,
+      "iterations": 100,
+      "begin_ns": 4843379109886380,
+      "submitted_ns": 4843379110736066,
+      "finished_ns": 4843379110782961,
+      "submit_ns": 849686,
+      "completed_ns": 896581,
+      "final_wait": true
+    },
+    {
+      "label": "timing/1/1",
+      "round": 1,
+      "tokens": 1,
+      "iterations": 100,
+      "begin_ns": 4843379111039449,
+      "submitted_ns": 4843379111911635,
+      "finished_ns": 4843379111934849,
+      "submit_ns": 872186,
+      "completed_ns": 895400,
+      "final_wait": true
+    },
+    {
+      "label": "timing/1/24",
+      "round": 1,
+      "tokens": 24,
+      "iterations": 100,
+      "begin_ns": 4843379204090233,
+      "submitted_ns": 4843379205016464,
+      "finished_ns": 4843379205038406,
+      "submit_ns": 926231,
+      "completed_ns": 948173,
+      "final_wait": true
+    },
+    {
+      "label": "timing/1/10",
+      "round": 1,
+      "tokens": 10,
+      "iterations": 100,
+      "begin_ns": 4843379205315813,
+      "submitted_ns": 4843379206165363,
+      "finished_ns": 4843379206194348,
+      "submit_ns": 849550,
+      "completed_ns": 878535,
+      "final_wait": true
+    },
+    {
+      "label": "timing/1/256",
+      "round": 1,
+      "tokens": 256,
+      "iterations": 100,
+      "begin_ns": 4843379206446491,
+      "submitted_ns": 4843379207281285,
+      "finished_ns": 4843379207384141,
+      "submit_ns": 834794,
+      "completed_ns": 937650,
+      "final_wait": true
+    },
+    {
+      "label": "timing/2/256",
+      "round": 2,
+      "tokens": 256,
+      "iterations": 100,
+      "begin_ns": 4843379207712212,
+      "submitted_ns": 4843379208576333,
+      "finished_ns": 4843379208630889,
+      "submit_ns": 864121,
+      "completed_ns": 918677,
+      "final_wait": true
+    },
+    {
+      "label": "timing/2/10",
+      "round": 2,
+      "tokens": 10,
+      "iterations": 100,
+      "begin_ns": 4843379300767836,
+      "submitted_ns": 4843379301876097,
+      "finished_ns": 4843379301907139,
+      "submit_ns": 1108261,
+      "completed_ns": 1139303,
+      "final_wait": true
+    },
+    {
+      "label": "timing/2/16",
+      "round": 2,
+      "tokens": 16,
+      "iterations": 100,
+      "begin_ns": 4843379302215201,
+      "submitted_ns": 4843379303208809,
+      "finished_ns": 4843379303234648,
+      "submit_ns": 993608,
+      "completed_ns": 1019447,
+      "final_wait": true
+    },
+    {
+      "label": "timing/2/64",
+      "round": 2,
+      "tokens": 64,
+      "iterations": 100,
+      "begin_ns": 4843379303519831,
+      "submitted_ns": 4843379308154338,
+      "finished_ns": 4843379308205101,
+      "submit_ns": 4634507,
+      "completed_ns": 4685270,
+      "final_wait": true
+    },
+    {
+      "label": "timing/2/4",
+      "round": 2,
+      "tokens": 4,
+      "iterations": 100,
+      "begin_ns": 4843379308659324,
+      "submitted_ns": 4843379309644743,
+      "finished_ns": 4843379309671648,
+      "submit_ns": 985419,
+      "completed_ns": 1012324,
+      "final_wait": true
+    },
+    {
+      "label": "timing/2/48",
+      "round": 2,
+      "tokens": 48,
+      "iterations": 100,
+      "begin_ns": 4843379309967825,
+      "submitted_ns": 4843379310959883,
+      "finished_ns": 4843379310990218,
+      "submit_ns": 992058,
+      "completed_ns": 1022393,
+      "final_wait": true
+    },
+    {
+      "label": "timing/2/128",
+      "round": 2,
+      "tokens": 128,
+      "iterations": 100,
+      "begin_ns": 4843379311312433,
+      "submitted_ns": 4843379312330551,
+      "finished_ns": 4843379312355137,
+      "submit_ns": 1018118,
+      "completed_ns": 1042704,
+      "final_wait": true
+    },
+    {
+      "label": "timing/2/1",
+      "round": 2,
+      "tokens": 1,
+      "iterations": 100,
+      "begin_ns": 4843379403874399,
+      "submitted_ns": 4843379405181541,
+      "finished_ns": 4843379405217960,
+      "submit_ns": 1307142,
+      "completed_ns": 1343561,
+      "final_wait": true
+    },
+    {
+      "label": "timing/2/24",
+      "round": 2,
+      "tokens": 24,
+      "iterations": 100,
+      "begin_ns": 4843379405683270,
+      "submitted_ns": 4843379406917821,
+      "finished_ns": 4843379406952270,
+      "submit_ns": 1234551,
+      "completed_ns": 1269000,
+      "final_wait": true
+    },
+    {
+      "label": "timing/2/32",
+      "round": 2,
+      "tokens": 32,
+      "iterations": 100,
+      "begin_ns": 4843379407317396,
+      "submitted_ns": 4843379408468494,
+      "finished_ns": 4843379408489979,
+      "submit_ns": 1151098,
+      "completed_ns": 1172583,
+      "final_wait": true
+    },
+    {
+      "label": "timing/3/10",
+      "round": 3,
+      "tokens": 10,
+      "iterations": 100,
+      "begin_ns": 4843379408842860,
+      "submitted_ns": 4843379409982594,
+      "finished_ns": 4843379410000884,
+      "submit_ns": 1139734,
+      "completed_ns": 1158024,
+      "final_wait": true
+    },
+    {
+      "label": "timing/3/16",
+      "round": 3,
+      "tokens": 16,
+      "iterations": 100,
+      "begin_ns": 4843379410299798,
+      "submitted_ns": 4843379411448328,
+      "finished_ns": 4843379411471325,
+      "submit_ns": 1148530,
+      "completed_ns": 1171527,
+      "final_wait": true
+    },
+    {
+      "label": "timing/3/4",
+      "round": 3,
+      "tokens": 4,
+      "iterations": 100,
+      "begin_ns": 4843379411753847,
+      "submitted_ns": 4843379412953836,
+      "finished_ns": 4843379412974351,
+      "submit_ns": 1199989,
+      "completed_ns": 1220504,
+      "final_wait": true
+    },
+    {
+      "label": "timing/3/24",
+      "round": 3,
+      "tokens": 24,
+      "iterations": 100,
+      "begin_ns": 4843379413243908,
+      "submitted_ns": 4843379414409795,
+      "finished_ns": 4843379414432136,
+      "submit_ns": 1165887,
+      "completed_ns": 1188228,
+      "final_wait": true
+    },
+    {
+      "label": "timing/3/1",
+      "round": 3,
+      "tokens": 1,
+      "iterations": 100,
+      "begin_ns": 4843379414721985,
+      "submitted_ns": 4843379415881443,
+      "finished_ns": 4843379500209425,
+      "submit_ns": 1159458,
+      "completed_ns": 85487440,
+      "final_wait": true
+    },
+    {
+      "label": "timing/3/32",
+      "round": 3,
+      "tokens": 32,
+      "iterations": 100,
+      "begin_ns": 4843379500640783,
+      "submitted_ns": 4843379501836414,
+      "finished_ns": 4843379501856582,
+      "submit_ns": 1195631,
+      "completed_ns": 1215799,
+      "final_wait": true
+    },
+    {
+      "label": "timing/3/256",
+      "round": 3,
+      "tokens": 256,
+      "iterations": 100,
+      "begin_ns": 4843379502162016,
+      "submitted_ns": 4843379503314187,
+      "finished_ns": 4843379503343230,
+      "submit_ns": 1152171,
+      "completed_ns": 1181214,
+      "final_wait": true
+    },
+    {
+      "label": "timing/3/48",
+      "round": 3,
+      "tokens": 48,
+      "iterations": 100,
+      "begin_ns": 4843379503693144,
+      "submitted_ns": 4843379504889396,
+      "finished_ns": 4843379504911232,
+      "submit_ns": 1196252,
+      "completed_ns": 1218088,
+      "final_wait": true
+    },
+    {
+      "label": "timing/3/64",
+      "round": 3,
+      "tokens": 64,
+      "iterations": 100,
+      "begin_ns": 4843379505214103,
+      "submitted_ns": 4843379506277947,
+      "finished_ns": 4843379506303472,
+      "submit_ns": 1063844,
+      "completed_ns": 1089369,
+      "final_wait": true
+    },
+    {
+      "label": "timing/3/128",
+      "round": 3,
+      "tokens": 128,
+      "iterations": 100,
+      "begin_ns": 4843379506603715,
+      "submitted_ns": 4843379507643090,
+      "finished_ns": 4843379507670376,
+      "submit_ns": 1039375,
+      "completed_ns": 1066661,
+      "final_wait": true
+    },
+    {
+      "label": "timing/4/1",
+      "round": 4,
+      "tokens": 1,
+      "iterations": 100,
+      "begin_ns": 4843379507987707,
+      "submitted_ns": 4843379509035293,
+      "finished_ns": 4843379509054966,
+      "submit_ns": 1047586,
+      "completed_ns": 1067259,
+      "final_wait": true
+    },
+    {
+      "label": "timing/4/64",
+      "round": 4,
+      "tokens": 64,
+      "iterations": 100,
+      "begin_ns": 4843379509325403,
+      "submitted_ns": 4843379510352239,
+      "finished_ns": 4843379510374068,
+      "submit_ns": 1026836,
+      "completed_ns": 1048665,
+      "final_wait": true
+    },
+    {
+      "label": "timing/4/24",
+      "round": 4,
+      "tokens": 24,
+      "iterations": 100,
+      "begin_ns": 4843379510650002,
+      "submitted_ns": 4843379511687779,
+      "finished_ns": 4843379511707950,
+      "submit_ns": 1037777,
+      "completed_ns": 1057948,
+      "final_wait": true
+    },
+    {
+      "label": "timing/4/256",
+      "round": 4,
+      "tokens": 256,
+      "iterations": 100,
+      "begin_ns": 4843379511995694,
+      "submitted_ns": 4843379512886717,
+      "finished_ns": 4843379600824720,
+      "submit_ns": 891023,
+      "completed_ns": 88829026,
+      "final_wait": true
+    },
+    {
+      "label": "timing/4/10",
+      "round": 4,
+      "tokens": 10,
+      "iterations": 100,
+      "begin_ns": 4843379601243487,
+      "submitted_ns": 4843379602290968,
+      "finished_ns": 4843379602312295,
+      "submit_ns": 1047481,
+      "completed_ns": 1068808,
+      "final_wait": true
+    },
+    {
+      "label": "timing/4/32",
+      "round": 4,
+      "tokens": 32,
+      "iterations": 100,
+      "begin_ns": 4843379602590443,
+      "submitted_ns": 4843379603636038,
+      "finished_ns": 4843379603657409,
+      "submit_ns": 1045595,
+      "completed_ns": 1066966,
+      "final_wait": true
+    },
+    {
+      "label": "timing/4/16",
+      "round": 4,
+      "tokens": 16,
+      "iterations": 100,
+      "begin_ns": 4843379603932629,
+      "submitted_ns": 4843379604988894,
+      "finished_ns": 4843379605008195,
+      "submit_ns": 1056265,
+      "completed_ns": 1075566,
+      "final_wait": true
+    },
+    {
+      "label": "timing/4/128",
+      "round": 4,
+      "tokens": 128,
+      "iterations": 100,
+      "begin_ns": 4843379605278821,
+      "submitted_ns": 4843379606302445,
+      "finished_ns": 4843379606336654,
+      "submit_ns": 1023624,
+      "completed_ns": 1057833,
+      "final_wait": true
+    },
+    {
+      "label": "timing/4/48",
+      "round": 4,
+      "tokens": 48,
+      "iterations": 100,
+      "begin_ns": 4843379606645072,
+      "submitted_ns": 4843379607672638,
+      "finished_ns": 4843379607695331,
+      "submit_ns": 1027566,
+      "completed_ns": 1050259,
+      "final_wait": true
+    },
+    {
+      "label": "timing/4/4",
+      "round": 4,
+      "tokens": 4,
+      "iterations": 100,
+      "begin_ns": 4843379607979204,
+      "submitted_ns": 4843379609011932,
+      "finished_ns": 4843379609032736,
+      "submit_ns": 1032728,
+      "completed_ns": 1053532,
+      "final_wait": true
+    },
+    {
+      "label": "timing/5/24",
+      "round": 5,
+      "tokens": 24,
+      "iterations": 100,
+      "begin_ns": 4843379609302111,
+      "submitted_ns": 4843379610333574,
+      "finished_ns": 4843379610352293,
+      "submit_ns": 1031463,
+      "completed_ns": 1050182,
+      "final_wait": true
+    },
+    {
+      "label": "timing/5/10",
+      "round": 5,
+      "tokens": 10,
+      "iterations": 100,
+      "begin_ns": 4843379610616622,
+      "submitted_ns": 4843379611644487,
+      "finished_ns": 4843379611665931,
+      "submit_ns": 1027865,
+      "completed_ns": 1049309,
+      "final_wait": true
+    },
+    {
+      "label": "timing/5/1",
+      "round": 5,
+      "tokens": 1,
+      "iterations": 100,
+      "begin_ns": 4843379611939875,
+      "submitted_ns": 4843379612831693,
+      "finished_ns": 4843379700609184,
+      "submit_ns": 891818,
+      "completed_ns": 88669309,
+      "final_wait": true
+    },
+    {
+      "label": "timing/5/32",
+      "round": 5,
+      "tokens": 32,
+      "iterations": 100,
+      "begin_ns": 4843379700892540,
+      "submitted_ns": 4843379701948468,
+      "finished_ns": 4843379701993403,
+      "submit_ns": 1055928,
+      "completed_ns": 1100863,
+      "final_wait": true
+    },
+    {
+      "label": "timing/5/256",
+      "round": 5,
+      "tokens": 256,
+      "iterations": 100,
+      "begin_ns": 4843379702277140,
+      "submitted_ns": 4843379703325502,
+      "finished_ns": 4843379703348417,
+      "submit_ns": 1048362,
+      "completed_ns": 1071277,
+      "final_wait": true
+    },
+    {
+      "label": "timing/5/64",
+      "round": 5,
+      "tokens": 64,
+      "iterations": 100,
+      "begin_ns": 4843379703680241,
+      "submitted_ns": 4843379704720865,
+      "finished_ns": 4843379704740700,
+      "submit_ns": 1040624,
+      "completed_ns": 1060459,
+      "final_wait": true
+    },
+    {
+      "label": "timing/5/48",
+      "round": 5,
+      "tokens": 48,
+      "iterations": 100,
+      "begin_ns": 4843379705035016,
+      "submitted_ns": 4843379706055037,
+      "finished_ns": 4843379706086628,
+      "submit_ns": 1020021,
+      "completed_ns": 1051612,
+      "final_wait": true
+    },
+    {
+      "label": "timing/5/4",
+      "round": 5,
+      "tokens": 4,
+      "iterations": 100,
+      "begin_ns": 4843379706370303,
+      "submitted_ns": 4843379707417307,
+      "finished_ns": 4843379707433187,
+      "submit_ns": 1047004,
+      "completed_ns": 1062884,
+      "final_wait": true
+    },
+    {
+      "label": "timing/5/128",
+      "round": 5,
+      "tokens": 128,
+      "iterations": 100,
+      "begin_ns": 4843379707688758,
+      "submitted_ns": 4843379708740744,
+      "finished_ns": 4843379708766582,
+      "submit_ns": 1051986,
+      "completed_ns": 1077824,
+      "final_wait": true
+    },
+    {
+      "label": "timing/5/16",
+      "round": 5,
+      "tokens": 16,
+      "iterations": 100,
+      "begin_ns": 4843379709103330,
+      "submitted_ns": 4843379710142863,
+      "finished_ns": 4843379710161134,
+      "submit_ns": 1039533,
+      "completed_ns": 1057804,
+      "final_wait": true
+    },
+    {
+      "label": "timing/6/24",
+      "round": 6,
+      "tokens": 24,
+      "iterations": 100,
+      "begin_ns": 4843379710434935,
+      "submitted_ns": 4843379711454798,
+      "finished_ns": 4843379711474240,
+      "submit_ns": 1019863,
+      "completed_ns": 1039305,
+      "final_wait": true
+    },
+    {
+      "label": "timing/6/128",
+      "round": 6,
+      "tokens": 128,
+      "iterations": 100,
+      "begin_ns": 4843379800266497,
+      "submitted_ns": 4843379801342020,
+      "finished_ns": 4843379801362356,
+      "submit_ns": 1075523,
+      "completed_ns": 1095859,
+      "final_wait": true
+    },
+    {
+      "label": "timing/6/10",
+      "round": 6,
+      "tokens": 10,
+      "iterations": 100,
+      "begin_ns": 4843379801704058,
+      "submitted_ns": 4843379802763740,
+      "finished_ns": 4843379802781989,
+      "submit_ns": 1059682,
+      "completed_ns": 1077931,
+      "final_wait": true
+    },
+    {
+      "label": "timing/6/48",
+      "round": 6,
+      "tokens": 48,
+      "iterations": 100,
+      "begin_ns": 4843379803054238,
+      "submitted_ns": 4843379804128108,
+      "finished_ns": 4843379804153093,
+      "submit_ns": 1073870,
+      "completed_ns": 1098855,
+      "final_wait": true
+    },
+    {
+      "label": "timing/6/32",
+      "round": 6,
+      "tokens": 32,
+      "iterations": 100,
+      "begin_ns": 4843379804449149,
+      "submitted_ns": 4843379805495475,
+      "finished_ns": 4843379805520336,
+      "submit_ns": 1046326,
+      "completed_ns": 1071187,
+      "final_wait": true
+    },
+    {
+      "label": "timing/6/16",
+      "round": 6,
+      "tokens": 16,
+      "iterations": 100,
+      "begin_ns": 4843379805791179,
+      "submitted_ns": 4843379806843045,
+      "finished_ns": 4843379806867881,
+      "submit_ns": 1051866,
+      "completed_ns": 1076702,
+      "final_wait": true
+    },
+    {
+      "label": "timing/6/1",
+      "round": 6,
+      "tokens": 1,
+      "iterations": 100,
+      "begin_ns": 4843379807139848,
+      "submitted_ns": 4843379808201925,
+      "finished_ns": 4843379808224768,
+      "submit_ns": 1062077,
+      "completed_ns": 1084920,
+      "final_wait": true
+    },
+    {
+      "label": "timing/6/256",
+      "round": 6,
+      "tokens": 256,
+      "iterations": 100,
+      "begin_ns": 4843379808503689,
+      "submitted_ns": 4843379809534184,
+      "finished_ns": 4843379809557660,
+      "submit_ns": 1030495,
+      "completed_ns": 1053971,
+      "final_wait": true
+    },
+    {
+      "label": "timing/6/4",
+      "round": 6,
+      "tokens": 4,
+      "iterations": 100,
+      "begin_ns": 4843379900368499,
+      "submitted_ns": 4843379901408754,
+      "finished_ns": 4843379901424919,
+      "submit_ns": 1040255,
+      "completed_ns": 1056420,
+      "final_wait": true
+    },
+    {
+      "label": "timing/6/64",
+      "round": 6,
+      "tokens": 64,
+      "iterations": 100,
+      "begin_ns": 4843379901704782,
+      "submitted_ns": 4843379902723011,
+      "finished_ns": 4843379902743220,
+      "submit_ns": 1018229,
+      "completed_ns": 1038438,
+      "final_wait": true
+    }
+  ],
+  "checks": [
+    {
+      "label": "warmup/1",
+      "tokens": 1,
+      "key_pool_equal": true,
+      "value_pool_equal": true,
+      "input_key_unchanged": true,
+      "input_value_unchanged": true,
+      "first_slot": 128,
+      "last_slot": 128,
+      "checked_elements_per_pool": 131072
+    },
+    {
+      "label": "warmup/4",
+      "tokens": 4,
+      "key_pool_equal": true,
+      "value_pool_equal": true,
+      "input_key_unchanged": true,
+      "input_value_unchanged": true,
+      "first_slot": 128,
+      "last_slot": 131,
+      "checked_elements_per_pool": 131072
+    },
+    {
+      "label": "warmup/10",
+      "tokens": 10,
+      "key_pool_equal": true,
+      "value_pool_equal": true,
+      "input_key_unchanged": true,
+      "input_value_unchanged": true,
+      "first_slot": 128,
+      "last_slot": 137,
+      "checked_elements_per_pool": 131072
+    },
+    {
+      "label": "warmup/16",
+      "tokens": 16,
+      "key_pool_equal": true,
+      "value_pool_equal": true,
+      "input_key_unchanged": true,
+      "input_value_unchanged": true,
+      "first_slot": 128,
+      "last_slot": 143,
+      "checked_elements_per_pool": 131072
+    },
+    {
+      "label": "warmup/24",
+      "tokens": 24,
+      "key_pool_equal": true,
+      "value_pool_equal": true,
+      "input_key_unchanged": true,
+      "input_value_unchanged": true,
+      "first_slot": 128,
+      "last_slot": 151,
+      "checked_elements_per_pool": 131072
+    },
+    {
+      "label": "warmup/32",
+      "tokens": 32,
+      "key_pool_equal": true,
+      "value_pool_equal": true,
+      "input_key_unchanged": true,
+      "input_value_unchanged": true,
+      "first_slot": 128,
+      "last_slot": 159,
+      "checked_elements_per_pool": 131072
+    },
+    {
+      "label": "warmup/48",
+      "tokens": 48,
+      "key_pool_equal": true,
+      "value_pool_equal": true,
+      "input_key_unchanged": true,
+      "input_value_unchanged": true,
+      "first_slot": 128,
+      "last_slot": 175,
+      "checked_elements_per_pool": 131072
+    },
+    {
+      "label": "warmup/64",
+      "tokens": 64,
+      "key_pool_equal": true,
+      "value_pool_equal": true,
+      "input_key_unchanged": true,
+      "input_value_unchanged": true,
+      "first_slot": 128,
+      "last_slot": 191,
+      "checked_elements_per_pool": 131072
+    },
+    {
+      "label": "warmup/128",
+      "tokens": 128,
+      "key_pool_equal": true,
+      "value_pool_equal": true,
+      "input_key_unchanged": true,
+      "input_value_unchanged": true,
+      "first_slot": 128,
+      "last_slot": 255,
+      "checked_elements_per_pool": 131072
+    },
+    {
+      "label": "warmup/256",
+      "tokens": 256,
+      "key_pool_equal": true,
+      "value_pool_equal": true,
+      "input_key_unchanged": true,
+      "input_value_unchanged": true,
+      "first_slot": 128,
+      "last_slot": 383,
+      "checked_elements_per_pool": 131072
+    },
+    {
+      "label": "timing/0/256",
+      "tokens": 256,
+      "key_pool_equal": true,
+      "value_pool_equal": true,
+      "input_key_unchanged": true,
+      "input_value_unchanged": true,
+      "first_slot": 128,
+      "last_slot": 383,
+      "checked_elements_per_pool": 131072
+    },
+    {
+      "label": "timing/0/32",
+      "tokens": 32,
+      "key_pool_equal": true,
+      "value_pool_equal": true,
+      "input_key_unchanged": true,
+      "input_value_unchanged": true,
+      "first_slot": 128,
+      "last_slot": 159,
+      "checked_elements_per_pool": 131072
+    },
+    {
+      "label": "timing/0/48",
+      "tokens": 48,
+      "key_pool_equal": true,
+      "value_pool_equal": true,
+      "input_key_unchanged": true,
+      "input_value_unchanged": true,
+      "first_slot": 128,
+      "last_slot": 175,
+      "checked_elements_per_pool": 131072
+    },
+    {
+      "label": "timing/0/10",
+      "tokens": 10,
+      "key_pool_equal": true,
+      "value_pool_equal": true,
+      "input_key_unchanged": true,
+      "input_value_unchanged": true,
+      "first_slot": 128,
+      "last_slot": 137,
+      "checked_elements_per_pool": 131072
+    },
+    {
+      "label": "timing/0/16",
+      "tokens": 16,
+      "key_pool_equal": true,
+      "value_pool_equal": true,
+      "input_key_unchanged": true,
+      "input_value_unchanged": true,
+      "first_slot": 128,
+      "last_slot": 143,
+      "checked_elements_per_pool": 131072
+    },
+    {
+      "label": "timing/0/64",
+      "tokens": 64,
+      "key_pool_equal": true,
+      "value_pool_equal": true,
+      "input_key_unchanged": true,
+      "input_value_unchanged": true,
+      "first_slot": 128,
+      "last_slot": 191,
+      "checked_elements_per_pool": 131072
+    },
+    {
+      "label": "timing/0/24",
+      "tokens": 24,
+      "key_pool_equal": true,
+      "value_pool_equal": true,
+      "input_key_unchanged": true,
+      "input_value_unchanged": true,
+      "first_slot": 128,
+      "last_slot": 151,
+      "checked_elements_per_pool": 131072
+    },
+    {
+      "label": "timing/0/4",
+      "tokens": 4,
+      "key_pool_equal": true,
+      "value_pool_equal": true,
+      "input_key_unchanged": true,
+      "input_value_unchanged": true,
+      "first_slot": 128,
+      "last_slot": 131,
+      "checked_elements_per_pool": 131072
+    },
+    {
+      "label": "timing/0/128",
+      "tokens": 128,
+      "key_pool_equal": true,
+      "value_pool_equal": true,
+      "input_key_unchanged": true,
+      "input_value_unchanged": true,
+      "first_slot": 128,
+      "last_slot": 255,
+      "checked_elements_per_pool": 131072
+    },
+    {
+      "label": "timing/0/1",
+      "tokens": 1,
+      "key_pool_equal": true,
+      "value_pool_equal": true,
+      "input_key_unchanged": true,
+      "input_value_unchanged": true,
+      "first_slot": 128,
+      "last_slot": 128,
+      "checked_elements_per_pool": 131072
+    },
+    {
+      "label": "timing/1/64",
+      "tokens": 64,
+      "key_pool_equal": true,
+      "value_pool_equal": true,
+      "input_key_unchanged": true,
+      "input_value_unchanged": true,
+      "first_slot": 128,
+      "last_slot": 191,
+      "checked_elements_per_pool": 131072
+    },
+    {
+      "label": "timing/1/48",
+      "tokens": 48,
+      "key_pool_equal": true,
+      "value_pool_equal": true,
+      "input_key_unchanged": true,
+      "input_value_unchanged": true,
+      "first_slot": 128,
+      "last_slot": 175,
+      "checked_elements_per_pool": 131072
+    },
+    {
+      "label": "timing/1/4",
+      "tokens": 4,
+      "key_pool_equal": true,
+      "value_pool_equal": true,
+      "input_key_unchanged": true,
+      "input_value_unchanged": true,
+      "first_slot": 128,
+      "last_slot": 131,
+      "checked_elements_per_pool": 131072
+    },
+    {
+      "label": "timing/1/32",
+      "tokens": 32,
+      "key_pool_equal": true,
+      "value_pool_equal": true,
+      "input_key_unchanged": true,
+      "input_value_unchanged": true,
+      "first_slot": 128,
+      "last_slot": 159,
+      "checked_elements_per_pool": 131072
+    },
+    {
+      "label": "timing/1/16",
+      "tokens": 16,
+      "key_pool_equal": true,
+      "value_pool_equal": true,
+      "input_key_unchanged": true,
+      "input_value_unchanged": true,
+      "first_slot": 128,
+      "last_slot": 143,
+      "checked_elements_per_pool": 131072
+    },
+    {
+      "label": "timing/1/128",
+      "tokens": 128,
+      "key_pool_equal": true,
+      "value_pool_equal": true,
+      "input_key_unchanged": true,
+      "input_value_unchanged": true,
+      "first_slot": 128,
+      "last_slot": 255,
+      "checked_elements_per_pool": 131072
+    },
+    {
+      "label": "timing/1/1",
+      "tokens": 1,
+      "key_pool_equal": true,
+      "value_pool_equal": true,
+      "input_key_unchanged": true,
+      "input_value_unchanged": true,
+      "first_slot": 128,
+      "last_slot": 128,
+      "checked_elements_per_pool": 131072
+    },
+    {
+      "label": "timing/1/24",
+      "tokens": 24,
+      "key_pool_equal": true,
+      "value_pool_equal": true,
+      "input_key_unchanged": true,
+      "input_value_unchanged": true,
+      "first_slot": 128,
+      "last_slot": 151,
+      "checked_elements_per_pool": 131072
+    },
+    {
+      "label": "timing/1/10",
+      "tokens": 10,
+      "key_pool_equal": true,
+      "value_pool_equal": true,
+      "input_key_unchanged": true,
+      "input_value_unchanged": true,
+      "first_slot": 128,
+      "last_slot": 137,
+      "checked_elements_per_pool": 131072
+    },
+    {
+      "label": "timing/1/256",
+      "tokens": 256,
+      "key_pool_equal": true,
+      "value_pool_equal": true,
+      "input_key_unchanged": true,
+      "input_value_unchanged": true,
+      "first_slot": 128,
+      "last_slot": 383,
+      "checked_elements_per_pool": 131072
+    },
+    {
+      "label": "timing/2/256",
+      "tokens": 256,
+      "key_pool_equal": true,
+      "value_pool_equal": true,
+      "input_key_unchanged": true,
+      "input_value_unchanged": true,
+      "first_slot": 128,
+      "last_slot": 383,
+      "checked_elements_per_pool": 131072
+    },
+    {
+      "label": "timing/2/10",
+      "tokens": 10,
+      "key_pool_equal": true,
+      "value_pool_equal": true,
+      "input_key_unchanged": true,
+      "input_value_unchanged": true,
+      "first_slot": 128,
+      "last_slot": 137,
+      "checked_elements_per_pool": 131072
+    },
+    {
+      "label": "timing/2/16",
+      "tokens": 16,
+      "key_pool_equal": true,
+      "value_pool_equal": true,
+      "input_key_unchanged": true,
+      "input_value_unchanged": true,
+      "first_slot": 128,
+      "last_slot": 143,
+      "checked_elements_per_pool": 131072
+    },
+    {
+      "label": "timing/2/64",
+      "tokens": 64,
+      "key_pool_equal": true,
+      "value_pool_equal": true,
+      "input_key_unchanged": true,
+      "input_value_unchanged": true,
+      "first_slot": 128,
+      "last_slot": 191,
+      "checked_elements_per_pool": 131072
+    },
+    {
+      "label": "timing/2/4",
+      "tokens": 4,
+      "key_pool_equal": true,
+      "value_pool_equal": true,
+      "input_key_unchanged": true,
+      "input_value_unchanged": true,
+      "first_slot": 128,
+      "last_slot": 131,
+      "checked_elements_per_pool": 131072
+    },
+    {
+      "label": "timing/2/48",
+      "tokens": 48,
+      "key_pool_equal": true,
+      "value_pool_equal": true,
+      "input_key_unchanged": true,
+      "input_value_unchanged": true,
+      "first_slot": 128,
+      "last_slot": 175,
+      "checked_elements_per_pool": 131072
+    },
+    {
+      "label": "timing/2/128",
+      "tokens": 128,
+      "key_pool_equal": true,
+      "value_pool_equal": true,
+      "input_key_unchanged": true,
+      "input_value_unchanged": true,
+      "first_slot": 128,
+      "last_slot": 255,
+      "checked_elements_per_pool": 131072
+    },
+    {
+      "label": "timing/2/1",
+      "tokens": 1,
+      "key_pool_equal": true,
+      "value_pool_equal": true,
+      "input_key_unchanged": true,
+      "input_value_unchanged": true,
+      "first_slot": 128,
+      "last_slot": 128,
+      "checked_elements_per_pool": 131072
+    },
+    {
+      "label": "timing/2/24",
+      "tokens": 24,
+      "key_pool_equal": true,
+      "value_pool_equal": true,
+      "input_key_unchanged": true,
+      "input_value_unchanged": true,
+      "first_slot": 128,
+      "last_slot": 151,
+      "checked_elements_per_pool": 131072
+    },
+    {
+      "label": "timing/2/32",
+      "tokens": 32,
+      "key_pool_equal": true,
+      "value_pool_equal": true,
+      "input_key_unchanged": true,
+      "input_value_unchanged": true,
+      "first_slot": 128,
+      "last_slot": 159,
+      "checked_elements_per_pool": 131072
+    },
+    {
+      "label": "timing/3/10",
+      "tokens": 10,
+      "key_pool_equal": true,
+      "value_pool_equal": true,
+      "input_key_unchanged": true,
+      "input_value_unchanged": true,
+      "first_slot": 128,
+      "last_slot": 137,
+      "checked_elements_per_pool": 131072
+    },
+    {
+      "label": "timing/3/16",
+      "tokens": 16,
+      "key_pool_equal": true,
+      "value_pool_equal": true,
+      "input_key_unchanged": true,
+      "input_value_unchanged": true,
+      "first_slot": 128,
+      "last_slot": 143,
+      "checked_elements_per_pool": 131072
+    },
+    {
+      "label": "timing/3/4",
+      "tokens": 4,
+      "key_pool_equal": true,
+      "value_pool_equal": true,
+      "input_key_unchanged": true,
+      "input_value_unchanged": true,
+      "first_slot": 128,
+      "last_slot": 131,
+      "checked_elements_per_pool": 131072
+    },
+    {
+      "label": "timing/3/24",
+      "tokens": 24,
+      "key_pool_equal": true,
+      "value_pool_equal": true,
+      "input_key_unchanged": true,
+      "input_value_unchanged": true,
+      "first_slot": 128,
+      "last_slot": 151,
+      "checked_elements_per_pool": 131072
+    },
+    {
+      "label": "timing/3/1",
+      "tokens": 1,
+      "key_pool_equal": true,
+      "value_pool_equal": true,
+      "input_key_unchanged": true,
+      "input_value_unchanged": true,
+      "first_slot": 128,
+      "last_slot": 128,
+      "checked_elements_per_pool": 131072
+    },
+    {
+      "label": "timing/3/32",
+      "tokens": 32,
+      "key_pool_equal": true,
+      "value_pool_equal": true,
+      "input_key_unchanged": true,
+      "input_value_unchanged": true,
+      "first_slot": 128,
+      "last_slot": 159,
+      "checked_elements_per_pool": 131072
+    },
+    {
+      "label": "timing/3/256",
+      "tokens": 256,
+      "key_pool_equal": true,
+      "value_pool_equal": true,
+      "input_key_unchanged": true,
+      "input_value_unchanged": true,
+      "first_slot": 128,
+      "last_slot": 383,
+      "checked_elements_per_pool": 131072
+    },
+    {
+      "label": "timing/3/48",
+      "tokens": 48,
+      "key_pool_equal": true,
+      "value_pool_equal": true,
+      "input_key_unchanged": true,
+      "input_value_unchanged": true,
+      "first_slot": 128,
+      "last_slot": 175,
+      "checked_elements_per_pool": 131072
+    },
+    {
+      "label": "timing/3/64",
+      "tokens": 64,
+      "key_pool_equal": true,
+      "value_pool_equal": true,
+      "input_key_unchanged": true,
+      "input_value_unchanged": true,
+      "first_slot": 128,
+      "last_slot": 191,
+      "checked_elements_per_pool": 131072
+    },
+    {
+      "label": "timing/3/128",
+      "tokens": 128,
+      "key_pool_equal": true,
+      "value_pool_equal": true,
+      "input_key_unchanged": true,
+      "input_value_unchanged": true,
+      "first_slot": 128,
+      "last_slot": 255,
+      "checked_elements_per_pool": 131072
+    },
+    {
+      "label": "timing/4/1",
+      "tokens": 1,
+      "key_pool_equal": true,
+      "value_pool_equal": true,
+      "input_key_unchanged": true,
+      "input_value_unchanged": true,
+      "first_slot": 128,
+      "last_slot": 128,
+      "checked_elements_per_pool": 131072
+    },
+    {
+      "label": "timing/4/64",
+      "tokens": 64,
+      "key_pool_equal": true,
+      "value_pool_equal": true,
+      "input_key_unchanged": true,
+      "input_value_unchanged": true,
+      "first_slot": 128,
+      "last_slot": 191,
+      "checked_elements_per_pool": 131072
+    },
+    {
+      "label": "timing/4/24",
+      "tokens": 24,
+      "key_pool_equal": true,
+      "value_pool_equal": true,
+      "input_key_unchanged": true,
+      "input_value_unchanged": true,
+      "first_slot": 128,
+      "last_slot": 151,
+      "checked_elements_per_pool": 131072
+    },
+    {
+      "label": "timing/4/256",
+      "tokens": 256,
+      "key_pool_equal": true,
+      "value_pool_equal": true,
+      "input_key_unchanged": true,
+      "input_value_unchanged": true,
+      "first_slot": 128,
+      "last_slot": 383,
+      "checked_elements_per_pool": 131072
+    },
+    {
+      "label": "timing/4/10",
+      "tokens": 10,
+      "key_pool_equal": true,
+      "value_pool_equal": true,
+      "input_key_unchanged": true,
+      "input_value_unchanged": true,
+      "first_slot": 128,
+      "last_slot": 137,
+      "checked_elements_per_pool": 131072
+    },
+    {
+      "label": "timing/4/32",
+      "tokens": 32,
+      "key_pool_equal": true,
+      "value_pool_equal": true,
+      "input_key_unchanged": true,
+      "input_value_unchanged": true,
+      "first_slot": 128,
+      "last_slot": 159,
+      "checked_elements_per_pool": 131072
+    },
+    {
+      "label": "timing/4/16",
+      "tokens": 16,
+      "key_pool_equal": true,
+      "value_pool_equal": true,
+      "input_key_unchanged": true,
+      "input_value_unchanged": true,
+      "first_slot": 128,
+      "last_slot": 143,
+      "checked_elements_per_pool": 131072
+    },
+    {
+      "label": "timing/4/128",
+      "tokens": 128,
+      "key_pool_equal": true,
+      "value_pool_equal": true,
+      "input_key_unchanged": true,
+      "input_value_unchanged": true,
+      "first_slot": 128,
+      "last_slot": 255,
+      "checked_elements_per_pool": 131072
+    },
+    {
+      "label": "timing/4/48",
+      "tokens": 48,
+      "key_pool_equal": true,
+      "value_pool_equal": true,
+      "input_key_unchanged": true,
+      "input_value_unchanged": true,
+      "first_slot": 128,
+      "last_slot": 175,
+      "checked_elements_per_pool": 131072
+    },
+    {
+      "label": "timing/4/4",
+      "tokens": 4,
+      "key_pool_equal": true,
+      "value_pool_equal": true,
+      "input_key_unchanged": true,
+      "input_value_unchanged": true,
+      "first_slot": 128,
+      "last_slot": 131,
+      "checked_elements_per_pool": 131072
+    },
+    {
+      "label": "timing/5/24",
+      "tokens": 24,
+      "key_pool_equal": true,
+      "value_pool_equal": true,
+      "input_key_unchanged": true,
+      "input_value_unchanged": true,
+      "first_slot": 128,
+      "last_slot": 151,
+      "checked_elements_per_pool": 131072
+    },
+    {
+      "label": "timing/5/10",
+      "tokens": 10,
+      "key_pool_equal": true,
+      "value_pool_equal": true,
+      "input_key_unchanged": true,
+      "input_value_unchanged": true,
+      "first_slot": 128,
+      "last_slot": 137,
+      "checked_elements_per_pool": 131072
+    },
+    {
+      "label": "timing/5/1",
+      "tokens": 1,
+      "key_pool_equal": true,
+      "value_pool_equal": true,
+      "input_key_unchanged": true,
+      "input_value_unchanged": true,
+      "first_slot": 128,
+      "last_slot": 128,
+      "checked_elements_per_pool": 131072
+    },
+    {
+      "label": "timing/5/32",
+      "tokens": 32,
+      "key_pool_equal": true,
+      "value_pool_equal": true,
+      "input_key_unchanged": true,
+      "input_value_unchanged": true,
+      "first_slot": 128,
+      "last_slot": 159,
+      "checked_elements_per_pool": 131072
+    },
+    {
+      "label": "timing/5/256",
+      "tokens": 256,
+      "key_pool_equal": true,
+      "value_pool_equal": true,
+      "input_key_unchanged": true,
+      "input_value_unchanged": true,
+      "first_slot": 128,
+      "last_slot": 383,
+      "checked_elements_per_pool": 131072
+    },
+    {
+      "label": "timing/5/64",
+      "tokens": 64,
+      "key_pool_equal": true,
+      "value_pool_equal": true,
+      "input_key_unchanged": true,
+      "input_value_unchanged": true,
+      "first_slot": 128,
+      "last_slot": 191,
+      "checked_elements_per_pool": 131072
+    },
+    {
+      "label": "timing/5/48",
+      "tokens": 48,
+      "key_pool_equal": true,
+      "value_pool_equal": true,
+      "input_key_unchanged": true,
+      "input_value_unchanged": true,
+      "first_slot": 128,
+      "last_slot": 175,
+      "checked_elements_per_pool": 131072
+    },
+    {
+      "label": "timing/5/4",
+      "tokens": 4,
+      "key_pool_equal": true,
+      "value_pool_equal": true,
+      "input_key_unchanged": true,
+      "input_value_unchanged": true,
+      "first_slot": 128,
+      "last_slot": 131,
+      "checked_elements_per_pool": 131072
+    },
+    {
+      "label": "timing/5/128",
+      "tokens": 128,
+      "key_pool_equal": true,
+      "value_pool_equal": true,
+      "input_key_unchanged": true,
+      "input_value_unchanged": true,
+      "first_slot": 128,
+      "last_slot": 255,
+      "checked_elements_per_pool": 131072
+    },
+    {
+      "label": "timing/5/16",
+      "tokens": 16,
+      "key_pool_equal": true,
+      "value_pool_equal": true,
+      "input_key_unchanged": true,
+      "input_value_unchanged": true,
+      "first_slot": 128,
+      "last_slot": 143,
+      "checked_elements_per_pool": 131072
+    },
+    {
+      "label": "timing/6/24",
+      "tokens": 24,
+      "key_pool_equal": true,
+      "value_pool_equal": true,
+      "input_key_unchanged": true,
+      "input_value_unchanged": true,
+      "first_slot": 128,
+      "last_slot": 151,
+      "checked_elements_per_pool": 131072
+    },
+    {
+      "label": "timing/6/128",
+      "tokens": 128,
+      "key_pool_equal": true,
+      "value_pool_equal": true,
+      "input_key_unchanged": true,
+      "input_value_unchanged": true,
+      "first_slot": 128,
+      "last_slot": 255,
+      "checked_elements_per_pool": 131072
+    },
+    {
+      "label": "timing/6/10",
+      "tokens": 10,
+      "key_pool_equal": true,
+      "value_pool_equal": true,
+      "input_key_unchanged": true,
+      "input_value_unchanged": true,
+      "first_slot": 128,
+      "last_slot": 137,
+      "checked_elements_per_pool": 131072
+    },
+    {
+      "label": "timing/6/48",
+      "tokens": 48,
+      "key_pool_equal": true,
+      "value_pool_equal": true,
+      "input_key_unchanged": true,
+      "input_value_unchanged": true,
+      "first_slot": 128,
+      "last_slot": 175,
+      "checked_elements_per_pool": 131072
+    },
+    {
+      "label": "timing/6/32",
+      "tokens": 32,
+      "key_pool_equal": true,
+      "value_pool_equal": true,
+      "input_key_unchanged": true,
+      "input_value_unchanged": true,
+      "first_slot": 128,
+      "last_slot": 159,
+      "checked_elements_per_pool": 131072
+    },
+    {
+      "label": "timing/6/16",
+      "tokens": 16,
+      "key_pool_equal": true,
+      "value_pool_equal": true,
+      "input_key_unchanged": true,
+      "input_value_unchanged": true,
+      "first_slot": 128,
+      "last_slot": 143,
+      "checked_elements_per_pool": 131072
+    },
+    {
+      "label": "timing/6/1",
+      "tokens": 1,
+      "key_pool_equal": true,
+      "value_pool_equal": true,
+      "input_key_unchanged": true,
+      "input_value_unchanged": true,
+      "first_slot": 128,
+      "last_slot": 128,
+      "checked_elements_per_pool": 131072
+    },
+    {
+      "label": "timing/6/256",
+      "tokens": 256,
+      "key_pool_equal": true,
+      "value_pool_equal": true,
+      "input_key_unchanged": true,
+      "input_value_unchanged": true,
+      "first_slot": 128,
+      "last_slot": 383,
+      "checked_elements_per_pool": 131072
+    },
+    {
+      "label": "timing/6/4",
+      "tokens": 4,
+      "key_pool_equal": true,
+      "value_pool_equal": true,
+      "input_key_unchanged": true,
+      "input_value_unchanged": true,
+      "first_slot": 128,
+      "last_slot": 131,
+      "checked_elements_per_pool": 131072
+    },
+    {
+      "label": "timing/6/64",
+      "tokens": 64,
+      "key_pool_equal": true,
+      "value_pool_equal": true,
+      "input_key_unchanged": true,
+      "input_value_unchanged": true,
+      "first_slot": 128,
+      "last_slot": 191,
+      "checked_elements_per_pool": 131072
+    },
+    {
+      "label": "plain/1",
+      "tokens": 1,
+      "key_pool_equal": true,
+      "value_pool_equal": true,
+      "input_key_unchanged": true,
+      "input_value_unchanged": true,
+      "first_slot": 128,
+      "last_slot": 128,
+      "checked_elements_per_pool": 131072
+    },
+    {
+      "label": "plain/4",
+      "tokens": 4,
+      "key_pool_equal": true,
+      "value_pool_equal": true,
+      "input_key_unchanged": true,
+      "input_value_unchanged": true,
+      "first_slot": 128,
+      "last_slot": 131,
+      "checked_elements_per_pool": 131072
+    },
+    {
+      "label": "plain/10",
+      "tokens": 10,
+      "key_pool_equal": true,
+      "value_pool_equal": true,
+      "input_key_unchanged": true,
+      "input_value_unchanged": true,
+      "first_slot": 128,
+      "last_slot": 137,
+      "checked_elements_per_pool": 131072
+    },
+    {
+      "label": "plain/16",
+      "tokens": 16,
+      "key_pool_equal": true,
+      "value_pool_equal": true,
+      "input_key_unchanged": true,
+      "input_value_unchanged": true,
+      "first_slot": 128,
+      "last_slot": 143,
+      "checked_elements_per_pool": 131072
+    },
+    {
+      "label": "plain/24",
+      "tokens": 24,
+      "key_pool_equal": true,
+      "value_pool_equal": true,
+      "input_key_unchanged": true,
+      "input_value_unchanged": true,
+      "first_slot": 128,
+      "last_slot": 151,
+      "checked_elements_per_pool": 131072
+    },
+    {
+      "label": "plain/32",
+      "tokens": 32,
+      "key_pool_equal": true,
+      "value_pool_equal": true,
+      "input_key_unchanged": true,
+      "input_value_unchanged": true,
+      "first_slot": 128,
+      "last_slot": 159,
+      "checked_elements_per_pool": 131072
+    },
+    {
+      "label": "plain/48",
+      "tokens": 48,
+      "key_pool_equal": true,
+      "value_pool_equal": true,
+      "input_key_unchanged": true,
+      "input_value_unchanged": true,
+      "first_slot": 128,
+      "last_slot": 175,
+      "checked_elements_per_pool": 131072
+    },
+    {
+      "label": "plain/64",
+      "tokens": 64,
+      "key_pool_equal": true,
+      "value_pool_equal": true,
+      "input_key_unchanged": true,
+      "input_value_unchanged": true,
+      "first_slot": 128,
+      "last_slot": 191,
+      "checked_elements_per_pool": 131072
+    },
+    {
+      "label": "plain/128",
+      "tokens": 128,
+      "key_pool_equal": true,
+      "value_pool_equal": true,
+      "input_key_unchanged": true,
+      "input_value_unchanged": true,
+      "first_slot": 128,
+      "last_slot": 255,
+      "checked_elements_per_pool": 131072
+    },
+    {
+      "label": "plain/256",
+      "tokens": 256,
+      "key_pool_equal": true,
+      "value_pool_equal": true,
+      "input_key_unchanged": true,
+      "input_value_unchanged": true,
+      "first_slot": 128,
+      "last_slot": 383,
+      "checked_elements_per_pool": 131072
+    },
+    {
+      "label": "pipe/1",
+      "tokens": 1,
+      "key_pool_equal": true,
+      "value_pool_equal": true,
+      "input_key_unchanged": true,
+      "input_value_unchanged": true,
+      "first_slot": 128,
+      "last_slot": 128,
+      "checked_elements_per_pool": 131072
+    },
+    {
+      "label": "pipe/4",
+      "tokens": 4,
+      "key_pool_equal": true,
+      "value_pool_equal": true,
+      "input_key_unchanged": true,
+      "input_value_unchanged": true,
+      "first_slot": 128,
+      "last_slot": 131,
+      "checked_elements_per_pool": 131072
+    },
+    {
+      "label": "pipe/10",
+      "tokens": 10,
+      "key_pool_equal": true,
+      "value_pool_equal": true,
+      "input_key_unchanged": true,
+      "input_value_unchanged": true,
+      "first_slot": 128,
+      "last_slot": 137,
+      "checked_elements_per_pool": 131072
+    },
+    {
+      "label": "pipe/16",
+      "tokens": 16,
+      "key_pool_equal": true,
+      "value_pool_equal": true,
+      "input_key_unchanged": true,
+      "input_value_unchanged": true,
+      "first_slot": 128,
+      "last_slot": 143,
+      "checked_elements_per_pool": 131072
+    },
+    {
+      "label": "pipe/24",
+      "tokens": 24,
+      "key_pool_equal": true,
+      "value_pool_equal": true,
+      "input_key_unchanged": true,
+      "input_value_unchanged": true,
+      "first_slot": 128,
+      "last_slot": 151,
+      "checked_elements_per_pool": 131072
+    },
+    {
+      "label": "pipe/32",
+      "tokens": 32,
+      "key_pool_equal": true,
+      "value_pool_equal": true,
+      "input_key_unchanged": true,
+      "input_value_unchanged": true,
+      "first_slot": 128,
+      "last_slot": 159,
+      "checked_elements_per_pool": 131072
+    },
+    {
+      "label": "pipe/48",
+      "tokens": 48,
+      "key_pool_equal": true,
+      "value_pool_equal": true,
+      "input_key_unchanged": true,
+      "input_value_unchanged": true,
+      "first_slot": 128,
+      "last_slot": 175,
+      "checked_elements_per_pool": 131072
+    },
+    {
+      "label": "pipe/64",
+      "tokens": 64,
+      "key_pool_equal": true,
+      "value_pool_equal": true,
+      "input_key_unchanged": true,
+      "input_value_unchanged": true,
+      "first_slot": 128,
+      "last_slot": 191,
+      "checked_elements_per_pool": 131072
+    },
+    {
+      "label": "pipe/128",
+      "tokens": 128,
+      "key_pool_equal": true,
+      "value_pool_equal": true,
+      "input_key_unchanged": true,
+      "input_value_unchanged": true,
+      "first_slot": 128,
+      "last_slot": 255,
+      "checked_elements_per_pool": 131072
+    },
+    {
+      "label": "pipe/256",
+      "tokens": 256,
+      "key_pool_equal": true,
+      "value_pool_equal": true,
+      "input_key_unchanged": true,
+      "input_value_unchanged": true,
+      "first_slot": 128,
+      "last_slot": 383,
+      "checked_elements_per_pool": 131072
+    }
+  ],
+  "records": [
+    {
+      "label": "P19/plain/tokens=1/rep=0",
+      "profile": "plain",
+      "tokens": 1,
+      "repeat": 0,
+      "pid": 1061944,
+      "raw_stream_handle": "140209937956864",
+      "host_stream_id": "96",
+      "host_begin_ns": 4843380008283159,
+      "host_end_ns": 4843380008366488
+    },
+    {
+      "label": "P19/plain/tokens=1/rep=1",
+      "profile": "plain",
+      "tokens": 1,
+      "repeat": 1,
+      "pid": 1061944,
+      "raw_stream_handle": "140209937956864",
+      "host_stream_id": "96",
+      "host_begin_ns": 4843380008446856,
+      "host_end_ns": 4843380008482495
+    },
+    {
+      "label": "P19/plain/tokens=1/rep=2",
+      "profile": "plain",
+      "tokens": 1,
+      "repeat": 2,
+      "pid": 1061944,
+      "raw_stream_handle": "140209937956864",
+      "host_stream_id": "96",
+      "host_begin_ns": 4843380008491526,
+      "host_end_ns": 4843380008522680
+    },
+    {
+      "label": "P19/plain/tokens=4/rep=0",
+      "profile": "plain",
+      "tokens": 4,
+      "repeat": 0,
+      "pid": 1061944,
+      "raw_stream_handle": "140209937956864",
+      "host_stream_id": "96",
+      "host_begin_ns": 4843380009313989,
+      "host_end_ns": 4843380009355292
+    },
+    {
+      "label": "P19/plain/tokens=4/rep=1",
+      "profile": "plain",
+      "tokens": 4,
+      "repeat": 1,
+      "pid": 1061944,
+      "raw_stream_handle": "140209937956864",
+      "host_stream_id": "96",
+      "host_begin_ns": 4843380009371029,
+      "host_end_ns": 4843380009406120
+    },
+    {
+      "label": "P19/plain/tokens=4/rep=2",
+      "profile": "plain",
+      "tokens": 4,
+      "repeat": 2,
+      "pid": 1061944,
+      "raw_stream_handle": "140209937956864",
+      "host_stream_id": "96",
+      "host_begin_ns": 4843380009434616,
+      "host_end_ns": 4843380009468728
+    },
+    {
+      "label": "P19/plain/tokens=10/rep=0",
+      "profile": "plain",
+      "tokens": 10,
+      "repeat": 0,
+      "pid": 1061944,
+      "raw_stream_handle": "140209937956864",
+      "host_stream_id": "96",
+      "host_begin_ns": 4843380009838514,
+      "host_end_ns": 4843380009873183
+    },
+    {
+      "label": "P19/plain/tokens=10/rep=1",
+      "profile": "plain",
+      "tokens": 10,
+      "repeat": 1,
+      "pid": 1061944,
+      "raw_stream_handle": "140209937956864",
+      "host_stream_id": "96",
+      "host_begin_ns": 4843380009904243,
+      "host_end_ns": 4843380009945526
+    },
+    {
+      "label": "P19/plain/tokens=10/rep=2",
+      "profile": "plain",
+      "tokens": 10,
+      "repeat": 2,
+      "pid": 1061944,
+      "raw_stream_handle": "140209937956864",
+      "host_stream_id": "96",
+      "host_begin_ns": 4843380009950877,
+      "host_end_ns": 4843380009979872
+    },
+    {
+      "label": "P19/plain/tokens=16/rep=0",
+      "profile": "plain",
+      "tokens": 16,
+      "repeat": 0,
+      "pid": 1061944,
+      "raw_stream_handle": "140209937956864",
+      "host_stream_id": "96",
+      "host_begin_ns": 4843380010337891,
+      "host_end_ns": 4843380010373531
+    },
+    {
+      "label": "P19/plain/tokens=16/rep=1",
+      "profile": "plain",
+      "tokens": 16,
+      "repeat": 1,
+      "pid": 1061944,
+      "raw_stream_handle": "140209937956864",
+      "host_stream_id": "96",
+      "host_begin_ns": 4843380010394235,
+      "host_end_ns": 4843380010425111
+    },
+    {
+      "label": "P19/plain/tokens=16/rep=2",
+      "profile": "plain",
+      "tokens": 16,
+      "repeat": 2,
+      "pid": 1061944,
+      "raw_stream_handle": "140209937956864",
+      "host_stream_id": "96",
+      "host_begin_ns": 4843380010438075,
+      "host_end_ns": 4843380010707645
+    },
+    {
+      "label": "P19/plain/tokens=24/rep=0",
+      "profile": "plain",
+      "tokens": 24,
+      "repeat": 0,
+      "pid": 1061944,
+      "raw_stream_handle": "140209937956864",
+      "host_stream_id": "96",
+      "host_begin_ns": 4843380011177597,
+      "host_end_ns": 4843380011229754
+    },
+    {
+      "label": "P19/plain/tokens=24/rep=1",
+      "profile": "plain",
+      "tokens": 24,
+      "repeat": 1,
+      "pid": 1061944,
+      "raw_stream_handle": "140209937956864",
+      "host_stream_id": "96",
+      "host_begin_ns": 4843380011250098,
+      "host_end_ns": 4843380011278425
+    },
+    {
+      "label": "P19/plain/tokens=24/rep=2",
+      "profile": "plain",
+      "tokens": 24,
+      "repeat": 2,
+      "pid": 1061944,
+      "raw_stream_handle": "140209937956864",
+      "host_stream_id": "96",
+      "host_begin_ns": 4843380011288865,
+      "host_end_ns": 4843380011315551
+    },
+    {
+      "label": "P19/plain/tokens=32/rep=0",
+      "profile": "plain",
+      "tokens": 32,
+      "repeat": 0,
+      "pid": 1061944,
+      "raw_stream_handle": "140209937956864",
+      "host_stream_id": "96",
+      "host_begin_ns": 4843380011677764,
+      "host_end_ns": 4843380011723322
+    },
+    {
+      "label": "P19/plain/tokens=32/rep=1",
+      "profile": "plain",
+      "tokens": 32,
+      "repeat": 1,
+      "pid": 1061944,
+      "raw_stream_handle": "140209937956864",
+      "host_stream_id": "96",
+      "host_begin_ns": 4843380011743688,
+      "host_end_ns": 4843380011772603
+    },
+    {
+      "label": "P19/plain/tokens=32/rep=2",
+      "profile": "plain",
+      "tokens": 32,
+      "repeat": 2,
+      "pid": 1061944,
+      "raw_stream_handle": "140209937956864",
+      "host_stream_id": "96",
+      "host_begin_ns": 4843380011782839,
+      "host_end_ns": 4843380011810279
+    },
+    {
+      "label": "P19/plain/tokens=48/rep=0",
+      "profile": "plain",
+      "tokens": 48,
+      "repeat": 0,
+      "pid": 1061944,
+      "raw_stream_handle": "140209937956864",
+      "host_stream_id": "96",
+      "host_begin_ns": 4843380012212176,
+      "host_end_ns": 4843380012246780
+    },
+    {
+      "label": "P19/plain/tokens=48/rep=1",
+      "profile": "plain",
+      "tokens": 48,
+      "repeat": 1,
+      "pid": 1061944,
+      "raw_stream_handle": "140209937956864",
+      "host_stream_id": "96",
+      "host_begin_ns": 4843380012268204,
+      "host_end_ns": 4843380012298701
+    },
+    {
+      "label": "P19/plain/tokens=48/rep=2",
+      "profile": "plain",
+      "tokens": 48,
+      "repeat": 2,
+      "pid": 1061944,
+      "raw_stream_handle": "140209937956864",
+      "host_stream_id": "96",
+      "host_begin_ns": 4843380012307991,
+      "host_end_ns": 4843380012345830
+    },
+    {
+      "label": "P19/plain/tokens=64/rep=0",
+      "profile": "plain",
+      "tokens": 64,
+      "repeat": 0,
+      "pid": 1061944,
+      "raw_stream_handle": "140209937956864",
+      "host_stream_id": "96",
+      "host_begin_ns": 4843380012822709,
+      "host_end_ns": 4843380012866622
+    },
+    {
+      "label": "P19/plain/tokens=64/rep=1",
+      "profile": "plain",
+      "tokens": 64,
+      "repeat": 1,
+      "pid": 1061944,
+      "raw_stream_handle": "140209937956864",
+      "host_stream_id": "96",
+      "host_begin_ns": 4843380012885329,
+      "host_end_ns": 4843380012913523
+    },
+    {
+      "label": "P19/plain/tokens=64/rep=2",
+      "profile": "plain",
+      "tokens": 64,
+      "repeat": 2,
+      "pid": 1061944,
+      "raw_stream_handle": "140209937956864",
+      "host_stream_id": "96",
+      "host_begin_ns": 4843380012923710,
+      "host_end_ns": 4843380012950204
+    },
+    {
+      "label": "P19/plain/tokens=128/rep=0",
+      "profile": "plain",
+      "tokens": 128,
+      "repeat": 0,
+      "pid": 1061944,
+      "raw_stream_handle": "140209937956864",
+      "host_stream_id": "96",
+      "host_begin_ns": 4843380013335330,
+      "host_end_ns": 4843380013374757
+    },
+    {
+      "label": "P19/plain/tokens=128/rep=1",
+      "profile": "plain",
+      "tokens": 128,
+      "repeat": 1,
+      "pid": 1061944,
+      "raw_stream_handle": "140209937956864",
+      "host_stream_id": "96",
+      "host_begin_ns": 4843380013395269,
+      "host_end_ns": 4843380013423336
+    },
+    {
+      "label": "P19/plain/tokens=128/rep=2",
+      "profile": "plain",
+      "tokens": 128,
+      "repeat": 2,
+      "pid": 1061944,
+      "raw_stream_handle": "140209937956864",
+      "host_stream_id": "96",
+      "host_begin_ns": 4843380013433807,
+      "host_end_ns": 4843380013462924
+    },
+    {
+      "label": "P19/plain/tokens=256/rep=0",
+      "profile": "plain",
+      "tokens": 256,
+      "repeat": 0,
+      "pid": 1061944,
+      "raw_stream_handle": "140209937956864",
+      "host_stream_id": "96",
+      "host_begin_ns": 4843380013863385,
+      "host_end_ns": 4843380013895646
+    },
+    {
+      "label": "P19/plain/tokens=256/rep=1",
+      "profile": "plain",
+      "tokens": 256,
+      "repeat": 1,
+      "pid": 1061944,
+      "raw_stream_handle": "140209937956864",
+      "host_stream_id": "96",
+      "host_begin_ns": 4843380013914828,
+      "host_end_ns": 4843380013942770
+    },
+    {
+      "label": "P19/plain/tokens=256/rep=2",
+      "profile": "plain",
+      "tokens": 256,
+      "repeat": 2,
+      "pid": 1061944,
+      "raw_stream_handle": "140209937956864",
+      "host_stream_id": "96",
+      "host_begin_ns": 4843380013953057,
+      "host_end_ns": 4843380013981112
+    },
+    {
+      "label": "P19/pipe/tokens=1/rep=0",
+      "profile": "pipe",
+      "tokens": 1,
+      "repeat": 0,
+      "pid": 1061944,
+      "raw_stream_handle": "140209937956864",
+      "host_stream_id": "96",
+      "host_begin_ns": 4843383606966654,
+      "host_end_ns": 4843383607052733
+    },
+    {
+      "label": "P19/pipe/tokens=1/rep=1",
+      "profile": "pipe",
+      "tokens": 1,
+      "repeat": 1,
+      "pid": 1061944,
+      "raw_stream_handle": "140209937956864",
+      "host_stream_id": "96",
+      "host_begin_ns": 4843383607256523,
+      "host_end_ns": 4843383607296701
+    },
+    {
+      "label": "P19/pipe/tokens=1/rep=2",
+      "profile": "pipe",
+      "tokens": 1,
+      "repeat": 2,
+      "pid": 1061944,
+      "raw_stream_handle": "140209937956864",
+      "host_stream_id": "96",
+      "host_begin_ns": 4843383607323442,
+      "host_end_ns": 4843383607360171
+    },
+    {
+      "label": "P19/pipe/tokens=4/rep=0",
+      "profile": "pipe",
+      "tokens": 4,
+      "repeat": 0,
+      "pid": 1061944,
+      "raw_stream_handle": "140209937956864",
+      "host_stream_id": "96",
+      "host_begin_ns": 4843383608183520,
+      "host_end_ns": 4843383608231797
+    },
+    {
+      "label": "P19/pipe/tokens=4/rep=1",
+      "profile": "pipe",
+      "tokens": 4,
+      "repeat": 1,
+      "pid": 1061944,
+      "raw_stream_handle": "140209937956864",
+      "host_stream_id": "96",
+      "host_begin_ns": 4843383608267606,
+      "host_end_ns": 4843383608303711
+    },
+    {
+      "label": "P19/pipe/tokens=4/rep=2",
+      "profile": "pipe",
+      "tokens": 4,
+      "repeat": 2,
+      "pid": 1061944,
+      "raw_stream_handle": "140209937956864",
+      "host_stream_id": "96",
+      "host_begin_ns": 4843383608319752,
+      "host_end_ns": 4843383608352828
+    },
+    {
+      "label": "P19/pipe/tokens=10/rep=0",
+      "profile": "pipe",
+      "tokens": 10,
+      "repeat": 0,
+      "pid": 1061944,
+      "raw_stream_handle": "140209937956864",
+      "host_stream_id": "96",
+      "host_begin_ns": 4843383608748448,
+      "host_end_ns": 4843383608787831
+    },
+    {
+      "label": "P19/pipe/tokens=10/rep=1",
+      "profile": "pipe",
+      "tokens": 10,
+      "repeat": 1,
+      "pid": 1061944,
+      "raw_stream_handle": "140209937956864",
+      "host_stream_id": "96",
+      "host_begin_ns": 4843383608816937,
+      "host_end_ns": 4843383608851029
+    },
+    {
+      "label": "P19/pipe/tokens=10/rep=2",
+      "profile": "pipe",
+      "tokens": 10,
+      "repeat": 2,
+      "pid": 1061944,
+      "raw_stream_handle": "140209937956864",
+      "host_stream_id": "96",
+      "host_begin_ns": 4843383608865248,
+      "host_end_ns": 4843383608897520
+    },
+    {
+      "label": "P19/pipe/tokens=16/rep=0",
+      "profile": "pipe",
+      "tokens": 16,
+      "repeat": 0,
+      "pid": 1061944,
+      "raw_stream_handle": "140209937956864",
+      "host_stream_id": "96",
+      "host_begin_ns": 4843383609263223,
+      "host_end_ns": 4843383609305079
+    },
+    {
+      "label": "P19/pipe/tokens=16/rep=1",
+      "profile": "pipe",
+      "tokens": 16,
+      "repeat": 1,
+      "pid": 1061944,
+      "raw_stream_handle": "140209937956864",
+      "host_stream_id": "96",
+      "host_begin_ns": 4843383609334245,
+      "host_end_ns": 4843383609372028
+    },
+    {
+      "label": "P19/pipe/tokens=16/rep=2",
+      "profile": "pipe",
+      "tokens": 16,
+      "repeat": 2,
+      "pid": 1061944,
+      "raw_stream_handle": "140209937956864",
+      "host_stream_id": "96",
+      "host_begin_ns": 4843383609389455,
+      "host_end_ns": 4843383609423005
+    },
+    {
+      "label": "P19/pipe/tokens=24/rep=0",
+      "profile": "pipe",
+      "tokens": 24,
+      "repeat": 0,
+      "pid": 1061944,
+      "raw_stream_handle": "140209937956864",
+      "host_stream_id": "96",
+      "host_begin_ns": 4843383609885137,
+      "host_end_ns": 4843383609925752
+    },
+    {
+      "label": "P19/pipe/tokens=24/rep=1",
+      "profile": "pipe",
+      "tokens": 24,
+      "repeat": 1,
+      "pid": 1061944,
+      "raw_stream_handle": "140209937956864",
+      "host_stream_id": "96",
+      "host_begin_ns": 4843383609954572,
+      "host_end_ns": 4843383609984100
+    },
+    {
+      "label": "P19/pipe/tokens=24/rep=2",
+      "profile": "pipe",
+      "tokens": 24,
+      "repeat": 2,
+      "pid": 1061944,
+      "raw_stream_handle": "140209937956864",
+      "host_stream_id": "96",
+      "host_begin_ns": 4843383609998010,
+      "host_end_ns": 4843383610025570
+    },
+    {
+      "label": "P19/pipe/tokens=32/rep=0",
+      "profile": "pipe",
+      "tokens": 32,
+      "repeat": 0,
+      "pid": 1061944,
+      "raw_stream_handle": "140209937956864",
+      "host_stream_id": "96",
+      "host_begin_ns": 4843383610415104,
+      "host_end_ns": 4843383610450672
+    },
+    {
+      "label": "P19/pipe/tokens=32/rep=1",
+      "profile": "pipe",
+      "tokens": 32,
+      "repeat": 1,
+      "pid": 1061944,
+      "raw_stream_handle": "140209937956864",
+      "host_stream_id": "96",
+      "host_begin_ns": 4843383610474099,
+      "host_end_ns": 4843383610503183
+    },
+    {
+      "label": "P19/pipe/tokens=32/rep=2",
+      "profile": "pipe",
+      "tokens": 32,
+      "repeat": 2,
+      "pid": 1061944,
+      "raw_stream_handle": "140209937956864",
+      "host_stream_id": "96",
+      "host_begin_ns": 4843383610519300,
+      "host_end_ns": 4843383610549968
+    },
+    {
+      "label": "P19/pipe/tokens=48/rep=0",
+      "profile": "pipe",
+      "tokens": 48,
+      "repeat": 0,
+      "pid": 1061944,
+      "raw_stream_handle": "140209937956864",
+      "host_stream_id": "96",
+      "host_begin_ns": 4843383610938407,
+      "host_end_ns": 4843383610973938
+    },
+    {
+      "label": "P19/pipe/tokens=48/rep=1",
+      "profile": "pipe",
+      "tokens": 48,
+      "repeat": 1,
+      "pid": 1061944,
+      "raw_stream_handle": "140209937956864",
+      "host_stream_id": "96",
+      "host_begin_ns": 4843383610995969,
+      "host_end_ns": 4843383611028013
+    },
+    {
+      "label": "P19/pipe/tokens=48/rep=2",
+      "profile": "pipe",
+      "tokens": 48,
+      "repeat": 2,
+      "pid": 1061944,
+      "raw_stream_handle": "140209937956864",
+      "host_stream_id": "96",
+      "host_begin_ns": 4843383611050122,
+      "host_end_ns": 4843383611086963
+    },
+    {
+      "label": "P19/pipe/tokens=64/rep=0",
+      "profile": "pipe",
+      "tokens": 64,
+      "repeat": 0,
+      "pid": 1061944,
+      "raw_stream_handle": "140209937956864",
+      "host_stream_id": "96",
+      "host_begin_ns": 4843383611467298,
+      "host_end_ns": 4843383611508937
+    },
+    {
+      "label": "P19/pipe/tokens=64/rep=1",
+      "profile": "pipe",
+      "tokens": 64,
+      "repeat": 1,
+      "pid": 1061944,
+      "raw_stream_handle": "140209937956864",
+      "host_stream_id": "96",
+      "host_begin_ns": 4843383611535449,
+      "host_end_ns": 4843383611569267
+    },
+    {
+      "label": "P19/pipe/tokens=64/rep=2",
+      "profile": "pipe",
+      "tokens": 64,
+      "repeat": 2,
+      "pid": 1061944,
+      "raw_stream_handle": "140209937956864",
+      "host_stream_id": "96",
+      "host_begin_ns": 4843383611585768,
+      "host_end_ns": 4843383611618661
+    },
+    {
+      "label": "P19/pipe/tokens=128/rep=0",
+      "profile": "pipe",
+      "tokens": 128,
+      "repeat": 0,
+      "pid": 1061944,
+      "raw_stream_handle": "140209937956864",
+      "host_stream_id": "96",
+      "host_begin_ns": 4843383612018123,
+      "host_end_ns": 4843383612054505
+    },
+    {
+      "label": "P19/pipe/tokens=128/rep=1",
+      "profile": "pipe",
+      "tokens": 128,
+      "repeat": 1,
+      "pid": 1061944,
+      "raw_stream_handle": "140209937956864",
+      "host_stream_id": "96",
+      "host_begin_ns": 4843383612079717,
+      "host_end_ns": 4843383612116898
+    },
+    {
+      "label": "P19/pipe/tokens=128/rep=2",
+      "profile": "pipe",
+      "tokens": 128,
+      "repeat": 2,
+      "pid": 1061944,
+      "raw_stream_handle": "140209937956864",
+      "host_stream_id": "96",
+      "host_begin_ns": 4843383612135342,
+      "host_end_ns": 4843383612170066
+    },
+    {
+      "label": "P19/pipe/tokens=256/rep=0",
+      "profile": "pipe",
+      "tokens": 256,
+      "repeat": 0,
+      "pid": 1061944,
+      "raw_stream_handle": "140209937956864",
+      "host_stream_id": "96",
+      "host_begin_ns": 4843383612571340,
+      "host_end_ns": 4843383612609104
+    },
+    {
+      "label": "P19/pipe/tokens=256/rep=1",
+      "profile": "pipe",
+      "tokens": 256,
+      "repeat": 1,
+      "pid": 1061944,
+      "raw_stream_handle": "140209937956864",
+      "host_stream_id": "96",
+      "host_begin_ns": 4843383612632615,
+      "host_end_ns": 4843383612661423
+    },
+    {
+      "label": "P19/pipe/tokens=256/rep=2",
+      "profile": "pipe",
+      "tokens": 256,
+      "repeat": 2,
+      "pid": 1061944,
+      "raw_stream_handle": "140209937956864",
+      "host_stream_id": "96",
+      "host_begin_ns": 4843383612680881,
+      "host_end_ns": 4843383612714431
+    }
+  ],
+  "profiles": [
+    {
+      "name": "plain",
+      "metric": "ACL_AICORE_NONE",
+      "level": "Level1"
+    },
+    {
+      "name": "pipe",
+      "metric": "ACL_AICORE_PIPE_UTILIZATION",
+      "level": "Level1"
+    }
+  ],
+  "environment": {
+    "ASCEND_HOME_PATH": "/usr/local/Ascend/cann-9.0.0",
+    "TASK_QUEUE_ENABLE": null,
+    "ASCEND_LAUNCH_BLOCKING": null,
+    "ASCEND_RT_VISIBLE_DEVICES": null
+  },
+  "limits": [
+    "Unprofiled timing is host submit-through-completion time for a batch, not isolated kernel latency.",
+    "Repeated writes target the same warmed buffers; this is not a cold-HBM bandwidth benchmark.",
+    "Profiler block counts and aggregate pipeline metrics do not identify physical per-core timelines."
+  ]
+}
