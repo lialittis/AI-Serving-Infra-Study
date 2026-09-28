@@ -1,0 +1,1160 @@
+{
+  "mode": "eager",
+  "phase": "decode-1",
+  "layer": "model.layers.0.self_attn.attn",
+  "nodes": [
+    {
+      "id": "k:19260",
+      "kind": "kernel",
+      "name": "_triton_rope",
+      "phase": "decode-1",
+      "phase_evidence": "exact_host_scope",
+      "stream": "46",
+      "device_lane": "1049942432",
+      "task_id": 2437,
+      "model_id": 4294967295,
+      "start_us": "1790585302328280.239",
+      "end_us": "1790585302328283.299",
+      "trace_index": 19260,
+      "host_operator": "_triton_rope",
+      "queue": {
+        "correlation_id": "2372",
+        "enqueue": {
+          "ph": "X",
+          "name": "Enqueue@_triton_rope",
+          "pid": 1025334,
+          "tid": 1025334,
+          "ts": "1790585302328253.719",
+          "dur": 6.578,
+          "cat": "enqueue",
+          "args": {
+            "correlation_id": 2372
+          }
+        },
+        "dequeue": {
+          "ph": "X",
+          "name": "Dequeue@_triton_rope",
+          "pid": 1025334,
+          "tid": 1025659,
+          "ts": "1790585302328264.932",
+          "dur": 6.2,
+          "cat": "dequeue",
+          "args": {
+            "correlation_id": 2372
+          }
+        }
+      },
+      "scopes": [
+        "P13/1025334/00333/launch",
+        "P13/1025334/00332/jit_run",
+        "P13/1025334/00330/forward",
+        "P13/1025334/00318/runner"
+      ],
+      "flow_evidence": {
+        "torch": {
+          "status": "exact",
+          "flow_id": "1790585302328280239",
+          "source_index": 3810,
+          "start_index": 33944,
+          "endpoint_index": 33945
+        },
+        "cann": {
+          "status": "exact",
+          "flow_id": "22393959481344",
+          "source_index": 26305,
+          "start_index": 32037,
+          "endpoint_index": 19261
+        }
+      },
+      "kernel_csv_verified": true,
+      "raw_stream_handle": "140087713468416",
+      "device_event": {
+        "name": "_triton_rope",
+        "pid": 1049942432,
+        "tid": 46,
+        "ts": "1790585302328280.239",
+        "dur": 3.06,
+        "ph": "X",
+        "args": {
+          "Model Id": 4294967295,
+          "Task Type": "AI_VECTOR_CORE",
+          "Physic Stream Id": 46,
+          "Task Id": 2437,
+          "Batch Id": 0,
+          "Subtask Id": 4294967295,
+          "connection_id": 5214
+        }
+      }
+    },
+    {
+      "id": "host:3810",
+      "kind": "host",
+      "name": "_triton_rope",
+      "pid": 1025334,
+      "tid": 1025334,
+      "start_us": "1790585302328253.454",
+      "end_us": "1790585302328264.453",
+      "event": {
+        "ph": "X",
+        "name": "_triton_rope",
+        "pid": 1025334,
+        "tid": 1025334,
+        "ts": "1790585302328253.454",
+        "dur": 10.999,
+        "cat": "cpu_op",
+        "args": {
+          "Sequence number": -1,
+          "Fwd thread id": 0
+        }
+      }
+    },
+    {
+      "id": "submission:26305",
+      "kind": "submission",
+      "name": "Node@launch",
+      "pid": 1049942271,
+      "tid": 1025659,
+      "start_us": "1790585302328266.013",
+      "end_us": "1790585302328268.700",
+      "event": {
+        "name": "Node@launch",
+        "pid": 1049942271,
+        "tid": 1025659,
+        "ts": "1790585302328266.013",
+        "dur": 2.687,
+        "ph": "X",
+        "args": {
+          "Thread Id": 1025659,
+          "Mode": "launch",
+          "level": "node",
+          "id": "0",
+          "item_id": "_triton_rope",
+          "connection_id": 5214
+        }
+      }
+    },
+    {
+      "id": "k:19262",
+      "kind": "kernel",
+      "name": "ReshapeAndCacheNdKernel",
+      "phase": "decode-1",
+      "phase_evidence": "exact_host_scope",
+      "stream": "46",
+      "device_lane": "1049942432",
+      "task_id": 2438,
+      "model_id": 4294967295,
+      "start_us": "1790585302329002.628",
+      "end_us": "1790585302329004.468",
+      "trace_index": 19262,
+      "host_operator": "ReshapeCacheOperation",
+      "queue": {
+        "correlation_id": "2373",
+        "enqueue": {
+          "ph": "X",
+          "name": "Enqueue@ReshapeCacheOperation",
+          "pid": 1025334,
+          "tid": 1025334,
+          "ts": "1790585302328957.228",
+          "dur": 3.542,
+          "cat": "enqueue",
+          "args": {
+            "correlation_id": 2373
+          }
+        },
+        "dequeue": {
+          "ph": "X",
+          "name": "Dequeue@ReshapeCacheOperation",
+          "pid": 1025334,
+          "tid": 1025659,
+          "ts": "1790585302328965.169",
+          "dur": 32.886,
+          "cat": "dequeue",
+          "args": {
+            "correlation_id": 2373
+          }
+        }
+      },
+      "scopes": [
+        "P13/1025334/00336/torch_api",
+        "P13/1025334/00335/cache_write",
+        "P13/1025334/00334/attention",
+        "P13/1025334/00330/forward",
+        "P13/1025334/00318/runner"
+      ],
+      "flow_evidence": {
+        "torch": {
+          "status": "exact",
+          "flow_id": "1790585302329002628",
+          "source_index": 3828,
+          "start_index": 33946,
+          "endpoint_index": 33947
+        },
+        "cann": {
+          "status": "exact",
+          "flow_id": "22415434317824",
+          "source_index": 26310,
+          "start_index": 32038,
+          "endpoint_index": 19263
+        }
+      },
+      "kernel_csv_verified": true,
+      "raw_stream_handle": null,
+      "device_event": {
+        "name": "ReshapeAndCacheNdKernel",
+        "pid": 1049942432,
+        "tid": 46,
+        "ts": "1790585302329002.628",
+        "dur": 1.84,
+        "ph": "X",
+        "args": {
+          "Model Id": 4294967295,
+          "Task Type": "AI_VECTOR_CORE",
+          "Physic Stream Id": 46,
+          "Task Id": 2438,
+          "Batch Id": 0,
+          "Subtask Id": 4294967295,
+          "connection_id": 5219
+        }
+      }
+    },
+    {
+      "id": "host:3828",
+      "kind": "host",
+      "name": "ReshapeCacheOperation",
+      "pid": 1025334,
+      "tid": 1025334,
+      "start_us": "1790585302328955.974",
+      "end_us": "1790585302328960.996",
+      "event": {
+        "ph": "X",
+        "name": "ReshapeCacheOperation",
+        "pid": 1025334,
+        "tid": 1025334,
+        "ts": "1790585302328955.974",
+        "dur": 5.022,
+        "cat": "cpu_op",
+        "args": {
+          "Sequence number": -1,
+          "Fwd thread id": 0
+        }
+      }
+    },
+    {
+      "id": "submission:26310",
+      "kind": "submission",
+      "name": "Node@launch",
+      "pid": 1049942271,
+      "tid": 1025659,
+      "start_us": "1790585302328986.994",
+      "end_us": "1790585302328991.386",
+      "event": {
+        "name": "Node@launch",
+        "pid": 1049942271,
+        "tid": 1025659,
+        "ts": "1790585302328986.994",
+        "dur": 4.392,
+        "ph": "X",
+        "args": {
+          "Thread Id": 1025659,
+          "Mode": "launch",
+          "level": "node",
+          "id": "0",
+          "item_id": "ReshapeAndCacheNdKernel",
+          "connection_id": 5219
+        }
+      }
+    },
+    {
+      "id": "k:19264",
+      "kind": "kernel",
+      "name": "FusedInferAttentionScore",
+      "phase": "decode-1",
+      "phase_evidence": "exact_host_scope",
+      "stream": "46",
+      "device_lane": "1049942432",
+      "task_id": 2439,
+      "model_id": 4294967295,
+      "start_us": "1790585302329458.886",
+      "end_us": "1790585302329481.987",
+      "trace_index": 19264,
+      "host_operator": "aclnnFusedInferAttentionScoreV3",
+      "queue": {
+        "correlation_id": "2374",
+        "enqueue": {
+          "ph": "X",
+          "name": "Enqueue@aclnnFusedInferAttentionScoreV3",
+          "pid": 1025334,
+          "tid": 1025334,
+          "ts": "1790585302329416.583",
+          "dur": 2.913,
+          "cat": "enqueue",
+          "args": {
+            "correlation_id": 2374
+          }
+        },
+        "dequeue": {
+          "ph": "X",
+          "name": "Dequeue@aclnnFusedInferAttentionScoreV3",
+          "pid": 1025334,
+          "tid": 1025659,
+          "ts": "1790585302329424.445",
+          "dur": 31.657,
+          "cat": "dequeue",
+          "args": {
+            "correlation_id": 2374
+          }
+        }
+      },
+      "scopes": [
+        "P13/1025334/00338/torch_api",
+        "P13/1025334/00337/fia",
+        "P13/1025334/00334/attention",
+        "P13/1025334/00330/forward",
+        "P13/1025334/00318/runner"
+      ],
+      "flow_evidence": {
+        "torch": {
+          "status": "exact",
+          "flow_id": "1790585302329458886",
+          "source_index": 3840,
+          "start_index": 33948,
+          "endpoint_index": 33949
+        },
+        "cann": {
+          "status": "exact",
+          "flow_id": "22436909154304",
+          "source_index": 26315,
+          "start_index": 32039,
+          "endpoint_index": 19265
+        }
+      },
+      "kernel_csv_verified": true,
+      "raw_stream_handle": null,
+      "device_event": {
+        "name": "FusedInferAttentionScore",
+        "pid": 1049942432,
+        "tid": 46,
+        "ts": "1790585302329458.886",
+        "dur": 23.101,
+        "ph": "X",
+        "args": {
+          "Model Id": 4294967295,
+          "Task Type": "MIX_AIC",
+          "Physic Stream Id": 46,
+          "Task Id": 2439,
+          "Batch Id": 0,
+          "Subtask Id": 0,
+          "connection_id": 5224
+        }
+      }
+    },
+    {
+      "id": "host:3840",
+      "kind": "host",
+      "name": "aclnnFusedInferAttentionScoreV3",
+      "pid": 1025334,
+      "tid": 1025334,
+      "start_us": "1790585302329416.330",
+      "end_us": "1790585302329419.679",
+      "event": {
+        "ph": "X",
+        "name": "aclnnFusedInferAttentionScoreV3",
+        "pid": 1025334,
+        "tid": 1025334,
+        "ts": "1790585302329416.330",
+        "dur": 3.349,
+        "cat": "cpu_op",
+        "args": {
+          "Sequence number": -1,
+          "Fwd thread id": 0
+        }
+      }
+    },
+    {
+      "id": "submission:26315",
+      "kind": "submission",
+      "name": "Node@launch",
+      "pid": 1049942271,
+      "tid": 1025659,
+      "start_us": "1790585302329429.722",
+      "end_us": "1790585302329450.279",
+      "event": {
+        "name": "Node@launch",
+        "pid": 1049942271,
+        "tid": 1025659,
+        "ts": "1790585302329429.722",
+        "dur": 20.557,
+        "ph": "X",
+        "args": {
+          "Thread Id": 1025659,
+          "Mode": "launch",
+          "level": "node",
+          "id": "0",
+          "item_id": "FusedInferAttentionScore",
+          "connection_id": 5224
+        }
+      }
+    },
+    {
+      "id": "k:21121",
+      "kind": "kernel",
+      "name": "MEMCPY_ASYNC",
+      "phase": "decode-1",
+      "phase_evidence": "exact_host_scope",
+      "stream": "46",
+      "device_lane": "1049942432",
+      "task_id": 2440,
+      "model_id": 4294967295,
+      "start_us": "1790585302329562.890",
+      "end_us": "1790585302329563.450",
+      "trace_index": 21121,
+      "host_operator": "aclnnInplaceCopy",
+      "queue": {
+        "correlation_id": "2375",
+        "enqueue": {
+          "ph": "X",
+          "name": "Enqueue@aclnnInplaceCopy",
+          "pid": 1025334,
+          "tid": 1025334,
+          "ts": "1790585302329540.468",
+          "dur": 2.591,
+          "cat": "enqueue",
+          "args": {
+            "correlation_id": 2375
+          }
+        },
+        "dequeue": {
+          "ph": "X",
+          "name": "Dequeue@aclnnInplaceCopy",
+          "pid": 1025334,
+          "tid": 1025659,
+          "ts": "1790585302329547.584",
+          "dur": 4.533,
+          "cat": "dequeue",
+          "args": {
+            "correlation_id": 2375
+          }
+        }
+      },
+      "scopes": [
+        "P13/1025334/00337/fia",
+        "P13/1025334/00334/attention",
+        "P13/1025334/00330/forward",
+        "P13/1025334/00318/runner"
+      ],
+      "flow_evidence": {
+        "torch": {
+          "status": "exact",
+          "flow_id": "1790585302329562890",
+          "source_index": 3846,
+          "start_index": 33950,
+          "endpoint_index": 33951
+        },
+        "cann": {
+          "status": "exact",
+          "flow_id": "22462678958080",
+          "source_index": 26321,
+          "start_index": 32040,
+          "endpoint_index": 21122
+        }
+      },
+      "kernel_csv_verified": false,
+      "raw_stream_handle": null,
+      "device_event": {
+        "name": "MEMCPY_ASYNC",
+        "pid": 1049942432,
+        "tid": 46,
+        "ts": "1790585302329562.890",
+        "dur": 0.56,
+        "ph": "X",
+        "args": {
+          "Model Id": 4294967295,
+          "Task Type": "SDMA_SQE",
+          "Physic Stream Id": 46,
+          "Task Id": 2440,
+          "Batch Id": 0,
+          "Subtask Id": 4294967295,
+          "connection_id": 5230
+        }
+      }
+    },
+    {
+      "id": "host:3846",
+      "kind": "host",
+      "name": "aclnnInplaceCopy",
+      "pid": 1025334,
+      "tid": 1025334,
+      "start_us": "1790585302329540.303",
+      "end_us": "1790585302329543.312",
+      "event": {
+        "ph": "X",
+        "name": "aclnnInplaceCopy",
+        "pid": 1025334,
+        "tid": 1025334,
+        "ts": "1790585302329540.303",
+        "dur": 3.009,
+        "cat": "cpu_op",
+        "args": {
+          "Sequence number": -1,
+          "Fwd thread id": 0
+        }
+      }
+    },
+    {
+      "id": "submission:26321",
+      "kind": "submission",
+      "name": "AscendCL@aclnnInplaceCopy",
+      "pid": 1049942271,
+      "tid": 1025659,
+      "start_us": "1790585302329548.400",
+      "end_us": "1790585302329551.718",
+      "event": {
+        "name": "AscendCL@aclnnInplaceCopy",
+        "pid": 1049942271,
+        "tid": 1025659,
+        "ts": "1790585302329548.400",
+        "dur": 3.318,
+        "ph": "X",
+        "args": {
+          "Thread Id": 1025659,
+          "Mode": "ACL_NN",
+          "level": "acl",
+          "id": "aclnnInplaceCopy",
+          "item_id": "0",
+          "connection_id": 5230
+        }
+      }
+    }
+  ],
+  "edges": [
+    {
+      "source": "submission:26305",
+      "target": "k:19260",
+      "kind": "launch",
+      "evidence": {
+        "status": "exact",
+        "flow_id": "22393959481344",
+        "source_index": 26305,
+        "start_index": 32037,
+        "endpoint_index": 19261
+      },
+      "semantics": "exact runtime flow; launch return need not precede device start",
+      "original_edge_index": 820
+    },
+    {
+      "source": "host:3810",
+      "target": "submission:26305",
+      "kind": "dispatch",
+      "evidence": {
+        "torch": {
+          "status": "exact",
+          "flow_id": "1790585302328280239",
+          "source_index": 3810,
+          "start_index": 33944,
+          "endpoint_index": 33945
+        },
+        "cann": {
+          "status": "exact",
+          "flow_id": "22393959481344",
+          "source_index": 26305,
+          "start_index": 32037,
+          "endpoint_index": 19261
+        },
+        "queue": {
+          "correlation_id": "2372",
+          "enqueue": {
+            "ph": "X",
+            "name": "Enqueue@_triton_rope",
+            "pid": 1025334,
+            "tid": 1025334,
+            "ts": "1790585302328253.719",
+            "dur": 6.578,
+            "cat": "enqueue",
+            "args": {
+              "correlation_id": 2372
+            }
+          },
+          "dequeue": {
+            "ph": "X",
+            "name": "Dequeue@_triton_rope",
+            "pid": 1025334,
+            "tid": 1025659,
+            "ts": "1790585302328264.932",
+            "dur": 6.2,
+            "cat": "dequeue",
+            "args": {
+              "correlation_id": 2372
+            }
+          }
+        }
+      },
+      "semantics": "same device task joined by exact profiler flows",
+      "original_edge_index": 821
+    },
+    {
+      "source": "submission:26310",
+      "target": "k:19262",
+      "kind": "launch",
+      "evidence": {
+        "status": "exact",
+        "flow_id": "22415434317824",
+        "source_index": 26310,
+        "start_index": 32038,
+        "endpoint_index": 19263
+      },
+      "semantics": "exact runtime flow; launch return need not precede device start",
+      "original_edge_index": 822
+    },
+    {
+      "source": "host:3828",
+      "target": "submission:26310",
+      "kind": "dispatch",
+      "evidence": {
+        "torch": {
+          "status": "exact",
+          "flow_id": "1790585302329002628",
+          "source_index": 3828,
+          "start_index": 33946,
+          "endpoint_index": 33947
+        },
+        "cann": {
+          "status": "exact",
+          "flow_id": "22415434317824",
+          "source_index": 26310,
+          "start_index": 32038,
+          "endpoint_index": 19263
+        },
+        "queue": {
+          "correlation_id": "2373",
+          "enqueue": {
+            "ph": "X",
+            "name": "Enqueue@ReshapeCacheOperation",
+            "pid": 1025334,
+            "tid": 1025334,
+            "ts": "1790585302328957.228",
+            "dur": 3.542,
+            "cat": "enqueue",
+            "args": {
+              "correlation_id": 2373
+            }
+          },
+          "dequeue": {
+            "ph": "X",
+            "name": "Dequeue@ReshapeCacheOperation",
+            "pid": 1025334,
+            "tid": 1025659,
+            "ts": "1790585302328965.169",
+            "dur": 32.886,
+            "cat": "dequeue",
+            "args": {
+              "correlation_id": 2373
+            }
+          }
+        }
+      },
+      "semantics": "same device task joined by exact profiler flows",
+      "original_edge_index": 823
+    },
+    {
+      "source": "submission:26315",
+      "target": "k:19264",
+      "kind": "launch",
+      "evidence": {
+        "status": "exact",
+        "flow_id": "22436909154304",
+        "source_index": 26315,
+        "start_index": 32039,
+        "endpoint_index": 19265
+      },
+      "semantics": "exact runtime flow; launch return need not precede device start",
+      "original_edge_index": 824
+    },
+    {
+      "source": "host:3840",
+      "target": "submission:26315",
+      "kind": "dispatch",
+      "evidence": {
+        "torch": {
+          "status": "exact",
+          "flow_id": "1790585302329458886",
+          "source_index": 3840,
+          "start_index": 33948,
+          "endpoint_index": 33949
+        },
+        "cann": {
+          "status": "exact",
+          "flow_id": "22436909154304",
+          "source_index": 26315,
+          "start_index": 32039,
+          "endpoint_index": 19265
+        },
+        "queue": {
+          "correlation_id": "2374",
+          "enqueue": {
+            "ph": "X",
+            "name": "Enqueue@aclnnFusedInferAttentionScoreV3",
+            "pid": 1025334,
+            "tid": 1025334,
+            "ts": "1790585302329416.583",
+            "dur": 2.913,
+            "cat": "enqueue",
+            "args": {
+              "correlation_id": 2374
+            }
+          },
+          "dequeue": {
+            "ph": "X",
+            "name": "Dequeue@aclnnFusedInferAttentionScoreV3",
+            "pid": 1025334,
+            "tid": 1025659,
+            "ts": "1790585302329424.445",
+            "dur": 31.657,
+            "cat": "dequeue",
+            "args": {
+              "correlation_id": 2374
+            }
+          }
+        }
+      },
+      "semantics": "same device task joined by exact profiler flows",
+      "original_edge_index": 825
+    },
+    {
+      "source": "submission:26321",
+      "target": "k:21121",
+      "kind": "launch",
+      "evidence": {
+        "status": "exact",
+        "flow_id": "22462678958080",
+        "source_index": 26321,
+        "start_index": 32040,
+        "endpoint_index": 21122
+      },
+      "semantics": "exact runtime flow; launch return need not precede device start",
+      "original_edge_index": 2680
+    },
+    {
+      "source": "host:3846",
+      "target": "submission:26321",
+      "kind": "dispatch",
+      "evidence": {
+        "torch": {
+          "status": "exact",
+          "flow_id": "1790585302329562890",
+          "source_index": 3846,
+          "start_index": 33950,
+          "endpoint_index": 33951
+        },
+        "cann": {
+          "status": "exact",
+          "flow_id": "22462678958080",
+          "source_index": 26321,
+          "start_index": 32040,
+          "endpoint_index": 21122
+        },
+        "queue": {
+          "correlation_id": "2375",
+          "enqueue": {
+            "ph": "X",
+            "name": "Enqueue@aclnnInplaceCopy",
+            "pid": 1025334,
+            "tid": 1025334,
+            "ts": "1790585302329540.468",
+            "dur": 2.591,
+            "cat": "enqueue",
+            "args": {
+              "correlation_id": 2375
+            }
+          },
+          "dequeue": {
+            "ph": "X",
+            "name": "Dequeue@aclnnInplaceCopy",
+            "pid": 1025334,
+            "tid": 1025659,
+            "ts": "1790585302329547.584",
+            "dur": 4.533,
+            "cat": "dequeue",
+            "args": {
+              "correlation_id": 2375
+            }
+          }
+        }
+      },
+      "semantics": "same device task joined by exact profiler flows",
+      "original_edge_index": 2681
+    },
+    {
+      "source": "k:19260",
+      "target": "k:19262",
+      "kind": "stream_order",
+      "evidence": {
+        "device_lane": "1049942432",
+        "stream": "46"
+      },
+      "semantics": "observed consecutive tasks; not proof of tensor dependency",
+      "original_edge_index": 3351
+    },
+    {
+      "source": "k:19262",
+      "target": "k:19264",
+      "kind": "stream_order",
+      "evidence": {
+        "device_lane": "1049942432",
+        "stream": "46"
+      },
+      "semantics": "observed consecutive tasks; not proof of tensor dependency",
+      "original_edge_index": 3352
+    },
+    {
+      "source": "k:19264",
+      "target": "k:21121",
+      "kind": "stream_order",
+      "evidence": {
+        "device_lane": "1049942432",
+        "stream": "46"
+      },
+      "semantics": "observed consecutive tasks; not proof of tensor dependency",
+      "original_edge_index": 3353
+    },
+    {
+      "source": "host:3810",
+      "target": "host:3828",
+      "kind": "host_issue_order",
+      "evidence": "same PID/TID",
+      "semantics": "observed call entry order only",
+      "original_edge_index": 4742
+    },
+    {
+      "source": "host:3828",
+      "target": "host:3840",
+      "kind": "host_issue_order",
+      "evidence": "same PID/TID",
+      "semantics": "observed call entry order only",
+      "original_edge_index": 4743
+    },
+    {
+      "source": "host:3840",
+      "target": "host:3846",
+      "kind": "host_issue_order",
+      "evidence": "same PID/TID",
+      "semantics": "observed call entry order only",
+      "original_edge_index": 4744
+    },
+    {
+      "source": "submission:26305",
+      "target": "submission:26310",
+      "kind": "submission_issue_order",
+      "evidence": "same PID/TID",
+      "semantics": "observed call entry order only",
+      "original_edge_index": 6105
+    },
+    {
+      "source": "submission:26310",
+      "target": "submission:26315",
+      "kind": "submission_issue_order",
+      "evidence": "same PID/TID",
+      "semantics": "observed call entry order only",
+      "original_edge_index": 6106
+    },
+    {
+      "source": "submission:26315",
+      "target": "submission:26321",
+      "kind": "submission_issue_order",
+      "evidence": "same PID/TID",
+      "semantics": "observed call entry order only",
+      "original_edge_index": 6107
+    },
+    {
+      "source": "k:19262",
+      "target": "k:19264",
+      "kind": "storage_candidate",
+      "evidence": {
+        "resource": "key",
+        "tensor": {
+          "kind": "tensor",
+          "shape": [
+            11823,
+            128,
+            128
+          ],
+          "dtype": "torch.bfloat16",
+          "device": "npu:0",
+          "data_ptr": 20699522482176,
+          "storage_ptr": 20699522482176,
+          "stride": [
+            16384,
+            128,
+            1
+          ],
+          "storage_offset": 0,
+          "element_size": 2
+        }
+      },
+      "semantics": "shared KV pool; exact indexed byte overlap unobserved",
+      "original_edge_index": 7140
+    },
+    {
+      "source": "k:19262",
+      "target": "k:19264",
+      "kind": "storage_candidate",
+      "evidence": {
+        "resource": "value",
+        "tensor": {
+          "kind": "tensor",
+          "shape": [
+            11823,
+            128,
+            128
+          ],
+          "dtype": "torch.bfloat16",
+          "device": "npu:0",
+          "data_ptr": 20699909914624,
+          "storage_ptr": 20699909914624,
+          "stride": [
+            16384,
+            128,
+            1
+          ],
+          "storage_offset": 0,
+          "element_size": 2
+        }
+      },
+      "semantics": "shared KV pool; exact indexed byte overlap unobserved",
+      "original_edge_index": 7141
+    },
+    {
+      "source": "k:19260",
+      "target": "k:19262",
+      "kind": "data_contract",
+      "evidence": {
+        "producer": "P13/1025334/00333/launch",
+        "consumer": "P13/1025334/00336/torch_api",
+        "tensor": {
+          "kind": "tensor",
+          "shape": [
+            1,
+            2,
+            64
+          ],
+          "dtype": "torch.bfloat16",
+          "device": "npu:0",
+          "data_ptr": 20624433760512,
+          "storage_ptr": 20624433758720,
+          "stride": [
+            128,
+            64,
+            1
+          ],
+          "storage_offset": 896,
+          "element_size": 2
+        }
+      },
+      "semantics": "source-backed scoped RoPE write/read; not cross-stream synchronization",
+      "original_edge_index": 7142
+    },
+    {
+      "source": "k:19260",
+      "target": "k:19264",
+      "kind": "data_contract",
+      "evidence": {
+        "producer": "P13/1025334/00333/launch",
+        "consumer": "P13/1025334/00338/torch_api",
+        "tensor": {
+          "kind": "tensor",
+          "shape": [
+            1,
+            14,
+            64
+          ],
+          "dtype": "torch.bfloat16",
+          "device": "npu:0",
+          "data_ptr": 20624433758720,
+          "storage_ptr": 20624433758720,
+          "stride": [
+            896,
+            64,
+            1
+          ],
+          "storage_offset": 0,
+          "element_size": 2
+        }
+      },
+      "semantics": "source-backed scoped RoPE write/read; not cross-stream synchronization",
+      "original_edge_index": 7143
+    }
+  ],
+  "attention_scope": "P13/1025334/00334/attention",
+  "attention_observation": {
+    "entry": {
+      "event": "enter",
+      "time_ns": 1790585302328682225,
+      "monotonic_ns": 4832061287568593,
+      "pid": 1025334,
+      "ppid": 1024206,
+      "tid": 1025334,
+      "request_id": "cmpl-practice13-profile-0-9af9cda8",
+      "step": 6,
+      "measured": true,
+      "label": "P13/1025334/00334/attention",
+      "kind": "attention",
+      "parent": "P13/1025334/00330/forward",
+      "layer": "model.layers.0.self_attn.attn",
+      "arguments": {
+        "query": {
+          "kind": "tensor",
+          "shape": [
+            1,
+            14,
+            64
+          ],
+          "dtype": "torch.bfloat16",
+          "device": "npu:0",
+          "data_ptr": 20624433758720,
+          "storage_ptr": 20624433758720,
+          "stride": [
+            896,
+            64,
+            1
+          ],
+          "storage_offset": 0,
+          "element_size": 2
+        },
+        "key": {
+          "kind": "tensor",
+          "shape": [
+            1,
+            2,
+            64
+          ],
+          "dtype": "torch.bfloat16",
+          "device": "npu:0",
+          "data_ptr": 20624433760512,
+          "storage_ptr": 20624433758720,
+          "stride": [
+            128,
+            64,
+            1
+          ],
+          "storage_offset": 896,
+          "element_size": 2
+        },
+        "value": {
+          "kind": "tensor",
+          "shape": [
+            1,
+            2,
+            64
+          ],
+          "dtype": "torch.bfloat16",
+          "device": "npu:0",
+          "data_ptr": 20624433760768,
+          "storage_ptr": 20624433758720,
+          "stride": [
+            128,
+            64,
+            1
+          ],
+          "storage_offset": 1024,
+          "element_size": 2
+        },
+        "output": {
+          "kind": "tensor",
+          "shape": [
+            1,
+            14,
+            64
+          ],
+          "dtype": "torch.bfloat16",
+          "device": "npu:0",
+          "data_ptr": 20624433761280,
+          "storage_ptr": 20624433761280,
+          "stride": [
+            896,
+            64,
+            1
+          ],
+          "storage_offset": 0,
+          "element_size": 2
+        },
+        "kv_cache": [
+          {
+            "kind": "tensor",
+            "shape": [
+              11823,
+              128,
+              2,
+              64
+            ],
+            "dtype": "torch.bfloat16",
+            "device": "npu:0",
+            "data_ptr": 20699522482176,
+            "storage_ptr": 20699522482176,
+            "stride": [
+              16384,
+              128,
+              64,
+              1
+            ],
+            "storage_offset": 0,
+            "element_size": 2
+          },
+          {
+            "kind": "tensor",
+            "shape": [
+              11823,
+              128,
+              2,
+              64
+            ],
+            "dtype": "torch.bfloat16",
+            "device": "npu:0",
+            "data_ptr": 20699909914624,
+            "storage_ptr": 20699909914624,
+            "stride": [
+              16384,
+              128,
+              64,
+              1
+            ],
+            "storage_offset": 0,
+            "element_size": 2
+          }
+        ]
+      },
+      "source": {
+        "file": "/vllm-workspace/vllm-ascend/vllm_ascend/attention/attention_v1.py",
+        "line": 1279,
+        "function": "AscendAttentionBackendImpl.forward"
+      }
+    },
+    "exit": {
+      "event": "exit",
+      "time_ns": 1790585302329689318,
+      "monotonic_ns": 4832061288575726,
+      "pid": 1025334,
+      "ppid": 1024206,
+      "tid": 1025334,
+      "request_id": "cmpl-practice13-profile-0-9af9cda8",
+      "step": 6,
+      "measured": true,
+      "label": "P13/1025334/00334/attention",
+      "kind": "attention",
+      "source": {
+        "file": "/vllm-workspace/vllm-ascend/vllm_ascend/attention/attention_v1.py",
+        "line": 1279,
+        "function": "AscendAttentionBackendImpl.forward"
+      }
+    }
+  },
+  "replay_context": [],
+  "tensor_bindings": [],
+  "unknown_phase_tasks_not_assigned_to_layer": [],
+  "evidence_boundary": "Execution edges retain original evidence and semantics. Tensor bindings are separate metadata associations, not execution edges.",
+  "source_provenance": {
+    "run": "2026-09-28-eager-run01",
+    "trace_sha256": "6242333f2f0b127fa139d684ae16bb37da959a01824453679722832850c7e87e",
+    "csv_sha256": "9daf8195d8559cdc1a0143889e6fec606d9e295fa22c8ca8e6571e3739c5b693",
+    "builder_sha256": "f6b5b167d76c399347c680994278284cc240a866589a66ebce99b22472eaf8d4"
+  },
+  "exporter_sha256": "229904df87290fa2696aab63165e22bead9c7d76a36d0447335bbb37f53015e3"
+}

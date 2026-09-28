@@ -4,7 +4,7 @@
 
 已在 Ascend 910B2C 上重新采集单请求 eager 模型运行，并完成独立的双 stream 验证。
 2026-09-28 新增 [PIECEWISE graph 模式与匹配 eager 对照](GRAPH_MODE.md)：75次 replay、完整设备任务清单与明确的图内关联缺口。
-[打开模式对照报告](results/2026-09-28-mode-comparison/index.html)。以下保留原两项实验的说明。
+[打开模式对照报告](results/2026-09-28-mode-comparison/index.html) · [graph prefill 细节 SVG](results/2026-09-28-graph-run01/analysis/first_attention_prefill.svg) · [graph decode 细节 SVG](results/2026-09-28-graph-run01/analysis/first_attention_decode-1.svg)。以下保留原两项实验的说明。
 
 先看 [RESULTS.md](RESULTS.md)，再打开以下任一入口：
 

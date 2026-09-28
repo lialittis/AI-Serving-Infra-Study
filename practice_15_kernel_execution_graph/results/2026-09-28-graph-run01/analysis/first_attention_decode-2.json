@@ -1,0 +1,2851 @@
+{
+  "mode": "graph",
+  "phase": "decode-2",
+  "layer": "model.layers.0.self_attn.attn",
+  "nodes": [
+    {
+      "id": "k:12171",
+      "kind": "kernel",
+      "name": "MODEL_EXECUTE",
+      "phase": "decode-2",
+      "phase_evidence": "exact_replay_runtime_connection",
+      "stream": "46",
+      "device_lane": "1045590432",
+      "task_id": 2409,
+      "model_id": 4294967295,
+      "start_us": "1790585112462086.445",
+      "end_us": "1790585112462089.585",
+      "trace_index": 12171,
+      "host_operator": "unknown: no exact torch flow",
+      "queue": null,
+      "scopes": [],
+      "flow_evidence": {
+        "torch": {
+          "status": "missing_endpoint"
+        },
+        "cann": {
+          "status": "missing_endpoint"
+        }
+      },
+      "kernel_csv_verified": false,
+      "raw_stream_handle": null,
+      "device_event": {
+        "name": "MODEL_EXECUTE",
+        "pid": 1045590432,
+        "tid": 46,
+        "ts": "1790585112462086.445",
+        "dur": 3.14,
+        "ph": "X",
+        "args": {
+          "Model Id": 4294967295,
+          "Task Type": "MODEL_EXECUTE",
+          "Physic Stream Id": 46,
+          "Task Id": 2409,
+          "Batch Id": 0,
+          "Subtask Id": 4294967295,
+          "connection_id": 5046
+        }
+      },
+      "replay_label": "P13/1021084/00575/graph_replay",
+      "runtime_connection": {
+        "native_index": 19582,
+        "connection_id": 5046
+      }
+    },
+    {
+      "id": "k:12176",
+      "kind": "kernel",
+      "name": "NOTIFY_WAIT",
+      "phase": "decode-2",
+      "phase_evidence": "exact_replay_runtime_connection",
+      "stream": "46",
+      "device_lane": "1045590432",
+      "task_id": 2410,
+      "model_id": 4294967295,
+      "start_us": "1790585112462097.505",
+      "end_us": "1790585112462122.266",
+      "trace_index": 12176,
+      "host_operator": "unknown: no exact torch flow",
+      "queue": null,
+      "scopes": [],
+      "flow_evidence": {
+        "torch": {
+          "status": "missing_endpoint"
+        },
+        "cann": {
+          "status": "missing_endpoint"
+        }
+      },
+      "kernel_csv_verified": false,
+      "raw_stream_handle": null,
+      "device_event": {
+        "name": "NOTIFY_WAIT",
+        "pid": 1045590432,
+        "tid": 46,
+        "ts": "1790585112462097.505",
+        "dur": 24.761,
+        "ph": "X",
+        "args": {
+          "Model Id": 4294967295,
+          "Task Type": "NOTIFY_WAIT",
+          "Physic Stream Id": 46,
+          "Task Id": 2410,
+          "Batch Id": 0,
+          "Subtask Id": 4294967295,
+          "connection_id": 5046
+        }
+      },
+      "replay_label": "P13/1021084/00575/graph_replay",
+      "runtime_connection": {
+        "native_index": 19582,
+        "connection_id": 5046
+      }
+    },
+    {
+      "id": "k:12186",
+      "kind": "kernel",
+      "name": "ReshapeAndCacheNdKernel",
+      "phase": "decode-2",
+      "phase_evidence": "exact_host_scope",
+      "stream": "46",
+      "device_lane": "1045590432",
+      "task_id": 2411,
+      "model_id": 4294967295,
+      "start_us": "1790585112462664.888",
+      "end_us": "1790585112462667.188",
+      "trace_index": 12186,
+      "host_operator": "ReshapeCacheOperation",
+      "queue": {
+        "correlation_id": "3129",
+        "enqueue": {
+          "ph": "X",
+          "name": "Enqueue@ReshapeCacheOperation",
+          "pid": 1021084,
+          "tid": 1021084,
+          "ts": "1790585112462622.464",
+          "dur": 9.564,
+          "cat": "enqueue",
+          "args": {
+            "correlation_id": 3129
+          }
+        },
+        "dequeue": {
+          "ph": "X",
+          "name": "Dequeue@ReshapeCacheOperation",
+          "pid": 1021084,
+          "tid": 1021408,
+          "ts": "1790585112462634.991",
+          "dur": 29.582,
+          "cat": "dequeue",
+          "args": {
+            "correlation_id": 3129
+          }
+        }
+      },
+      "scopes": [
+        "P13/1021084/00578/torch_api",
+        "P13/1021084/00577/cache_write",
+        "P13/1021084/00576/attention",
+        "P13/1021084/00573/forward",
+        "P13/1021084/00561/runner"
+      ],
+      "flow_evidence": {
+        "torch": {
+          "status": "exact",
+          "flow_id": "1790585112462664888",
+          "source_index": 5213,
+          "start_index": 22975,
+          "endpoint_index": 22976
+        },
+        "cann": {
+          "status": "exact",
+          "flow_id": "21693879812096",
+          "source_index": 19587,
+          "start_index": 21612,
+          "endpoint_index": 12187
+        }
+      },
+      "kernel_csv_verified": true,
+      "raw_stream_handle": null,
+      "device_event": {
+        "name": "ReshapeAndCacheNdKernel",
+        "pid": 1045590432,
+        "tid": 46,
+        "ts": "1790585112462664.888",
+        "dur": 2.3,
+        "ph": "X",
+        "args": {
+          "Model Id": 4294967295,
+          "Task Type": "AI_VECTOR_CORE",
+          "Physic Stream Id": 46,
+          "Task Id": 2411,
+          "Batch Id": 0,
+          "Subtask Id": 4294967295,
+          "connection_id": 5051
+        }
+      }
+    },
+    {
+      "id": "host:5213",
+      "kind": "host",
+      "name": "ReshapeCacheOperation",
+      "pid": 1021084,
+      "tid": 1021084,
+      "start_us": "1790585112462622.223",
+      "end_us": "1790585112462632.151",
+      "event": {
+        "ph": "X",
+        "name": "ReshapeCacheOperation",
+        "pid": 1021084,
+        "tid": 1021084,
+        "ts": "1790585112462622.223",
+        "dur": 9.928,
+        "cat": "cpu_op",
+        "args": {
+          "Sequence number": -1,
+          "Fwd thread id": 0
+        }
+      }
+    },
+    {
+      "id": "submission:19587",
+      "kind": "submission",
+      "name": "Node@launch",
+      "pid": 1045590271,
+      "tid": 1021408,
+      "start_us": "1790585112462649.429",
+      "end_us": "1790585112462655.203",
+      "event": {
+        "name": "Node@launch",
+        "pid": 1045590271,
+        "tid": 1021408,
+        "ts": "1790585112462649.429",
+        "dur": 5.774,
+        "ph": "X",
+        "args": {
+          "Thread Id": 1021408,
+          "Mode": "launch",
+          "level": "node",
+          "id": "0",
+          "item_id": "ReshapeAndCacheNdKernel",
+          "connection_id": 5051
+        }
+      }
+    },
+    {
+      "id": "k:12188",
+      "kind": "kernel",
+      "name": "FusedInferAttentionScore",
+      "phase": "decode-2",
+      "phase_evidence": "exact_host_scope",
+      "stream": "46",
+      "device_lane": "1045590432",
+      "task_id": 2412,
+      "model_id": 4294967295,
+      "start_us": "1790585112463124.406",
+      "end_us": "1790585112463150.267",
+      "trace_index": 12188,
+      "host_operator": "aclnnFusedInferAttentionScoreV3",
+      "queue": {
+        "correlation_id": "3130",
+        "enqueue": {
+          "ph": "X",
+          "name": "Enqueue@aclnnFusedInferAttentionScoreV3",
+          "pid": 1021084,
+          "tid": 1021084,
+          "ts": "1790585112463080.811",
+          "dur": 2.262,
+          "cat": "enqueue",
+          "args": {
+            "correlation_id": 3130
+          }
+        },
+        "dequeue": {
+          "ph": "X",
+          "name": "Dequeue@aclnnFusedInferAttentionScoreV3",
+          "pid": 1021084,
+          "tid": 1021408,
+          "ts": "1790585112463085.616",
+          "dur": 36.605,
+          "cat": "dequeue",
+          "args": {
+            "correlation_id": 3130
+          }
+        }
+      },
+      "scopes": [
+        "P13/1021084/00580/torch_api",
+        "P13/1021084/00579/fia",
+        "P13/1021084/00576/attention",
+        "P13/1021084/00573/forward",
+        "P13/1021084/00561/runner"
+      ],
+      "flow_evidence": {
+        "torch": {
+          "status": "exact",
+          "flow_id": "1790585112463124406",
+          "source_index": 5225,
+          "start_index": 22977,
+          "endpoint_index": 22978
+        },
+        "cann": {
+          "status": "exact",
+          "flow_id": "21715354648576",
+          "source_index": 19592,
+          "start_index": 21613,
+          "endpoint_index": 12189
+        }
+      },
+      "kernel_csv_verified": true,
+      "raw_stream_handle": null,
+      "device_event": {
+        "name": "FusedInferAttentionScore",
+        "pid": 1045590432,
+        "tid": 46,
+        "ts": "1790585112463124.406",
+        "dur": 25.861,
+        "ph": "X",
+        "args": {
+          "Model Id": 4294967295,
+          "Task Type": "MIX_AIC",
+          "Physic Stream Id": 46,
+          "Task Id": 2412,
+          "Batch Id": 0,
+          "Subtask Id": 0,
+          "connection_id": 5056
+        }
+      }
+    },
+    {
+      "id": "host:5225",
+      "kind": "host",
+      "name": "aclnnFusedInferAttentionScoreV3",
+      "pid": 1021084,
+      "tid": 1021084,
+      "start_us": "1790585112463080.598",
+      "end_us": "1790585112463083.154",
+      "event": {
+        "ph": "X",
+        "name": "aclnnFusedInferAttentionScoreV3",
+        "pid": 1021084,
+        "tid": 1021084,
+        "ts": "1790585112463080.598",
+        "dur": 2.556,
+        "cat": "cpu_op",
+        "args": {
+          "Sequence number": -1,
+          "Fwd thread id": 0
+        }
+      }
+    },
+    {
+      "id": "submission:19592",
+      "kind": "submission",
+      "name": "Node@launch",
+      "pid": 1045590271,
+      "tid": 1021408,
+      "start_us": "1790585112463091.291",
+      "end_us": "1790585112463114.531",
+      "event": {
+        "name": "Node@launch",
+        "pid": 1045590271,
+        "tid": 1021408,
+        "ts": "1790585112463091.291",
+        "dur": 23.24,
+        "ph": "X",
+        "args": {
+          "Thread Id": 1021408,
+          "Mode": "launch",
+          "level": "node",
+          "id": "0",
+          "item_id": "FusedInferAttentionScore",
+          "connection_id": 5056
+        }
+      }
+    },
+    {
+      "id": "k:12190",
+      "kind": "kernel",
+      "name": "MODEL_EXECUTE",
+      "phase": "decode-2",
+      "phase_evidence": "exact_replay_runtime_connection",
+      "stream": "46",
+      "device_lane": "1045590432",
+      "task_id": 2414,
+      "model_id": 4294967295,
+      "start_us": "1790585112463869.356",
+      "end_us": "1790585112463872.416",
+      "trace_index": 12190,
+      "host_operator": "unknown: no exact torch flow",
+      "queue": null,
+      "scopes": [],
+      "flow_evidence": {
+        "torch": {
+          "status": "missing_endpoint"
+        },
+        "cann": {
+          "status": "missing_endpoint"
+        }
+      },
+      "kernel_csv_verified": false,
+      "raw_stream_handle": null,
+      "device_event": {
+        "name": "MODEL_EXECUTE",
+        "pid": 1045590432,
+        "tid": 46,
+        "ts": "1790585112463869.356",
+        "dur": 3.06,
+        "ph": "X",
+        "args": {
+          "Model Id": 4294967295,
+          "Task Type": "MODEL_EXECUTE",
+          "Physic Stream Id": 46,
+          "Task Id": 2414,
+          "Batch Id": 0,
+          "Subtask Id": 4294967295,
+          "connection_id": 5071
+        }
+      },
+      "replay_label": "P13/1021084/00582/graph_replay",
+      "runtime_connection": {
+        "native_index": 19607,
+        "connection_id": 5071
+      }
+    },
+    {
+      "id": "k:12193",
+      "kind": "kernel",
+      "name": "NOTIFY_WAIT",
+      "phase": "decode-2",
+      "phase_evidence": "exact_replay_runtime_connection",
+      "stream": "46",
+      "device_lane": "1045590432",
+      "task_id": 2415,
+      "model_id": 4294967295,
+      "start_us": "1790585112463880.497",
+      "end_us": "1790585112463946.739",
+      "trace_index": 12193,
+      "host_operator": "unknown: no exact torch flow",
+      "queue": null,
+      "scopes": [],
+      "flow_evidence": {
+        "torch": {
+          "status": "missing_endpoint"
+        },
+        "cann": {
+          "status": "missing_endpoint"
+        }
+      },
+      "kernel_csv_verified": false,
+      "raw_stream_handle": null,
+      "device_event": {
+        "name": "NOTIFY_WAIT",
+        "pid": 1045590432,
+        "tid": 46,
+        "ts": "1790585112463880.497",
+        "dur": 66.242,
+        "ph": "X",
+        "args": {
+          "Model Id": 4294967295,
+          "Task Type": "NOTIFY_WAIT",
+          "Physic Stream Id": 46,
+          "Task Id": 2415,
+          "Batch Id": 0,
+          "Subtask Id": 4294967295,
+          "connection_id": 5071
+        }
+      },
+      "replay_label": "P13/1021084/00582/graph_replay",
+      "runtime_connection": {
+        "native_index": 19607,
+        "connection_id": 5071
+      }
+    },
+    {
+      "id": "k:13674",
+      "kind": "kernel",
+      "name": "MEMCPY_ASYNC",
+      "phase": "decode-2",
+      "phase_evidence": "exact_host_scope",
+      "stream": "46",
+      "device_lane": "1045590432",
+      "task_id": 2413,
+      "model_id": 4294967295,
+      "start_us": "1790585112463235.131",
+      "end_us": "1790585112463235.731",
+      "trace_index": 13674,
+      "host_operator": "aclnnInplaceCopy",
+      "queue": {
+        "correlation_id": "3131",
+        "enqueue": {
+          "ph": "X",
+          "name": "Enqueue@aclnnInplaceCopy",
+          "pid": 1021084,
+          "tid": 1021084,
+          "ts": "1790585112463216.774",
+          "dur": 1.636,
+          "cat": "enqueue",
+          "args": {
+            "correlation_id": 3131
+          }
+        },
+        "dequeue": {
+          "ph": "X",
+          "name": "Dequeue@aclnnInplaceCopy",
+          "pid": 1021084,
+          "tid": 1021408,
+          "ts": "1790585112463220.700",
+          "dur": 6.747,
+          "cat": "dequeue",
+          "args": {
+            "correlation_id": 3131
+          }
+        }
+      },
+      "scopes": [
+        "P13/1021084/00579/fia",
+        "P13/1021084/00576/attention",
+        "P13/1021084/00573/forward",
+        "P13/1021084/00561/runner"
+      ],
+      "flow_evidence": {
+        "torch": {
+          "status": "exact",
+          "flow_id": "1790585112463235131",
+          "source_index": 5231,
+          "start_index": 22979,
+          "endpoint_index": 22980
+        },
+        "cann": {
+          "status": "exact",
+          "flow_id": "21741124452352",
+          "source_index": 19598,
+          "start_index": 21614,
+          "endpoint_index": 13675
+        }
+      },
+      "kernel_csv_verified": false,
+      "raw_stream_handle": null,
+      "device_event": {
+        "name": "MEMCPY_ASYNC",
+        "pid": 1045590432,
+        "tid": 46,
+        "ts": "1790585112463235.131",
+        "dur": 0.6,
+        "ph": "X",
+        "args": {
+          "Model Id": 4294967295,
+          "Task Type": "SDMA_SQE",
+          "Physic Stream Id": 46,
+          "Task Id": 2413,
+          "Batch Id": 0,
+          "Subtask Id": 4294967295,
+          "connection_id": 5062
+        }
+      }
+    },
+    {
+      "id": "host:5231",
+      "kind": "host",
+      "name": "aclnnInplaceCopy",
+      "pid": 1021084,
+      "tid": 1021084,
+      "start_us": "1790585112463216.658",
+      "end_us": "1790585112463218.544",
+      "event": {
+        "ph": "X",
+        "name": "aclnnInplaceCopy",
+        "pid": 1021084,
+        "tid": 1021084,
+        "ts": "1790585112463216.658",
+        "dur": 1.886,
+        "cat": "cpu_op",
+        "args": {
+          "Sequence number": -1,
+          "Fwd thread id": 0
+        }
+      }
+    },
+    {
+      "id": "submission:19598",
+      "kind": "submission",
+      "name": "AscendCL@aclnnInplaceCopy",
+      "pid": 1045590271,
+      "tid": 1021408,
+      "start_us": "1790585112463221.536",
+      "end_us": "1790585112463226.756",
+      "event": {
+        "name": "AscendCL@aclnnInplaceCopy",
+        "pid": 1045590271,
+        "tid": 1021408,
+        "ts": "1790585112463221.536",
+        "dur": 5.22,
+        "ph": "X",
+        "args": {
+          "Thread Id": 1021408,
+          "Mode": "ACL_NN",
+          "level": "acl",
+          "id": "aclnnInplaceCopy",
+          "item_id": "0",
+          "connection_id": 5062
+        }
+      }
+    },
+    {
+      "id": "replay:P13/1021084/00575/graph_replay",
+      "kind": "replay",
+      "name": "NPUGraph.replay submod_0",
+      "phase": "decode-2",
+      "start_us": "1790585112462000.748",
+      "end_us": "1790585112462099.663",
+      "resources": {
+        "wrapper_id": 140570794346256,
+        "partition": "submod_0",
+        "graph_id": 140570788913392,
+        "runtime_mode": "PIECEWISE",
+        "wrapper_mode": "PIECEWISE",
+        "graph_pool": [
+          0,
+          2
+        ],
+        "inputs": [
+          {
+            "kind": "tensor",
+            "shape": [
+              1
+            ],
+            "dtype": "torch.int32",
+            "device": "npu:0",
+            "data_ptr": 20624432962560,
+            "storage_ptr": 20624432962560,
+            "stride": [
+              1
+            ],
+            "storage_offset": 0,
+            "element_size": 4
+          },
+          1,
+          {
+            "kind": "tensor",
+            "shape": [
+              151936,
+              896
+            ],
+            "dtype": "torch.bfloat16",
+            "device": "npu:0",
+            "data_ptr": 20698521141248,
+            "storage_ptr": 20698521141248,
+            "stride": [
+              896,
+              1
+            ],
+            "storage_offset": 0,
+            "element_size": 2
+          },
+          {
+            "kind": "tensor",
+            "shape": [
+              896
+            ],
+            "dtype": "torch.bfloat16",
+            "device": "npu:0",
+            "data_ptr": 20624433513472,
+            "storage_ptr": 20624433513472,
+            "stride": [
+              1
+            ],
+            "storage_offset": 0,
+            "element_size": 2
+          },
+          {
+            "kind": "tensor",
+            "shape": [
+              1152,
+              896
+            ],
+            "dtype": "torch.bfloat16",
+            "device": "npu:0",
+            "data_ptr": 20698793411072,
+            "storage_ptr": 20698793411072,
+            "stride": [
+              896,
+              1
+            ],
+            "storage_offset": 0,
+            "element_size": 2
+          },
+          {
+            "kind": "tensor",
+            "shape": [
+              1152
+            ],
+            "dtype": "torch.bfloat16",
+            "device": "npu:0",
+            "data_ptr": 20624432955904,
+            "storage_ptr": 20624432955904,
+            "stride": [
+              1
+            ],
+            "storage_offset": 0,
+            "element_size": 2
+          },
+          {
+            "kind": "tensor",
+            "shape": [
+              1
+            ],
+            "dtype": "torch.int64",
+            "device": "npu:0",
+            "data_ptr": 20624432964096,
+            "storage_ptr": 20624432964096,
+            "stride": [
+              1
+            ],
+            "storage_offset": 0,
+            "element_size": 8
+          },
+          1,
+          {
+            "kind": "tensor",
+            "shape": [
+              32768,
+              64
+            ],
+            "dtype": "torch.bfloat16",
+            "device": "npu:0",
+            "data_ptr": 20698797096960,
+            "storage_ptr": 20698797096960,
+            "stride": [
+              64,
+              1
+            ],
+            "storage_offset": 0,
+            "element_size": 2
+          }
+        ],
+        "output": [
+          {
+            "kind": "tensor",
+            "shape": [
+              1,
+              14,
+              64
+            ],
+            "dtype": "torch.bfloat16",
+            "device": "npu:0",
+            "data_ptr": 20846697517568,
+            "storage_ptr": 20846697517568,
+            "stride": [
+              896,
+              64,
+              1
+            ],
+            "storage_offset": 0,
+            "element_size": 2
+          },
+          {
+            "kind": "tensor",
+            "shape": [
+              1,
+              2,
+              64
+            ],
+            "dtype": "torch.bfloat16",
+            "device": "npu:0",
+            "data_ptr": 20846697519360,
+            "storage_ptr": 20846697517568,
+            "stride": [
+              128,
+              64,
+              1
+            ],
+            "storage_offset": 896,
+            "element_size": 2
+          },
+          {
+            "kind": "tensor",
+            "shape": [
+              1,
+              2,
+              64
+            ],
+            "dtype": "torch.bfloat16",
+            "device": "npu:0",
+            "data_ptr": 20846697519616,
+            "storage_ptr": 20846697517568,
+            "stride": [
+              128,
+              64,
+              1
+            ],
+            "storage_offset": 1024,
+            "element_size": 2
+          },
+          {
+            "kind": "tensor",
+            "shape": [
+              1,
+              14,
+              64
+            ],
+            "dtype": "torch.bfloat16",
+            "device": "npu:0",
+            "data_ptr": 20846697515520,
+            "storage_ptr": 20846697515520,
+            "stride": [
+              896,
+              64,
+              1
+            ],
+            "storage_offset": 0,
+            "element_size": 2
+          },
+          {
+            "kind": "tensor",
+            "shape": [
+              1,
+              896
+            ],
+            "dtype": "torch.bfloat16",
+            "device": "npu:0",
+            "data_ptr": 20846697513472,
+            "storage_ptr": 20846697513472,
+            "stride": [
+              896,
+              1
+            ],
+            "storage_offset": 0,
+            "element_size": 2
+          }
+        ],
+        "input_addresses": [
+          20624432962560,
+          20698521141248,
+          20624433513472,
+          20698793411072,
+          20624432955904,
+          20624432964096,
+          20698797096960
+        ],
+        "captured_input_addresses": [
+          20624432962560,
+          20698521141248,
+          20624433513472,
+          20698793411072,
+          20624432955904,
+          20624432964096,
+          20698797096960
+        ]
+      },
+      "capture_occurrence": {
+        "pid": 1021084,
+        "monotonic_ns": 4831854583094597
+      },
+      "runtime_stream": 140571841277952
+    },
+    {
+      "id": "submission:19582",
+      "kind": "submission",
+      "name": "AscendCL@aclmdlRIExecuteAsync",
+      "pid": 1045590271,
+      "tid": 1021084,
+      "start_us": "1790585112462068.138",
+      "end_us": "1790585112462077.956",
+      "event": {
+        "name": "AscendCL@aclmdlRIExecuteAsync",
+        "pid": 1045590271,
+        "tid": 1021084,
+        "ts": "1790585112462068.138",
+        "dur": 9.818,
+        "ph": "X",
+        "args": {
+          "Thread Id": 1021084,
+          "Mode": "ACL_RTS",
+          "level": "acl",
+          "id": "aclmdlRIExecuteAsync",
+          "item_id": "0",
+          "connection_id": 5046
+        }
+      }
+    },
+    {
+      "id": "replay:P13/1021084/00582/graph_replay",
+      "kind": "replay",
+      "name": "NPUGraph.replay submod_2",
+      "phase": "decode-2",
+      "start_us": "1790585112463781.401",
+      "end_us": "1790585112463880.909",
+      "resources": {
+        "wrapper_id": 140571783082256,
+        "partition": "submod_2",
+        "graph_id": 140570788913200,
+        "runtime_mode": "PIECEWISE",
+        "wrapper_mode": "PIECEWISE",
+        "graph_pool": [
+          0,
+          2
+        ],
+        "inputs": [
+          {
+            "kind": "tensor",
+            "shape": [
+              1,
+              14,
+              64
+            ],
+            "dtype": "torch.bfloat16",
+            "device": "npu:0",
+            "data_ptr": 20846697515520,
+            "storage_ptr": 20846697515520,
+            "stride": [
+              896,
+              64,
+              1
+            ],
+            "storage_offset": 0,
+            "element_size": 2
+          },
+          1,
+          {
+            "kind": "tensor",
+            "shape": [
+              896,
+              896
+            ],
+            "dtype": "torch.bfloat16",
+            "device": "npu:0",
+            "data_ptr": 20698795475968,
+            "storage_ptr": 20698795475968,
+            "stride": [
+              896,
+              1
+            ],
+            "storage_offset": 0,
+            "element_size": 2
+          },
+          {
+            "kind": "tensor",
+            "shape": [
+              1,
+              896
+            ],
+            "dtype": "torch.bfloat16",
+            "device": "npu:0",
+            "data_ptr": 20846697513472,
+            "storage_ptr": 20846697513472,
+            "stride": [
+              896,
+              1
+            ],
+            "storage_offset": 0,
+            "element_size": 2
+          },
+          {
+            "kind": "tensor",
+            "shape": [
+              896
+            ],
+            "dtype": "torch.bfloat16",
+            "device": "npu:0",
+            "data_ptr": 20624433515520,
+            "storage_ptr": 20624433515520,
+            "stride": [
+              1
+            ],
+            "storage_offset": 0,
+            "element_size": 2
+          },
+          {
+            "kind": "tensor",
+            "shape": [
+              9728,
+              896
+            ],
+            "dtype": "torch.bfloat16",
+            "device": "npu:0",
+            "data_ptr": 20698809712640,
+            "storage_ptr": 20698809712640,
+            "stride": [
+              896,
+              1
+            ],
+            "storage_offset": 0,
+            "element_size": 2
+          },
+          {
+            "kind": "tensor",
+            "shape": [
+              896,
+              4864
+            ],
+            "dtype": "torch.bfloat16",
+            "device": "npu:0",
+            "data_ptr": 20698827161600,
+            "storage_ptr": 20698827161600,
+            "stride": [
+              4864,
+              1
+            ],
+            "storage_offset": 0,
+            "element_size": 2
+          },
+          {
+            "kind": "tensor",
+            "shape": [
+              896
+            ],
+            "dtype": "torch.bfloat16",
+            "device": "npu:0",
+            "data_ptr": 20624433523200,
+            "storage_ptr": 20624433523200,
+            "stride": [
+              1
+            ],
+            "storage_offset": 0,
+            "element_size": 2
+          },
+          {
+            "kind": "tensor",
+            "shape": [
+              1152,
+              896
+            ],
+            "dtype": "torch.bfloat16",
+            "device": "npu:0",
+            "data_ptr": 20698835878400,
+            "storage_ptr": 20698835878400,
+            "stride": [
+              896,
+              1
+            ],
+            "storage_offset": 0,
+            "element_size": 2
+          },
+          {
+            "kind": "tensor",
+            "shape": [
+              1152
+            ],
+            "dtype": "torch.bfloat16",
+            "device": "npu:0",
+            "data_ptr": 20624433517568,
+            "storage_ptr": 20624433517568,
+            "stride": [
+              1
+            ],
+            "storage_offset": 0,
+            "element_size": 2
+          },
+          {
+            "kind": "tensor",
+            "shape": [
+              1
+            ],
+            "dtype": "torch.int64",
+            "device": "npu:0",
+            "data_ptr": 20624432964096,
+            "storage_ptr": 20624432964096,
+            "stride": [
+              1
+            ],
+            "storage_offset": 0,
+            "element_size": 8
+          },
+          1,
+          {
+            "kind": "tensor",
+            "shape": [
+              32768,
+              64
+            ],
+            "dtype": "torch.bfloat16",
+            "device": "npu:0",
+            "data_ptr": 20698797096960,
+            "storage_ptr": 20698797096960,
+            "stride": [
+              64,
+              1
+            ],
+            "storage_offset": 0,
+            "element_size": 2
+          }
+        ],
+        "output": [
+          {
+            "kind": "tensor",
+            "shape": [
+              1,
+              14,
+              64
+            ],
+            "dtype": "torch.bfloat16",
+            "device": "npu:0",
+            "data_ptr": 20846697525760,
+            "storage_ptr": 20846697525760,
+            "stride": [
+              896,
+              64,
+              1
+            ],
+            "storage_offset": 0,
+            "element_size": 2
+          },
+          {
+            "kind": "tensor",
+            "shape": [
+              1,
+              2,
+              64
+            ],
+            "dtype": "torch.bfloat16",
+            "device": "npu:0",
+            "data_ptr": 20846697527552,
+            "storage_ptr": 20846697525760,
+            "stride": [
+              128,
+              64,
+              1
+            ],
+            "storage_offset": 896,
+            "element_size": 2
+          },
+          {
+            "kind": "tensor",
+            "shape": [
+              1,
+              2,
+              64
+            ],
+            "dtype": "torch.bfloat16",
+            "device": "npu:0",
+            "data_ptr": 20846697527808,
+            "storage_ptr": 20846697525760,
+            "stride": [
+              128,
+              64,
+              1
+            ],
+            "storage_offset": 1024,
+            "element_size": 2
+          },
+          {
+            "kind": "tensor",
+            "shape": [
+              1,
+              14,
+              64
+            ],
+            "dtype": "torch.bfloat16",
+            "device": "npu:0",
+            "data_ptr": 20846697517568,
+            "storage_ptr": 20846697517568,
+            "stride": [
+              896,
+              64,
+              1
+            ],
+            "storage_offset": 0,
+            "element_size": 2
+          },
+          {
+            "kind": "tensor",
+            "shape": [
+              1,
+              896
+            ],
+            "dtype": "torch.bfloat16",
+            "device": "npu:0",
+            "data_ptr": 20846697523712,
+            "storage_ptr": 20846697523712,
+            "stride": [
+              896,
+              1
+            ],
+            "storage_offset": 0,
+            "element_size": 2
+          }
+        ],
+        "input_addresses": [
+          20846697515520,
+          20698795475968,
+          20846697513472,
+          20624433515520,
+          20698809712640,
+          20698827161600,
+          20624433523200,
+          20698835878400,
+          20624433517568,
+          20624432964096,
+          20698797096960
+        ],
+        "captured_input_addresses": [
+          20846697515520,
+          20698795475968,
+          20846697513472,
+          20624433515520,
+          20698809712640,
+          20698827161600,
+          20624433523200,
+          20698835878400,
+          20624433517568,
+          20624432964096,
+          20698797096960
+        ]
+      },
+      "capture_occurrence": {
+        "pid": 1021084,
+        "monotonic_ns": 4831854585875786
+      },
+      "runtime_stream": 140571841277952
+    },
+    {
+      "id": "submission:19607",
+      "kind": "submission",
+      "name": "AscendCL@aclmdlRIExecuteAsync",
+      "pid": 1045590271,
+      "tid": 1021084,
+      "start_us": "1790585112463849.632",
+      "end_us": "1790585112463861.431",
+      "event": {
+        "name": "AscendCL@aclmdlRIExecuteAsync",
+        "pid": 1045590271,
+        "tid": 1021084,
+        "ts": "1790585112463849.632",
+        "dur": 11.799,
+        "ph": "X",
+        "args": {
+          "Thread Id": 1021084,
+          "Mode": "ACL_RTS",
+          "level": "acl",
+          "id": "aclmdlRIExecuteAsync",
+          "item_id": "0",
+          "connection_id": 5071
+        }
+      }
+    }
+  ],
+  "edges": [
+    {
+      "source": "submission:19587",
+      "target": "k:12186",
+      "kind": "launch",
+      "evidence": {
+        "status": "exact",
+        "flow_id": "21693879812096",
+        "source_index": 19587,
+        "start_index": 21612,
+        "endpoint_index": 12187
+      },
+      "semantics": "exact runtime flow; launch return need not precede device start",
+      "original_edge_index": 968
+    },
+    {
+      "source": "host:5213",
+      "target": "submission:19587",
+      "kind": "dispatch",
+      "evidence": {
+        "torch": {
+          "status": "exact",
+          "flow_id": "1790585112462664888",
+          "source_index": 5213,
+          "start_index": 22975,
+          "endpoint_index": 22976
+        },
+        "cann": {
+          "status": "exact",
+          "flow_id": "21693879812096",
+          "source_index": 19587,
+          "start_index": 21612,
+          "endpoint_index": 12187
+        },
+        "queue": {
+          "correlation_id": "3129",
+          "enqueue": {
+            "ph": "X",
+            "name": "Enqueue@ReshapeCacheOperation",
+            "pid": 1021084,
+            "tid": 1021084,
+            "ts": "1790585112462622.464",
+            "dur": 9.564,
+            "cat": "enqueue",
+            "args": {
+              "correlation_id": 3129
+            }
+          },
+          "dequeue": {
+            "ph": "X",
+            "name": "Dequeue@ReshapeCacheOperation",
+            "pid": 1021084,
+            "tid": 1021408,
+            "ts": "1790585112462634.991",
+            "dur": 29.582,
+            "cat": "dequeue",
+            "args": {
+              "correlation_id": 3129
+            }
+          }
+        }
+      },
+      "semantics": "same device task joined by exact profiler flows",
+      "original_edge_index": 969
+    },
+    {
+      "source": "submission:19592",
+      "target": "k:12188",
+      "kind": "launch",
+      "evidence": {
+        "status": "exact",
+        "flow_id": "21715354648576",
+        "source_index": 19592,
+        "start_index": 21613,
+        "endpoint_index": 12189
+      },
+      "semantics": "exact runtime flow; launch return need not precede device start",
+      "original_edge_index": 970
+    },
+    {
+      "source": "host:5225",
+      "target": "submission:19592",
+      "kind": "dispatch",
+      "evidence": {
+        "torch": {
+          "status": "exact",
+          "flow_id": "1790585112463124406",
+          "source_index": 5225,
+          "start_index": 22977,
+          "endpoint_index": 22978
+        },
+        "cann": {
+          "status": "exact",
+          "flow_id": "21715354648576",
+          "source_index": 19592,
+          "start_index": 21613,
+          "endpoint_index": 12189
+        },
+        "queue": {
+          "correlation_id": "3130",
+          "enqueue": {
+            "ph": "X",
+            "name": "Enqueue@aclnnFusedInferAttentionScoreV3",
+            "pid": 1021084,
+            "tid": 1021084,
+            "ts": "1790585112463080.811",
+            "dur": 2.262,
+            "cat": "enqueue",
+            "args": {
+              "correlation_id": 3130
+            }
+          },
+          "dequeue": {
+            "ph": "X",
+            "name": "Dequeue@aclnnFusedInferAttentionScoreV3",
+            "pid": 1021084,
+            "tid": 1021408,
+            "ts": "1790585112463085.616",
+            "dur": 36.605,
+            "cat": "dequeue",
+            "args": {
+              "correlation_id": 3130
+            }
+          }
+        }
+      },
+      "semantics": "same device task joined by exact profiler flows",
+      "original_edge_index": 971
+    },
+    {
+      "source": "submission:19598",
+      "target": "k:13674",
+      "kind": "launch",
+      "evidence": {
+        "status": "exact",
+        "flow_id": "21741124452352",
+        "source_index": 19598,
+        "start_index": 21614,
+        "endpoint_index": 13675
+      },
+      "semantics": "exact runtime flow; launch return need not precede device start",
+      "original_edge_index": 1444
+    },
+    {
+      "source": "host:5231",
+      "target": "submission:19598",
+      "kind": "dispatch",
+      "evidence": {
+        "torch": {
+          "status": "exact",
+          "flow_id": "1790585112463235131",
+          "source_index": 5231,
+          "start_index": 22979,
+          "endpoint_index": 22980
+        },
+        "cann": {
+          "status": "exact",
+          "flow_id": "21741124452352",
+          "source_index": 19598,
+          "start_index": 21614,
+          "endpoint_index": 13675
+        },
+        "queue": {
+          "correlation_id": "3131",
+          "enqueue": {
+            "ph": "X",
+            "name": "Enqueue@aclnnInplaceCopy",
+            "pid": 1021084,
+            "tid": 1021084,
+            "ts": "1790585112463216.774",
+            "dur": 1.636,
+            "cat": "enqueue",
+            "args": {
+              "correlation_id": 3131
+            }
+          },
+          "dequeue": {
+            "ph": "X",
+            "name": "Dequeue@aclnnInplaceCopy",
+            "pid": 1021084,
+            "tid": 1021408,
+            "ts": "1790585112463220.700",
+            "dur": 6.747,
+            "cat": "dequeue",
+            "args": {
+              "correlation_id": 3131
+            }
+          }
+        }
+      },
+      "semantics": "same device task joined by exact profiler flows",
+      "original_edge_index": 1445
+    },
+    {
+      "source": "k:12171",
+      "target": "k:12176",
+      "kind": "stream_order",
+      "evidence": {
+        "device_lane": "1045590432",
+        "stream": "46"
+      },
+      "semantics": "observed consecutive tasks; not proof of tensor dependency",
+      "original_edge_index": 2200
+    },
+    {
+      "source": "k:12176",
+      "target": "k:12186",
+      "kind": "stream_order",
+      "evidence": {
+        "device_lane": "1045590432",
+        "stream": "46"
+      },
+      "semantics": "observed consecutive tasks; not proof of tensor dependency",
+      "original_edge_index": 2201
+    },
+    {
+      "source": "k:12186",
+      "target": "k:12188",
+      "kind": "stream_order",
+      "evidence": {
+        "device_lane": "1045590432",
+        "stream": "46"
+      },
+      "semantics": "observed consecutive tasks; not proof of tensor dependency",
+      "original_edge_index": 2202
+    },
+    {
+      "source": "k:12188",
+      "target": "k:13674",
+      "kind": "stream_order",
+      "evidence": {
+        "device_lane": "1045590432",
+        "stream": "46"
+      },
+      "semantics": "observed consecutive tasks; not proof of tensor dependency",
+      "original_edge_index": 2203
+    },
+    {
+      "source": "k:13674",
+      "target": "k:12190",
+      "kind": "stream_order",
+      "evidence": {
+        "device_lane": "1045590432",
+        "stream": "46"
+      },
+      "semantics": "observed consecutive tasks; not proof of tensor dependency",
+      "original_edge_index": 2204
+    },
+    {
+      "source": "k:12190",
+      "target": "k:12193",
+      "kind": "stream_order",
+      "evidence": {
+        "device_lane": "1045590432",
+        "stream": "46"
+      },
+      "semantics": "observed consecutive tasks; not proof of tensor dependency",
+      "original_edge_index": 2205
+    },
+    {
+      "source": "host:5213",
+      "target": "host:5225",
+      "kind": "host_issue_order",
+      "evidence": "same PID/TID",
+      "semantics": "observed call entry order only",
+      "original_edge_index": 3739
+    },
+    {
+      "source": "host:5225",
+      "target": "host:5231",
+      "kind": "host_issue_order",
+      "evidence": "same PID/TID",
+      "semantics": "observed call entry order only",
+      "original_edge_index": 3740
+    },
+    {
+      "source": "submission:19587",
+      "target": "submission:19592",
+      "kind": "submission_issue_order",
+      "evidence": "same PID/TID",
+      "semantics": "observed call entry order only",
+      "original_edge_index": 4519
+    },
+    {
+      "source": "submission:19592",
+      "target": "submission:19598",
+      "kind": "submission_issue_order",
+      "evidence": "same PID/TID",
+      "semantics": "observed call entry order only",
+      "original_edge_index": 4520
+    },
+    {
+      "source": "replay:P13/1021084/00575/graph_replay",
+      "target": "submission:19582",
+      "kind": "replay_runtime_call",
+      "evidence": {
+        "scope": "P13/1021084/00575/graph_replay",
+        "native_index": 19582
+      },
+      "semantics": "native async execute occurs inside replay on the same host thread; return is not device completion",
+      "original_edge_index": 4811
+    },
+    {
+      "source": "submission:19582",
+      "target": "k:12171",
+      "kind": "runtime_connection",
+      "evidence": {
+        "native_index": 19582,
+        "connection_id": 5046
+      },
+      "semantics": "exact native connection_id; one async execute submits multiple boundary tasks; no per-kernel flow invented",
+      "original_edge_index": 4812
+    },
+    {
+      "source": "submission:19582",
+      "target": "k:12176",
+      "kind": "runtime_connection",
+      "evidence": {
+        "native_index": 19582,
+        "connection_id": 5046
+      },
+      "semantics": "exact native connection_id; one async execute submits multiple boundary tasks; no per-kernel flow invented",
+      "original_edge_index": 4813
+    },
+    {
+      "source": "replay:P13/1021084/00582/graph_replay",
+      "target": "submission:19607",
+      "kind": "replay_runtime_call",
+      "evidence": {
+        "scope": "P13/1021084/00582/graph_replay",
+        "native_index": 19607
+      },
+      "semantics": "native async execute occurs inside replay on the same host thread; return is not device completion",
+      "original_edge_index": 4814
+    },
+    {
+      "source": "submission:19607",
+      "target": "k:12190",
+      "kind": "runtime_connection",
+      "evidence": {
+        "native_index": 19607,
+        "connection_id": 5071
+      },
+      "semantics": "exact native connection_id; one async execute submits multiple boundary tasks; no per-kernel flow invented",
+      "original_edge_index": 4815
+    },
+    {
+      "source": "submission:19607",
+      "target": "k:12193",
+      "kind": "runtime_connection",
+      "evidence": {
+        "native_index": 19607,
+        "connection_id": 5071
+      },
+      "semantics": "exact native connection_id; one async execute submits multiple boundary tasks; no per-kernel flow invented",
+      "original_edge_index": 4816
+    },
+    {
+      "source": "k:12186",
+      "target": "k:12188",
+      "kind": "storage_candidate",
+      "evidence": {
+        "resource": "key",
+        "tensor": {
+          "kind": "tensor",
+          "shape": [
+            11801,
+            128,
+            128
+          ],
+          "dtype": "torch.bfloat16",
+          "device": "npu:0",
+          "data_ptr": 20699522482176,
+          "storage_ptr": 20699522482176,
+          "stride": [
+            16384,
+            128,
+            1
+          ],
+          "storage_offset": 0,
+          "element_size": 2
+        }
+      },
+      "semantics": "shared KV pool; exact indexed byte overlap unobserved",
+      "original_edge_index": 5057
+    },
+    {
+      "source": "k:12186",
+      "target": "k:12188",
+      "kind": "storage_candidate",
+      "evidence": {
+        "resource": "value",
+        "tensor": {
+          "kind": "tensor",
+          "shape": [
+            11801,
+            128,
+            128
+          ],
+          "dtype": "torch.bfloat16",
+          "device": "npu:0",
+          "data_ptr": 20699909193728,
+          "storage_ptr": 20699909193728,
+          "stride": [
+            16384,
+            128,
+            1
+          ],
+          "storage_offset": 0,
+          "element_size": 2
+        }
+      },
+      "semantics": "shared KV pool; exact indexed byte overlap unobserved",
+      "original_edge_index": 5058
+    }
+  ],
+  "attention_scope": "P13/1021084/00576/attention",
+  "attention_observation": {
+    "entry": {
+      "event": "enter",
+      "time_ns": 1790585112462366972,
+      "monotonic_ns": 4831871421253367,
+      "pid": 1021084,
+      "ppid": 1020573,
+      "tid": 1021084,
+      "request_id": "cmpl-practice13-profile-0-8a63f3a1",
+      "step": 7,
+      "measured": true,
+      "label": "P13/1021084/00576/attention",
+      "kind": "attention",
+      "parent": "P13/1021084/00573/forward",
+      "layer": "model.layers.0.self_attn.attn",
+      "arguments": {
+        "query": {
+          "kind": "tensor",
+          "shape": [
+            1,
+            14,
+            64
+          ],
+          "dtype": "torch.bfloat16",
+          "device": "npu:0",
+          "data_ptr": 20846697517568,
+          "storage_ptr": 20846697517568,
+          "stride": [
+            896,
+            64,
+            1
+          ],
+          "storage_offset": 0,
+          "element_size": 2
+        },
+        "key": {
+          "kind": "tensor",
+          "shape": [
+            1,
+            2,
+            64
+          ],
+          "dtype": "torch.bfloat16",
+          "device": "npu:0",
+          "data_ptr": 20846697519360,
+          "storage_ptr": 20846697517568,
+          "stride": [
+            128,
+            64,
+            1
+          ],
+          "storage_offset": 896,
+          "element_size": 2
+        },
+        "value": {
+          "kind": "tensor",
+          "shape": [
+            1,
+            2,
+            64
+          ],
+          "dtype": "torch.bfloat16",
+          "device": "npu:0",
+          "data_ptr": 20846697519616,
+          "storage_ptr": 20846697517568,
+          "stride": [
+            128,
+            64,
+            1
+          ],
+          "storage_offset": 1024,
+          "element_size": 2
+        },
+        "output": {
+          "kind": "tensor",
+          "shape": [
+            1,
+            14,
+            64
+          ],
+          "dtype": "torch.bfloat16",
+          "device": "npu:0",
+          "data_ptr": 20846697515520,
+          "storage_ptr": 20846697515520,
+          "stride": [
+            896,
+            64,
+            1
+          ],
+          "storage_offset": 0,
+          "element_size": 2
+        },
+        "kv_cache": [
+          {
+            "kind": "tensor",
+            "shape": [
+              11801,
+              128,
+              2,
+              64
+            ],
+            "dtype": "torch.bfloat16",
+            "device": "npu:0",
+            "data_ptr": 20699522482176,
+            "storage_ptr": 20699522482176,
+            "stride": [
+              16384,
+              128,
+              64,
+              1
+            ],
+            "storage_offset": 0,
+            "element_size": 2
+          },
+          {
+            "kind": "tensor",
+            "shape": [
+              11801,
+              128,
+              2,
+              64
+            ],
+            "dtype": "torch.bfloat16",
+            "device": "npu:0",
+            "data_ptr": 20699909193728,
+            "storage_ptr": 20699909193728,
+            "stride": [
+              16384,
+              128,
+              64,
+              1
+            ],
+            "storage_offset": 0,
+            "element_size": 2
+          }
+        ]
+      },
+      "source": {
+        "file": "/vllm-workspace/vllm-ascend/vllm_ascend/attention/attention_v1.py",
+        "line": 1279,
+        "function": "AscendAttentionBackendImpl.forward"
+      }
+    },
+    "exit": {
+      "event": "exit",
+      "time_ns": 1790585112463386423,
+      "monotonic_ns": 4831871422272844,
+      "pid": 1021084,
+      "ppid": 1020573,
+      "tid": 1021084,
+      "request_id": "cmpl-practice13-profile-0-8a63f3a1",
+      "step": 7,
+      "measured": true,
+      "label": "P13/1021084/00576/attention",
+      "kind": "attention",
+      "source": {
+        "file": "/vllm-workspace/vllm-ascend/vllm_ascend/attention/attention_v1.py",
+        "line": 1279,
+        "function": "AscendAttentionBackendImpl.forward"
+      }
+    }
+  },
+  "replay_context": [
+    {
+      "replay": {
+        "label": "P13/1021084/00575/graph_replay",
+        "partition": "submod_0",
+        "phase": "decode-2",
+        "graph_id": 140570788913392,
+        "capture": {
+          "pid": 1021084,
+          "monotonic_ns": 4831854583094597
+        },
+        "resources_verified": true,
+        "directly_correlated_tasks": [],
+        "runtime_api": {
+          "name": "AscendCL@aclmdlRIExecuteAsync",
+          "pid": 1045590271,
+          "tid": 1021084,
+          "ts": "1790585112462068.138",
+          "dur": 9.818,
+          "ph": "X",
+          "args": {
+            "Thread Id": 1021084,
+            "Mode": "ACL_RTS",
+            "level": "acl",
+            "id": "aclmdlRIExecuteAsync",
+            "item_id": "0",
+            "connection_id": 5046
+          }
+        },
+        "boundary_tasks": [
+          "k:12171",
+          "k:12176"
+        ]
+      },
+      "node": {
+        "id": "replay:P13/1021084/00575/graph_replay",
+        "kind": "replay",
+        "name": "NPUGraph.replay submod_0",
+        "phase": "decode-2",
+        "start_us": "1790585112462000.748",
+        "end_us": "1790585112462099.663",
+        "resources": {
+          "wrapper_id": 140570794346256,
+          "partition": "submod_0",
+          "graph_id": 140570788913392,
+          "runtime_mode": "PIECEWISE",
+          "wrapper_mode": "PIECEWISE",
+          "graph_pool": [
+            0,
+            2
+          ],
+          "inputs": [
+            {
+              "kind": "tensor",
+              "shape": [
+                1
+              ],
+              "dtype": "torch.int32",
+              "device": "npu:0",
+              "data_ptr": 20624432962560,
+              "storage_ptr": 20624432962560,
+              "stride": [
+                1
+              ],
+              "storage_offset": 0,
+              "element_size": 4
+            },
+            1,
+            {
+              "kind": "tensor",
+              "shape": [
+                151936,
+                896
+              ],
+              "dtype": "torch.bfloat16",
+              "device": "npu:0",
+              "data_ptr": 20698521141248,
+              "storage_ptr": 20698521141248,
+              "stride": [
+                896,
+                1
+              ],
+              "storage_offset": 0,
+              "element_size": 2
+            },
+            {
+              "kind": "tensor",
+              "shape": [
+                896
+              ],
+              "dtype": "torch.bfloat16",
+              "device": "npu:0",
+              "data_ptr": 20624433513472,
+              "storage_ptr": 20624433513472,
+              "stride": [
+                1
+              ],
+              "storage_offset": 0,
+              "element_size": 2
+            },
+            {
+              "kind": "tensor",
+              "shape": [
+                1152,
+                896
+              ],
+              "dtype": "torch.bfloat16",
+              "device": "npu:0",
+              "data_ptr": 20698793411072,
+              "storage_ptr": 20698793411072,
+              "stride": [
+                896,
+                1
+              ],
+              "storage_offset": 0,
+              "element_size": 2
+            },
+            {
+              "kind": "tensor",
+              "shape": [
+                1152
+              ],
+              "dtype": "torch.bfloat16",
+              "device": "npu:0",
+              "data_ptr": 20624432955904,
+              "storage_ptr": 20624432955904,
+              "stride": [
+                1
+              ],
+              "storage_offset": 0,
+              "element_size": 2
+            },
+            {
+              "kind": "tensor",
+              "shape": [
+                1
+              ],
+              "dtype": "torch.int64",
+              "device": "npu:0",
+              "data_ptr": 20624432964096,
+              "storage_ptr": 20624432964096,
+              "stride": [
+                1
+              ],
+              "storage_offset": 0,
+              "element_size": 8
+            },
+            1,
+            {
+              "kind": "tensor",
+              "shape": [
+                32768,
+                64
+              ],
+              "dtype": "torch.bfloat16",
+              "device": "npu:0",
+              "data_ptr": 20698797096960,
+              "storage_ptr": 20698797096960,
+              "stride": [
+                64,
+                1
+              ],
+              "storage_offset": 0,
+              "element_size": 2
+            }
+          ],
+          "output": [
+            {
+              "kind": "tensor",
+              "shape": [
+                1,
+                14,
+                64
+              ],
+              "dtype": "torch.bfloat16",
+              "device": "npu:0",
+              "data_ptr": 20846697517568,
+              "storage_ptr": 20846697517568,
+              "stride": [
+                896,
+                64,
+                1
+              ],
+              "storage_offset": 0,
+              "element_size": 2
+            },
+            {
+              "kind": "tensor",
+              "shape": [
+                1,
+                2,
+                64
+              ],
+              "dtype": "torch.bfloat16",
+              "device": "npu:0",
+              "data_ptr": 20846697519360,
+              "storage_ptr": 20846697517568,
+              "stride": [
+                128,
+                64,
+                1
+              ],
+              "storage_offset": 896,
+              "element_size": 2
+            },
+            {
+              "kind": "tensor",
+              "shape": [
+                1,
+                2,
+                64
+              ],
+              "dtype": "torch.bfloat16",
+              "device": "npu:0",
+              "data_ptr": 20846697519616,
+              "storage_ptr": 20846697517568,
+              "stride": [
+                128,
+                64,
+                1
+              ],
+              "storage_offset": 1024,
+              "element_size": 2
+            },
+            {
+              "kind": "tensor",
+              "shape": [
+                1,
+                14,
+                64
+              ],
+              "dtype": "torch.bfloat16",
+              "device": "npu:0",
+              "data_ptr": 20846697515520,
+              "storage_ptr": 20846697515520,
+              "stride": [
+                896,
+                64,
+                1
+              ],
+              "storage_offset": 0,
+              "element_size": 2
+            },
+            {
+              "kind": "tensor",
+              "shape": [
+                1,
+                896
+              ],
+              "dtype": "torch.bfloat16",
+              "device": "npu:0",
+              "data_ptr": 20846697513472,
+              "storage_ptr": 20846697513472,
+              "stride": [
+                896,
+                1
+              ],
+              "storage_offset": 0,
+              "element_size": 2
+            }
+          ],
+          "input_addresses": [
+            20624432962560,
+            20698521141248,
+            20624433513472,
+            20698793411072,
+            20624432955904,
+            20624432964096,
+            20698797096960
+          ],
+          "captured_input_addresses": [
+            20624432962560,
+            20698521141248,
+            20624433513472,
+            20698793411072,
+            20624432955904,
+            20624432964096,
+            20698797096960
+          ]
+        },
+        "capture_occurrence": {
+          "pid": 1021084,
+          "monotonic_ns": 4831854583094597
+        },
+        "runtime_stream": 140571841277952
+      },
+      "dispatch_scope": "P13/1021084/00574/acl_dispatch"
+    },
+    {
+      "replay": {
+        "label": "P13/1021084/00582/graph_replay",
+        "partition": "submod_2",
+        "phase": "decode-2",
+        "graph_id": 140570788913200,
+        "capture": {
+          "pid": 1021084,
+          "monotonic_ns": 4831854585875786
+        },
+        "resources_verified": true,
+        "directly_correlated_tasks": [],
+        "runtime_api": {
+          "name": "AscendCL@aclmdlRIExecuteAsync",
+          "pid": 1045590271,
+          "tid": 1021084,
+          "ts": "1790585112463849.632",
+          "dur": 11.799,
+          "ph": "X",
+          "args": {
+            "Thread Id": 1021084,
+            "Mode": "ACL_RTS",
+            "level": "acl",
+            "id": "aclmdlRIExecuteAsync",
+            "item_id": "0",
+            "connection_id": 5071
+          }
+        },
+        "boundary_tasks": [
+          "k:12190",
+          "k:12193"
+        ]
+      },
+      "node": {
+        "id": "replay:P13/1021084/00582/graph_replay",
+        "kind": "replay",
+        "name": "NPUGraph.replay submod_2",
+        "phase": "decode-2",
+        "start_us": "1790585112463781.401",
+        "end_us": "1790585112463880.909",
+        "resources": {
+          "wrapper_id": 140571783082256,
+          "partition": "submod_2",
+          "graph_id": 140570788913200,
+          "runtime_mode": "PIECEWISE",
+          "wrapper_mode": "PIECEWISE",
+          "graph_pool": [
+            0,
+            2
+          ],
+          "inputs": [
+            {
+              "kind": "tensor",
+              "shape": [
+                1,
+                14,
+                64
+              ],
+              "dtype": "torch.bfloat16",
+              "device": "npu:0",
+              "data_ptr": 20846697515520,
+              "storage_ptr": 20846697515520,
+              "stride": [
+                896,
+                64,
+                1
+              ],
+              "storage_offset": 0,
+              "element_size": 2
+            },
+            1,
+            {
+              "kind": "tensor",
+              "shape": [
+                896,
+                896
+              ],
+              "dtype": "torch.bfloat16",
+              "device": "npu:0",
+              "data_ptr": 20698795475968,
+              "storage_ptr": 20698795475968,
+              "stride": [
+                896,
+                1
+              ],
+              "storage_offset": 0,
+              "element_size": 2
+            },
+            {
+              "kind": "tensor",
+              "shape": [
+                1,
+                896
+              ],
+              "dtype": "torch.bfloat16",
+              "device": "npu:0",
+              "data_ptr": 20846697513472,
+              "storage_ptr": 20846697513472,
+              "stride": [
+                896,
+                1
+              ],
+              "storage_offset": 0,
+              "element_size": 2
+            },
+            {
+              "kind": "tensor",
+              "shape": [
+                896
+              ],
+              "dtype": "torch.bfloat16",
+              "device": "npu:0",
+              "data_ptr": 20624433515520,
+              "storage_ptr": 20624433515520,
+              "stride": [
+                1
+              ],
+              "storage_offset": 0,
+              "element_size": 2
+            },
+            {
+              "kind": "tensor",
+              "shape": [
+                9728,
+                896
+              ],
+              "dtype": "torch.bfloat16",
+              "device": "npu:0",
+              "data_ptr": 20698809712640,
+              "storage_ptr": 20698809712640,
+              "stride": [
+                896,
+                1
+              ],
+              "storage_offset": 0,
+              "element_size": 2
+            },
+            {
+              "kind": "tensor",
+              "shape": [
+                896,
+                4864
+              ],
+              "dtype": "torch.bfloat16",
+              "device": "npu:0",
+              "data_ptr": 20698827161600,
+              "storage_ptr": 20698827161600,
+              "stride": [
+                4864,
+                1
+              ],
+              "storage_offset": 0,
+              "element_size": 2
+            },
+            {
+              "kind": "tensor",
+              "shape": [
+                896
+              ],
+              "dtype": "torch.bfloat16",
+              "device": "npu:0",
+              "data_ptr": 20624433523200,
+              "storage_ptr": 20624433523200,
+              "stride": [
+                1
+              ],
+              "storage_offset": 0,
+              "element_size": 2
+            },
+            {
+              "kind": "tensor",
+              "shape": [
+                1152,
+                896
+              ],
+              "dtype": "torch.bfloat16",
+              "device": "npu:0",
+              "data_ptr": 20698835878400,
+              "storage_ptr": 20698835878400,
+              "stride": [
+                896,
+                1
+              ],
+              "storage_offset": 0,
+              "element_size": 2
+            },
+            {
+              "kind": "tensor",
+              "shape": [
+                1152
+              ],
+              "dtype": "torch.bfloat16",
+              "device": "npu:0",
+              "data_ptr": 20624433517568,
+              "storage_ptr": 20624433517568,
+              "stride": [
+                1
+              ],
+              "storage_offset": 0,
+              "element_size": 2
+            },
+            {
+              "kind": "tensor",
+              "shape": [
+                1
+              ],
+              "dtype": "torch.int64",
+              "device": "npu:0",
+              "data_ptr": 20624432964096,
+              "storage_ptr": 20624432964096,
+              "stride": [
+                1
+              ],
+              "storage_offset": 0,
+              "element_size": 8
+            },
+            1,
+            {
+              "kind": "tensor",
+              "shape": [
+                32768,
+                64
+              ],
+              "dtype": "torch.bfloat16",
+              "device": "npu:0",
+              "data_ptr": 20698797096960,
+              "storage_ptr": 20698797096960,
+              "stride": [
+                64,
+                1
+              ],
+              "storage_offset": 0,
+              "element_size": 2
+            }
+          ],
+          "output": [
+            {
+              "kind": "tensor",
+              "shape": [
+                1,
+                14,
+                64
+              ],
+              "dtype": "torch.bfloat16",
+              "device": "npu:0",
+              "data_ptr": 20846697525760,
+              "storage_ptr": 20846697525760,
+              "stride": [
+                896,
+                64,
+                1
+              ],
+              "storage_offset": 0,
+              "element_size": 2
+            },
+            {
+              "kind": "tensor",
+              "shape": [
+                1,
+                2,
+                64
+              ],
+              "dtype": "torch.bfloat16",
+              "device": "npu:0",
+              "data_ptr": 20846697527552,
+              "storage_ptr": 20846697525760,
+              "stride": [
+                128,
+                64,
+                1
+              ],
+              "storage_offset": 896,
+              "element_size": 2
+            },
+            {
+              "kind": "tensor",
+              "shape": [
+                1,
+                2,
+                64
+              ],
+              "dtype": "torch.bfloat16",
+              "device": "npu:0",
+              "data_ptr": 20846697527808,
+              "storage_ptr": 20846697525760,
+              "stride": [
+                128,
+                64,
+                1
+              ],
+              "storage_offset": 1024,
+              "element_size": 2
+            },
+            {
+              "kind": "tensor",
+              "shape": [
+                1,
+                14,
+                64
+              ],
+              "dtype": "torch.bfloat16",
+              "device": "npu:0",
+              "data_ptr": 20846697517568,
+              "storage_ptr": 20846697517568,
+              "stride": [
+                896,
+                64,
+                1
+              ],
+              "storage_offset": 0,
+              "element_size": 2
+            },
+            {
+              "kind": "tensor",
+              "shape": [
+                1,
+                896
+              ],
+              "dtype": "torch.bfloat16",
+              "device": "npu:0",
+              "data_ptr": 20846697523712,
+              "storage_ptr": 20846697523712,
+              "stride": [
+                896,
+                1
+              ],
+              "storage_offset": 0,
+              "element_size": 2
+            }
+          ],
+          "input_addresses": [
+            20846697515520,
+            20698795475968,
+            20846697513472,
+            20624433515520,
+            20698809712640,
+            20698827161600,
+            20624433523200,
+            20698835878400,
+            20624433517568,
+            20624432964096,
+            20698797096960
+          ],
+          "captured_input_addresses": [
+            20846697515520,
+            20698795475968,
+            20846697513472,
+            20624433515520,
+            20698809712640,
+            20698827161600,
+            20624433523200,
+            20698835878400,
+            20624433517568,
+            20624432964096,
+            20698797096960
+          ]
+        },
+        "capture_occurrence": {
+          "pid": 1021084,
+          "monotonic_ns": 4831854585875786
+        },
+        "runtime_stream": 140571841277952
+      },
+      "dispatch_scope": "P13/1021084/00581/acl_dispatch"
+    }
+  ],
+  "tensor_bindings": [
+    {
+      "name": "query",
+      "left_scope": "P13/1021084/00574/acl_dispatch",
+      "left_field": "returned[0]",
+      "right_scope": "P13/1021084/00576/attention",
+      "right_field": "arguments.query",
+      "tensor": {
+        "kind": "tensor",
+        "shape": [
+          1,
+          14,
+          64
+        ],
+        "dtype": "torch.bfloat16",
+        "device": "npu:0",
+        "data_ptr": 20846697517568,
+        "storage_ptr": 20846697517568,
+        "stride": [
+          896,
+          64,
+          1
+        ],
+        "storage_offset": 0,
+        "element_size": 2
+      },
+      "semantics": "same scoped tensor view; producer kernel inside replay is not identified"
+    },
+    {
+      "name": "key",
+      "left_scope": "P13/1021084/00574/acl_dispatch",
+      "left_field": "returned[1]",
+      "right_scope": "P13/1021084/00576/attention",
+      "right_field": "arguments.key",
+      "tensor": {
+        "kind": "tensor",
+        "shape": [
+          1,
+          2,
+          64
+        ],
+        "dtype": "torch.bfloat16",
+        "device": "npu:0",
+        "data_ptr": 20846697519360,
+        "storage_ptr": 20846697517568,
+        "stride": [
+          128,
+          64,
+          1
+        ],
+        "storage_offset": 896,
+        "element_size": 2
+      },
+      "semantics": "same scoped tensor view; producer kernel inside replay is not identified"
+    },
+    {
+      "name": "value",
+      "left_scope": "P13/1021084/00574/acl_dispatch",
+      "left_field": "returned[2]",
+      "right_scope": "P13/1021084/00576/attention",
+      "right_field": "arguments.value",
+      "tensor": {
+        "kind": "tensor",
+        "shape": [
+          1,
+          2,
+          64
+        ],
+        "dtype": "torch.bfloat16",
+        "device": "npu:0",
+        "data_ptr": 20846697519616,
+        "storage_ptr": 20846697517568,
+        "stride": [
+          128,
+          64,
+          1
+        ],
+        "storage_offset": 1024,
+        "element_size": 2
+      },
+      "semantics": "same scoped tensor view; producer kernel inside replay is not identified"
+    },
+    {
+      "name": "output",
+      "left_scope": "P13/1021084/00574/acl_dispatch",
+      "left_field": "returned[3]",
+      "right_scope": "P13/1021084/00576/attention",
+      "right_field": "arguments.output",
+      "tensor": {
+        "kind": "tensor",
+        "shape": [
+          1,
+          14,
+          64
+        ],
+        "dtype": "torch.bfloat16",
+        "device": "npu:0",
+        "data_ptr": 20846697515520,
+        "storage_ptr": 20846697515520,
+        "stride": [
+          896,
+          64,
+          1
+        ],
+        "storage_offset": 0,
+        "element_size": 2
+      },
+      "semantics": "same scoped tensor view; output is a supplied buffer, not proof this replay writes it"
+    },
+    {
+      "name": "attention_output",
+      "left_scope": "P13/1021084/00576/attention",
+      "left_field": "arguments.output",
+      "right_scope": "P13/1021084/00581/acl_dispatch",
+      "right_field": "resources.inputs[0]",
+      "tensor": {
+        "kind": "tensor",
+        "shape": [
+          1,
+          14,
+          64
+        ],
+        "dtype": "torch.bfloat16",
+        "device": "npu:0",
+        "data_ptr": 20846697515520,
+        "storage_ptr": 20846697515520,
+        "stride": [
+          896,
+          64,
+          1
+        ],
+        "storage_offset": 0,
+        "element_size": 2
+      },
+      "semantics": "same scoped output/input view; host return is not NPU completion"
+    }
+  ],
+  "unknown_phase_tasks_not_assigned_to_layer": [
+    "k:12172",
+    "k:12174",
+    "k:12177",
+    "k:12179",
+    "k:12181",
+    "k:12183",
+    "k:12185",
+    "k:12191",
+    "k:12194",
+    "k:12196",
+    "k:12198",
+    "k:12200",
+    "k:12202",
+    "k:12204",
+    "k:12206",
+    "k:12208",
+    "k:12210",
+    "k:12216",
+    "k:12219",
+    "k:12221",
+    "k:12223",
+    "k:12225",
+    "k:12227",
+    "k:12229",
+    "k:12231",
+    "k:12233",
+    "k:12235",
+    "k:12241",
+    "k:12244",
+    "k:12246",
+    "k:12248",
+    "k:12250",
+    "k:12252",
+    "k:12254",
+    "k:12256",
+    "k:12258",
+    "k:12260",
+    "k:12266",
+    "k:12269",
+    "k:12271",
+    "k:12273",
+    "k:12275",
+    "k:12277",
+    "k:12279",
+    "k:12281",
+    "k:12283",
+    "k:12285",
+    "k:12291",
+    "k:12294",
+    "k:12296",
+    "k:12298",
+    "k:12300",
+    "k:12302",
+    "k:12304",
+    "k:12306",
+    "k:12308",
+    "k:12310",
+    "k:12316",
+    "k:12319",
+    "k:12321",
+    "k:12323",
+    "k:12325",
+    "k:12327",
+    "k:12329",
+    "k:12331",
+    "k:12333",
+    "k:12335",
+    "k:12341",
+    "k:12344",
+    "k:12346",
+    "k:12348",
+    "k:12350",
+    "k:12352",
+    "k:12354",
+    "k:12356",
+    "k:12358",
+    "k:12360",
+    "k:12366",
+    "k:12369",
+    "k:12371",
+    "k:12373",
+    "k:12375",
+    "k:12377",
+    "k:12379",
+    "k:12381",
+    "k:12383",
+    "k:12385",
+    "k:12391",
+    "k:12394",
+    "k:12396",
+    "k:12398",
+    "k:12400",
+    "k:12402",
+    "k:12404",
+    "k:12406",
+    "k:12408",
+    "k:12410",
+    "k:12416",
+    "k:12419",
+    "k:12421",
+    "k:12423",
+    "k:12425",
+    "k:12427",
+    "k:12429",
+    "k:12431",
+    "k:12433",
+    "k:12435",
+    "k:12441",
+    "k:12444",
+    "k:12446",
+    "k:12448",
+    "k:12450",
+    "k:12452",
+    "k:12454",
+    "k:12456",
+    "k:12458",
+    "k:12460",
+    "k:12466",
+    "k:12469",
+    "k:12471",
+    "k:12473",
+    "k:12475",
+    "k:12477",
+    "k:12479",
+    "k:12481",
+    "k:12483",
+    "k:12485",
+    "k:12491",
+    "k:12493",
+    "k:12495",
+    "k:12498",
+    "k:12500",
+    "k:12502",
+    "k:12504",
+    "k:12506",
+    "k:12508",
+    "k:12510",
+    "k:12516",
+    "k:12519",
+    "k:12521",
+    "k:12523",
+    "k:12525",
+    "k:12527",
+    "k:12529",
+    "k:12531",
+    "k:12533",
+    "k:12535",
+    "k:12541",
+    "k:12544",
+    "k:12546",
+    "k:12548",
+    "k:12550",
+    "k:12552",
+    "k:12554",
+    "k:12556",
+    "k:12558",
+    "k:12560",
+    "k:12566",
+    "k:12569",
+    "k:12571",
+    "k:12573",
+    "k:12575",
+    "k:12577",
+    "k:12579",
+    "k:12581",
+    "k:12583",
+    "k:12585",
+    "k:12591",
+    "k:12594",
+    "k:12596",
+    "k:12598",
+    "k:12600",
+    "k:12602",
+    "k:12604",
+    "k:12606",
+    "k:12608",
+    "k:12610",
+    "k:12616",
+    "k:12619",
+    "k:12621",
+    "k:12623",
+    "k:12625",
+    "k:12627",
+    "k:12629",
+    "k:12631",
+    "k:12633",
+    "k:12635",
+    "k:12641",
+    "k:12644",
+    "k:12646",
+    "k:12648",
+    "k:12650",
+    "k:12652",
+    "k:12654",
+    "k:12656",
+    "k:12658",
+    "k:12660",
+    "k:12666",
+    "k:12669",
+    "k:12671",
+    "k:12673",
+    "k:12675",
+    "k:12677",
+    "k:12679",
+    "k:12681",
+    "k:12683",
+    "k:12685",
+    "k:12691",
+    "k:12694",
+    "k:12696",
+    "k:12698",
+    "k:12700",
+    "k:12702",
+    "k:12704",
+    "k:12706",
+    "k:12708",
+    "k:12710",
+    "k:12716",
+    "k:12719",
+    "k:12721",
+    "k:12723",
+    "k:12725",
+    "k:12727",
+    "k:12729",
+    "k:12731",
+    "k:12733",
+    "k:12735",
+    "k:12741",
+    "k:12744",
+    "k:12746",
+    "k:12748",
+    "k:12750",
+    "k:12752",
+    "k:12754",
+    "k:12756",
+    "k:12758",
+    "k:12760",
+    "k:12766",
+    "k:12769",
+    "k:12771",
+    "k:12773",
+    "k:12775",
+    "k:12777",
+    "k:12779"
+  ],
+  "evidence_boundary": "Execution edges retain original evidence and semantics. Tensor bindings are separate metadata associations, not execution edges.",
+  "source_provenance": {
+    "run": "2026-09-28-graph-run01",
+    "trace_sha256": "ec95f7d77d99bc405b76edbd255af38be98eae603a60b35eb7eefe73af537631",
+    "csv_sha256": "cb8376bfe07b8e3a06d7205b99062d6c4f10588cfd998c02bc4e1ddd2d02f9c1",
+    "builder_sha256": "f6b5b167d76c399347c680994278284cc240a866589a66ebce99b22472eaf8d4"
+  },
+  "exporter_sha256": "229904df87290fa2696aab63165e22bead9c7d76a36d0447335bbb37f53015e3"
+}

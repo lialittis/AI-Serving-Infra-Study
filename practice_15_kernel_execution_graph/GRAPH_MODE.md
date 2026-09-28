@@ -9,6 +9,32 @@
 浏览器底部的 replay 表可逐次查看捕获基线、输入输出元数据和原生下发 API；橙色设备节点表示缺少逐算子的 host flow。
 [Markdown 对照表](results/2026-09-28-mode-comparison/comparison.md)与[流程 SVG](results/2026-09-28-mode-comparison/execution_paths.svg)也可直接阅读。
 
+## 精确关联的第一层细节 SVG
+
+每种模式均导出 prefill 与三个 decode 的独立图，共8张：
+
+| 阶段 | eager | PIECEWISE graph |
+|---|---|---|
+| prefill | [SVG](results/2026-09-28-eager-run01/analysis/first_attention_prefill.svg) | [SVG](results/2026-09-28-graph-run01/analysis/first_attention_prefill.svg) |
+| decode-1 | [SVG](results/2026-09-28-eager-run01/analysis/first_attention_decode-1.svg) | [SVG](results/2026-09-28-graph-run01/analysis/first_attention_decode-1.svg) |
+| decode-2 | [SVG](results/2026-09-28-eager-run01/analysis/first_attention_decode-2.svg) | [SVG](results/2026-09-28-graph-run01/analysis/first_attention_decode-2.svg) |
+| decode-3 | [SVG](results/2026-09-28-eager-run01/analysis/first_attention_decode-3.svg) | [SVG](results/2026-09-28-graph-run01/analysis/first_attention_decode-3.svg) |
+
+这些是从真实执行图提取的局部细节，不是上面的概念流程示意图。
+SVG 的执行连线全部来自 `execution_graph.json`，同名 `.json` 保留完整证据与 `original_edge_index`；
+同名 `.dot` 保留执行图布局；导出器另外在 SVG 底部附加图例和元数据关联表。边上展示实际 flow ID、queue correlation 或 runtime connection ID。
+
+- eager 及 graph prefill：第一层 RoPE、attention 范围内的拷贝、KV写入和FIA，以及各自CPU/CANN调用链。
+- graph decode：第一层attention前后的 `submod_0` / `submod_2` replay、原生execute API、MODEL_EXECUTE / NOTIFY_WAIT，以及KV/FIA直接调用。
+- graph decode 另有独立的 **tensor view 元数据关联**面板：前分区返回的Q/K/V/预分配output与attention参数一致，attention output与后分区输入一致，共5组。
+  同时核对同进程、同线程、同forward、同step和host调用先后；这些元数据相等关系不表示设备同步、kernel级生产者或完成先后。
+  特别是output来自预分配buffer，不能据此声称前一个replay写入了attention结果。
+- 每个decode窗口仍有244个图内任务缺少本层/具体replay归属，图内明确注明排除；未按时间临近或相同地址给它们补线。
+  跨stream的NOTIFY配对仍未建立，KV池候选边仍用虚线，不改称精确字节依赖。
+
+导出入口为 `export_mode_focus.py`，也已接入 `build_mode_graph.py`。
+图较宽，建议直接打开SVG并放大；悬停节点可见记录，旁边JSON适合逐项核查。
+
 ## 场景与控制变量
 
 - Qwen2.5-0.5B-Instruct，单卡 TP=1，BF16；同一自然语言 prompt，10 输入 token、4 输出 token。
@@ -100,7 +126,7 @@ python practice_15_kernel_execution_graph/run_model_modes.py \
   --mode graph --output practice_15_kernel_execution_graph/results/my-graph
 ```
 
-离线分析只需要 Python 3.7+ 标准库。分别重建图，再比较：
+离线证据分析使用 Python 3.7+ 标准库；细节 SVG 导出还需要 Graphviz 的 `dot` 命令。分别重建图，再比较：
 
 ```bash
 python3 practice_15_kernel_execution_graph/build_mode_graph.py \
@@ -125,3 +151,5 @@ python3 -m unittest discover -s practice_15_kernel_execution_graph -p 'test_*.py
 这是 PIECEWISE 执行机制与证据覆盖的对照，不是 FULL graph、并发请求、多卡实验或性能基准。
 
 验证：22项自动化测试通过，覆盖原14项及8项模式对照/证据损坏测试；离线浏览器的阶段筛选、75条replay、缺失flow展示、键盘操作和移动端布局检查通过。
+
+细节图新增6项测试：八个局部图的连线来源、未知图内任务排除、错误tensor view、错误forward归属、错误host先后，以及SVG节点/边与JSON一致性。

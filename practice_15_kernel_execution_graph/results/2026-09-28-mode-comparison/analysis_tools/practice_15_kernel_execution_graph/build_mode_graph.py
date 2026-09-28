@@ -379,6 +379,8 @@ def main():
     template = Path(__file__).with_name('mode_viewer.html').read_text()
     payload = json.dumps(graph, ensure_ascii=False, separators=(',', ':')).replace('<', '\\u003c')
     (dest / 'index.html').write_text(template.replace('__GRAPH_DATA__', payload))
+    from export_mode_focus import export_focus
+    export_focus(graph, dest)
     print(json.dumps(graph['summary'], ensure_ascii=False))
 
 
