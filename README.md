@@ -248,6 +248,17 @@ See [the guide](practice_18_kernel_data_dag/README.md),
 [findings](practice_18_kernel_data_dag/RESULTS.md) and
 [offline interactive graph](practice_18_kernel_data_dag/report/index.html).
 
+## Practice 20: trace real KV offload and reload overlap
+
+Run the installed Ascend SimpleCPUOffload path with a bounded CPU/NPU cache,
+then compare native transfers, forced serialization and prefix recomputation.
+The three diagnostic graphs cover 785,902 device tasks; 1,572 KV dependency and
+lifetime requirements pass independent happens-before checks. Sixty unprofiled
+measurement cycles show real overlap but slower reload than recomputation for
+this small-model workload. See [the guide](practice_20_kv_offload_overlap/README.md),
+[results](practice_20_kv_offload_overlap/RESULTS.md) and
+[offline graph](practice_20_kv_offload_overlap/report/index.html).
+
 ## References
 
 See the [reference index](references/README.md) for CUDA multi-stream use cases,

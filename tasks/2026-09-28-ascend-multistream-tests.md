@@ -1,7 +1,7 @@
 # 2026-09-28 Ascend 多 Stream 测试任务
 
 - 计划日期：2026-09-28（Europe/Berlin）。
-- 状态：环境复查与 P0 已完成，完整证据重放通过；其余实验保持待执行。
+- 状态：环境复查、P0 与 P1 已完成，完整证据重放通过；P2–P4 保持待执行。
 - 目标：今天按优先级推进多 stream 实测，分别回答依赖是否正确、设备是否重叠、端到端是否获益，并形成可复现的 kernel execution graph。
 - 执行顺序：环境复查 → P0 采样双流 → P1 KV offload → P2 MoE 分支 → P3 多模态 / 多任务 → 结果汇总。P4 记录可行性与所需条件。
 - 范围：优先单卡 eager。每项按实际完成情况验收；受阻、只完成微基准或只有源码证据，均不得标为完整实机验证。
@@ -77,20 +77,24 @@
 
 实现入口参考：[对应版本的 KV Cache CPU Offload 指南](https://docs.vllm.ai/projects/ascend/en/v0.21.0rc/user_guide/feature_guide/kv_cache_cpu_offload.html)。配置以安装版本源码为准。
 
-- [ ] 确认 `OffloadingConnector` / `NPUOffloadingSpec`、prefix caching 及 eager 路径的兼容性，定位实际传输 stream 和同步代码。
-- [ ] 优先复用已有小模型，限制实验 KV 容量并设置有界 CPU block pool；避免通过耗尽整机内存触发实验。
-- [ ] 构造前缀 A → 其他请求造成 KV 容量压力 → 再访问前缀 A，证明真实 D2H 和后续 CPU 命中回载 H2D；仅打开 offload 开关不算触发成功。
-- [ ] 在 A 回载期间安排独立请求 B 的就绪计算，核对 scheduler 确实允许它推进。
-- [ ] 在同一 offload 实现上构造强制串行与正常异步对照，保持请求、缓存策略和传输量可比；如果实际调度改变了传输量，单独披露，不能归因于改流。
-- [ ] 增加关闭 offload、通过重新计算恢复前缀的系统层基线，分别统计重算量、传输量与命中情况。
-- [ ] 采集计算 / memcpy 节点、实际 stream、event、KV block ID、存储代次、字节范围及复用时刻。
-- [ ] 核验 `KV 写入 → D2H 读取 → 源 block 复用`、`H2D 写入 → attention 读取`，以及 CPU block 的写入、读取、回收顺序。
-- [ ] 比较恢复后的 KV 或相应模型输出；使用确定性采样 / 数值容差进行可解释的正确性对照。
-- [ ] 独立运行无 profiler 性能测量，报告请求完成时间、传输字节、命中 / 重算量；若测 TTFT、token 间延迟，使用流式客户端并记录 token 到达时间。
+- [x] 确认 `OffloadingConnector` / `NPUOffloadingSpec`、prefix caching 及 eager 路径的兼容性，定位实际传输 stream 和同步代码。
+- [x] 优先复用已有小模型，限制实验 KV 容量并设置有界 CPU block pool；避免通过耗尽整机内存触发实验。
+- [x] 构造前缀 A → 其他请求造成 KV 容量压力 → 再访问前缀 A，证明真实 D2H 和后续 CPU 命中回载 H2D；仅打开 offload 开关不算触发成功。
+- [x] 在 A 回载期间安排独立请求 B 的就绪计算，核对 scheduler 确实允许它推进。
+- [x] 在同一 offload 实现上构造强制串行与正常异步对照，保持请求、缓存策略和传输量可比；如果实际调度改变了传输量，单独披露，不能归因于改流。
+- [x] 增加关闭 offload、通过重新计算恢复前缀的系统层基线，分别统计重算量、传输量与命中情况。
+- [x] 采集计算 / memcpy 节点、实际 stream、event、KV block ID、存储代次、字节范围及复用时刻。
+- [x] 核验 `KV 写入 → D2H 读取 → 源 block 复用`、`H2D 写入 → attention 读取`，以及 CPU block 的写入、读取、回收顺序。
+- [x] 比较恢复后的 KV 或相应模型输出；使用确定性采样 / 数值容差进行可解释的正确性对照。
+- [x] 独立运行无 profiler 性能测量，报告请求完成时间、传输字节、命中 / 重算量；若测 TTFT、token 间延迟，使用流式客户端并记录 token 到达时间。
 
-**验收：** 有真实 offload / reload 证据、带存储代次和同步边的 DAG、单流序列化 / 异步对照，以及正确性与性能结果。
+**验收：** 有真实 offload / reload 证据、带存储代次和同步边的 DAG、强制序列化 / 原生异步对照，以及正确性与性能结果。
 
 **受阻路径：** 若安装版本缺少实现或不兼容，保留具体源码 / 错误证据，先完成 pinned host buffer 与 NPU buffer 的有界分块传输实验。该结果标记为“机制微基准”，真实 vLLM offload 项保持受阻，不用张量命名替代真实集成。
+
+**本轮结果：** 已完成 [Practice 20](../practice_20_kv_offload_overlap/README.md)；见[实测报告](../practice_20_kv_offload_overlap/RESULTS.md)和[交互图](../practice_20_kv_offload_overlap/report/index.html)。安装版本的旧 `NPUOffloadingSpec` 接口不兼容，按确认方案使用已有 `AscendSimpleCPUOffloadConnector`，未修改系统安装。串行组保留相同的三条物理 stream，通过主机屏障消除重叠。
+
+60 个正式周期及 60 个预热周期完成三模式逐 token 对照；原生 H2D 搬运 12 / 36 MiB，与独立请求 B 的计算重叠约 346 / 725 µs。三份诊断图覆盖 785,902 个设备任务，两份 offload 图各验证 786 条 KV 数据、复用、发布和回载约束，均有同步可达保证。本轮小模型上回载慢于重算，未得到端到端收益。边界为正常 prefix 驱逐与 block 级访问；不覆盖活动请求抢占／取消或完整原生 workspace 的精确访存 DAG。
 
 ## 6. P2：forward 内部的 shared-expert 分支
 
@@ -145,13 +149,13 @@
 - [x] profiler 诊断与无 profiler 性能分开；性能等待完整 HTTP 响应。
 - [x] 报告所有已完成对照，包括无重叠、退化及不确定结果。
 - [x] 八张执行图、代表时间线及结论已保存；未宣称完整模型原生数据依赖已全部恢复。
-- [x] 本轮更新下表和证据链接；后续任务仍为待执行，未用 P0 结果替代验收。
+- [x] 本轮更新下表和证据链接；P1 另有独立验收，未用 P0 结果替代；P2–P4 仍待执行。
 
 | 任务 | 状态 | 证据目录 | 核心结论 / 阻塞 | 下一步 |
 |---|---|---|---|---|
-| 环境复查 | 已完成 | [环境记录](../practice_17_vllm_multistream/results/2026-09-28-p0/environment/inventory.json) | 基础数值通过；历史告警仍存在；后续功能源码入口存在，模型仅有两个 dense 文本模型 | P1 开始前核对 connector 兼容性 |
-| P0 采样双流 | 已完成 | [P0 报告](../practice_17_vllm_multistream/PERFORMANCE.md) / [验证记录](../practice_17_vllm_multistream/results/2026-09-28-p0/validation.json) | 160 个正式样本、六项数值检查、八组诊断；未发现稳定加速，完整重放通过 | 按原优先级进入 P1 |
-| P1 KV offload | 待执行 | — | — | 核验 connector 并触发传输 |
+| 环境复查 | 已完成 | [环境记录](../practice_17_vllm_multistream/results/2026-09-28-p0/environment/inventory.json) | 基础数值通过；历史告警仍存在；后续功能源码入口存在，模型仅有两个 dense 文本模型 | P1 已复查环境与 connector；告警仍在 |
+| P0 采样双流 | 已完成 | [P0 报告](../practice_17_vllm_multistream/PERFORMANCE.md) / [验证记录](../practice_17_vllm_multistream/results/2026-09-28-p0/validation.json) | 160 个正式样本、六项数值检查、八组诊断；未发现稳定加速，完整重放通过 | P1 已完成，按优先级进入 P2 |
+| P1 KV offload | 已完成 | [P1 报告](../practice_20_kv_offload_overlap/RESULTS.md) / [验证记录](../practice_20_kv_offload_overlap/results/published/validation.json) | 60 个正式周期；真实 D2H/H2D 与计算重叠，1,572 条 KV 约束通过；本轮重算更快 | 按优先级进入 P2；后续可测更大模型／更长前缀的收益交叉点 |
 | P2 MoE 分支 | 待执行 | — | — | 定位可在单卡执行的真实层 |
 | P3a 多任务 | 待执行 | — | — | 确定独立执行上下文 |
 | P3b 多模态 | 待执行 | — | — | 确认模型和图像输入 |
