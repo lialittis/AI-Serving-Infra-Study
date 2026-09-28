@@ -1,5 +1,7 @@
 # Practice 15 结果：真实 kernel execution graph
 
+新增：[2026-09-28 graph 模式补充及 eager 匹配对照](GRAPH_MODE.md)。下文数字属于原两项实验。
+
 2026-09-24 在已有 Ascend 910B2C 上完成两项采集。模型使用 Qwen2.5-0.5B-Instruct、单卡 BF16、eager。
 模型运行和控制实验分别分析，没有混合统计。
 
@@ -88,5 +90,5 @@ host `wait_event()` 返回与设备 `EVENT_WAIT` 完成分别记录；跨流边�
 模型记录复用 Practice 13 的采集实现，因此注解仍使用 `P13/`，request ID 仍含 `practice13-profile`；
 `command.json` 和 `instrumentation/` 保留实际执行信息。这是本次新运行，未将旧 trace 改名作为新采集。
 
-未测试 graph capture/replay、多卡、并发请求或性能收益。真实 kernel execution graph 的“节点和执行顺序覆盖”
+原两项实验未测试 graph capture/replay；后续 graph 实测见上方链接。尚未测试多卡、并发请求或性能收益。真实 kernel execution graph 的“节点和执行顺序覆盖”
 与“数据依赖覆盖”分别报告，后者仍需更完整的逐算子访问和存储生命周期观测。

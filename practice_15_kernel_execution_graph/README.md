@@ -3,6 +3,9 @@
 这次把真实推理中的 **CPU 算子 → 异步队列 → CANN 下发 → NPU task / stream → 同步与数据关系** 组织成一张有类型的执行图。
 
 已在 Ascend 910B2C 上重新采集单请求 eager 模型运行，并完成独立的双 stream 验证。
+2026-09-28 新增 [PIECEWISE graph 模式与匹配 eager 对照](GRAPH_MODE.md)：75次 replay、完整设备任务清单与明确的图内关联缺口。
+[打开模式对照报告](results/2026-09-28-mode-comparison/index.html)。以下保留原两项实验的说明。
+
 先看 [RESULTS.md](RESULTS.md)，再打开以下任一入口：
 
 - [模型执行图浏览器](results/2026-09-24-model-run01/analysis/index.html)：1,444 个设备任务，按 prefill / decode、名称和分页查看；点击任务看提交链、队列、参数、依赖证据。

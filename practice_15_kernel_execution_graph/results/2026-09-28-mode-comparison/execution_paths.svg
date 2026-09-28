@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1060" height="410" viewBox="0 0 1060 410" role="img" aria-label="eager 与 PIECEWISE decode 的提交路径">
+<style>text{font:16px sans-serif;fill:#193247}.box{fill:#edf4fd;stroke:#668eae} .warn{fill:#fff0d6;stroke:#c39438}path{stroke:#63809f;stroke-width:2;fill:none}</style>
+<defs><marker id="a" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8"/></marker></defs>
+<text x="24" y="30">eager：直接算子调用与逐任务 profiler flow</text>
+<rect class="box" x="24" y="50" width="220" height="55" rx="8"/><text x="40" y="83">CPU / PyTorch 算子</text>
+<rect class="box" x="320" y="50" width="290" height="55" rx="8"/><text x="340" y="83">异步队列 → CANN 下发</text>
+<rect class="box" x="695" y="50" width="330" height="55" rx="8"/><text x="715" y="83">NPU kernel（物理 stream 46）</text>
+<path d="M244,78 H318 M610,78 H693" marker-end="url(#a)"/>
+<text x="24" y="160">PIECEWISE decode：普通分区 replay 与 attention 直接调用交替</text>
+<rect class="box" x="24" y="185" width="220" height="70" rx="8"/><text x="40" y="214">NPUGraph.replay</text><text x="40" y="238">捕获基线 / 输入输出地址</text>
+<rect class="box" x="320" y="185" width="290" height="70" rx="8"/><text x="336" y="214">aclmdlRIExecuteAsync</text><text x="336" y="238">connection_id</text>
+<rect class="box" x="695" y="185" width="330" height="70" rx="8"/><text x="712" y="214">MODEL_EXECUTE / NOTIFY_WAIT</text><text x="712" y="238">主执行 stream 上的下发边界</text>
+<path d="M244,219 H318 M610,219 H693" marker-end="url(#a)"/>
+<rect class="warn" x="24" y="292" width="1001" height="72" rx="8"/><text x="42" y="321">图内 kernel + NOTIFY_RECORD：保留 Model Id、物理 stream、Task Id、时间和 CSV</text><text x="42" y="347">缺少逐算子 flow：不把它们强行映射到上面的某次 replay，也不虚构 NOTIFY 依赖</text>
+<text x="24" y="397">两模式：KV 写入 / FIA 直接调用；原生结果 event 完成 → CPU 等待返回 → 后续步骤</text></svg>

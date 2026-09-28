@@ -144,3 +144,8 @@ Qwen batch 32与Llama batch 64的提前随机分支均在5个scheduler step中�
 - [Ascend Service Profiling](https://docs.vllm.ai/projects/ascend/en/latest/developer_guide/performance_and_debug/service_profiling_guide.html)
 
 以上 latest 文档可能变化。实验结果必须引用该次运行的本地源码位置，而不是只引用 latest。
+
+2026-09-28 补充 Practice 15 的 eager / PIECEWISE 匹配模型实验：同一10输入/4输出请求，
+75次实际replay、150个runtime connection边界任务、732个缺少逐算子flow的图内任务均显式记录。
+两模式4次原生完成边界和192条KV/FIA直接关联完整；26条物理stream不等同于并行度。
+见 [graph补充实验](practice_15_kernel_execution_graph/GRAPH_MODE.md)，FULL graph与性能对照仍未完成。

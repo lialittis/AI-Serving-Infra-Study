@@ -198,6 +198,11 @@ See [the guide](practice_15_kernel_execution_graph/README.md),
 [model graph](practice_15_kernel_execution_graph/results/2026-09-24-model-run01/analysis/index.html)
 and [two-stream graph](practice_15_kernel_execution_graph/results/2026-09-24-stream-run02/analysis/execution_graph.svg).
 
+Practice 15 now includes a [matched eager / PIECEWISE graph experiment](practice_15_kernel_execution_graph/GRAPH_MODE.md):
+75 real replays, native runtime submission boundaries, and every observed device
+task, with missing replay-internal correlations explicitly preserved.
+Open the [mode comparison report](practice_15_kernel_execution_graph/results/2026-09-28-mode-comparison/index.html).
+
 ## Practice 16: observe actual multi-stream compute overlap
 
 Run independent matrix and vector operators with identical inputs and submission
