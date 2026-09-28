@@ -1,5 +1,8 @@
 # Practice 17：真实 vLLM 请求触发的多 stream kernel execution graph
 
+2026-09-28 更新：[P0 无 profiler 性能验证](PERFORMANCE.md)补充了 4 / 64 token
+的开／关对照、独立采样数值验证与八组诊断；历史采集结果仍保留在原目录。
+
 这次不再使用独立算子模拟，而是在 **vLLM-Ascend 真实请求**中找到可重复的多 stream 路径：随机采样所需的指数随机张量 `q` 在物理 stream 44 上生成，模型 forward 与采样主体在物理 stream 46 上执行。
 
 两个本地模型都能形成设备计算重叠：

@@ -1,0 +1,145 @@
+{
+  "model": "/data/huggingface_home/hub/Qwen2.5-0.5B-Instruct",
+  "measurement_samples": 80,
+  "warmup_samples": 80,
+  "cases": [
+    {
+      "batch_size": 1,
+      "output_tokens": 4,
+      "enabled": {
+        "n": 10,
+        "median_ms": 50.219322500000004,
+        "q1_ms": 48.4111225,
+        "q3_ms": 50.5496385,
+        "min_ms": 47.26742,
+        "max_ms": 51.173588,
+        "completed_tokens_per_second": 80.71702401482204
+      },
+      "disabled": {
+        "n": 10,
+        "median_ms": 47.6972715,
+        "q1_ms": 47.541501749999995,
+        "q3_ms": 50.0578985,
+        "min_ms": 46.927515,
+        "max_ms": 51.53321,
+        "completed_tokens_per_second": 82.2958441987422
+      },
+      "median_latency_reduction_percent": -5.2876211168599125,
+      "pair_latency_reduction_percent": [
+        -5.4084492208775705,
+        -1.3986735556162877
+      ],
+      "block_medians_ms": {
+        "0": 50.283294,
+        "1": 47.703286,
+        "2": 47.691257,
+        "3": 48.358302
+      },
+      "classification": "uncertain"
+    },
+    {
+      "batch_size": 1,
+      "output_tokens": 64,
+      "enabled": {
+        "n": 10,
+        "median_ms": 741.7534694999999,
+        "q1_ms": 722.8442145,
+        "q3_ms": 761.732672,
+        "min_ms": 720.240055,
+        "max_ms": 814.101578,
+        "completed_tokens_per_second": 85.61594324009921
+      },
+      "disabled": {
+        "n": 10,
+        "median_ms": 716.950074,
+        "q1_ms": 714.18724075,
+        "q3_ms": 725.398717,
+        "min_ms": 706.587801,
+        "max_ms": 732.469111,
+        "completed_tokens_per_second": 89.01429399419068
+      },
+      "median_latency_reduction_percent": -3.459570812457991,
+      "pair_latency_reduction_percent": [
+        -5.595013841509917,
+        -0.8248988326310548
+      ],
+      "block_medians_ms": {
+        "0": 761.880276,
+        "1": 721.511602,
+        "2": 716.882091,
+        "3": 722.795643
+      },
+      "classification": "uncertain"
+    },
+    {
+      "batch_size": 32,
+      "output_tokens": 4,
+      "enabled": {
+        "n": 10,
+        "median_ms": 72.98606749999999,
+        "q1_ms": 71.32023475,
+        "q3_ms": 73.16471924999999,
+        "min_ms": 70.058082,
+        "max_ms": 75.850818,
+        "completed_tokens_per_second": 1765.6918378591117
+      },
+      "disabled": {
+        "n": 10,
+        "median_ms": 69.7916865,
+        "q1_ms": 68.98111625,
+        "q3_ms": 70.55205975000001,
+        "min_ms": 68.821974,
+        "max_ms": 70.596946,
+        "completed_tokens_per_second": 1834.819807822464
+      },
+      "median_latency_reduction_percent": -4.577022221693974,
+      "pair_latency_reduction_percent": [
+        -6.0494656454182625,
+        -1.081322705353212
+      ],
+      "block_medians_ms": {
+        "0": 73.116942,
+        "1": 68.946073,
+        "2": 70.556273,
+        "3": 71.319214
+      },
+      "classification": "consistent_regression_in_this_run"
+    },
+    {
+      "batch_size": 32,
+      "output_tokens": 64,
+      "enabled": {
+        "n": 10,
+        "median_ms": 884.1356365,
+        "q1_ms": 871.1646127500001,
+        "q3_ms": 891.5528025000001,
+        "min_ms": 854.535748,
+        "max_ms": 898.826618,
+        "completed_tokens_per_second": 2327.186918337534
+      },
+      "disabled": {
+        "n": 10,
+        "median_ms": 841.644211,
+        "q1_ms": 839.596224,
+        "q3_ms": 846.1451945,
+        "min_ms": 834.601934,
+        "max_ms": 867.746156,
+        "completed_tokens_per_second": 2422.221010275925
+      },
+      "median_latency_reduction_percent": -5.048620895225285,
+      "pair_latency_reduction_percent": [
+        -6.216962537948004,
+        -2.976879006726934
+      ],
+      "block_medians_ms": {
+        "0": 892.6487,
+        "1": 840.401268,
+        "2": 845.75735,
+        "3": 870.934523
+      },
+      "classification": "consistent_regression_in_this_run"
+    }
+  ],
+  "classification_rule": "Both AB/BA pair directions agree and pooled IQRs do not overlap; descriptive, not a significance test.",
+  "scope": "HTTP batch completion, no profiler; diagnostic scheduler traces are separate runs."
+}

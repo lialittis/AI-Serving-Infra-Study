@@ -25,6 +25,7 @@ def main():
     parser.add_argument("--port", type=int, required=True)
     parser.add_argument("--output", type=Path, required=True)
     parser.add_argument("--batch-size", type=int, default=32)
+    parser.add_argument("--max-tokens", type=int, default=4)
     args = parser.parse_args()
     root = Path(__file__).resolve().parent
     model = args.model.resolve()
@@ -33,7 +34,10 @@ def main():
         parser.error("model config.json missing")
     if args.batch_size < 1:
         parser.error("batch-size must be positive")
+    if not 1 <= args.max_tokens <= 128:
+        parser.error("max-tokens must be in 1..128")
     with socket.socket() as sock:
+        sock.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
         sock.bind(("127.0.0.1", args.port))
     output.mkdir(parents=True, exist_ok=False)
     snapshot = output / "instrumentation"
@@ -80,7 +84,7 @@ def main():
                                       "prompt_tokens": len(prompt_ids),
                                       "batch_size": args.batch_size})
     prompts = [prompt_ids] * args.batch_size if args.batch_size > 1 else prompt_ids
-    body = {"model": served, "prompt": prompts, "max_tokens": 4,
+    body = {"model": served, "prompt": prompts, "max_tokens": args.max_tokens,
             "temperature": 0.8, "top_p": 0.9, "ignore_eos": True,
             "stream": False, "request_id": "p17-profile"}
     save(output / "request.json", body)

@@ -70,6 +70,41 @@ def intersection(left, right):
     return union(result)
 
 
+def resolve_colliding_host(candidates, cann, queue_links):
+    """Disambiguate timestamp-derived async_npu IDs using real task-queue flows.
+
+    CANN uses a synthetic pid, so link by its worker tid and containment inside
+    a dequeue range. The queue's real pid and enqueue flow must in turn match the
+    candidate CPU operator. Never select by nearest timestamp or operator name.
+    """
+    matches = []
+    for index, host in candidates:
+        for dequeue, enqueue, correlation in queue_links:
+            if (dequeue["pid"] == host["pid"] and dequeue["tid"] == cann["tid"]
+                    and number(dequeue["ts"]) <= number(cann["ts"])
+                    and end(cann) <= end(dequeue)
+                    and enqueue["pid"] == host["pid"] and enqueue["tid"] == host["tid"]
+                    and number(host["ts"]) <= number(enqueue["ts"]) <= end(host)):
+                matches.append((index, host, correlation))
+    return only(matches, "task-queue resolution of colliding async_npu ID")
+
+
+def placeholder_task(index, task):
+    """Preserve an uncorrelated runtime placeholder without inventing ownership."""
+    args = task["args"]
+    require(task["name"] == args["Task Type"] == "PLACE_HOLDER_SQE", "unexpected uncorrelated task")
+    require(str(args["connection_id"]) == str(2**64 - 1), "placeholder connection must be sentinel")
+    return {"id": "k:%d" % index, "trace_index": index, "name": task["name"],
+            "task_type": args["Task Type"], "task_id": str(args["Task Id"]),
+            "stream": str(args["Physic Stream Id"]), "device_lane": str(task["pid"]),
+            "start_us": str(task["ts"]), "end_us": str(end(task)), "duration_us": str(task["dur"]),
+            "step": None, "scope": None, "scope_kind": "unattributed_runtime",
+            "host_operator": None, "host_trace_index": None, "cann_api": None,
+            "cann_trace_index": None, "torch_flow": None, "cann_flow": None,
+            "connection_id": str(args["connection_id"]), "is_compute": False,
+            "unresolved_reason": "No host flow; sentinel connection ID. Retained in physical-stream order only."}
+
+
 def analyze(run, events=None, records=None):
     command = json.loads((run / "command.json").read_text())
     mode = command["mode"]
@@ -118,6 +153,10 @@ def analyze(run, events=None, records=None):
     csv_path = only((run / "profiler").rglob("kernel_details.csv"), "kernel CSV")
     with csv_path.open() as stream:
         kernels = list(csv.DictReader(stream))
+    kernel_index = defaultdict(list)
+    for row_index, row in enumerate(kernels):
+        kernel_index[row["Name"], row["Stream ID"].strip(), row["Task ID"].strip(),
+                     number(row["Start Time(us)"])].append(row_index)
     scopes = {e["name"]: e for e in events if e.get("ph") == "X" and e.get("name", "").startswith("P17/")}
     require(set(scopes) == set(entries), "event/profiler scope mismatch")
     complete, starts, finishes = defaultdict(list), defaultdict(list), defaultdict(list)
@@ -130,9 +169,29 @@ def analyze(run, events=None, records=None):
             starts[event.get("cat"), str(event["id"])].append(event)
         elif event.get("ph") == "f":
             finishes[(event.get("cat"),) + point(event)].append(event)
-    def source(task, category):
+    queue_links = None
+    resolutions = {}
+    def source(task, category, cann=None):
+        nonlocal queue_links
         finish = only(finishes[(category,) + point(task)], category + " endpoint")
-        start = only(starts[category, str(finish["id"])], category + " start")
+        candidates = starts[category, str(finish["id"])]
+        if len(candidates) > 1 and category == "async_npu" and cann is not None:
+            if queue_links is None:
+                queue_links = []
+                for event in events:
+                    if event.get("ph") != "X" or event.get("cat") != "dequeue":
+                        continue
+                    for queue_end in finishes[("async_task_queue",) + point(event)]:
+                        correlation = str(queue_end["id"])
+                        require(str(event["args"]["correlation_id"]) == correlation,
+                                "dequeue correlation mismatch")
+                        enqueue = only(starts["async_task_queue", correlation], "enqueue flow")
+                        queue_links.append((event, enqueue, correlation))
+            host_candidates = [only(complete[point(s)], category + " source") for s in candidates]
+            index, event, queue_flow = resolve_colliding_host(host_candidates, cann, queue_links)
+            resolutions[point(task)] = queue_flow
+            return index, event, str(finish["id"])
+        start = only(candidates, category + " start")
         index, event = only(complete[point(start)], category + " source")
         return index, event, str(finish["id"])
     used_csv = set()
@@ -141,9 +200,14 @@ def analyze(run, events=None, records=None):
         args = task.get("args", {})
         if task.get("ph") != "X" or "Task Type" not in args or task["name"] in CONTROL_TASKS:
             continue
-        hi, host, torch_flow = source(task, "async_npu")
+        if task["name"] == "PLACE_HOLDER_SQE":
+            require(not finishes[("HostToDevice",) + point(task)]
+                    and not finishes[("async_npu",) + point(task)], "unexpected correlated placeholder")
+            tasks.append(placeholder_task(index, task))
+            continue
         ci, cann, cann_flow = source(task, "HostToDevice")
         require(cann["args"]["connection_id"] == args["connection_id"], "connection mismatch")
+        hi, host, torch_flow = source(task, "async_npu", cann)
         containing = [(label, scope) for label, scope in scopes.items() if inside(scope, host)]
         containing.sort(key=lambda pair: number(pair[1]["dur"]))
         label = containing[0][0] if containing else None
@@ -161,12 +225,13 @@ def analyze(run, events=None, records=None):
             "connection_id": str(args["connection_id"]),
             "is_compute": task["name"] not in RUNTIME_TASKS,
         }
+        if point(task) in resolutions:
+            item["async_task_queue_flow"] = resolutions[point(task)]
+            item["torch_flow_resolution"] = "CANN connection -> dequeue range -> enqueue flow -> CPU operator"
         if item["is_compute"]:
-            matches = [row_index for row_index, row in enumerate(kernels)
-                       if row["Name"] == item["name"] and row["Stream ID"].strip() == item["stream"]
-                       and row["Task ID"].strip() == item["task_id"]
-                       and number(row["Start Time(us)"]) == number(task["ts"])
-                       and abs(number(row["Duration(us)"]) - number(task["dur"])) <= Decimal(".001")]
+            matches = [row_index for row_index in kernel_index[
+                       item["name"], item["stream"], item["task_id"], number(task["ts"])]
+                       if abs(number(kernels[row_index]["Duration(us)"]) - number(task["dur"])) <= Decimal(".001")]
             match = only(matches, "kernel CSV identity")
             require(match not in used_csv, "duplicate CSV match")
             used_csv.add(match)
@@ -261,7 +326,8 @@ def analyze(run, events=None, records=None):
             "overlap_intervals": [{"start_us": str(a), "end_us": str(b), "duration_us": str(b-a)}
                                   for a, b in overlaps],
         })
-    relevant_tasks = [t for t in tasks if t["step"] is not None]
+    relevant_tasks = [t for t in tasks if t["step"] is not None
+                      or t["scope_kind"] == "unattributed_runtime"]
     lanes = defaultdict(list)
     for task in relevant_tasks:
         lanes[task["device_lane"], task["stream"]].append(task)
@@ -291,7 +357,7 @@ def analyze(run, events=None, records=None):
         "batch_size": batch_size,
         "steps": len(steps), "device_tasks": len(relevant_tasks),
         "compute_tasks": sum(t["is_compute"] for t in relevant_tasks),
-        "outside_scope_device_tasks": len(tasks) - len(relevant_tasks),
+        "outside_scope_device_tasks": sum(t["step"] is None for t in tasks),
         "physical_streams": sorted({t["stream"] for t in relevant_tasks}),
         "overlap_steps": sum(number(s["overlap_us"]) > 0 for s in steps),
         "total_model_random_overlap_us": str(sum(number(s["overlap_us"]) for s in steps)),
@@ -299,6 +365,12 @@ def analyze(run, events=None, records=None):
         "graph_nodes": len(nodes), "graph_edges": len(graph_edges),
         "edges_by_kind": dict(Counter(e["kind"] for e in graph_edges)),
     }
+    if resolutions:
+        summary["disambiguated_async_npu_tasks"] = len(resolutions)
+    unattributed = [t for t in relevant_tasks if t["scope_kind"] == "unattributed_runtime"]
+    if unattributed:
+        summary["unattributed_runtime_tasks"] = len(unattributed)
+        summary["unattributed_runtime_duration_us"] = str(sum(number(t["duration_us"]) for t in unattributed))
     return {"summary": summary, "steps": steps, "nodes": nodes, "edges": graph_edges,
             "tasks": tasks, "observations": list(entries.values()), "returns": list(exits.values()),
             "provenance": {"trace_sha256": digest(trace_path), "kernel_csv_sha256": digest(csv_path),

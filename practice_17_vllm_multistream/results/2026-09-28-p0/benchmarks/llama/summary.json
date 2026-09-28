@@ -1,0 +1,145 @@
+{
+  "model": "/data/huggingface_home/hub/Llama-3.2-1B-Instruct",
+  "measurement_samples": 80,
+  "warmup_samples": 80,
+  "cases": [
+    {
+      "batch_size": 32,
+      "output_tokens": 4,
+      "enabled": {
+        "n": 10,
+        "median_ms": 58.815991,
+        "q1_ms": 58.663788249999996,
+        "q3_ms": 60.354009749999996,
+        "min_ms": 58.079867,
+        "max_ms": 60.828498,
+        "completed_tokens_per_second": 2157.3168285652046
+      },
+      "disabled": {
+        "n": 10,
+        "median_ms": 58.5590385,
+        "q1_ms": 58.44354,
+        "q3_ms": 58.74772275,
+        "min_ms": 58.089839,
+        "max_ms": 60.91118,
+        "completed_tokens_per_second": 2172.5114673344597
+      },
+      "median_latency_reduction_percent": -0.43879221138509134,
+      "pair_latency_reduction_percent": [
+        -0.6460217606266777,
+        -0.4652641323011214
+      ],
+      "block_medians_ms": {
+        "0": 58.791032,
+        "1": 58.413667,
+        "2": 58.568452,
+        "3": 58.84095
+      },
+      "classification": "uncertain"
+    },
+    {
+      "batch_size": 32,
+      "output_tokens": 64,
+      "enabled": {
+        "n": 10,
+        "median_ms": 656.90217,
+        "q1_ms": 653.98167175,
+        "q3_ms": 667.93325975,
+        "min_ms": 650.430212,
+        "max_ms": 683.069492,
+        "completed_tokens_per_second": 3095.9948274101794
+      },
+      "disabled": {
+        "n": 10,
+        "median_ms": 662.3965475,
+        "q1_ms": 653.80395825,
+        "q3_ms": 666.10087,
+        "min_ms": 648.792499,
+        "max_ms": 677.852718,
+        "completed_tokens_per_second": 3093.297815121164
+      },
+      "median_latency_reduction_percent": 0.8294695255790175,
+      "pair_latency_reduction_percent": [
+        -0.6260183934447796,
+        1.5459073529906555
+      ],
+      "block_medians_ms": {
+        "0": 657.436527,
+        "1": 653.346458,
+        "2": 666.673975,
+        "3": 656.367813
+      },
+      "classification": "uncertain"
+    },
+    {
+      "batch_size": 64,
+      "output_tokens": 4,
+      "enabled": {
+        "n": 10,
+        "median_ms": 74.9338055,
+        "q1_ms": 74.30688149999999,
+        "q3_ms": 76.64375475,
+        "min_ms": 73.746785,
+        "max_ms": 79.540722,
+        "completed_tokens_per_second": 3389.508765459003
+      },
+      "disabled": {
+        "n": 10,
+        "median_ms": 74.32594950000001,
+        "q1_ms": 73.8612225,
+        "q3_ms": 75.72096425000001,
+        "min_ms": 73.472341,
+        "max_ms": 76.205833,
+        "completed_tokens_per_second": 3427.0243550334476
+      },
+      "median_latency_reduction_percent": -0.8178247356261464,
+      "pair_latency_reduction_percent": [
+        -1.3220672152357866,
+        0.46615931881487827
+      ],
+      "block_medians_ms": {
+        "0": 75.034143,
+        "1": 74.055085,
+        "2": 74.596814,
+        "3": 74.249074
+      },
+      "classification": "uncertain"
+    },
+    {
+      "batch_size": 64,
+      "output_tokens": 64,
+      "enabled": {
+        "n": 10,
+        "median_ms": 830.6834309999999,
+        "q1_ms": 826.7025745,
+        "q3_ms": 838.53735325,
+        "min_ms": 822.261915,
+        "max_ms": 852.656373,
+        "completed_tokens_per_second": 4915.071590019256
+      },
+      "disabled": {
+        "n": 10,
+        "median_ms": 814.719838,
+        "q1_ms": 810.09938575,
+        "q3_ms": 817.8486575000001,
+        "min_ms": 807.745986,
+        "max_ms": 834.863112,
+        "completed_tokens_per_second": 5020.615465279349
+      },
+      "median_latency_reduction_percent": -1.9593966238980849,
+      "pair_latency_reduction_percent": [
+        -2.998406780163848,
+        -1.2736954237405436
+      ],
+      "block_medians_ms": {
+        "0": 837.891175,
+        "1": 813.499161,
+        "2": 815.940515,
+        "3": 826.333112
+      },
+      "classification": "consistent_regression_in_this_run"
+    }
+  ],
+  "classification_rule": "Both AB/BA pair directions agree and pooled IQRs do not overlap; descriptive, not a significance test.",
+  "scope": "HTTP batch completion, no profiler; diagnostic scheduler traces are separate runs."
+}

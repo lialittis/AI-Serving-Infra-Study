@@ -1,0 +1,193 @@
+{
+  "summary": {
+    "mode": "enabled",
+    "model": "Qwen2.5-0.5B-Instruct",
+    "batch_size": 32,
+    "steps": 5,
+    "device_tasks": 2189,
+    "compute_tasks": 1981,
+    "outside_scope_device_tasks": 0,
+    "physical_streams": [
+      "44",
+      "46"
+    ],
+    "overlap_steps": 4,
+    "total_model_random_overlap_us": "89.703",
+    "kernel_csv_rows_verified": 1981,
+    "graph_nodes": 2194,
+    "graph_edges": 2202,
+    "edges_by_kind": {
+      "event_sync": 5,
+      "host_after_wait": 5,
+      "data_contract": 5,
+      "stream_order": 2187
+    },
+    "disambiguated_async_npu_tasks": 2
+  },
+  "steps": [
+    {
+      "step": 1,
+      "phase": "prefill-or-mixed",
+      "request_count": 1,
+      "scheduled_tokens": 12,
+      "branch_kind": "async_exponential",
+      "branch_stream": "44",
+      "forward_stream": "46",
+      "branch_compute_tasks": 7,
+      "forward_compute_tasks": 363,
+      "sampling_compute_tasks": 17,
+      "branch_start_us": "1790591537699286.114",
+      "branch_end_us": "1790591537699359.717",
+      "forward_start_us": "1790591537699909.759",
+      "forward_end_us": "1790591537717162.309",
+      "branch_to_forward_gap_us": "550.042",
+      "forward_to_branch_gap_us": "-17876.195",
+      "overlap_us": "0",
+      "overlap_intervals": []
+    },
+    {
+      "step": 2,
+      "phase": "prefill-or-mixed",
+      "request_count": 32,
+      "scheduled_tokens": 373,
+      "branch_kind": "async_exponential",
+      "branch_stream": "44",
+      "forward_stream": "46",
+      "branch_compute_tasks": 7,
+      "forward_compute_tasks": 387,
+      "sampling_compute_tasks": 20,
+      "branch_start_us": "1790591537725188.449",
+      "branch_end_us": "1790591537725757.552",
+      "forward_start_us": "1790591537725727.331",
+      "forward_end_us": "1790591537741972.141",
+      "branch_to_forward_gap_us": "-30.221",
+      "forward_to_branch_gap_us": "-16783.692",
+      "overlap_us": "14.840",
+      "overlap_intervals": [
+        {
+          "start_us": "1790591537725727.331",
+          "end_us": "1790591537725728.011",
+          "duration_us": "0.680"
+        },
+        {
+          "start_us": "1790591537725728.031",
+          "end_us": "1790591537725728.591",
+          "duration_us": "0.560"
+        },
+        {
+          "start_us": "1790591537725743.952",
+          "end_us": "1790591537725757.552",
+          "duration_us": "13.600"
+        }
+      ]
+    },
+    {
+      "step": 3,
+      "phase": "decode",
+      "request_count": 32,
+      "scheduled_tokens": 32,
+      "branch_kind": "async_exponential",
+      "branch_stream": "44",
+      "forward_stream": "46",
+      "branch_compute_tasks": 7,
+      "forward_compute_tasks": 339,
+      "sampling_compute_tasks": 20,
+      "branch_start_us": "1790591537748441.479",
+      "branch_end_us": "1790591537749017.782",
+      "forward_start_us": "1790591537748959.800",
+      "forward_end_us": "1790591537765283.293",
+      "branch_to_forward_gap_us": "-57.982",
+      "forward_to_branch_gap_us": "-16841.814",
+      "overlap_us": "33.001",
+      "overlap_intervals": [
+        {
+          "start_us": "1790591537748959.800",
+          "end_us": "1790591537748986.001",
+          "duration_us": "26.201"
+        },
+        {
+          "start_us": "1790591537748986.041",
+          "end_us": "1790591537748989.041",
+          "duration_us": "3.000"
+        },
+        {
+          "start_us": "1790591537748989.061",
+          "end_us": "1790591537748992.861",
+          "duration_us": "3.800"
+        }
+      ]
+    },
+    {
+      "step": 4,
+      "phase": "decode",
+      "request_count": 32,
+      "scheduled_tokens": 32,
+      "branch_kind": "async_exponential",
+      "branch_stream": "44",
+      "forward_stream": "46",
+      "branch_compute_tasks": 7,
+      "forward_compute_tasks": 339,
+      "sampling_compute_tasks": 20,
+      "branch_start_us": "1790591537771828.734",
+      "branch_end_us": "1790591537772400.937",
+      "forward_start_us": "1790591537772353.835",
+      "forward_end_us": "1790591537788499.421",
+      "branch_to_forward_gap_us": "-47.102",
+      "forward_to_branch_gap_us": "-16670.687",
+      "overlap_us": "21.781",
+      "overlap_intervals": [
+        {
+          "start_us": "1790591537772353.835",
+          "end_us": "1790591537772368.576",
+          "duration_us": "14.741"
+        },
+        {
+          "start_us": "1790591537772368.596",
+          "end_us": "1790591537772372.316",
+          "duration_us": "3.720"
+        },
+        {
+          "start_us": "1790591537772372.336",
+          "end_us": "1790591537772375.656",
+          "duration_us": "3.320"
+        }
+      ]
+    },
+    {
+      "step": 5,
+      "phase": "decode",
+      "request_count": 31,
+      "scheduled_tokens": 31,
+      "branch_kind": "async_exponential",
+      "branch_stream": "44",
+      "forward_stream": "46",
+      "branch_compute_tasks": 7,
+      "forward_compute_tasks": 339,
+      "sampling_compute_tasks": 20,
+      "branch_start_us": "1790591537795148.787",
+      "branch_end_us": "1790591537795705.289",
+      "forward_start_us": "1790591537795662.587",
+      "forward_end_us": "1790591537811674.307",
+      "branch_to_forward_gap_us": "-42.702",
+      "forward_to_branch_gap_us": "-16525.520",
+      "overlap_us": "20.081",
+      "overlap_intervals": [
+        {
+          "start_us": "1790591537795662.587",
+          "end_us": "1790591537795674.988",
+          "duration_us": "12.401"
+        },
+        {
+          "start_us": "1790591537795675.008",
+          "end_us": "1790591537795678.028",
+          "duration_us": "3.020"
+        },
+        {
+          "start_us": "1790591537795678.048",
+          "end_us": "1790591537795682.708",
+          "duration_us": "4.660"
+        }
+      ]
+    }
+  ]
+}

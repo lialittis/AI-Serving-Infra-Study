@@ -1,0 +1,206 @@
+INFO 09-28 10:20:50 [__init__.py:44] Available plugins for group vllm.platform_plugins:
+INFO 09-28 10:20:50 [__init__.py:46] - ascend -> vllm_ascend:register
+INFO 09-28 10:20:50 [__init__.py:49] All plugins in this group will be loaded. Set `VLLM_PLUGINS` to control which plugins to load.
+INFO 09-28 10:20:50 [__init__.py:238] Platform plugin ascend is activated
+INFO 09-28 10:20:50 [platform.py:61] [vllm-ascend] - Breakable cudagraph is force disabled on Ascend because DeepSeek V4 PIECEWISE cudagraph is not supported yet.
+WARNING 09-28 10:20:56 [registry.py:960] Model architecture DeepseekV4ForCausalLM is already registered, and will be overwritten by the new model class vllm_ascend.models.deepseek_v4:AscendDeepseekV4ForCausalLM.
+WARNING 09-28 10:20:56 [registry.py:960] Model architecture DeepSeekV4MTPModel is already registered, and will be overwritten by the new model class vllm_ascend.models.deepseek_v4_mtp:DeepSeekV4MTP.
+INFO 09-28 10:20:56 [__init__.py:110] Registered model loader `<class 'vllm_ascend.model_loader.netloader.netloader.ModelNetLoaderElastic'>` with load format `netloader`
+INFO 09-28 10:20:56 [__init__.py:110] Registered model loader `<class 'vllm_ascend.model_loader.rfork.rfork_loader.RForkModelLoader'>` with load format `rfork`
+(APIServer pid=1036226) INFO 09-28 10:20:56 [utils.py:306] 
+(APIServer pid=1036226) INFO 09-28 10:20:56 [utils.py:306]        █     █     █▄   ▄█
+(APIServer pid=1036226) INFO 09-28 10:20:56 [utils.py:306]  ▄▄ ▄█ █     █     █ ▀▄▀ █  version 0.21.0
+(APIServer pid=1036226) INFO 09-28 10:20:56 [utils.py:306]   █▄█▀ █     █     █     █  model   /data/huggingface_home/hub/Qwen2.5-0.5B-Instruct
+(APIServer pid=1036226) INFO 09-28 10:20:56 [utils.py:306]    ▀▀  ▀▀▀▀▀ ▀▀▀▀▀ ▀     ▀
+(APIServer pid=1036226) INFO 09-28 10:20:56 [utils.py:306] 
+(APIServer pid=1036226) INFO 09-28 10:20:56 [utils.py:240] non-default args: {'model_tag': '/data/huggingface_home/hub/Qwen2.5-0.5B-Instruct', 'host': '127.0.0.1', 'port': 8017, 'model': '/data/huggingface_home/hub/Qwen2.5-0.5B-Instruct', 'dtype': 'bfloat16', 'seed': 123, 'max_model_len': 256, 'enforce_eager': True, 'served_model_name': ['p17-benchmark'], 'block_size': 128, 'gpu_memory_utilization': 0.3, 'enable_prefix_caching': False, 'max_num_batched_tokens': 1024, 'max_num_seqs': 32, 'enable_chunked_prefill': False, 'async_scheduling': False, 'additional_config': {'enable_async_exponential': True}}
+(APIServer pid=1036226) INFO 09-28 10:20:56 [model.py:568] Resolved architecture: Qwen2ForCausalLM
+(APIServer pid=1036226) INFO 09-28 10:20:56 [model.py:1697] Using max model len 256
+(APIServer pid=1036226) WARNING 09-28 10:20:56 [arg_utils.py:2318] This model does not officially support disabling chunked prefill. Disabling this manually may cause the engine to crash or produce incorrect outputs.
+(APIServer pid=1036226) INFO 09-28 10:20:57 [vllm.py:886] Asynchronous scheduling is disabled.
+(APIServer pid=1036226) WARNING 09-28 10:20:57 [vllm.py:942] Enforce eager set, disabling torch.compile and CUDAGraphs. This is equivalent to setting -cc.mode=none -cc.cudagraph_mode=none
+(APIServer pid=1036226) WARNING 09-28 10:20:57 [vllm.py:960] Inductor compilation was disabled by user settings, optimizations settings that are only active during inductor compilation will be ignored.
+(APIServer pid=1036226) INFO 09-28 10:20:57 [kernel.py:212] Final IR op priority after setting platform defaults: IrOpPriorityConfig(rms_norm=['native'], fused_add_rms_norm=['native'])
+(APIServer pid=1036226) INFO 09-28 10:20:57 [vllm.py:1135] Cudagraph is disabled under eager mode
+(APIServer pid=1036226) INFO 09-28 10:20:57 [utils.py:174] [vllm-ascend] [quantization] - No quantization signature detected from model files for "/data/huggingface_home/hub/Qwen2.5-0.5B-Instruct". The model will be loaded as float. To force a quantization method, pass "--quantization <method>" explicitly.
+(APIServer pid=1036226) WARNING 09-28 10:20:57 [platform.py:991] [vllm-ascend] - GPU-specific parameter is not supported on Ascend. parameter=disable_cascade_attn, value=True, action: resetting to False.
+(APIServer pid=1036226) INFO 09-28 10:20:57 [ascend_config.py:768] [vllm-ascend] - Dynamic EPLB is False
+(APIServer pid=1036226) INFO 09-28 10:20:57 [ascend_config.py:769] [vllm-ascend] - The number of redundant experts is 0
+(APIServer pid=1036226) INFO 09-28 10:20:57 [platform.py:484] [vllm-ascend] - Compilation disabled, using eager mode by default
+(APIServer pid=1036226) INFO 09-28 10:20:57 [platform.py:714] [vllm-ascend] - Set PYTORCH_NPU_ALLOC_CONF=expandable_segments:True
+(APIServer pid=1036226) INFO 09-28 10:20:57 [compilation.py:303] Enabled custom fusions: norm_quant, act_quant
+INFO 09-28 10:21:02 [__init__.py:44] Available plugins for group vllm.platform_plugins:
+INFO 09-28 10:21:02 [__init__.py:46] - ascend -> vllm_ascend:register
+INFO 09-28 10:21:02 [__init__.py:49] All plugins in this group will be loaded. Set `VLLM_PLUGINS` to control which plugins to load.
+INFO 09-28 10:21:02 [__init__.py:238] Platform plugin ascend is activated
+INFO 09-28 10:21:02 [platform.py:61] [vllm-ascend] - Breakable cudagraph is force disabled on Ascend because DeepSeek V4 PIECEWISE cudagraph is not supported yet.
+(EngineCore pid=1036535) WARNING 09-28 10:21:08 [registry.py:960] Model architecture DeepseekV4ForCausalLM is already registered, and will be overwritten by the new model class vllm_ascend.models.deepseek_v4:AscendDeepseekV4ForCausalLM.
+(EngineCore pid=1036535) WARNING 09-28 10:21:08 [registry.py:960] Model architecture DeepSeekV4MTPModel is already registered, and will be overwritten by the new model class vllm_ascend.models.deepseek_v4_mtp:DeepSeekV4MTP.
+(EngineCore pid=1036535) INFO 09-28 10:21:08 [__init__.py:110] Registered model loader `<class 'vllm_ascend.model_loader.netloader.netloader.ModelNetLoaderElastic'>` with load format `netloader`
+(EngineCore pid=1036535) INFO 09-28 10:21:08 [__init__.py:110] Registered model loader `<class 'vllm_ascend.model_loader.rfork.rfork_loader.RForkModelLoader'>` with load format `rfork`
+(EngineCore pid=1036535) INFO 09-28 10:21:08 [core.py:109] Initializing a V1 LLM engine (v0.21.0) with config: model='/data/huggingface_home/hub/Qwen2.5-0.5B-Instruct', speculative_config=None, tokenizer='/data/huggingface_home/hub/Qwen2.5-0.5B-Instruct', skip_tokenizer_init=False, tokenizer_mode=auto, revision=None, tokenizer_revision=None, trust_remote_code=False, dtype=torch.bfloat16, max_seq_len=256, download_dir=None, load_format=auto, tensor_parallel_size=1, pipeline_parallel_size=1, data_parallel_size=1, decode_context_parallel_size=1, dcp_comm_backend=ag_rs, disable_custom_all_reduce=True, quantization=None, quantization_config=None, enforce_eager=True, enable_return_routed_experts=False, kv_cache_dtype=auto, device_config=npu, structured_outputs_config=StructuredOutputsConfig(backend='auto', disable_any_whitespace=False, disable_additional_properties=False, reasoning_parser='', reasoning_parser_plugin='', enable_in_reasoning=False), observability_config=ObservabilityConfig(show_hidden_metrics_for_version=None, otlp_traces_endpoint=None, collect_detailed_traces=None, kv_cache_metrics=False, kv_cache_metrics_sample=0.01, cudagraph_metrics=False, enable_layerwise_nvtx_tracing=False, enable_mfu_metrics=False, enable_mm_processor_stats=False, enable_logging_iteration_details=False), seed=123, served_model_name=p17-benchmark, enable_prefix_caching=False, enable_chunked_prefill=False, pooler_config=None, compilation_config={'mode': <CompilationMode.NONE: 0>, 'debug_dump_path': None, 'cache_dir': '', 'compile_cache_save_format': 'binary', 'backend': 'vllm_ascend.compilation.compiler_interface.AscendCompiler', 'custom_ops': ['all'], 'ir_enable_torch_wrap': False, 'splitting_ops': [], 'compile_mm_encoder': False, 'cudagraph_mm_encoder': False, 'encoder_cudagraph_token_budgets': [], 'encoder_cudagraph_max_vision_items_per_batch': 0, 'encoder_cudagraph_max_frames_per_batch': None, 'compile_sizes': [], 'compile_ranges_endpoints': [1024], 'inductor_compile_config': {'enable_auto_functionalized_v2': False, 'size_asserts': False, 'alignment_asserts': False, 'scalar_asserts': False, 'combo_kernels': True, 'benchmark_combo_kernel': True}, 'inductor_passes': {}, 'cudagraph_mode': <CUDAGraphMode.NONE: 0>, 'cudagraph_num_of_warmups': 1, 'cudagraph_capture_sizes': [], 'cudagraph_copy_inputs': False, 'cudagraph_specialize_lora': True, 'use_inductor_graph_partition': False, 'pass_config': {'fuse_norm_quant': True, 'fuse_act_quant': True, 'fuse_attn_quant': False, 'enable_sp': False, 'fuse_gemm_comms': False, 'fuse_allreduce_rms': False, 'fuse_act_padding': False}, 'max_cudagraph_capture_size': 0, 'dynamic_shapes_config': {'type': <DynamicShapesType.BACKED: 'backed'>, 'evaluate_guards': False, 'assume_32_bit_indexing': False}, 'local_cache_dir': None, 'fast_moe_cold_start': True, 'static_all_moe_layers': []}, kernel_config=KernelConfig(ir_op_priority=IrOpPriorityConfig(rms_norm=['native'], fused_add_rms_norm=['native']), enable_flashinfer_autotune=False, moe_backend='auto')
+(EngineCore pid=1036535) ERROR 09-28 10:21:08 [core.py:1140] EngineCore failed to start.
+(EngineCore pid=1036535) ERROR 09-28 10:21:08 [core.py:1140] Traceback (most recent call last):
+(EngineCore pid=1036535) ERROR 09-28 10:21:08 [core.py:1140]   File "/vllm-workspace/vllm/vllm/v1/engine/core.py", line 1114, in run_engine_core
+(EngineCore pid=1036535) ERROR 09-28 10:21:08 [core.py:1140]     engine_core = EngineCoreProc(*args, engine_index=dp_rank, **kwargs)
+(EngineCore pid=1036535) ERROR 09-28 10:21:08 [core.py:1140]                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(EngineCore pid=1036535) ERROR 09-28 10:21:08 [core.py:1140]   File "/vllm-workspace/vllm/vllm/tracing/otel.py", line 178, in sync_wrapper
+(EngineCore pid=1036535) ERROR 09-28 10:21:08 [core.py:1140]     return func(*args, **kwargs)
+(EngineCore pid=1036535) ERROR 09-28 10:21:08 [core.py:1140]            ^^^^^^^^^^^^^^^^^^^^^
+(EngineCore pid=1036535) ERROR 09-28 10:21:08 [core.py:1140]   File "/vllm-workspace/vllm/vllm/v1/engine/core.py", line 880, in __init__
+(EngineCore pid=1036535) ERROR 09-28 10:21:08 [core.py:1140]     super().__init__(
+(EngineCore pid=1036535) ERROR 09-28 10:21:08 [core.py:1140]   File "/vllm-workspace/vllm/vllm/v1/engine/core.py", line 118, in __init__
+(EngineCore pid=1036535) ERROR 09-28 10:21:08 [core.py:1140]     self.model_executor = executor_class(vllm_config)
+(EngineCore pid=1036535) ERROR 09-28 10:21:08 [core.py:1140]                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(EngineCore pid=1036535) ERROR 09-28 10:21:08 [core.py:1140]   File "/vllm-workspace/vllm/vllm/tracing/otel.py", line 178, in sync_wrapper
+(EngineCore pid=1036535) ERROR 09-28 10:21:08 [core.py:1140]     return func(*args, **kwargs)
+(EngineCore pid=1036535) ERROR 09-28 10:21:08 [core.py:1140]            ^^^^^^^^^^^^^^^^^^^^^
+(EngineCore pid=1036535) ERROR 09-28 10:21:08 [core.py:1140]   File "/vllm-workspace/vllm/vllm/v1/executor/abstract.py", line 109, in __init__
+(EngineCore pid=1036535) ERROR 09-28 10:21:08 [core.py:1140]     self._init_executor()
+(EngineCore pid=1036535) ERROR 09-28 10:21:08 [core.py:1140]   File "/vllm-workspace/vllm/vllm/v1/executor/uniproc_executor.py", line 59, in _init_executor
+(EngineCore pid=1036535) ERROR 09-28 10:21:08 [core.py:1140]     self.driver_worker.init_worker(all_kwargs=[kwargs])
+(EngineCore pid=1036535) ERROR 09-28 10:21:08 [core.py:1140]   File "/vllm-workspace/vllm/vllm/tracing/otel.py", line 178, in sync_wrapper
+(EngineCore pid=1036535) ERROR 09-28 10:21:08 [core.py:1140]     return func(*args, **kwargs)
+(EngineCore pid=1036535) ERROR 09-28 10:21:08 [core.py:1140]            ^^^^^^^^^^^^^^^^^^^^^
+(EngineCore pid=1036535) ERROR 09-28 10:21:08 [core.py:1140]   File "/vllm-workspace/vllm/vllm/v1/worker/worker_base.py", line 243, in init_worker
+(EngineCore pid=1036535) ERROR 09-28 10:21:08 [core.py:1140]     worker_class: type[WorkerBase] = resolve_obj_by_qualname(
+(EngineCore pid=1036535) ERROR 09-28 10:21:08 [core.py:1140]                                      ^^^^^^^^^^^^^^^^^^^^^^^^
+(EngineCore pid=1036535) ERROR 09-28 10:21:08 [core.py:1140]   File "/vllm-workspace/vllm/vllm/utils/import_utils.py", line 109, in resolve_obj_by_qualname
+(EngineCore pid=1036535) ERROR 09-28 10:21:08 [core.py:1140]     module = importlib.import_module(module_name)
+(EngineCore pid=1036535) ERROR 09-28 10:21:08 [core.py:1140]              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(EngineCore pid=1036535) ERROR 09-28 10:21:08 [core.py:1140]   File "/usr/local/python3.12.13/lib/python3.12/importlib/__init__.py", line 90, in import_module
+(EngineCore pid=1036535) ERROR 09-28 10:21:08 [core.py:1140]     return _bootstrap._gcd_import(name[level:], package, level)
+(EngineCore pid=1036535) ERROR 09-28 10:21:08 [core.py:1140]            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(EngineCore pid=1036535) ERROR 09-28 10:21:08 [core.py:1140]   File "<frozen importlib._bootstrap>", line 1387, in _gcd_import
+(EngineCore pid=1036535) ERROR 09-28 10:21:08 [core.py:1140]   File "<frozen importlib._bootstrap>", line 1360, in _find_and_load
+(EngineCore pid=1036535) ERROR 09-28 10:21:08 [core.py:1140]   File "<frozen importlib._bootstrap>", line 1331, in _find_and_load_unlocked
+(EngineCore pid=1036535) ERROR 09-28 10:21:08 [core.py:1140]   File "<frozen importlib._bootstrap>", line 935, in _load_unlocked
+(EngineCore pid=1036535) ERROR 09-28 10:21:08 [core.py:1140]   File "<frozen importlib._bootstrap_external>", line 999, in exec_module
+(EngineCore pid=1036535) ERROR 09-28 10:21:08 [core.py:1140]   File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
+(EngineCore pid=1036535) ERROR 09-28 10:21:08 [core.py:1140]   File "/vllm-workspace/vllm-ascend/vllm_ascend/worker/worker.py", line 54, in <module>
+(EngineCore pid=1036535) ERROR 09-28 10:21:08 [core.py:1140]     from vllm_ascend.device_allocator.camem import CaMemAllocator
+(EngineCore pid=1036535) ERROR 09-28 10:21:08 [core.py:1140]   File "/vllm-workspace/vllm-ascend/vllm_ascend/device_allocator/camem.py", line 27, in <module>
+(EngineCore pid=1036535) ERROR 09-28 10:21:08 [core.py:1140]     from acl.rt import memcpy  # type: ignore # noqa: F401
+(EngineCore pid=1036535) ERROR 09-28 10:21:08 [core.py:1140]     ^^^^^^^^^^^^^^^^^^^^^^^^^
+(EngineCore pid=1036535) ERROR 09-28 10:21:08 [core.py:1140] ModuleNotFoundError: No module named 'acl'
+(EngineCore pid=1036535) Process EngineCore:
+(EngineCore pid=1036535) Traceback (most recent call last):
+(EngineCore pid=1036535)   File "/usr/local/python3.12.13/lib/python3.12/multiprocessing/process.py", line 314, in _bootstrap
+(EngineCore pid=1036535)     self.run()
+(EngineCore pid=1036535)   File "/usr/local/python3.12.13/lib/python3.12/multiprocessing/process.py", line 108, in run
+(EngineCore pid=1036535)     self._target(*self._args, **self._kwargs)
+(EngineCore pid=1036535)   File "/vllm-workspace/vllm-ascend/vllm_ascend/patch/platform/patch_balance_schedule.py", line 672, in run_engine_core
+(EngineCore pid=1036535)     return _ORIGINAL_RUN_ENGINE_CORE(*args, dp_rank=dp_rank, local_dp_rank=local_dp_rank, **kwargs)
+(EngineCore pid=1036535)            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(EngineCore pid=1036535)   File "/vllm-workspace/vllm/vllm/v1/engine/core.py", line 1144, in run_engine_core
+(EngineCore pid=1036535)     raise e
+(EngineCore pid=1036535)   File "/vllm-workspace/vllm/vllm/v1/engine/core.py", line 1114, in run_engine_core
+(EngineCore pid=1036535)     engine_core = EngineCoreProc(*args, engine_index=dp_rank, **kwargs)
+(EngineCore pid=1036535)                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(EngineCore pid=1036535)   File "/vllm-workspace/vllm/vllm/tracing/otel.py", line 178, in sync_wrapper
+(EngineCore pid=1036535)     return func(*args, **kwargs)
+(EngineCore pid=1036535)            ^^^^^^^^^^^^^^^^^^^^^
+(EngineCore pid=1036535)   File "/vllm-workspace/vllm/vllm/v1/engine/core.py", line 880, in __init__
+(EngineCore pid=1036535)     super().__init__(
+(EngineCore pid=1036535)   File "/vllm-workspace/vllm/vllm/v1/engine/core.py", line 118, in __init__
+(EngineCore pid=1036535)     self.model_executor = executor_class(vllm_config)
+(EngineCore pid=1036535)                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(EngineCore pid=1036535)   File "/vllm-workspace/vllm/vllm/tracing/otel.py", line 178, in sync_wrapper
+(EngineCore pid=1036535)     return func(*args, **kwargs)
+(EngineCore pid=1036535)            ^^^^^^^^^^^^^^^^^^^^^
+(EngineCore pid=1036535)   File "/vllm-workspace/vllm/vllm/v1/executor/abstract.py", line 109, in __init__
+(EngineCore pid=1036535)     self._init_executor()
+(EngineCore pid=1036535)   File "/vllm-workspace/vllm/vllm/v1/executor/uniproc_executor.py", line 59, in _init_executor
+(EngineCore pid=1036535)     self.driver_worker.init_worker(all_kwargs=[kwargs])
+(EngineCore pid=1036535)   File "/vllm-workspace/vllm/vllm/tracing/otel.py", line 178, in sync_wrapper
+(EngineCore pid=1036535)     return func(*args, **kwargs)
+(EngineCore pid=1036535)            ^^^^^^^^^^^^^^^^^^^^^
+(EngineCore pid=1036535)   File "/vllm-workspace/vllm/vllm/v1/worker/worker_base.py", line 243, in init_worker
+(EngineCore pid=1036535)     worker_class: type[WorkerBase] = resolve_obj_by_qualname(
+(EngineCore pid=1036535)                                      ^^^^^^^^^^^^^^^^^^^^^^^^
+(EngineCore pid=1036535)   File "/vllm-workspace/vllm/vllm/utils/import_utils.py", line 109, in resolve_obj_by_qualname
+(EngineCore pid=1036535)     module = importlib.import_module(module_name)
+(EngineCore pid=1036535)              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(EngineCore pid=1036535)   File "/usr/local/python3.12.13/lib/python3.12/importlib/__init__.py", line 90, in import_module
+(EngineCore pid=1036535)     return _bootstrap._gcd_import(name[level:], package, level)
+(EngineCore pid=1036535)            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(EngineCore pid=1036535)   File "<frozen importlib._bootstrap>", line 1387, in _gcd_import
+(EngineCore pid=1036535)   File "<frozen importlib._bootstrap>", line 1360, in _find_and_load
+(EngineCore pid=1036535)   File "<frozen importlib._bootstrap>", line 1331, in _find_and_load_unlocked
+(EngineCore pid=1036535)   File "<frozen importlib._bootstrap>", line 935, in _load_unlocked
+(EngineCore pid=1036535)   File "<frozen importlib._bootstrap_external>", line 999, in exec_module
+(EngineCore pid=1036535)   File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
+(EngineCore pid=1036535)   File "/vllm-workspace/vllm-ascend/vllm_ascend/worker/worker.py", line 54, in <module>
+(EngineCore pid=1036535)     from vllm_ascend.device_allocator.camem import CaMemAllocator
+(EngineCore pid=1036535)   File "/vllm-workspace/vllm-ascend/vllm_ascend/device_allocator/camem.py", line 27, in <module>
+(EngineCore pid=1036535)     from acl.rt import memcpy  # type: ignore # noqa: F401
+(EngineCore pid=1036535)     ^^^^^^^^^^^^^^^^^^^^^^^^^
+(EngineCore pid=1036535) ModuleNotFoundError: No module named 'acl'
+(APIServer pid=1036226) Traceback (most recent call last):
+(APIServer pid=1036226)   File "<frozen runpy>", line 198, in _run_module_as_main
+(APIServer pid=1036226)   File "<frozen runpy>", line 88, in _run_code
+(APIServer pid=1036226)   File "/vllm-workspace/vllm/vllm/entrypoints/cli/main.py", line 98, in <module>
+(APIServer pid=1036226)     main()
+(APIServer pid=1036226)   File "/vllm-workspace/vllm/vllm/entrypoints/cli/main.py", line 92, in main
+(APIServer pid=1036226)     args.dispatch_function(args)
+(APIServer pid=1036226)   File "/vllm-workspace/vllm/vllm/entrypoints/cli/serve.py", line 122, in cmd
+(APIServer pid=1036226)     uvloop.run(run_server(args))
+(APIServer pid=1036226)   File "/usr/local/python3.12.13/lib/python3.12/site-packages/uvloop/__init__.py", line 96, in run
+(APIServer pid=1036226)     return __asyncio.run(
+(APIServer pid=1036226)            ^^^^^^^^^^^^^^
+(APIServer pid=1036226)   File "/usr/local/python3.12.13/lib/python3.12/asyncio/runners.py", line 195, in run
+(APIServer pid=1036226)     return runner.run(main)
+(APIServer pid=1036226)            ^^^^^^^^^^^^^^^^
+(APIServer pid=1036226)   File "/usr/local/python3.12.13/lib/python3.12/asyncio/runners.py", line 118, in run
+(APIServer pid=1036226)     return self._loop.run_until_complete(task)
+(APIServer pid=1036226)            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=1036226)   File "uvloop/loop.pyx", line 1518, in uvloop.loop.Loop.run_until_complete
+(APIServer pid=1036226)   File "/usr/local/python3.12.13/lib/python3.12/site-packages/uvloop/__init__.py", line 48, in wrapper
+(APIServer pid=1036226)     return await main
+(APIServer pid=1036226)            ^^^^^^^^^^
+(APIServer pid=1036226)   File "/vllm-workspace/vllm/vllm/entrypoints/openai/api_server.py", line 693, in run_server
+(APIServer pid=1036226)     await run_server_worker(listen_address, sock, args, **uvicorn_kwargs)
+(APIServer pid=1036226)   File "/vllm-workspace/vllm/vllm/entrypoints/openai/api_server.py", line 707, in run_server_worker
+(APIServer pid=1036226)     async with build_async_engine_client(
+(APIServer pid=1036226)                ^^^^^^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=1036226)   File "/usr/local/python3.12.13/lib/python3.12/contextlib.py", line 210, in __aenter__
+(APIServer pid=1036226)     return await anext(self.gen)
+(APIServer pid=1036226)            ^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=1036226)   File "/vllm-workspace/vllm/vllm/entrypoints/openai/api_server.py", line 100, in build_async_engine_client
+(APIServer pid=1036226)     async with build_async_engine_client_from_engine_args(
+(APIServer pid=1036226)                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=1036226)   File "/usr/local/python3.12.13/lib/python3.12/contextlib.py", line 210, in __aenter__
+(APIServer pid=1036226)     return await anext(self.gen)
+(APIServer pid=1036226)            ^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=1036226)   File "/vllm-workspace/vllm/vllm/entrypoints/openai/api_server.py", line 136, in build_async_engine_client_from_engine_args
+(APIServer pid=1036226)     async_llm = AsyncLLM.from_vllm_config(
+(APIServer pid=1036226)                 ^^^^^^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=1036226)   File "/vllm-workspace/vllm/vllm/v1/engine/async_llm.py", line 217, in from_vllm_config
+(APIServer pid=1036226)     return cls(
+(APIServer pid=1036226)            ^^^^
+(APIServer pid=1036226)   File "/vllm-workspace/vllm/vllm/v1/engine/async_llm.py", line 146, in __init__
+(APIServer pid=1036226)     self.engine_core = EngineCoreClient.make_async_mp_client(
+(APIServer pid=1036226)                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=1036226)   File "/vllm-workspace/vllm/vllm/tracing/otel.py", line 178, in sync_wrapper
+(APIServer pid=1036226)     return func(*args, **kwargs)
+(APIServer pid=1036226)            ^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=1036226)   File "/vllm-workspace/vllm/vllm/v1/engine/core_client.py", line 130, in make_async_mp_client
+(APIServer pid=1036226)     return AsyncMPClient(*client_args)
+(APIServer pid=1036226)            ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=1036226)   File "/vllm-workspace/vllm/vllm/tracing/otel.py", line 178, in sync_wrapper
+(APIServer pid=1036226)     return func(*args, **kwargs)
+(APIServer pid=1036226)            ^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=1036226)   File "/vllm-workspace/vllm/vllm/v1/engine/core_client.py", line 900, in __init__
+(APIServer pid=1036226)     super().__init__(
+(APIServer pid=1036226)   File "/vllm-workspace/vllm/vllm/v1/engine/core_client.py", line 535, in __init__
+(APIServer pid=1036226)     with launch_core_engines(
+(APIServer pid=1036226)          ^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=1036226)   File "/usr/local/python3.12.13/lib/python3.12/contextlib.py", line 144, in __exit__
+(APIServer pid=1036226)     next(self.gen)
+(APIServer pid=1036226)   File "/vllm-workspace/vllm/vllm/v1/engine/utils.py", line 1128, in launch_core_engines
+(APIServer pid=1036226)     wait_for_engine_startup(
+(APIServer pid=1036226)   File "/vllm-workspace/vllm/vllm/v1/engine/utils.py", line 1187, in wait_for_engine_startup
+(APIServer pid=1036226)     raise RuntimeError(
+(APIServer pid=1036226) RuntimeError: Engine core initialization failed. See root cause above. Failed core proc(s): {}
+(APIServer pid=1036226) [ERROR] 2026-09-28-10:21:10 (PID:1036226, Device:-1, RankID:-1) ERR99999 UNKNOWN applicaiton exception
+(APIServer pid=1036226) sys:1: DeprecationWarning: builtin type swigvarlink has no __module__ attribute

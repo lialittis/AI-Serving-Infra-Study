@@ -1,0 +1,158 @@
+# 2026-09-28 Ascend 多 Stream 测试任务
+
+- 计划日期：2026-09-28（Europe/Berlin）。
+- 状态：环境复查与 P0 已完成，完整证据重放通过；其余实验保持待执行。
+- 目标：今天按优先级推进多 stream 实测，分别回答依赖是否正确、设备是否重叠、端到端是否获益，并形成可复现的 kernel execution graph。
+- 执行顺序：环境复查 → P0 采样双流 → P1 KV offload → P2 MoE 分支 → P3 多模态 / 多任务 → 结果汇总。P4 记录可行性与所需条件。
+- 范围：优先单卡 eager。每项按实际完成情况验收；受阻、只完成微基准或只有源码证据，均不得标为完整实机验证。
+
+## 1. 环境与已有证据
+
+最近记录：单张 Ascend 910B2C、64 GiB HBM，CANN 9.0.0、torch / torch-npu 2.10.0、vLLM 0.21.0、vLLM-Ascend 0.21.0rc1。开始前重新核验，不把历史记录视为实时状态。
+
+- 远端：SSH 别名 `ascend910`；工作目录 `/data/tianchi`。沿用现有认证，凭据不写入任务文档、脚本或结果。
+- 已有模型：`/data/huggingface_home/hub/Qwen2.5-0.5B-Instruct`、`/data/huggingface_home/hub/Llama-3.2-1B-Instruct`；启动前确认仍存在。
+- [Practice 16](../practice_16_multistream_parallel/RESULTS.md)：独立矩阵 / 向量分支存在真实重叠，不能据此推断模型收益；已有[同步策略对照](../practice_16_multistream_parallel/SYNC_COMPARISON.md)和[跨流依赖实验](../practice_16_multistream_parallel/CROSS_STREAM_DEPENDENCY.md)可复用。
+- [Practice 17](../practice_17_vllm_multistream/README.md)：Qwen batch 32、Llama batch 64 的采样随机分支已出现设备重叠，尚缺无 profiler 性能闭环。
+- [Practice 18](../practice_18_kernel_data_dag/RESULTS.md)：当前 Qwen 数据依赖投影中 prefill 的 W/CP 约 1.088，decode 为 1；存在原生 workspace 覆盖缺口，不能直接用于实机任意改流。
+- 背景：[CUDA 多 Stream 应用与同步](../references/cuda_stream_use_cases/README.md)、[KV offload 同步问题](../references/vllm_syn_issuse_analysis/README.md)。
+
+## 2. 今日安排与检查点
+
+以下是从开始执行起的建议时间盒，目的是尽早暴露阻塞，不是已验证的工期。超时后先保存证据并判断是否切换到其他可执行项；未完成项继续保持未完成。
+
+| 顺序 | 任务 | 首轮时间盒 | 检查点 |
+|---|---|---|---|
+| 0 | 环境、源码与资源复查 | 30 分钟 | 得到实际版本、空闲资源、候选功能和模型清单 |
+| P0 | 真实采样双流性能闭环 | 60–90 分钟 | 无 profiler 对照可重复，明确收益或无收益 |
+| P1 | KV offload 与计算重叠 | 2–3 小时 | 真实 D2H / H2D 触发，依赖和复用边有证据 |
+| P2 | MoE shared expert 分支 | 90–120 分钟 | 完成真实层级分支的单流 / 双流对照，或明确实现阻塞 |
+| P3a | 独立推理任务并发 | 45–60 分钟 | 串行、双流、batching 三种方案可比较 |
+| P3b | 多模态跨请求流水线 | 60–90 分钟 | 模型可用时完成最小双请求实验，否则记录缺少的条件 |
+| P4 | tile 级 / 多卡方案 | 15 分钟 | 明确所需 kernel 改造或额外设备，不冒充已实测 |
+| 收尾 | 证据核验与结果汇总 | 30–45 分钟 | 每项有状态、结论、命令和证据路径 |
+
+上述完整计划可能超过一个工作日。优先保障 P0、P1、P2 的有效结论；P3 尽早确认模型与实现是否可用。若重点调整为 forward 内部并行，可将 P2 提到 P1 之前。
+
+## 3. 环境复查
+
+- [x] 记录检查时间、NPU 型号 / 可见数量、可用 HBM、host 内存、磁盘与当前占用。
+- [x] 记录实际 CANN、torch-npu、vLLM、vLLM-Ascend 版本及相关源码指纹。
+- [x] 确认现有模型、端口与独立输出目录；只管理本次启动的服务进程。
+- [x] 核对 `enable_async_exponential`、`NPUOffloadingSpec`、`multistream_overlap_shared_expert` 在安装版本中的实现和适用条件。
+- [x] 确认是否已有可用的 shared-expert MoE 层实现、多模态模型；在前期暴露下载、容量和适配成本。
+- [x] 评估是否需要重跑 Practice 16：本轮未重采历史实验，基础 NPU 算术与独立采样检查通过。
+
+环境证据见 [inventory.json](../practice_17_vllm_multistream/results/2026-09-28-p0/environment/inventory.json)。
+仅有两个 dense 文本模型；shared-expert 实现在 `ops/fused_moe/fused_moe.py` 中，
+要求 `has_shared_experts`，并与 mix placement 不兼容，单卡 harness 尚未验证。
+基础检查前后通过，但历史硬件告警 `80C98001` 仍存在，性能结论限定于本机本轮条件。
+
+## 4. P0：补齐真实采样双流的性能闭环
+
+**问题：提前生成采样随机数，是否在当前模型和负载下改善请求完成时间？**
+
+- [x] 复用 Practice 17 的请求与配置：单卡 BF16 eager，随机采样，无请求级独立 seed；保留服务器级 seed 并记录。
+- [x] 主对照：Qwen batch 32、Llama batch 64，各比较 `enable_async_exponential=true/false`。
+- [x] 低成本边界对照：Qwen batch 1、Llama batch 32；均覆盖 4 / 64 token。
+- [x] 新增独立无 profiler 性能入口；现有诊断 runner 增加输出长度参数，保留默认 4 token。
+- [x] 两组保持输入、输出 token 数、采样参数及服务配置一致；实际活跃 batch / scheduler step 在独立诊断中记录，不冒称每个性能样本具有相同调度形态。
+- [x] 按开—关—关—开进行四批独立服务测量，每批每条件预热 5 次、正式 5 次；开／关各 10 个正式样本，报告中位数、波动和前后两对方向。
+- [x] 八份独立 trace 核对 q producer、sampler consumer、物理 stream 与同步；性能测量关闭 profiler 和 Python 重型观测。
+- [x] 六项固定 q 数值检查通过；开启路径 q 一致，真实 q 的有限性 / 正值检查通过。没有要求两次随机生成文本一致。
+
+**验收：** 有无 profiler 性能表、独立 trace 证据和正确性核验。`false` 组仍可能使用第二条 stream，必须称为“提前生成开 / 关”，不能称为“单流 / 双流”。明确区分“已重叠”和“有性能收益”。
+
+**本次结果：** [性能报告](../practice_17_vllm_multistream/PERFORMANCE.md)及
+[验证记录](../practice_17_vllm_multistream/results/2026-09-28-p0/validation.json)。
+本轮没有稳定加速；Qwen batch 32 的 4 / 64 token 完成时间中位数分别增加约
+4.58% / 5.05%，Llama batch 64 的 64 token 增加约 1.96%，均为本轮描述性结论。
+160 个正式样本、160 个排除的预热样本、六项独立采样数值检查和八组诊断已归档；
+149,991 个计算任务与 CSV 匹配，另保留两条未关联 runtime placeholder。
+16 项测试、八份新证据的本地重放和八张图的无环检查通过。
+
+## 5. P1：真实 KV offload 的传输、计算与复用 DAG
+
+**问题：KV 保存 / 回载是否能与独立请求计算重叠，哪些依赖保证结果正确？**
+
+实现入口参考：[对应版本的 KV Cache CPU Offload 指南](https://docs.vllm.ai/projects/ascend/en/v0.21.0rc/user_guide/feature_guide/kv_cache_cpu_offload.html)。配置以安装版本源码为准。
+
+- [ ] 确认 `OffloadingConnector` / `NPUOffloadingSpec`、prefix caching 及 eager 路径的兼容性，定位实际传输 stream 和同步代码。
+- [ ] 优先复用已有小模型，限制实验 KV 容量并设置有界 CPU block pool；避免通过耗尽整机内存触发实验。
+- [ ] 构造前缀 A → 其他请求造成 KV 容量压力 → 再访问前缀 A，证明真实 D2H 和后续 CPU 命中回载 H2D；仅打开 offload 开关不算触发成功。
+- [ ] 在 A 回载期间安排独立请求 B 的就绪计算，核对 scheduler 确实允许它推进。
+- [ ] 在同一 offload 实现上构造强制串行与正常异步对照，保持请求、缓存策略和传输量可比；如果实际调度改变了传输量，单独披露，不能归因于改流。
+- [ ] 增加关闭 offload、通过重新计算恢复前缀的系统层基线，分别统计重算量、传输量与命中情况。
+- [ ] 采集计算 / memcpy 节点、实际 stream、event、KV block ID、存储代次、字节范围及复用时刻。
+- [ ] 核验 `KV 写入 → D2H 读取 → 源 block 复用`、`H2D 写入 → attention 读取`，以及 CPU block 的写入、读取、回收顺序。
+- [ ] 比较恢复后的 KV 或相应模型输出；使用确定性采样 / 数值容差进行可解释的正确性对照。
+- [ ] 独立运行无 profiler 性能测量，报告请求完成时间、传输字节、命中 / 重算量；若测 TTFT、token 间延迟，使用流式客户端并记录 token 到达时间。
+
+**验收：** 有真实 offload / reload 证据、带存储代次和同步边的 DAG、单流序列化 / 异步对照，以及正确性与性能结果。
+
+**受阻路径：** 若安装版本缺少实现或不兼容，保留具体源码 / 错误证据，先完成 pinned host buffer 与 NPU buffer 的有界分块传输实验。该结果标记为“机制微基准”，真实 vLLM offload 项保持受阻，不用张量命名替代真实集成。
+
+## 6. P2：forward 内部的 shared-expert 分支
+
+**问题：同一层的 shared expert 与 routed experts 能否正确并行，收益受哪些资源约束？**
+
+实现入口参考：[vLLM-Ascend 配置说明](https://docs.vllm.ai/projects/ascend/en/v0.21.0rc/user_guide/configuration/additional_config.html)中的 `multistream_overlap_shared_expert`；必须核验具体模型、TP=1 和 eager 是否实际支持。
+
+- [ ] 找到包含 shared expert 的真实层实现；现有 dense Qwen 不适用该功能。
+- [ ] 优先构造单层 harness，复用真实算子路径、可控权重与输入，明确它不是完整预训练模型的端到端验证。
+- [ ] 核对 shared / routed 两分支的输入就绪、输出合并、gate 依赖、workspace 和 allocator 生命周期。
+- [ ] 使用相同输入和权重比较单 stream 与双 stream；测试 decode 类小 token 数和 prefill 类较大 token 数两个形状。
+- [ ] 根据 dtype 预先记录数值容差，报告最大误差；两条分支完成后合并，不能只验证单独分支输出。
+- [ ] 分别采集执行图和无 profiler 性能，报告实际重叠量、各分支独立 / 并行耗时、总完成时间。
+
+**验收：** 得到 `输入 → 两分支 → 合并` 的真实层级 kernel 图、正确 event 连接及性能结果。若模型或设备路径要求多卡，明确记录限制；通用双 MLP 只能作为机制实验，不能标为真实 MoE 路径已完成。
+
+## 7. P3：扩展到多任务与多模态
+
+### P3a：独立推理任务并发
+
+- [ ] 选择已有小模型或其实际 forward 路径，准备独立输入、KV 与可变工作区，确认运行上下文允许并发。
+- [ ] 在相同总工作量下比较：两任务串行、两 stream 执行、合成 batch 执行；记录模型权重是否共享及额外内存。
+- [ ] 同时报告整体吞吐和每任务完成时间，验证输出；实际 stream 由 trace 确认，不将两个 HTTP 请求或两个进程直接视为双流。
+- [ ] 区分框架现有调度与自建执行 harness；若 vLLM 将请求合批，按实际行为记录。
+
+**验收：** 三种策略有公平对照，能够判断双流相对 batching 是否仍有价值。
+
+### P3b：视觉编码与另一请求的语言计算
+
+- [ ] 确认已有适配模型、权重、图像输入和剩余资源，再确定最小视觉 / 语言执行路径。
+- [ ] 构造请求 A 处于语言阶段、请求 B 进行视觉编码的负载；比较串行调度与双流调度。
+- [ ] 保留 B 的 `视觉特征就绪 → B 的语言消费` 依赖，隔离不同请求的 KV 与可变状态。
+- [ ] 校验中间特征 / 输出，记录实际设备重叠、每请求延迟和总完成时间。
+
+**验收：** 至少两个真实请求阶段构成可解释 DAG。只有 vision / language 两段人工张量计算时标为机制微基准；不宣称复现了 HydraInfer 或框架原生多模态双流。
+
+## 8. P4：后续能力边界
+
+- [ ] tile 级重叠：记录候选 producer / consumer、tile 依赖、设备侧同步与内存可见性需求。cuSync 的 CUDA 实现不能直接作为 Ascend 可用实现。
+- [ ] 多卡通信重叠：复查可见设备；单卡条件下不安排真实 HCCL 多卡 overlap 测试。
+- [ ] 明确这两项的状态是可行性调查，实机测试在具备 kernel 实现或额外设备后另排。
+
+## 9. 统一证据与收尾
+
+每项结果至少保存：精确命令 / 配置、环境和源码版本、负载参数、原始重复测量、正确性结果、trace 与分析摘要。输出使用独立目录，不覆盖历史正式结果；新 practice 编号在实施前检查是否空闲。
+
+图中至少区分 `data_dependency`、`stream_order`、`event_wait`、`host_sync`、`storage_reuse`。记录边的证据来源和覆盖缺口；没有 happens-before 保证时，不能用“本次碰巧先执行”补边。stream 标识按本次运行关联，不沿用历史物理 stream 编号。
+
+以下勾选仅表示本轮环境复查与 P0 的收尾情况，后续实验执行时需重新核验。
+
+- [x] P0 重叠按实际计算区间求交，未用分支包围范围替代。
+- [x] profiler 诊断与无 profiler 性能分开；性能等待完整 HTTP 响应。
+- [x] 报告所有已完成对照，包括无重叠、退化及不确定结果。
+- [x] 八张执行图、代表时间线及结论已保存；未宣称完整模型原生数据依赖已全部恢复。
+- [x] 本轮更新下表和证据链接；后续任务仍为待执行，未用 P0 结果替代验收。
+
+| 任务 | 状态 | 证据目录 | 核心结论 / 阻塞 | 下一步 |
+|---|---|---|---|---|
+| 环境复查 | 已完成 | [环境记录](../practice_17_vllm_multistream/results/2026-09-28-p0/environment/inventory.json) | 基础数值通过；历史告警仍存在；后续功能源码入口存在，模型仅有两个 dense 文本模型 | P1 开始前核对 connector 兼容性 |
+| P0 采样双流 | 已完成 | [P0 报告](../practice_17_vllm_multistream/PERFORMANCE.md) / [验证记录](../practice_17_vllm_multistream/results/2026-09-28-p0/validation.json) | 160 个正式样本、六项数值检查、八组诊断；未发现稳定加速，完整重放通过 | 按原优先级进入 P1 |
+| P1 KV offload | 待执行 | — | — | 核验 connector 并触发传输 |
+| P2 MoE 分支 | 待执行 | — | — | 定位可在单卡执行的真实层 |
+| P3a 多任务 | 待执行 | — | — | 确定独立执行上下文 |
+| P3b 多模态 | 待执行 | — | — | 确认模型和图像输入 |
+| P4 能力调查 | 待执行 | — | — | 记录实现和设备前提 |

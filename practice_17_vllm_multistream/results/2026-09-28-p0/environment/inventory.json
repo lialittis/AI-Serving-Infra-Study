@@ -1,0 +1,70 @@
+{
+  "captured_at_utc": "2026-09-28T10:39:37.288684+00:00",
+  "stage": "read-only resource/source inventory after performance runs; device checks are in benchmark environment/health files",
+  "features": {
+    "enable_async_exponential": {
+      "source": "/vllm-workspace/vllm-ascend/vllm_ascend/ascend_config.py",
+      "present": true,
+      "sha256": "0aff3abfee0246f6df52cd9e75a7150e9f1487e2d342abf981d3dbaf2cbe9932"
+    },
+    "multistream_overlap_shared_expert": {
+      "source": "/vllm-workspace/vllm-ascend/vllm_ascend/ascend_config.py",
+      "present": true,
+      "sha256": "0aff3abfee0246f6df52cd9e75a7150e9f1487e2d342abf981d3dbaf2cbe9932"
+    },
+    "NPUOffloadingSpec": {
+      "source": "/vllm-workspace/vllm-ascend/vllm_ascend/kv_offload/npu.py",
+      "present": true,
+      "sha256": "ab2b86b807f7bd3582d607e597e437c5e113ef9dde4a8198c86353716e17ad55"
+    }
+  },
+  "available_models": [
+    "Llama-3.2-1B-Instruct",
+    "Qwen2.5-0.5B-Instruct"
+  ],
+  "checks": [
+    {
+      "argv": [
+        "free",
+        "-m"
+      ],
+      "exit_code": 0,
+      "stdout": "               total        used        free      shared  buff/cache   available\nMem:           65536        6553       58982           0           0       58982\nSwap:              0           0           0\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "df",
+        "-h",
+        "/data"
+      ],
+      "exit_code": 0,
+      "stdout": "Filesystem      Size  Used Avail Use% Mounted on\n/dev/loop7       59G  8.0G   48G  15% /data\n",
+      "stderr": ""
+    }
+  ],
+  "execution_environment": {
+    "ASCEND_LAUNCH_BLOCKING": null,
+    "TASK_QUEUE_ENABLE": null,
+    "VLLM_BATCH_INVARIANT": null,
+    "ASCEND_HOME_PATH": "/usr/local/Ascend/cann-9.0.0",
+    "ASCEND_RT_VISIBLE_DEVICES": null,
+    "PYTHONPATH": "/usr/local/Ascend/cann-9.0.0/python/site-packages:/usr/local/Ascend/cann-9.0.0/opp/built-in/op_impl/ai_core/tbe:"
+  },
+  "scope": "Source presence is not a compatibility or end-to-end validation of P1/P2.",
+  "feature_constraints": {
+    "async_exponential": "Disabled by VLLM_BATCH_INVARIANT; this variable is unset in the inspected environment.",
+    "shared_expert": "Flag is gated by has_shared_experts; mix placement is incompatible. Installed fused_moe implementation switches to shared expert stream and waits on completion. Single-card harness compatibility remains untested.",
+    "models": "Only the two dense text models are locally present; no downloaded multimodal or shared-expert MoE model."
+  },
+  "source_snapshots": {
+    "sources/ops/fused_moe/fused_moe.py": {
+      "source": "/vllm-workspace/vllm-ascend/vllm_ascend/ops/fused_moe/fused_moe.py",
+      "sha256": "6cfda02905aba7387b1da85ae1590ae80c2942a3ac93769e575cead837b24491"
+    },
+    "sources/kv_offload/npu.py": {
+      "source": "/vllm-workspace/vllm-ascend/vllm_ascend/kv_offload/npu.py",
+      "sha256": "ab2b86b807f7bd3582d607e597e437c5e113ef9dde4a8198c86353716e17ad55"
+    }
+  }
+}

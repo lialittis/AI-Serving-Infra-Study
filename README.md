@@ -233,6 +233,10 @@ always produce device overlap.
 See [the guide](practice_17_vllm_multistream/README.md) and
 [findings](practice_17_vllm_multistream/RESULTS.md).
 
+The [P0 performance follow-up](practice_17_vllm_multistream/PERFORMANCE.md)
+adds 160 unprofiled samples and eight diagnostic traces: observed overlap does
+not yield a stable end-to-end speedup in these workloads.
+
 ## Practice 18: analyze full-model kernel data dependencies
 
 Capture dispatcher inputs, outputs, mutations and storage generations across a
