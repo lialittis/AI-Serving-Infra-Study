@@ -243,3 +243,8 @@ native internal workspace still prevents claiming a complete exact data DAG.
 See [the guide](practice_18_kernel_data_dag/README.md),
 [findings](practice_18_kernel_data_dag/RESULTS.md) and
 [offline interactive graph](practice_18_kernel_data_dag/report/index.html).
+
+## References
+
+See the [reference index](references/README.md) for CUDA multi-stream use cases,
+PyTorch CUDA Stream Sanitizer analysis, and vLLM KV offload synchronization cases.

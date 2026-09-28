@@ -10,6 +10,8 @@
 
 科研讨论：[研究方向与实验设计](./RESEARCH_DIRECTIONS.md)。讨论逻辑资源生命周期、访问摘要、图重放、历史压缩和根因定位，并整理相关工作与候选研究路线。第 9 节进一步记录低开销检测的候选设计、前提与待验证问题，供以后考虑。
 
+应用背景：[CUDA 多 Stream 的五类场景与同步依赖](../cuda_stream_use_cases/README.md)。区分传输重叠、算子并行、跨请求流水线和 tile 级同步，并关联本仓库的 kernel execution graph 实验。
+
 ## 1. 核心思路
 
 CUDA Stream Sanitizer，简称 CSAN，记录每个 Tensor 的读写历史，并利用 stream、event 和 host 同步建立的先后关系，判断冲突访问之间是否具有可靠的执行顺序。
