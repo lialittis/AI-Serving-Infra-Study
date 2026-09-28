@@ -180,6 +180,11 @@ def analyze(run, records=None, events=None):
                  queue=candidates[0] if candidates else None, scopes=labels,
                  flow_evidence=dict(torch=hp, cann=cp), kernel_csv_verified=bool(match),
                  raw_stream_handle=None, device_event=task)
+        if match:
+            n['core_usage'] = dict(csv_index=j, accelerator_core=row['Accelerator Core'],
+                                   block_num=row['Block Num'], mix_block_num=row['Mix Block Num'],
+                                   status='reported' if number(row['Block Num'] or '0') > 0 else 'unknown_or_not_reported',
+                                   meaning='profiler task core counts; not physical core IDs or utilization; not KV storage blocks')
         if hi is None or ci is None:
             require(mode == 'graph' and (args.get('Model Id') not in (None, INVALID_MODEL) or
                     task['name'] in ('MODEL_EXECUTE', 'NOTIFY_WAIT')), 'unexpected missing direct task flow')

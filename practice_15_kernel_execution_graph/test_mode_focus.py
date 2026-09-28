@@ -35,6 +35,17 @@ class ModeFocusTests(unittest.TestCase):
         self.assertFalse(any(e['kind'] == 'data_contract' for e in result['edges']))
         self.assertNotIn('binding-', dot_text(result))  # metadata is a separate panel, never a dependency edge
 
+    def test_core_fields_preserve_unknown_zero(self):
+        graph = self.graphs['graph']
+        kernels = [n for n in graph['nodes'] if n['kind'] == 'kernel' and n.get('core_usage')]
+        unknown = [n for n in kernels if n['core_usage']['block_num'] == '0']
+        self.assertTrue(unknown)
+        self.assertTrue(all(n['core_usage']['status'] == 'unknown_or_not_reported' for n in unknown))
+        result = focus(graph, 'decode-1')
+        kv = next(n for n in result['nodes'] if n['name'] == 'ReshapeAndCacheNdKernel')
+        self.assertEqual(kv['core_usage']['block_num'], '1')
+        self.assertIn('AI_VECTOR_CORE / Block 1 / Mix 0', dot_text(result))
+
     def test_changed_attention_tensor_rejected(self):
         g = copy.deepcopy(self.graphs['graph'])
         r = focus(g, 'decode-1')

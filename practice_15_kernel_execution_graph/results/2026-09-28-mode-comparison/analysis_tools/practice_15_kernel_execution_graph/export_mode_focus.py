@@ -118,6 +118,11 @@ def dot_text(data):
             label = wrapped(n['name'])
             if n['kind'] == 'kernel':
                 label += '\nstream {} / task {}\n{} us'.format(n['stream'], n['task_id'], number(n['end_us']) - number(n['start_us']))
+                cores = n.get('core_usage')
+                if cores:
+                    label += '\n{} / Block {} / Mix {}'.format(cores['accelerator_core'], cores['block_num'], cores['mix_block_num'])
+                    if cores['status'] != 'reported':
+                        label += '\ncore count unknown / not reported'
                 if 'runtime_connection' in n:
                     label += '\nconnection=' + str(n['runtime_connection']['connection_id'])
             elif n['kind'] == 'replay':

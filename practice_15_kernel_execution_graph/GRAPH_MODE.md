@@ -33,6 +33,12 @@ SVG 的执行连线全部来自 `execution_graph.json`，同名 `.json` 保留�
   跨stream的NOTIFY配对仍未建立，KV池候选边仍用虚线，不改称精确字节依赖。
 
 导出入口为 `export_mode_focus.py`，也已接入 `build_mode_graph.py`。
+
+2026-09-28 随 [Practice 19](../practice_19_kernel_core_usage/README.md) 补充核数标注：
+每个精确匹配 CSV 的 kernel 节点保存 `core_usage`，SVG 展示
+`Accelerator Core / Block Num / Mix Block Num`。零值显示 unknown / not reported，
+不能解释为没有使用计算核。它们也不是 KV 存储块数、物理核 ID 或核利用率。
+此次仅重新分析已有 eager / graph 记录，未改动原始采集及其关联缺口。
 图较宽，建议直接打开SVG并放大；悬停节点可见记录，旁边JSON适合逐项核查。
 
 ## 场景与控制变量
