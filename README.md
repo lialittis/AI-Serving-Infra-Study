@@ -290,6 +290,16 @@ See [the guide](practice_22_stream_lifecycle/README.md),
 [findings](practice_22_stream_lifecycle/RESULTS.md) and
 [offline explorer](practice_22_stream_lifecycle/report/index.html).
 
+## Practice 23: compare independent full-model forwards across streams
+
+Run the pretrained Qwen2.5-0.5B with independent KV in a controlled eager harness:
+serial, two streams and batch=2. Long prefill shows actual compute overlap;
+decode gains little from two streams, while valid batching cases are faster.
+The long-prefill batch comparison fails its original numerical tolerance and
+remains explicitly excluded from benefit claims. See [the guide](practice_23_independent_inference/README.md),
+[results](practice_23_independent_inference/RESULTS.md) and
+[interactive execution graph](practice_23_independent_inference/report/index.html).
+
 ## References
 
 See the [reference index](references/README.md) for CUDA multi-stream use cases,

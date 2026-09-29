@@ -1,0 +1,38 @@
+{
+  "cases": [
+    [
+      "prefill",
+      128
+    ],
+    [
+      "prefill",
+      1024
+    ],
+    [
+      "decode",
+      128
+    ],
+    [
+      "decode",
+      1024
+    ]
+  ],
+  "rounds": 12,
+  "warmup": 3,
+  "profile_repeats": 2,
+  "model": "/data/huggingface_home/hub/Qwen2.5-0.5B-Instruct",
+  "dtype": "bfloat16",
+  "batch_atol": 0.0625,
+  "batch_rtol": 0.02,
+  "parallel_atol": 0,
+  "parallel_rtol": 0,
+  "known_invalid_comparison": [
+    "prefill-1024",
+    "batch"
+  ],
+  "invalid_policy": "Retain failed numeric comparisons; never accept speedup claims for those cells; no tolerance relaxation",
+  "scope": "Full checkpoint HF eager forward; one CPU submission thread; no vLLM scheduler",
+  "unit": "two independent single forwards; decode prefill and all input/KV preparation excluded",
+  "ready_time": "NPU event elapsed from common origin to terminal event; includes submission starvation",
+  "correctness": "all vocabulary logits and all 24 layers KV, every formal and diagnostic pair"
+}

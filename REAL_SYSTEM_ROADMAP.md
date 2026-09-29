@@ -147,6 +147,11 @@ stream 创建、池取用、上下文切换、graph 捕获与 replay。四组原
 26 条 graph 活动流归属为主流及 25 个分区，句柄／Model ID 按生命周期关联。
 CANN 内部流底层创建调用及精确 NOTIFY ID 配对仍保留为缺口，不作完整恢复声明。
 
+2026-09-29 新增 [Practice 23](practice_23_independent_inference/README.md)：完整预训练 Qwen 的
+独立输入／KV harness，对照同流、双流与 batch=2。长 prefill 观察到真实计算交叠；
+144 个性能样本、24 个诊断 trial，80 条任务边界要求均通过。长 prefill 的 batch 数值
+未通过预设容差，单独保留失败；其余三形状 batching 更快。不代表 vLLM 原生请求调度。
+
 ## 参考入口
 
 - [vLLM Architecture](https://docs.vllm.ai/en/latest/design/arch_overview/)

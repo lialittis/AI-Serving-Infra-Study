@@ -117,12 +117,16 @@
 
 ### P3a：独立推理任务并发
 
-- [ ] 选择已有小模型或其实际 forward 路径，准备独立输入、KV 与可变工作区，确认运行上下文允许并发。
-- [ ] 在相同总工作量下比较：两任务串行、两 stream 执行、合成 batch 执行；记录模型权重是否共享及额外内存。
-- [ ] 同时报告整体吞吐和每任务完成时间，验证输出；实际 stream 由 trace 确认，不将两个 HTTP 请求或两个进程直接视为双流。
-- [ ] 区分框架现有调度与自建执行 harness；若 vLLM 将请求合批，按实际行为记录。
+- [x] 选择已有小模型或其实际 forward 路径，准备独立输入、KV 与可变工作区，确认运行上下文允许并发。
+- [x] 在相同总工作量下比较：两任务串行、两 stream 执行、合成 batch 执行；记录模型权重是否共享及额外内存。
+- [x] 同时报告整体吞吐和每任务完成时间，验证输出；实际 stream 由 trace 确认，不将两个 HTTP 请求或两个进程直接视为双流。
+- [x] 区分框架现有调度与自建执行 harness；若 vLLM 将请求合批，按实际行为记录。
 
 **验收：** 三种策略有公平对照，能够判断双流相对 batching 是否仍有价值。
+
+**本轮结果：** [Practice 23](../practice_23_independent_inference/README.md) 已完成完整预训练 Qwen2.5-0.5B 的 HF eager harness，见[报告](../practice_23_independent_inference/RESULTS.md)及[执行图](../practice_23_independent_inference/report/index.html)。四形状、144 个性能样本、24 个诊断 trial；共享只读权重、独立 KV，80 条就绪／完成约束及 16 项跨任务顺序检查通过。长 prefill 双流观察到约 12.8 ms 计算交叠，pair 时间配对中位数下降 13.7%；decode 基本持平。数值通过的三形状 batch=2 更快。
+
+**验收限制：** 1024-token prefill 的 batch 未通过原始数值容差，保留 14 次失败对照；没有放宽门限，该格收益不采纳。三方有效比较覆盖其余三形状，长 prefill 只采纳 serial/parallel 比较。该任务实验已收尾，长 prefill batching 的首个数值分歧另列后续定位；不是原生 vLLM scheduler、HTTP serving 或完整 kernel 内存 DAG。
 
 ### P3b：视觉编码与另一请求的语言计算
 
@@ -151,7 +155,7 @@
 - [x] profiler 诊断与无 profiler 性能分开；性能等待完整 HTTP 响应。
 - [x] 报告所有已完成对照，包括无重叠、退化及不确定结果。
 - [x] 八张执行图、代表时间线及结论已保存；未宣称完整模型原生数据依赖已全部恢复。
-- [x] 本轮更新下表和证据链接；P1 另有独立验收，未用 P0 结果替代；P2 已另行完成层级验收；P3–P4 仍待执行。
+- [x] 本轮更新下表和证据链接；P1 另有独立验收，未用 P0 结果替代；P2 已另行完成层级验收；P3a 已完成并明确数值未通过格；P3b–P4 仍待执行。
 
 | 任务 | 状态 | 证据目录 | 核心结论 / 阻塞 | 下一步 |
 |---|---|---|---|---|
@@ -159,6 +163,6 @@
 | P0 采样双流 | 已完成 | [P0 报告](../practice_17_vllm_multistream/PERFORMANCE.md) / [验证记录](../practice_17_vllm_multistream/results/2026-09-28-p0/validation.json) | 160 个正式样本、六项数值检查、八组诊断；未发现稳定加速，完整重放通过 | P1、P2 单层实验已完成 |
 | P1 KV offload | 已完成 | [P1 报告](../practice_20_kv_offload_overlap/RESULTS.md) / [验证记录](../practice_20_kv_offload_overlap/results/published/validation.json) | 60 个正式周期；真实 D2H/H2D 与计算重叠，1,572 条 KV 约束通过；本轮重算更快 | P2 单层实验已完成；后续可测更大模型／更长前缀的收益交叉点 |
 | P2 MoE 分支 | 层级实机实验已完成 | [P2 报告](../practice_21_moe_shared_overlap/RESULTS.md) / [验证记录](../practice_21_moe_shared_overlap/results/published/validation.json) | 原生双 stream、同步正确；四种形状未见计算重叠，完整层双流慢约 7%–9% | 按计划进入 P3；收益交叉点与 graph 另行实验 |
-| P3a 多任务 | 待执行 | — | — | 确定独立执行上下文 |
+| P3a 多任务 | harness 实验完成；一格数值未通过 | [P3a 报告](../practice_23_independent_inference/RESULTS.md) / [验证](../practice_23_independent_inference/results/published/validation.json) | 长 prefill 双流确有交叠；decode 收益不明显；三个有效形状 batch 更快 | 定位 long-prefill batch 首个数值分歧，后续独立测 graph replay |
 | P3b 多模态 | 待执行 | — | — | 确认模型和图像输入 |
 | P4 能力调查 | 待执行 | — | — | 记录实现和设备前提 |
