@@ -151,6 +151,15 @@ CANN 内部流底层创建调用及精确 NOTIFY ID 配对仍保留为缺口，�
 独立输入／KV harness，对照同流、双流与 batch=2。长 prefill 观察到真实计算交叠；
 144 个性能样本、24 个诊断 trial，80 条任务边界要求均通过。长 prefill 的 batch 数值
 未通过预设容差，单独保留失败；其余三形状 batching 更快。不代表 vLLM 原生请求调度。
+后续[数值定位](practice_23_independent_inference/NUMERICS.md)已确认第 0 层 MLP 投影的
+batch 形状分歧，完成 FP64／有理数参考核验及独立全 FP32 三方测量。原始 BF16 失败状态保留。
+
+2026-09-29 新增 [Practice 24](practice_24_graph_replay/README.md)：完整 FP32、固定步
+NPUGraph 与 eager 的六配置对照，288 个性能样本、48 个诊断 trial 全部通过数值校验。
+40 次 replay 的 48,204 个内部任务精确关联，160 条输入／输出边界和 32 项任务顺序检查通过。
+Graph 双流四形状都快于 graph 串行，但 batch=2 更快；不同 graph 内部 stream 也可能受同一
+调用流的 completion → launch 顺序串行化。固定初始 KV，不代表持续生成或 native vLLM
+调度；原生 kernel 完整内存 DAG 与精确 NOTIFY ID 仍未知。下一计划项为 P3b 多模态资格核验。
 
 ## 参考入口
 

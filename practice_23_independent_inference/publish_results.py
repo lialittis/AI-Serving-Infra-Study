@@ -75,7 +75,7 @@ def main():
         f"最终保留 {s['failed_numeric_comparisons']} 个失败对照（12 次性能、2 次诊断），没有调整容差。独立资格复核证明该差异随 long-prefill batching 出现，串行重复与双流完全一致。尚未定位到具体原生算子／tiling 舍入机制，不能直接宣称是正常 BF16 舍入，也不能当作 stream 竞态。进一步量化 batching 收益前需定位首次分歧或建立可靠高精度参考。",'',
         '## 重放与下一步','',
         '[证据包](results/published/evidence.tgz)保留 trace、kernel CSV、源码、参数、全部样本及中断／资格检查；[文件哈希](results/published/evidence_manifest.json)和[归档说明](results/published/archives.json)支持独立重放。初始化硬件历史 Alarm 仍存在，实验前后记录中未见其他 NPU 作业；未修改或重启设备。复现命令见 [README](README.md)。','',
-        '建议优先定位 long-prefill batching 的首个数值分歧，使长输入三方比较也具备有效性；随后单独测 graph replay 的提交开销影响。P3b 视觉／语言并发仍需已有适配模型及图像输入，尚未开展。','']
+        '后续[数值定位](NUMERICS.md)已完成，并补充独立全 FP32 控制组；原始 BF16 失败保持不变。下一项为 graph capture/replay 条件核验及同精度对照。P3b 视觉／语言并发仍需已有适配模型及图像输入，尚未开展。','']
     (root/'RESULTS.md').write_text('\n'.join(lines));print(json.dumps(read(out/'validation.json'),indent=2))
 
 

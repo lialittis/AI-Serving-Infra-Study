@@ -299,6 +299,21 @@ The long-prefill batch comparison fails its original numerical tolerance and
 remains explicitly excluded from benefit claims. See [the guide](practice_23_independent_inference/README.md),
 [results](practice_23_independent_inference/RESULTS.md) and
 [interactive execution graph](practice_23_independent_inference/report/index.html).
+The [numerical follow-up](practice_23_independent_inference/NUMERICS.md) locates the
+first shape-dependent MLP projection difference, verifies FP64 references, and
+adds a separately labeled full-FP32 comparison; the native BF16 failure remains.
+
+## Practice 24: compare full-model graph replay and eager scheduling
+
+Compare serial, two-stream and batch=2 execution at the same full-FP32 precision.
+288 unprofiled pairs and 48 diagnostic trials pass numerical checks. Graph replay
+makes short-prefill/decode overlap visible; batching remains fastest in all four
+shapes. Separate replay caller streams from graph-internal streams, with 40
+replays and 160 verified readiness/completion requirements. Fixed-step KV inputs
+are reused safely; this is not growing-cache generation or native vLLM scheduling.
+See [guide](practice_24_graph_replay/README.md),
+[results](practice_24_graph_replay/RESULTS.md) and
+[interactive graph](practice_24_graph_replay/report/index.html).
 
 ## References
 

@@ -1,0 +1,41 @@
+{
+  "cases": [
+    [
+      "prefill",
+      128
+    ],
+    [
+      "prefill",
+      1024
+    ],
+    [
+      "decode",
+      128
+    ],
+    [
+      "decode",
+      1024
+    ]
+  ],
+  "rounds": 12,
+  "warmup": 3,
+  "precision": "full_fp32",
+  "hf32": false,
+  "weights": "Same BF16 checkpoint values exactly promoted to FP32, no new checkpoint",
+  "tolerance": {
+    "serial": {
+      "atol": 0,
+      "rtol": 0
+    },
+    "parallel": {
+      "atol": 0,
+      "rtol": 0
+    },
+    "batch": {
+      "atol": 0.0625,
+      "rtol": 0.02
+    }
+  },
+  "scope": "Separate precision control; native BF16 failing comparison remains invalid",
+  "timing": "P23 execute: common origin to two completions; all inputs/cache preparation and validation excluded; no profiler/hooks"
+}

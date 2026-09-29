@@ -128,6 +128,14 @@
 
 **验收限制：** 1024-token prefill 的 batch 未通过原始数值容差，保留 14 次失败对照；没有放宽门限，该格收益不采纳。三方有效比较覆盖其余三形状，长 prefill 只采纳 serial/parallel 比较。该任务实验已收尾，长 prefill batching 的首个数值分歧另列后续定位；不是原生 vLLM scheduler、HTTP serving 或完整 kernel 内存 DAG。
 
+**数值后续（2026-09-29）：** [首次数值分歧定位已完成](../practice_23_independent_inference/NUMERICS.md)：第 0 层 `mlp.gate_proj`，固定相同输入仍随 M=1024/2048 变化；12 个隔离 kernel 精确关联，FP64 误差界及 28 个精确有理数点积复核通过。局部 FP32 替换仍失败；完整 FP32 配置完成另外 144 个三方样本，四形状均通过，原始 BF16 失败继续保留。内部 tiling／归约树未恢复，不声明原生 BF16 已修复。
+
+- [x] 定位首次分歧、验证独立算子与高精度参考。
+- [x] 在明确区分精度配置的前提下补充有效三方对照。
+- [x] 核验静态输入／KV 与 graph capture 条件，完成同精度 serial／双流／batch replay 对照；capture、预热、replay 分开计时，采集实际 stream 与同步。
+
+**Graph 后续（2026-09-29）：** [Practice 24](../practice_24_graph_replay/README.md) 已完成完整 FP32、固定形状／固定 decode 步的 eager 与 graph 六配置对照，见[报告](../practice_24_graph_replay/RESULTS.md)和[执行图](../practice_24_graph_replay/report/index.html)。288 个无 profiler pair、48 个诊断 trial、336 次数值对照及 24 次输入／初始 KV 复用检查通过；40 次 replay 的 48,204 个内部任务关联完整，160 条边界要求和 32 项跨任务顺序检查通过。Graph 双流四形状都快于 graph 串行，但 batch=2 仍更快。串行 graph 使用不同内部 stream，由同一调用 stream 的 completion → launch 顺序串行化。独立 graph pool、固定 KV 长度，不代表持续生成、native vLLM 调度或完整 native 内存 DAG。下一计划项为 P3b 模型／图像资格核验。
+
 ### P3b：视觉编码与另一请求的语言计算
 
 - [ ] 确认已有适配模型、权重、图像输入和剩余资源，再确定最小视觉 / 语言执行路径。
@@ -163,6 +171,6 @@
 | P0 采样双流 | 已完成 | [P0 报告](../practice_17_vllm_multistream/PERFORMANCE.md) / [验证记录](../practice_17_vllm_multistream/results/2026-09-28-p0/validation.json) | 160 个正式样本、六项数值检查、八组诊断；未发现稳定加速，完整重放通过 | P1、P2 单层实验已完成 |
 | P1 KV offload | 已完成 | [P1 报告](../practice_20_kv_offload_overlap/RESULTS.md) / [验证记录](../practice_20_kv_offload_overlap/results/published/validation.json) | 60 个正式周期；真实 D2H/H2D 与计算重叠，1,572 条 KV 约束通过；本轮重算更快 | P2 单层实验已完成；后续可测更大模型／更长前缀的收益交叉点 |
 | P2 MoE 分支 | 层级实机实验已完成 | [P2 报告](../practice_21_moe_shared_overlap/RESULTS.md) / [验证记录](../practice_21_moe_shared_overlap/results/published/validation.json) | 原生双 stream、同步正确；四种形状未见计算重叠，完整层双流慢约 7%–9% | 按计划进入 P3；收益交叉点与 graph 另行实验 |
-| P3a 多任务 | harness 实验完成；一格数值未通过 | [P3a 报告](../practice_23_independent_inference/RESULTS.md) / [验证](../practice_23_independent_inference/results/published/validation.json) | 长 prefill 双流确有交叠；decode 收益不明显；三个有效形状 batch 更快 | 定位 long-prefill batch 首个数值分歧，后续独立测 graph replay |
+| P3a 多任务 | harness 实验完成；一格数值未通过 | [P3a 报告](../practice_23_independent_inference/RESULTS.md) / [验证](../practice_23_independent_inference/results/published/validation.json) | 长 prefill 双流确有交叠；decode 收益不明显；三个有效形状 batch 更快 | 数值定位、全 FP32 及 Practice 24 固定步 graph 对照已完成；下一项 P3b 资格核验 |
 | P3b 多模态 | 待执行 | — | — | 确认模型和图像输入 |
 | P4 能力调查 | 待执行 | — | — | 记录实现和设备前提 |

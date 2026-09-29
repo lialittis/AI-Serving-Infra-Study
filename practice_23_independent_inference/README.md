@@ -10,6 +10,8 @@ P3a 使用主机已有 **Qwen2.5-0.5B-Instruct 完整预训练权重**，通过 
 
 查看[实测结果](RESULTS.md)、[离线交互执行图](report/index.html)及[验证记录](results/published/validation.json)。
 
+后续已完成[长 prefill 数值定位](NUMERICS.md)：首次分歧来自第 0 层 MLP 投影的 batch 形状变化，附 FP64／精确有理数核验和独立全 FP32 三方对照。原始 BF16 失败状态保持不变。
+
 ## 正确性与状态隔离
 
 共享一份只读 BF16 权重（988,065,536 bytes，约 942.29 MiB），A/B 使用不同输入、独立 `DynamicCache`；decode KV 在计时前各自 clone，batch 按 A/B 顺序拼接。mask、position、前缀均提前就绪。默认 RoPE、无 sliding window，模型 `eval()`、`inference_mode()`；模型权重及全部 buffer 前后逐 tensor SHA256 一致。安装版本源码与配置随采集归档。

@@ -1,0 +1,60 @@
+{
+  "cases": [
+    [
+      "prefill",
+      128
+    ],
+    [
+      "prefill",
+      1024
+    ],
+    [
+      "decode",
+      128
+    ],
+    [
+      "decode",
+      1024
+    ]
+  ],
+  "rounds": 12,
+  "profile_repeats": 2,
+  "warmup": 3,
+  "precision": "full_fp32",
+  "hf32": false,
+  "cross_mode_atol": 0.0625,
+  "cross_mode_rtol": 0.02,
+  "same_shape_atol": 0,
+  "same_shape_rtol": 0,
+  "modes": [
+    [
+      "eager",
+      "serial"
+    ],
+    [
+      "graph",
+      "serial"
+    ],
+    [
+      "eager",
+      "parallel"
+    ],
+    [
+      "graph",
+      "parallel"
+    ],
+    [
+      "eager",
+      "batch"
+    ],
+    [
+      "graph",
+      "batch"
+    ]
+  ],
+  "order": "six rotations; reverse second cycle; AB/BA alternate; payload swap every two rounds",
+  "unit": "two independent fixed-step forwards; graph captures fixed inputs and initial KV addresses; not growing autoregressive generation",
+  "allocation": "each graph has a distinct pool and keeps input KV tensors alive after DynamicCache replaces layer fields",
+  "timing": "exclude loading/reset/capture/validation; include origin/waits/submission/terminal completion; capture and first replay separate",
+  "scope": "HF checkpoint full forward harness; no vLLM scheduler or compilation partitions"
+}
