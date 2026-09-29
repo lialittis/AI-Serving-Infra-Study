@@ -29,13 +29,13 @@ HB 图包含 stream FIFO、event、host join、graph launch 与 graph completion
 
 ```bash
 cd /data/tianchi
-ASCEND_RT_VISIBLE_DEVICES=5 python practice_24_graph_replay/qualify.py \
+python practice_24_graph_replay/qualify.py \
   --output practice_24_graph_replay/results/qualification-new
-ASCEND_RT_VISIBLE_DEVICES=5 python practice_24_graph_replay/run.py \
+python practice_24_graph_replay/run.py \
   --output practice_24_graph_replay/results/formal-new
 ```
 
-输入目录必须不存在；本机逻辑 0 对应物理 5。权重路径沿用 Practice 23 `model.py`。脚本不安装包或修改设备。分析器锁定本轮采集源码哈希，版本或 harness 改变后需要重新审计并更新契约，不能跳过检查套用旧证据。
+输入目录必须不存在；本容器已映射物理 5 为逻辑 0，沿用容器映射；不要将 npu-smi 的物理编号直接写入 ASCEND_RT_VISIBLE_DEVICES。权重路径沿用 Practice 23 `model.py`。脚本不安装包或修改设备。分析器锁定本轮采集源码哈希，版本或 harness 改变后需要重新审计并更新契约，不能跳过检查套用旧证据。
 
 ## 离线重放
 
@@ -63,4 +63,4 @@ python -m unittest discover -s practice_24_graph_replay -p 'test_*.py'
 | `render_report.py` / `publish_results.py` | 离线图、报告与证据发布 |
 | `test_analysis.py` | 基于真实图删除同步边的反事实检查 |
 
-下一计划项为 P3b 视觉／另一请求语言阶段的并发资格核验；持续 decode 的 graph 输入更新另属扩展实验。
+后续 [P3b 视觉／语言并发实验](../practice_25_multimodal_overlap/README.md)已完成；持续 decode 的 graph 输入更新另属扩展实验。

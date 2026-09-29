@@ -315,6 +315,18 @@ See [guide](practice_24_graph_replay/README.md),
 [results](practice_24_graph_replay/RESULTS.md) and
 [interactive graph](practice_24_graph_replay/report/index.html).
 
+## Practice 25: overlap vision encoding and another request's language stage
+
+Run the full pretrained Qwen2.5-VL-3B vision encoder and language decoder with
+independent request state. Across eight BF16 eager cases, 192 timing samples and
+32 traces pass exact output checks. Language-first prefill overlaps vision and
+reduces pair completion time by 6.76%–13.16%; vision-first submission and single-step
+decode show no comparable benefit. Verify the real feature handoff, 256 dependency
+requirements, and explicit stream/event order while recording internal host waits.
+See [guide](practice_25_multimodal_overlap/README.md),
+[results](practice_25_multimodal_overlap/RESULTS.md), and
+[interactive execution graph](practice_25_multimodal_overlap/report/index.html).
+
 ## References
 
 See the [reference index](references/README.md) for CUDA multi-stream use cases,

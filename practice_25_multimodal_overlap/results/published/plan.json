@@ -1,0 +1,67 @@
+{
+  "cases": [
+    [
+      "prefill",
+      "beach.jpeg",
+      64
+    ],
+    [
+      "prefill",
+      "beach.jpeg",
+      256
+    ],
+    [
+      "prefill",
+      "beijing.jpeg",
+      64
+    ],
+    [
+      "prefill",
+      "beijing.jpeg",
+      256
+    ],
+    [
+      "decode",
+      "beach.jpeg",
+      64
+    ],
+    [
+      "decode",
+      "beach.jpeg",
+      256
+    ],
+    [
+      "decode",
+      "beijing.jpeg",
+      64
+    ],
+    [
+      "decode",
+      "beijing.jpeg",
+      256
+    ]
+  ],
+  "rounds": 12,
+  "warmup": 3,
+  "profile_repeats": 2,
+  "precision": "bf16",
+  "attention": "eager",
+  "atol": 0,
+  "rtol": 0,
+  "A_context_tokens": 512,
+  "A_image_budget": 64,
+  "modes": [
+    "serial",
+    "parallel"
+  ],
+  "order": "LV/VL alternate; mode order changes every two rounds; each combination repeats three times",
+  "timing": "include A language + B vision + B merge/language and all terminal joins; exclude image preprocessing, A vision/prefix, input transfer and fresh KV preparation",
+  "scope": "full pretrained HF stage harness; not vLLM scheduling, graph replay or full autoregressive requests",
+  "command": [
+    "python",
+    "practice_25_multimodal_overlap/run.py",
+    "--output",
+    "/data/tianchi/practice_25_multimodal_overlap/results/formal-r02"
+  ],
+  "device": "container logical 0, physical NPU 5; no ASCEND_RT_VISIBLE_DEVICES override"
+}

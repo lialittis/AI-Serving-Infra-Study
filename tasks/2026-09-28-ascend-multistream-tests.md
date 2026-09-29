@@ -134,16 +134,20 @@
 - [x] 在明确区分精度配置的前提下补充有效三方对照。
 - [x] 核验静态输入／KV 与 graph capture 条件，完成同精度 serial／双流／batch replay 对照；capture、预热、replay 分开计时，采集实际 stream 与同步。
 
-**Graph 后续（2026-09-29）：** [Practice 24](../practice_24_graph_replay/README.md) 已完成完整 FP32、固定形状／固定 decode 步的 eager 与 graph 六配置对照，见[报告](../practice_24_graph_replay/RESULTS.md)和[执行图](../practice_24_graph_replay/report/index.html)。288 个无 profiler pair、48 个诊断 trial、336 次数值对照及 24 次输入／初始 KV 复用检查通过；40 次 replay 的 48,204 个内部任务关联完整，160 条边界要求和 32 项跨任务顺序检查通过。Graph 双流四形状都快于 graph 串行，但 batch=2 仍更快。串行 graph 使用不同内部 stream，由同一调用 stream 的 completion → launch 顺序串行化。独立 graph pool、固定 KV 长度，不代表持续生成、native vLLM 调度或完整 native 内存 DAG。下一计划项为 P3b 模型／图像资格核验。
+**Graph 后续（2026-09-29）：** [Practice 24](../practice_24_graph_replay/README.md) 已完成完整 FP32、固定形状／固定 decode 步的 eager 与 graph 六配置对照，见[报告](../practice_24_graph_replay/RESULTS.md)和[执行图](../practice_24_graph_replay/report/index.html)。288 个无 profiler pair、48 个诊断 trial、336 次数值对照及 24 次输入／初始 KV 复用检查通过；40 次 replay 的 48,204 个内部任务关联完整，160 条边界要求和 32 项跨任务顺序检查通过。Graph 双流四形状都快于 graph 串行，但 batch=2 仍更快。串行 graph 使用不同内部 stream，由同一调用 stream 的 completion → launch 顺序串行化。独立 graph pool、固定 KV 长度，不代表持续生成、native vLLM 调度或完整 native 内存 DAG。后续 P3b 已完成，见下一节。
 
 ### P3b：视觉编码与另一请求的语言计算
 
-- [ ] 确认已有适配模型、权重、图像输入和剩余资源，再确定最小视觉 / 语言执行路径。
-- [ ] 构造请求 A 处于语言阶段、请求 B 进行视觉编码的负载；比较串行调度与双流调度。
-- [ ] 保留 B 的 `视觉特征就绪 → B 的语言消费` 依赖，隔离不同请求的 KV 与可变状态。
-- [ ] 校验中间特征 / 输出，记录实际设备重叠、每请求延迟和总完成时间。
+**输入准备：** 已确认 `/data/huggingface_home/hub/Qwen2.5-VL-3B-Instruct`，索引引用的两个权重分片及 processor/tokenizer 配置均存在。已下载并同步两张[公开示例照片](../datasets/p3b_images/README.md)至 `/data/tianchi/datasets/p3b_images/`：`beach.jpeg`（2048×1365）与 `beijing.jpeg`（614×410）；本地／远端完整解码和 SHA256 核对通过。后续运行资格及正式实验已完成，见下方结果。
+
+- [x] 确认已有适配模型、权重、图像输入和剩余资源，再确定最小视觉 / 语言执行路径。
+- [x] 构造请求 A 处于语言阶段、请求 B 进行视觉编码的负载；比较串行调度与双流调度。
+- [x] 保留 B 的 `视觉特征就绪 → B 的语言消费` 依赖，隔离不同请求的 KV 与可变状态。
+- [x] 校验中间特征 / 输出，记录实际设备重叠、每请求延迟和总完成时间。
 
 **验收：** 至少两个真实请求阶段构成可解释 DAG。只有 vision / language 两段人工张量计算时标为机制微基准；不宣称复现了 HydraInfer 或框架原生多模态双流。
+
+**本轮结果：** [Practice 25](../practice_25_multimodal_overlap/README.md) 完成 Qwen2.5-VL-3B 的真实视觉／语言阶段 eager harness，见[报告](../practice_25_multimodal_overlap/RESULTS.md)和[执行图](../practice_25_multimodal_overlap/report/index.html)。两张图片、两档实际视觉长度 54 / 247、A prefill / decode，共 8 格；192 个性能样本、32 个诊断 trial、224 次输出校验均逐元素一致，8 格另与完整原生 forward / generation 对照通过。344,586 个设备任务，256 条数据／边界要求与 32 项显式顺序检查通过。先提交语言 prefill 再提交视觉时双流耗时下降 6.76%–13.16%，但 A 本身完成变慢；先视觉后语言无同样收益，单步 decode 基本持平。每次视觉诊断含 91 条原生同步 API 调用，说明单 CPU 提交顺序与隐式主机阻塞会限制 overlap。不是原生 vLLM 多模态调度，native workspace 和隐式 CPU 因果图仍未完整恢复。
 
 ## 8. P4：后续能力边界
 
@@ -163,7 +167,7 @@
 - [x] profiler 诊断与无 profiler 性能分开；性能等待完整 HTTP 响应。
 - [x] 报告所有已完成对照，包括无重叠、退化及不确定结果。
 - [x] 八张执行图、代表时间线及结论已保存；未宣称完整模型原生数据依赖已全部恢复。
-- [x] 本轮更新下表和证据链接；P1 另有独立验收，未用 P0 结果替代；P2 已另行完成层级验收；P3a 已完成并明确数值未通过格；P3b–P4 仍待执行。
+- [x] 本轮更新下表和证据链接；P1 另有独立验收，未用 P0 结果替代；P2 已另行完成层级验收；P3a 已完成并明确数值未通过格；P3b 阶段 harness 已完成；P4 仍待能力调查。
 
 | 任务 | 状态 | 证据目录 | 核心结论 / 阻塞 | 下一步 |
 |---|---|---|---|---|
@@ -171,6 +175,6 @@
 | P0 采样双流 | 已完成 | [P0 报告](../practice_17_vllm_multistream/PERFORMANCE.md) / [验证记录](../practice_17_vllm_multistream/results/2026-09-28-p0/validation.json) | 160 个正式样本、六项数值检查、八组诊断；未发现稳定加速，完整重放通过 | P1、P2 单层实验已完成 |
 | P1 KV offload | 已完成 | [P1 报告](../practice_20_kv_offload_overlap/RESULTS.md) / [验证记录](../practice_20_kv_offload_overlap/results/published/validation.json) | 60 个正式周期；真实 D2H/H2D 与计算重叠，1,572 条 KV 约束通过；本轮重算更快 | P2 单层实验已完成；后续可测更大模型／更长前缀的收益交叉点 |
 | P2 MoE 分支 | 层级实机实验已完成 | [P2 报告](../practice_21_moe_shared_overlap/RESULTS.md) / [验证记录](../practice_21_moe_shared_overlap/results/published/validation.json) | 原生双 stream、同步正确；四种形状未见计算重叠，完整层双流慢约 7%–9% | 按计划进入 P3；收益交叉点与 graph 另行实验 |
-| P3a 多任务 | harness 实验完成；一格数值未通过 | [P3a 报告](../practice_23_independent_inference/RESULTS.md) / [验证](../practice_23_independent_inference/results/published/validation.json) | 长 prefill 双流确有交叠；decode 收益不明显；三个有效形状 batch 更快 | 数值定位、全 FP32 及 Practice 24 固定步 graph 对照已完成；下一项 P3b 资格核验 |
-| P3b 多模态 | 待执行 | — | — | 确认模型和图像输入 |
+| P3a 多任务 | harness 实验完成；一格数值未通过 | [P3a 报告](../practice_23_independent_inference/RESULTS.md) / [验证](../practice_23_independent_inference/results/published/validation.json) | 长 prefill 双流确有交叠；decode 收益不明显；三个有效形状 batch 更快 | 数值定位、全 FP32、固定步 graph 及后续 P3b 已完成；P4 待能力调查 |
+| P3b 多模态 | 真实模型阶段 harness 已完成 | [P3b 报告](../practice_25_multimodal_overlap/RESULTS.md) / [验证](../practice_25_multimodal_overlap/results/published/validation.json) | 先语言后视觉的 prefill 双流快 6.76%–13.16%；VL 与 decode 无稳定收益；实际特征 handoff 与 256 条约束通过 | 可进一步调查视觉元数据同步／graph；P4 仍为能力调查 |
 | P4 能力调查 | 待执行 | — | — | 记录实现和设备前提 |

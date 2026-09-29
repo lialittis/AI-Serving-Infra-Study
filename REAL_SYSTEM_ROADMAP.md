@@ -161,6 +161,13 @@ Graph 双流四形状都快于 graph 串行，但 batch=2 更快；不同 graph 
 调用流的 completion → launch 顺序串行化。固定初始 KV，不代表持续生成或 native vLLM
 调度；原生 kernel 完整内存 DAG 与精确 NOTIFY ID 仍未知。下一计划项为 P3b 多模态资格核验。
 
+2026-09-29 新增 [Practice 25](practice_25_multimodal_overlap/README.md)：完整预训练
+Qwen2.5-VL-3B 的跨请求视觉／语言阶段 eager 对照。192 个性能样本、32 个诊断 trial、
+224 次逐元素输出校验及 8 格完整原生路径对照通过；真实视觉特征消费、独立 KV/MRoPE
+与 256 条依赖要求有明确证据。先语言后视觉的 prefill 双流耗时下降 6.76%–13.16%，
+但先视觉提交及单步 decode 无同样收益；视觉路径内部主机同步限制单 CPU 供给。
+该实验为 HF 阶段 harness，未实现 native vLLM 多模态流水线或完整隐式 CPU 因果图。
+
 ## 参考入口
 
 - [vLLM Architecture](https://docs.vllm.ai/en/latest/design/arch_overview/)
