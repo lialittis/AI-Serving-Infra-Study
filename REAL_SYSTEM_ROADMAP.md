@@ -168,6 +168,13 @@ Qwen2.5-VL-3B 的跨请求视觉／语言阶段 eager 对照。192 个性能样�
 但先视觉提交及单步 decode 无同样收益；视觉路径内部主机同步限制单 CPU 供给。
 该实验为 HF 阶段 harness，未实现 native vLLM 多模态流水线或完整隐式 CPU 因果图。
 
+2026-09-29 新增 [Practice 26](practice_26_decode_utilization/README.md)：真实 BF16 vLLM
+64-token 连续生成的 eager / PIECEWISE 对照。20 个无 profiler 正式请求、四个独立诊断，
+全部 48 个正式／预热响应 token 一致。plain 稳定 decode 的计算时间覆盖约 23% / 63%，
+graph 请求完成时间中位数约 308 ms，eager 约 713 ms；未观察到跨流计算重叠。
+结合 CPU/CANN 下发、任务空隙和独立硬件指标说明提交间隙与少核算子并存，
+不将覆盖率解释为芯片利用率，也不将收益归因于流数量本身。
+
 ## 参考入口
 
 - [vLLM Architecture](https://docs.vllm.ai/en/latest/design/arch_overview/)

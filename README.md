@@ -327,6 +327,17 @@ See [guide](practice_25_multimodal_overlap/README.md),
 [results](practice_25_multimodal_overlap/RESULTS.md), and
 [interactive execution graph](practice_25_multimodal_overlap/report/index.html).
 
+## Practice 26: distinguish decode compute coverage from core utilization
+
+Trace growing-cache BF16 vLLM generation in eager and PIECEWISE graph modes.
+Twenty unprofiled controls and four separate plain/hardware-counter diagnostics
+show shorter graph completion without cross-stream compute overlap. Join all
+256 steps and 79,996 compute tasks, retaining core fields, CPU/CANN submission
+intervals and unknown gaps. Compute coverage is not whole-chip utilization.
+See [guide](practice_26_decode_utilization/README.md),
+[findings](practice_26_decode_utilization/RESULTS.md), and
+[offline explorer](practice_26_decode_utilization/report/index.html).
+
 ## References
 
 See the [reference index](references/README.md) for CUDA multi-stream use cases,

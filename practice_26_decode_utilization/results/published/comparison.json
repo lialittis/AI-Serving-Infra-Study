@@ -1,0 +1,487 @@
+{
+  "status": "passed",
+  "correctness": {
+    "responses_including_warmup": 48,
+    "formal_responses": 24,
+    "exact_greedy_tokens_equal": true,
+    "token_ids": [
+      "token_id:40666",
+      "token_id:102",
+      "token_id:34794",
+      "token_id:105133",
+      "token_id:104401",
+      "token_id:105681",
+      "token_id:3837",
+      "token_id:104404",
+      "token_id:101281",
+      "token_id:99225",
+      "token_id:18493",
+      "token_id:109239",
+      "token_id:105797",
+      "token_id:99371",
+      "token_id:13343",
+      "token_id:99250",
+      "token_id:99632",
+      "token_id:99759",
+      "token_id:33108",
+      "token_id:104460",
+      "token_id:106064",
+      "token_id:31838",
+      "token_id:100673",
+      "token_id:1773",
+      "token_id:39165",
+      "token_id:101281",
+      "token_id:99225",
+      "token_id:113788",
+      "token_id:26939",
+      "token_id:102493",
+      "token_id:104386",
+      "token_id:13343",
+      "token_id:3837",
+      "token_id:90919",
+      "token_id:9370",
+      "token_id:100400",
+      "token_id:99225",
+      "token_id:9909",
+      "token_id:99804",
+      "token_id:45861",
+      "token_id:99260",
+      "token_id:99534",
+      "token_id:7552",
+      "token_id:56006",
+      "token_id:99425",
+      "token_id:99225",
+      "token_id:9909",
+      "token_id:99804",
+      "token_id:45861",
+      "token_id:112228",
+      "token_id:7552",
+      "token_id:108478",
+      "token_id:99250",
+      "token_id:100819",
+      "token_id:101047",
+      "token_id:107155",
+      "token_id:102388",
+      "token_id:99632",
+      "token_id:99759",
+      "token_id:1773",
+      "token_id:100001",
+      "token_id:99632",
+      "token_id:99759",
+      "token_id:9370"
+    ]
+  },
+  "controls": [
+    {
+      "run": "control-0-eager",
+      "mode": "eager",
+      "profile": "none",
+      "completed_ms": {
+        "n": 5,
+        "median": 716.728238,
+        "min": 713.263448,
+        "max": 724.10934
+      },
+      "samples_ms": [
+        722.232132,
+        713.263448,
+        724.10934,
+        716.728238,
+        713.290701
+      ]
+    },
+    {
+      "run": "control-1-graph",
+      "mode": "graph",
+      "profile": "none",
+      "completed_ms": {
+        "n": 5,
+        "median": 306.876717,
+        "min": 306.472138,
+        "max": 307.247152
+      },
+      "samples_ms": [
+        307.247152,
+        306.475276,
+        306.876717,
+        306.472138,
+        307.160977
+      ]
+    },
+    {
+      "run": "control-2-graph",
+      "mode": "graph",
+      "profile": "none",
+      "completed_ms": {
+        "n": 5,
+        "median": 323.534718,
+        "min": 309.342662,
+        "max": 360.063745
+      },
+      "samples_ms": [
+        309.342662,
+        322.541116,
+        360.063745,
+        323.925136,
+        323.534718
+      ]
+    },
+    {
+      "run": "control-3-eager",
+      "mode": "eager",
+      "profile": "none",
+      "completed_ms": {
+        "n": 5,
+        "median": 712.347034,
+        "min": 711.113734,
+        "max": 722.810628
+      },
+      "samples_ms": [
+        712.347034,
+        722.810628,
+        712.364522,
+        711.693298,
+        711.113734
+      ]
+    }
+  ],
+  "profiles": [
+    {
+      "run": "eager-pipe",
+      "mode": "eager",
+      "profile": "pipe",
+      "completed_ms": {
+        "n": 1,
+        "median": 852.506316,
+        "min": 852.506316,
+        "max": 852.506316
+      },
+      "samples_ms": [
+        852.506316
+      ],
+      "profiler_config_verified": true,
+      "diagnostic": {
+        "mode": "eager",
+        "profile": "pipe",
+        "steps": 64,
+        "stable_steps": 32,
+        "device_tasks": 22624,
+        "compute_tasks": 19999,
+        "physical_streams": 1,
+        "graph_replays": 0,
+        "graph_objects": 0,
+        "stable_device_span_us": {
+          "n": 32,
+          "median": 12347.333999999999,
+          "min": 12133.125,
+          "max": 14077.023
+        },
+        "stable_compute_union_us": {
+          "n": 32,
+          "median": 2944.363,
+          "min": 2924.359,
+          "max": 2965.217
+        },
+        "stable_coverage": {
+          "n": 32,
+          "median": 0.23836844216024675,
+          "min": 0.20916993600138326,
+          "max": 0.2428888682841395
+        },
+        "stable_uncovered_us": {
+          "n": 32,
+          "median": 9362.927,
+          "min": 9139.22,
+          "max": 11086.471
+        },
+        "stable_interstep_us": {
+          "n": 32,
+          "median": 620.935,
+          "min": 613.965,
+          "max": 950.998
+        },
+        "overlap_us": "0",
+        "peak_compute_streams": 1,
+        "flow_collisions_resolved": 0,
+        "stable_gap_before_next_native_call_us": {
+          "n": 32,
+          "median": 4934.489,
+          "min": 3970.736,
+          "max": 7386.914
+        },
+        "stable_gap_before_next_host_call_us": {
+          "n": 32,
+          "median": 3559.485,
+          "min": 2978.979,
+          "max": 5691.608
+        },
+        "stable_gap_by_next_submission": {
+          "native_call_begins_after_gap_start": "280088.337",
+          "native_call_spans_gap_start": "9142.903",
+          "native_returned_before_gap": "13996.322"
+        }
+      }
+    },
+    {
+      "run": "eager-plain",
+      "mode": "eager",
+      "profile": "plain",
+      "completed_ms": {
+        "n": 1,
+        "median": 839.807834,
+        "min": 839.807834,
+        "max": 839.807834
+      },
+      "samples_ms": [
+        839.807834
+      ],
+      "profiler_config_verified": true,
+      "diagnostic": {
+        "mode": "eager",
+        "profile": "plain",
+        "steps": 64,
+        "stable_steps": 32,
+        "device_tasks": 22624,
+        "compute_tasks": 19999,
+        "physical_streams": 1,
+        "graph_replays": 0,
+        "graph_objects": 0,
+        "stable_device_span_us": {
+          "n": 32,
+          "median": 12375.835,
+          "min": 12236.729,
+          "max": 13251.629
+        },
+        "stable_compute_union_us": {
+          "n": 32,
+          "median": 2853.4080000000004,
+          "min": 2830.192,
+          "max": 2876.52
+        },
+        "stable_coverage": {
+          "n": 32,
+          "median": 0.23043587833466983,
+          "min": 0.21706916183663155,
+          "max": 0.23360683392028128
+        },
+        "stable_uncovered_us": {
+          "n": 32,
+          "median": 9472.9285,
+          "min": 9334.521,
+          "max": 10328.367
+        },
+        "stable_interstep_us": {
+          "n": 32,
+          "median": 623.715,
+          "min": 613.344,
+          "max": 937.978
+        },
+        "overlap_us": "0",
+        "peak_compute_streams": 1,
+        "flow_collisions_resolved": 0,
+        "stable_gap_before_next_native_call_us": {
+          "n": 32,
+          "median": 4828.855,
+          "min": 3999.219,
+          "max": 6091.548
+        },
+        "stable_gap_before_next_host_call_us": {
+          "n": 32,
+          "median": 3517.221,
+          "min": 3038.895,
+          "max": 4390.854
+        },
+        "stable_gap_by_next_submission": {
+          "native_call_begins_after_gap_start": "280978.991",
+          "native_call_spans_gap_start": "9486.044",
+          "native_returned_before_gap": "14493.810"
+        }
+      }
+    },
+    {
+      "run": "graph-pipe",
+      "mode": "graph",
+      "profile": "pipe",
+      "completed_ms": {
+        "n": 1,
+        "median": 452.329898,
+        "min": 452.329898,
+        "max": 452.329898
+      },
+      "samples_ms": [
+        452.329898
+      ],
+      "profiler_config_verified": true,
+      "diagnostic": {
+        "mode": "graph",
+        "profile": "pipe",
+        "steps": 64,
+        "stable_steps": 32,
+        "device_tasks": 27349,
+        "compute_tasks": 19999,
+        "physical_streams": 26,
+        "graph_replays": 1575,
+        "graph_objects": 25,
+        "stable_device_span_us": {
+          "n": 32,
+          "median": 6341.6335,
+          "min": 5432.397,
+          "max": 9644.586
+        },
+        "stable_compute_union_us": {
+          "n": 32,
+          "median": 3174.7394999999997,
+          "min": 3149.387,
+          "max": 3190.729
+        },
+        "stable_coverage": {
+          "n": 32,
+          "median": 0.4988919059310186,
+          "min": 0.3293439448826523,
+          "max": 0.5873519553154897
+        },
+        "stable_uncovered_us": {
+          "n": 32,
+          "median": 3039.4425,
+          "min": 2102.182,
+          "max": 6329.276
+        },
+        "stable_interstep_us": {
+          "n": 32,
+          "median": 677.037,
+          "min": 618.125,
+          "max": 1156.627
+        },
+        "overlap_us": "0",
+        "peak_compute_streams": 1,
+        "flow_collisions_resolved": 0,
+        "stable_gap_before_next_native_call_us": {
+          "n": 32,
+          "median": 1595.5065,
+          "min": 909.722,
+          "max": 3761.348
+        },
+        "stable_gap_before_next_host_call_us": {
+          "n": 32,
+          "median": 885.3305,
+          "min": 484.769,
+          "max": 2192.407
+        },
+        "stable_gap_by_next_submission": {
+          "native_call_begins_after_gap_start": "88738.552",
+          "native_call_spans_gap_start": "3544.284",
+          "native_returned_before_gap": "3067.680"
+        }
+      }
+    },
+    {
+      "run": "graph-plain",
+      "mode": "graph",
+      "profile": "plain",
+      "completed_ms": {
+        "n": 1,
+        "median": 391.427291,
+        "min": 391.427291,
+        "max": 391.427291
+      },
+      "samples_ms": [
+        391.427291
+      ],
+      "profiler_config_verified": true,
+      "diagnostic": {
+        "mode": "graph",
+        "profile": "plain",
+        "steps": 64,
+        "stable_steps": 32,
+        "device_tasks": 27349,
+        "compute_tasks": 19999,
+        "physical_streams": 26,
+        "graph_replays": 1575,
+        "graph_objects": 25,
+        "stable_device_span_us": {
+          "n": 32,
+          "median": 4969.0385,
+          "min": 4825.952,
+          "max": 5819.152
+        },
+        "stable_compute_union_us": {
+          "n": 32,
+          "median": 3114.4975,
+          "min": 3094.926,
+          "max": 3135.842
+        },
+        "stable_coverage": {
+          "n": 32,
+          "median": 0.6261503677166689,
+          "min": 0.5388829850122492,
+          "max": 0.6451275993250924
+        },
+        "stable_uncovered_us": {
+          "n": 32,
+          "median": 1718.437,
+          "min": 1575.924,
+          "max": 2545.686
+        },
+        "stable_interstep_us": {
+          "n": 32,
+          "median": 607.074,
+          "min": 591.564,
+          "max": 977.779
+        },
+        "overlap_us": "0",
+        "peak_compute_streams": 1,
+        "flow_collisions_resolved": 0,
+        "stable_gap_before_next_native_call_us": {
+          "n": 32,
+          "median": 841.256,
+          "min": 707.939,
+          "max": 1444.824
+        },
+        "stable_gap_before_next_host_call_us": {
+          "n": 32,
+          "median": 448.49350000000004,
+          "min": 352.746,
+          "max": 811.213
+        },
+        "stable_gap_by_next_submission": {
+          "native_call_begins_after_gap_start": "49806.226",
+          "native_call_spans_gap_start": "5970.949",
+          "native_returned_before_gap": "2897.428"
+        }
+      }
+    }
+  ],
+  "timing": {
+    "eager": {
+      "n": 10,
+      "median": 713.2770745,
+      "min": 711.113734,
+      "max": 724.10934
+    },
+    "graph": {
+      "n": 10,
+      "median": 308.294907,
+      "min": 306.472138,
+      "max": 360.063745
+    }
+  },
+  "pairs": [
+    {
+      "eager": "control-0-eager",
+      "graph": "control-1-graph",
+      "graph_over_eager": 0.42816328523113106
+    },
+    {
+      "eager": "control-3-eager",
+      "graph": "control-2-graph",
+      "graph_over_eager": 0.4541813225265707
+    }
+  ],
+  "graph_over_eager": 0.43222321033675676,
+  "limits": [
+    "Ten HTTP completion samples per mode in two independent server launches; descriptive statistics, not a stable tail-latency estimate.",
+    "HTTP latency includes prefill and response/logprobs overhead; it is not isolated decode latency.",
+    "Graph versus eager changes compilation and kernel fusion as well as submission; this is not a pure stream-count intervention.",
+    "Profiler timings and unprofiled HTTP timings belong to separate runs."
+  ]
+}
