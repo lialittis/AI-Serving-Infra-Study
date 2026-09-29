@@ -1,7 +1,7 @@
 # 2026-09-28 Ascend 多 Stream 测试任务
 
 - 计划日期：2026-09-28（Europe/Berlin）。
-- 状态：环境复查、P0 与 P1 已完成，完整证据重放通过；P2–P4 保持待执行。
+- 状态：环境复查、P0、P1 与 P2 单层实验已完成，证据重放通过；P3–P4 保持待执行。
 - 目标：今天按优先级推进多 stream 实测，分别回答依赖是否正确、设备是否重叠、端到端是否获益，并形成可复现的 kernel execution graph。
 - 执行顺序：环境复查 → P0 采样双流 → P1 KV offload → P2 MoE 分支 → P3 多模态 / 多任务 → 结果汇总。P4 记录可行性与所需条件。
 - 范围：优先单卡 eager。每项按实际完成情况验收；受阻、只完成微基准或只有源码证据，均不得标为完整实机验证。
@@ -102,14 +102,16 @@
 
 实现入口参考：[vLLM-Ascend 配置说明](https://docs.vllm.ai/projects/ascend/en/v0.21.0rc/user_guide/configuration/additional_config.html)中的 `multistream_overlap_shared_expert`；必须核验具体模型、TP=1 和 eager 是否实际支持。
 
-- [ ] 找到包含 shared expert 的真实层实现；现有 dense Qwen 不适用该功能。
-- [ ] 优先构造单层 harness，复用真实算子路径、可控权重与输入，明确它不是完整预训练模型的端到端验证。
-- [ ] 核对 shared / routed 两分支的输入就绪、输出合并、gate 依赖、workspace 和 allocator 生命周期。
-- [ ] 使用相同输入和权重比较单 stream 与双 stream；测试 decode 类小 token 数和 prefill 类较大 token 数两个形状。
-- [ ] 根据 dtype 预先记录数值容差，报告最大误差；两条分支完成后合并，不能只验证单独分支输出。
-- [ ] 分别采集执行图和无 profiler 性能，报告实际重叠量、各分支独立 / 并行耗时、总完成时间。
+- [x] 找到包含 shared expert 的真实层实现；现有 dense Qwen 不适用该功能。
+- [x] 优先构造单层 harness，复用真实算子路径、可控权重与输入，明确它不是完整预训练模型的端到端验证。
+- [x] 核对 shared / routed 两分支的输入就绪、输出合并、gate 依赖、workspace 和 allocator 生命周期。
+- [x] 使用相同输入和权重比较单 stream 与双 stream；测试 decode 类小 token 数和 prefill 类较大 token 数两个形状。
+- [x] 根据 dtype 预先记录数值容差，报告最大误差；两条分支完成后合并，不能只验证单独分支输出。
+- [x] 分别采集执行图和无 profiler 性能，报告实际重叠量、各分支独立 / 并行耗时、总完成时间。
 
 **验收：** 得到 `输入 → 两分支 → 合并` 的真实层级 kernel 图、正确 event 连接及性能结果。若模型或设备路径要求多卡，明确记录限制；通用双 MLP 只能作为机制实验，不能标为真实 MoE 路径已完成。
+
+**本轮结果：** [Practice 21](../practice_21_moe_shared_overlap/README.md) 完成真实 Qwen2 MoE 单层 eager 对照，见[报告](../practice_21_moe_shared_overlap/RESULTS.md)与[交互图](../practice_21_moe_shared_overlap/report/index.html)。固定构造权重，测试 1/32/256/1024 token；这是缩小尺寸的真实层，不是完整预训练模型验证。24 次详细诊断覆盖 538 个设备任务、192 条通过验证的数据要求，另有 24 次无方法观察器的轻量诊断。两类诊断均未观察到 shared/routed 计算交叠；48 组完整层性能配对显示双流中位数慢约 7%–9%。输出、CPU 参考、72 次输入复用及权重不变检查通过。native workspace 精确访存仍不在覆盖范围内。
 
 ## 7. P3：扩展到多任务与多模态
 
@@ -149,14 +151,14 @@
 - [x] profiler 诊断与无 profiler 性能分开；性能等待完整 HTTP 响应。
 - [x] 报告所有已完成对照，包括无重叠、退化及不确定结果。
 - [x] 八张执行图、代表时间线及结论已保存；未宣称完整模型原生数据依赖已全部恢复。
-- [x] 本轮更新下表和证据链接；P1 另有独立验收，未用 P0 结果替代；P2–P4 仍待执行。
+- [x] 本轮更新下表和证据链接；P1 另有独立验收，未用 P0 结果替代；P2 已另行完成层级验收；P3–P4 仍待执行。
 
 | 任务 | 状态 | 证据目录 | 核心结论 / 阻塞 | 下一步 |
 |---|---|---|---|---|
 | 环境复查 | 已完成 | [环境记录](../practice_17_vllm_multistream/results/2026-09-28-p0/environment/inventory.json) | 基础数值通过；历史告警仍存在；后续功能源码入口存在，模型仅有两个 dense 文本模型 | P1 已复查环境与 connector；告警仍在 |
-| P0 采样双流 | 已完成 | [P0 报告](../practice_17_vllm_multistream/PERFORMANCE.md) / [验证记录](../practice_17_vllm_multistream/results/2026-09-28-p0/validation.json) | 160 个正式样本、六项数值检查、八组诊断；未发现稳定加速，完整重放通过 | P1 已完成，按优先级进入 P2 |
-| P1 KV offload | 已完成 | [P1 报告](../practice_20_kv_offload_overlap/RESULTS.md) / [验证记录](../practice_20_kv_offload_overlap/results/published/validation.json) | 60 个正式周期；真实 D2H/H2D 与计算重叠，1,572 条 KV 约束通过；本轮重算更快 | 按优先级进入 P2；后续可测更大模型／更长前缀的收益交叉点 |
-| P2 MoE 分支 | 待执行 | — | — | 定位可在单卡执行的真实层 |
+| P0 采样双流 | 已完成 | [P0 报告](../practice_17_vllm_multistream/PERFORMANCE.md) / [验证记录](../practice_17_vllm_multistream/results/2026-09-28-p0/validation.json) | 160 个正式样本、六项数值检查、八组诊断；未发现稳定加速，完整重放通过 | P1、P2 单层实验已完成 |
+| P1 KV offload | 已完成 | [P1 报告](../practice_20_kv_offload_overlap/RESULTS.md) / [验证记录](../practice_20_kv_offload_overlap/results/published/validation.json) | 60 个正式周期；真实 D2H/H2D 与计算重叠，1,572 条 KV 约束通过；本轮重算更快 | P2 单层实验已完成；后续可测更大模型／更长前缀的收益交叉点 |
+| P2 MoE 分支 | 层级实机实验已完成 | [P2 报告](../practice_21_moe_shared_overlap/RESULTS.md) / [验证记录](../practice_21_moe_shared_overlap/results/published/validation.json) | 原生双 stream、同步正确；四种形状未见计算重叠，完整层双流慢约 7%–9% | 按计划进入 P3；收益交叉点与 graph 另行实验 |
 | P3a 多任务 | 待执行 | — | — | 确定独立执行上下文 |
 | P3b 多模态 | 待执行 | — | — | 确认模型和图像输入 |
 | P4 能力调查 | 待执行 | — | — | 记录实现和设备前提 |

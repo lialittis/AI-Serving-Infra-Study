@@ -1,0 +1,85 @@
+{
+  "captured_at": "2026-09-28T16:18:06.293225+00:00",
+  "torch": "2.10.0+cpu",
+  "torch_npu": "2.10.0",
+  "python": "3.12.13",
+  "device": "_NPUDeviceProperties(name='Ascend910B2C', total_memory=62420MB, cube_core_num=24, vector_core_num=48, uuid=00cc0800-d000-0000-0000-98487411b95c, L2_cache_size=192MB)",
+  "classes": {
+    "layer": "<class 'vllm.model_executor.models.qwen2_moe.Qwen2MoeSparseMoeBlock'>",
+    "experts": "<class 'vllm_ascend.ops.fused_moe.fused_moe.AscendFusedMoE'>"
+  },
+  "revisions": {
+    "ascend": "80610e4438dba05011b05f89fc45d91e96992671",
+    "vllm": "ad7125a431e176d4161099480a66f0169609a690"
+  },
+  "flags": {
+    "ASCEND_LAUNCH_BLOCKING": null,
+    "TASK_QUEUE_ENABLE": null,
+    "VLLM_BATCH_INVARIANT": null,
+    "PYTORCH_NPU_ALLOC_CONF": "expandable_segments:True"
+  },
+  "logical_streams": {
+    "main": {
+      "id": 0,
+      "handle": "140068778475520"
+    },
+    "shared": {
+      "id": 96,
+      "handle": "140067424051200"
+    }
+  },
+  "weights": {
+    "gate.weight": {
+      "shape": [
+        8,
+        1024
+      ],
+      "sha256": "164c6eecbdc55cd9aaf08c51c364e5153c36206ae7787cc2da6cc4b4163bbc9f"
+    },
+    "shared_expert_gate.weight": {
+      "shape": [
+        1,
+        1024
+      ],
+      "sha256": "89ab9894c927e4b76ee142b5b41499715c39f49510ed9bced4407eac1bcf45f4"
+    },
+    "shared_expert.gate_up_proj.weight": {
+      "shape": [
+        2048,
+        1024
+      ],
+      "sha256": "259c0f5b9f761d5ac1450ed0f5c61fa870ebdae5ac58e3d0e69890789a51a424"
+    },
+    "shared_expert.down_proj.weight": {
+      "shape": [
+        1024,
+        1024
+      ],
+      "sha256": "16b4c78651fc170c736b8203b7526e28cc1850a32ac3a72a2d81c22f23ffcb07"
+    },
+    "experts.w13_weight": {
+      "shape": [
+        8,
+        1024,
+        1024
+      ],
+      "sha256": "c9e07569e7cdb024dde30c283b4961c0e1bf3a75933e0503f20954cf704ea7a2"
+    },
+    "experts.w2_weight": {
+      "shape": [
+        8,
+        1024,
+        512
+      ],
+      "sha256": "485648600e984e6efc371ef0acc6f90947a55ea47f5ec4117589ed7824210357"
+    }
+  },
+  "processed_weight_sha256": {
+    "gate.weight": "164c6eecbdc55cd9aaf08c51c364e5153c36206ae7787cc2da6cc4b4163bbc9f",
+    "shared_expert_gate.weight": "89ab9894c927e4b76ee142b5b41499715c39f49510ed9bced4407eac1bcf45f4",
+    "shared_expert.gate_up_proj.weight": "259c0f5b9f761d5ac1450ed0f5c61fa870ebdae5ac58e3d0e69890789a51a424",
+    "shared_expert.down_proj.weight": "16b4c78651fc170c736b8203b7526e28cc1850a32ac3a72a2d81c22f23ffcb07",
+    "experts.w13_weight": "e6142422edfdb577627929b55ad22d6f77756bbf5c5e6556b72e2c7ec790745a",
+    "experts.w2_weight": "f6de06256d0e28d107ccefba88537460516004b806a01453f2df75db8758c8a3"
+  }
+}

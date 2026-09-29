@@ -1,0 +1,24 @@
+{
+  "tokens": [
+    1,
+    32,
+    256,
+    1024
+  ],
+  "rounds": 12,
+  "iterations": 20,
+  "warmup": 20,
+  "profile_repeats": 3,
+  "dtype": "bfloat16",
+  "cross_mode_atol": 0,
+  "cross_mode_rtol": 0,
+  "cpu_reference_atol": 0.003,
+  "cpu_reference_rtol": 0.02,
+  "routing_weight_rtol": 0.0078125,
+  "routing_weight_atol": 0,
+  "router_logits_rtol": 0.0078125,
+  "router_logits_atol": 0.0001,
+  "routing_topk": "legal BF16 softmax top-k, permitting ties",
+  "scope": "scaled real Qwen2 MoE layer; deterministic synthetic weights; no checkpoint",
+  "performance": "batched eager layer calls including per-forward context, native stream/event submission and terminal completion"
+}

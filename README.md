@@ -269,6 +269,18 @@ this small-model workload. See [the guide](practice_20_kv_offload_overlap/README
 [results](practice_20_kv_offload_overlap/RESULTS.md) and
 [offline graph](practice_20_kv_offload_overlap/report/index.html).
 
+## Practice 21: trace shared and routed experts inside one MoE forward
+
+Run the installed Qwen2 MoE layer with controlled weights on one Ascend NPU,
+comparing the native shared-expert stream switch with same-stream execution.
+The graph verifies 192 data requirements across 538 device tasks; a separate
+lightweight trace checks observer effects. Four token shapes show no observed
+branch overlap and slower eager layer completion with two streams.
+See [the guide](practice_21_moe_shared_overlap/README.md),
+[results](practice_21_moe_shared_overlap/RESULTS.md) and
+[interactive graph](practice_21_moe_shared_overlap/report/index.html).
+
+
 ## References
 
 See the [reference index](references/README.md) for CUDA multi-stream use cases,
