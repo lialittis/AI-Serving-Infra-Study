@@ -280,6 +280,15 @@ See [the guide](practice_21_moe_shared_overlap/README.md),
 [results](practice_21_moe_shared_overlap/RESULTS.md) and
 [interactive graph](practice_21_moe_shared_overlap/report/index.html).
 
+## Practice 22: explain stream creation and task assignment
+
+Trace Qwen eager, PIECEWISE graph and sampling branches from process startup.
+Join Python acquisition stacks, native stream handles, graph capture lifetimes
+and actual profiler tasks. The graph's 26 active streams map to one main stream
+and 25 captured partitions; creation counts remain distinct from active usage.
+See [the guide](practice_22_stream_lifecycle/README.md),
+[findings](practice_22_stream_lifecycle/RESULTS.md) and
+[offline explorer](practice_22_stream_lifecycle/report/index.html).
 
 ## References
 

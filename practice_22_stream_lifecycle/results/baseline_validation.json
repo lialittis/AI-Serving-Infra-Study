@@ -1,0 +1,42 @@
+{
+  "cases": [
+    {
+      "case": "eager",
+      "configuration_and_model_match": true,
+      "requests": 2,
+      "batch": 1,
+      "greedy_exact_tokens_match": true,
+      "random_text_identity_required": null,
+      "valid_outputs": true
+    },
+    {
+      "case": "graph",
+      "configuration_and_model_match": true,
+      "requests": 2,
+      "batch": 1,
+      "greedy_exact_tokens_match": true,
+      "random_text_identity_required": null,
+      "valid_outputs": true
+    },
+    {
+      "case": "sampling-off",
+      "configuration_and_model_match": true,
+      "requests": 2,
+      "batch": 32,
+      "greedy_exact_tokens_match": null,
+      "random_text_identity_required": false,
+      "valid_outputs": true
+    },
+    {
+      "case": "sampling-on",
+      "configuration_and_model_match": true,
+      "requests": 2,
+      "batch": 32,
+      "greedy_exact_tokens_match": null,
+      "random_text_identity_required": false,
+      "valid_outputs": true
+    }
+  ],
+  "eager_graph_token_ids_equal": true,
+  "limits": "Correctness/control validation only; no performance claim; random texts need not match across processes."
+}

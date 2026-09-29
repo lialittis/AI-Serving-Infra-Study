@@ -142,6 +142,11 @@ Qwen batch 32与Llama batch 64的提前随机分支均在5个scheduler step中�
 
 原始 trace 和运行摘要需明确区分启动预热与用户请求。下一实验在这个链路上加入 KV 映射。
 
+2026-09-28 新增 [Practice 22](practice_22_stream_lifecycle/README.md)：从进程启动追踪
+stream 创建、池取用、上下文切换、graph 捕获与 replay。四组原生行为对照和四组基线完成；
+26 条 graph 活动流归属为主流及 25 个分区，句柄／Model ID 按生命周期关联。
+CANN 内部流底层创建调用及精确 NOTIFY ID 配对仍保留为缺口，不作完整恢复声明。
+
 ## 参考入口
 
 - [vLLM Architecture](https://docs.vllm.ai/en/latest/design/arch_overview/)
