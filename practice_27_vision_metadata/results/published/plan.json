@@ -1,0 +1,58 @@
+{
+  "cases": [
+    [
+      "prefill",
+      "beach.jpeg",
+      64
+    ],
+    [
+      "prefill",
+      "beach.jpeg",
+      256
+    ],
+    [
+      "prefill",
+      "beijing.jpeg",
+      64
+    ],
+    [
+      "prefill",
+      "beijing.jpeg",
+      256
+    ],
+    [
+      "decode",
+      "beach.jpeg",
+      64
+    ],
+    [
+      "decode",
+      "beach.jpeg",
+      256
+    ],
+    [
+      "decode",
+      "beijing.jpeg",
+      64
+    ],
+    [
+      "decode",
+      "beijing.jpeg",
+      256
+    ]
+  ],
+  "variants": [
+    "native",
+    "lengths",
+    "cached"
+  ],
+  "rounds": 12,
+  "warmup": 3,
+  "smoke": false,
+  "order": "LV/VL alternate; six variant/mode combinations rotate one position every two rounds, balancing all six positions within each order",
+  "timing": "P25 pair boundary; metadata preparation excluded and reported separately",
+  "precision": "bf16",
+  "atol": 0,
+  "rtol": 0,
+  "cpu_submitters": 1
+}

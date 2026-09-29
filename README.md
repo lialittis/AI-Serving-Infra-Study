@@ -338,6 +338,18 @@ See [guide](practice_26_decode_utilization/README.md),
 [findings](practice_26_decode_utilization/RESULTS.md), and
 [offline explorer](practice_26_decode_utilization/report/index.html).
 
+## Practice 27: remove vision metadata synchronization before overlapping requests
+
+Compare native vision, precomputed attention split lengths, and fully prepared
+shape metadata on Qwen2.5-VL-3B. Across 576 unprofiled samples and 96 traces,
+816 numerical checks pass exactly. Vision synchronization calls fall from 91 to
+7 to 0; the final variant enables vision-first overlap for both prefill and decode.
+Report preparation costs, single-stream improvements and additional concurrency
+benefits separately, with 768 independently proven boundary requirements.
+See [guide](practice_27_vision_metadata/README.md),
+[findings](practice_27_vision_metadata/RESULTS.md), and
+[interactive comparisons](practice_27_vision_metadata/report/index.html).
+
 ## References
 
 See the [reference index](references/README.md) for CUDA multi-stream use cases,

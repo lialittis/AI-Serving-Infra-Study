@@ -175,6 +175,13 @@ graph 请求完成时间中位数约 308 ms，eager 约 713 ms；未观察到跨
 结合 CPU/CANN 下发、任务空隙和独立硬件指标说明提交间隙与少核算子并存，
 不将覆盖率解释为芯片利用率，也不将收益归因于流数量本身。
 
+2026-09-29 新增 [Practice 27](practice_27_vision_metadata/README.md)：针对 P3b 的视觉元数据同步做
+native / lengths / cached 三组消融，576 个性能样本、96 个诊断、816 次输出检查逐元素一致。
+视觉同步 API 为 91 → 7 → 0；仅移除分段长度读取仍无 VL overlap，完整元数据预计算后
+VL 的 prefill / decode 均有实际 kernel 重叠，相对同版本单流分别快 7.18%–7.98% / 5.17%–10.74%。
+1,031,690 个设备任务、768 条边界要求核验通过；准备成本和单请求延迟另列。
+这验证了元数据路径对提交顺序的影响，未实现 graph、native vLLM 集成或硬件资源竞争计数器分析。
+
 ## 参考入口
 
 - [vLLM Architecture](https://docs.vllm.ai/en/latest/design/arch_overview/)
