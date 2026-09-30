@@ -14,6 +14,10 @@
 
 [源码审计](SOURCE_AUDIT.md) 解释分段长度、索引拷贝与证据的对应关系。
 
+[独立同步分析笔记](../references/vision_metadata_synchronization/README.md) 按视觉 forward 的执行阶段整理同步位置，并用真实时间记录解释为什么 91→7 条仍不足以实现 VL 重叠，以及必须保留哪些 event 依赖。
+
+[lengths 专题笔记](../references/vision_metadata_synchronization/LENGTHS.md) 解释分段长度、累计边界和实际 Sub kernel，并登记同步/D2H、编译提交/内存地址、结果异常与校验三个后续研究方向。
+
 `metadata.py` 局部替换本进程模型实例的 attention 方法，在退出时恢复；不修改已安装 Transformers。实验中切换方法的操作在 pair 计时外；部署固定变体时只需配置一次。`lengths` 的 attention 代码从固定哈希的原方法生成，仅改变分段长度的来源，避免重写数值计算。
 
 ## 方法与边界
