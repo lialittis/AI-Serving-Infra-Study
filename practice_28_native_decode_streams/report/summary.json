@@ -1,0 +1,3750 @@
+{
+  "run": "suite-01",
+  "status": {
+    "status": "passed",
+    "stages": [
+      {
+        "mode": "eager",
+        "stage": "qualification",
+        "passed": true
+      },
+      {
+        "mode": "graph",
+        "stage": "qualification",
+        "passed": true
+      }
+    ]
+  },
+  "recovery": {
+    "sources_unchanged": true,
+    "device_has_no_running_processes": true,
+    "original_request_verified": true,
+    "passed": true
+  },
+  "qualification": {
+    "eager-qualification": {
+      "status": {
+        "mode": "eager",
+        "stage": "qualify",
+        "status": "passed",
+        "pid": 1309652,
+        "qualification_checks": 34
+      },
+      "checks": 34
+    },
+    "graph-qualification": {
+      "status": {
+        "mode": "graph",
+        "stage": "qualify",
+        "status": "passed",
+        "pid": 1311144,
+        "qualification_checks": 34
+      },
+      "checks": 34
+    }
+  },
+  "revisions": {
+    "/vllm-workspace/vllm": "ad7125a431e176d4161099480a66f0169609a690",
+    "/vllm-workspace/vllm-ascend": "80610e4438dba05011b05f89fc45d91e96992671"
+  },
+  "performance": [
+    {
+      "mode": "eager",
+      "case": "mixed16_47",
+      "processes": [
+        {
+          "process": "measure-0-eager",
+          "wall_speedup": 0.9984906862826354,
+          "device_speedup": 0.9979661522915484,
+          "strategies": {
+            "serial": {
+              "wall_us": {
+                "n": 12,
+                "median": 19998.078999999998,
+                "min": 19255.375,
+                "max": 25189.853
+              },
+              "device_ready_us": {
+                "n": 12,
+                "median": 19906.970024108887,
+                "min": 19186.399459838867,
+                "max": 25109.57908630371
+              },
+              "host_submission_us": {
+                "n": 12,
+                "median": 19834.1225,
+                "min": 19095.64,
+                "max": 25019.473
+              },
+              "peak_allocated_bytes": {
+                "n": 12,
+                "median": 1263296000.0,
+                "min": 1263296000,
+                "max": 1263296000
+              }
+            },
+            "parallel": {
+              "wall_us": {
+                "n": 12,
+                "median": 20028.308,
+                "min": 19490.391,
+                "max": 22561.721
+              },
+              "device_ready_us": {
+                "n": 12,
+                "median": 19947.540283203125,
+                "min": 19417.240142822266,
+                "max": 22475.919723510742
+              },
+              "host_submission_us": {
+                "n": 12,
+                "median": 19883.402000000002,
+                "min": 19324.017,
+                "max": 22402.901
+              },
+              "peak_allocated_bytes": {
+                "n": 12,
+                "median": 1263296000.0,
+                "min": 1263296000,
+                "max": 1263296000
+              }
+            }
+          }
+        },
+        {
+          "process": "measure-3-eager",
+          "wall_speedup": 0.960540084710565,
+          "device_speedup": 0.9603521895245988,
+          "strategies": {
+            "serial": {
+              "wall_us": {
+                "n": 12,
+                "median": 21120.742,
+                "min": 20741.088,
+                "max": 81027.539
+              },
+              "device_ready_us": {
+                "n": 12,
+                "median": 21039.05963897705,
+                "min": 20659.860610961914,
+                "max": 80927.29949951172
+              },
+              "host_submission_us": {
+                "n": 12,
+                "median": 20973.1745,
+                "min": 20594.003,
+                "max": 80936.332
+              },
+              "peak_allocated_bytes": {
+                "n": 12,
+                "median": 1263296000.0,
+                "min": 1263296000,
+                "max": 1263296000
+              }
+            },
+            "parallel": {
+              "wall_us": {
+                "n": 12,
+                "median": 21988.4025,
+                "min": 20695.561,
+                "max": 89906.618
+              },
+              "device_ready_us": {
+                "n": 12,
+                "median": 21907.649993896484,
+                "min": 20623.859405517578,
+                "max": 89821.8002319336
+              },
+              "host_submission_us": {
+                "n": 12,
+                "median": 21843.016499999998,
+                "min": 20552.636,
+                "max": 89773.844
+              },
+              "peak_allocated_bytes": {
+                "n": 12,
+                "median": 1263296000.0,
+                "min": 1263296000,
+                "max": 1263296000
+              }
+            }
+          }
+        },
+        {
+          "process": "measure-4-eager",
+          "wall_speedup": 0.9888167410297799,
+          "device_speedup": 0.9886970523291343,
+          "strategies": {
+            "serial": {
+              "wall_us": {
+                "n": 12,
+                "median": 19584.360500000003,
+                "min": 19161.69,
+                "max": 20049.002
+              },
+              "device_ready_us": {
+                "n": 12,
+                "median": 19513.42010498047,
+                "min": 19101.48048400879,
+                "max": 19979.660034179688
+              },
+              "host_submission_us": {
+                "n": 12,
+                "median": 19427.6625,
+                "min": 18999.175,
+                "max": 19897.144
+              },
+              "peak_allocated_bytes": {
+                "n": 12,
+                "median": 1263296000.0,
+                "min": 1263296000,
+                "max": 1263296000
+              }
+            },
+            "parallel": {
+              "wall_us": {
+                "n": 12,
+                "median": 19805.8545,
+                "min": 19346.987,
+                "max": 20201.044
+              },
+              "device_ready_us": {
+                "n": 12,
+                "median": 19736.50074005127,
+                "min": 19279.420852661133,
+                "max": 20110.90087890625
+              },
+              "host_submission_us": {
+                "n": 12,
+                "median": 19671.1465,
+                "min": 19193.635,
+                "max": 20077.407
+              },
+              "peak_allocated_bytes": {
+                "n": 12,
+                "median": 1263296000.0,
+                "min": 1263296000,
+                "max": 1263296000
+              }
+            }
+          }
+        }
+      ],
+      "wall_speedup": {
+        "n": 3,
+        "median": 0.9888167410297799,
+        "min": 0.960540084710565,
+        "max": 0.9984906862826354
+      },
+      "device_speedup": {
+        "n": 3,
+        "median": 0.9886970523291343,
+        "min": 0.9603521895245988,
+        "max": 0.9979661522915484
+      }
+    },
+    {
+      "mode": "eager",
+      "case": "same32",
+      "processes": [
+        {
+          "process": "measure-0-eager",
+          "wall_speedup": 1.0810833574657046,
+          "device_speedup": 1.082411503548986,
+          "strategies": {
+            "serial": {
+              "wall_us": {
+                "n": 12,
+                "median": 22231.036,
+                "min": 19919.874,
+                "max": 28410.58
+              },
+              "device_ready_us": {
+                "n": 12,
+                "median": 22165.200233459473,
+                "min": 19825.220108032227,
+                "max": 28311.500549316406
+              },
+              "host_submission_us": {
+                "n": 12,
+                "median": 22077.091999999997,
+                "min": 19756.92,
+                "max": 28305.086
+              },
+              "peak_allocated_bytes": {
+                "n": 12,
+                "median": 1263296000.0,
+                "min": 1263296000,
+                "max": 1263296000
+              }
+            },
+            "parallel": {
+              "wall_us": {
+                "n": 12,
+                "median": 20563.665,
+                "min": 19988.95,
+                "max": 89203.503
+              },
+              "device_ready_us": {
+                "n": 12,
+                "median": 20477.609634399414,
+                "min": 19900.93994140625,
+                "max": 89108.68072509766
+              },
+              "host_submission_us": {
+                "n": 12,
+                "median": 20415.069499999998,
+                "min": 19837.122,
+                "max": 89141.992
+              },
+              "peak_allocated_bytes": {
+                "n": 12,
+                "median": 1263296000.0,
+                "min": 1263296000,
+                "max": 1263296000
+              }
+            }
+          }
+        },
+        {
+          "process": "measure-3-eager",
+          "wall_speedup": 1.0028079351325188,
+          "device_speedup": 1.0026749878565397,
+          "strategies": {
+            "serial": {
+              "wall_us": {
+                "n": 12,
+                "median": 20585.894,
+                "min": 20157.579,
+                "max": 22283.999
+              },
+              "device_ready_us": {
+                "n": 12,
+                "median": 20510.859489440918,
+                "min": 20082.000732421875,
+                "max": 22120.460510253906
+              },
+              "host_submission_us": {
+                "n": 12,
+                "median": 20450.230499999998,
+                "min": 20000.535,
+                "max": 22137.279
+              },
+              "peak_allocated_bytes": {
+                "n": 12,
+                "median": 1263296000.0,
+                "min": 1263296000,
+                "max": 1263296000
+              }
+            },
+            "parallel": {
+              "wall_us": {
+                "n": 12,
+                "median": 20528.252,
+                "min": 20266.413,
+                "max": 105825.218
+              },
+              "device_ready_us": {
+                "n": 12,
+                "median": 20456.13956451416,
+                "min": 20197.099685668945,
+                "max": 105751.87683105469
+              },
+              "host_submission_us": {
+                "n": 12,
+                "median": 20380.174,
+                "min": 20112.745,
+                "max": 105666.75
+              },
+              "peak_allocated_bytes": {
+                "n": 12,
+                "median": 1263296000.0,
+                "min": 1263296000,
+                "max": 1263296000
+              }
+            }
+          }
+        },
+        {
+          "process": "measure-4-eager",
+          "wall_speedup": 0.9966643999447475,
+          "device_speedup": 0.9957322760580662,
+          "strategies": {
+            "serial": {
+              "wall_us": {
+                "n": 12,
+                "median": 19954.054,
+                "min": 18743.816,
+                "max": 21769.924
+              },
+              "device_ready_us": {
+                "n": 12,
+                "median": 19857.759475708008,
+                "min": 18683.780670166016,
+                "max": 21698.619842529297
+              },
+              "host_submission_us": {
+                "n": 12,
+                "median": 19807.148999999998,
+                "min": 18578.935,
+                "max": 21636.402
+              },
+              "peak_allocated_bytes": {
+                "n": 12,
+                "median": 1263296000.0,
+                "min": 1263296000,
+                "max": 1263296000
+              }
+            },
+            "parallel": {
+              "wall_us": {
+                "n": 12,
+                "median": 20020.8355,
+                "min": 19558.969,
+                "max": 20527.627
+              },
+              "device_ready_us": {
+                "n": 12,
+                "median": 19942.870140075684,
+                "min": 19491.39976501465,
+                "max": 20444.679260253906
+              },
+              "host_submission_us": {
+                "n": 12,
+                "median": 19882.91,
+                "min": 19426.148,
+                "max": 20391.223
+              },
+              "peak_allocated_bytes": {
+                "n": 12,
+                "median": 1263296000.0,
+                "min": 1263296000,
+                "max": 1263296000
+              }
+            }
+          }
+        }
+      ],
+      "wall_speedup": {
+        "n": 3,
+        "median": 1.0028079351325188,
+        "min": 0.9966643999447475,
+        "max": 1.0810833574657046
+      },
+      "device_speedup": {
+        "n": 3,
+        "median": 1.0026749878565397,
+        "min": 0.9957322760580662,
+        "max": 1.082411503548986
+      }
+    },
+    {
+      "mode": "graph",
+      "case": "mixed16_47",
+      "processes": [
+        {
+          "process": "measure-1-graph",
+          "wall_speedup": 1.0030176884770412,
+          "device_speedup": 1.0034305612284062,
+          "strategies": {
+            "serial": {
+              "wall_us": {
+                "n": 12,
+                "median": 6645.0965,
+                "min": 6335.955,
+                "max": 13709.649
+              },
+              "device_ready_us": {
+                "n": 12,
+                "median": 6566.5600299835205,
+                "min": 6259.679794311523,
+                "max": 13646.699905395508
+              },
+              "host_submission_us": {
+                "n": 12,
+                "median": 6267.866,
+                "min": 5991.614,
+                "max": 13352.724
+              },
+              "peak_allocated_bytes": {
+                "n": 12,
+                "median": 1263284224.0,
+                "min": 1263284224,
+                "max": 1263284224
+              }
+            },
+            "parallel": {
+              "wall_us": {
+                "n": 12,
+                "median": 6625.103999999999,
+                "min": 6183.165,
+                "max": 7278.102
+              },
+              "device_ready_us": {
+                "n": 12,
+                "median": 6544.110059738159,
+                "min": 6104.939937591553,
+                "max": 7142.8399085998535
+              },
+              "host_submission_us": {
+                "n": 12,
+                "median": 6281.9825,
+                "min": 5753.235,
+                "max": 6948.82
+              },
+              "peak_allocated_bytes": {
+                "n": 12,
+                "median": 1263284224.0,
+                "min": 1263284224,
+                "max": 1263284224
+              }
+            }
+          }
+        },
+        {
+          "process": "measure-2-graph",
+          "wall_speedup": 0.9992988889637664,
+          "device_speedup": 0.9985727673762996,
+          "strategies": {
+            "serial": {
+              "wall_us": {
+                "n": 12,
+                "median": 6591.335,
+                "min": 5943.422,
+                "max": 7024.106
+              },
+              "device_ready_us": {
+                "n": 12,
+                "median": 6492.78998374939,
+                "min": 5876.999855041504,
+                "max": 6935.760021209717
+              },
+              "host_submission_us": {
+                "n": 12,
+                "median": 6235.2475,
+                "min": 5292.557,
+                "max": 6834.196
+              },
+              "peak_allocated_bytes": {
+                "n": 12,
+                "median": 1263284224.0,
+                "min": 1263284224,
+                "max": 1263284224
+              }
+            },
+            "parallel": {
+              "wall_us": {
+                "n": 12,
+                "median": 6595.9595,
+                "min": 6426.141,
+                "max": 7157.029
+              },
+              "device_ready_us": {
+                "n": 12,
+                "median": 6502.06995010376,
+                "min": 6331.480026245117,
+                "max": 7066.259860992432
+              },
+              "host_submission_us": {
+                "n": 12,
+                "median": 6270.739,
+                "min": 6091.633,
+                "max": 6974.164
+              },
+              "peak_allocated_bytes": {
+                "n": 12,
+                "median": 1263284224.0,
+                "min": 1263284224,
+                "max": 1263284224
+              }
+            }
+          }
+        },
+        {
+          "process": "measure-5-graph",
+          "wall_speedup": 1.0201014133026955,
+          "device_speedup": 1.0241455608152557,
+          "strategies": {
+            "serial": {
+              "wall_us": {
+                "n": 12,
+                "median": 6708.852,
+                "min": 6153.971,
+                "max": 7287.896
+              },
+              "device_ready_us": {
+                "n": 12,
+                "median": 6625.709772109985,
+                "min": 6040.259838104248,
+                "max": 7181.779861450195
+              },
+              "host_submission_us": {
+                "n": 12,
+                "median": 6341.802,
+                "min": 5826.658,
+                "max": 6936.345
+              },
+              "peak_allocated_bytes": {
+                "n": 12,
+                "median": 1263284224.0,
+                "min": 1263284224,
+                "max": 1263284224
+              }
+            },
+            "parallel": {
+              "wall_us": {
+                "n": 12,
+                "median": 6576.652,
+                "min": 6467.905,
+                "max": 7223.16
+              },
+              "device_ready_us": {
+                "n": 12,
+                "median": 6469.5000648498535,
+                "min": 6357.460021972656,
+                "max": 7135.000228881836
+              },
+              "host_submission_us": {
+                "n": 12,
+                "median": 6224.710999999999,
+                "min": 6040.501,
+                "max": 7017.934
+              },
+              "peak_allocated_bytes": {
+                "n": 12,
+                "median": 1263284224.0,
+                "min": 1263284224,
+                "max": 1263284224
+              }
+            }
+          }
+        }
+      ],
+      "wall_speedup": {
+        "n": 3,
+        "median": 1.0030176884770412,
+        "min": 0.9992988889637664,
+        "max": 1.0201014133026955
+      },
+      "device_speedup": {
+        "n": 3,
+        "median": 1.0034305612284062,
+        "min": 0.9985727673762996,
+        "max": 1.0241455608152557
+      }
+    },
+    {
+      "mode": "graph",
+      "case": "same32",
+      "processes": [
+        {
+          "process": "measure-1-graph",
+          "wall_speedup": 0.9891386232661111,
+          "device_speedup": 0.9970246520420946,
+          "strategies": {
+            "serial": {
+              "wall_us": {
+                "n": 12,
+                "median": 6542.696,
+                "min": 6063.218,
+                "max": 6934.544
+              },
+              "device_ready_us": {
+                "n": 12,
+                "median": 6460.699796676636,
+                "min": 5987.199783325195,
+                "max": 6809.999942779541
+              },
+              "host_submission_us": {
+                "n": 12,
+                "median": 6165.644,
+                "min": 5410.124,
+                "max": 6619.262
+              },
+              "peak_allocated_bytes": {
+                "n": 12,
+                "median": 1263284224.0,
+                "min": 1263284224,
+                "max": 1263284224
+              }
+            },
+            "parallel": {
+              "wall_us": {
+                "n": 12,
+                "median": 6614.539000000001,
+                "min": 6336.038,
+                "max": 6986.282
+              },
+              "device_ready_us": {
+                "n": 12,
+                "median": 6479.979991912842,
+                "min": 6257.460117340088,
+                "max": 6888.100147247314
+              },
+              "host_submission_us": {
+                "n": 12,
+                "median": 6187.645,
+                "min": 5888.943,
+                "max": 6619.625
+              },
+              "peak_allocated_bytes": {
+                "n": 12,
+                "median": 1263284224.0,
+                "min": 1263284224,
+                "max": 1263284224
+              }
+            }
+          }
+        },
+        {
+          "process": "measure-2-graph",
+          "wall_speedup": 0.9853384595528134,
+          "device_speedup": 0.984916517321474,
+          "strategies": {
+            "serial": {
+              "wall_us": {
+                "n": 12,
+                "median": 6286.854,
+                "min": 5993.222,
+                "max": 6545.498
+              },
+              "device_ready_us": {
+                "n": 12,
+                "median": 6201.9898891448975,
+                "min": 5920.57991027832,
+                "max": 6459.04016494751
+              },
+              "host_submission_us": {
+                "n": 12,
+                "median": 5896.5985,
+                "min": 5338.441,
+                "max": 6171.94
+              },
+              "peak_allocated_bytes": {
+                "n": 12,
+                "median": 1263284224.0,
+                "min": 1263284224,
+                "max": 1263284224
+              }
+            },
+            "parallel": {
+              "wall_us": {
+                "n": 12,
+                "median": 6380.4005,
+                "min": 6046.842,
+                "max": 85549.174
+              },
+              "device_ready_us": {
+                "n": 12,
+                "median": 6296.9701290130615,
+                "min": 5966.499805450439,
+                "max": 85464.36309814453
+              },
+              "host_submission_us": {
+                "n": 12,
+                "median": 6028.883,
+                "min": 5681.217,
+                "max": 85110.243
+              },
+              "peak_allocated_bytes": {
+                "n": 12,
+                "median": 1263284224.0,
+                "min": 1263284224,
+                "max": 1263284224
+              }
+            }
+          }
+        },
+        {
+          "process": "measure-5-graph",
+          "wall_speedup": 0.9907909597627861,
+          "device_speedup": 0.9881235328057256,
+          "strategies": {
+            "serial": {
+              "wall_us": {
+                "n": 12,
+                "median": 6660.1325,
+                "min": 6102.872,
+                "max": 8838.465
+              },
+              "device_ready_us": {
+                "n": 12,
+                "median": 6541.209936141968,
+                "min": 6021.299839019775,
+                "max": 8739.93968963623
+              },
+              "host_submission_us": {
+                "n": 12,
+                "median": 6324.783,
+                "min": 5447.827,
+                "max": 8560.604
+              },
+              "peak_allocated_bytes": {
+                "n": 12,
+                "median": 1263284224.0,
+                "min": 1263284224,
+                "max": 1263284224
+              }
+            },
+            "parallel": {
+              "wall_us": {
+                "n": 12,
+                "median": 6722.036,
+                "min": 6435.372,
+                "max": 6984.425
+              },
+              "device_ready_us": {
+                "n": 12,
+                "median": 6619.830131530762,
+                "min": 6351.739883422852,
+                "max": 6870.979785919189
+              },
+              "host_submission_us": {
+                "n": 12,
+                "median": 6323.549,
+                "min": 6062.893,
+                "max": 6746.513
+              },
+              "peak_allocated_bytes": {
+                "n": 12,
+                "median": 1263284224.0,
+                "min": 1263284224,
+                "max": 1263284224
+              }
+            }
+          }
+        }
+      ],
+      "wall_speedup": {
+        "n": 3,
+        "median": 0.9891386232661111,
+        "min": 0.9853384595528134,
+        "max": 0.9907909597627861
+      },
+      "device_speedup": {
+        "n": 3,
+        "median": 0.9881235328057256,
+        "min": 0.984916517321474,
+        "max": 0.9970246520420946
+      }
+    }
+  ],
+  "diagnostics": [
+    {
+      "process": "eager-pipe",
+      "trials": [
+        {
+          "trial": {
+            "case": "mixed16_47",
+            "strategy": "parallel",
+            "order": "AB",
+            "profile": "pipe",
+            "timing": {
+              "wall_us": 30023.931,
+              "ready_us": {
+                "A": 15875.37956237793,
+                "B": 29622.440338134766
+              },
+              "host_submission_us": {
+                "A": 16177.213,
+                "B": 29922.239
+              }
+            }
+          },
+          "compute_tasks": 576,
+          "stream_ids": [
+            "43",
+            "44"
+          ],
+          "overlap_us": "0",
+          "compute_union_us": "4971.271",
+          "device_compute_span_us": "29143.625",
+          "coverage": 0.17057833402673828,
+          "synchronization": {
+            "evidence": "Python event identity + exact task flows + observed ordering",
+            "roles": {
+              "A": {
+                "origin": 7590,
+                "wait": {
+                  "task": 7592,
+                  "status": "device_wait_observed"
+                },
+                "wait_cann_index": 10031,
+                "terminal": 8170,
+                "cpu_join": "P28/join/A"
+              },
+              "B": {
+                "origin": 7590,
+                "wait": {
+                  "task": null,
+                  "status": "no_device_wait_in_trace; producer_already_complete_before_native_call"
+                },
+                "wait_cann_index": 11730,
+                "terminal": 8748,
+                "cpu_join": "P28/join/B"
+              }
+            },
+            "forward_cpu_synchronizations": []
+          },
+          "branch_timing": {
+            "order": "AB",
+            "second_host_start_minus_first_compute_end_us": "237.908",
+            "second_compute_start_minus_first_compute_end_us": "353.754",
+            "second_native_submit_minus_first_compute_end_us": "340.805"
+          },
+          "provenance": {
+            "trace": "profiler/fe561f2e72a8_1329238_20260929172529144_ascend_pt/ASCEND_PROFILER_OUTPUT/trace_view.json",
+            "trace_sha256": "bd96a374565e8f6e5855169298fecab1217c699ca82c0fe504957772545152dd",
+            "csv": "profiler/fe561f2e72a8_1329238_20260929172529144_ascend_pt/ASCEND_PROFILER_OUTPUT/kernel_details.csv",
+            "csv_sha256": "ec3304b03837938e4a857cfa961c54caeb0e848746dfbea53cb64a895975a2db"
+          }
+        },
+        {
+          "trial": {
+            "case": "mixed16_47",
+            "strategy": "parallel",
+            "order": "BA",
+            "profile": "pipe",
+            "timing": {
+              "wall_us": 29837.601,
+              "ready_us": {
+                "B": 15719.499588012695,
+                "A": 29428.37905883789
+              },
+              "host_submission_us": {
+                "B": 16015.167,
+                "A": 29732.675
+              }
+            }
+          },
+          "compute_tasks": 576,
+          "stream_ids": [
+            "43",
+            "44"
+          ],
+          "overlap_us": "0",
+          "compute_union_us": "4968.286",
+          "device_compute_span_us": "28940.957",
+          "coverage": 0.171669720527901,
+          "synchronization": {
+            "evidence": "Python event identity + exact task flows + observed ordering",
+            "roles": {
+              "A": {
+                "origin": 7590,
+                "wait": {
+                  "task": null,
+                  "status": "no_device_wait_in_trace; producer_already_complete_before_native_call"
+                },
+                "wait_cann_index": 11730,
+                "terminal": 8748,
+                "cpu_join": "P28/join/A"
+              },
+              "B": {
+                "origin": 7590,
+                "wait": {
+                  "task": 7592,
+                  "status": "device_wait_observed"
+                },
+                "wait_cann_index": 10031,
+                "terminal": 8170,
+                "cpu_join": "P28/join/B"
+              }
+            },
+            "forward_cpu_synchronizations": []
+          },
+          "branch_timing": {
+            "order": "BA",
+            "second_host_start_minus_first_compute_end_us": "240.454",
+            "second_compute_start_minus_first_compute_end_us": "360.335",
+            "second_native_submit_minus_first_compute_end_us": "345.019"
+          },
+          "provenance": {
+            "trace": "profiler/fe561f2e72a8_1329238_20260929172533252_ascend_pt/ASCEND_PROFILER_OUTPUT/trace_view.json",
+            "trace_sha256": "9b595801f6d853e00b2fa4b78a6fcb305b1eeaf233170a254264aac1bef04316",
+            "csv": "profiler/fe561f2e72a8_1329238_20260929172533252_ascend_pt/ASCEND_PROFILER_OUTPUT/kernel_details.csv",
+            "csv_sha256": "fc2794257034550ec12a668f1b8fa88bdc27655d4d2293b32fc7ad61c392f6c2"
+          }
+        },
+        {
+          "trial": {
+            "case": "mixed16_47",
+            "strategy": "serial",
+            "order": "AB",
+            "profile": "pipe",
+            "timing": {
+              "wall_us": 29462.605,
+              "ready_us": {
+                "A": 15451.919555664062,
+                "B": 29077.280044555664
+              },
+              "host_submission_us": {
+                "A": 15735.793,
+                "B": 29353.306
+              }
+            }
+          },
+          "compute_tasks": 576,
+          "stream_ids": [
+            "44"
+          ],
+          "overlap_us": "0",
+          "compute_union_us": "4945.263",
+          "device_compute_span_us": "28653.086",
+          "coverage": 0.1725909383722228,
+          "synchronization": {
+            "evidence": "Python event identity + exact task flows + observed ordering",
+            "roles": {
+              "A": {
+                "origin": 7590,
+                "wait": {
+                  "task": 7592,
+                  "status": "device_wait_observed"
+                },
+                "wait_cann_index": 10029,
+                "terminal": 8170,
+                "cpu_join": "P28/join/A"
+              },
+              "B": {
+                "origin": 7590,
+                "wait": {
+                  "task": null,
+                  "status": "no_device_wait_in_trace; producer_already_complete_before_native_call"
+                },
+                "wait_cann_index": 11728,
+                "terminal": 8748,
+                "cpu_join": "P28/join/B"
+              }
+            },
+            "forward_cpu_synchronizations": []
+          },
+          "branch_timing": {
+            "order": "AB",
+            "second_host_start_minus_first_compute_end_us": "233.195",
+            "second_compute_start_minus_first_compute_end_us": "354.114",
+            "second_native_submit_minus_first_compute_end_us": "339.128"
+          },
+          "provenance": {
+            "trace": "profiler/fe561f2e72a8_1329238_20260929172519843_ascend_pt/ASCEND_PROFILER_OUTPUT/trace_view.json",
+            "trace_sha256": "0e70c862d0b4ec9613029d4c99f2095895971b50bd3dda0af3cc8434a486dd40",
+            "csv": "profiler/fe561f2e72a8_1329238_20260929172519843_ascend_pt/ASCEND_PROFILER_OUTPUT/kernel_details.csv",
+            "csv_sha256": "001db298e2ce3c32e19b4ecd82a11045a11d3c193c03c249b3b6fd5532c795b7"
+          }
+        },
+        {
+          "trial": {
+            "case": "mixed16_47",
+            "strategy": "serial",
+            "order": "BA",
+            "profile": "pipe",
+            "timing": {
+              "wall_us": 29093.311,
+              "ready_us": {
+                "B": 15200.739860534668,
+                "A": 28707.16094970703
+              },
+              "host_submission_us": {
+                "B": 15488.104,
+                "A": 29000.73
+              }
+            }
+          },
+          "compute_tasks": 576,
+          "stream_ids": [
+            "44"
+          ],
+          "overlap_us": "0",
+          "compute_union_us": "4946.574",
+          "device_compute_span_us": "28279.491",
+          "coverage": 0.17491736325805865,
+          "synchronization": {
+            "evidence": "Python event identity + exact task flows + observed ordering",
+            "roles": {
+              "A": {
+                "origin": 7590,
+                "wait": {
+                  "task": null,
+                  "status": "no_device_wait_in_trace; producer_already_complete_before_native_call"
+                },
+                "wait_cann_index": 11728,
+                "terminal": 8748,
+                "cpu_join": "P28/join/A"
+              },
+              "B": {
+                "origin": 7590,
+                "wait": {
+                  "task": 7592,
+                  "status": "device_wait_observed"
+                },
+                "wait_cann_index": 10029,
+                "terminal": 8170,
+                "cpu_join": "P28/join/B"
+              }
+            },
+            "forward_cpu_synchronizations": []
+          },
+          "branch_timing": {
+            "order": "BA",
+            "second_host_start_minus_first_compute_end_us": "223.968",
+            "second_compute_start_minus_first_compute_end_us": "334.593",
+            "second_native_submit_minus_first_compute_end_us": "321.002"
+          },
+          "provenance": {
+            "trace": "profiler/fe561f2e72a8_1329238_20260929172524954_ascend_pt/ASCEND_PROFILER_OUTPUT/trace_view.json",
+            "trace_sha256": "49b2147852d7a5196c4d49217630894b20075148991bd20780df8f93ced4e711",
+            "csv": "profiler/fe561f2e72a8_1329238_20260929172524954_ascend_pt/ASCEND_PROFILER_OUTPUT/kernel_details.csv",
+            "csv_sha256": "a64bc2dfac0b7870fcac0766e191e7c6c180a69badc77d197409cac021880398"
+          }
+        },
+        {
+          "trial": {
+            "case": "same32",
+            "strategy": "parallel",
+            "order": "AB",
+            "profile": "pipe",
+            "timing": {
+              "wall_us": 28762.196,
+              "ready_us": {
+                "A": 15233.320236206055,
+                "B": 28358.87908935547
+              },
+              "host_submission_us": {
+                "A": 15537.478,
+                "B": 28663.27
+              }
+            }
+          },
+          "compute_tasks": 576,
+          "stream_ids": [
+            "43",
+            "44"
+          ],
+          "overlap_us": "0",
+          "compute_union_us": "4940.048",
+          "device_compute_span_us": "27894.955",
+          "coverage": 0.17709467536334078,
+          "synchronization": {
+            "evidence": "Python event identity + exact task flows + observed ordering",
+            "roles": {
+              "A": {
+                "origin": 7590,
+                "wait": {
+                  "task": 7592,
+                  "status": "device_wait_observed"
+                },
+                "wait_cann_index": 10031,
+                "terminal": 8170,
+                "cpu_join": "P28/join/A"
+              },
+              "B": {
+                "origin": 7590,
+                "wait": {
+                  "task": null,
+                  "status": "no_device_wait_in_trace; producer_already_complete_before_native_call"
+                },
+                "wait_cann_index": 11730,
+                "terminal": 8748,
+                "cpu_join": "P28/join/B"
+              }
+            },
+            "forward_cpu_synchronizations": []
+          },
+          "branch_timing": {
+            "order": "AB",
+            "second_host_start_minus_first_compute_end_us": "232.870",
+            "second_compute_start_minus_first_compute_end_us": "343.553",
+            "second_native_submit_minus_first_compute_end_us": "329.557"
+          },
+          "provenance": {
+            "trace": "profiler/fe561f2e72a8_1329238_20260929172510654_ascend_pt/ASCEND_PROFILER_OUTPUT/trace_view.json",
+            "trace_sha256": "38db7c1b4aa864b61da9715574a64ac6f0f4ad0b6d35fcd5c32d50a92bdc7de8",
+            "csv": "profiler/fe561f2e72a8_1329238_20260929172510654_ascend_pt/ASCEND_PROFILER_OUTPUT/kernel_details.csv",
+            "csv_sha256": "740aa687320546dab0f7e45e00f5148175ab8fa08551b28f2a9479499c40d7e4"
+          }
+        },
+        {
+          "trial": {
+            "case": "same32",
+            "strategy": "parallel",
+            "order": "BA",
+            "profile": "pipe",
+            "timing": {
+              "wall_us": 29451.208,
+              "ready_us": {
+                "B": 15389.880180358887,
+                "A": 29046.239852905273
+              },
+              "host_submission_us": {
+                "B": 15692.154,
+                "A": 29355.54
+              }
+            }
+          },
+          "compute_tasks": 576,
+          "stream_ids": [
+            "43",
+            "44"
+          ],
+          "overlap_us": "0",
+          "compute_union_us": "4979.338",
+          "device_compute_span_us": "28606.523",
+          "coverage": 0.17406302751299066,
+          "synchronization": {
+            "evidence": "Python event identity + exact task flows + observed ordering",
+            "roles": {
+              "A": {
+                "origin": 7590,
+                "wait": {
+                  "task": null,
+                  "status": "no_device_wait_in_trace; producer_already_complete_before_native_call"
+                },
+                "wait_cann_index": 11730,
+                "terminal": 8748,
+                "cpu_join": "P28/join/A"
+              },
+              "B": {
+                "origin": 7590,
+                "wait": {
+                  "task": 7592,
+                  "status": "device_wait_observed"
+                },
+                "wait_cann_index": 10031,
+                "terminal": 8170,
+                "cpu_join": "P28/join/B"
+              }
+            },
+            "forward_cpu_synchronizations": []
+          },
+          "branch_timing": {
+            "order": "BA",
+            "second_host_start_minus_first_compute_end_us": "248.334",
+            "second_compute_start_minus_first_compute_end_us": "363.275",
+            "second_native_submit_minus_first_compute_end_us": "346.857"
+          },
+          "provenance": {
+            "trace": "profiler/fe561f2e72a8_1329238_20260929172515745_ascend_pt/ASCEND_PROFILER_OUTPUT/trace_view.json",
+            "trace_sha256": "ad7ee9f6a600c91256dbf3099d334344feb21755ae44608c1e976a31242f99ed",
+            "csv": "profiler/fe561f2e72a8_1329238_20260929172515745_ascend_pt/ASCEND_PROFILER_OUTPUT/kernel_details.csv",
+            "csv_sha256": "ddac1595530e5a6e1b5c6190dd5b6ea312bb75e4d48767114b9c88bc1669c9ea"
+          }
+        },
+        {
+          "trial": {
+            "case": "same32",
+            "strategy": "serial",
+            "order": "AB",
+            "profile": "pipe",
+            "timing": {
+              "wall_us": 27317.78,
+              "ready_us": {
+                "A": 14165.300369262695,
+                "B": 26891.279220581055
+              },
+              "host_submission_us": {
+                "A": 14481.822,
+                "B": 27205.642
+              }
+            }
+          },
+          "compute_tasks": 576,
+          "stream_ids": [
+            "44"
+          ],
+          "overlap_us": "0",
+          "compute_union_us": "4930.458",
+          "device_compute_span_us": "26301.752",
+          "coverage": 0.18745739827521757,
+          "synchronization": {
+            "evidence": "Python event identity + exact task flows + observed ordering",
+            "roles": {
+              "A": {
+                "origin": 7590,
+                "wait": {
+                  "task": 7592,
+                  "status": "device_wait_observed"
+                },
+                "wait_cann_index": 10029,
+                "terminal": 8170,
+                "cpu_join": "P28/join/A"
+              },
+              "B": {
+                "origin": 7590,
+                "wait": {
+                  "task": null,
+                  "status": "no_device_wait_in_trace; producer_already_complete_before_native_call"
+                },
+                "wait_cann_index": 11728,
+                "terminal": 8748,
+                "cpu_join": "P28/join/B"
+              }
+            },
+            "forward_cpu_synchronizations": []
+          },
+          "branch_timing": {
+            "order": "AB",
+            "second_host_start_minus_first_compute_end_us": "258.911",
+            "second_compute_start_minus_first_compute_end_us": "360.115",
+            "second_native_submit_minus_first_compute_end_us": "346.614"
+          },
+          "provenance": {
+            "trace": "profiler/fe561f2e72a8_1329238_20260929172502292_ascend_pt/ASCEND_PROFILER_OUTPUT/trace_view.json",
+            "trace_sha256": "72738337138c530ae54b35c6ca95a2d442ab4006d07fde20b85ce4b757b1a180",
+            "csv": "profiler/fe561f2e72a8_1329238_20260929172502292_ascend_pt/ASCEND_PROFILER_OUTPUT/kernel_details.csv",
+            "csv_sha256": "f569b46c1404f0613957bf8dc3574e2573f91dd0fc7ccf66d34c37701f5ff622"
+          }
+        },
+        {
+          "trial": {
+            "case": "same32",
+            "strategy": "serial",
+            "order": "BA",
+            "profile": "pipe",
+            "timing": {
+              "wall_us": 29975.745,
+              "ready_us": {
+                "B": 15956.700325012207,
+                "A": 29543.060302734375
+              },
+              "host_submission_us": {
+                "B": 16283.849,
+                "A": 29873.666
+              }
+            }
+          },
+          "compute_tasks": 576,
+          "stream_ids": [
+            "44"
+          ],
+          "overlap_us": "0",
+          "compute_union_us": "4965.996",
+          "device_compute_span_us": "29082.743",
+          "coverage": 0.17075404476118364,
+          "synchronization": {
+            "evidence": "Python event identity + exact task flows + observed ordering",
+            "roles": {
+              "A": {
+                "origin": 7590,
+                "wait": {
+                  "task": null,
+                  "status": "no_device_wait_in_trace; producer_already_complete_before_native_call"
+                },
+                "wait_cann_index": 11728,
+                "terminal": 8748,
+                "cpu_join": "P28/join/A"
+              },
+              "B": {
+                "origin": 7590,
+                "wait": {
+                  "task": 7592,
+                  "status": "device_wait_observed"
+                },
+                "wait_cann_index": 10029,
+                "terminal": 8170,
+                "cpu_join": "P28/join/B"
+              }
+            },
+            "forward_cpu_synchronizations": []
+          },
+          "branch_timing": {
+            "order": "BA",
+            "second_host_start_minus_first_compute_end_us": "256.276",
+            "second_compute_start_minus_first_compute_end_us": "368.355",
+            "second_native_submit_minus_first_compute_end_us": "357.272"
+          },
+          "provenance": {
+            "trace": "profiler/fe561f2e72a8_1329238_20260929172506544_ascend_pt/ASCEND_PROFILER_OUTPUT/trace_view.json",
+            "trace_sha256": "e7eaee2d35eef8c61f7f2371596db0842d41f0451bfb2a8af53752d58c40a5fb",
+            "csv": "profiler/fe561f2e72a8_1329238_20260929172506544_ascend_pt/ASCEND_PROFILER_OUTPUT/kernel_details.csv",
+            "csv_sha256": "40e71a7a9523d4ca6cf3bcebc628ceb95672f4d32784f8a7d538c0a89828ea8f"
+          }
+        }
+      ]
+    },
+    {
+      "process": "eager-plain",
+      "trials": [
+        {
+          "trial": {
+            "case": "mixed16_47",
+            "strategy": "parallel",
+            "order": "AB",
+            "profile": "plain",
+            "timing": {
+              "wall_us": 32815.989,
+              "ready_us": {
+                "A": 17610.09979248047,
+                "B": 32405.200958251953
+              },
+              "host_submission_us": {
+                "A": 17920.539,
+                "B": 32718.72
+              }
+            }
+          },
+          "compute_tasks": 576,
+          "stream_ids": [
+            "43",
+            "44"
+          ],
+          "overlap_us": "0",
+          "compute_union_us": "4792.303",
+          "device_compute_span_us": "31834.193",
+          "coverage": 0.15053948438397668,
+          "synchronization": {
+            "evidence": "Python event identity + exact task flows + observed ordering",
+            "roles": {
+              "A": {
+                "origin": 7584,
+                "wait": {
+                  "task": 7586,
+                  "status": "device_wait_observed"
+                },
+                "wait_cann_index": 10030,
+                "terminal": 8164,
+                "cpu_join": "P28/join/A"
+              },
+              "B": {
+                "origin": 7584,
+                "wait": {
+                  "task": null,
+                  "status": "no_device_wait_in_trace; producer_already_complete_before_native_call"
+                },
+                "wait_cann_index": 11729,
+                "terminal": 8742,
+                "cpu_join": "P28/join/B"
+              }
+            },
+            "forward_cpu_synchronizations": []
+          },
+          "branch_timing": {
+            "order": "AB",
+            "second_host_start_minus_first_compute_end_us": "244.191",
+            "second_compute_start_minus_first_compute_end_us": "363.275",
+            "second_native_submit_minus_first_compute_end_us": "347.021"
+          },
+          "provenance": {
+            "trace": "profiler/fe561f2e72a8_1321578_20260929172155156_ascend_pt/ASCEND_PROFILER_OUTPUT/trace_view.json",
+            "trace_sha256": "30d8ee6337d17c54100768c3ba59fc539930ecc8a44e327302c4e6dc4483b182",
+            "csv": "profiler/fe561f2e72a8_1321578_20260929172155156_ascend_pt/ASCEND_PROFILER_OUTPUT/kernel_details.csv",
+            "csv_sha256": "03e88aac437a5ab2c1cf0ae6b9227dc89281cc04895f9a97b34012b19d60682d"
+          }
+        },
+        {
+          "trial": {
+            "case": "mixed16_47",
+            "strategy": "parallel",
+            "order": "BA",
+            "profile": "plain",
+            "timing": {
+              "wall_us": 29724.379,
+              "ready_us": {
+                "B": 15633.279800415039,
+                "A": 29337.080001831055
+              },
+              "host_submission_us": {
+                "B": 15914.6,
+                "A": 29618.462
+              }
+            }
+          },
+          "compute_tasks": 576,
+          "stream_ids": [
+            "43",
+            "44"
+          ],
+          "overlap_us": "0",
+          "compute_union_us": "4775.922",
+          "device_compute_span_us": "28903.716",
+          "coverage": 0.16523557040208947,
+          "synchronization": {
+            "evidence": "Python event identity + exact task flows + observed ordering",
+            "roles": {
+              "A": {
+                "origin": 7589,
+                "wait": {
+                  "task": null,
+                  "status": "no_device_wait_in_trace; producer_already_complete_before_native_call"
+                },
+                "wait_cann_index": 11729,
+                "terminal": 8747,
+                "cpu_join": "P28/join/A"
+              },
+              "B": {
+                "origin": 7589,
+                "wait": {
+                  "task": 7591,
+                  "status": "device_wait_observed"
+                },
+                "wait_cann_index": 10030,
+                "terminal": 8169,
+                "cpu_join": "P28/join/B"
+              }
+            },
+            "forward_cpu_synchronizations": []
+          },
+          "branch_timing": {
+            "order": "BA",
+            "second_host_start_minus_first_compute_end_us": "231.063",
+            "second_compute_start_minus_first_compute_end_us": "341.554",
+            "second_native_submit_minus_first_compute_end_us": "324.797"
+          },
+          "provenance": {
+            "trace": "profiler/fe561f2e72a8_1321578_20260929172159442_ascend_pt/ASCEND_PROFILER_OUTPUT/trace_view.json",
+            "trace_sha256": "f439059e4b6ff6b946e2f16a130775646bb8c92ce18d15d8350e1737397fa8fb",
+            "csv": "profiler/fe561f2e72a8_1321578_20260929172159442_ascend_pt/ASCEND_PROFILER_OUTPUT/kernel_details.csv",
+            "csv_sha256": "adc08f13243539ff9d4bd431539b676bb7a8c45837bf7174d1777ce6ac9eb4f1"
+          }
+        },
+        {
+          "trial": {
+            "case": "mixed16_47",
+            "strategy": "serial",
+            "order": "AB",
+            "profile": "plain",
+            "timing": {
+              "wall_us": 29086.801,
+              "ready_us": {
+                "A": 15350.259780883789,
+                "B": 28717.899322509766
+              },
+              "host_submission_us": {
+                "A": 15626.1,
+                "B": 28997.426
+              }
+            }
+          },
+          "compute_tasks": 576,
+          "stream_ids": [
+            "44"
+          ],
+          "overlap_us": "0",
+          "compute_union_us": "4760.008",
+          "device_compute_span_us": "28305.752",
+          "coverage": 0.16816398306605668,
+          "synchronization": {
+            "evidence": "Python event identity + exact task flows + observed ordering",
+            "roles": {
+              "A": {
+                "origin": 7589,
+                "wait": {
+                  "task": 7591,
+                  "status": "device_wait_observed"
+                },
+                "wait_cann_index": 10028,
+                "terminal": 8169,
+                "cpu_join": "P28/join/A"
+              },
+              "B": {
+                "origin": 7589,
+                "wait": {
+                  "task": null,
+                  "status": "no_device_wait_in_trace; producer_already_complete_before_native_call"
+                },
+                "wait_cann_index": 11727,
+                "terminal": 8747,
+                "cpu_join": "P28/join/B"
+              }
+            },
+            "forward_cpu_synchronizations": []
+          },
+          "branch_timing": {
+            "order": "AB",
+            "second_host_start_minus_first_compute_end_us": "229.521",
+            "second_compute_start_minus_first_compute_end_us": "335.554",
+            "second_native_submit_minus_first_compute_end_us": "321.265"
+          },
+          "provenance": {
+            "trace": "profiler/fe561f2e72a8_1321578_20260929172146755_ascend_pt/ASCEND_PROFILER_OUTPUT/trace_view.json",
+            "trace_sha256": "8dab6dd37c16886c629f4beee00f08703a8f801d594481440330049ecd2e3595",
+            "csv": "profiler/fe561f2e72a8_1321578_20260929172146755_ascend_pt/ASCEND_PROFILER_OUTPUT/kernel_details.csv",
+            "csv_sha256": "877c504a1a994fec8d28d1f2d488f3135c5373aab0fe11345fe32e10fcb684e8"
+          }
+        },
+        {
+          "trial": {
+            "case": "mixed16_47",
+            "strategy": "serial",
+            "order": "BA",
+            "profile": "plain",
+            "timing": {
+              "wall_us": 28937.228,
+              "ready_us": {
+                "B": 15152.620315551758,
+                "A": 28559.980392456055
+              },
+              "host_submission_us": {
+                "B": 15435.001,
+                "A": 28843.633
+              }
+            }
+          },
+          "compute_tasks": 576,
+          "stream_ids": [
+            "44"
+          ],
+          "overlap_us": "0",
+          "compute_union_us": "4750.158",
+          "device_compute_span_us": "28148.245",
+          "coverage": 0.16875503250735527,
+          "synchronization": {
+            "evidence": "Python event identity + exact task flows + observed ordering",
+            "roles": {
+              "A": {
+                "origin": 7589,
+                "wait": {
+                  "task": null,
+                  "status": "no_device_wait_in_trace; producer_already_complete_before_native_call"
+                },
+                "wait_cann_index": 11727,
+                "terminal": 8747,
+                "cpu_join": "P28/join/A"
+              },
+              "B": {
+                "origin": 7589,
+                "wait": {
+                  "task": 7591,
+                  "status": "device_wait_observed"
+                },
+                "wait_cann_index": 10028,
+                "terminal": 8169,
+                "cpu_join": "P28/join/B"
+              }
+            },
+            "forward_cpu_synchronizations": []
+          },
+          "branch_timing": {
+            "order": "BA",
+            "second_host_start_minus_first_compute_end_us": "235.333",
+            "second_compute_start_minus_first_compute_end_us": "334.114",
+            "second_native_submit_minus_first_compute_end_us": "325.345"
+          },
+          "provenance": {
+            "trace": "profiler/fe561f2e72a8_1321578_20260929172151048_ascend_pt/ASCEND_PROFILER_OUTPUT/trace_view.json",
+            "trace_sha256": "24edd067d4cdb6232c7d93bf5c3139a0b3364f618600182d785d76e4a344f1dc",
+            "csv": "profiler/fe561f2e72a8_1321578_20260929172151048_ascend_pt/ASCEND_PROFILER_OUTPUT/kernel_details.csv",
+            "csv_sha256": "8c16bcda1fced4bb3f23a79343d28a779eb49fc197b98a1ff9667afe9552b9b2"
+          }
+        },
+        {
+          "trial": {
+            "case": "same32",
+            "strategy": "parallel",
+            "order": "AB",
+            "profile": "plain",
+            "timing": {
+              "wall_us": 29871.708,
+              "ready_us": {
+                "A": 16068.639755249023,
+                "B": 29342.079162597656
+              },
+              "host_submission_us": {
+                "A": 16496.16,
+                "B": 29766.463
+              }
+            }
+          },
+          "compute_tasks": 576,
+          "stream_ids": [
+            "43",
+            "44"
+          ],
+          "overlap_us": "0",
+          "compute_union_us": "4752.951",
+          "device_compute_span_us": "28758.090",
+          "coverage": 0.16527352824892055,
+          "synchronization": {
+            "evidence": "Python event identity + exact task flows + observed ordering",
+            "roles": {
+              "A": {
+                "origin": 7589,
+                "wait": {
+                  "task": 7591,
+                  "status": "device_wait_observed"
+                },
+                "wait_cann_index": 10030,
+                "terminal": 8169,
+                "cpu_join": "P28/join/A"
+              },
+              "B": {
+                "origin": 7589,
+                "wait": {
+                  "task": null,
+                  "status": "no_device_wait_in_trace; producer_already_complete_before_native_call"
+                },
+                "wait_cann_index": 11729,
+                "terminal": 8747,
+                "cpu_join": "P28/join/B"
+              }
+            },
+            "forward_cpu_synchronizations": []
+          },
+          "branch_timing": {
+            "order": "AB",
+            "second_host_start_minus_first_compute_end_us": "247.498",
+            "second_compute_start_minus_first_compute_end_us": "350.854",
+            "second_native_submit_minus_first_compute_end_us": "340.349"
+          },
+          "provenance": {
+            "trace": "profiler/fe561f2e72a8_1321578_20260929172138447_ascend_pt/ASCEND_PROFILER_OUTPUT/trace_view.json",
+            "trace_sha256": "7c713eedbbbf8467e5a55c3539a0aafc3c2b34de0ac695350a98175ee6f7cfbf",
+            "csv": "profiler/fe561f2e72a8_1321578_20260929172138447_ascend_pt/ASCEND_PROFILER_OUTPUT/kernel_details.csv",
+            "csv_sha256": "10eac9f6e2779928ce6268ad4fa6391037554eb467e22bb3690b20dc5205a08c"
+          }
+        },
+        {
+          "trial": {
+            "case": "same32",
+            "strategy": "parallel",
+            "order": "BA",
+            "profile": "plain",
+            "timing": {
+              "wall_us": 29588.833,
+              "ready_us": {
+                "B": 15850.66032409668,
+                "A": 29205.900192260742
+              },
+              "host_submission_us": {
+                "B": 16134.901,
+                "A": 29490.184
+              }
+            }
+          },
+          "compute_tasks": 576,
+          "stream_ids": [
+            "43",
+            "44"
+          ],
+          "overlap_us": "0",
+          "compute_union_us": "4808.152",
+          "device_compute_span_us": "28780.031",
+          "coverage": 0.16706556014481014,
+          "synchronization": {
+            "evidence": "Python event identity + exact task flows + observed ordering",
+            "roles": {
+              "A": {
+                "origin": 7589,
+                "wait": {
+                  "task": null,
+                  "status": "no_device_wait_in_trace; producer_already_complete_before_native_call"
+                },
+                "wait_cann_index": 11729,
+                "terminal": 8747,
+                "cpu_join": "P28/join/A"
+              },
+              "B": {
+                "origin": 7589,
+                "wait": {
+                  "task": 7591,
+                  "status": "device_wait_observed"
+                },
+                "wait_cann_index": 10030,
+                "terminal": 8169,
+                "cpu_join": "P28/join/B"
+              }
+            },
+            "forward_cpu_synchronizations": []
+          },
+          "branch_timing": {
+            "order": "BA",
+            "second_host_start_minus_first_compute_end_us": "237.958",
+            "second_compute_start_minus_first_compute_end_us": "344.713",
+            "second_native_submit_minus_first_compute_end_us": "332.680"
+          },
+          "provenance": {
+            "trace": "profiler/fe561f2e72a8_1321578_20260929172142652_ascend_pt/ASCEND_PROFILER_OUTPUT/trace_view.json",
+            "trace_sha256": "5771cd3c9441ab3d8c76c15619f99875248b39982e80b2507ef74c26f929115b",
+            "csv": "profiler/fe561f2e72a8_1321578_20260929172142652_ascend_pt/ASCEND_PROFILER_OUTPUT/kernel_details.csv",
+            "csv_sha256": "6302b86c5f8752a32460f710198199cc1e98253cc069d0e74f78097534a06564"
+          }
+        },
+        {
+          "trial": {
+            "case": "same32",
+            "strategy": "serial",
+            "order": "AB",
+            "profile": "plain",
+            "timing": {
+              "wall_us": 27336.182,
+              "ready_us": {
+                "A": 14190.679550170898,
+                "B": 26984.359741210938
+              },
+              "host_submission_us": {
+                "A": 14417.564,
+                "B": 27211.486
+              }
+            }
+          },
+          "compute_tasks": 576,
+          "stream_ids": [
+            "44"
+          ],
+          "overlap_us": "0",
+          "compute_union_us": "4755.113",
+          "device_compute_span_us": "26500.120",
+          "coverage": 0.17943741386831455,
+          "synchronization": {
+            "evidence": "Python event identity + exact task flows + observed ordering",
+            "roles": {
+              "A": {
+                "origin": 7589,
+                "wait": {
+                  "task": 7591,
+                  "status": "device_wait_observed"
+                },
+                "wait_cann_index": 10028,
+                "terminal": 8169,
+                "cpu_join": "P28/join/A"
+              },
+              "B": {
+                "origin": 7589,
+                "wait": {
+                  "task": null,
+                  "status": "no_device_wait_in_trace; producer_already_complete_before_native_call"
+                },
+                "wait_cann_index": 11727,
+                "terminal": 8747,
+                "cpu_join": "P28/join/B"
+              }
+            },
+            "forward_cpu_synchronizations": []
+          },
+          "branch_timing": {
+            "order": "AB",
+            "second_host_start_minus_first_compute_end_us": "211.344",
+            "second_compute_start_minus_first_compute_end_us": "312.372",
+            "second_native_submit_minus_first_compute_end_us": "296.535"
+          },
+          "provenance": {
+            "trace": "profiler/fe561f2e72a8_1321578_20260929172130089_ascend_pt/ASCEND_PROFILER_OUTPUT/trace_view.json",
+            "trace_sha256": "0c7a79669ab05792bd500eaa5c15cb221080aa2beb5b3677a434dd80fc7b1dcf",
+            "csv": "profiler/fe561f2e72a8_1321578_20260929172130089_ascend_pt/ASCEND_PROFILER_OUTPUT/kernel_details.csv",
+            "csv_sha256": "dd25612960082fb8bd0dc4657d8250789e7518cab19ca8230158a16937c59650"
+          }
+        },
+        {
+          "trial": {
+            "case": "same32",
+            "strategy": "serial",
+            "order": "BA",
+            "profile": "plain",
+            "timing": {
+              "wall_us": 28731.202,
+              "ready_us": {
+                "B": 15072.279930114746,
+                "A": 28320.999145507812
+              },
+              "host_submission_us": {
+                "B": 15377.57,
+                "A": 28628.827
+              }
+            }
+          },
+          "compute_tasks": 576,
+          "stream_ids": [
+            "44"
+          ],
+          "overlap_us": "0",
+          "compute_union_us": "4782.964",
+          "device_compute_span_us": "27909.216",
+          "coverage": 0.17137579213977203,
+          "synchronization": {
+            "evidence": "Python event identity + exact task flows + observed ordering",
+            "roles": {
+              "A": {
+                "origin": 7584,
+                "wait": {
+                  "task": null,
+                  "status": "no_device_wait_in_trace; producer_already_complete_before_native_call"
+                },
+                "wait_cann_index": 11727,
+                "terminal": 8742,
+                "cpu_join": "P28/join/A"
+              },
+              "B": {
+                "origin": 7584,
+                "wait": {
+                  "task": 7586,
+                  "status": "device_wait_observed"
+                },
+                "wait_cann_index": 10028,
+                "terminal": 8164,
+                "cpu_join": "P28/join/B"
+              }
+            },
+            "forward_cpu_synchronizations": []
+          },
+          "branch_timing": {
+            "order": "BA",
+            "second_host_start_minus_first_compute_end_us": "226.105",
+            "second_compute_start_minus_first_compute_end_us": "334.453",
+            "second_native_submit_minus_first_compute_end_us": "319.513"
+          },
+          "provenance": {
+            "trace": "profiler/fe561f2e72a8_1321578_20260929172134249_ascend_pt/ASCEND_PROFILER_OUTPUT/trace_view.json",
+            "trace_sha256": "62ebbeb519c475b7d7b1c98ba5e5e20653f4e81bbe54fa71b5580eb676de74f7",
+            "csv": "profiler/fe561f2e72a8_1321578_20260929172134249_ascend_pt/ASCEND_PROFILER_OUTPUT/kernel_details.csv",
+            "csv_sha256": "f4cd3a0324604b4613e2f30b7c4aa9728a31d38d746eaca292f32f7fc93a9cdf"
+          }
+        }
+      ]
+    },
+    {
+      "process": "graph-pipe",
+      "trials": [
+        {
+          "trial": {
+            "case": "mixed16_47",
+            "strategy": "parallel",
+            "order": "AB",
+            "profile": "pipe",
+            "timing": {
+              "wall_us": 13303.67,
+              "ready_us": {
+                "A": 7134.520053863525,
+                "B": 12906.08024597168
+              },
+              "host_submission_us": {
+                "A": 7414.377,
+                "B": 13193.284
+              }
+            }
+          },
+          "compute_tasks": 576,
+          "stream_ids": [
+            "0",
+            "1",
+            "10",
+            "11",
+            "12",
+            "2",
+            "3",
+            "39",
+            "4",
+            "40",
+            "5",
+            "6",
+            "63",
+            "64",
+            "65",
+            "66",
+            "67",
+            "68",
+            "69",
+            "7",
+            "70",
+            "71",
+            "72",
+            "73",
+            "74",
+            "75",
+            "76",
+            "77",
+            "78",
+            "79",
+            "8",
+            "80",
+            "81",
+            "82",
+            "83",
+            "84",
+            "85",
+            "86",
+            "87",
+            "88",
+            "89",
+            "9",
+            "90",
+            "91",
+            "92",
+            "93",
+            "94",
+            "95",
+            "96",
+            "97",
+            "98",
+            "99"
+          ],
+          "overlap_us": "0",
+          "compute_union_us": "5464.505",
+          "device_compute_span_us": "11970.519",
+          "coverage": 0.45649691546373217,
+          "synchronization": {
+            "evidence": "Python event identity + exact task flows + observed ordering",
+            "roles": {
+              "A": {
+                "origin": 2500,
+                "wait": {
+                  "task": 2502,
+                  "status": "device_wait_observed"
+                },
+                "wait_cann_index": 4027,
+                "terminal": 3155,
+                "cpu_join": "P28/join/A"
+              },
+              "B": {
+                "origin": 2500,
+                "wait": {
+                  "task": null,
+                  "status": "no_device_wait_in_trace; producer_already_complete_before_native_call"
+                },
+                "wait_cann_index": 4705,
+                "terminal": 3808,
+                "cpu_join": "P28/join/B"
+              }
+            },
+            "forward_cpu_synchronizations": []
+          },
+          "branch_timing": {
+            "order": "AB",
+            "second_host_start_minus_first_compute_end_us": "229.867",
+            "second_compute_start_minus_first_compute_end_us": "720.789",
+            "second_native_submit_minus_first_compute_end_us": "678.309"
+          },
+          "provenance": {
+            "trace": "profiler/fe561f2e72a8_1333191_20260929172718049_ascend_pt/ASCEND_PROFILER_OUTPUT/trace_view.json",
+            "trace_sha256": "108f827f3d56e9975cbf3b66593b0ed656172241777f26726317a5580c56969d",
+            "csv": "profiler/fe561f2e72a8_1333191_20260929172718049_ascend_pt/ASCEND_PROFILER_OUTPUT/kernel_details.csv",
+            "csv_sha256": "1b0a325c362238a720025e0c214a7f0fbca415ec002eed222a1bebd1b4bbaf21"
+          }
+        },
+        {
+          "trial": {
+            "case": "mixed16_47",
+            "strategy": "parallel",
+            "order": "BA",
+            "profile": "pipe",
+            "timing": {
+              "wall_us": 17574.223,
+              "ready_us": {
+                "B": 9484.90047454834,
+                "A": 17105.76057434082
+              },
+              "host_submission_us": {
+                "B": 9815.873,
+                "A": 17442.781
+              }
+            }
+          },
+          "compute_tasks": 576,
+          "stream_ids": [
+            "0",
+            "1",
+            "10",
+            "11",
+            "12",
+            "2",
+            "3",
+            "39",
+            "4",
+            "40",
+            "5",
+            "6",
+            "63",
+            "64",
+            "65",
+            "66",
+            "67",
+            "68",
+            "69",
+            "7",
+            "70",
+            "71",
+            "72",
+            "73",
+            "74",
+            "75",
+            "76",
+            "77",
+            "78",
+            "79",
+            "8",
+            "80",
+            "81",
+            "82",
+            "83",
+            "84",
+            "85",
+            "86",
+            "87",
+            "88",
+            "89",
+            "9",
+            "90",
+            "91",
+            "92",
+            "93",
+            "94",
+            "95",
+            "96",
+            "97",
+            "98",
+            "99"
+          ],
+          "overlap_us": "0",
+          "compute_union_us": "5477.339",
+          "device_compute_span_us": "15523.260",
+          "coverage": 0.35284721121723145,
+          "synchronization": {
+            "evidence": "Python event identity + exact task flows + observed ordering",
+            "roles": {
+              "A": {
+                "origin": 2494,
+                "wait": {
+                  "task": null,
+                  "status": "no_device_wait_in_trace; producer_already_complete_before_native_call"
+                },
+                "wait_cann_index": 4705,
+                "terminal": 3802,
+                "cpu_join": "P28/join/A"
+              },
+              "B": {
+                "origin": 2494,
+                "wait": {
+                  "task": 2496,
+                  "status": "device_wait_observed"
+                },
+                "wait_cann_index": 4027,
+                "terminal": 3149,
+                "cpu_join": "P28/join/B"
+              }
+            },
+            "forward_cpu_synchronizations": []
+          },
+          "branch_timing": {
+            "order": "BA",
+            "second_host_start_minus_first_compute_end_us": "283.139",
+            "second_compute_start_minus_first_compute_end_us": "765.130",
+            "second_native_submit_minus_first_compute_end_us": "745.408"
+          },
+          "provenance": {
+            "trace": "profiler/fe561f2e72a8_1333191_20260929172722155_ascend_pt/ASCEND_PROFILER_OUTPUT/trace_view.json",
+            "trace_sha256": "62716e48e39d908822a12d611a33eaf8acd3170f50cfff692c3bcadc2977c3e0",
+            "csv": "profiler/fe561f2e72a8_1333191_20260929172722155_ascend_pt/ASCEND_PROFILER_OUTPUT/kernel_details.csv",
+            "csv_sha256": "9fdc6e570d32f5f678f24e5efbc07b795841cf26312b45c900bdb746946be90e"
+          }
+        },
+        {
+          "trial": {
+            "case": "mixed16_47",
+            "strategy": "serial",
+            "order": "AB",
+            "profile": "pipe",
+            "timing": {
+              "wall_us": 15345.435,
+              "ready_us": {
+                "A": 9145.580291748047,
+                "B": 14947.56031036377
+              },
+              "host_submission_us": {
+                "A": 9432.136,
+                "B": 15239.737
+              }
+            }
+          },
+          "compute_tasks": 576,
+          "stream_ids": [
+            "0",
+            "1",
+            "10",
+            "11",
+            "12",
+            "2",
+            "3",
+            "4",
+            "40",
+            "5",
+            "6",
+            "63",
+            "64",
+            "65",
+            "66",
+            "67",
+            "68",
+            "69",
+            "7",
+            "70",
+            "71",
+            "72",
+            "73",
+            "74",
+            "75",
+            "76",
+            "77",
+            "78",
+            "79",
+            "8",
+            "80",
+            "81",
+            "82",
+            "83",
+            "84",
+            "85",
+            "86",
+            "87",
+            "88",
+            "89",
+            "9",
+            "90",
+            "91",
+            "92",
+            "93",
+            "94",
+            "95",
+            "96",
+            "97",
+            "98",
+            "99"
+          ],
+          "overlap_us": "0",
+          "compute_union_us": "5460.641",
+          "device_compute_span_us": "13921.157",
+          "coverage": 0.3922548247965309,
+          "synchronization": {
+            "evidence": "Python event identity + exact task flows + observed ordering",
+            "roles": {
+              "A": {
+                "origin": 2500,
+                "wait": {
+                  "task": 2502,
+                  "status": "device_wait_observed"
+                },
+                "wait_cann_index": 4025,
+                "terminal": 3155,
+                "cpu_join": "P28/join/A"
+              },
+              "B": {
+                "origin": 2500,
+                "wait": {
+                  "task": null,
+                  "status": "no_device_wait_in_trace; producer_already_complete_before_native_call"
+                },
+                "wait_cann_index": 4703,
+                "terminal": 3808,
+                "cpu_join": "P28/join/B"
+              }
+            },
+            "forward_cpu_synchronizations": []
+          },
+          "branch_timing": {
+            "order": "AB",
+            "second_host_start_minus_first_compute_end_us": "238.312",
+            "second_compute_start_minus_first_compute_end_us": "724.089",
+            "second_native_submit_minus_first_compute_end_us": "700.238"
+          },
+          "provenance": {
+            "trace": "profiler/fe561f2e72a8_1333191_20260929172709756_ascend_pt/ASCEND_PROFILER_OUTPUT/trace_view.json",
+            "trace_sha256": "0510c45d2bc9e0f5b08b8dfb7d7dd30159822a13bbdcd4a592953d5db3d6c2ca",
+            "csv": "profiler/fe561f2e72a8_1333191_20260929172709756_ascend_pt/ASCEND_PROFILER_OUTPUT/kernel_details.csv",
+            "csv_sha256": "e229af63bce42cadf7d4bec919fb5c0e9514db7efaa7bff20434987a171c1af8"
+          }
+        },
+        {
+          "trial": {
+            "case": "mixed16_47",
+            "strategy": "serial",
+            "order": "BA",
+            "profile": "pipe",
+            "timing": {
+              "wall_us": 13615.958,
+              "ready_us": {
+                "B": 7347.760200500488,
+                "A": 13201.580047607422
+              },
+              "host_submission_us": {
+                "B": 7643.78,
+                "A": 13497.772
+              }
+            }
+          },
+          "compute_tasks": 576,
+          "stream_ids": [
+            "0",
+            "1",
+            "10",
+            "11",
+            "12",
+            "2",
+            "3",
+            "4",
+            "40",
+            "5",
+            "6",
+            "63",
+            "64",
+            "65",
+            "66",
+            "67",
+            "68",
+            "69",
+            "7",
+            "70",
+            "71",
+            "72",
+            "73",
+            "74",
+            "75",
+            "76",
+            "77",
+            "78",
+            "79",
+            "8",
+            "80",
+            "81",
+            "82",
+            "83",
+            "84",
+            "85",
+            "86",
+            "87",
+            "88",
+            "89",
+            "9",
+            "90",
+            "91",
+            "92",
+            "93",
+            "94",
+            "95",
+            "96",
+            "97",
+            "98",
+            "99"
+          ],
+          "overlap_us": "0",
+          "compute_union_us": "5479.383",
+          "device_compute_span_us": "12072.062",
+          "coverage": 0.4538895674989078,
+          "synchronization": {
+            "evidence": "Python event identity + exact task flows + observed ordering",
+            "roles": {
+              "A": {
+                "origin": 2500,
+                "wait": {
+                  "task": null,
+                  "status": "no_device_wait_in_trace; producer_already_complete_before_native_call"
+                },
+                "wait_cann_index": 4703,
+                "terminal": 3808,
+                "cpu_join": "P28/join/A"
+              },
+              "B": {
+                "origin": 2500,
+                "wait": {
+                  "task": 2502,
+                  "status": "device_wait_observed"
+                },
+                "wait_cann_index": 4025,
+                "terminal": 3155,
+                "cpu_join": "P28/join/B"
+              }
+            },
+            "forward_cpu_synchronizations": []
+          },
+          "branch_timing": {
+            "order": "BA",
+            "second_host_start_minus_first_compute_end_us": "222.061",
+            "second_compute_start_minus_first_compute_end_us": "671.967",
+            "second_native_submit_minus_first_compute_end_us": "649.582"
+          },
+          "provenance": {
+            "trace": "profiler/fe561f2e72a8_1333191_20260929172713951_ascend_pt/ASCEND_PROFILER_OUTPUT/trace_view.json",
+            "trace_sha256": "1bc04b39e7b92b7bc96fd242891decf3ec0c8e317b9b1e1a5486f8a841fdb181",
+            "csv": "profiler/fe561f2e72a8_1333191_20260929172713951_ascend_pt/ASCEND_PROFILER_OUTPUT/kernel_details.csv",
+            "csv_sha256": "848193377f7955c85f6eb3b2dde134d52faefce896d407081ccff10ab5774434"
+          }
+        },
+        {
+          "trial": {
+            "case": "same32",
+            "strategy": "parallel",
+            "order": "AB",
+            "profile": "pipe",
+            "timing": {
+              "wall_us": 13046.223,
+              "ready_us": {
+                "A": 7012.179851531982,
+                "B": 12656.579971313477
+              },
+              "host_submission_us": {
+                "A": 7311.25,
+                "B": 12951.031
+              }
+            }
+          },
+          "compute_tasks": 576,
+          "stream_ids": [
+            "0",
+            "1",
+            "10",
+            "11",
+            "12",
+            "2",
+            "3",
+            "39",
+            "4",
+            "40",
+            "5",
+            "6",
+            "63",
+            "64",
+            "65",
+            "66",
+            "67",
+            "68",
+            "69",
+            "7",
+            "70",
+            "71",
+            "72",
+            "73",
+            "74",
+            "75",
+            "76",
+            "77",
+            "78",
+            "79",
+            "8",
+            "80",
+            "81",
+            "82",
+            "83",
+            "84",
+            "85",
+            "86",
+            "87",
+            "88",
+            "89",
+            "9",
+            "90",
+            "91",
+            "92",
+            "93",
+            "94",
+            "95",
+            "96",
+            "97",
+            "98",
+            "99"
+          ],
+          "overlap_us": "0",
+          "compute_union_us": "5464.703",
+          "device_compute_span_us": "11778.970",
+          "coverage": 0.463937254276053,
+          "synchronization": {
+            "evidence": "Python event identity + exact task flows + observed ordering",
+            "roles": {
+              "A": {
+                "origin": 2500,
+                "wait": {
+                  "task": 2502,
+                  "status": "device_wait_observed"
+                },
+                "wait_cann_index": 4027,
+                "terminal": 3155,
+                "cpu_join": "P28/join/A"
+              },
+              "B": {
+                "origin": 2500,
+                "wait": {
+                  "task": null,
+                  "status": "no_device_wait_in_trace; producer_already_complete_before_native_call"
+                },
+                "wait_cann_index": 4705,
+                "terminal": 3808,
+                "cpu_join": "P28/join/B"
+              }
+            },
+            "forward_cpu_synchronizations": []
+          },
+          "branch_timing": {
+            "order": "AB",
+            "second_host_start_minus_first_compute_end_us": "220.971",
+            "second_compute_start_minus_first_compute_end_us": "683.428",
+            "second_native_submit_minus_first_compute_end_us": "661.084"
+          },
+          "provenance": {
+            "trace": "profiler/fe561f2e72a8_1333191_20260929172701544_ascend_pt/ASCEND_PROFILER_OUTPUT/trace_view.json",
+            "trace_sha256": "9fa17e2f093bb999ce6c40d7be74eed807ddf3ca5a239923c4f3316828062ca7",
+            "csv": "profiler/fe561f2e72a8_1333191_20260929172701544_ascend_pt/ASCEND_PROFILER_OUTPUT/kernel_details.csv",
+            "csv_sha256": "ecb077b044cf375856722fd0ef28b3e1ff5e18c50f3ee31c0015f1239c26f0ea"
+          }
+        },
+        {
+          "trial": {
+            "case": "same32",
+            "strategy": "parallel",
+            "order": "BA",
+            "profile": "pipe",
+            "timing": {
+              "wall_us": 12752.819,
+              "ready_us": {
+                "B": 6941.880226135254,
+                "A": 12350.720405578613
+              },
+              "host_submission_us": {
+                "B": 7223.028,
+                "A": 12634.502
+              }
+            }
+          },
+          "compute_tasks": 576,
+          "stream_ids": [
+            "0",
+            "1",
+            "10",
+            "11",
+            "12",
+            "2",
+            "3",
+            "39",
+            "4",
+            "40",
+            "5",
+            "6",
+            "63",
+            "64",
+            "65",
+            "66",
+            "67",
+            "68",
+            "69",
+            "7",
+            "70",
+            "71",
+            "72",
+            "73",
+            "74",
+            "75",
+            "76",
+            "77",
+            "78",
+            "79",
+            "8",
+            "80",
+            "81",
+            "82",
+            "83",
+            "84",
+            "85",
+            "86",
+            "87",
+            "88",
+            "89",
+            "9",
+            "90",
+            "91",
+            "92",
+            "93",
+            "94",
+            "95",
+            "96",
+            "97",
+            "98",
+            "99"
+          ],
+          "overlap_us": "0",
+          "compute_union_us": "5474.376",
+          "device_compute_span_us": "11210.728",
+          "coverage": 0.48831583461841194,
+          "synchronization": {
+            "evidence": "Python event identity + exact task flows + observed ordering",
+            "roles": {
+              "A": {
+                "origin": 4066,
+                "wait": {
+                  "task": null,
+                  "status": "no_device_wait_in_trace; producer_already_complete_before_native_call"
+                },
+                "wait_cann_index": 3186,
+                "terminal": 5374,
+                "cpu_join": "P28/join/A"
+              },
+              "B": {
+                "origin": 4066,
+                "wait": {
+                  "task": 4068,
+                  "status": "device_wait_observed"
+                },
+                "wait_cann_index": 2508,
+                "terminal": 4721,
+                "cpu_join": "P28/join/B"
+              }
+            },
+            "forward_cpu_synchronizations": []
+          },
+          "branch_timing": {
+            "order": "BA",
+            "second_host_start_minus_first_compute_end_us": "227.467",
+            "second_compute_start_minus_first_compute_end_us": "669.367",
+            "second_native_submit_minus_first_compute_end_us": "643.607"
+          },
+          "provenance": {
+            "trace": "profiler/fe561f2e72a8_1333191_20260929172705652_ascend_pt/ASCEND_PROFILER_OUTPUT/trace_view.json",
+            "trace_sha256": "014b5241b5c4771c29e34a7c1859666ec9cde473d5c5904e4a93d471d7514f29",
+            "csv": "profiler/fe561f2e72a8_1333191_20260929172705652_ascend_pt/ASCEND_PROFILER_OUTPUT/kernel_details.csv",
+            "csv_sha256": "126a97d23d6ab34e8b43390a4aeab0eb139a84306b00deeb4a2321c0d9974d0b"
+          }
+        },
+        {
+          "trial": {
+            "case": "same32",
+            "strategy": "serial",
+            "order": "AB",
+            "profile": "pipe",
+            "timing": {
+              "wall_us": 11085.954,
+              "ready_us": {
+                "A": 5463.840007781982,
+                "B": 10748.080253601074
+              },
+              "host_submission_us": {
+                "A": 5721.197,
+                "B": 10600.56
+              }
+            }
+          },
+          "compute_tasks": 576,
+          "stream_ids": [
+            "0",
+            "1",
+            "10",
+            "11",
+            "12",
+            "2",
+            "3",
+            "4",
+            "40",
+            "5",
+            "6",
+            "63",
+            "64",
+            "65",
+            "66",
+            "67",
+            "68",
+            "69",
+            "7",
+            "70",
+            "71",
+            "72",
+            "73",
+            "74",
+            "75",
+            "76",
+            "77",
+            "78",
+            "79",
+            "8",
+            "80",
+            "81",
+            "82",
+            "83",
+            "84",
+            "85",
+            "86",
+            "87",
+            "88",
+            "89",
+            "9",
+            "90",
+            "91",
+            "92",
+            "93",
+            "94",
+            "95",
+            "96",
+            "97",
+            "98",
+            "99"
+          ],
+          "overlap_us": "0",
+          "compute_union_us": "5457.156",
+          "device_compute_span_us": "10277.050",
+          "coverage": 0.5310041305627587,
+          "synchronization": {
+            "evidence": "Python event identity + exact task flows + observed ordering",
+            "roles": {
+              "A": {
+                "origin": 4066,
+                "wait": {
+                  "task": 4068,
+                  "status": "device_wait_observed"
+                },
+                "wait_cann_index": 2508,
+                "terminal": 4721,
+                "cpu_join": "P28/join/A"
+              },
+              "B": {
+                "origin": 4066,
+                "wait": {
+                  "task": null,
+                  "status": "no_device_wait_in_trace; producer_already_complete_before_native_call"
+                },
+                "wait_cann_index": 3186,
+                "terminal": 5374,
+                "cpu_join": "P28/join/B"
+              }
+            },
+            "forward_cpu_synchronizations": []
+          },
+          "branch_timing": {
+            "order": "AB",
+            "second_host_start_minus_first_compute_end_us": "211.964",
+            "second_compute_start_minus_first_compute_end_us": "506.920",
+            "second_native_submit_minus_first_compute_end_us": "487.147"
+          },
+          "provenance": {
+            "trace": "profiler/fe561f2e72a8_1333191_20260929172653272_ascend_pt/ASCEND_PROFILER_OUTPUT/trace_view.json",
+            "trace_sha256": "e555d69e6526964700fca0537045b71b28876758f79793b0b4e9c3cb7806507d",
+            "csv": "profiler/fe561f2e72a8_1333191_20260929172653272_ascend_pt/ASCEND_PROFILER_OUTPUT/kernel_details.csv",
+            "csv_sha256": "91f3daf9e3f6e3dda31857bff24bd2497773b5fa1f477a66448e41c98a48ebd4"
+          }
+        },
+        {
+          "trial": {
+            "case": "same32",
+            "strategy": "serial",
+            "order": "BA",
+            "profile": "pipe",
+            "timing": {
+              "wall_us": 13272.941,
+              "ready_us": {
+                "B": 7256.380081176758,
+                "A": 12805.919647216797
+              },
+              "host_submission_us": {
+                "B": 7627.12,
+                "A": 13175.473
+              }
+            }
+          },
+          "compute_tasks": 576,
+          "stream_ids": [
+            "0",
+            "1",
+            "10",
+            "11",
+            "12",
+            "2",
+            "3",
+            "4",
+            "40",
+            "5",
+            "6",
+            "63",
+            "64",
+            "65",
+            "66",
+            "67",
+            "68",
+            "69",
+            "7",
+            "70",
+            "71",
+            "72",
+            "73",
+            "74",
+            "75",
+            "76",
+            "77",
+            "78",
+            "79",
+            "8",
+            "80",
+            "81",
+            "82",
+            "83",
+            "84",
+            "85",
+            "86",
+            "87",
+            "88",
+            "89",
+            "9",
+            "90",
+            "91",
+            "92",
+            "93",
+            "94",
+            "95",
+            "96",
+            "97",
+            "98",
+            "99"
+          ],
+          "overlap_us": "0",
+          "compute_union_us": "5473.007",
+          "device_compute_span_us": "11736.129",
+          "coverage": 0.4663383471671111,
+          "synchronization": {
+            "evidence": "Python event identity + exact task flows + observed ordering",
+            "roles": {
+              "A": {
+                "origin": 2500,
+                "wait": {
+                  "task": null,
+                  "status": "no_device_wait_in_trace; producer_already_complete_before_native_call"
+                },
+                "wait_cann_index": 4703,
+                "terminal": 3808,
+                "cpu_join": "P28/join/A"
+              },
+              "B": {
+                "origin": 2500,
+                "wait": {
+                  "task": 2502,
+                  "status": "device_wait_observed"
+                },
+                "wait_cann_index": 4025,
+                "terminal": 3155,
+                "cpu_join": "P28/join/B"
+              }
+            },
+            "forward_cpu_synchronizations": []
+          },
+          "branch_timing": {
+            "order": "BA",
+            "second_host_start_minus_first_compute_end_us": "226.207",
+            "second_compute_start_minus_first_compute_end_us": "643.466",
+            "second_native_submit_minus_first_compute_end_us": "625.210"
+          },
+          "provenance": {
+            "trace": "profiler/fe561f2e72a8_1333191_20260929172657351_ascend_pt/ASCEND_PROFILER_OUTPUT/trace_view.json",
+            "trace_sha256": "a604e8ae2af212f4cd089a9afcf0fbde8a979f9775988fb7addbc68a4c085b40",
+            "csv": "profiler/fe561f2e72a8_1333191_20260929172657351_ascend_pt/ASCEND_PROFILER_OUTPUT/kernel_details.csv",
+            "csv_sha256": "028db8faba48e8417a918a70ac081bbdd5f827728ac740cee601c596ba18a2ac"
+          }
+        }
+      ]
+    },
+    {
+      "process": "graph-plain",
+      "trials": [
+        {
+          "trial": {
+            "case": "mixed16_47",
+            "strategy": "parallel",
+            "order": "AB",
+            "profile": "plain",
+            "timing": {
+              "wall_us": 13243.772,
+              "ready_us": {
+                "A": 7267.139911651611,
+                "B": 12820.219993591309
+              },
+              "host_submission_us": {
+                "A": 7559.499,
+                "B": 13113.783
+              }
+            }
+          },
+          "compute_tasks": 576,
+          "stream_ids": [
+            "0",
+            "1",
+            "10",
+            "11",
+            "12",
+            "2",
+            "3",
+            "39",
+            "4",
+            "40",
+            "5",
+            "6",
+            "63",
+            "64",
+            "65",
+            "66",
+            "67",
+            "68",
+            "69",
+            "7",
+            "70",
+            "71",
+            "72",
+            "73",
+            "74",
+            "75",
+            "76",
+            "77",
+            "78",
+            "79",
+            "8",
+            "80",
+            "81",
+            "82",
+            "83",
+            "84",
+            "85",
+            "86",
+            "87",
+            "88",
+            "89",
+            "9",
+            "90",
+            "91",
+            "92",
+            "93",
+            "94",
+            "95",
+            "96",
+            "97",
+            "98",
+            "99"
+          ],
+          "overlap_us": "0",
+          "compute_union_us": "5311.877",
+          "device_compute_span_us": "11789.471",
+          "coverage": 0.45056109811882145,
+          "synchronization": {
+            "evidence": "Python event identity + exact task flows + observed ordering",
+            "roles": {
+              "A": {
+                "origin": 2499,
+                "wait": {
+                  "task": 2501,
+                  "status": "device_wait_observed"
+                },
+                "wait_cann_index": 4026,
+                "terminal": 3154,
+                "cpu_join": "P28/join/A"
+              },
+              "B": {
+                "origin": 2499,
+                "wait": {
+                  "task": null,
+                  "status": "no_device_wait_in_trace; producer_already_complete_before_native_call"
+                },
+                "wait_cann_index": 4704,
+                "terminal": 3807,
+                "cpu_join": "P28/join/B"
+              }
+            },
+            "forward_cpu_synchronizations": []
+          },
+          "branch_timing": {
+            "order": "AB",
+            "second_host_start_minus_first_compute_end_us": "238.403",
+            "second_compute_start_minus_first_compute_end_us": "820.353",
+            "second_native_submit_minus_first_compute_end_us": "774.467"
+          },
+          "provenance": {
+            "trace": "profiler/fe561f2e72a8_1325359_20260929172343144_ascend_pt/ASCEND_PROFILER_OUTPUT/trace_view.json",
+            "trace_sha256": "4088a193b5a98f80e33e8e042f4a0d99ec57b5410299a7ddd31ea2aaa6e182b4",
+            "csv": "profiler/fe561f2e72a8_1325359_20260929172343144_ascend_pt/ASCEND_PROFILER_OUTPUT/kernel_details.csv",
+            "csv_sha256": "8d58ed5fa1eccc0bdf23bd7fc0a53782a5282b95f1853e5b3125f9da1e6264c9"
+          }
+        },
+        {
+          "trial": {
+            "case": "mixed16_47",
+            "strategy": "parallel",
+            "order": "BA",
+            "profile": "plain",
+            "timing": {
+              "wall_us": 13544.944,
+              "ready_us": {
+                "B": 7718.679904937744,
+                "A": 12919.119834899902
+              },
+              "host_submission_us": {
+                "B": 8247.876,
+                "A": 13452.208
+              }
+            }
+          },
+          "compute_tasks": 576,
+          "stream_ids": [
+            "0",
+            "1",
+            "10",
+            "11",
+            "12",
+            "2",
+            "3",
+            "39",
+            "4",
+            "40",
+            "5",
+            "6",
+            "63",
+            "64",
+            "65",
+            "66",
+            "67",
+            "68",
+            "69",
+            "7",
+            "70",
+            "71",
+            "72",
+            "73",
+            "74",
+            "75",
+            "76",
+            "77",
+            "78",
+            "79",
+            "8",
+            "80",
+            "81",
+            "82",
+            "83",
+            "84",
+            "85",
+            "86",
+            "87",
+            "88",
+            "89",
+            "9",
+            "90",
+            "91",
+            "92",
+            "93",
+            "94",
+            "95",
+            "96",
+            "97",
+            "98",
+            "99"
+          ],
+          "overlap_us": "0",
+          "compute_union_us": "5296.531",
+          "device_compute_span_us": "11251.030",
+          "coverage": 0.4707596548938186,
+          "synchronization": {
+            "evidence": "Python event identity + exact task flows + observed ordering",
+            "roles": {
+              "A": {
+                "origin": 2499,
+                "wait": {
+                  "task": null,
+                  "status": "no_device_wait_in_trace; producer_already_complete_before_native_call"
+                },
+                "wait_cann_index": 4704,
+                "terminal": 3807,
+                "cpu_join": "P28/join/A"
+              },
+              "B": {
+                "origin": 2499,
+                "wait": {
+                  "task": 2501,
+                  "status": "device_wait_observed"
+                },
+                "wait_cann_index": 4026,
+                "terminal": 3154,
+                "cpu_join": "P28/join/B"
+              }
+            },
+            "forward_cpu_synchronizations": []
+          },
+          "branch_timing": {
+            "order": "BA",
+            "second_host_start_minus_first_compute_end_us": "244.527",
+            "second_compute_start_minus_first_compute_end_us": "764.291",
+            "second_native_submit_minus_first_compute_end_us": "735.936"
+          },
+          "provenance": {
+            "trace": "profiler/fe561f2e72a8_1325359_20260929172348350_ascend_pt/ASCEND_PROFILER_OUTPUT/trace_view.json",
+            "trace_sha256": "dd81cd85fb91a2bb9a33014b24c71d2dcf47fb8770bf3e55c5a74f4185c55e70",
+            "csv": "profiler/fe561f2e72a8_1325359_20260929172348350_ascend_pt/ASCEND_PROFILER_OUTPUT/kernel_details.csv",
+            "csv_sha256": "73d654ac92fe8e7563d5bfc0d50f08d89e7c51661abcfd7e8aa66839e273cba8"
+          }
+        },
+        {
+          "trial": {
+            "case": "mixed16_47",
+            "strategy": "serial",
+            "order": "AB",
+            "profile": "plain",
+            "timing": {
+              "wall_us": 13128.635,
+              "ready_us": {
+                "A": 7277.599811553955,
+                "B": 12697.959899902344
+              },
+              "host_submission_us": {
+                "A": 7600.472,
+                "B": 13026.163
+              }
+            }
+          },
+          "compute_tasks": 576,
+          "stream_ids": [
+            "0",
+            "1",
+            "10",
+            "11",
+            "12",
+            "2",
+            "3",
+            "4",
+            "40",
+            "5",
+            "6",
+            "63",
+            "64",
+            "65",
+            "66",
+            "67",
+            "68",
+            "69",
+            "7",
+            "70",
+            "71",
+            "72",
+            "73",
+            "74",
+            "75",
+            "76",
+            "77",
+            "78",
+            "79",
+            "8",
+            "80",
+            "81",
+            "82",
+            "83",
+            "84",
+            "85",
+            "86",
+            "87",
+            "88",
+            "89",
+            "9",
+            "90",
+            "91",
+            "92",
+            "93",
+            "94",
+            "95",
+            "96",
+            "97",
+            "98",
+            "99"
+          ],
+          "overlap_us": "0",
+          "compute_union_us": "5312.525",
+          "device_compute_span_us": "11533.761",
+          "coverage": 0.4606064751992,
+          "synchronization": {
+            "evidence": "Python event identity + exact task flows + observed ordering",
+            "roles": {
+              "A": {
+                "origin": 2499,
+                "wait": {
+                  "task": 2501,
+                  "status": "device_wait_observed"
+                },
+                "wait_cann_index": 4024,
+                "terminal": 3154,
+                "cpu_join": "P28/join/A"
+              },
+              "B": {
+                "origin": 2499,
+                "wait": {
+                  "task": null,
+                  "status": "no_device_wait_in_trace; producer_already_complete_before_native_call"
+                },
+                "wait_cann_index": 4702,
+                "terminal": 3807,
+                "cpu_join": "P28/join/B"
+              }
+            },
+            "forward_cpu_synchronizations": []
+          },
+          "branch_timing": {
+            "order": "AB",
+            "second_host_start_minus_first_compute_end_us": "231.871",
+            "second_compute_start_minus_first_compute_end_us": "787.671",
+            "second_native_submit_minus_first_compute_end_us": "768.639"
+          },
+          "provenance": {
+            "trace": "profiler/fe561f2e72a8_1325359_20260929172333753_ascend_pt/ASCEND_PROFILER_OUTPUT/trace_view.json",
+            "trace_sha256": "965f9a57c753134be70c4c7f7dadc4ef91c1f8a069b0af897d1aa27720723cc4",
+            "csv": "profiler/fe561f2e72a8_1325359_20260929172333753_ascend_pt/ASCEND_PROFILER_OUTPUT/kernel_details.csv",
+            "csv_sha256": "69b9a97912605987bb2a6c425f9faa31450af5b0585dfd8414e8e982acf4b1ab"
+          }
+        },
+        {
+          "trial": {
+            "case": "mixed16_47",
+            "strategy": "serial",
+            "order": "BA",
+            "profile": "plain",
+            "timing": {
+              "wall_us": 20583.285,
+              "ready_us": {
+                "B": 11268.03970336914,
+                "A": 19960.079193115234
+              },
+              "host_submission_us": {
+                "B": 11741.966,
+                "A": 20443.687
+              }
+            }
+          },
+          "compute_tasks": 576,
+          "stream_ids": [
+            "0",
+            "1",
+            "10",
+            "11",
+            "12",
+            "2",
+            "3",
+            "4",
+            "40",
+            "5",
+            "6",
+            "63",
+            "64",
+            "65",
+            "66",
+            "67",
+            "68",
+            "69",
+            "7",
+            "70",
+            "71",
+            "72",
+            "73",
+            "74",
+            "75",
+            "76",
+            "77",
+            "78",
+            "79",
+            "8",
+            "80",
+            "81",
+            "82",
+            "83",
+            "84",
+            "85",
+            "86",
+            "87",
+            "88",
+            "89",
+            "9",
+            "90",
+            "91",
+            "92",
+            "93",
+            "94",
+            "95",
+            "96",
+            "97",
+            "98",
+            "99"
+          ],
+          "overlap_us": "0",
+          "compute_union_us": "5293.513",
+          "device_compute_span_us": "17287.571",
+          "coverage": 0.30620339896217924,
+          "synchronization": {
+            "evidence": "Python event identity + exact task flows + observed ordering",
+            "roles": {
+              "A": {
+                "origin": 4065,
+                "wait": {
+                  "task": null,
+                  "status": "no_device_wait_in_trace; producer_already_complete_before_native_call"
+                },
+                "wait_cann_index": 3185,
+                "terminal": 5373,
+                "cpu_join": "P28/join/A"
+              },
+              "B": {
+                "origin": 4065,
+                "wait": {
+                  "task": 4067,
+                  "status": "device_wait_observed"
+                },
+                "wait_cann_index": 2507,
+                "terminal": 4720,
+                "cpu_join": "P28/join/B"
+              }
+            },
+            "forward_cpu_synchronizations": []
+          },
+          "branch_timing": {
+            "order": "BA",
+            "second_host_start_minus_first_compute_end_us": "272.437",
+            "second_compute_start_minus_first_compute_end_us": "1990.639",
+            "second_native_submit_minus_first_compute_end_us": "1960.241"
+          },
+          "provenance": {
+            "trace": "profiler/fe561f2e72a8_1325359_20260929172337948_ascend_pt/ASCEND_PROFILER_OUTPUT/trace_view.json",
+            "trace_sha256": "a1e20a4df2f3c8c2bd16169f4a7258ecbbadf4b6418b63fea5be24e36e5fa0f6",
+            "csv": "profiler/fe561f2e72a8_1325359_20260929172337948_ascend_pt/ASCEND_PROFILER_OUTPUT/kernel_details.csv",
+            "csv_sha256": "b89326b1c887d6364dc2bcb2d5dfdda686a7e142877f9ea545b4adaf0a3e09f1"
+          }
+        },
+        {
+          "trial": {
+            "case": "same32",
+            "strategy": "parallel",
+            "order": "AB",
+            "profile": "plain",
+            "timing": {
+              "wall_us": 12607.363,
+              "ready_us": {
+                "A": 6846.859931945801,
+                "B": 12175.399780273438
+              },
+              "host_submission_us": {
+                "A": 7190.594,
+                "B": 12521.117
+              }
+            }
+          },
+          "compute_tasks": 576,
+          "stream_ids": [
+            "0",
+            "1",
+            "10",
+            "11",
+            "12",
+            "2",
+            "3",
+            "39",
+            "4",
+            "40",
+            "5",
+            "6",
+            "63",
+            "64",
+            "65",
+            "66",
+            "67",
+            "68",
+            "69",
+            "7",
+            "70",
+            "71",
+            "72",
+            "73",
+            "74",
+            "75",
+            "76",
+            "77",
+            "78",
+            "79",
+            "8",
+            "80",
+            "81",
+            "82",
+            "83",
+            "84",
+            "85",
+            "86",
+            "87",
+            "88",
+            "89",
+            "9",
+            "90",
+            "91",
+            "92",
+            "93",
+            "94",
+            "95",
+            "96",
+            "97",
+            "98",
+            "99"
+          ],
+          "overlap_us": "0",
+          "compute_union_us": "5303.273",
+          "device_compute_span_us": "11185.688",
+          "coverage": 0.4741123657302081,
+          "synchronization": {
+            "evidence": "Python event identity + exact task flows + observed ordering",
+            "roles": {
+              "A": {
+                "origin": 2499,
+                "wait": {
+                  "task": 2501,
+                  "status": "device_wait_observed"
+                },
+                "wait_cann_index": 4026,
+                "terminal": 3154,
+                "cpu_join": "P28/join/A"
+              },
+              "B": {
+                "origin": 2499,
+                "wait": {
+                  "task": null,
+                  "status": "no_device_wait_in_trace; producer_already_complete_before_native_call"
+                },
+                "wait_cann_index": 4704,
+                "terminal": 3807,
+                "cpu_join": "P28/join/B"
+              }
+            },
+            "forward_cpu_synchronizations": []
+          },
+          "branch_timing": {
+            "order": "AB",
+            "second_host_start_minus_first_compute_end_us": "206.378",
+            "second_compute_start_minus_first_compute_end_us": "693.107",
+            "second_native_submit_minus_first_compute_end_us": "672.113"
+          },
+          "provenance": {
+            "trace": "profiler/fe561f2e72a8_1325359_20260929172325553_ascend_pt/ASCEND_PROFILER_OUTPUT/trace_view.json",
+            "trace_sha256": "d2b26fc0b0411517bbd5ed6ad5f8eb2b4ebaa47236bd5fe43fb234f5fad92468",
+            "csv": "profiler/fe561f2e72a8_1325359_20260929172325553_ascend_pt/ASCEND_PROFILER_OUTPUT/kernel_details.csv",
+            "csv_sha256": "3c0df835df104942016c3655f763653691f72cdc78e6a7eb1febf1ad2c1bebce"
+          }
+        },
+        {
+          "trial": {
+            "case": "same32",
+            "strategy": "parallel",
+            "order": "BA",
+            "profile": "plain",
+            "timing": {
+              "wall_us": 12707.282,
+              "ready_us": {
+                "B": 6966.740131378174,
+                "A": 12304.659843444824
+              },
+              "host_submission_us": {
+                "B": 7246.544,
+                "A": 12585.857
+              }
+            }
+          },
+          "compute_tasks": 576,
+          "stream_ids": [
+            "0",
+            "1",
+            "10",
+            "11",
+            "12",
+            "2",
+            "3",
+            "39",
+            "4",
+            "40",
+            "5",
+            "6",
+            "63",
+            "64",
+            "65",
+            "66",
+            "67",
+            "68",
+            "69",
+            "7",
+            "70",
+            "71",
+            "72",
+            "73",
+            "74",
+            "75",
+            "76",
+            "77",
+            "78",
+            "79",
+            "8",
+            "80",
+            "81",
+            "82",
+            "83",
+            "84",
+            "85",
+            "86",
+            "87",
+            "88",
+            "89",
+            "9",
+            "90",
+            "91",
+            "92",
+            "93",
+            "94",
+            "95",
+            "96",
+            "97",
+            "98",
+            "99"
+          ],
+          "overlap_us": "0",
+          "compute_union_us": "5307.810",
+          "device_compute_span_us": "11114.244",
+          "coverage": 0.4775682448576799,
+          "synchronization": {
+            "evidence": "Python event identity + exact task flows + observed ordering",
+            "roles": {
+              "A": {
+                "origin": 2499,
+                "wait": {
+                  "task": null,
+                  "status": "no_device_wait_in_trace; producer_already_complete_before_native_call"
+                },
+                "wait_cann_index": 4704,
+                "terminal": 3807,
+                "cpu_join": "P28/join/A"
+              },
+              "B": {
+                "origin": 2499,
+                "wait": {
+                  "task": 2501,
+                  "status": "device_wait_observed"
+                },
+                "wait_cann_index": 4026,
+                "terminal": 3154,
+                "cpu_join": "P28/join/B"
+              }
+            },
+            "forward_cpu_synchronizations": []
+          },
+          "branch_timing": {
+            "order": "BA",
+            "second_host_start_minus_first_compute_end_us": "212.191",
+            "second_compute_start_minus_first_compute_end_us": "669.407",
+            "second_native_submit_minus_first_compute_end_us": "644.764"
+          },
+          "provenance": {
+            "trace": "profiler/fe561f2e72a8_1325359_20260929172329655_ascend_pt/ASCEND_PROFILER_OUTPUT/trace_view.json",
+            "trace_sha256": "6b0688593c515125d3f63faf68ac24941fae7d578db647c102aa0cb1eaedb005",
+            "csv": "profiler/fe561f2e72a8_1325359_20260929172329655_ascend_pt/ASCEND_PROFILER_OUTPUT/kernel_details.csv",
+            "csv_sha256": "db6a896c077268a0c09b1d56a6365ddb000f4ba1acfdf7e15be9117a81d66048"
+          }
+        },
+        {
+          "trial": {
+            "case": "same32",
+            "strategy": "serial",
+            "order": "AB",
+            "profile": "plain",
+            "timing": {
+              "wall_us": 10360.749,
+              "ready_us": {
+                "A": 5444.6001052856445,
+                "B": 10031.959533691406
+              },
+              "host_submission_us": {
+                "A": 5688.53,
+                "B": 10254.441
+              }
+            }
+          },
+          "compute_tasks": 576,
+          "stream_ids": [
+            "0",
+            "1",
+            "10",
+            "11",
+            "12",
+            "2",
+            "3",
+            "4",
+            "40",
+            "5",
+            "6",
+            "63",
+            "64",
+            "65",
+            "66",
+            "67",
+            "68",
+            "69",
+            "7",
+            "70",
+            "71",
+            "72",
+            "73",
+            "74",
+            "75",
+            "76",
+            "77",
+            "78",
+            "79",
+            "8",
+            "80",
+            "81",
+            "82",
+            "83",
+            "84",
+            "85",
+            "86",
+            "87",
+            "88",
+            "89",
+            "9",
+            "90",
+            "91",
+            "92",
+            "93",
+            "94",
+            "95",
+            "96",
+            "97",
+            "98",
+            "99"
+          ],
+          "overlap_us": "0",
+          "compute_union_us": "5313.774",
+          "device_compute_span_us": "9492.599",
+          "coverage": 0.5597807302299402,
+          "synchronization": {
+            "evidence": "Python event identity + exact task flows + observed ordering",
+            "roles": {
+              "A": {
+                "origin": 2499,
+                "wait": {
+                  "task": 2501,
+                  "status": "device_wait_observed"
+                },
+                "wait_cann_index": 4024,
+                "terminal": 3154,
+                "cpu_join": "P28/join/A"
+              },
+              "B": {
+                "origin": 2499,
+                "wait": {
+                  "task": null,
+                  "status": "no_device_wait_in_trace; producer_already_complete_before_native_call"
+                },
+                "wait_cann_index": 4702,
+                "terminal": 3807,
+                "cpu_join": "P28/join/B"
+              }
+            },
+            "forward_cpu_synchronizations": []
+          },
+          "branch_timing": {
+            "order": "AB",
+            "second_host_start_minus_first_compute_end_us": "203.718",
+            "second_compute_start_minus_first_compute_end_us": "499.780",
+            "second_native_submit_minus_first_compute_end_us": "479.960"
+          },
+          "provenance": {
+            "trace": "profiler/fe561f2e72a8_1325359_20260929172317176_ascend_pt/ASCEND_PROFILER_OUTPUT/trace_view.json",
+            "trace_sha256": "93bade109297804d30aabd25215d889383b137fb5861965b30e463eeadd54d49",
+            "csv": "profiler/fe561f2e72a8_1325359_20260929172317176_ascend_pt/ASCEND_PROFILER_OUTPUT/kernel_details.csv",
+            "csv_sha256": "732945c34d0a89386ab1d50f15deae594850fda6b54aafca8f677ea2b3d4e734"
+          }
+        },
+        {
+          "trial": {
+            "case": "same32",
+            "strategy": "serial",
+            "order": "BA",
+            "profile": "plain",
+            "timing": {
+              "wall_us": 12431.261,
+              "ready_us": {
+                "B": 7127.140045166016,
+                "A": 12060.040473937988
+              },
+              "host_submission_us": {
+                "B": 7409.01,
+                "A": 12337.411
+              }
+            }
+          },
+          "compute_tasks": 576,
+          "stream_ids": [
+            "0",
+            "1",
+            "10",
+            "11",
+            "12",
+            "2",
+            "3",
+            "4",
+            "40",
+            "5",
+            "6",
+            "63",
+            "64",
+            "65",
+            "66",
+            "67",
+            "68",
+            "69",
+            "7",
+            "70",
+            "71",
+            "72",
+            "73",
+            "74",
+            "75",
+            "76",
+            "77",
+            "78",
+            "79",
+            "8",
+            "80",
+            "81",
+            "82",
+            "83",
+            "84",
+            "85",
+            "86",
+            "87",
+            "88",
+            "89",
+            "9",
+            "90",
+            "91",
+            "92",
+            "93",
+            "94",
+            "95",
+            "96",
+            "97",
+            "98",
+            "99"
+          ],
+          "overlap_us": "0",
+          "compute_union_us": "5327.479",
+          "device_compute_span_us": "11071.402",
+          "coverage": 0.4811928064756388,
+          "synchronization": {
+            "evidence": "Python event identity + exact task flows + observed ordering",
+            "roles": {
+              "A": {
+                "origin": 2499,
+                "wait": {
+                  "task": null,
+                  "status": "no_device_wait_in_trace; producer_already_complete_before_native_call"
+                },
+                "wait_cann_index": 4702,
+                "terminal": 3807,
+                "cpu_join": "P28/join/A"
+              },
+              "B": {
+                "origin": 2499,
+                "wait": {
+                  "task": 2501,
+                  "status": "device_wait_observed"
+                },
+                "wait_cann_index": 4024,
+                "terminal": 3154,
+                "cpu_join": "P28/join/B"
+              }
+            },
+            "forward_cpu_synchronizations": []
+          },
+          "branch_timing": {
+            "order": "BA",
+            "second_host_start_minus_first_compute_end_us": "210.871",
+            "second_compute_start_minus_first_compute_end_us": "651.666",
+            "second_native_submit_minus_first_compute_end_us": "629.155"
+          },
+          "provenance": {
+            "trace": "profiler/fe561f2e72a8_1325359_20260929172321351_ascend_pt/ASCEND_PROFILER_OUTPUT/trace_view.json",
+            "trace_sha256": "9d517c0b5632c4fdc2df637a3dca1492ceec4024d866103c02289bd8f400351c",
+            "csv": "profiler/fe561f2e72a8_1325359_20260929172321351_ascend_pt/ASCEND_PROFILER_OUTPUT/kernel_details.csv",
+            "csv_sha256": "2e8310672ce8f221b1eb9cb30b7a311e915ac4000765e56d93a5933258bfa184"
+          }
+        }
+      ]
+    }
+  ]
+}
