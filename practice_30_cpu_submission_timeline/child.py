@@ -1,6 +1,6 @@
-"""One native request at a time, full growing-KV generation; eager only."""
+"""One native request at a time, full growing-KV generation; eager or PIECEWISE."""
 import argparse
-from contextlib import nullcontext
+from contextlib import nullcontext, ExitStack
 import inspect
 import math
 import os
@@ -23,19 +23,29 @@ def main():
     p=argparse.ArgumentParser(description=__doc__)
     p.add_argument('--output',type=Path,required=True)
     p.add_argument('--stage',choices=['reference','diagnostic','recovery'],required=True)
+    p.add_argument('--mode',choices=['eager','graph'],default='eager')
     a=p.parse_args();a.output.mkdir(parents=True,exist_ok=False)
     os.environ.update(VLLM_ENABLE_V1_MULTIPROCESSING='0',HF_HUB_OFFLINE='1',TRANSFORMERS_OFFLINE='1',
         TRITON_CACHE_DIR=str(a.output/'triton_cache'),VLLM_CACHE_ROOT=str(a.output/'vllm_cache'))
-    status=dict(status='running',stage=a.stage,pid=os.getpid())
+    status=dict(status='running',stage=a.stage,mode=a.mode,pid=os.getpid())
     save(a.output/'status.json',status)
-    observer=None
+    observer=None; graph_observer=None; hooks=ExitStack()
     try:
         from native import make_engine, prompts, generate, settings
-        torch,llm,runner=make_engine('eager')
+        import torch, torch_npu
+        if a.mode=='graph' and a.stage=='diagnostic':
+            from graph_observer import GraphObserver
+            graph_observer=hooks.enter_context(GraphObserver(torch,a.output).installed())
+        init_wall=time.perf_counter_ns();init_cpu=time.thread_time_ns()
+        torch,llm,runner=make_engine(a.mode)
+        save(a.output/'initialization.json',dict(wall_us=(time.perf_counter_ns()-init_wall)/1000,
+            thread_cpu_us=(time.thread_time_ns()-init_cpu)/1000,
+            includes='engine construction, profiling, compilation/capture where enabled; not steady request time'))
         import torch_npu,vllm,vllm_ascend
         save(a.output/'imports.json',{m.__name__:dict(path=m.__file__,version=getattr(m,'__version__',None))
                                      for m in (torch,torch_npu,vllm,vllm_ascend)})
-        save(a.output/'settings.json',settings('eager'))
+        save(a.output/'settings.json',settings(a.mode))
+        save(a.output/'effective_compilation.json',dict(config=str(runner.vllm_config.compilation_config)))
         ids=prompts(llm)['A'];save(a.output/'request.json',dict(prompt_token_ids=ids,max_tokens=64,
             temperature=0,ignore_eos=True,logprobs=1,stage=a.stage))
         warmups=[output_record(generate(llm,ids)) for _ in range(2)]
@@ -45,6 +55,7 @@ def main():
         if a.stage=='diagnostic':
             from observer import Observer
             observer=Observer(torch,llm,runner)
+            if graph_observer:observer.sources.update(graph_observer.sources)
             save(a.output/'phase_sources.json',observer.sources)
             profiler=torch_npu.profiler.profile(
                 activities=[torch_npu.profiler.ProfilerActivity.CPU,torch_npu.profiler.ProfilerActivity.NPU],
@@ -57,6 +68,7 @@ def main():
             profiler=nullcontext()
         try:
             with profiler, (observer.installed() if observer else nullcontext()):
+                if graph_observer:graph_observer.active=observer
                 for _ in range(count):
                     wall=time.perf_counter_ns();cpu=time.thread_time_ns()
                     with observer.phase('request') if observer else nullcontext():
@@ -65,6 +77,7 @@ def main():
                     responses.append(dict(wall_us=(wall_end-wall)/1000,
                         thread_cpu_us=(cpu_end-cpu)/1000,output=output_record(result)))
         finally:
+            if graph_observer:graph_observer.active=None
             if observer:
                 save(a.output/'observer.json',observer.records)
                 save(a.output/'binding_recovery.json',dict(restored=observer.restored))
@@ -79,7 +92,8 @@ def main():
         status.update(status='failed',reason=repr(exc),traceback=traceback.format_exc())
         raise
     finally:
-        save(a.output/'status.json',status)
+        try:hooks.close()
+        finally:save(a.output/'status.json',status)
 
 
 if __name__=='__main__':main()

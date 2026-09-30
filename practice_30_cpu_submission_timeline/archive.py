@@ -15,7 +15,7 @@ def main():
     a=p.parse_args();assert json.loads((a.run/'status.json').read_text())['status']=='passed'
     a.output.mkdir(parents=True,exist_ok=False)
     root=Path(__file__).resolve().parent;repo=root.parent
-    tools=[root/name for name in ('analyze.py','exact_join.py','render.py','viewer.html','test_analysis.py')]
+    tools=[root/name for name in ('analyze.py','exact_join.py','render.py','viewer.html','compare.py','test_analysis.py')]
     tools.append(repo/'practice_17_vllm_multistream/analyze_run.py')
     for source in tools:
         target=a.run/'analysis_tools'/source.relative_to(repo);target.parent.mkdir(parents=True,exist_ok=True);shutil.copy2(source,target)

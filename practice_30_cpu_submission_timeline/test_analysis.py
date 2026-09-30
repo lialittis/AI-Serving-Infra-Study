@@ -2,7 +2,8 @@
 import copy
 import unittest
 from analyze import phase_metrics,validate_queue
-from exact_join import validate_csv,validate_steps
+from exact_join import validate_csv,validate_steps,validate_graph_chunk
+from compare import compare_outputs
 
 
 class EvidenceTests(unittest.TestCase):
@@ -50,6 +51,29 @@ class EvidenceTests(unittest.TestCase):
         for field,value in [('Stream ID','2'),('Task ID','8'),('Start Time(us)','101')]:
             bad=dict(row);bad[field]=value
             with self.assertRaisesRegex(ValueError,'identity'):validate_csv(task,bad)
+
+    def test_graph_task_sequence_and_completion_are_required(self):
+        dump=[dict(args={'Task Type':'AI_CORE','Stream Id':9,'Task Id':3})]
+        tasks=[dict(stream='9',task_id='3',name='mm',start_us='10',end_us='12'),
+               dict(stream='9',task_id='4',name='NOTIFY_RECORD',start_us='12',end_us='13')]
+        validate_graph_chunk(tasks,dump,dict(start_us='9'),dict(end_us='14'))
+        bad=copy.deepcopy(tasks);bad[0]['stream']='8'
+        with self.assertRaisesRegex(ValueError,'sequence'):
+            validate_graph_chunk(bad,dump,dict(start_us='9'),dict(end_us='14'))
+        with self.assertRaisesRegex(ValueError,'enclosure'):
+            validate_graph_chunk(tasks,dump,dict(start_us='9'),dict(end_us='12'))
+        with self.assertRaisesRegex(ValueError,'size'):
+            validate_graph_chunk(tasks[:-1],dump,dict(start_us='9'),dict(end_us='14'))
+
+    def test_same_tokens_do_not_prove_equal_logprobs(self):
+        a=dict(tokens=[5],finish_reason='length',logprobs=[{'5':dict(logprob=-1.,rank=1)}])
+        b=copy.deepcopy(a);b['logprobs'][0]['5']['logprob']=-1.125
+        diff=compare_outputs(a,b)
+        self.assertTrue(diff['tokens_equal'])
+        self.assertFalse(diff['exact_output_equal'])
+        self.assertEqual(diff['shared_logprob_max_abs'],.125)
+        b['logprobs'][0]['6']=b['logprobs'][0].pop('5')
+        self.assertFalse(compare_outputs(a,b)['logprob_keys_equal'])
 
 
 if __name__=='__main__':unittest.main()

@@ -1,0 +1,2249 @@
+{
+  "runs": {
+    "eager": "/tmp/p30-graph-review/eager-02",
+    "graph": "/tmp/p30-graph-review/graph-01"
+  },
+  "revisions": {
+    "/vllm-workspace/vllm": "ad7125a431e176d4161099480a66f0169609a690",
+    "/vllm-workspace/vllm-ascend": "80610e4438dba05011b05f89fc45d91e96992671"
+  },
+  "matched_settings": true,
+  "matched_source_files": 27,
+  "outputs": {
+    "tokens_equal": true,
+    "finish_reason_equal": true,
+    "logprob_steps_equal": true,
+    "logprob_keys_equal": true,
+    "shared_logprob_values": 64,
+    "shared_logprob_max_abs": 0.0,
+    "shared_ranks_equal": true,
+    "exact_output_equal": true
+  },
+  "modes": {
+    "eager": {
+      "reference_wall_us": [
+        722000.824,
+        727261.12,
+        725879.471
+      ],
+      "reference_thread_cpu_us": [
+        719521.9,
+        724791.343,
+        723517.305
+      ],
+      "reference_median_us": 725879.471,
+      "diagnostic": {
+        "wall_us": 1006260.34,
+        "thread_cpu_us": 1005598.756,
+        "wall_minus_thread_cpu_us": 661.584
+      },
+      "overhead": {
+        "reference_wall_us": {
+          "n": 3,
+          "median": 725879.471,
+          "min": 722000.824,
+          "max": 727261.12
+        },
+        "diagnostic_wall_us": 1006390.86,
+        "diagnostic_over_reference_median": 1.386443480228965,
+        "recovery_wall_us": 716618.075,
+        "limits": "One diagnostic vs three controls; combines profiling/observer overhead and run variation."
+      },
+      "sync": {
+        "logprobs_to_cpu": {
+          "count": 192,
+          "duration_us": "212.117"
+        },
+        "token_to_list": {
+          "count": 64,
+          "duration_us": "653.138"
+        }
+      },
+      "focused_phases": {
+        "bookkeeping": {
+          "calls": 1,
+          "wall_us": 279.717,
+          "thread_cpu_us": 269.273,
+          "self_wall_us": 82.019
+        },
+        "core_step": {
+          "calls": 1,
+          "wall_us": 15864.925,
+          "thread_cpu_us": 15854.716,
+          "self_wall_us": 121.352
+        },
+        "engine_step": {
+          "calls": 1,
+          "wall_us": 15992.233,
+          "thread_cpu_us": 15981.999,
+          "self_wall_us": 57.248
+        },
+        "execute": {
+          "calls": 1,
+          "wall_us": 14509.482,
+          "thread_cpu_us": 14509.026,
+          "self_wall_us": 699.351
+        },
+        "executor_submit": {
+          "calls": 1,
+          "wall_us": 15044.095,
+          "thread_cpu_us": 15043.81,
+          "self_wall_us": 534.613
+        },
+        "forward": {
+          "calls": 1,
+          "wall_us": 13098.944,
+          "thread_cpu_us": 13097.706,
+          "self_wall_us": 13098.944
+        },
+        "logits": {
+          "calls": 1,
+          "wall_us": 40.179,
+          "thread_cpu_us": 39.462,
+          "self_wall_us": 40.179
+        },
+        "logprobs_to_cpu": {
+          "calls": 1,
+          "wall_us": 86.35,
+          "thread_cpu_us": 75.712,
+          "self_wall_us": 86.35
+        },
+        "output_processing": {
+          "calls": 1,
+          "wall_us": 70.06,
+          "thread_cpu_us": 69.586,
+          "self_wall_us": 70.06
+        },
+        "prepare_inputs": {
+          "calls": 1,
+          "wall_us": 583.223,
+          "thread_cpu_us": 582.077,
+          "self_wall_us": 583.223
+        },
+        "preprocess": {
+          "calls": 1,
+          "wall_us": 14.394,
+          "thread_cpu_us": 13.67,
+          "self_wall_us": 14.394
+        },
+        "sample": {
+          "calls": 1,
+          "wall_us": 635.252,
+          "thread_cpu_us": 624.756,
+          "self_wall_us": 80.63
+        },
+        "sampling": {
+          "calls": 1,
+          "wall_us": 274.905,
+          "thread_cpu_us": 274.322,
+          "self_wall_us": 274.905
+        },
+        "schedule": {
+          "calls": 1,
+          "wall_us": 41.966,
+          "thread_cpu_us": 41.595,
+          "self_wall_us": 41.966
+        },
+        "scheduler_update": {
+          "calls": 1,
+          "wall_us": 22.26,
+          "thread_cpu_us": 21.84,
+          "self_wall_us": 22.26
+        },
+        "state_update": {
+          "calls": 1,
+          "wall_us": 73.391,
+          "thread_cpu_us": 72.684,
+          "self_wall_us": 73.391
+        },
+        "token_to_list": {
+          "calls": 1,
+          "wall_us": 111.348,
+          "thread_cpu_us": 110.883,
+          "self_wall_us": 111.348
+        }
+      },
+      "exact": {
+        "mode": "eager",
+        "profile": "plain",
+        "steps": 64,
+        "stable_steps": 32,
+        "device_tasks": 21793,
+        "compute_tasks": 19298,
+        "physical_streams": 1,
+        "graph_replays": 0,
+        "graph_objects": 0,
+        "stable_device_span_us": {
+          "n": 32,
+          "median": 14797.932,
+          "min": 14674.527,
+          "max": 14882.415
+        },
+        "stable_compute_union_us": {
+          "n": 32,
+          "median": 2528.3595,
+          "min": 2512.803,
+          "max": 2541.103
+        },
+        "stable_coverage": {
+          "n": 32,
+          "median": 0.17094873784348535,
+          "min": 0.1694714902470195,
+          "max": 0.17297715967267632
+        },
+        "stable_uncovered_us": {
+          "n": 32,
+          "median": 12229.1485,
+          "min": 12092.629,
+          "max": 12309.923
+        },
+        "stable_interstep_us": {
+          "n": 32,
+          "median": 897.3155,
+          "min": 873.875,
+          "max": 1215.649
+        },
+        "overlap_us": "0",
+        "peak_compute_streams": 1,
+        "flow_collisions_resolved": 0,
+        "stable_gap_before_next_native_call_us": {
+          "n": 32,
+          "median": 6994.862,
+          "min": 6096.901,
+          "max": 7997.071
+        },
+        "stable_gap_before_next_host_call_us": {
+          "n": 32,
+          "median": 4859.248,
+          "min": 4258.307,
+          "max": 5569.084
+        },
+        "stable_gap_by_next_submission": {
+          "native_call_begins_after_gap_start": "371500.358",
+          "native_call_spans_gap_start": "5634.891",
+          "native_returned_before_gap": "13936.657"
+        }
+      },
+      "graph": {
+        "mode": "eager",
+        "captures": [],
+        "capture_during_measurement": 0,
+        "replay_by_step": {
+          "0": 0,
+          "1": 0,
+          "2": 0,
+          "3": 0,
+          "4": 0,
+          "5": 0,
+          "6": 0,
+          "7": 0,
+          "8": 0,
+          "9": 0,
+          "10": 0,
+          "11": 0,
+          "12": 0,
+          "13": 0,
+          "14": 0,
+          "15": 0,
+          "16": 0,
+          "17": 0,
+          "18": 0,
+          "19": 0,
+          "20": 0,
+          "21": 0,
+          "22": 0,
+          "23": 0,
+          "24": 0,
+          "25": 0,
+          "26": 0,
+          "27": 0,
+          "28": 0,
+          "29": 0,
+          "30": 0,
+          "31": 0,
+          "32": 0,
+          "33": 0,
+          "34": 0,
+          "35": 0,
+          "36": 0,
+          "37": 0,
+          "38": 0,
+          "39": 0,
+          "40": 0,
+          "41": 0,
+          "42": 0,
+          "43": 0,
+          "44": 0,
+          "45": 0,
+          "46": 0,
+          "47": 0,
+          "48": 0,
+          "49": 0,
+          "50": 0,
+          "51": 0,
+          "52": 0,
+          "53": 0,
+          "54": 0,
+          "55": 0,
+          "56": 0,
+          "57": 0,
+          "58": 0,
+          "59": 0,
+          "60": 0,
+          "61": 0,
+          "62": 0,
+          "63": 0
+        },
+        "update_python_calls": 0,
+        "update_native_events": [],
+        "effective_compilation": {
+          "config": "{'mode': <CompilationMode.NONE: 0>, 'debug_dump_path': None, 'cache_dir': '', 'compile_cache_save_format': 'binary', 'backend': 'vllm_ascend.compilation.compiler_interface.AscendCompiler', 'custom_ops': ['all'], 'ir_enable_torch_wrap': False, 'splitting_ops': [], 'compile_mm_encoder': False, 'cudagraph_mm_encoder': False, 'encoder_cudagraph_token_budgets': [], 'encoder_cudagraph_max_vision_items_per_batch': 0, 'encoder_cudagraph_max_frames_per_batch': None, 'compile_sizes': [], 'compile_ranges_endpoints': [256], 'inductor_compile_config': {'enable_auto_functionalized_v2': False, 'size_asserts': False, 'alignment_asserts': False, 'scalar_asserts': False, 'combo_kernels': True, 'benchmark_combo_kernel': True}, 'inductor_passes': {}, 'cudagraph_mode': <CUDAGraphMode.NONE: 0>, 'cudagraph_num_of_warmups': 1, 'cudagraph_capture_sizes': [], 'cudagraph_copy_inputs': False, 'cudagraph_specialize_lora': True, 'use_inductor_graph_partition': False, 'pass_config': {'fuse_norm_quant': True, 'fuse_act_quant': True, 'fuse_attn_quant': False, 'enable_sp': False, 'fuse_gemm_comms': False, 'fuse_allreduce_rms': False, 'fuse_act_padding': False}, 'max_cudagraph_capture_size': 0, 'dynamic_shapes_config': {'type': <DynamicShapesType.BACKED: 'backed'>, 'evaluate_guards': False, 'assume_32_bit_indexing': False}, 'local_cache_dir': None, 'fast_moe_cold_start': True, 'static_all_moe_layers': []}"
+        },
+        "initialization": {
+          "reference": {
+            "wall_us": 31671092.867,
+            "thread_cpu_us": 11718994.827,
+            "includes": "engine construction, profiling, compilation/capture where enabled; not steady request time"
+          },
+          "diagnostic": {
+            "wall_us": 31917712.785,
+            "thread_cpu_us": 11685549.836,
+            "includes": "engine construction, profiling, compilation/capture where enabled; not steady request time"
+          },
+          "recovery": {
+            "wall_us": 31217970.53,
+            "thread_cpu_us": 11544871.056,
+            "includes": "engine construction, profiling, compilation/capture where enabled; not steady request time"
+          }
+        }
+      },
+      "top_gaps": [
+        {
+          "step": "p30-measure/step-32",
+          "start_us": "1790776502864013.420",
+          "end_us": "1790776502864159.446",
+          "duration_us": "146.026",
+          "next_tasks": [
+            "k:347152"
+          ],
+          "classification": "native_call_begins_after_gap_start",
+          "submission_kind": "direct",
+          "submission_index": 407851,
+          "native_start_us": "1790776502864133.018",
+          "native_end_us": "1790776502864134.482",
+          "before_next_native_call_us": "119.598",
+          "host_start_us": "1790776502864123.397",
+          "host_end_us": "1790776502864126.962",
+          "before_next_host_call_us": "109.977",
+          "main_thread_phases": [
+            {
+              "phase_id": 546,
+              "kind": "engine_step",
+              "overlap_us": "146.026"
+            },
+            {
+              "phase_id": 547,
+              "kind": "core_step",
+              "overlap_us": "146.026"
+            },
+            {
+              "phase_id": 549,
+              "kind": "executor_submit",
+              "overlap_us": "146.026"
+            },
+            {
+              "phase_id": 550,
+              "kind": "execute",
+              "overlap_us": "146.026"
+            }
+          ],
+          "next_queue": {
+            "id": "q:54344",
+            "flow_id": "54344",
+            "enqueue_index": 245959,
+            "dequeue_index": 202935,
+            "enqueue": {
+              "ph": "X",
+              "name": "Enqueue@acl_memcpy_host_to_device",
+              "pid": 1446480,
+              "tid": 1446480,
+              "ts": "1790776502864123.645",
+              "dur": "3.097",
+              "cat": "enqueue",
+              "args": {
+                "correlation_id": 54344
+              }
+            },
+            "dequeue": {
+              "ph": "X",
+              "name": "Dequeue@acl_memcpy_host_to_device",
+              "pid": 1446480,
+              "tid": 1447075,
+              "ts": "1790776502864132.269",
+              "dur": "2.581",
+              "cat": "dequeue",
+              "args": {
+                "correlation_id": 54344
+              }
+            },
+            "scope": "P30/32/execute/550",
+            "step": "p30-measure/step-32",
+            "enqueue_to_dequeue_start_us": "8.624",
+            "dequeue_start_minus_enqueue_end_us": "5.527"
+          },
+          "queue_submission_kind": "direct",
+          "before_next_enqueue_us": "110.225",
+          "queue_start_state": "not_enqueued",
+          "overlapping_cpu_ops": [
+            {
+              "index": 91055,
+              "name": "aten::to",
+              "start_us": "1790776502864111.842",
+              "duration_us": "18.075",
+              "overlap_us": "18.075"
+            },
+            {
+              "index": 91054,
+              "name": "aten::_to_copy",
+              "start_us": "1790776502864113.185",
+              "duration_us": "16.555",
+              "overlap_us": "16.555"
+            },
+            {
+              "index": 91049,
+              "name": "aten::pin_memory",
+              "start_us": "1790776502864101.821",
+              "duration_us": "7.934",
+              "overlap_us": "7.934"
+            },
+            {
+              "index": 91053,
+              "name": "aten::copy_",
+              "start_us": "1790776502864121.660",
+              "duration_us": "7.802",
+              "overlap_us": "7.802"
+            },
+            {
+              "index": 91048,
+              "name": "aten::is_pinned",
+              "start_us": "1790776502864102.952",
+              "duration_us": "6.455",
+              "overlap_us": "6.455"
+            },
+            {
+              "index": 91043,
+              "name": "aten::slice",
+              "start_us": "1790776502864086.561",
+              "duration_us": "5.881",
+              "overlap_us": "5.881"
+            },
+            {
+              "index": 91051,
+              "name": "aten::empty_strided",
+              "start_us": "1790776502864115.405",
+              "duration_us": "5.824",
+              "overlap_us": "5.824"
+            },
+            {
+              "index": 91019,
+              "name": "aten::fill_",
+              "start_us": "1790776502864014.760",
+              "duration_us": "5.06",
+              "overlap_us": "5.060"
+            },
+            {
+              "index": 91024,
+              "name": "aten::lt",
+              "start_us": "1790776502864028.387",
+              "duration_us": "4.875",
+              "overlap_us": "4.875"
+            },
+            {
+              "index": 91052,
+              "name": "acl_memcpy_host_to_device",
+              "start_us": "1790776502864123.397",
+              "duration_us": "3.565",
+              "overlap_us": "3.565"
+            },
+            {
+              "index": 91029,
+              "name": "aten::fill_",
+              "start_us": "1790776502864040.058",
+              "duration_us": "3.562",
+              "overlap_us": "3.562"
+            },
+            {
+              "index": 91027,
+              "name": "aten::slice",
+              "start_us": "1790776502864036.815",
+              "duration_us": "2.755",
+              "overlap_us": "2.755"
+            },
+            {
+              "index": 91018,
+              "name": "aclnnInplaceFillScalar",
+              "start_us": "1790776502864016.860",
+              "duration_us": "2.742",
+              "overlap_us": "2.742"
+            },
+            {
+              "index": 91028,
+              "name": "aten::copy_",
+              "start_us": "1790776502864040.947",
+              "duration_us": "2.595",
+              "overlap_us": "2.595"
+            },
+            {
+              "index": 91033,
+              "name": "aten::slice",
+              "start_us": "1790776502864047.720",
+              "duration_us": "2.461",
+              "overlap_us": "2.461"
+            },
+            {
+              "index": 91045,
+              "name": "aten::slice",
+              "start_us": "1790776502864094.586",
+              "duration_us": "2.211",
+              "overlap_us": "2.211"
+            },
+            {
+              "index": 91021,
+              "name": "aten::slice",
+              "start_us": "1790776502864022.122",
+              "duration_us": "2.058",
+              "overlap_us": "2.058"
+            },
+            {
+              "index": 91059,
+              "name": "aten::slice",
+              "start_us": "1790776502864134.717",
+              "duration_us": "1.983",
+              "overlap_us": "1.983"
+            },
+            {
+              "index": 91031,
+              "name": "aten::slice",
+              "start_us": "1790776502864044.779",
+              "duration_us": "1.873",
+              "overlap_us": "1.873"
+            },
+            {
+              "index": 91047,
+              "name": "aten::slice",
+              "start_us": "1790776502864097.658",
+              "duration_us": "1.687",
+              "overlap_us": "1.687"
+            },
+            {
+              "index": 91037,
+              "name": "aten::slice",
+              "start_us": "1790776502864053.482",
+              "duration_us": "1.685",
+              "overlap_us": "1.685"
+            },
+            {
+              "index": 91023,
+              "name": "aten::slice",
+              "start_us": "1790776502864025.130",
+              "duration_us": "1.602",
+              "overlap_us": "1.602"
+            },
+            {
+              "index": 91035,
+              "name": "aten::slice",
+              "start_us": "1790776502864051.133",
+              "duration_us": "1.539",
+              "overlap_us": "1.539"
+            },
+            {
+              "index": 91026,
+              "name": "aten::as_strided",
+              "start_us": "1790776502864037.940",
+              "duration_us": "1.533",
+              "overlap_us": "1.533"
+            },
+            {
+              "index": 91039,
+              "name": "aten::slice",
+              "start_us": "1790776502864055.997",
+              "duration_us": "1.44",
+              "overlap_us": "1.440"
+            },
+            {
+              "index": 91050,
+              "name": "empty_tensor",
+              "start_us": "1790776502864116.837",
+              "duration_us": "1.318",
+              "overlap_us": "1.318"
+            },
+            {
+              "index": 91041,
+              "name": "aten::slice",
+              "start_us": "1790776502864058.190",
+              "duration_us": "1.272",
+              "overlap_us": "1.272"
+            },
+            {
+              "index": 91020,
+              "name": "aten::as_strided",
+              "start_us": "1790776502864023.118",
+              "duration_us": "0.812",
+              "overlap_us": "0.812"
+            },
+            {
+              "index": 91032,
+              "name": "aten::as_strided",
+              "start_us": "1790776502864048.607",
+              "duration_us": "0.678",
+              "overlap_us": "0.678"
+            },
+            {
+              "index": 91058,
+              "name": "aten::as_strided",
+              "start_us": "1790776502864135.635",
+              "duration_us": "0.672",
+              "overlap_us": "0.672"
+            },
+            {
+              "index": 91022,
+              "name": "aten::as_strided",
+              "start_us": "1790776502864025.842",
+              "duration_us": "0.666",
+              "overlap_us": "0.666"
+            },
+            {
+              "index": 91042,
+              "name": "aten::as_strided",
+              "start_us": "1790776502864091.378",
+              "duration_us": "0.637",
+              "overlap_us": "0.637"
+            },
+            {
+              "index": 91057,
+              "name": "aten::resolve_neg",
+              "start_us": "1790776502864132.499",
+              "duration_us": "0.628",
+              "overlap_us": "0.628"
+            },
+            {
+              "index": 91030,
+              "name": "aten::as_strided",
+              "start_us": "1790776502864045.575",
+              "duration_us": "0.627",
+              "overlap_us": "0.627"
+            },
+            {
+              "index": 91046,
+              "name": "aten::as_strided",
+              "start_us": "1790776502864098.487",
+              "duration_us": "0.613",
+              "overlap_us": "0.613"
+            },
+            {
+              "index": 91036,
+              "name": "aten::as_strided",
+              "start_us": "1790776502864054.296",
+              "duration_us": "0.579",
+              "overlap_us": "0.579"
+            },
+            {
+              "index": 91044,
+              "name": "aten::as_strided",
+              "start_us": "1790776502864095.982",
+              "duration_us": "0.558",
+              "overlap_us": "0.558"
+            },
+            {
+              "index": 91034,
+              "name": "aten::as_strided",
+              "start_us": "1790776502864051.908",
+              "duration_us": "0.502",
+              "overlap_us": "0.502"
+            },
+            {
+              "index": 91038,
+              "name": "aten::as_strided",
+              "start_us": "1790776502864056.712",
+              "duration_us": "0.494",
+              "overlap_us": "0.494"
+            },
+            {
+              "index": 91040,
+              "name": "aten::as_strided",
+              "start_us": "1790776502864058.762",
+              "duration_us": "0.418",
+              "overlap_us": "0.418"
+            },
+            {
+              "index": 91060,
+              "name": "aten::resolve_conj",
+              "start_us": "1790776502864137.310",
+              "duration_us": "0.372",
+              "overlap_us": "0.372"
+            },
+            {
+              "index": 91025,
+              "name": "aten::lift_fresh",
+              "start_us": "1790776502864035.410",
+              "duration_us": "0.369",
+              "overlap_us": "0.369"
+            },
+            {
+              "index": 91056,
+              "name": "aten::resolve_conj",
+              "start_us": "1790776502864131.882",
+              "duration_us": "0.353",
+              "overlap_us": "0.353"
+            },
+            {
+              "index": 91017,
+              "name": "aten::slice",
+              "start_us": "1790776502864011.188",
+              "duration_us": "2.492",
+              "overlap_us": "0.260"
+            },
+            {
+              "index": 91061,
+              "name": "aten::resolve_neg",
+              "start_us": "1790776502864137.806",
+              "duration_us": "0.232",
+              "overlap_us": "0.232"
+            }
+          ]
+        },
+        {
+          "step": "p30-measure/step-32",
+          "start_us": "1790776502864642.005",
+          "end_us": "1790776502864782.651",
+          "duration_us": "140.646",
+          "next_tasks": [
+            "k:325472"
+          ],
+          "classification": "native_call_begins_after_gap_start",
+          "submission_kind": "direct",
+          "submission_index": 407905,
+          "native_start_us": "1790776502864761.163",
+          "native_end_us": "1790776502864762.956",
+          "before_next_native_call_us": "119.158",
+          "host_start_us": "1790776502864743.652",
+          "host_end_us": "1790776502864755.286",
+          "before_next_host_call_us": "101.647",
+          "main_thread_phases": [
+            {
+              "phase_id": 546,
+              "kind": "engine_step",
+              "overlap_us": "140.646"
+            },
+            {
+              "phase_id": 547,
+              "kind": "core_step",
+              "overlap_us": "140.646"
+            },
+            {
+              "phase_id": 549,
+              "kind": "executor_submit",
+              "overlap_us": "140.646"
+            },
+            {
+              "phase_id": 550,
+              "kind": "execute",
+              "overlap_us": "140.646"
+            },
+            {
+              "phase_id": 554,
+              "kind": "forward",
+              "overlap_us": "140.646"
+            }
+          ],
+          "next_queue": {
+            "id": "q:54355",
+            "flow_id": "54355",
+            "enqueue_index": 245981,
+            "dequeue_index": 202957,
+            "enqueue": {
+              "ph": "X",
+              "name": "Enqueue@_triton_rope",
+              "pid": 1446480,
+              "tid": 1446480,
+              "ts": "1790776502864743.826",
+              "dur": "10.893",
+              "cat": "enqueue",
+              "args": {
+                "correlation_id": 54355
+              }
+            },
+            "dequeue": {
+              "ph": "X",
+              "name": "Dequeue@_triton_rope",
+              "pid": 1446480,
+              "tid": 1447075,
+              "ts": "1790776502864760.573",
+              "dur": "4.485",
+              "cat": "dequeue",
+              "args": {
+                "correlation_id": 54355
+              }
+            },
+            "scope": "P30/32/forward/554",
+            "step": "p30-measure/step-32",
+            "enqueue_to_dequeue_start_us": "16.747",
+            "dequeue_start_minus_enqueue_end_us": "5.854"
+          },
+          "queue_submission_kind": "direct",
+          "before_next_enqueue_us": "101.821",
+          "queue_start_state": "not_enqueued",
+          "overlapping_cpu_ops": [
+            {
+              "index": 91146,
+              "name": "vllm::npu_rotary_embedding",
+              "start_us": "1790776502864638.870",
+              "duration_us": "136.125",
+              "overlap_us": "132.990"
+            },
+            {
+              "index": 91143,
+              "name": "_triton_rope",
+              "start_us": "1790776502864743.652",
+              "duration_us": "11.634",
+              "overlap_us": "11.634"
+            },
+            {
+              "index": 91141,
+              "name": "aten::view",
+              "start_us": "1790776502864644.232",
+              "duration_us": "2.735",
+              "overlap_us": "2.735"
+            },
+            {
+              "index": 91144,
+              "name": "aten::view",
+              "start_us": "1790776502864766.261",
+              "duration_us": "1.785",
+              "overlap_us": "1.785"
+            },
+            {
+              "index": 91145,
+              "name": "aten::view",
+              "start_us": "1790776502864771.610",
+              "duration_us": "0.857",
+              "overlap_us": "0.857"
+            },
+            {
+              "index": 91142,
+              "name": "aten::view",
+              "start_us": "1790776502864647.824",
+              "duration_us": "0.604",
+              "overlap_us": "0.604"
+            }
+          ]
+        },
+        {
+          "step": "p30-measure/step-32",
+          "start_us": "1790776502864384.795",
+          "end_us": "1790776502864515.960",
+          "duration_us": "131.165",
+          "next_tasks": [
+            "k:325462"
+          ],
+          "classification": "native_call_begins_after_gap_start",
+          "submission_kind": "direct",
+          "submission_index": 407882,
+          "native_start_us": "1790776502864493.709",
+          "native_end_us": "1790776502864496.435",
+          "before_next_native_call_us": "108.914",
+          "host_start_us": "1790776502864482.178",
+          "host_end_us": "1790776502864486.282",
+          "before_next_host_call_us": "97.383",
+          "main_thread_phases": [
+            {
+              "phase_id": 546,
+              "kind": "engine_step",
+              "overlap_us": "131.165"
+            },
+            {
+              "phase_id": 547,
+              "kind": "core_step",
+              "overlap_us": "131.165"
+            },
+            {
+              "phase_id": 549,
+              "kind": "executor_submit",
+              "overlap_us": "131.165"
+            },
+            {
+              "phase_id": 550,
+              "kind": "execute",
+              "overlap_us": "131.165"
+            },
+            {
+              "phase_id": 554,
+              "kind": "forward",
+              "overlap_us": "67.162"
+            }
+          ],
+          "next_queue": {
+            "id": "q:54351",
+            "flow_id": "54351",
+            "enqueue_index": 245973,
+            "dequeue_index": 202949,
+            "enqueue": {
+              "ph": "X",
+              "name": "Enqueue@aclnnInplaceCopy",
+              "pid": 1446480,
+              "tid": 1446480,
+              "ts": "1790776502864482.235",
+              "dur": "3.872",
+              "cat": "enqueue",
+              "args": {
+                "correlation_id": 54351
+              }
+            },
+            "dequeue": {
+              "ph": "X",
+              "name": "Dequeue@aclnnInplaceCopy",
+              "pid": 1446480,
+              "tid": 1447075,
+              "ts": "1790776502864491.975",
+              "dur": "5.142",
+              "cat": "dequeue",
+              "args": {
+                "correlation_id": 54351
+              }
+            },
+            "scope": "P30/32/forward/554",
+            "step": "p30-measure/step-32",
+            "enqueue_to_dequeue_start_us": "9.740",
+            "dequeue_start_minus_enqueue_end_us": "5.868"
+          },
+          "queue_submission_kind": "direct",
+          "before_next_enqueue_us": "97.440",
+          "queue_start_state": "not_enqueued",
+          "overlapping_cpu_ops": [
+            {
+              "index": 91120,
+              "name": "aten::to",
+              "start_us": "1790776502864471.102",
+              "duration_us": "16.214",
+              "overlap_us": "16.214"
+            },
+            {
+              "index": 91119,
+              "name": "aten::_to_copy",
+              "start_us": "1790776502864472.522",
+              "duration_us": "14.663",
+              "overlap_us": "14.663"
+            },
+            {
+              "index": 91118,
+              "name": "aten::copy_",
+              "start_us": "1790776502864478.266",
+              "duration_us": "8.658",
+              "overlap_us": "8.658"
+            },
+            {
+              "index": 91123,
+              "name": "aten::embedding",
+              "start_us": "1790776502864492.425",
+              "duration_us": "8.622",
+              "overlap_us": "8.622"
+            },
+            {
+              "index": 91124,
+              "name": "vllm::maybe_pad_and_reduce",
+              "start_us": "1790776502864505.732",
+              "duration_us": "6.28",
+              "overlap_us": "6.280"
+            },
+            {
+              "index": 91117,
+              "name": "aclnnInplaceCopy",
+              "start_us": "1790776502864482.178",
+              "duration_us": "4.104",
+              "overlap_us": "4.104"
+            },
+            {
+              "index": 91116,
+              "name": "aten::empty",
+              "start_us": "1790776502864474.444",
+              "duration_us": "3.506",
+              "overlap_us": "3.506"
+            },
+            {
+              "index": 91122,
+              "name": "aclnnEmbedding",
+              "start_us": "1790776502864497.970",
+              "duration_us": "2.652",
+              "overlap_us": "2.652"
+            },
+            {
+              "index": 91115,
+              "name": "empty_tensor",
+              "start_us": "1790776502864475.652",
+              "duration_us": "2.113",
+              "overlap_us": "2.113"
+            },
+            {
+              "index": 91121,
+              "name": "empty_tensor",
+              "start_us": "1790776502864494.021",
+              "duration_us": "1.946",
+              "overlap_us": "1.946"
+            }
+          ]
+        }
+      ],
+      "initialization": {
+        "reference": {
+          "wall_us": 31671092.867,
+          "thread_cpu_us": 11718994.827,
+          "includes": "engine construction, profiling, compilation/capture where enabled; not steady request time"
+        },
+        "diagnostic": {
+          "wall_us": 31917712.785,
+          "thread_cpu_us": 11685549.836,
+          "includes": "engine construction, profiling, compilation/capture where enabled; not steady request time"
+        },
+        "recovery": {
+          "wall_us": 31217970.53,
+          "thread_cpu_us": 11544871.056,
+          "includes": "engine construction, profiling, compilation/capture where enabled; not steady request time"
+        }
+      }
+    },
+    "graph": {
+      "reference_wall_us": [
+        291453.939,
+        291484.209,
+        291054.635
+      ],
+      "reference_thread_cpu_us": [
+        288200.221,
+        287140.782,
+        287042.732
+      ],
+      "reference_median_us": 291453.939,
+      "diagnostic": {
+        "wall_us": 458497.019,
+        "thread_cpu_us": 457809.182,
+        "wall_minus_thread_cpu_us": 687.837
+      },
+      "overhead": {
+        "reference_wall_us": {
+          "n": 3,
+          "median": 291453.939,
+          "min": 291054.635,
+          "max": 291484.209
+        },
+        "diagnostic_wall_us": 458633.789,
+        "diagnostic_over_reference_median": 1.5736064181311338,
+        "recovery_wall_us": 290973.946,
+        "limits": "One diagnostic vs three controls; combines profiling/observer overhead and run variation."
+      },
+      "sync": {
+        "logprobs_to_cpu": {
+          "count": 192,
+          "duration_us": "203.754"
+        },
+        "token_to_list": {
+          "count": 64,
+          "duration_us": "491.625"
+        }
+      },
+      "focused_phases": {
+        "bookkeeping": {
+          "calls": 1,
+          "wall_us": 268.54,
+          "thread_cpu_us": 257.996,
+          "self_wall_us": 80.997
+        },
+        "core_step": {
+          "calls": 1,
+          "wall_us": 6654.656,
+          "thread_cpu_us": 6644.233,
+          "self_wall_us": 120.636
+        },
+        "engine_step": {
+          "calls": 1,
+          "wall_us": 6784.744,
+          "thread_cpu_us": 6774.126,
+          "self_wall_us": 57.826
+        },
+        "execute": {
+          "calls": 1,
+          "wall_us": 5599.679,
+          "thread_cpu_us": 5599.255,
+          "self_wall_us": 669.449
+        },
+        "executor_submit": {
+          "calls": 1,
+          "wall_us": 5869.218,
+          "thread_cpu_us": 5868.887,
+          "self_wall_us": 269.539
+        },
+        "forward": {
+          "calls": 1,
+          "wall_us": 4249.342,
+          "thread_cpu_us": 4248.771,
+          "self_wall_us": 3933.025
+        },
+        "logits": {
+          "calls": 1,
+          "wall_us": 47.39,
+          "thread_cpu_us": 46.947,
+          "self_wall_us": 47.39
+        },
+        "logprobs_to_cpu": {
+          "calls": 1,
+          "wall_us": 86.503,
+          "thread_cpu_us": 75.707,
+          "self_wall_us": 86.503
+        },
+        "output_processing": {
+          "calls": 1,
+          "wall_us": 72.262,
+          "thread_cpu_us": 71.855,
+          "self_wall_us": 72.262
+        },
+        "prepare_inputs": {
+          "calls": 1,
+          "wall_us": 546.907,
+          "thread_cpu_us": 545.748,
+          "self_wall_us": 546.907
+        },
+        "preprocess": {
+          "calls": 1,
+          "wall_us": 14.012,
+          "thread_cpu_us": 13.389,
+          "self_wall_us": 14.012
+        },
+        "replay": {
+          "calls": 25,
+          "wall_us": 316.31699999999995,
+          "thread_cpu_us": 302.652,
+          "self_wall_us": 316.31699999999995
+        },
+        "sample": {
+          "calls": 1,
+          "wall_us": 598.986,
+          "thread_cpu_us": 588.363,
+          "self_wall_us": 77.626
+        },
+        "sampling": {
+          "calls": 1,
+          "wall_us": 252.82,
+          "thread_cpu_us": 252.21,
+          "self_wall_us": 252.82
+        },
+        "schedule": {
+          "calls": 1,
+          "wall_us": 42.843,
+          "thread_cpu_us": 42.478,
+          "self_wall_us": 42.843
+        },
+        "scheduler_update": {
+          "calls": 1,
+          "wall_us": 22.973,
+          "thread_cpu_us": 22.438,
+          "self_wall_us": 22.973
+        },
+        "state_update": {
+          "calls": 1,
+          "wall_us": 72.579,
+          "thread_cpu_us": 72.112,
+          "self_wall_us": 72.579
+        },
+        "token_to_list": {
+          "calls": 1,
+          "wall_us": 101.04,
+          "thread_cpu_us": 100.452,
+          "self_wall_us": 101.04
+        }
+      },
+      "exact": {
+        "mode": "graph",
+        "profile": "plain",
+        "steps": 64,
+        "stable_steps": 32,
+        "device_tasks": 26517,
+        "compute_tasks": 19298,
+        "physical_streams": 26,
+        "graph_replays": 1575,
+        "graph_objects": 25,
+        "stable_device_span_us": {
+          "n": 32,
+          "median": 5911.4865,
+          "min": 5859.054,
+          "max": 6492.76
+        },
+        "stable_compute_union_us": {
+          "n": 32,
+          "median": 2777.3,
+          "min": 2767.706,
+          "max": 2786.414
+        },
+        "stable_coverage": {
+          "n": 32,
+          "median": 0.469158613388539,
+          "min": 0.42886415022270963,
+          "max": 0.4736427717583198
+        },
+        "stable_uncovered_us": {
+          "n": 32,
+          "median": 3002.811,
+          "min": 2948.718,
+          "max": 3572.607
+        },
+        "stable_interstep_us": {
+          "n": 32,
+          "median": 900.4559999999999,
+          "min": 888.775,
+          "max": 1261.77
+        },
+        "overlap_us": "0",
+        "peak_compute_streams": 1,
+        "flow_collisions_resolved": 0,
+        "stable_gap_before_next_native_call_us": {
+          "n": 32,
+          "median": 1691.945,
+          "min": 1492.582,
+          "max": 2162.449
+        },
+        "stable_gap_before_next_host_call_us": {
+          "n": 32,
+          "median": 886.2715000000001,
+          "min": 780.136,
+          "max": 1331.417
+        },
+        "stable_gap_by_next_submission": {
+          "native_call_begins_after_gap_start": "95585.729",
+          "native_call_spans_gap_start": "415.820",
+          "native_returned_before_gap": "1776.702"
+        }
+      },
+      "graph": {
+        "mode": "graph",
+        "captures": [
+          {
+            "kind": "capture",
+            "uid": "g1",
+            "path": "graph_dumps/g1.json",
+            "wall_start_ns": 5023029753813464,
+            "wall_end_ns": 5023029758819225,
+            "wall_us": 5005.761,
+            "thread_cpu_us": 3623.159,
+            "during_measurement": false
+          },
+          {
+            "kind": "capture",
+            "uid": "g2",
+            "path": "graph_dumps/g2.json",
+            "wall_start_ns": 5023029759561033,
+            "wall_end_ns": 5023029761847663,
+            "wall_us": 2286.63,
+            "thread_cpu_us": 2189.792,
+            "during_measurement": false
+          },
+          {
+            "kind": "capture",
+            "uid": "g3",
+            "path": "graph_dumps/g3.json",
+            "wall_start_ns": 5023029762424995,
+            "wall_end_ns": 5023029764308019,
+            "wall_us": 1883.024,
+            "thread_cpu_us": 1775.895,
+            "during_measurement": false
+          },
+          {
+            "kind": "capture",
+            "uid": "g4",
+            "path": "graph_dumps/g4.json",
+            "wall_start_ns": 5023029764829230,
+            "wall_end_ns": 5023029766618919,
+            "wall_us": 1789.689,
+            "thread_cpu_us": 1708.934,
+            "during_measurement": false
+          },
+          {
+            "kind": "capture",
+            "uid": "g5",
+            "path": "graph_dumps/g5.json",
+            "wall_start_ns": 5023029767109544,
+            "wall_end_ns": 5023029768981434,
+            "wall_us": 1871.89,
+            "thread_cpu_us": 1736.996,
+            "during_measurement": false
+          },
+          {
+            "kind": "capture",
+            "uid": "g6",
+            "path": "graph_dumps/g6.json",
+            "wall_start_ns": 5023029769498059,
+            "wall_end_ns": 5023029771246481,
+            "wall_us": 1748.422,
+            "thread_cpu_us": 1659.346,
+            "during_measurement": false
+          },
+          {
+            "kind": "capture",
+            "uid": "g7",
+            "path": "graph_dumps/g7.json",
+            "wall_start_ns": 5023029771735469,
+            "wall_end_ns": 5023029773490231,
+            "wall_us": 1754.762,
+            "thread_cpu_us": 1677.326,
+            "during_measurement": false
+          },
+          {
+            "kind": "capture",
+            "uid": "g8",
+            "path": "graph_dumps/g8.json",
+            "wall_start_ns": 5023029773957482,
+            "wall_end_ns": 5023029775936659,
+            "wall_us": 1979.177,
+            "thread_cpu_us": 1894.521,
+            "during_measurement": false
+          },
+          {
+            "kind": "capture",
+            "uid": "g9",
+            "path": "graph_dumps/g9.json",
+            "wall_start_ns": 5023029776457794,
+            "wall_end_ns": 5023029778348862,
+            "wall_us": 1891.068,
+            "thread_cpu_us": 1815.452,
+            "during_measurement": false
+          },
+          {
+            "kind": "capture",
+            "uid": "g10",
+            "path": "graph_dumps/g10.json",
+            "wall_start_ns": 5023029778834553,
+            "wall_end_ns": 5023029780751641,
+            "wall_us": 1917.088,
+            "thread_cpu_us": 1833.232,
+            "during_measurement": false
+          },
+          {
+            "kind": "capture",
+            "uid": "g11",
+            "path": "graph_dumps/g11.json",
+            "wall_start_ns": 5023029781212195,
+            "wall_end_ns": 5023029785568991,
+            "wall_us": 4356.796,
+            "thread_cpu_us": 2631.168,
+            "during_measurement": false
+          },
+          {
+            "kind": "capture",
+            "uid": "g12",
+            "path": "graph_dumps/g12.json",
+            "wall_start_ns": 5023029786054994,
+            "wall_end_ns": 5023029787969890,
+            "wall_us": 1914.896,
+            "thread_cpu_us": 1818.713,
+            "during_measurement": false
+          },
+          {
+            "kind": "capture",
+            "uid": "g13",
+            "path": "graph_dumps/g13.json",
+            "wall_start_ns": 5023029788466587,
+            "wall_end_ns": 5023029790419583,
+            "wall_us": 1952.996,
+            "thread_cpu_us": 1852.866,
+            "during_measurement": false
+          },
+          {
+            "kind": "capture",
+            "uid": "g14",
+            "path": "graph_dumps/g14.json",
+            "wall_start_ns": 5023029790884732,
+            "wall_end_ns": 5023029792915577,
+            "wall_us": 2030.845,
+            "thread_cpu_us": 1899.918,
+            "during_measurement": false
+          },
+          {
+            "kind": "capture",
+            "uid": "g15",
+            "path": "graph_dumps/g15.json",
+            "wall_start_ns": 5023029793385603,
+            "wall_end_ns": 5023029795327244,
+            "wall_us": 1941.641,
+            "thread_cpu_us": 1844.248,
+            "during_measurement": false
+          },
+          {
+            "kind": "capture",
+            "uid": "g16",
+            "path": "graph_dumps/g16.json",
+            "wall_start_ns": 5023029795803420,
+            "wall_end_ns": 5023029797719310,
+            "wall_us": 1915.89,
+            "thread_cpu_us": 1832.552,
+            "during_measurement": false
+          },
+          {
+            "kind": "capture",
+            "uid": "g17",
+            "path": "graph_dumps/g17.json",
+            "wall_start_ns": 5023029798209162,
+            "wall_end_ns": 5023029800128370,
+            "wall_us": 1919.208,
+            "thread_cpu_us": 1844.132,
+            "during_measurement": false
+          },
+          {
+            "kind": "capture",
+            "uid": "g18",
+            "path": "graph_dumps/g18.json",
+            "wall_start_ns": 5023029800604402,
+            "wall_end_ns": 5023029802530144,
+            "wall_us": 1925.742,
+            "thread_cpu_us": 1835.628,
+            "during_measurement": false
+          },
+          {
+            "kind": "capture",
+            "uid": "g19",
+            "path": "graph_dumps/g19.json",
+            "wall_start_ns": 5023029803001086,
+            "wall_end_ns": 5023029804952886,
+            "wall_us": 1951.8,
+            "thread_cpu_us": 1869.683,
+            "during_measurement": false
+          },
+          {
+            "kind": "capture",
+            "uid": "g20",
+            "path": "graph_dumps/g20.json",
+            "wall_start_ns": 5023029805426740,
+            "wall_end_ns": 5023029807319157,
+            "wall_us": 1892.417,
+            "thread_cpu_us": 1812.022,
+            "during_measurement": false
+          },
+          {
+            "kind": "capture",
+            "uid": "g21",
+            "path": "graph_dumps/g21.json",
+            "wall_start_ns": 5023029807795059,
+            "wall_end_ns": 5023029809715221,
+            "wall_us": 1920.162,
+            "thread_cpu_us": 1834.406,
+            "during_measurement": false
+          },
+          {
+            "kind": "capture",
+            "uid": "g22",
+            "path": "graph_dumps/g22.json",
+            "wall_start_ns": 5023029810201523,
+            "wall_end_ns": 5023029812132129,
+            "wall_us": 1930.606,
+            "thread_cpu_us": 1847.52,
+            "during_measurement": false
+          },
+          {
+            "kind": "capture",
+            "uid": "g23",
+            "path": "graph_dumps/g23.json",
+            "wall_start_ns": 5023029812599088,
+            "wall_end_ns": 5023029814514321,
+            "wall_us": 1915.233,
+            "thread_cpu_us": 1837.81,
+            "during_measurement": false
+          },
+          {
+            "kind": "capture",
+            "uid": "g24",
+            "path": "graph_dumps/g24.json",
+            "wall_start_ns": 5023029814987313,
+            "wall_end_ns": 5023029816896889,
+            "wall_us": 1909.576,
+            "thread_cpu_us": 1829.224,
+            "during_measurement": false
+          },
+          {
+            "kind": "capture",
+            "uid": "g25",
+            "path": "graph_dumps/g25.json",
+            "wall_start_ns": 5023029817362137,
+            "wall_end_ns": 5023029819086385,
+            "wall_us": 1724.248,
+            "thread_cpu_us": 1643.017,
+            "during_measurement": false
+          }
+        ],
+        "capture_during_measurement": 0,
+        "replay_by_step": {
+          "0": 0,
+          "1": 25,
+          "2": 25,
+          "3": 25,
+          "4": 25,
+          "5": 25,
+          "6": 25,
+          "7": 25,
+          "8": 25,
+          "9": 25,
+          "10": 25,
+          "11": 25,
+          "12": 25,
+          "13": 25,
+          "14": 25,
+          "15": 25,
+          "16": 25,
+          "17": 25,
+          "18": 25,
+          "19": 25,
+          "20": 25,
+          "21": 25,
+          "22": 25,
+          "23": 25,
+          "24": 25,
+          "25": 25,
+          "26": 25,
+          "27": 25,
+          "28": 25,
+          "29": 25,
+          "30": 25,
+          "31": 25,
+          "32": 25,
+          "33": 25,
+          "34": 25,
+          "35": 25,
+          "36": 25,
+          "37": 25,
+          "38": 25,
+          "39": 25,
+          "40": 25,
+          "41": 25,
+          "42": 25,
+          "43": 25,
+          "44": 25,
+          "45": 25,
+          "46": 25,
+          "47": 25,
+          "48": 25,
+          "49": 25,
+          "50": 25,
+          "51": 25,
+          "52": 25,
+          "53": 25,
+          "54": 25,
+          "55": 25,
+          "56": 25,
+          "57": 25,
+          "58": 25,
+          "59": 25,
+          "60": 25,
+          "61": 25,
+          "62": 25,
+          "63": 25
+        },
+        "update_python_calls": 0,
+        "update_native_events": [],
+        "effective_compilation": {
+          "config": "{'mode': <CompilationMode.VLLM_COMPILE: 3>, 'debug_dump_path': None, 'cache_dir': '/data/tianchi/practice_30_cpu_submission_timeline/results/graph-01/diagnostic/vllm_cache/torch_compile_cache/fee50f4b0c', 'compile_cache_save_format': 'binary', 'backend': 'vllm_ascend.compilation.compiler_interface.AscendCompiler', 'custom_ops': ['all'], 'ir_enable_torch_wrap': False, 'splitting_ops': ['vllm::unified_attention_with_output', 'vllm::unified_mla_attention_with_output', 'vllm::mamba_mixer2', 'vllm::mamba_mixer', 'vllm::short_conv', 'vllm::linear_attention', 'vllm::plamo2_mamba_mixer', 'vllm::gdn_attention_core', 'vllm::gdn_attention_core_xpu', 'vllm::olmo_hybrid_gdn_full_forward', 'vllm::kda_attention', 'vllm::sparse_attn_indexer', 'vllm::rocm_aiter_sparse_attn_indexer', 'vllm::deepseek_v4_attention', 'vllm::unified_kv_cache_update', 'vllm::unified_mla_kv_cache_update', 'vllm::mla_forward', 'vllm::dsa_forward'], 'compile_mm_encoder': False, 'cudagraph_mm_encoder': False, 'encoder_cudagraph_token_budgets': [], 'encoder_cudagraph_max_vision_items_per_batch': 0, 'encoder_cudagraph_max_frames_per_batch': None, 'compile_sizes': [], 'compile_ranges_endpoints': [256], 'inductor_compile_config': {'enable_auto_functionalized_v2': False, 'size_asserts': False, 'alignment_asserts': False, 'scalar_asserts': False, 'combo_kernels': True, 'benchmark_combo_kernel': True}, 'inductor_passes': {}, 'cudagraph_mode': <CUDAGraphMode.PIECEWISE: 1>, 'cudagraph_num_of_warmups': 1, 'cudagraph_capture_sizes': [1], 'cudagraph_copy_inputs': False, 'cudagraph_specialize_lora': True, 'use_inductor_graph_partition': False, 'pass_config': {'fuse_norm_quant': True, 'fuse_act_quant': True, 'fuse_attn_quant': False, 'enable_sp': False, 'fuse_gemm_comms': False, 'fuse_allreduce_rms': False, 'fuse_act_padding': False}, 'max_cudagraph_capture_size': 1, 'dynamic_shapes_config': {'type': <DynamicShapesType.BACKED: 'backed'>, 'evaluate_guards': False, 'assume_32_bit_indexing': False}, 'local_cache_dir': '/data/tianchi/practice_30_cpu_submission_timeline/results/graph-01/diagnostic/vllm_cache/torch_compile_cache/fee50f4b0c/rank_0_0/backbone', 'fast_moe_cold_start': True, 'static_all_moe_layers': []}"
+        },
+        "initialization": {
+          "reference": {
+            "wall_us": 40062691.158,
+            "thread_cpu_us": 17957259.005,
+            "includes": "engine construction, profiling, compilation/capture where enabled; not steady request time"
+          },
+          "diagnostic": {
+            "wall_us": 40070691.146,
+            "thread_cpu_us": 17760537.214,
+            "includes": "engine construction, profiling, compilation/capture where enabled; not steady request time"
+          },
+          "recovery": {
+            "wall_us": 40337698.715,
+            "thread_cpu_us": 17896556.143,
+            "includes": "engine construction, profiling, compilation/capture where enabled; not steady request time"
+          }
+        }
+      },
+      "top_gaps": [
+        {
+          "step": "p30-measure/step-32",
+          "start_us": "1790776278327813.631",
+          "end_us": "1790776278328036.940",
+          "duration_us": "223.309",
+          "next_tasks": [
+            "k:167475"
+          ],
+          "classification": "native_call_begins_after_gap_start",
+          "submission_kind": "direct",
+          "submission_index": 220692,
+          "native_start_us": "1790776278328015.424",
+          "native_end_us": "1790776278328025.059",
+          "before_next_native_call_us": "201.793",
+          "main_thread_phases": [
+            {
+              "phase_id": 1321,
+              "kind": "engine_step",
+              "overlap_us": "223.309"
+            },
+            {
+              "phase_id": 1322,
+              "kind": "core_step",
+              "overlap_us": "223.309"
+            },
+            {
+              "phase_id": 1324,
+              "kind": "executor_submit",
+              "overlap_us": "223.309"
+            },
+            {
+              "phase_id": 1325,
+              "kind": "execute",
+              "overlap_us": "223.309"
+            },
+            {
+              "phase_id": 1329,
+              "kind": "forward",
+              "overlap_us": "148.674"
+            },
+            {
+              "phase_id": 1330,
+              "kind": "replay",
+              "overlap_us": "37.202"
+            }
+          ],
+          "next_queue": null,
+          "overlapping_cpu_ops": []
+        },
+        {
+          "step": "p30-measure/step-32",
+          "start_us": "1790776278327438.276",
+          "end_us": "1790776278327605.523",
+          "duration_us": "167.247",
+          "next_tasks": [
+            "k:191564"
+          ],
+          "classification": "native_call_begins_after_gap_start",
+          "submission_kind": "direct",
+          "submission_index": 220662,
+          "native_start_us": "1790776278327586.771",
+          "native_end_us": "1790776278327588.330",
+          "before_next_native_call_us": "148.495",
+          "host_start_us": "1790776278327579.284",
+          "host_end_us": "1790776278327582.253",
+          "before_next_host_call_us": "141.008",
+          "main_thread_phases": [
+            {
+              "phase_id": 1321,
+              "kind": "engine_step",
+              "overlap_us": "167.247"
+            },
+            {
+              "phase_id": 1322,
+              "kind": "core_step",
+              "overlap_us": "167.247"
+            },
+            {
+              "phase_id": 1324,
+              "kind": "executor_submit",
+              "overlap_us": "167.247"
+            },
+            {
+              "phase_id": 1325,
+              "kind": "execute",
+              "overlap_us": "167.247"
+            }
+          ],
+          "next_queue": {
+            "id": "q:24382",
+            "flow_id": "24382",
+            "enqueue_index": 98127,
+            "dequeue_index": 79673,
+            "enqueue": {
+              "ph": "X",
+              "name": "Enqueue@acl_memcpy_host_to_device",
+              "pid": 1441357,
+              "tid": 1441357,
+              "ts": "1790776278327579.579",
+              "dur": "2.377",
+              "cat": "enqueue",
+              "args": {
+                "correlation_id": 24382
+              }
+            },
+            "dequeue": {
+              "ph": "X",
+              "name": "Dequeue@acl_memcpy_host_to_device",
+              "pid": 1441357,
+              "tid": 1442033,
+              "ts": "1790776278327586.505",
+              "dur": "1.983",
+              "cat": "dequeue",
+              "args": {
+                "correlation_id": 24382
+              }
+            },
+            "scope": "P30/32/execute/1325",
+            "step": "p30-measure/step-32",
+            "enqueue_to_dequeue_start_us": "6.926",
+            "dequeue_start_minus_enqueue_end_us": "4.549"
+          },
+          "queue_submission_kind": "direct",
+          "before_next_enqueue_us": "141.303",
+          "queue_start_state": "not_enqueued",
+          "overlapping_cpu_ops": [
+            {
+              "index": 36363,
+              "name": "aten::to",
+              "start_us": "1790776278327567.631",
+              "duration_us": "17.939",
+              "overlap_us": "17.939"
+            },
+            {
+              "index": 36362,
+              "name": "aten::_to_copy",
+              "start_us": "1790776278327568.936",
+              "duration_us": "16.464",
+              "overlap_us": "16.464"
+            },
+            {
+              "index": 36357,
+              "name": "aten::pin_memory",
+              "start_us": "1790776278327556.769",
+              "duration_us": "8.721",
+              "overlap_us": "8.721"
+            },
+            {
+              "index": 36361,
+              "name": "aten::copy_",
+              "start_us": "1790776278327577.434",
+              "duration_us": "7.702",
+              "overlap_us": "7.702"
+            },
+            {
+              "index": 36356,
+              "name": "aten::is_pinned",
+              "start_us": "1790776278327558.047",
+              "duration_us": "7.165",
+              "overlap_us": "7.165"
+            },
+            {
+              "index": 36323,
+              "name": "aten::fill_",
+              "start_us": "1790776278327462.576",
+              "duration_us": "6.648",
+              "overlap_us": "6.648"
+            },
+            {
+              "index": 36359,
+              "name": "aten::empty_strided",
+              "start_us": "1790776278327571.168",
+              "duration_us": "5.858",
+              "overlap_us": "5.858"
+            },
+            {
+              "index": 36332,
+              "name": "aten::lt",
+              "start_us": "1790776278327485.883",
+              "duration_us": "5.3",
+              "overlap_us": "5.300"
+            },
+            {
+              "index": 36337,
+              "name": "aten::fill_",
+              "start_us": "1790776278327497.081",
+              "duration_us": "3.944",
+              "overlap_us": "3.944"
+            },
+            {
+              "index": 36327,
+              "name": "aten::fill_",
+              "start_us": "1790776278327473.590",
+              "duration_us": "3.403",
+              "overlap_us": "3.403"
+            },
+            {
+              "index": 36315,
+              "name": "aten::slice",
+              "start_us": "1790776278327447.406",
+              "duration_us": "3.246",
+              "overlap_us": "3.246"
+            },
+            {
+              "index": 36322,
+              "name": "aclnnInplaceFillScalar",
+              "start_us": "1790776278327465.918",
+              "duration_us": "2.974",
+              "overlap_us": "2.974"
+            },
+            {
+              "index": 36360,
+              "name": "acl_memcpy_host_to_device",
+              "start_us": "1790776278327579.284",
+              "duration_us": "2.969",
+              "overlap_us": "2.969"
+            },
+            {
+              "index": 36336,
+              "name": "aten::copy_",
+              "start_us": "1790776278327497.966",
+              "duration_us": "2.913",
+              "overlap_us": "2.913"
+            },
+            {
+              "index": 36353,
+              "name": "aten::slice",
+              "start_us": "1790776278327548.722",
+              "duration_us": "2.804",
+              "overlap_us": "2.804"
+            },
+            {
+              "index": 36343,
+              "name": "aten::slice",
+              "start_us": "1790776278327507.728",
+              "duration_us": "2.428",
+              "overlap_us": "2.428"
+            },
+            {
+              "index": 36321,
+              "name": "aten::slice",
+              "start_us": "1790776278327458.483",
+              "duration_us": "2.302",
+              "overlap_us": "2.302"
+            },
+            {
+              "index": 36319,
+              "name": "aten::slice",
+              "start_us": "1790776278327455.301",
+              "duration_us": "2.207",
+              "overlap_us": "2.207"
+            },
+            {
+              "index": 36331,
+              "name": "aten::slice",
+              "start_us": "1790776278327481.991",
+              "duration_us": "2.204",
+              "overlap_us": "2.204"
+            },
+            {
+              "index": 36317,
+              "name": "aten::slice",
+              "start_us": "1790776278327451.832",
+              "duration_us": "2.024",
+              "overlap_us": "2.024"
+            },
+            {
+              "index": 36351,
+              "name": "aten::slice",
+              "start_us": "1790776278327544.707",
+              "duration_us": "2.01",
+              "overlap_us": "2.010"
+            },
+            {
+              "index": 36355,
+              "name": "aten::slice",
+              "start_us": "1790776278327552.309",
+              "duration_us": "2.001",
+              "overlap_us": "2.001"
+            },
+            {
+              "index": 36335,
+              "name": "aten::slice",
+              "start_us": "1790776278327494.651",
+              "duration_us": "1.967",
+              "overlap_us": "1.967"
+            },
+            {
+              "index": 36345,
+              "name": "aten::slice",
+              "start_us": "1790776278327510.979",
+              "duration_us": "1.947",
+              "overlap_us": "1.947"
+            },
+            {
+              "index": 36325,
+              "name": "aten::slice",
+              "start_us": "1790776278327470.534",
+              "duration_us": "1.94",
+              "overlap_us": "1.940"
+            },
+            {
+              "index": 36367,
+              "name": "aten::slice",
+              "start_us": "1790776278327590.555",
+              "duration_us": "1.914",
+              "overlap_us": "1.914"
+            },
+            {
+              "index": 36329,
+              "name": "aten::slice",
+              "start_us": "1790776278327479.257",
+              "duration_us": "1.894",
+              "overlap_us": "1.894"
+            },
+            {
+              "index": 36341,
+              "name": "aten::slice",
+              "start_us": "1790776278327504.949",
+              "duration_us": "1.881",
+              "overlap_us": "1.881"
+            },
+            {
+              "index": 36339,
+              "name": "aten::slice",
+              "start_us": "1790776278327502.128",
+              "duration_us": "1.839",
+              "overlap_us": "1.839"
+            },
+            {
+              "index": 36349,
+              "name": "aten::slice",
+              "start_us": "1790776278327516.109",
+              "duration_us": "1.684",
+              "overlap_us": "1.684"
+            },
+            {
+              "index": 36326,
+              "name": "aclnnInplaceFillScalar",
+              "start_us": "1790776278327475.164",
+              "duration_us": "1.651",
+              "overlap_us": "1.651"
+            },
+            {
+              "index": 36347,
+              "name": "aten::slice",
+              "start_us": "1790776278327513.745",
+              "duration_us": "1.573",
+              "overlap_us": "1.573"
+            },
+            {
+              "index": 36358,
+              "name": "empty_tensor",
+              "start_us": "1790776278327572.569",
+              "duration_us": "1.44",
+              "overlap_us": "1.440"
+            },
+            {
+              "index": 36314,
+              "name": "aten::as_strided",
+              "start_us": "1790776278327448.596",
+              "duration_us": "1.383",
+              "overlap_us": "1.383"
+            },
+            {
+              "index": 36318,
+              "name": "aten::as_strided",
+              "start_us": "1790776278327456.261",
+              "duration_us": "0.966",
+              "overlap_us": "0.966"
+            },
+            {
+              "index": 36316,
+              "name": "aten::as_strided",
+              "start_us": "1790776278327452.685",
+              "duration_us": "0.888",
+              "overlap_us": "0.888"
+            },
+            {
+              "index": 36324,
+              "name": "aten::as_strided",
+              "start_us": "1790776278327471.314",
+              "duration_us": "0.872",
+              "overlap_us": "0.872"
+            },
+            {
+              "index": 36320,
+              "name": "aten::as_strided",
+              "start_us": "1790776278327459.195",
+              "duration_us": "0.871",
+              "overlap_us": "0.871"
+            },
+            {
+              "index": 36354,
+              "name": "aten::as_strided",
+              "start_us": "1790776278327553.040",
+              "duration_us": "0.859",
+              "overlap_us": "0.859"
+            },
+            {
+              "index": 36344,
+              "name": "aten::as_strided",
+              "start_us": "1790776278327511.756",
+              "duration_us": "0.806",
+              "overlap_us": "0.806"
+            },
+            {
+              "index": 36340,
+              "name": "aten::as_strided",
+              "start_us": "1790776278327505.788",
+              "duration_us": "0.771",
+              "overlap_us": "0.771"
+            },
+            {
+              "index": 36366,
+              "name": "aten::as_strided",
+              "start_us": "1790776278327591.513",
+              "duration_us": "0.676",
+              "overlap_us": "0.676"
+            },
+            {
+              "index": 36334,
+              "name": "aten::as_strided",
+              "start_us": "1790776278327495.875",
+              "duration_us": "0.665",
+              "overlap_us": "0.665"
+            },
+            {
+              "index": 36350,
+              "name": "aten::as_strided",
+              "start_us": "1790776278327545.711",
+              "duration_us": "0.654",
+              "overlap_us": "0.654"
+            },
+            {
+              "index": 36328,
+              "name": "aten::as_strided",
+              "start_us": "1790776278327480.029",
+              "duration_us": "0.646",
+              "overlap_us": "0.646"
+            },
+            {
+              "index": 36330,
+              "name": "aten::as_strided",
+              "start_us": "1790776278327483.334",
+              "duration_us": "0.628",
+              "overlap_us": "0.628"
+            },
+            {
+              "index": 36352,
+              "name": "aten::as_strided",
+              "start_us": "1790776278327550.397",
+              "duration_us": "0.581",
+              "overlap_us": "0.581"
+            },
+            {
+              "index": 36338,
+              "name": "aten::as_strided",
+              "start_us": "1790776278327503.169",
+              "duration_us": "0.525",
+              "overlap_us": "0.525"
+            },
+            {
+              "index": 36364,
+              "name": "aten::resolve_conj",
+              "start_us": "1790776278327587.808",
+              "duration_us": "0.497",
+              "overlap_us": "0.497"
+            },
+            {
+              "index": 36342,
+              "name": "aten::as_strided",
+              "start_us": "1790776278327509.436",
+              "duration_us": "0.484",
+              "overlap_us": "0.484"
+            },
+            {
+              "index": 36348,
+              "name": "aten::as_strided",
+              "start_us": "1790776278327516.939",
+              "duration_us": "0.452",
+              "overlap_us": "0.452"
+            },
+            {
+              "index": 36346,
+              "name": "aten::as_strided",
+              "start_us": "1790776278327514.665",
+              "duration_us": "0.414",
+              "overlap_us": "0.414"
+            },
+            {
+              "index": 36333,
+              "name": "aten::lift_fresh",
+              "start_us": "1790776278327493.319",
+              "duration_us": "0.359",
+              "overlap_us": "0.359"
+            },
+            {
+              "index": 36365,
+              "name": "aten::resolve_neg",
+              "start_us": "1790776278327588.524",
+              "duration_us": "0.295",
+              "overlap_us": "0.295"
+            },
+            {
+              "index": 36369,
+              "name": "aten::resolve_neg",
+              "start_us": "1790776278327593.386",
+              "duration_us": "0.271",
+              "overlap_us": "0.271"
+            },
+            {
+              "index": 36368,
+              "name": "aten::resolve_conj",
+              "start_us": "1790776278327593.046",
+              "duration_us": "0.21",
+              "overlap_us": "0.210"
+            }
+          ]
+        },
+        {
+          "step": "p30-measure/step-32",
+          "start_us": "1790776278327195.966",
+          "end_us": "1790776278327316.611",
+          "duration_us": "120.645",
+          "next_tasks": [
+            "k:167463"
+          ],
+          "classification": "native_call_begins_after_gap_start",
+          "submission_kind": "direct",
+          "submission_index": 220651,
+          "native_start_us": "1790776278327303.979",
+          "native_end_us": "1790776278327305.984",
+          "before_next_native_call_us": "108.013",
+          "host_start_us": "1790776278327295.336",
+          "host_end_us": "1790776278327298.966",
+          "before_next_host_call_us": "99.370",
+          "main_thread_phases": [
+            {
+              "phase_id": 1321,
+              "kind": "engine_step",
+              "overlap_us": "120.645"
+            },
+            {
+              "phase_id": 1322,
+              "kind": "core_step",
+              "overlap_us": "120.645"
+            },
+            {
+              "phase_id": 1324,
+              "kind": "executor_submit",
+              "overlap_us": "120.645"
+            },
+            {
+              "phase_id": 1325,
+              "kind": "execute",
+              "overlap_us": "120.645"
+            },
+            {
+              "phase_id": 1327,
+              "kind": "prepare_inputs",
+              "overlap_us": "120.645"
+            }
+          ],
+          "next_queue": {
+            "id": "q:24378",
+            "flow_id": "24378",
+            "enqueue_index": 98119,
+            "dequeue_index": 79665,
+            "enqueue": {
+              "ph": "X",
+              "name": "Enqueue@_compute_slot_mapping_kernel",
+              "pid": 1441357,
+              "tid": 1441357,
+              "ts": "1790776278327295.508",
+              "dur": "2.998",
+              "cat": "enqueue",
+              "args": {
+                "correlation_id": 24378
+              }
+            },
+            "dequeue": {
+              "ph": "X",
+              "name": "Dequeue@_compute_slot_mapping_kernel",
+              "pid": 1441357,
+              "tid": 1442033,
+              "ts": "1790776278327303.098",
+              "dur": "4.37",
+              "cat": "dequeue",
+              "args": {
+                "correlation_id": 24378
+              }
+            },
+            "scope": "P30/32/prepare_inputs/1327",
+            "step": "p30-measure/step-32",
+            "enqueue_to_dequeue_start_us": "7.590",
+            "dequeue_start_minus_enqueue_end_us": "4.592"
+          },
+          "queue_submission_kind": "direct",
+          "before_next_enqueue_us": "99.542",
+          "queue_start_state": "not_enqueued",
+          "overlapping_cpu_ops": [
+            {
+              "index": 36301,
+              "name": "_compute_slot_mapping_kernel",
+              "start_us": "1790776278327295.336",
+              "duration_us": "3.63",
+              "overlap_us": "3.630"
+            },
+            {
+              "index": 36303,
+              "name": "aten::slice",
+              "start_us": "1790776278327313.783",
+              "duration_us": "2.742",
+              "overlap_us": "2.742"
+            },
+            {
+              "index": 36300,
+              "name": "aten::slice",
+              "start_us": "1790776278327197.629",
+              "duration_us": "2.339",
+              "overlap_us": "2.339"
+            },
+            {
+              "index": 36299,
+              "name": "aten::as_strided",
+              "start_us": "1790776278327198.566",
+              "duration_us": "1.128",
+              "overlap_us": "1.128"
+            },
+            {
+              "index": 36302,
+              "name": "aten::as_strided",
+              "start_us": "1790776278327314.912",
+              "duration_us": "0.951",
+              "overlap_us": "0.951"
+            },
+            {
+              "index": 36298,
+              "name": "aten::slice",
+              "start_us": "1790776278327194.958",
+              "duration_us": "1.856",
+              "overlap_us": "0.848"
+            },
+            {
+              "index": 36297,
+              "name": "aten::as_strided",
+              "start_us": "1790776278327195.692",
+              "duration_us": "0.637",
+              "overlap_us": "0.363"
+            }
+          ]
+        }
+      ],
+      "initialization": {
+        "reference": {
+          "wall_us": 40062691.158,
+          "thread_cpu_us": 17957259.005,
+          "includes": "engine construction, profiling, compilation/capture where enabled; not steady request time"
+        },
+        "diagnostic": {
+          "wall_us": 40070691.146,
+          "thread_cpu_us": 17760537.214,
+          "includes": "engine construction, profiling, compilation/capture where enabled; not steady request time"
+        },
+        "recovery": {
+          "wall_us": 40337698.715,
+          "thread_cpu_us": 17896556.143,
+          "includes": "engine construction, profiling, compilation/capture where enabled; not steady request time"
+        }
+      }
+    }
+  },
+  "reference_eager_over_graph": 2.4905460996360045,
+  "limits": [
+    "Three unprofiled requests per mode in isolated processes; not a throughput benchmark.",
+    "Diagnostic phase comparisons include mode-dependent instrumentation overhead.",
+    "Nested phase durations are not additive; replay is inside forward.",
+    "No-compute coverage is not whole-chip idle or core utilization."
+  ]
+}

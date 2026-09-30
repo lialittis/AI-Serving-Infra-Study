@@ -2,6 +2,8 @@
 
 2026-09-30，单请求、BF16、eager、原生 `LLM.generate()`。先打开[报告](report/index.html)，默认展示 decode 32。
 
+本文保留首轮 eager 结果。后续已完成同配置的 graph 分析与新 eager 对照，见 [graph 发现](GRAPH_RESULTS.md)及[双模式报告](report/comparison/index.html)；下文旧轮数值不与新轮诊断值混算。
+
 ## 1. “下发慢”与“被同步阻塞”已经能分开观察
 
 | 请求 | 墙钟 | 提交线程 CPU 时间 |

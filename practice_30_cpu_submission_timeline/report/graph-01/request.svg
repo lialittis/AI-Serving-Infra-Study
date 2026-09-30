@@ -1,0 +1,722 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1320 406">
+<style>text{font:13px sans-serif;fill:#203545}.title{font-size:21px;font-weight:bold}</style>
+<rect width="100%" height="100%" fill="#f6f8fb"/>
+<text x="20" y="30" class="title">Practice 30 · graph · 单请求 CPU 阶段总览</text>
+<text x="20" y="54">实测墙钟区间；CPU 调用范围不等于持续运行。蓝：forward；红：结果回收/同步；绿：设备计算。</text>
+<text x="20" y="96">调度 / 状态</text><path d="M215 106H1280" stroke="#d5dce5"/>
+<text x="20" y="142">输入准备</text><path d="M215 152H1280" stroke="#d5dce5"/>
+<text x="20" y="188">模型 forward / logits</text><path d="M215 198H1280" stroke="#d5dce5"/>
+<text x="20" y="234">采样</text><path d="M215 244H1280" stroke="#d5dce5"/>
+<text x="20" y="280">结果回传 / 等待</text><path d="M215 290H1280" stroke="#d5dce5"/>
+<text x="20" y="326">更新 / 输出</text><path d="M215 336H1280" stroke="#d5dce5"/>
+<rect x="216.017" y="80" width="0.386" height="22" fill="#8055a0" data-kind="phase" data-key="4"><title>第 0 步 · 调度 · 166.146 µs</title></rect>
+<rect x="217.236" y="80" width="0.778" height="22" fill="#19887f" data-kind="phase" data-key="7"><title>第 0 步 · 请求状态 · 335.131 µs</title></rect>
+<rect x="218.077" y="126" width="2.018" height="22" fill="#19887f" data-kind="phase" data-key="8"><title>第 0 步 · 输入准备 · 869.037 µs</title></rect>
+<rect x="221.057" y="126" width="0.200" height="22" fill="#19887f" data-kind="phase" data-key="9"><title>第 0 步 · 输入预处理 · 45.372 µs</title></rect>
+<rect x="221.767" y="172" width="44.817" height="22" fill="#2864c7" data-kind="phase" data-key="10"><title>第 0 步 · 模型 forward · 19296.440 µs</title></rect>
+<rect x="266.734" y="172" width="0.200" height="22" fill="#2864c7" data-kind="phase" data-key="11"><title>第 0 步 · logits · 76.653 µs</title></rect>
+<rect x="267.186" y="218" width="0.800" height="22" fill="#cc7915" data-kind="phase" data-key="13"><title>第 0 步 · 采样 · 344.545 µs</title></rect>
+<rect x="268.078" y="264" width="0.321" height="22" fill="#bd4250" data-kind="phase" data-key="15"><title>第 0 步 · token 回传与等待 · 138.263 µs</title></rect>
+<rect x="268.428" y="264" width="0.246" height="22" fill="#bd4250" data-kind="phase" data-key="16"><title>第 0 步 · logprob 回传 · 105.732 µs</title></rect>
+<rect x="268.903" y="310" width="0.200" height="22" fill="#8055a0" data-kind="phase" data-key="17"><title>第 0 步 · 更新调度器 · 43.815 µs</title></rect>
+<rect x="269.079" y="310" width="0.279" height="22" fill="#19887f" data-kind="phase" data-key="18"><title>第 0 步 · 生成输出 · 120.034 µs</title></rect>
+<rect x="269.499" y="80" width="0.200" height="22" fill="#8055a0" data-kind="phase" data-key="21"><title>第 1 步 · 调度 · 65.377 µs</title></rect>
+<rect x="270.308" y="80" width="0.227" height="22" fill="#19887f" data-kind="phase" data-key="24"><title>第 1 步 · 请求状态 · 97.671 µs</title></rect>
+<rect x="270.582" y="126" width="1.418" height="22" fill="#19887f" data-kind="phase" data-key="25"><title>第 1 步 · 输入准备 · 610.603 µs</title></rect>
+<rect x="272.628" y="126" width="0.200" height="22" fill="#19887f" data-kind="phase" data-key="26"><title>第 1 步 · 输入预处理 · 35.265 µs</title></rect>
+<rect x="273.256" y="172" width="10.708" height="22" fill="#2864c7" data-kind="phase" data-key="27"><title>第 1 步 · 模型 forward · 4610.365 µs</title></rect>
+<rect x="284.078" y="172" width="0.200" height="22" fill="#2864c7" data-kind="phase" data-key="53"><title>第 1 步 · logits · 63.194 µs</title></rect>
+<rect x="284.450" y="218" width="0.664" height="22" fill="#cc7915" data-kind="phase" data-key="55"><title>第 1 步 · 采样 · 285.686 µs</title></rect>
+<rect x="285.202" y="264" width="0.282" height="22" fill="#bd4250" data-kind="phase" data-key="57"><title>第 1 步 · token 回传与等待 · 121.417 µs</title></rect>
+<rect x="285.511" y="264" width="0.230" height="22" fill="#bd4250" data-kind="phase" data-key="58"><title>第 1 步 · logprob 回传 · 99.240 µs</title></rect>
+<rect x="285.954" y="310" width="0.200" height="22" fill="#8055a0" data-kind="phase" data-key="59"><title>第 1 步 · 更新调度器 · 36.558 µs</title></rect>
+<rect x="286.107" y="310" width="0.314" height="22" fill="#19887f" data-kind="phase" data-key="60"><title>第 1 步 · 生成输出 · 135.402 µs</title></rect>
+<rect x="286.548" y="80" width="0.200" height="22" fill="#8055a0" data-kind="phase" data-key="63"><title>第 2 步 · 调度 · 56.708 µs</title></rect>
+<rect x="287.304" y="80" width="0.207" height="22" fill="#19887f" data-kind="phase" data-key="66"><title>第 2 步 · 请求状态 · 89.096 µs</title></rect>
+<rect x="287.555" y="126" width="1.310" height="22" fill="#19887f" data-kind="phase" data-key="67"><title>第 2 步 · 输入准备 · 563.830 µs</title></rect>
+<rect x="289.478" y="126" width="0.200" height="22" fill="#19887f" data-kind="phase" data-key="68"><title>第 2 步 · 输入预处理 · 35.933 µs</title></rect>
+<rect x="290.079" y="172" width="10.101" height="22" fill="#2864c7" data-kind="phase" data-key="69"><title>第 2 步 · 模型 forward · 4349.119 µs</title></rect>
+<rect x="300.292" y="172" width="0.200" height="22" fill="#2864c7" data-kind="phase" data-key="95"><title>第 2 步 · logits · 62.163 µs</title></rect>
+<rect x="300.649" y="218" width="0.651" height="22" fill="#cc7915" data-kind="phase" data-key="97"><title>第 2 步 · 采样 · 280.266 µs</title></rect>
+<rect x="301.388" y="264" width="0.269" height="22" fill="#bd4250" data-kind="phase" data-key="99"><title>第 2 步 · token 回传与等待 · 115.767 µs</title></rect>
+<rect x="301.683" y="264" width="0.219" height="22" fill="#bd4250" data-kind="phase" data-key="100"><title>第 2 步 · logprob 回传 · 94.195 µs</title></rect>
+<rect x="302.117" y="310" width="0.200" height="22" fill="#8055a0" data-kind="phase" data-key="101"><title>第 2 步 · 更新调度器 · 34.910 µs</title></rect>
+<rect x="302.264" y="310" width="0.205" height="22" fill="#19887f" data-kind="phase" data-key="102"><title>第 2 步 · 生成输出 · 88.267 µs</title></rect>
+<rect x="302.612" y="80" width="0.200" height="22" fill="#8055a0" data-kind="phase" data-key="105"><title>第 3 步 · 调度 · 56.112 µs</title></rect>
+<rect x="303.353" y="80" width="0.201" height="22" fill="#19887f" data-kind="phase" data-key="108"><title>第 3 步 · 请求状态 · 86.541 µs</title></rect>
+<rect x="303.597" y="126" width="1.324" height="22" fill="#19887f" data-kind="phase" data-key="109"><title>第 3 步 · 输入准备 · 569.902 µs</title></rect>
+<rect x="305.514" y="126" width="0.200" height="22" fill="#19887f" data-kind="phase" data-key="110"><title>第 3 步 · 输入预处理 · 33.109 µs</title></rect>
+<rect x="306.124" y="172" width="10.054" height="22" fill="#2864c7" data-kind="phase" data-key="111"><title>第 3 步 · 模型 forward · 4329.029 µs</title></rect>
+<rect x="316.290" y="172" width="0.200" height="22" fill="#2864c7" data-kind="phase" data-key="137"><title>第 3 步 · logits · 60.468 µs</title></rect>
+<rect x="316.657" y="218" width="0.641" height="22" fill="#cc7915" data-kind="phase" data-key="139"><title>第 3 步 · 采样 · 275.792 µs</title></rect>
+<rect x="317.386" y="264" width="0.276" height="22" fill="#bd4250" data-kind="phase" data-key="141"><title>第 3 步 · token 回传与等待 · 119.014 µs</title></rect>
+<rect x="317.689" y="264" width="0.234" height="22" fill="#bd4250" data-kind="phase" data-key="142"><title>第 3 步 · logprob 回传 · 100.864 µs</title></rect>
+<rect x="318.135" y="310" width="0.200" height="22" fill="#8055a0" data-kind="phase" data-key="143"><title>第 3 步 · 更新调度器 · 36.187 µs</title></rect>
+<rect x="318.289" y="310" width="0.200" height="22" fill="#19887f" data-kind="phase" data-key="144"><title>第 3 步 · 生成输出 · 84.378 µs</title></rect>
+<rect x="318.610" y="80" width="0.200" height="22" fill="#8055a0" data-kind="phase" data-key="147"><title>第 4 步 · 调度 · 54.064 µs</title></rect>
+<rect x="319.356" y="80" width="0.202" height="22" fill="#19887f" data-kind="phase" data-key="150"><title>第 4 步 · 请求状态 · 86.983 µs</title></rect>
+<rect x="319.602" y="126" width="1.317" height="22" fill="#19887f" data-kind="phase" data-key="151"><title>第 4 步 · 输入准备 · 567.240 µs</title></rect>
+<rect x="321.507" y="126" width="0.200" height="22" fill="#19887f" data-kind="phase" data-key="152"><title>第 4 步 · 输入预处理 · 33.541 µs</title></rect>
+<rect x="322.108" y="172" width="10.182" height="22" fill="#2864c7" data-kind="phase" data-key="153"><title>第 4 步 · 模型 forward · 4384.016 µs</title></rect>
+<rect x="332.404" y="172" width="0.200" height="22" fill="#2864c7" data-kind="phase" data-key="179"><title>第 4 步 · logits · 60.726 µs</title></rect>
+<rect x="332.771" y="218" width="0.645" height="22" fill="#cc7915" data-kind="phase" data-key="181"><title>第 4 步 · 采样 · 277.841 µs</title></rect>
+<rect x="333.506" y="264" width="0.269" height="22" fill="#bd4250" data-kind="phase" data-key="183"><title>第 4 步 · token 回传与等待 · 115.837 µs</title></rect>
+<rect x="333.803" y="264" width="0.224" height="22" fill="#bd4250" data-kind="phase" data-key="184"><title>第 4 步 · logprob 回传 · 96.537 µs</title></rect>
+<rect x="334.239" y="310" width="0.200" height="22" fill="#8055a0" data-kind="phase" data-key="185"><title>第 4 步 · 更新调度器 · 35.629 µs</title></rect>
+<rect x="334.391" y="310" width="0.204" height="22" fill="#19887f" data-kind="phase" data-key="186"><title>第 4 步 · 生成输出 · 87.761 µs</title></rect>
+<rect x="334.721" y="80" width="0.200" height="22" fill="#8055a0" data-kind="phase" data-key="189"><title>第 5 步 · 调度 · 54.454 µs</title></rect>
+<rect x="335.472" y="80" width="0.224" height="22" fill="#19887f" data-kind="phase" data-key="192"><title>第 5 步 · 请求状态 · 96.350 µs</title></rect>
+<rect x="335.742" y="126" width="1.343" height="22" fill="#19887f" data-kind="phase" data-key="193"><title>第 5 步 · 输入准备 · 578.053 µs</title></rect>
+<rect x="337.679" y="126" width="0.200" height="22" fill="#19887f" data-kind="phase" data-key="194"><title>第 5 步 · 输入预处理 · 34.162 µs</title></rect>
+<rect x="338.279" y="172" width="10.151" height="22" fill="#2864c7" data-kind="phase" data-key="195"><title>第 5 步 · 模型 forward · 4370.423 µs</title></rect>
+<rect x="348.539" y="172" width="0.200" height="22" fill="#2864c7" data-kind="phase" data-key="221"><title>第 5 步 · logits · 60.101 µs</title></rect>
+<rect x="348.888" y="218" width="0.639" height="22" fill="#cc7915" data-kind="phase" data-key="223"><title>第 5 步 · 采样 · 275.002 µs</title></rect>
+<rect x="349.620" y="264" width="0.261" height="22" fill="#bd4250" data-kind="phase" data-key="225"><title>第 5 步 · token 回传与等待 · 112.465 µs</title></rect>
+<rect x="349.909" y="264" width="0.228" height="22" fill="#bd4250" data-kind="phase" data-key="226"><title>第 5 步 · logprob 回传 · 98.380 µs</title></rect>
+<rect x="350.348" y="310" width="0.200" height="22" fill="#8055a0" data-kind="phase" data-key="227"><title>第 5 步 · 更新调度器 · 36.045 µs</title></rect>
+<rect x="350.500" y="310" width="0.200" height="22" fill="#19887f" data-kind="phase" data-key="228"><title>第 5 步 · 生成输出 · 85.844 µs</title></rect>
+<rect x="350.828" y="80" width="0.200" height="22" fill="#8055a0" data-kind="phase" data-key="231"><title>第 6 步 · 调度 · 55.398 µs</title></rect>
+<rect x="351.592" y="80" width="0.200" height="22" fill="#19887f" data-kind="phase" data-key="234"><title>第 6 步 · 请求状态 · 85.662 µs</title></rect>
+<rect x="351.837" y="126" width="1.317" height="22" fill="#19887f" data-kind="phase" data-key="235"><title>第 6 步 · 输入准备 · 567.149 µs</title></rect>
+<rect x="353.738" y="126" width="0.200" height="22" fill="#19887f" data-kind="phase" data-key="236"><title>第 6 步 · 输入预处理 · 38.377 µs</title></rect>
+<rect x="354.360" y="172" width="10.004" height="22" fill="#2864c7" data-kind="phase" data-key="237"><title>第 6 步 · 模型 forward · 4307.360 µs</title></rect>
+<rect x="364.480" y="172" width="0.200" height="22" fill="#2864c7" data-kind="phase" data-key="263"><title>第 6 步 · logits · 65.536 µs</title></rect>
+<rect x="364.853" y="218" width="0.625" height="22" fill="#cc7915" data-kind="phase" data-key="265"><title>第 6 步 · 采样 · 269.034 µs</title></rect>
+<rect x="365.564" y="264" width="0.267" height="22" fill="#bd4250" data-kind="phase" data-key="267"><title>第 6 步 · token 回传与等待 · 114.840 µs</title></rect>
+<rect x="365.859" y="264" width="0.227" height="22" fill="#bd4250" data-kind="phase" data-key="268"><title>第 6 步 · logprob 回传 · 97.662 µs</title></rect>
+<rect x="366.292" y="310" width="0.200" height="22" fill="#8055a0" data-kind="phase" data-key="269"><title>第 6 步 · 更新调度器 · 34.856 µs</title></rect>
+<rect x="366.439" y="310" width="0.200" height="22" fill="#19887f" data-kind="phase" data-key="270"><title>第 6 步 · 生成输出 · 83.607 µs</title></rect>
+<rect x="366.758" y="80" width="0.200" height="22" fill="#8055a0" data-kind="phase" data-key="273"><title>第 7 步 · 调度 · 54.192 µs</title></rect>
+<rect x="367.519" y="80" width="0.207" height="22" fill="#19887f" data-kind="phase" data-key="276"><title>第 7 步 · 请求状态 · 89.161 µs</title></rect>
+<rect x="367.771" y="126" width="1.343" height="22" fill="#19887f" data-kind="phase" data-key="277"><title>第 7 步 · 输入准备 · 578.272 µs</title></rect>
+<rect x="369.709" y="126" width="0.200" height="22" fill="#19887f" data-kind="phase" data-key="278"><title>第 7 步 · 输入预处理 · 37.667 µs</title></rect>
+<rect x="370.328" y="172" width="10.036" height="22" fill="#2864c7" data-kind="phase" data-key="279"><title>第 7 步 · 模型 forward · 4321.162 µs</title></rect>
+<rect x="380.482" y="172" width="0.200" height="22" fill="#2864c7" data-kind="phase" data-key="305"><title>第 7 步 · logits · 63.423 µs</title></rect>
+<rect x="380.843" y="218" width="0.628" height="22" fill="#cc7915" data-kind="phase" data-key="307"><title>第 7 步 · 采样 · 270.436 µs</title></rect>
+<rect x="381.556" y="264" width="0.259" height="22" fill="#bd4250" data-kind="phase" data-key="309"><title>第 7 步 · token 回传与等待 · 111.528 µs</title></rect>
+<rect x="381.842" y="264" width="0.236" height="22" fill="#bd4250" data-kind="phase" data-key="310"><title>第 7 步 · logprob 回传 · 101.677 µs</title></rect>
+<rect x="382.295" y="310" width="0.200" height="22" fill="#8055a0" data-kind="phase" data-key="311"><title>第 7 步 · 更新调度器 · 34.590 µs</title></rect>
+<rect x="382.446" y="310" width="0.200" height="22" fill="#19887f" data-kind="phase" data-key="312"><title>第 7 步 · 生成输出 · 85.649 µs</title></rect>
+<rect x="382.771" y="80" width="0.200" height="22" fill="#8055a0" data-kind="phase" data-key="315"><title>第 8 步 · 调度 · 53.698 µs</title></rect>
+<rect x="383.545" y="80" width="0.200" height="22" fill="#19887f" data-kind="phase" data-key="318"><title>第 8 步 · 请求状态 · 85.776 µs</title></rect>
+<rect x="383.789" y="126" width="1.326" height="22" fill="#19887f" data-kind="phase" data-key="319"><title>第 8 步 · 输入准备 · 570.908 µs</title></rect>
+<rect x="385.695" y="126" width="0.200" height="22" fill="#19887f" data-kind="phase" data-key="320"><title>第 8 步 · 输入预处理 · 39.060 µs</title></rect>
+<rect x="386.314" y="172" width="9.965" height="22" fill="#2864c7" data-kind="phase" data-key="321"><title>第 8 步 · 模型 forward · 4290.462 µs</title></rect>
+<rect x="396.389" y="172" width="0.200" height="22" fill="#2864c7" data-kind="phase" data-key="347"><title>第 8 步 · logits · 63.991 µs</title></rect>
+<rect x="396.747" y="218" width="0.634" height="22" fill="#cc7915" data-kind="phase" data-key="349"><title>第 8 步 · 采样 · 272.903 µs</title></rect>
+<rect x="397.468" y="264" width="0.263" height="22" fill="#bd4250" data-kind="phase" data-key="351"><title>第 8 步 · token 回传与等待 · 113.294 µs</title></rect>
+<rect x="397.758" y="264" width="0.223" height="22" fill="#bd4250" data-kind="phase" data-key="352"><title>第 8 步 · logprob 回传 · 96.212 µs</title></rect>
+<rect x="398.191" y="310" width="0.200" height="22" fill="#8055a0" data-kind="phase" data-key="353"><title>第 8 步 · 更新调度器 · 34.927 µs</title></rect>
+<rect x="398.342" y="310" width="0.200" height="22" fill="#19887f" data-kind="phase" data-key="354"><title>第 8 步 · 生成输出 · 86.080 µs</title></rect>
+<rect x="398.672" y="80" width="0.200" height="22" fill="#8055a0" data-kind="phase" data-key="357"><title>第 9 步 · 调度 · 54.161 µs</title></rect>
+<rect x="400.181" y="80" width="0.207" height="22" fill="#19887f" data-kind="phase" data-key="360"><title>第 9 步 · 请求状态 · 88.934 µs</title></rect>
+<rect x="400.430" y="126" width="1.367" height="22" fill="#19887f" data-kind="phase" data-key="361"><title>第 9 步 · 输入准备 · 588.454 µs</title></rect>
+<rect x="402.402" y="126" width="0.200" height="22" fill="#19887f" data-kind="phase" data-key="362"><title>第 9 步 · 输入预处理 · 36.242 µs</title></rect>
+<rect x="403.007" y="172" width="10.069" height="22" fill="#2864c7" data-kind="phase" data-key="363"><title>第 9 步 · 模型 forward · 4335.128 µs</title></rect>
+<rect x="413.192" y="172" width="0.200" height="22" fill="#2864c7" data-kind="phase" data-key="389"><title>第 9 步 · logits · 63.437 µs</title></rect>
+<rect x="413.551" y="218" width="0.617" height="22" fill="#cc7915" data-kind="phase" data-key="391"><title>第 9 步 · 采样 · 265.779 µs</title></rect>
+<rect x="414.254" y="264" width="0.264" height="22" fill="#bd4250" data-kind="phase" data-key="393"><title>第 9 步 · token 回传与等待 · 113.547 µs</title></rect>
+<rect x="414.545" y="264" width="0.224" height="22" fill="#bd4250" data-kind="phase" data-key="394"><title>第 9 步 · logprob 回传 · 96.472 µs</title></rect>
+<rect x="414.978" y="310" width="0.200" height="22" fill="#8055a0" data-kind="phase" data-key="395"><title>第 9 步 · 更新调度器 · 35.032 µs</title></rect>
+<rect x="415.124" y="310" width="0.200" height="22" fill="#19887f" data-kind="phase" data-key="396"><title>第 9 步 · 生成输出 · 84.917 µs</title></rect>
+<rect x="415.445" y="80" width="0.200" height="22" fill="#8055a0" data-kind="phase" data-key="399"><title>第 10 步 · 调度 · 52.037 µs</title></rect>
+<rect x="416.167" y="80" width="0.201" height="22" fill="#19887f" data-kind="phase" data-key="402"><title>第 10 步 · 请求状态 · 86.713 µs</title></rect>
+<rect x="416.412" y="126" width="1.326" height="22" fill="#19887f" data-kind="phase" data-key="403"><title>第 10 步 · 输入准备 · 570.705 µs</title></rect>
+<rect x="418.334" y="126" width="0.200" height="22" fill="#19887f" data-kind="phase" data-key="404"><title>第 10 步 · 输入预处理 · 36.132 µs</title></rect>
+<rect x="418.937" y="172" width="10.150" height="22" fill="#2864c7" data-kind="phase" data-key="405"><title>第 10 步 · 模型 forward · 4369.994 µs</title></rect>
+<rect x="429.202" y="172" width="0.200" height="22" fill="#2864c7" data-kind="phase" data-key="431"><title>第 10 步 · logits · 63.452 µs</title></rect>
+<rect x="429.561" y="218" width="0.638" height="22" fill="#cc7915" data-kind="phase" data-key="433"><title>第 10 步 · 采样 · 274.891 µs</title></rect>
+<rect x="430.285" y="264" width="0.263" height="22" fill="#bd4250" data-kind="phase" data-key="435"><title>第 10 步 · token 回传与等待 · 113.280 µs</title></rect>
+<rect x="430.575" y="264" width="0.227" height="22" fill="#bd4250" data-kind="phase" data-key="436"><title>第 10 步 · logprob 回传 · 97.594 µs</title></rect>
+<rect x="431.010" y="310" width="0.200" height="22" fill="#8055a0" data-kind="phase" data-key="437"><title>第 10 步 · 更新调度器 · 34.569 µs</title></rect>
+<rect x="431.155" y="310" width="0.200" height="22" fill="#19887f" data-kind="phase" data-key="438"><title>第 10 步 · 生成输出 · 83.824 µs</title></rect>
+<rect x="431.475" y="80" width="0.200" height="22" fill="#8055a0" data-kind="phase" data-key="441"><title>第 11 步 · 调度 · 52.955 µs</title></rect>
+<rect x="432.191" y="80" width="0.205" height="22" fill="#19887f" data-kind="phase" data-key="444"><title>第 11 步 · 请求状态 · 88.333 µs</title></rect>
+<rect x="432.442" y="126" width="1.317" height="22" fill="#19887f" data-kind="phase" data-key="445"><title>第 11 步 · 输入准备 · 566.891 µs</title></rect>
+<rect x="434.348" y="126" width="0.200" height="22" fill="#19887f" data-kind="phase" data-key="446"><title>第 11 步 · 输入预处理 · 35.554 µs</title></rect>
+<rect x="434.954" y="172" width="10.131" height="22" fill="#2864c7" data-kind="phase" data-key="447"><title>第 11 步 · 模型 forward · 4361.878 µs</title></rect>
+<rect x="445.198" y="172" width="0.200" height="22" fill="#2864c7" data-kind="phase" data-key="473"><title>第 11 步 · logits · 63.295 µs</title></rect>
+<rect x="445.558" y="218" width="0.639" height="22" fill="#cc7915" data-kind="phase" data-key="475"><title>第 11 步 · 采样 · 275.001 µs</title></rect>
+<rect x="446.282" y="264" width="0.262" height="22" fill="#bd4250" data-kind="phase" data-key="477"><title>第 11 步 · token 回传与等待 · 112.811 µs</title></rect>
+<rect x="446.570" y="264" width="0.229" height="22" fill="#bd4250" data-kind="phase" data-key="478"><title>第 11 步 · logprob 回传 · 98.449 µs</title></rect>
+<rect x="447.007" y="310" width="0.200" height="22" fill="#8055a0" data-kind="phase" data-key="479"><title>第 11 步 · 更新调度器 · 34.760 µs</title></rect>
+<rect x="447.164" y="310" width="0.200" height="22" fill="#19887f" data-kind="phase" data-key="480"><title>第 11 步 · 生成输出 · 85.048 µs</title></rect>
+<rect x="447.488" y="80" width="0.200" height="22" fill="#8055a0" data-kind="phase" data-key="483"><title>第 12 步 · 调度 · 57.052 µs</title></rect>
+<rect x="448.232" y="80" width="0.201" height="22" fill="#19887f" data-kind="phase" data-key="486"><title>第 12 步 · 请求状态 · 86.596 µs</title></rect>
+<rect x="448.479" y="126" width="1.327" height="22" fill="#19887f" data-kind="phase" data-key="487"><title>第 12 步 · 输入准备 · 571.489 µs</title></rect>
+<rect x="450.394" y="126" width="0.200" height="22" fill="#19887f" data-kind="phase" data-key="488"><title>第 12 步 · 输入预处理 · 33.604 µs</title></rect>
+<rect x="450.981" y="172" width="9.907" height="22" fill="#2864c7" data-kind="phase" data-key="489"><title>第 12 步 · 模型 forward · 4265.392 µs</title></rect>
+<rect x="460.999" y="172" width="0.200" height="22" fill="#2864c7" data-kind="phase" data-key="515"><title>第 12 步 · logits · 61.527 µs</title></rect>
+<rect x="461.349" y="218" width="0.628" height="22" fill="#cc7915" data-kind="phase" data-key="517"><title>第 12 步 · 采样 · 270.573 µs</title></rect>
+<rect x="462.063" y="264" width="0.262" height="22" fill="#bd4250" data-kind="phase" data-key="519"><title>第 12 步 · token 回传与等待 · 112.614 µs</title></rect>
+<rect x="462.352" y="264" width="0.222" height="22" fill="#bd4250" data-kind="phase" data-key="520"><title>第 12 步 · logprob 回传 · 95.752 µs</title></rect>
+<rect x="462.781" y="310" width="0.200" height="22" fill="#8055a0" data-kind="phase" data-key="521"><title>第 12 步 · 更新调度器 · 34.624 µs</title></rect>
+<rect x="462.929" y="310" width="0.200" height="22" fill="#19887f" data-kind="phase" data-key="522"><title>第 12 步 · 生成输出 · 85.853 µs</title></rect>
+<rect x="463.257" y="80" width="0.200" height="22" fill="#8055a0" data-kind="phase" data-key="525"><title>第 13 步 · 调度 · 54.285 µs</title></rect>
+<rect x="463.989" y="80" width="0.200" height="22" fill="#19887f" data-kind="phase" data-key="528"><title>第 13 步 · 请求状态 · 86.261 µs</title></rect>
+<rect x="464.235" y="126" width="1.346" height="22" fill="#19887f" data-kind="phase" data-key="529"><title>第 13 步 · 输入准备 · 579.497 µs</title></rect>
+<rect x="466.202" y="126" width="0.200" height="22" fill="#19887f" data-kind="phase" data-key="530"><title>第 13 步 · 输入预处理 · 35.807 µs</title></rect>
+<rect x="466.799" y="172" width="9.924" height="22" fill="#2864c7" data-kind="phase" data-key="531"><title>第 13 步 · 模型 forward · 4273.054 µs</title></rect>
+<rect x="476.837" y="172" width="0.200" height="22" fill="#2864c7" data-kind="phase" data-key="557"><title>第 13 步 · logits · 62.883 µs</title></rect>
+<rect x="477.202" y="218" width="0.629" height="22" fill="#cc7915" data-kind="phase" data-key="559"><title>第 13 步 · 采样 · 270.690 µs</title></rect>
+<rect x="477.917" y="264" width="0.263" height="22" fill="#bd4250" data-kind="phase" data-key="561"><title>第 13 步 · token 回传与等待 · 113.226 µs</title></rect>
+<rect x="478.208" y="264" width="0.226" height="22" fill="#bd4250" data-kind="phase" data-key="562"><title>第 13 步 · logprob 回传 · 97.352 µs</title></rect>
+<rect x="478.644" y="310" width="0.200" height="22" fill="#8055a0" data-kind="phase" data-key="563"><title>第 13 步 · 更新调度器 · 34.363 µs</title></rect>
+<rect x="478.791" y="310" width="0.200" height="22" fill="#19887f" data-kind="phase" data-key="564"><title>第 13 步 · 生成输出 · 85.097 µs</title></rect>
+<rect x="479.115" y="80" width="0.200" height="22" fill="#8055a0" data-kind="phase" data-key="567"><title>第 14 步 · 调度 · 54.206 µs</title></rect>
+<rect x="479.854" y="80" width="0.202" height="22" fill="#19887f" data-kind="phase" data-key="570"><title>第 14 步 · 请求状态 · 87.173 µs</title></rect>
+<rect x="480.101" y="126" width="1.315" height="22" fill="#19887f" data-kind="phase" data-key="571"><title>第 14 步 · 输入准备 · 566.231 µs</title></rect>
+<rect x="481.999" y="126" width="0.200" height="22" fill="#19887f" data-kind="phase" data-key="572"><title>第 14 步 · 输入预处理 · 34.713 µs</title></rect>
+<rect x="482.590" y="172" width="10.003" height="22" fill="#2864c7" data-kind="phase" data-key="573"><title>第 14 步 · 模型 forward · 4306.933 µs</title></rect>
+<rect x="492.710" y="172" width="0.200" height="22" fill="#2864c7" data-kind="phase" data-key="599"><title>第 14 步 · logits · 60.953 µs</title></rect>
+<rect x="493.071" y="218" width="0.641" height="22" fill="#cc7915" data-kind="phase" data-key="601"><title>第 14 步 · 采样 · 276.006 µs</title></rect>
+<rect x="493.799" y="264" width="0.258" height="22" fill="#bd4250" data-kind="phase" data-key="603"><title>第 14 步 · token 回传与等待 · 111.087 µs</title></rect>
+<rect x="494.085" y="264" width="0.217" height="22" fill="#bd4250" data-kind="phase" data-key="604"><title>第 14 步 · logprob 回传 · 93.295 µs</title></rect>
+<rect x="494.509" y="310" width="0.200" height="22" fill="#8055a0" data-kind="phase" data-key="605"><title>第 14 步 · 更新调度器 · 35.088 µs</title></rect>
+<rect x="494.657" y="310" width="0.200" height="22" fill="#19887f" data-kind="phase" data-key="606"><title>第 14 步 · 生成输出 · 83.481 µs</title></rect>
+<rect x="494.976" y="80" width="0.200" height="22" fill="#8055a0" data-kind="phase" data-key="609"><title>第 15 步 · 调度 · 53.571 µs</title></rect>
+<rect x="495.697" y="80" width="0.200" height="22" fill="#19887f" data-kind="phase" data-key="612"><title>第 15 步 · 请求状态 · 86.281 µs</title></rect>
+<rect x="495.942" y="126" width="1.320" height="22" fill="#19887f" data-kind="phase" data-key="613"><title>第 15 步 · 输入准备 · 568.536 µs</title></rect>
+<rect x="497.857" y="126" width="0.200" height="22" fill="#19887f" data-kind="phase" data-key="614"><title>第 15 步 · 输入预处理 · 37.903 µs</title></rect>
+<rect x="498.475" y="172" width="9.942" height="22" fill="#2864c7" data-kind="phase" data-key="615"><title>第 15 步 · 模型 forward · 4280.589 µs</title></rect>
+<rect x="508.527" y="172" width="0.200" height="22" fill="#2864c7" data-kind="phase" data-key="641"><title>第 15 步 · logits · 59.100 µs</title></rect>
+<rect x="508.873" y="218" width="0.634" height="22" fill="#cc7915" data-kind="phase" data-key="643"><title>第 15 步 · 采样 · 273.157 µs</title></rect>
+<rect x="509.603" y="264" width="0.263" height="22" fill="#bd4250" data-kind="phase" data-key="645"><title>第 15 步 · token 回传与等待 · 113.366 µs</title></rect>
+<rect x="509.895" y="264" width="0.232" height="22" fill="#bd4250" data-kind="phase" data-key="646"><title>第 15 步 · logprob 回传 · 99.905 µs</title></rect>
+<rect x="510.336" y="310" width="0.200" height="22" fill="#8055a0" data-kind="phase" data-key="647"><title>第 15 步 · 更新调度器 · 35.055 µs</title></rect>
+<rect x="510.487" y="310" width="0.200" height="22" fill="#19887f" data-kind="phase" data-key="648"><title>第 15 步 · 生成输出 · 84.739 µs</title></rect>
+<rect x="510.812" y="80" width="0.200" height="22" fill="#8055a0" data-kind="phase" data-key="651"><title>第 16 步 · 调度 · 53.089 µs</title></rect>
+<rect x="511.563" y="80" width="0.203" height="22" fill="#19887f" data-kind="phase" data-key="654"><title>第 16 步 · 请求状态 · 87.557 µs</title></rect>
+<rect x="511.809" y="126" width="1.350" height="22" fill="#19887f" data-kind="phase" data-key="655"><title>第 16 步 · 输入准备 · 581.099 µs</title></rect>
+<rect x="513.741" y="126" width="0.200" height="22" fill="#19887f" data-kind="phase" data-key="656"><title>第 16 步 · 输入预处理 · 33.523 µs</title></rect>
+<rect x="514.333" y="172" width="10.005" height="22" fill="#2864c7" data-kind="phase" data-key="657"><title>第 16 步 · 模型 forward · 4307.660 µs</title></rect>
+<rect x="524.447" y="172" width="0.200" height="22" fill="#2864c7" data-kind="phase" data-key="683"><title>第 16 步 · logits · 61.110 µs</title></rect>
+<rect x="524.807" y="218" width="0.621" height="22" fill="#cc7915" data-kind="phase" data-key="685"><title>第 16 步 · 采样 · 267.222 µs</title></rect>
+<rect x="525.513" y="264" width="0.257" height="22" fill="#bd4250" data-kind="phase" data-key="687"><title>第 16 步 · token 回传与等待 · 110.734 µs</title></rect>
+<rect x="525.797" y="264" width="0.218" height="22" fill="#bd4250" data-kind="phase" data-key="688"><title>第 16 步 · logprob 回传 · 93.939 µs</title></rect>
+<rect x="526.219" y="310" width="0.200" height="22" fill="#8055a0" data-kind="phase" data-key="689"><title>第 16 步 · 更新调度器 · 34.939 µs</title></rect>
+<rect x="526.367" y="310" width="0.200" height="22" fill="#19887f" data-kind="phase" data-key="690"><title>第 16 步 · 生成输出 · 84.197 µs</title></rect>
+<rect x="526.688" y="80" width="0.200" height="22" fill="#8055a0" data-kind="phase" data-key="693"><title>第 17 步 · 调度 · 53.742 µs</title></rect>
+<rect x="527.433" y="80" width="0.206" height="22" fill="#19887f" data-kind="phase" data-key="696"><title>第 17 步 · 请求状态 · 88.560 µs</title></rect>
+<rect x="527.683" y="126" width="1.337" height="22" fill="#19887f" data-kind="phase" data-key="697"><title>第 17 步 · 输入准备 · 575.784 µs</title></rect>
+<rect x="529.620" y="126" width="0.200" height="22" fill="#19887f" data-kind="phase" data-key="698"><title>第 17 步 · 输入预处理 · 35.021 µs</title></rect>
+<rect x="530.215" y="172" width="10.054" height="22" fill="#2864c7" data-kind="phase" data-key="699"><title>第 17 步 · 模型 forward · 4328.721 µs</title></rect>
+<rect x="540.381" y="172" width="0.200" height="22" fill="#2864c7" data-kind="phase" data-key="725"><title>第 17 步 · logits · 61.159 µs</title></rect>
+<rect x="540.731" y="218" width="0.636" height="22" fill="#cc7915" data-kind="phase" data-key="727"><title>第 17 步 · 采样 · 274.031 µs</title></rect>
+<rect x="541.459" y="264" width="0.261" height="22" fill="#bd4250" data-kind="phase" data-key="729"><title>第 17 步 · token 回传与等待 · 112.350 µs</title></rect>
+<rect x="541.747" y="264" width="0.234" height="22" fill="#bd4250" data-kind="phase" data-key="730"><title>第 17 步 · logprob 回传 · 100.695 µs</title></rect>
+<rect x="542.186" y="310" width="0.200" height="22" fill="#8055a0" data-kind="phase" data-key="731"><title>第 17 步 · 更新调度器 · 35.634 µs</title></rect>
+<rect x="542.335" y="310" width="0.200" height="22" fill="#19887f" data-kind="phase" data-key="732"><title>第 17 步 · 生成输出 · 85.799 µs</title></rect>
+<rect x="542.660" y="80" width="0.200" height="22" fill="#8055a0" data-kind="phase" data-key="735"><title>第 18 步 · 调度 · 53.519 µs</title></rect>
+<rect x="544.160" y="80" width="0.230" height="22" fill="#19887f" data-kind="phase" data-key="738"><title>第 18 步 · 请求状态 · 99.239 µs</title></rect>
+<rect x="544.438" y="126" width="1.337" height="22" fill="#19887f" data-kind="phase" data-key="739"><title>第 18 步 · 输入准备 · 575.753 µs</title></rect>
+<rect x="546.363" y="126" width="0.200" height="22" fill="#19887f" data-kind="phase" data-key="740"><title>第 18 步 · 输入预处理 · 34.802 µs</title></rect>
+<rect x="546.955" y="172" width="10.001" height="22" fill="#2864c7" data-kind="phase" data-key="741"><title>第 18 步 · 模型 forward · 4305.909 µs</title></rect>
+<rect x="557.080" y="172" width="0.200" height="22" fill="#2864c7" data-kind="phase" data-key="767"><title>第 18 步 · logits · 64.189 µs</title></rect>
+<rect x="557.444" y="218" width="0.642" height="22" fill="#cc7915" data-kind="phase" data-key="769"><title>第 18 步 · 采样 · 276.594 µs</title></rect>
+<rect x="558.178" y="264" width="0.271" height="22" fill="#bd4250" data-kind="phase" data-key="771"><title>第 18 步 · token 回传与等待 · 116.483 µs</title></rect>
+<rect x="558.475" y="264" width="0.242" height="22" fill="#bd4250" data-kind="phase" data-key="772"><title>第 18 步 · logprob 回传 · 104.106 µs</title></rect>
+<rect x="558.932" y="310" width="0.200" height="22" fill="#8055a0" data-kind="phase" data-key="773"><title>第 18 步 · 更新调度器 · 34.438 µs</title></rect>
+<rect x="559.076" y="310" width="0.200" height="22" fill="#19887f" data-kind="phase" data-key="774"><title>第 18 步 · 生成输出 · 85.324 µs</title></rect>
+<rect x="559.398" y="80" width="0.200" height="22" fill="#8055a0" data-kind="phase" data-key="777"><title>第 19 步 · 调度 · 54.267 µs</title></rect>
+<rect x="560.123" y="80" width="0.200" height="22" fill="#19887f" data-kind="phase" data-key="780"><title>第 19 步 · 请求状态 · 85.804 µs</title></rect>
+<rect x="560.365" y="126" width="1.311" height="22" fill="#19887f" data-kind="phase" data-key="781"><title>第 19 步 · 输入准备 · 564.386 µs</title></rect>
+<rect x="562.264" y="126" width="0.200" height="22" fill="#19887f" data-kind="phase" data-key="782"><title>第 19 步 · 输入预处理 · 37.429 µs</title></rect>
+<rect x="562.862" y="172" width="10.018" height="22" fill="#2864c7" data-kind="phase" data-key="783"><title>第 19 步 · 模型 forward · 4313.360 µs</title></rect>
+<rect x="572.994" y="172" width="0.200" height="22" fill="#2864c7" data-kind="phase" data-key="809"><title>第 19 步 · logits · 60.770 µs</title></rect>
+<rect x="573.352" y="218" width="0.638" height="22" fill="#cc7915" data-kind="phase" data-key="811"><title>第 19 步 · 采样 · 274.911 µs</title></rect>
+<rect x="574.075" y="264" width="0.269" height="22" fill="#bd4250" data-kind="phase" data-key="813"><title>第 19 步 · token 回传与等待 · 115.815 µs</title></rect>
+<rect x="574.370" y="264" width="0.230" height="22" fill="#bd4250" data-kind="phase" data-key="814"><title>第 19 步 · logprob 回传 · 98.848 µs</title></rect>
+<rect x="574.808" y="310" width="0.200" height="22" fill="#8055a0" data-kind="phase" data-key="815"><title>第 19 步 · 更新调度器 · 34.814 µs</title></rect>
+<rect x="574.956" y="310" width="0.200" height="22" fill="#19887f" data-kind="phase" data-key="816"><title>第 19 步 · 生成输出 · 83.909 µs</title></rect>
+<rect x="575.279" y="80" width="0.200" height="22" fill="#8055a0" data-kind="phase" data-key="819"><title>第 20 步 · 调度 · 54.260 µs</title></rect>
+<rect x="575.987" y="80" width="0.205" height="22" fill="#19887f" data-kind="phase" data-key="822"><title>第 20 步 · 请求状态 · 88.409 µs</title></rect>
+<rect x="576.237" y="126" width="1.319" height="22" fill="#19887f" data-kind="phase" data-key="823"><title>第 20 步 · 输入准备 · 567.764 µs</title></rect>
+<rect x="578.148" y="126" width="0.200" height="22" fill="#19887f" data-kind="phase" data-key="824"><title>第 20 步 · 输入预处理 · 34.526 µs</title></rect>
+<rect x="578.751" y="172" width="9.953" height="22" fill="#2864c7" data-kind="phase" data-key="825"><title>第 20 步 · 模型 forward · 4285.240 µs</title></rect>
+<rect x="588.815" y="172" width="0.200" height="22" fill="#2864c7" data-kind="phase" data-key="851"><title>第 20 步 · logits · 64.967 µs</title></rect>
+<rect x="589.181" y="218" width="0.654" height="22" fill="#cc7915" data-kind="phase" data-key="853"><title>第 20 步 · 采样 · 281.525 µs</title></rect>
+<rect x="589.921" y="264" width="0.261" height="22" fill="#bd4250" data-kind="phase" data-key="855"><title>第 20 步 · token 回传与等待 · 112.429 µs</title></rect>
+<rect x="590.210" y="264" width="0.212" height="22" fill="#bd4250" data-kind="phase" data-key="856"><title>第 20 步 · logprob 回传 · 91.313 µs</title></rect>
+<rect x="590.632" y="310" width="0.200" height="22" fill="#8055a0" data-kind="phase" data-key="857"><title>第 20 步 · 更新调度器 · 35.567 µs</title></rect>
+<rect x="590.782" y="310" width="0.200" height="22" fill="#19887f" data-kind="phase" data-key="858"><title>第 20 步 · 生成输出 · 85.214 µs</title></rect>
+<rect x="591.107" y="80" width="0.200" height="22" fill="#8055a0" data-kind="phase" data-key="861"><title>第 21 步 · 调度 · 54.288 µs</title></rect>
+<rect x="591.828" y="80" width="0.202" height="22" fill="#19887f" data-kind="phase" data-key="864"><title>第 21 步 · 请求状态 · 86.899 µs</title></rect>
+<rect x="592.075" y="126" width="1.309" height="22" fill="#19887f" data-kind="phase" data-key="865"><title>第 21 步 · 输入准备 · 563.620 µs</title></rect>
+<rect x="593.976" y="126" width="0.200" height="22" fill="#19887f" data-kind="phase" data-key="866"><title>第 21 步 · 输入预处理 · 33.637 µs</title></rect>
+<rect x="594.586" y="172" width="9.902" height="22" fill="#2864c7" data-kind="phase" data-key="867"><title>第 21 步 · 模型 forward · 4263.306 µs</title></rect>
+<rect x="604.600" y="172" width="0.200" height="22" fill="#2864c7" data-kind="phase" data-key="893"><title>第 21 步 · logits · 67.935 µs</title></rect>
+<rect x="604.973" y="218" width="0.652" height="22" fill="#cc7915" data-kind="phase" data-key="895"><title>第 21 步 · 采样 · 280.874 µs</title></rect>
+<rect x="605.719" y="264" width="0.264" height="22" fill="#bd4250" data-kind="phase" data-key="897"><title>第 21 步 · token 回传与等待 · 113.648 µs</title></rect>
+<rect x="606.010" y="264" width="0.225" height="22" fill="#bd4250" data-kind="phase" data-key="898"><title>第 21 步 · logprob 回传 · 96.694 µs</title></rect>
+<rect x="606.447" y="310" width="0.200" height="22" fill="#8055a0" data-kind="phase" data-key="899"><title>第 21 步 · 更新调度器 · 34.958 µs</title></rect>
+<rect x="606.596" y="310" width="0.200" height="22" fill="#19887f" data-kind="phase" data-key="900"><title>第 21 步 · 生成输出 · 85.534 µs</title></rect>
+<rect x="606.920" y="80" width="0.200" height="22" fill="#8055a0" data-kind="phase" data-key="903"><title>第 22 步 · 调度 · 54.555 µs</title></rect>
+<rect x="607.652" y="80" width="0.200" height="22" fill="#19887f" data-kind="phase" data-key="906"><title>第 22 步 · 请求状态 · 84.133 µs</title></rect>
+<rect x="607.888" y="126" width="1.300" height="22" fill="#19887f" data-kind="phase" data-key="907"><title>第 22 步 · 输入准备 · 559.777 µs</title></rect>
+<rect x="609.775" y="126" width="0.200" height="22" fill="#19887f" data-kind="phase" data-key="908"><title>第 22 步 · 输入预处理 · 34.844 µs</title></rect>
+<rect x="610.371" y="172" width="9.862" height="22" fill="#2864c7" data-kind="phase" data-key="909"><title>第 22 步 · 模型 forward · 4246.213 µs</title></rect>
+<rect x="620.341" y="172" width="0.200" height="22" fill="#2864c7" data-kind="phase" data-key="935"><title>第 22 步 · logits · 63.123 µs</title></rect>
+<rect x="620.703" y="218" width="0.628" height="22" fill="#cc7915" data-kind="phase" data-key="937"><title>第 22 步 · 采样 · 270.392 µs</title></rect>
+<rect x="621.416" y="264" width="0.253" height="22" fill="#bd4250" data-kind="phase" data-key="939"><title>第 22 步 · token 回传与等待 · 108.961 µs</title></rect>
+<rect x="621.695" y="264" width="0.223" height="22" fill="#bd4250" data-kind="phase" data-key="940"><title>第 22 步 · logprob 回传 · 95.942 µs</title></rect>
+<rect x="622.123" y="310" width="0.200" height="22" fill="#8055a0" data-kind="phase" data-key="941"><title>第 22 步 · 更新调度器 · 35.355 µs</title></rect>
+<rect x="622.271" y="310" width="0.200" height="22" fill="#19887f" data-kind="phase" data-key="942"><title>第 22 步 · 生成输出 · 85.385 µs</title></rect>
+<rect x="622.596" y="80" width="0.200" height="22" fill="#8055a0" data-kind="phase" data-key="945"><title>第 23 步 · 调度 · 54.717 µs</title></rect>
+<rect x="623.325" y="80" width="0.205" height="22" fill="#19887f" data-kind="phase" data-key="948"><title>第 23 步 · 请求状态 · 88.222 µs</title></rect>
+<rect x="623.575" y="126" width="1.328" height="22" fill="#19887f" data-kind="phase" data-key="949"><title>第 23 步 · 输入准备 · 571.595 µs</title></rect>
+<rect x="625.502" y="126" width="0.200" height="22" fill="#19887f" data-kind="phase" data-key="950"><title>第 23 步 · 输入预处理 · 34.780 µs</title></rect>
+<rect x="626.115" y="172" width="9.911" height="22" fill="#2864c7" data-kind="phase" data-key="951"><title>第 23 步 · 模型 forward · 4267.397 µs</title></rect>
+<rect x="636.140" y="172" width="0.200" height="22" fill="#2864c7" data-kind="phase" data-key="977"><title>第 23 步 · logits · 62.782 µs</title></rect>
+<rect x="636.507" y="218" width="0.659" height="22" fill="#cc7915" data-kind="phase" data-key="979"><title>第 23 步 · 采样 · 283.576 µs</title></rect>
+<rect x="637.253" y="264" width="0.267" height="22" fill="#bd4250" data-kind="phase" data-key="981"><title>第 23 步 · token 回传与等待 · 114.898 µs</title></rect>
+<rect x="637.547" y="264" width="0.228" height="22" fill="#bd4250" data-kind="phase" data-key="982"><title>第 23 步 · logprob 回传 · 98.200 µs</title></rect>
+<rect x="637.986" y="310" width="0.200" height="22" fill="#8055a0" data-kind="phase" data-key="983"><title>第 23 步 · 更新调度器 · 33.933 µs</title></rect>
+<rect x="638.133" y="310" width="0.200" height="22" fill="#19887f" data-kind="phase" data-key="984"><title>第 23 步 · 生成输出 · 85.723 µs</title></rect>
+<rect x="638.461" y="80" width="0.200" height="22" fill="#8055a0" data-kind="phase" data-key="987"><title>第 24 步 · 调度 · 54.430 µs</title></rect>
+<rect x="639.192" y="80" width="0.203" height="22" fill="#19887f" data-kind="phase" data-key="990"><title>第 24 步 · 请求状态 · 87.199 µs</title></rect>
+<rect x="639.441" y="126" width="1.314" height="22" fill="#19887f" data-kind="phase" data-key="991"><title>第 24 步 · 输入准备 · 565.577 µs</title></rect>
+<rect x="641.344" y="126" width="0.200" height="22" fill="#19887f" data-kind="phase" data-key="992"><title>第 24 步 · 输入预处理 · 34.208 µs</title></rect>
+<rect x="641.940" y="172" width="9.958" height="22" fill="#2864c7" data-kind="phase" data-key="993"><title>第 24 步 · 模型 forward · 4287.349 µs</title></rect>
+<rect x="652.008" y="172" width="0.200" height="22" fill="#2864c7" data-kind="phase" data-key="1019"><title>第 24 步 · logits · 59.427 µs</title></rect>
+<rect x="652.354" y="218" width="0.645" height="22" fill="#cc7915" data-kind="phase" data-key="1021"><title>第 24 步 · 采样 · 277.873 µs</title></rect>
+<rect x="653.094" y="264" width="0.265" height="22" fill="#bd4250" data-kind="phase" data-key="1023"><title>第 24 步 · token 回传与等待 · 113.996 µs</title></rect>
+<rect x="653.385" y="264" width="0.222" height="22" fill="#bd4250" data-kind="phase" data-key="1024"><title>第 24 步 · logprob 回传 · 95.468 µs</title></rect>
+<rect x="653.814" y="310" width="0.200" height="22" fill="#8055a0" data-kind="phase" data-key="1025"><title>第 24 步 · 更新调度器 · 34.604 µs</title></rect>
+<rect x="653.963" y="310" width="0.200" height="22" fill="#19887f" data-kind="phase" data-key="1026"><title>第 24 步 · 生成输出 · 85.542 µs</title></rect>
+<rect x="654.288" y="80" width="0.200" height="22" fill="#8055a0" data-kind="phase" data-key="1029"><title>第 25 步 · 调度 · 52.449 µs</title></rect>
+<rect x="655.008" y="80" width="0.200" height="22" fill="#19887f" data-kind="phase" data-key="1032"><title>第 25 步 · 请求状态 · 85.575 µs</title></rect>
+<rect x="655.252" y="126" width="1.321" height="22" fill="#19887f" data-kind="phase" data-key="1033"><title>第 25 步 · 输入准备 · 568.672 µs</title></rect>
+<rect x="657.166" y="126" width="0.200" height="22" fill="#19887f" data-kind="phase" data-key="1034"><title>第 25 步 · 输入预处理 · 34.647 µs</title></rect>
+<rect x="657.765" y="172" width="9.880" height="22" fill="#2864c7" data-kind="phase" data-key="1035"><title>第 25 步 · 模型 forward · 4254.039 µs</title></rect>
+<rect x="667.757" y="172" width="0.200" height="22" fill="#2864c7" data-kind="phase" data-key="1061"><title>第 25 步 · logits · 59.850 µs</title></rect>
+<rect x="668.103" y="218" width="0.625" height="22" fill="#cc7915" data-kind="phase" data-key="1063"><title>第 25 步 · 采样 · 268.895 µs</title></rect>
+<rect x="668.812" y="264" width="0.258" height="22" fill="#bd4250" data-kind="phase" data-key="1065"><title>第 25 步 · token 回传与等待 · 111.257 µs</title></rect>
+<rect x="669.098" y="264" width="0.232" height="22" fill="#bd4250" data-kind="phase" data-key="1066"><title>第 25 步 · logprob 回传 · 99.712 µs</title></rect>
+<rect x="669.538" y="310" width="0.200" height="22" fill="#8055a0" data-kind="phase" data-key="1067"><title>第 25 步 · 更新调度器 · 34.921 µs</title></rect>
+<rect x="669.686" y="310" width="0.200" height="22" fill="#19887f" data-kind="phase" data-key="1068"><title>第 25 步 · 生成输出 · 85.512 µs</title></rect>
+<rect x="670.022" y="80" width="0.213" height="22" fill="#8055a0" data-kind="phase" data-key="1071"><title>第 26 步 · 调度 · 91.503 µs</title></rect>
+<rect x="670.853" y="80" width="0.201" height="22" fill="#19887f" data-kind="phase" data-key="1074"><title>第 26 步 · 请求状态 · 86.521 µs</title></rect>
+<rect x="671.096" y="126" width="1.335" height="22" fill="#19887f" data-kind="phase" data-key="1075"><title>第 26 步 · 输入准备 · 574.779 µs</title></rect>
+<rect x="673.017" y="126" width="0.200" height="22" fill="#19887f" data-kind="phase" data-key="1076"><title>第 26 步 · 输入预处理 · 36.206 µs</title></rect>
+<rect x="673.620" y="172" width="9.933" height="22" fill="#2864c7" data-kind="phase" data-key="1077"><title>第 26 步 · 模型 forward · 4276.762 µs</title></rect>
+<rect x="683.662" y="172" width="0.200" height="22" fill="#2864c7" data-kind="phase" data-key="1103"><title>第 26 步 · logits · 61.660 µs</title></rect>
+<rect x="684.018" y="218" width="0.631" height="22" fill="#cc7915" data-kind="phase" data-key="1105"><title>第 26 步 · 采样 · 271.654 µs</title></rect>
+<rect x="684.745" y="264" width="0.270" height="22" fill="#bd4250" data-kind="phase" data-key="1107"><title>第 26 步 · token 回传与等待 · 116.340 µs</title></rect>
+<rect x="685.043" y="264" width="0.222" height="22" fill="#bd4250" data-kind="phase" data-key="1108"><title>第 26 步 · logprob 回传 · 95.791 µs</title></rect>
+<rect x="685.471" y="310" width="0.200" height="22" fill="#8055a0" data-kind="phase" data-key="1109"><title>第 26 步 · 更新调度器 · 34.958 µs</title></rect>
+<rect x="685.621" y="310" width="0.200" height="22" fill="#19887f" data-kind="phase" data-key="1110"><title>第 26 步 · 生成输出 · 83.967 µs</title></rect>
+<rect x="685.943" y="80" width="0.200" height="22" fill="#8055a0" data-kind="phase" data-key="1113"><title>第 27 步 · 调度 · 52.755 µs</title></rect>
+<rect x="686.695" y="80" width="0.201" height="22" fill="#19887f" data-kind="phase" data-key="1116"><title>第 27 步 · 请求状态 · 86.556 µs</title></rect>
+<rect x="686.942" y="126" width="1.308" height="22" fill="#19887f" data-kind="phase" data-key="1117"><title>第 27 步 · 输入准备 · 563.375 µs</title></rect>
+<rect x="689.688" y="126" width="0.200" height="22" fill="#19887f" data-kind="phase" data-key="1118"><title>第 27 步 · 输入预处理 · 43.485 µs</title></rect>
+<rect x="690.355" y="172" width="10.114" height="22" fill="#2864c7" data-kind="phase" data-key="1119"><title>第 27 步 · 模型 forward · 4354.681 µs</title></rect>
+<rect x="700.583" y="172" width="0.200" height="22" fill="#2864c7" data-kind="phase" data-key="1145"><title>第 27 步 · logits · 61.360 µs</title></rect>
+<rect x="700.934" y="218" width="0.628" height="22" fill="#cc7915" data-kind="phase" data-key="1147"><title>第 27 步 · 采样 · 270.187 µs</title></rect>
+<rect x="701.653" y="264" width="0.269" height="22" fill="#bd4250" data-kind="phase" data-key="1149"><title>第 27 步 · token 回传与等待 · 115.757 µs</title></rect>
+<rect x="701.950" y="264" width="0.224" height="22" fill="#bd4250" data-kind="phase" data-key="1150"><title>第 27 步 · logprob 回传 · 96.413 µs</title></rect>
+<rect x="702.381" y="310" width="0.200" height="22" fill="#8055a0" data-kind="phase" data-key="1151"><title>第 27 步 · 更新调度器 · 34.144 µs</title></rect>
+<rect x="702.527" y="310" width="0.200" height="22" fill="#19887f" data-kind="phase" data-key="1152"><title>第 27 步 · 生成输出 · 85.405 µs</title></rect>
+<rect x="702.853" y="80" width="0.200" height="22" fill="#8055a0" data-kind="phase" data-key="1155"><title>第 28 步 · 调度 · 55.378 µs</title></rect>
+<rect x="703.567" y="80" width="0.200" height="22" fill="#19887f" data-kind="phase" data-key="1158"><title>第 28 步 · 请求状态 · 85.531 µs</title></rect>
+<rect x="703.812" y="126" width="1.313" height="22" fill="#19887f" data-kind="phase" data-key="1159"><title>第 28 步 · 输入准备 · 565.454 µs</title></rect>
+<rect x="705.710" y="126" width="0.200" height="22" fill="#19887f" data-kind="phase" data-key="1160"><title>第 28 步 · 输入预处理 · 33.771 µs</title></rect>
+<rect x="706.308" y="172" width="9.900" height="22" fill="#2864c7" data-kind="phase" data-key="1161"><title>第 28 步 · 模型 forward · 4262.585 µs</title></rect>
+<rect x="716.323" y="172" width="0.200" height="22" fill="#2864c7" data-kind="phase" data-key="1187"><title>第 28 步 · logits · 61.561 µs</title></rect>
+<rect x="716.689" y="218" width="0.620" height="22" fill="#cc7915" data-kind="phase" data-key="1189"><title>第 28 步 · 采样 · 266.944 µs</title></rect>
+<rect x="717.394" y="264" width="0.271" height="22" fill="#bd4250" data-kind="phase" data-key="1191"><title>第 28 步 · token 回传与等待 · 116.640 µs</title></rect>
+<rect x="717.692" y="264" width="0.221" height="22" fill="#bd4250" data-kind="phase" data-key="1192"><title>第 28 步 · logprob 回传 · 95.140 µs</title></rect>
+<rect x="718.118" y="310" width="0.200" height="22" fill="#8055a0" data-kind="phase" data-key="1193"><title>第 28 步 · 更新调度器 · 34.980 µs</title></rect>
+<rect x="718.267" y="310" width="0.200" height="22" fill="#19887f" data-kind="phase" data-key="1194"><title>第 28 步 · 生成输出 · 84.683 µs</title></rect>
+<rect x="718.588" y="80" width="0.200" height="22" fill="#8055a0" data-kind="phase" data-key="1197"><title>第 29 步 · 调度 · 54.426 µs</title></rect>
+<rect x="719.305" y="80" width="0.202" height="22" fill="#19887f" data-kind="phase" data-key="1200"><title>第 29 步 · 请求状态 · 86.897 µs</title></rect>
+<rect x="719.551" y="126" width="1.264" height="22" fill="#19887f" data-kind="phase" data-key="1201"><title>第 29 步 · 输入准备 · 544.426 µs</title></rect>
+<rect x="721.384" y="126" width="0.200" height="22" fill="#19887f" data-kind="phase" data-key="1202"><title>第 29 步 · 输入预处理 · 41.352 µs</title></rect>
+<rect x="721.995" y="172" width="9.905" height="22" fill="#2864c7" data-kind="phase" data-key="1203"><title>第 29 步 · 模型 forward · 4264.884 µs</title></rect>
+<rect x="732.014" y="172" width="0.200" height="22" fill="#2864c7" data-kind="phase" data-key="1229"><title>第 29 步 · logits · 61.399 µs</title></rect>
+<rect x="732.376" y="218" width="0.635" height="22" fill="#cc7915" data-kind="phase" data-key="1231"><title>第 29 步 · 采样 · 273.407 µs</title></rect>
+<rect x="733.098" y="264" width="0.260" height="22" fill="#bd4250" data-kind="phase" data-key="1233"><title>第 29 步 · token 回传与等待 · 112.002 µs</title></rect>
+<rect x="733.385" y="264" width="0.227" height="22" fill="#bd4250" data-kind="phase" data-key="1234"><title>第 29 步 · logprob 回传 · 97.816 µs</title></rect>
+<rect x="733.825" y="310" width="0.200" height="22" fill="#8055a0" data-kind="phase" data-key="1235"><title>第 29 步 · 更新调度器 · 34.184 µs</title></rect>
+<rect x="733.972" y="310" width="0.200" height="22" fill="#19887f" data-kind="phase" data-key="1236"><title>第 29 步 · 生成输出 · 84.810 µs</title></rect>
+<rect x="734.294" y="80" width="0.200" height="22" fill="#8055a0" data-kind="phase" data-key="1239"><title>第 30 步 · 调度 · 54.651 µs</title></rect>
+<rect x="734.999" y="80" width="0.221" height="22" fill="#19887f" data-kind="phase" data-key="1242"><title>第 30 步 · 请求状态 · 95.267 µs</title></rect>
+<rect x="735.268" y="126" width="1.348" height="22" fill="#19887f" data-kind="phase" data-key="1243"><title>第 30 步 · 输入准备 · 580.343 µs</title></rect>
+<rect x="737.204" y="126" width="0.200" height="22" fill="#19887f" data-kind="phase" data-key="1244"><title>第 30 步 · 输入预处理 · 33.440 µs</title></rect>
+<rect x="737.788" y="172" width="9.937" height="22" fill="#2864c7" data-kind="phase" data-key="1245"><title>第 30 步 · 模型 forward · 4278.528 µs</title></rect>
+<rect x="747.835" y="172" width="0.200" height="22" fill="#2864c7" data-kind="phase" data-key="1271"><title>第 30 步 · logits · 61.297 µs</title></rect>
+<rect x="748.194" y="218" width="0.650" height="22" fill="#cc7915" data-kind="phase" data-key="1273"><title>第 30 步 · 采样 · 279.770 µs</title></rect>
+<rect x="748.936" y="264" width="0.268" height="22" fill="#bd4250" data-kind="phase" data-key="1275"><title>第 30 步 · token 回传与等待 · 115.466 µs</title></rect>
+<rect x="749.231" y="264" width="0.212" height="22" fill="#bd4250" data-kind="phase" data-key="1276"><title>第 30 步 · logprob 回传 · 91.482 µs</title></rect>
+<rect x="749.649" y="310" width="0.200" height="22" fill="#8055a0" data-kind="phase" data-key="1277"><title>第 30 步 · 更新调度器 · 35.340 µs</title></rect>
+<rect x="749.797" y="310" width="0.200" height="22" fill="#19887f" data-kind="phase" data-key="1278"><title>第 30 步 · 生成输出 · 82.170 µs</title></rect>
+<rect x="750.113" y="80" width="0.200" height="22" fill="#8055a0" data-kind="phase" data-key="1281"><title>第 31 步 · 调度 · 54.617 µs</title></rect>
+<rect x="750.835" y="80" width="0.202" height="22" fill="#19887f" data-kind="phase" data-key="1284"><title>第 31 步 · 请求状态 · 86.938 µs</title></rect>
+<rect x="751.082" y="126" width="1.314" height="22" fill="#19887f" data-kind="phase" data-key="1285"><title>第 31 步 · 输入准备 · 565.697 µs</title></rect>
+<rect x="752.989" y="126" width="0.200" height="22" fill="#19887f" data-kind="phase" data-key="1286"><title>第 31 步 · 输入预处理 · 34.795 µs</title></rect>
+<rect x="753.596" y="172" width="9.943" height="22" fill="#2864c7" data-kind="phase" data-key="1287"><title>第 31 步 · 模型 forward · 4281.185 µs</title></rect>
+<rect x="763.650" y="172" width="0.200" height="22" fill="#2864c7" data-kind="phase" data-key="1313"><title>第 31 步 · logits · 62.574 µs</title></rect>
+<rect x="764.003" y="218" width="0.617" height="22" fill="#cc7915" data-kind="phase" data-key="1315"><title>第 31 步 · 采样 · 265.630 µs</title></rect>
+<rect x="764.708" y="264" width="0.266" height="22" fill="#bd4250" data-kind="phase" data-key="1317"><title>第 31 步 · token 回传与等待 · 114.675 µs</title></rect>
+<rect x="765.002" y="264" width="0.225" height="22" fill="#bd4250" data-kind="phase" data-key="1318"><title>第 31 步 · logprob 回传 · 96.732 µs</title></rect>
+<rect x="765.436" y="310" width="0.200" height="22" fill="#8055a0" data-kind="phase" data-key="1319"><title>第 31 步 · 更新调度器 · 34.965 µs</title></rect>
+<rect x="765.583" y="310" width="0.200" height="22" fill="#19887f" data-kind="phase" data-key="1320"><title>第 31 步 · 生成输出 · 82.822 µs</title></rect>
+<rect x="765.899" y="80" width="0.200" height="22" fill="#8055a0" data-kind="phase" data-key="1323"><title>第 32 步 · 调度 · 54.108 µs</title></rect>
+<rect x="766.651" y="80" width="0.204" height="22" fill="#19887f" data-kind="phase" data-key="1326"><title>第 32 步 · 请求状态 · 87.857 µs</title></rect>
+<rect x="766.900" y="126" width="1.324" height="22" fill="#19887f" data-kind="phase" data-key="1327"><title>第 32 步 · 输入准备 · 570.135 µs</title></rect>
+<rect x="768.837" y="126" width="0.200" height="22" fill="#19887f" data-kind="phase" data-key="1328"><title>第 32 步 · 输入预处理 · 34.553 µs</title></rect>
+<rect x="769.437" y="172" width="9.902" height="22" fill="#2864c7" data-kind="phase" data-key="1329"><title>第 32 步 · 模型 forward · 4263.469 µs</title></rect>
+<rect x="779.450" y="172" width="0.200" height="22" fill="#2864c7" data-kind="phase" data-key="1355"><title>第 32 步 · logits · 59.964 µs</title></rect>
+<rect x="779.810" y="218" width="0.622" height="22" fill="#cc7915" data-kind="phase" data-key="1357"><title>第 32 步 · 采样 · 267.812 µs</title></rect>
+<rect x="780.518" y="264" width="0.257" height="22" fill="#bd4250" data-kind="phase" data-key="1359"><title>第 32 步 · token 回传与等待 · 110.796 µs</title></rect>
+<rect x="780.802" y="264" width="0.225" height="22" fill="#bd4250" data-kind="phase" data-key="1360"><title>第 32 步 · logprob 回传 · 96.815 µs</title></rect>
+<rect x="781.233" y="310" width="0.200" height="22" fill="#8055a0" data-kind="phase" data-key="1361"><title>第 32 步 · 更新调度器 · 35.635 µs</title></rect>
+<rect x="781.381" y="310" width="0.206" height="22" fill="#19887f" data-kind="phase" data-key="1362"><title>第 32 步 · 生成输出 · 88.567 µs</title></rect>
+<rect x="781.714" y="80" width="0.200" height="22" fill="#8055a0" data-kind="phase" data-key="1365"><title>第 33 步 · 调度 · 54.198 µs</title></rect>
+<rect x="782.442" y="80" width="0.202" height="22" fill="#19887f" data-kind="phase" data-key="1368"><title>第 33 步 · 请求状态 · 87.149 µs</title></rect>
+<rect x="782.689" y="126" width="1.326" height="22" fill="#19887f" data-kind="phase" data-key="1369"><title>第 33 步 · 输入准备 · 570.926 µs</title></rect>
+<rect x="784.606" y="126" width="0.200" height="22" fill="#19887f" data-kind="phase" data-key="1370"><title>第 33 步 · 输入预处理 · 34.136 µs</title></rect>
+<rect x="785.199" y="172" width="9.903" height="22" fill="#2864c7" data-kind="phase" data-key="1371"><title>第 33 步 · 模型 forward · 4263.626 µs</title></rect>
+<rect x="795.216" y="172" width="0.200" height="22" fill="#2864c7" data-kind="phase" data-key="1397"><title>第 33 步 · logits · 61.841 µs</title></rect>
+<rect x="795.570" y="218" width="0.635" height="22" fill="#cc7915" data-kind="phase" data-key="1399"><title>第 33 步 · 采样 · 273.330 µs</title></rect>
+<rect x="796.291" y="264" width="0.261" height="22" fill="#bd4250" data-kind="phase" data-key="1401"><title>第 33 步 · token 回传与等待 · 112.506 µs</title></rect>
+<rect x="796.580" y="264" width="0.224" height="22" fill="#bd4250" data-kind="phase" data-key="1402"><title>第 33 步 · logprob 回传 · 96.584 µs</title></rect>
+<rect x="797.009" y="310" width="0.200" height="22" fill="#8055a0" data-kind="phase" data-key="1403"><title>第 33 步 · 更新调度器 · 35.308 µs</title></rect>
+<rect x="797.157" y="310" width="0.200" height="22" fill="#19887f" data-kind="phase" data-key="1404"><title>第 33 步 · 生成输出 · 84.526 µs</title></rect>
+<rect x="797.481" y="80" width="0.200" height="22" fill="#8055a0" data-kind="phase" data-key="1407"><title>第 34 步 · 调度 · 53.507 µs</title></rect>
+<rect x="798.222" y="80" width="0.200" height="22" fill="#19887f" data-kind="phase" data-key="1410"><title>第 34 步 · 请求状态 · 85.808 µs</title></rect>
+<rect x="798.468" y="126" width="1.311" height="22" fill="#19887f" data-kind="phase" data-key="1411"><title>第 34 步 · 输入准备 · 564.403 µs</title></rect>
+<rect x="800.407" y="126" width="0.200" height="22" fill="#19887f" data-kind="phase" data-key="1412"><title>第 34 步 · 输入预处理 · 36.425 µs</title></rect>
+<rect x="801.007" y="172" width="9.862" height="22" fill="#2864c7" data-kind="phase" data-key="1413"><title>第 34 步 · 模型 forward · 4246.209 µs</title></rect>
+<rect x="810.982" y="172" width="0.200" height="22" fill="#2864c7" data-kind="phase" data-key="1439"><title>第 34 步 · logits · 61.863 µs</title></rect>
+<rect x="811.335" y="218" width="0.639" height="22" fill="#cc7915" data-kind="phase" data-key="1441"><title>第 34 步 · 采样 · 275.008 µs</title></rect>
+<rect x="812.068" y="264" width="0.264" height="22" fill="#bd4250" data-kind="phase" data-key="1443"><title>第 34 步 · token 回传与等待 · 113.479 µs</title></rect>
+<rect x="812.360" y="264" width="0.222" height="22" fill="#bd4250" data-kind="phase" data-key="1444"><title>第 34 步 · logprob 回传 · 95.527 µs</title></rect>
+<rect x="812.794" y="310" width="0.200" height="22" fill="#8055a0" data-kind="phase" data-key="1445"><title>第 34 步 · 更新调度器 · 35.784 µs</title></rect>
+<rect x="812.945" y="310" width="0.200" height="22" fill="#19887f" data-kind="phase" data-key="1446"><title>第 34 步 · 生成输出 · 85.013 µs</title></rect>
+<rect x="813.267" y="80" width="0.200" height="22" fill="#8055a0" data-kind="phase" data-key="1449"><title>第 35 步 · 调度 · 55.300 µs</title></rect>
+<rect x="813.994" y="80" width="0.200" height="22" fill="#19887f" data-kind="phase" data-key="1452"><title>第 35 步 · 请求状态 · 86.064 µs</title></rect>
+<rect x="814.238" y="126" width="1.345" height="22" fill="#19887f" data-kind="phase" data-key="1453"><title>第 35 步 · 输入准备 · 579.100 µs</title></rect>
+<rect x="816.177" y="126" width="0.200" height="22" fill="#19887f" data-kind="phase" data-key="1454"><title>第 35 步 · 输入预处理 · 34.909 µs</title></rect>
+<rect x="816.778" y="172" width="9.869" height="22" fill="#2864c7" data-kind="phase" data-key="1455"><title>第 35 步 · 模型 forward · 4249.198 µs</title></rect>
+<rect x="826.762" y="172" width="0.200" height="22" fill="#2864c7" data-kind="phase" data-key="1481"><title>第 35 步 · logits · 63.257 µs</title></rect>
+<rect x="827.119" y="218" width="0.628" height="22" fill="#cc7915" data-kind="phase" data-key="1483"><title>第 35 步 · 采样 · 270.381 µs</title></rect>
+<rect x="827.833" y="264" width="0.271" height="22" fill="#bd4250" data-kind="phase" data-key="1485"><title>第 35 步 · token 回传与等待 · 116.510 µs</title></rect>
+<rect x="828.130" y="264" width="0.224" height="22" fill="#bd4250" data-kind="phase" data-key="1486"><title>第 35 步 · logprob 回传 · 96.279 µs</title></rect>
+<rect x="828.560" y="310" width="0.200" height="22" fill="#8055a0" data-kind="phase" data-key="1487"><title>第 35 步 · 更新调度器 · 33.863 µs</title></rect>
+<rect x="828.705" y="310" width="0.200" height="22" fill="#19887f" data-kind="phase" data-key="1488"><title>第 35 步 · 生成输出 · 83.805 µs</title></rect>
+<rect x="829.026" y="80" width="0.200" height="22" fill="#8055a0" data-kind="phase" data-key="1491"><title>第 36 步 · 调度 · 54.079 µs</title></rect>
+<rect x="829.785" y="80" width="0.203" height="22" fill="#19887f" data-kind="phase" data-key="1494"><title>第 36 步 · 请求状态 · 87.280 µs</title></rect>
+<rect x="830.032" y="126" width="1.305" height="22" fill="#19887f" data-kind="phase" data-key="1495"><title>第 36 步 · 输入准备 · 562.025 µs</title></rect>
+<rect x="832.755" y="126" width="0.200" height="22" fill="#19887f" data-kind="phase" data-key="1496"><title>第 36 步 · 输入预处理 · 40.705 µs</title></rect>
+<rect x="833.414" y="172" width="10.024" height="22" fill="#2864c7" data-kind="phase" data-key="1497"><title>第 36 步 · 模型 forward · 4315.869 µs</title></rect>
+<rect x="843.552" y="172" width="0.200" height="22" fill="#2864c7" data-kind="phase" data-key="1523"><title>第 36 步 · logits · 59.994 µs</title></rect>
+<rect x="843.903" y="218" width="0.623" height="22" fill="#cc7915" data-kind="phase" data-key="1525"><title>第 36 步 · 采样 · 268.221 µs</title></rect>
+<rect x="844.614" y="264" width="0.268" height="22" fill="#bd4250" data-kind="phase" data-key="1527"><title>第 36 步 · token 回传与等待 · 115.470 µs</title></rect>
+<rect x="844.911" y="264" width="0.216" height="22" fill="#bd4250" data-kind="phase" data-key="1528"><title>第 36 步 · logprob 回传 · 93.185 µs</title></rect>
+<rect x="845.339" y="310" width="0.200" height="22" fill="#8055a0" data-kind="phase" data-key="1529"><title>第 36 步 · 更新调度器 · 34.997 µs</title></rect>
+<rect x="845.487" y="310" width="0.200" height="22" fill="#19887f" data-kind="phase" data-key="1530"><title>第 36 步 · 生成输出 · 84.257 µs</title></rect>
+<rect x="845.813" y="80" width="0.200" height="22" fill="#8055a0" data-kind="phase" data-key="1533"><title>第 37 步 · 调度 · 54.309 µs</title></rect>
+<rect x="846.548" y="80" width="0.213" height="22" fill="#19887f" data-kind="phase" data-key="1536"><title>第 37 步 · 请求状态 · 91.756 µs</title></rect>
+<rect x="846.803" y="126" width="1.313" height="22" fill="#19887f" data-kind="phase" data-key="1537"><title>第 37 步 · 输入准备 · 565.522 µs</title></rect>
+<rect x="848.707" y="126" width="0.200" height="22" fill="#19887f" data-kind="phase" data-key="1538"><title>第 37 步 · 输入预处理 · 34.971 µs</title></rect>
+<rect x="849.307" y="172" width="10.132" height="22" fill="#2864c7" data-kind="phase" data-key="1539"><title>第 37 步 · 模型 forward · 4362.290 µs</title></rect>
+<rect x="859.549" y="172" width="0.200" height="22" fill="#2864c7" data-kind="phase" data-key="1565"><title>第 37 步 · logits · 62.353 µs</title></rect>
+<rect x="859.908" y="218" width="0.606" height="22" fill="#cc7915" data-kind="phase" data-key="1567"><title>第 37 步 · 采样 · 260.915 µs</title></rect>
+<rect x="860.595" y="264" width="0.254" height="22" fill="#bd4250" data-kind="phase" data-key="1569"><title>第 37 步 · token 回传与等待 · 109.235 µs</title></rect>
+<rect x="860.876" y="264" width="0.216" height="22" fill="#bd4250" data-kind="phase" data-key="1570"><title>第 37 步 · logprob 回传 · 92.848 µs</title></rect>
+<rect x="861.300" y="310" width="0.200" height="22" fill="#8055a0" data-kind="phase" data-key="1571"><title>第 37 步 · 更新调度器 · 34.078 µs</title></rect>
+<rect x="861.445" y="310" width="0.200" height="22" fill="#19887f" data-kind="phase" data-key="1572"><title>第 37 步 · 生成输出 · 84.770 µs</title></rect>
+<rect x="861.782" y="80" width="0.200" height="22" fill="#8055a0" data-kind="phase" data-key="1575"><title>第 38 步 · 调度 · 53.484 µs</title></rect>
+<rect x="862.501" y="80" width="0.200" height="22" fill="#19887f" data-kind="phase" data-key="1578"><title>第 38 步 · 请求状态 · 85.653 µs</title></rect>
+<rect x="862.742" y="126" width="1.315" height="22" fill="#19887f" data-kind="phase" data-key="1579"><title>第 38 步 · 输入准备 · 566.023 µs</title></rect>
+<rect x="864.675" y="126" width="0.200" height="22" fill="#19887f" data-kind="phase" data-key="1580"><title>第 38 步 · 输入预处理 · 35.588 µs</title></rect>
+<rect x="865.298" y="172" width="9.892" height="22" fill="#2864c7" data-kind="phase" data-key="1581"><title>第 38 步 · 模型 forward · 4259.186 µs</title></rect>
+<rect x="875.301" y="172" width="0.200" height="22" fill="#2864c7" data-kind="phase" data-key="1607"><title>第 38 步 · logits · 60.626 µs</title></rect>
+<rect x="875.649" y="218" width="0.637" height="22" fill="#cc7915" data-kind="phase" data-key="1609"><title>第 38 步 · 采样 · 274.270 µs</title></rect>
+<rect x="876.379" y="264" width="0.266" height="22" fill="#bd4250" data-kind="phase" data-key="1611"><title>第 38 步 · token 回传与等待 · 114.375 µs</title></rect>
+<rect x="876.672" y="264" width="0.219" height="22" fill="#bd4250" data-kind="phase" data-key="1612"><title>第 38 步 · logprob 回传 · 94.270 µs</title></rect>
+<rect x="877.108" y="310" width="0.200" height="22" fill="#8055a0" data-kind="phase" data-key="1613"><title>第 38 步 · 更新调度器 · 36.000 µs</title></rect>
+<rect x="877.261" y="310" width="0.200" height="22" fill="#19887f" data-kind="phase" data-key="1614"><title>第 38 步 · 生成输出 · 85.526 µs</title></rect>
+<rect x="877.589" y="80" width="0.200" height="22" fill="#8055a0" data-kind="phase" data-key="1617"><title>第 39 步 · 调度 · 54.527 µs</title></rect>
+<rect x="878.302" y="80" width="0.200" height="22" fill="#19887f" data-kind="phase" data-key="1620"><title>第 39 步 · 请求状态 · 84.818 µs</title></rect>
+<rect x="878.540" y="126" width="1.320" height="22" fill="#19887f" data-kind="phase" data-key="1621"><title>第 39 步 · 输入准备 · 568.318 µs</title></rect>
+<rect x="880.475" y="126" width="0.200" height="22" fill="#19887f" data-kind="phase" data-key="1622"><title>第 39 步 · 输入预处理 · 36.040 µs</title></rect>
+<rect x="881.072" y="172" width="10.037" height="22" fill="#2864c7" data-kind="phase" data-key="1623"><title>第 39 步 · 模型 forward · 4321.688 µs</title></rect>
+<rect x="891.224" y="172" width="0.200" height="22" fill="#2864c7" data-kind="phase" data-key="1649"><title>第 39 步 · logits · 61.335 µs</title></rect>
+<rect x="891.575" y="218" width="0.626" height="22" fill="#cc7915" data-kind="phase" data-key="1651"><title>第 39 步 · 采样 · 269.368 µs</title></rect>
+<rect x="892.294" y="264" width="0.267" height="22" fill="#bd4250" data-kind="phase" data-key="1653"><title>第 39 步 · token 回传与等待 · 114.936 µs</title></rect>
+<rect x="892.589" y="264" width="0.234" height="22" fill="#bd4250" data-kind="phase" data-key="1654"><title>第 39 步 · logprob 回传 · 100.771 µs</title></rect>
+<rect x="893.032" y="310" width="0.200" height="22" fill="#8055a0" data-kind="phase" data-key="1655"><title>第 39 步 · 更新调度器 · 39.235 µs</title></rect>
+<rect x="893.189" y="310" width="0.200" height="22" fill="#19887f" data-kind="phase" data-key="1656"><title>第 39 步 · 生成输出 · 84.563 µs</title></rect>
+<rect x="893.514" y="80" width="0.200" height="22" fill="#8055a0" data-kind="phase" data-key="1659"><title>第 40 步 · 调度 · 54.281 µs</title></rect>
+<rect x="894.246" y="80" width="0.204" height="22" fill="#19887f" data-kind="phase" data-key="1662"><title>第 40 步 · 请求状态 · 87.703 µs</title></rect>
+<rect x="894.493" y="126" width="1.308" height="22" fill="#19887f" data-kind="phase" data-key="1663"><title>第 40 步 · 输入准备 · 563.144 µs</title></rect>
+<rect x="896.379" y="126" width="0.200" height="22" fill="#19887f" data-kind="phase" data-key="1664"><title>第 40 步 · 输入预处理 · 33.950 µs</title></rect>
+<rect x="896.971" y="172" width="9.932" height="22" fill="#2864c7" data-kind="phase" data-key="1665"><title>第 40 步 · 模型 forward · 4276.264 µs</title></rect>
+<rect x="907.013" y="172" width="0.200" height="22" fill="#2864c7" data-kind="phase" data-key="1691"><title>第 40 步 · logits · 61.260 µs</title></rect>
+<rect x="907.365" y="218" width="0.627" height="22" fill="#cc7915" data-kind="phase" data-key="1693"><title>第 40 步 · 采样 · 269.881 µs</title></rect>
+<rect x="908.088" y="264" width="0.266" height="22" fill="#bd4250" data-kind="phase" data-key="1695"><title>第 40 步 · token 回传与等待 · 114.332 µs</title></rect>
+<rect x="908.382" y="264" width="0.224" height="22" fill="#bd4250" data-kind="phase" data-key="1696"><title>第 40 步 · logprob 回传 · 96.560 µs</title></rect>
+<rect x="908.822" y="310" width="0.200" height="22" fill="#8055a0" data-kind="phase" data-key="1697"><title>第 40 步 · 更新调度器 · 36.379 µs</title></rect>
+<rect x="908.973" y="310" width="0.200" height="22" fill="#19887f" data-kind="phase" data-key="1698"><title>第 40 步 · 生成输出 · 85.582 µs</title></rect>
+<rect x="909.300" y="80" width="0.200" height="22" fill="#8055a0" data-kind="phase" data-key="1701"><title>第 41 步 · 调度 · 54.854 µs</title></rect>
+<rect x="910.047" y="80" width="0.200" height="22" fill="#19887f" data-kind="phase" data-key="1704"><title>第 41 步 · 请求状态 · 83.914 µs</title></rect>
+<rect x="910.283" y="126" width="1.324" height="22" fill="#19887f" data-kind="phase" data-key="1705"><title>第 41 步 · 输入准备 · 570.274 µs</title></rect>
+<rect x="912.253" y="126" width="0.200" height="22" fill="#19887f" data-kind="phase" data-key="1706"><title>第 41 步 · 输入预处理 · 37.179 µs</title></rect>
+<rect x="912.861" y="172" width="11.145" height="22" fill="#2864c7" data-kind="phase" data-key="1707"><title>第 41 步 · 模型 forward · 4798.500 µs</title></rect>
+<rect x="924.120" y="172" width="0.200" height="22" fill="#2864c7" data-kind="phase" data-key="1733"><title>第 41 步 · logits · 70.105 µs</title></rect>
+<rect x="924.497" y="218" width="0.667" height="22" fill="#cc7915" data-kind="phase" data-key="1735"><title>第 41 步 · 采样 · 287.003 µs</title></rect>
+<rect x="925.266" y="264" width="0.279" height="22" fill="#bd4250" data-kind="phase" data-key="1737"><title>第 41 步 · token 回传与等待 · 120.025 µs</title></rect>
+<rect x="925.573" y="264" width="0.231" height="22" fill="#bd4250" data-kind="phase" data-key="1738"><title>第 41 步 · logprob 回传 · 99.424 µs</title></rect>
+<rect x="926.046" y="310" width="0.200" height="22" fill="#8055a0" data-kind="phase" data-key="1739"><title>第 41 步 · 更新调度器 · 35.921 µs</title></rect>
+<rect x="926.194" y="310" width="0.206" height="22" fill="#19887f" data-kind="phase" data-key="1740"><title>第 41 步 · 生成输出 · 88.813 µs</title></rect>
+<rect x="926.526" y="80" width="0.200" height="22" fill="#8055a0" data-kind="phase" data-key="1743"><title>第 42 步 · 调度 · 53.655 µs</title></rect>
+<rect x="927.277" y="80" width="0.218" height="22" fill="#19887f" data-kind="phase" data-key="1746"><title>第 42 步 · 请求状态 · 93.706 µs</title></rect>
+<rect x="927.540" y="126" width="1.337" height="22" fill="#19887f" data-kind="phase" data-key="1747"><title>第 42 步 · 输入准备 · 575.848 µs</title></rect>
+<rect x="929.474" y="126" width="0.200" height="22" fill="#19887f" data-kind="phase" data-key="1748"><title>第 42 步 · 输入预处理 · 35.065 µs</title></rect>
+<rect x="930.088" y="172" width="10.056" height="22" fill="#2864c7" data-kind="phase" data-key="1749"><title>第 42 步 · 模型 forward · 4329.842 µs</title></rect>
+<rect x="940.260" y="172" width="0.200" height="22" fill="#2864c7" data-kind="phase" data-key="1775"><title>第 42 步 · logits · 63.794 µs</title></rect>
+<rect x="940.627" y="218" width="0.620" height="22" fill="#cc7915" data-kind="phase" data-key="1777"><title>第 42 步 · 采样 · 267.103 µs</title></rect>
+<rect x="941.334" y="264" width="0.260" height="22" fill="#bd4250" data-kind="phase" data-key="1779"><title>第 42 步 · token 回传与等待 · 112.073 µs</title></rect>
+<rect x="941.620" y="264" width="0.219" height="22" fill="#bd4250" data-kind="phase" data-key="1780"><title>第 42 步 · logprob 回传 · 94.197 µs</title></rect>
+<rect x="942.043" y="310" width="0.200" height="22" fill="#8055a0" data-kind="phase" data-key="1781"><title>第 42 步 · 更新调度器 · 34.663 µs</title></rect>
+<rect x="942.189" y="310" width="0.200" height="22" fill="#19887f" data-kind="phase" data-key="1782"><title>第 42 步 · 生成输出 · 84.233 µs</title></rect>
+<rect x="942.511" y="80" width="0.200" height="22" fill="#8055a0" data-kind="phase" data-key="1785"><title>第 43 步 · 调度 · 53.606 µs</title></rect>
+<rect x="943.240" y="80" width="0.201" height="22" fill="#19887f" data-kind="phase" data-key="1788"><title>第 43 步 · 请求状态 · 86.706 µs</title></rect>
+<rect x="943.485" y="126" width="1.321" height="22" fill="#19887f" data-kind="phase" data-key="1789"><title>第 43 步 · 输入准备 · 568.928 µs</title></rect>
+<rect x="945.398" y="126" width="0.200" height="22" fill="#19887f" data-kind="phase" data-key="1790"><title>第 43 步 · 输入预处理 · 35.833 µs</title></rect>
+<rect x="946.004" y="172" width="9.987" height="22" fill="#2864c7" data-kind="phase" data-key="1791"><title>第 43 步 · 模型 forward · 4299.845 µs</title></rect>
+<rect x="956.105" y="172" width="0.200" height="22" fill="#2864c7" data-kind="phase" data-key="1817"><title>第 43 步 · logits · 60.572 µs</title></rect>
+<rect x="956.460" y="218" width="0.630" height="22" fill="#cc7915" data-kind="phase" data-key="1819"><title>第 43 步 · 采样 · 271.219 µs</title></rect>
+<rect x="957.178" y="264" width="0.265" height="22" fill="#bd4250" data-kind="phase" data-key="1821"><title>第 43 步 · token 回传与等待 · 113.973 µs</title></rect>
+<rect x="957.470" y="264" width="0.231" height="22" fill="#bd4250" data-kind="phase" data-key="1822"><title>第 43 步 · logprob 回传 · 99.445 µs</title></rect>
+<rect x="957.906" y="310" width="0.200" height="22" fill="#8055a0" data-kind="phase" data-key="1823"><title>第 43 步 · 更新调度器 · 35.195 µs</title></rect>
+<rect x="958.057" y="310" width="0.204" height="22" fill="#19887f" data-kind="phase" data-key="1824"><title>第 43 步 · 生成输出 · 87.756 µs</title></rect>
+<rect x="958.386" y="80" width="0.200" height="22" fill="#8055a0" data-kind="phase" data-key="1827"><title>第 44 步 · 调度 · 52.757 µs</title></rect>
+<rect x="959.103" y="80" width="0.201" height="22" fill="#19887f" data-kind="phase" data-key="1830"><title>第 44 步 · 请求状态 · 86.488 µs</title></rect>
+<rect x="959.347" y="126" width="1.320" height="22" fill="#19887f" data-kind="phase" data-key="1831"><title>第 44 步 · 输入准备 · 568.391 µs</title></rect>
+<rect x="961.262" y="126" width="0.200" height="22" fill="#19887f" data-kind="phase" data-key="1832"><title>第 44 步 · 输入预处理 · 33.914 µs</title></rect>
+<rect x="961.865" y="172" width="9.846" height="22" fill="#2864c7" data-kind="phase" data-key="1833"><title>第 44 步 · 模型 forward · 4239.476 µs</title></rect>
+<rect x="971.822" y="172" width="0.200" height="22" fill="#2864c7" data-kind="phase" data-key="1859"><title>第 44 步 · logits · 60.137 µs</title></rect>
+<rect x="972.184" y="218" width="0.636" height="22" fill="#cc7915" data-kind="phase" data-key="1861"><title>第 44 步 · 采样 · 273.729 µs</title></rect>
+<rect x="972.921" y="264" width="0.270" height="22" fill="#bd4250" data-kind="phase" data-key="1863"><title>第 44 步 · token 回传与等待 · 116.133 µs</title></rect>
+<rect x="973.219" y="264" width="0.224" height="22" fill="#bd4250" data-kind="phase" data-key="1864"><title>第 44 步 · logprob 回传 · 96.519 µs</title></rect>
+<rect x="973.655" y="310" width="0.200" height="22" fill="#8055a0" data-kind="phase" data-key="1865"><title>第 44 步 · 更新调度器 · 35.275 µs</title></rect>
+<rect x="973.805" y="310" width="0.200" height="22" fill="#19887f" data-kind="phase" data-key="1866"><title>第 44 步 · 生成输出 · 83.933 µs</title></rect>
+<rect x="974.130" y="80" width="0.200" height="22" fill="#8055a0" data-kind="phase" data-key="1869"><title>第 45 步 · 调度 · 54.939 µs</title></rect>
+<rect x="974.886" y="80" width="0.203" height="22" fill="#19887f" data-kind="phase" data-key="1872"><title>第 45 步 · 请求状态 · 87.393 µs</title></rect>
+<rect x="975.135" y="126" width="1.319" height="22" fill="#19887f" data-kind="phase" data-key="1873"><title>第 45 步 · 输入准备 · 568.093 µs</title></rect>
+<rect x="977.908" y="126" width="0.200" height="22" fill="#19887f" data-kind="phase" data-key="1874"><title>第 45 步 · 输入预处理 · 39.896 µs</title></rect>
+<rect x="978.546" y="172" width="9.956" height="22" fill="#2864c7" data-kind="phase" data-key="1875"><title>第 45 步 · 模型 forward · 4286.529 µs</title></rect>
+<rect x="988.615" y="172" width="0.200" height="22" fill="#2864c7" data-kind="phase" data-key="1901"><title>第 45 步 · logits · 60.899 µs</title></rect>
+<rect x="988.977" y="218" width="0.635" height="22" fill="#cc7915" data-kind="phase" data-key="1903"><title>第 45 步 · 采样 · 273.523 µs</title></rect>
+<rect x="989.701" y="264" width="0.261" height="22" fill="#bd4250" data-kind="phase" data-key="1905"><title>第 45 步 · token 回传与等待 · 112.545 µs</title></rect>
+<rect x="989.989" y="264" width="0.223" height="22" fill="#bd4250" data-kind="phase" data-key="1906"><title>第 45 步 · logprob 回传 · 96.072 µs</title></rect>
+<rect x="990.422" y="310" width="0.200" height="22" fill="#8055a0" data-kind="phase" data-key="1907"><title>第 45 步 · 更新调度器 · 34.582 µs</title></rect>
+<rect x="990.570" y="310" width="0.200" height="22" fill="#19887f" data-kind="phase" data-key="1908"><title>第 45 步 · 生成输出 · 84.384 µs</title></rect>
+<rect x="990.895" y="80" width="0.200" height="22" fill="#8055a0" data-kind="phase" data-key="1911"><title>第 46 步 · 调度 · 53.629 µs</title></rect>
+<rect x="991.612" y="80" width="0.200" height="22" fill="#19887f" data-kind="phase" data-key="1914"><title>第 46 步 · 请求状态 · 83.704 µs</title></rect>
+<rect x="991.847" y="126" width="1.319" height="22" fill="#19887f" data-kind="phase" data-key="1915"><title>第 46 步 · 输入准备 · 567.878 µs</title></rect>
+<rect x="993.761" y="126" width="0.200" height="22" fill="#19887f" data-kind="phase" data-key="1916"><title>第 46 步 · 输入预处理 · 35.514 µs</title></rect>
+<rect x="994.364" y="172" width="9.966" height="22" fill="#2864c7" data-kind="phase" data-key="1917"><title>第 46 步 · 模型 forward · 4290.759 µs</title></rect>
+<rect x="1004.441" y="172" width="0.200" height="22" fill="#2864c7" data-kind="phase" data-key="1943"><title>第 46 步 · logits · 67.191 µs</title></rect>
+<rect x="1004.811" y="218" width="0.629" height="22" fill="#cc7915" data-kind="phase" data-key="1945"><title>第 46 步 · 采样 · 270.701 µs</title></rect>
+<rect x="1005.525" y="264" width="0.262" height="22" fill="#bd4250" data-kind="phase" data-key="1947"><title>第 46 步 · token 回传与等待 · 112.640 µs</title></rect>
+<rect x="1005.813" y="264" width="0.227" height="22" fill="#bd4250" data-kind="phase" data-key="1948"><title>第 46 步 · logprob 回传 · 97.696 µs</title></rect>
+<rect x="1006.245" y="310" width="0.200" height="22" fill="#8055a0" data-kind="phase" data-key="1949"><title>第 46 步 · 更新调度器 · 34.531 µs</title></rect>
+<rect x="1006.393" y="310" width="0.201" height="22" fill="#19887f" data-kind="phase" data-key="1950"><title>第 46 步 · 生成输出 · 86.509 µs</title></rect>
+<rect x="1006.725" y="80" width="0.200" height="22" fill="#8055a0" data-kind="phase" data-key="1953"><title>第 47 步 · 调度 · 54.197 µs</title></rect>
+<rect x="1007.450" y="80" width="0.202" height="22" fill="#19887f" data-kind="phase" data-key="1956"><title>第 47 步 · 请求状态 · 86.857 µs</title></rect>
+<rect x="1007.695" y="126" width="1.323" height="22" fill="#19887f" data-kind="phase" data-key="1957"><title>第 47 步 · 输入准备 · 569.614 µs</title></rect>
+<rect x="1009.598" y="126" width="0.200" height="22" fill="#19887f" data-kind="phase" data-key="1958"><title>第 47 步 · 输入预处理 · 33.369 µs</title></rect>
+<rect x="1010.199" y="172" width="9.870" height="22" fill="#2864c7" data-kind="phase" data-key="1959"><title>第 47 步 · 模型 forward · 4249.670 µs</title></rect>
+<rect x="1020.183" y="172" width="0.200" height="22" fill="#2864c7" data-kind="phase" data-key="1985"><title>第 47 步 · logits · 62.137 µs</title></rect>
+<rect x="1020.536" y="218" width="0.627" height="22" fill="#cc7915" data-kind="phase" data-key="1987"><title>第 47 步 · 采样 · 270.009 µs</title></rect>
+<rect x="1021.253" y="264" width="0.263" height="22" fill="#bd4250" data-kind="phase" data-key="1989"><title>第 47 步 · token 回传与等待 · 113.223 µs</title></rect>
+<rect x="1021.544" y="264" width="0.220" height="22" fill="#bd4250" data-kind="phase" data-key="1990"><title>第 47 步 · logprob 回传 · 94.570 µs</title></rect>
+<rect x="1021.971" y="310" width="0.200" height="22" fill="#8055a0" data-kind="phase" data-key="1991"><title>第 47 步 · 更新调度器 · 34.209 µs</title></rect>
+<rect x="1022.116" y="310" width="0.201" height="22" fill="#19887f" data-kind="phase" data-key="1992"><title>第 47 步 · 生成输出 · 86.548 µs</title></rect>
+<rect x="1022.444" y="80" width="0.200" height="22" fill="#8055a0" data-kind="phase" data-key="1995"><title>第 48 步 · 调度 · 54.230 µs</title></rect>
+<rect x="1023.164" y="80" width="0.201" height="22" fill="#19887f" data-kind="phase" data-key="1998"><title>第 48 步 · 请求状态 · 86.590 µs</title></rect>
+<rect x="1023.407" y="126" width="1.323" height="22" fill="#19887f" data-kind="phase" data-key="1999"><title>第 48 步 · 输入准备 · 569.512 µs</title></rect>
+<rect x="1025.322" y="126" width="0.200" height="22" fill="#19887f" data-kind="phase" data-key="2000"><title>第 48 步 · 输入预处理 · 41.130 µs</title></rect>
+<rect x="1025.943" y="172" width="9.870" height="22" fill="#2864c7" data-kind="phase" data-key="2001"><title>第 48 步 · 模型 forward · 4249.663 µs</title></rect>
+<rect x="1035.926" y="172" width="0.200" height="22" fill="#2864c7" data-kind="phase" data-key="2027"><title>第 48 步 · logits · 62.064 µs</title></rect>
+<rect x="1036.285" y="218" width="0.613" height="22" fill="#cc7915" data-kind="phase" data-key="2029"><title>第 48 步 · 采样 · 264.134 µs</title></rect>
+<rect x="1036.985" y="264" width="0.262" height="22" fill="#bd4250" data-kind="phase" data-key="2031"><title>第 48 步 · token 回传与等待 · 112.988 µs</title></rect>
+<rect x="1037.274" y="264" width="0.219" height="22" fill="#bd4250" data-kind="phase" data-key="2032"><title>第 48 步 · logprob 回传 · 94.219 µs</title></rect>
+<rect x="1037.698" y="310" width="0.200" height="22" fill="#8055a0" data-kind="phase" data-key="2033"><title>第 48 步 · 更新调度器 · 34.864 µs</title></rect>
+<rect x="1037.847" y="310" width="0.200" height="22" fill="#19887f" data-kind="phase" data-key="2034"><title>第 48 步 · 生成输出 · 84.764 µs</title></rect>
+<rect x="1038.173" y="80" width="0.200" height="22" fill="#8055a0" data-kind="phase" data-key="2037"><title>第 49 步 · 调度 · 54.912 µs</title></rect>
+<rect x="1038.894" y="80" width="0.202" height="22" fill="#19887f" data-kind="phase" data-key="2040"><title>第 49 步 · 请求状态 · 86.972 µs</title></rect>
+<rect x="1039.138" y="126" width="1.326" height="22" fill="#19887f" data-kind="phase" data-key="2041"><title>第 49 步 · 输入准备 · 570.862 µs</title></rect>
+<rect x="1041.056" y="126" width="0.200" height="22" fill="#19887f" data-kind="phase" data-key="2042"><title>第 49 步 · 输入预处理 · 34.531 µs</title></rect>
+<rect x="1041.656" y="172" width="9.842" height="22" fill="#2864c7" data-kind="phase" data-key="2043"><title>第 49 步 · 模型 forward · 4237.363 µs</title></rect>
+<rect x="1051.608" y="172" width="0.200" height="22" fill="#2864c7" data-kind="phase" data-key="2069"><title>第 49 步 · logits · 60.029 µs</title></rect>
+<rect x="1051.958" y="218" width="0.630" height="22" fill="#cc7915" data-kind="phase" data-key="2071"><title>第 49 步 · 采样 · 271.242 µs</title></rect>
+<rect x="1052.676" y="264" width="0.261" height="22" fill="#bd4250" data-kind="phase" data-key="2073"><title>第 49 步 · token 回传与等待 · 112.267 µs</title></rect>
+<rect x="1052.963" y="264" width="0.231" height="22" fill="#bd4250" data-kind="phase" data-key="2074"><title>第 49 步 · logprob 回传 · 99.416 µs</title></rect>
+<rect x="1053.402" y="310" width="0.200" height="22" fill="#8055a0" data-kind="phase" data-key="2075"><title>第 49 步 · 更新调度器 · 34.810 µs</title></rect>
+<rect x="1053.551" y="310" width="0.200" height="22" fill="#19887f" data-kind="phase" data-key="2076"><title>第 49 步 · 生成输出 · 84.077 µs</title></rect>
+<rect x="1053.869" y="80" width="0.200" height="22" fill="#8055a0" data-kind="phase" data-key="2079"><title>第 50 步 · 调度 · 54.108 µs</title></rect>
+<rect x="1054.591" y="80" width="0.200" height="22" fill="#19887f" data-kind="phase" data-key="2082"><title>第 50 步 · 请求状态 · 85.971 µs</title></rect>
+<rect x="1054.835" y="126" width="1.309" height="22" fill="#19887f" data-kind="phase" data-key="2083"><title>第 50 步 · 输入准备 · 563.600 µs</title></rect>
+<rect x="1056.736" y="126" width="0.200" height="22" fill="#19887f" data-kind="phase" data-key="2084"><title>第 50 步 · 输入预处理 · 33.315 µs</title></rect>
+<rect x="1057.325" y="172" width="9.899" height="22" fill="#2864c7" data-kind="phase" data-key="2085"><title>第 50 步 · 模型 forward · 4262.008 µs</title></rect>
+<rect x="1067.336" y="172" width="0.200" height="22" fill="#2864c7" data-kind="phase" data-key="2111"><title>第 50 步 · logits · 61.521 µs</title></rect>
+<rect x="1067.688" y="218" width="0.623" height="22" fill="#cc7915" data-kind="phase" data-key="2113"><title>第 50 步 · 采样 · 268.327 µs</title></rect>
+<rect x="1068.404" y="264" width="0.265" height="22" fill="#bd4250" data-kind="phase" data-key="2115"><title>第 50 步 · token 回传与等待 · 114.016 µs</title></rect>
+<rect x="1068.697" y="264" width="0.223" height="22" fill="#bd4250" data-kind="phase" data-key="2116"><title>第 50 步 · logprob 回传 · 95.812 µs</title></rect>
+<rect x="1069.127" y="310" width="0.200" height="22" fill="#8055a0" data-kind="phase" data-key="2117"><title>第 50 步 · 更新调度器 · 34.943 µs</title></rect>
+<rect x="1069.275" y="310" width="0.200" height="22" fill="#19887f" data-kind="phase" data-key="2118"><title>第 50 步 · 生成输出 · 85.136 µs</title></rect>
+<rect x="1069.620" y="80" width="0.200" height="22" fill="#8055a0" data-kind="phase" data-key="2121"><title>第 51 步 · 调度 · 54.784 µs</title></rect>
+<rect x="1070.337" y="80" width="0.200" height="22" fill="#19887f" data-kind="phase" data-key="2124"><title>第 51 步 · 请求状态 · 85.014 µs</title></rect>
+<rect x="1070.579" y="126" width="1.310" height="22" fill="#19887f" data-kind="phase" data-key="2125"><title>第 51 步 · 输入准备 · 563.938 µs</title></rect>
+<rect x="1072.503" y="126" width="0.200" height="22" fill="#19887f" data-kind="phase" data-key="2126"><title>第 51 步 · 输入预处理 · 35.467 µs</title></rect>
+<rect x="1073.117" y="172" width="9.912" height="22" fill="#2864c7" data-kind="phase" data-key="2127"><title>第 51 步 · 模型 forward · 4267.646 µs</title></rect>
+<rect x="1083.141" y="172" width="0.200" height="22" fill="#2864c7" data-kind="phase" data-key="2153"><title>第 51 步 · logits · 61.963 µs</title></rect>
+<rect x="1083.505" y="218" width="0.633" height="22" fill="#cc7915" data-kind="phase" data-key="2155"><title>第 51 步 · 采样 · 272.472 µs</title></rect>
+<rect x="1084.233" y="264" width="0.263" height="22" fill="#bd4250" data-kind="phase" data-key="2157"><title>第 51 步 · token 回传与等待 · 113.155 µs</title></rect>
+<rect x="1084.523" y="264" width="0.222" height="22" fill="#bd4250" data-kind="phase" data-key="2158"><title>第 51 步 · logprob 回传 · 95.550 µs</title></rect>
+<rect x="1084.957" y="310" width="0.200" height="22" fill="#8055a0" data-kind="phase" data-key="2159"><title>第 51 步 · 更新调度器 · 34.304 µs</title></rect>
+<rect x="1085.103" y="310" width="0.201" height="22" fill="#19887f" data-kind="phase" data-key="2160"><title>第 51 步 · 生成输出 · 86.589 µs</title></rect>
+<rect x="1085.433" y="80" width="0.200" height="22" fill="#8055a0" data-kind="phase" data-key="2163"><title>第 52 步 · 调度 · 55.595 µs</title></rect>
+<rect x="1086.181" y="80" width="0.204" height="22" fill="#19887f" data-kind="phase" data-key="2166"><title>第 52 步 · 请求状态 · 87.974 µs</title></rect>
+<rect x="1086.430" y="126" width="1.314" height="22" fill="#19887f" data-kind="phase" data-key="2167"><title>第 52 步 · 输入准备 · 565.787 µs</title></rect>
+<rect x="1088.349" y="126" width="0.200" height="22" fill="#19887f" data-kind="phase" data-key="2168"><title>第 52 步 · 输入预处理 · 34.296 µs</title></rect>
+<rect x="1088.946" y="172" width="10.001" height="22" fill="#2864c7" data-kind="phase" data-key="2169"><title>第 52 步 · 模型 forward · 4305.822 µs</title></rect>
+<rect x="1099.058" y="172" width="0.200" height="22" fill="#2864c7" data-kind="phase" data-key="2195"><title>第 52 步 · logits · 61.736 µs</title></rect>
+<rect x="1099.418" y="218" width="0.631" height="22" fill="#cc7915" data-kind="phase" data-key="2197"><title>第 52 步 · 采样 · 271.629 µs</title></rect>
+<rect x="1100.142" y="264" width="0.267" height="22" fill="#bd4250" data-kind="phase" data-key="2199"><title>第 52 步 · token 回传与等待 · 114.909 µs</title></rect>
+<rect x="1100.437" y="264" width="0.222" height="22" fill="#bd4250" data-kind="phase" data-key="2200"><title>第 52 步 · logprob 回传 · 95.666 µs</title></rect>
+<rect x="1100.870" y="310" width="0.200" height="22" fill="#8055a0" data-kind="phase" data-key="2201"><title>第 52 步 · 更新调度器 · 34.386 µs</title></rect>
+<rect x="1101.017" y="310" width="0.200" height="22" fill="#19887f" data-kind="phase" data-key="2202"><title>第 52 步 · 生成输出 · 85.297 µs</title></rect>
+<rect x="1101.343" y="80" width="0.200" height="22" fill="#8055a0" data-kind="phase" data-key="2205"><title>第 53 步 · 调度 · 55.268 µs</title></rect>
+<rect x="1102.060" y="80" width="0.200" height="22" fill="#19887f" data-kind="phase" data-key="2208"><title>第 53 步 · 请求状态 · 85.557 µs</title></rect>
+<rect x="1102.302" y="126" width="1.321" height="22" fill="#19887f" data-kind="phase" data-key="2209"><title>第 53 步 · 输入准备 · 568.924 µs</title></rect>
+<rect x="1104.230" y="126" width="0.200" height="22" fill="#19887f" data-kind="phase" data-key="2210"><title>第 53 步 · 输入预处理 · 34.814 µs</title></rect>
+<rect x="1104.824" y="172" width="9.957" height="22" fill="#2864c7" data-kind="phase" data-key="2211"><title>第 53 步 · 模型 forward · 4287.222 µs</title></rect>
+<rect x="1114.898" y="172" width="0.200" height="22" fill="#2864c7" data-kind="phase" data-key="2237"><title>第 53 步 · logits · 67.882 µs</title></rect>
+<rect x="1115.272" y="218" width="0.633" height="22" fill="#cc7915" data-kind="phase" data-key="2239"><title>第 53 步 · 采样 · 272.652 µs</title></rect>
+<rect x="1115.989" y="264" width="0.273" height="22" fill="#bd4250" data-kind="phase" data-key="2241"><title>第 53 步 · token 回传与等待 · 117.414 µs</title></rect>
+<rect x="1116.289" y="264" width="0.233" height="22" fill="#bd4250" data-kind="phase" data-key="2242"><title>第 53 步 · logprob 回传 · 100.458 µs</title></rect>
+<rect x="1116.730" y="310" width="0.200" height="22" fill="#8055a0" data-kind="phase" data-key="2243"><title>第 53 步 · 更新调度器 · 35.246 µs</title></rect>
+<rect x="1116.880" y="310" width="0.200" height="22" fill="#19887f" data-kind="phase" data-key="2244"><title>第 53 步 · 生成输出 · 84.405 µs</title></rect>
+<rect x="1117.202" y="80" width="0.200" height="22" fill="#8055a0" data-kind="phase" data-key="2247"><title>第 54 步 · 调度 · 55.314 µs</title></rect>
+<rect x="1117.940" y="80" width="0.202" height="22" fill="#19887f" data-kind="phase" data-key="2250"><title>第 54 步 · 请求状态 · 87.050 µs</title></rect>
+<rect x="1118.187" y="126" width="1.338" height="22" fill="#19887f" data-kind="phase" data-key="2251"><title>第 54 步 · 输入准备 · 576.085 µs</title></rect>
+<rect x="1120.937" y="126" width="0.200" height="22" fill="#19887f" data-kind="phase" data-key="2252"><title>第 54 步 · 输入预处理 · 41.264 µs</title></rect>
+<rect x="1121.577" y="172" width="9.949" height="22" fill="#2864c7" data-kind="phase" data-key="2253"><title>第 54 步 · 模型 forward · 4283.603 µs</title></rect>
+<rect x="1131.643" y="172" width="0.200" height="22" fill="#2864c7" data-kind="phase" data-key="2279"><title>第 54 步 · logits · 64.056 µs</title></rect>
+<rect x="1132.000" y="218" width="0.617" height="22" fill="#cc7915" data-kind="phase" data-key="2281"><title>第 54 步 · 采样 · 265.835 µs</title></rect>
+<rect x="1132.702" y="264" width="0.261" height="22" fill="#bd4250" data-kind="phase" data-key="2283"><title>第 54 步 · token 回传与等待 · 112.164 µs</title></rect>
+<rect x="1132.989" y="264" width="0.222" height="22" fill="#bd4250" data-kind="phase" data-key="2284"><title>第 54 步 · logprob 回传 · 95.619 µs</title></rect>
+<rect x="1133.423" y="310" width="0.200" height="22" fill="#8055a0" data-kind="phase" data-key="2285"><title>第 54 步 · 更新调度器 · 34.823 µs</title></rect>
+<rect x="1133.568" y="310" width="0.200" height="22" fill="#19887f" data-kind="phase" data-key="2286"><title>第 54 步 · 生成输出 · 82.132 µs</title></rect>
+<rect x="1133.883" y="80" width="0.200" height="22" fill="#8055a0" data-kind="phase" data-key="2289"><title>第 55 步 · 调度 · 53.291 µs</title></rect>
+<rect x="1134.582" y="80" width="0.214" height="22" fill="#19887f" data-kind="phase" data-key="2292"><title>第 55 步 · 请求状态 · 92.075 µs</title></rect>
+<rect x="1134.840" y="126" width="1.319" height="22" fill="#19887f" data-kind="phase" data-key="2293"><title>第 55 步 · 输入准备 · 568.054 µs</title></rect>
+<rect x="1136.764" y="126" width="0.200" height="22" fill="#19887f" data-kind="phase" data-key="2294"><title>第 55 步 · 输入预处理 · 35.999 µs</title></rect>
+<rect x="1137.367" y="172" width="9.930" height="22" fill="#2864c7" data-kind="phase" data-key="2295"><title>第 55 步 · 模型 forward · 4275.602 µs</title></rect>
+<rect x="1147.409" y="172" width="0.200" height="22" fill="#2864c7" data-kind="phase" data-key="2321"><title>第 55 步 · logits · 60.073 µs</title></rect>
+<rect x="1147.765" y="218" width="0.617" height="22" fill="#cc7915" data-kind="phase" data-key="2323"><title>第 55 步 · 采样 · 265.480 µs</title></rect>
+<rect x="1148.469" y="264" width="0.273" height="22" fill="#bd4250" data-kind="phase" data-key="2325"><title>第 55 步 · token 回传与等待 · 117.618 µs</title></rect>
+<rect x="1148.769" y="264" width="0.226" height="22" fill="#bd4250" data-kind="phase" data-key="2326"><title>第 55 步 · logprob 回传 · 97.346 µs</title></rect>
+<rect x="1149.199" y="310" width="0.200" height="22" fill="#8055a0" data-kind="phase" data-key="2327"><title>第 55 步 · 更新调度器 · 35.550 µs</title></rect>
+<rect x="1149.349" y="310" width="0.200" height="22" fill="#19887f" data-kind="phase" data-key="2328"><title>第 55 步 · 生成输出 · 81.776 µs</title></rect>
+<rect x="1149.667" y="80" width="0.200" height="22" fill="#8055a0" data-kind="phase" data-key="2331"><title>第 56 步 · 调度 · 53.715 µs</title></rect>
+<rect x="1150.382" y="80" width="0.203" height="22" fill="#19887f" data-kind="phase" data-key="2334"><title>第 56 步 · 请求状态 · 87.584 µs</title></rect>
+<rect x="1150.630" y="126" width="1.322" height="22" fill="#19887f" data-kind="phase" data-key="2335"><title>第 56 步 · 输入准备 · 569.278 µs</title></rect>
+<rect x="1152.547" y="126" width="0.200" height="22" fill="#19887f" data-kind="phase" data-key="2336"><title>第 56 步 · 输入预处理 · 33.760 µs</title></rect>
+<rect x="1153.146" y="172" width="9.996" height="22" fill="#2864c7" data-kind="phase" data-key="2337"><title>第 56 步 · 模型 forward · 4303.889 µs</title></rect>
+<rect x="1163.256" y="172" width="0.200" height="22" fill="#2864c7" data-kind="phase" data-key="2363"><title>第 56 步 · logits · 61.638 µs</title></rect>
+<rect x="1163.611" y="218" width="0.614" height="22" fill="#cc7915" data-kind="phase" data-key="2365"><title>第 56 步 · 采样 · 264.299 µs</title></rect>
+<rect x="1164.310" y="264" width="0.262" height="22" fill="#bd4250" data-kind="phase" data-key="2367"><title>第 56 步 · token 回传与等待 · 112.913 µs</title></rect>
+<rect x="1164.599" y="264" width="0.221" height="22" fill="#bd4250" data-kind="phase" data-key="2368"><title>第 56 步 · logprob 回传 · 95.235 µs</title></rect>
+<rect x="1165.032" y="310" width="0.200" height="22" fill="#8055a0" data-kind="phase" data-key="2369"><title>第 56 步 · 更新调度器 · 34.963 µs</title></rect>
+<rect x="1165.180" y="310" width="0.200" height="22" fill="#19887f" data-kind="phase" data-key="2370"><title>第 56 步 · 生成输出 · 83.406 µs</title></rect>
+<rect x="1165.500" y="80" width="0.200" height="22" fill="#8055a0" data-kind="phase" data-key="2373"><title>第 57 步 · 调度 · 58.956 µs</title></rect>
+<rect x="1166.239" y="80" width="0.205" height="22" fill="#19887f" data-kind="phase" data-key="2376"><title>第 57 步 · 请求状态 · 88.430 µs</title></rect>
+<rect x="1166.492" y="126" width="1.339" height="22" fill="#19887f" data-kind="phase" data-key="2377"><title>第 57 步 · 输入准备 · 576.682 µs</title></rect>
+<rect x="1168.434" y="126" width="0.200" height="22" fill="#19887f" data-kind="phase" data-key="2378"><title>第 57 步 · 输入预处理 · 33.883 µs</title></rect>
+<rect x="1169.027" y="172" width="11.651" height="22" fill="#2864c7" data-kind="phase" data-key="2379"><title>第 57 步 · 模型 forward · 5016.382 µs</title></rect>
+<rect x="1180.838" y="172" width="0.202" height="22" fill="#2864c7" data-kind="phase" data-key="2405"><title>第 57 步 · logits · 87.074 µs</title></rect>
+<rect x="1181.328" y="218" width="0.798" height="22" fill="#cc7915" data-kind="phase" data-key="2407"><title>第 57 步 · 采样 · 343.378 µs</title></rect>
+<rect x="1182.221" y="264" width="0.326" height="22" fill="#bd4250" data-kind="phase" data-key="2409"><title>第 57 步 · token 回传与等待 · 140.216 µs</title></rect>
+<rect x="1182.574" y="264" width="0.241" height="22" fill="#bd4250" data-kind="phase" data-key="2410"><title>第 57 步 · logprob 回传 · 103.693 µs</title></rect>
+<rect x="1183.059" y="310" width="0.200" height="22" fill="#8055a0" data-kind="phase" data-key="2411"><title>第 57 步 · 更新调度器 · 38.333 µs</title></rect>
+<rect x="1183.214" y="310" width="0.236" height="22" fill="#19887f" data-kind="phase" data-key="2412"><title>第 57 步 · 生成输出 · 101.499 µs</title></rect>
+<rect x="1183.582" y="80" width="0.200" height="22" fill="#8055a0" data-kind="phase" data-key="2415"><title>第 58 步 · 调度 · 54.126 µs</title></rect>
+<rect x="1184.352" y="80" width="0.283" height="22" fill="#19887f" data-kind="phase" data-key="2418"><title>第 58 步 · 请求状态 · 121.817 µs</title></rect>
+<rect x="1184.685" y="126" width="1.534" height="22" fill="#19887f" data-kind="phase" data-key="2419"><title>第 58 步 · 输入准备 · 660.493 µs</title></rect>
+<rect x="1186.895" y="126" width="0.200" height="22" fill="#19887f" data-kind="phase" data-key="2420"><title>第 58 步 · 输入预处理 · 35.772 µs</title></rect>
+<rect x="1187.580" y="172" width="10.073" height="22" fill="#2864c7" data-kind="phase" data-key="2421"><title>第 58 步 · 模型 forward · 4336.879 µs</title></rect>
+<rect x="1197.761" y="172" width="0.200" height="22" fill="#2864c7" data-kind="phase" data-key="2447"><title>第 58 步 · logits · 60.644 µs</title></rect>
+<rect x="1198.116" y="218" width="0.640" height="22" fill="#cc7915" data-kind="phase" data-key="2449"><title>第 58 步 · 采样 · 275.499 µs</title></rect>
+<rect x="1198.844" y="264" width="0.258" height="22" fill="#bd4250" data-kind="phase" data-key="2451"><title>第 58 步 · token 回传与等待 · 111.197 µs</title></rect>
+<rect x="1199.129" y="264" width="0.217" height="22" fill="#bd4250" data-kind="phase" data-key="2452"><title>第 58 步 · logprob 回传 · 93.396 µs</title></rect>
+<rect x="1199.555" y="310" width="0.200" height="22" fill="#8055a0" data-kind="phase" data-key="2453"><title>第 58 步 · 更新调度器 · 34.742 µs</title></rect>
+<rect x="1199.710" y="310" width="0.200" height="22" fill="#19887f" data-kind="phase" data-key="2454"><title>第 58 步 · 生成输出 · 85.679 µs</title></rect>
+<rect x="1200.032" y="80" width="0.200" height="22" fill="#8055a0" data-kind="phase" data-key="2457"><title>第 59 步 · 调度 · 54.852 µs</title></rect>
+<rect x="1200.765" y="80" width="0.203" height="22" fill="#19887f" data-kind="phase" data-key="2460"><title>第 59 步 · 请求状态 · 87.396 µs</title></rect>
+<rect x="1201.015" y="126" width="1.323" height="22" fill="#19887f" data-kind="phase" data-key="2461"><title>第 59 步 · 输入准备 · 569.662 µs</title></rect>
+<rect x="1202.922" y="126" width="0.200" height="22" fill="#19887f" data-kind="phase" data-key="2462"><title>第 59 步 · 输入预处理 · 34.928 µs</title></rect>
+<rect x="1203.512" y="172" width="10.033" height="22" fill="#2864c7" data-kind="phase" data-key="2463"><title>第 59 步 · 模型 forward · 4319.623 µs</title></rect>
+<rect x="1213.656" y="172" width="0.200" height="22" fill="#2864c7" data-kind="phase" data-key="2489"><title>第 59 步 · logits · 60.708 µs</title></rect>
+<rect x="1214.007" y="218" width="0.633" height="22" fill="#cc7915" data-kind="phase" data-key="2491"><title>第 59 步 · 采样 · 272.459 µs</title></rect>
+<rect x="1214.726" y="264" width="0.257" height="22" fill="#bd4250" data-kind="phase" data-key="2493"><title>第 59 步 · token 回传与等待 · 110.760 µs</title></rect>
+<rect x="1215.010" y="264" width="0.220" height="22" fill="#bd4250" data-kind="phase" data-key="2494"><title>第 59 步 · logprob 回传 · 94.756 µs</title></rect>
+<rect x="1215.440" y="310" width="0.200" height="22" fill="#8055a0" data-kind="phase" data-key="2495"><title>第 59 步 · 更新调度器 · 36.499 µs</title></rect>
+<rect x="1215.594" y="310" width="0.200" height="22" fill="#19887f" data-kind="phase" data-key="2496"><title>第 59 步 · 生成输出 · 84.898 µs</title></rect>
+<rect x="1215.931" y="80" width="0.200" height="22" fill="#8055a0" data-kind="phase" data-key="2499"><title>第 60 步 · 调度 · 54.546 µs</title></rect>
+<rect x="1216.639" y="80" width="0.200" height="22" fill="#19887f" data-kind="phase" data-key="2502"><title>第 60 步 · 请求状态 · 84.436 µs</title></rect>
+<rect x="1216.876" y="126" width="1.319" height="22" fill="#19887f" data-kind="phase" data-key="2503"><title>第 60 步 · 输入准备 · 568.024 µs</title></rect>
+<rect x="1218.823" y="126" width="0.200" height="22" fill="#19887f" data-kind="phase" data-key="2504"><title>第 60 步 · 输入预处理 · 35.820 µs</title></rect>
+<rect x="1219.426" y="172" width="9.875" height="22" fill="#2864c7" data-kind="phase" data-key="2505"><title>第 60 步 · 模型 forward · 4251.773 µs</title></rect>
+<rect x="1229.423" y="172" width="0.200" height="22" fill="#2864c7" data-kind="phase" data-key="2531"><title>第 60 步 · logits · 63.477 µs</title></rect>
+<rect x="1229.784" y="218" width="0.621" height="22" fill="#cc7915" data-kind="phase" data-key="2533"><title>第 60 步 · 采样 · 267.590 µs</title></rect>
+<rect x="1230.491" y="264" width="0.264" height="22" fill="#bd4250" data-kind="phase" data-key="2535"><title>第 60 步 · token 回传与等待 · 113.489 µs</title></rect>
+<rect x="1230.782" y="264" width="0.224" height="22" fill="#bd4250" data-kind="phase" data-key="2536"><title>第 60 步 · logprob 回传 · 96.470 µs</title></rect>
+<rect x="1231.214" y="310" width="0.200" height="22" fill="#8055a0" data-kind="phase" data-key="2537"><title>第 60 步 · 更新调度器 · 35.241 µs</title></rect>
+<rect x="1231.365" y="310" width="0.200" height="22" fill="#19887f" data-kind="phase" data-key="2538"><title>第 60 步 · 生成输出 · 83.534 µs</title></rect>
+<rect x="1231.684" y="80" width="0.200" height="22" fill="#8055a0" data-kind="phase" data-key="2541"><title>第 61 步 · 调度 · 53.510 µs</title></rect>
+<rect x="1232.415" y="80" width="0.203" height="22" fill="#19887f" data-kind="phase" data-key="2544"><title>第 61 步 · 请求状态 · 87.230 µs</title></rect>
+<rect x="1232.663" y="126" width="1.333" height="22" fill="#19887f" data-kind="phase" data-key="2545"><title>第 61 步 · 输入准备 · 574.130 µs</title></rect>
+<rect x="1234.585" y="126" width="0.200" height="22" fill="#19887f" data-kind="phase" data-key="2546"><title>第 61 步 · 输入预处理 · 34.718 µs</title></rect>
+<rect x="1235.185" y="172" width="9.860" height="22" fill="#2864c7" data-kind="phase" data-key="2547"><title>第 61 步 · 模型 forward · 4245.298 µs</title></rect>
+<rect x="1245.162" y="172" width="0.200" height="22" fill="#2864c7" data-kind="phase" data-key="2573"><title>第 61 步 · logits · 62.971 µs</title></rect>
+<rect x="1245.522" y="218" width="0.649" height="22" fill="#cc7915" data-kind="phase" data-key="2575"><title>第 61 步 · 采样 · 279.517 µs</title></rect>
+<rect x="1246.258" y="264" width="0.263" height="22" fill="#bd4250" data-kind="phase" data-key="2577"><title>第 61 步 · token 回传与等待 · 113.109 µs</title></rect>
+<rect x="1246.547" y="264" width="0.221" height="22" fill="#bd4250" data-kind="phase" data-key="2578"><title>第 61 步 · logprob 回传 · 95.145 µs</title></rect>
+<rect x="1246.978" y="310" width="0.200" height="22" fill="#8055a0" data-kind="phase" data-key="2579"><title>第 61 步 · 更新调度器 · 34.558 µs</title></rect>
+<rect x="1247.126" y="310" width="0.200" height="22" fill="#19887f" data-kind="phase" data-key="2580"><title>第 61 步 · 生成输出 · 84.288 µs</title></rect>
+<rect x="1247.446" y="80" width="0.200" height="22" fill="#8055a0" data-kind="phase" data-key="2583"><title>第 62 步 · 调度 · 52.933 µs</title></rect>
+<rect x="1248.181" y="80" width="0.201" height="22" fill="#19887f" data-kind="phase" data-key="2586"><title>第 62 步 · 请求状态 · 86.334 µs</title></rect>
+<rect x="1248.424" y="126" width="1.303" height="22" fill="#19887f" data-kind="phase" data-key="2587"><title>第 62 步 · 输入准备 · 561.057 µs</title></rect>
+<rect x="1250.306" y="126" width="0.200" height="22" fill="#19887f" data-kind="phase" data-key="2588"><title>第 62 步 · 输入预处理 · 33.489 µs</title></rect>
+<rect x="1250.901" y="172" width="9.937" height="22" fill="#2864c7" data-kind="phase" data-key="2589"><title>第 62 步 · 模型 forward · 4278.352 µs</title></rect>
+<rect x="1260.948" y="172" width="0.200" height="22" fill="#2864c7" data-kind="phase" data-key="2615"><title>第 62 步 · logits · 60.184 µs</title></rect>
+<rect x="1261.304" y="218" width="0.630" height="22" fill="#cc7915" data-kind="phase" data-key="2617"><title>第 62 步 · 采样 · 271.052 µs</title></rect>
+<rect x="1262.019" y="264" width="0.257" height="22" fill="#bd4250" data-kind="phase" data-key="2619"><title>第 62 步 · token 回传与等待 · 110.623 µs</title></rect>
+<rect x="1262.302" y="264" width="0.224" height="22" fill="#bd4250" data-kind="phase" data-key="2620"><title>第 62 步 · logprob 回传 · 96.549 µs</title></rect>
+<rect x="1262.735" y="310" width="0.200" height="22" fill="#8055a0" data-kind="phase" data-key="2621"><title>第 62 步 · 更新调度器 · 34.482 µs</title></rect>
+<rect x="1262.881" y="310" width="0.200" height="22" fill="#19887f" data-kind="phase" data-key="2622"><title>第 62 步 · 生成输出 · 84.887 µs</title></rect>
+<rect x="1263.206" y="80" width="0.200" height="22" fill="#8055a0" data-kind="phase" data-key="2625"><title>第 63 步 · 调度 · 54.682 µs</title></rect>
+<rect x="1263.954" y="80" width="0.200" height="22" fill="#19887f" data-kind="phase" data-key="2628"><title>第 63 步 · 请求状态 · 85.723 µs</title></rect>
+<rect x="1264.198" y="126" width="1.334" height="22" fill="#19887f" data-kind="phase" data-key="2629"><title>第 63 步 · 输入准备 · 574.562 µs</title></rect>
+<rect x="1266.943" y="126" width="0.200" height="22" fill="#19887f" data-kind="phase" data-key="2630"><title>第 63 步 · 输入预处理 · 40.245 µs</title></rect>
+<rect x="1267.594" y="172" width="9.899" height="22" fill="#2864c7" data-kind="phase" data-key="2631"><title>第 63 步 · 模型 forward · 4262.210 µs</title></rect>
+<rect x="1277.604" y="172" width="0.200" height="22" fill="#2864c7" data-kind="phase" data-key="2657"><title>第 63 步 · logits · 61.799 µs</title></rect>
+<rect x="1277.957" y="218" width="0.632" height="22" fill="#cc7915" data-kind="phase" data-key="2659"><title>第 63 步 · 采样 · 272.061 µs</title></rect>
+<rect x="1278.677" y="264" width="0.264" height="22" fill="#bd4250" data-kind="phase" data-key="2661"><title>第 63 步 · token 回传与等待 · 113.881 µs</title></rect>
+<rect x="1278.969" y="264" width="0.224" height="22" fill="#bd4250" data-kind="phase" data-key="2662"><title>第 63 步 · logprob 回传 · 96.341 µs</title></rect>
+<rect x="1279.401" y="310" width="0.200" height="22" fill="#8055a0" data-kind="phase" data-key="2663"><title>第 63 步 · 更新调度器 · 66.167 µs</title></rect>
+<rect x="1279.622" y="310" width="0.276" height="22" fill="#19887f" data-kind="phase" data-key="2664"><title>第 63 步 · 生成输出 · 118.946 µs</title></rect>
+<text x="205.0" y="377">0.00 ms</text>
+<text x="418.0" y="377">91.71 ms</text>
+<text x="631.0" y="377">183.42 ms</text>
+<text x="844.0" y="377">275.13 ms</text>
+<text x="1057.0" y="377">366.84 ms</text>
+<text x="1270.0" y="377">458.54 ms</text>
+</svg>

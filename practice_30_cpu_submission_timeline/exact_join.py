@@ -66,9 +66,10 @@ def validate_steps(executors,tokens=64):
         require(list(r['scheduled'].values())==[10 if r['index']==0 else 1],'unexpected scheduling shape')
 
 def analyze(run):
-    config=dict(mode='eager', profile='plain', tokens=64)
+    config=dict(mode=read(run/'status.json').get('mode','eager'), profile='plain', tokens=64)
     require(read(run/'status.json')['status']=='passed','incomplete diagnostic')
     records=read(run/'observer.json')
+    if (run/'graph_captures.json').exists():records+=read(run/'graph_captures.json')
     measured=[r for r in records if 'label' in r]
     record_by_label={r['label']:r for r in measured}
     require(len(record_by_label)==len(measured),'duplicate scope label')

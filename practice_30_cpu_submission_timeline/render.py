@@ -12,7 +12,9 @@ NAMES={'schedule':'调度', 'state_update':'请求状态', 'prepare_inputs':'输
  'token_to_list':'token 回传与等待', 'logprobs_to_cpu':'logprob 回传',
  'scheduler_update':'更新调度器', 'output_processing':'生成输出', 'engine_step':'引擎单步',
  'core_step':'EngineCore 单步','execute':'runner.execute_model','executor_submit':'executor 提交',
- 'sample':'sample_tokens','bookkeeping':'结果整理','request':'完整请求'}
+ 'sample':'sample_tokens','bookkeeping':'结果整理','request':'完整请求',
+ 'replay':'graph replay','graph_task_update_begin':'graph task update begin',
+ 'graph_task_update_end':'graph task update end'}
 LEAVES=('schedule','state_update','prepare_inputs','preprocess','forward','logits','sampling',
         'token_to_list','logprobs_to_cpu','scheduler_update','output_processing')
 COLORS={'forward':'#2864c7','logits':'#2864c7','sampling':'#cc7915','token_to_list':'#bd4250',
@@ -32,6 +34,16 @@ def bars(data,index):
         if r['kind'] in LEAVES:
             add(0,r['trace_start_us'],r['trace_end_us'],COLORS.get(r['kind'],'#19887f'),NAMES[r['kind']],'phase',r['id'])
     step=frame['step'];tasks=[t for t in data['tasks'] if t['step']==step]
+    graph=data['config']['mode']=='graph'
+    streams=sorted({t['stream'] for t in tasks},key=int)
+    labels=['CPU 阶段','PyTorch host','CPU Enqueue','下发线程 Dequeue','CANN launch']
+    if graph:labels.append('CPU graph replay')
+    device_rows={s:len(labels)+i for i,s in enumerate(streams)} if graph else {s:5 for s in streams}
+    labels.extend(['NPU stream '+s for s in streams] if graph else ['NPU tasks'])
+    sync_row=len(labels);labels.append('CPU 同步调用')
+    if graph:
+        for r in phases:
+            if r['kind']=='replay':add(5,r['trace_start_us'],r['trace_end_us'],'#2864c7',r['uid'],'phase',r['id'])
     for i in sorted({t['host_index'] for t in tasks if t['host_index'] is not None}):
         e=data['host_events'][str(i)];add(1,e['ts'],ns_end(e),'#668da6',e['name'],'host',i)
     for q in data['queues']:
@@ -41,14 +53,13 @@ def bars(data,index):
     for i in sorted({t['cann_index'] for t in tasks if t['cann_index'] is not None}):
         e=data['host_events'][str(i)];add(4,e['ts'],ns_end(e),'#976bae',e['name'],'host',i)
     for t in tasks:
-        add(5,t['start_us'],t['end_us'],'#1e8c86' if t['is_compute'] else '#c8912d',t['name'],'task',t['id'])
+        add(device_rows[t['stream']],t['start_us'],t['end_us'],'#1e8c86' if t['is_compute'] else '#c8912d',t['name'],'task',t['id'])
     for s in data['synchronizations']:
         if s['step']==index:
-            e=s['event'];add(6,e['ts'],ns_end(e),'#bd4250',e['name'],'sync',s['index'])
+            e=s['event'];add(sync_row,e['ts'],ns_end(e),'#bd4250',e['name'],'sync',s['index'])
     lo=min(D(frame['trace_start_us']),*(D(t['start_us']) for t in tasks))
     hi=max(D(frame['trace_end_us']),*(D(t['end_us']) for t in tasks))
-    return dict(index=index,start=str(lo),end=str(hi),bars=out,
-                labels=['CPU 阶段','PyTorch host','CPU Enqueue','下发线程 Dequeue','CANN launch','NPU tasks','CPU 同步调用'])
+    return dict(index=index,start=str(lo),end=str(hi),bars=out,labels=labels,device_rows=device_rows)
 
 
 def svg(view,title):
@@ -81,8 +92,9 @@ def main():
     for r in data['phases']:
         if r['kind'] in row:overview['bars'].append(dict(row=row[r['kind']],start=r['trace_start_us'],end=r['trace_end_us'],
             color=COLORS.get(r['kind'],'#19887f'),label=f'第 {r["index"]} 步 · {NAMES[r["kind"]]}',kind='phase',key=r['id']))
-    (a.output/'request.svg').write_text(svg(overview,'Practice 30 · 单请求 CPU 阶段总览'))
-    (a.output/'decode32.svg').write_text(svg(bars(data,32),'Practice 30 · decode 32：CPU → 队列 → CANN → NPU'))
+    mode=data['config']['mode']
+    (a.output/'request.svg').write_text(svg(overview,f'Practice 30 · {mode} · 单请求 CPU 阶段总览'))
+    (a.output/'decode32.svg').write_text(svg(bars(data,32),f'Practice 30 · {mode} · decode 32：CPU → 队列 → CANN → NPU'))
     # Source excerpts come from this run's actual installed-file snapshots.
     excerpts={}
     for kind,source in data['phase_sources'].items():
@@ -99,7 +111,7 @@ def main():
         views={str(i):bars(data,i) for i in range(64)},overview=overview)
     packed=base64.b64encode(gzip.compress(json.dumps(payload,ensure_ascii=False,separators=(',',':')).encode(),mtime=0)).decode()
     template=Path(__file__).with_name('viewer.html').read_text()
-    (a.output/'index.html').write_text(template.replace('__DATA__',packed))
+    (a.output/'index.html').write_text(template.replace('__DATA__',packed).replace('__MODE__',mode))
 
 
 if __name__=='__main__':main()

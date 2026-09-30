@@ -4,6 +4,8 @@
 
 入口：[离线交互报告](report/index.html) · [发现与证据](RESULTS.md) · [完整请求 SVG](report/request.svg) · [decode 32 SVG](report/decode32.svg)。
 
+现已补充可切换的 **eager / PIECEWISE graph**：[对照报告](report/comparison/index.html) · [graph 发现](GRAPH_RESULTS.md) · [graph 时间线](report/graph-01/index.html) · [新 eager 对照](report/eager-02/index.html)。无 profiler 参考请求中位数分别为 725.879 / 291.454 ms；graph 每个 decode 有 25 次 replay，26 条物理 stream 上未观察到计算重叠。以下首轮链接保留原始 eager 结果。
+
 ## 怎么读
 
 1. 先看完整请求的 64 个步骤：prefill 一次，decode 63 次。
@@ -24,9 +26,11 @@ Qwen2.5-0.5B-Instruct，BF16，单 Ascend910B2C，eager；固定 10-token 输入
 | [run.py](run.py) | 冻结脚本、记录源码/版本、按顺序管理三个自有子进程，执行恢复检查 |
 | [child.py](child.py) | 原生初始化与预热，运行 reference / diagnostic / recovery |
 | [observer.py](observer.py) | 在实际对象上临时包装 17 类阶段，记录嵌套、线程与双时钟；退出恢复 |
+| [graph_observer.py](graph_observer.py) | 仅 graph diagnostic 启用：初始化期间记录 capture/dump，正式请求逐次记录 replay 与 task update 入口；退出恢复 |
 | [analyze.py](analyze.py) | 阶段自身时间、队列关联、同步边界、decode 32 三个最大空隙 |
 | [exact_join.py](exact_join.py) | 从 Practice 26 复用精确 flow/CSV 关联，适配本轮输入并导出队列证据 |
 | [render.py](render.py) / [viewer.html](viewer.html) | 生成两张 SVG 和离线可点击报告 |
+| [compare.py](compare.py) | 核对跨模式的版本、源码、配置、输入和输出，生成同口径对照 |
 
 `child.py` 只复用 Practice 28 的 `make_engine`、配置、prompt 和 `generate`，不调用其 capsule、快照恢复或双流提交。模型计算由原生引擎驱动。
 
@@ -61,7 +65,7 @@ sequenceDiagram
 
 同线程直接子阶段从父阶段扣除，得到自身墙钟和自身线程 CPU 时间；跨线程不相减、不相加成请求总时长。阶段计时位于 `record_function` 边界内，因而与图上的 profiler 标记时长略有差异。标记、包装及 profiler 自身也有开销。
 
-观察器只在预热后安装，保存原 callable，并在异常和正常退出时都恢复。`EngineCore.step_fn` 缓存了原 bound method，因此包装这个实际被调用的属性；没有仅替换未被调用的 `step`。`LogprobsTensors.tolists` 是唯一类级包装，其余是本实验引擎实例属性。未删除或新增设备等待，不在热路径 `.cpu()`、复制 KV 或打印日志。
+阶段观察器只在预热后安装，保存原 callable，并在异常和正常退出时都恢复。`EngineCore.step_fn` 缓存了原 bound method，因此包装这个实际被调用的属性；没有仅替换未被调用的 `step`。eager 的 `LogprobsTensors.tolists` 是唯一类级包装，其余是本实验引擎实例属性。graph diagnostic 另在初始化前临时包装 `NPUGraph.capture_begin/end/replay` 与两个 task update Python 入口；capture dump 在初始化完成捕获后写出，请求内只缓冲记录。未删除或新增设备等待，不在热路径 `.cpu()`、复制 KV 或打印日志。
 
 `exact_join.py` 复用 P26 关联检查，新增本轮格式适配、原始 queue 范围导出、可测试的步骤检查；对已经验证为嵌套的阶段使用逆序查找最内层范围。优化前后完整分析证据逐项相同。CPU/NPU 实际时间均来自同一远端 profiler 时钟；不会拿本地时间与远端时间相减。
 
@@ -81,13 +85,35 @@ python -B practice_30_cpu_submission_timeline/render.py \
   --output practice_30_cpu_submission_timeline/report/new-run
 ```
 
-输出目录必须不存在。只运行 eager；不开放额外 workload 矩阵。三个隔离进程分别为：
+输出目录必须不存在；默认 `--mode eager`。新增 graph 模式使用 Practice 28 的原生 `settings('graph')`：`mode=3`、`cudagraph_mode=PIECEWISE`、`cudagraph_capture_sizes=[1]`、`custom_ops=['all']`。不开放额外 workload 矩阵。三个隔离进程分别为：
 
 - reference：预热 2 次，3 次无 profiler 请求。
 - diagnostic：预热 2 次，1 次带阶段观察器的 CPU/NPU profiler 请求。
 - recovery：新进程预热 2 次，1 次原生请求。
 
-设备已有进程时拒绝开始。每个子进程有 300 秒上限；超时仅终止该自有进程组，先 TERM、再有界 KILL，不 reset NPU。控制器在异常路径也尝试原生恢复。安装源码、配置和已有服务不修改。
+设备已有进程时拒绝开始。eager 每个子进程上限 300 秒，graph 为编译/捕获留出 900 秒；超时仅终止该自有进程组，先 TERM、再有界 KILL，不 reset NPU。控制器在异常路径也尝试对应模式的原生恢复。安装源码、配置和已有服务不修改。
+
+最小双模式复现（顺序执行，不同时争抢 CPU/NPU；输出使用新目录）：
+
+```bash
+cd /data/tianchi
+for mode in eager graph; do
+  python -B practice_30_cpu_submission_timeline/run.py \
+    --mode "$mode" --output "practice_30_cpu_submission_timeline/results/repro-$mode" || break
+  python -B practice_30_cpu_submission_timeline/analyze.py \
+    "practice_30_cpu_submission_timeline/results/repro-$mode" || break
+  python -B practice_30_cpu_submission_timeline/render.py \
+    "practice_30_cpu_submission_timeline/results/repro-$mode" \
+    --output "practice_30_cpu_submission_timeline/report/repro-$mode" || break
+done
+python -B practice_30_cpu_submission_timeline/compare.py \
+  practice_30_cpu_submission_timeline/results/repro-eager \
+  practice_30_cpu_submission_timeline/results/repro-graph \
+  --output practice_30_cpu_submission_timeline/report/repro-comparison \
+  --eager-report ../repro-eager/index.html --graph-report ../repro-graph/index.html
+```
+
+graph 的启动编译/捕获记录与稳态请求分开保存。实际启用依据是 dump、逐次 replay scope、CANN connection、设备 model/stream/task 序列与完成边界，不仅看配置。prefill 仍无 replay；图内 kernel 关联到所属 replay，图外任务保留自己的提交链。图模式 SVG 按物理 stream 分行，跨流连线表示所属 replay 的关联，不伪造每个 kernel 的独立 launch 或完整 notify ID。
 
 本轮远端原始目录为 `/data/tianchi/practice_30_cpu_submission_timeline/results/round-01`。源码从远端实际安装路径读取；本地旧快照未用于代替远端检查。运行前后审计 25 个关键文件。运行时 introspection 另发现 `BalanceScheduler.schedule`，随后补采其源码并核对与记录 revision 的 Git 内容完全一致；该补充文件不冒充运行前后双次审计。未来复现的控制器已把它加入初始审计。
 

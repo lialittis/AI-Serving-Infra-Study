@@ -28,12 +28,14 @@ EXTRA=[
  '/vllm-workspace/vllm-ascend/vllm_ascend/device/device_op.py',
  '/vllm-workspace/vllm-ascend/vllm_ascend/patch/platform/patch_balance_schedule.py',
  '/usr/local/python3.12.13/lib/python3.12/site-packages/torch_npu/npu/streams.py',
+ '/usr/local/python3.12.13/lib/python3.12/site-packages/torch_npu/npu/graphs.py',
 ]
 
 
 def main():
     p=argparse.ArgumentParser(description=__doc__)
     p.add_argument('--output',type=Path,required=True)
+    p.add_argument('--mode', choices=['eager','graph'], default='eager')
     a=p.parse_args();out=a.output.resolve()
     if os.environ.get('LD_AUDIT') or os.environ.get('ASCEND_LAUNCH_BLOCKING')=='1':
         raise RuntimeError('conflicting instrumentation environment')
@@ -57,10 +59,10 @@ def main():
     save(out/'revisions.json',{repo:subprocess.check_output(['git','-C',repo,'rev-parse','HEAD'],text=True).strip()
          for repo in ('/vllm-workspace/vllm','/vllm-workspace/vllm-ascend')})
     (out/'cann_version.txt').write_text(Path('/usr/local/Ascend/cann-9.0.0/share/info/runtime/version.info').read_text())
-    status=dict(status='running',stages=[])
+    status=dict(status='running',stages=[],mode=a.mode)
     save(out/'status.json',status)
     def stage(name):
-        launch(out,name,'child.py',('--stage',name),timeout=300)
+        launch(out,name,'child.py',('--stage',name,'--mode',a.mode),timeout=900 if a.mode=='graph' else 300)
         status['stages'].append(name);save(out/'status.json',status)
     try:
         stage('reference')

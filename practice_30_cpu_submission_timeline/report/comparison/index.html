@@ -1,0 +1,40 @@
+<!doctype html><html lang="zh-CN"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Practice 30 · eager / graph 对照</title><style>body{font:16px/1.7 system-ui;max-width:1100px;margin:32px auto;padding:18px;color:#203545}table{border-collapse:collapse;width:100%}td,th{padding:10px;border:1px solid #ccd7df;text-align:left}pre{white-space:pre-wrap;overflow-wrap:anywhere}a{color:#2457ac}</style>
+<h1>Practice 30 · 单请求 eager / graph</h1><p>相同模型、输入、输出长度和基础配置。graph 使用 PIECEWISE、capture size=1；捕获与编译在稳态请求之前。</p>
+<p><a href="../eager-02/index.html">eager 精确时间线</a> · <a href="../graph-01/index.html">graph 精确时间线</a></p>
+<p>无 profiler 请求用于对比延迟；诊断请求用于解释时序，不能把 profiler 下的时间差直接视为性能收益。阶段有嵌套：replay 属于 forward，不可重复累加。</p>
+<table><tr><th>观测项</th><th>eager</th><th>graph PIECEWISE</th></tr><tr><th>无 profiler 中位数 ms</th><td>725.879</td><td>291.454</td></tr><tr><th>诊断请求墙钟 ms</th><td>1006.260</td><td>458.497</td></tr><tr><th>诊断请求线程 CPU ms</th><td>1005.599</td><td>457.809</td></tr><tr><th>decode 32 forward 墙钟 / CPU µs</th><td>13098.944 / 13097.706</td><td>4249.342 / 4248.771</td></tr><tr><th>decode 32 prepare_inputs 墙钟 / CPU µs</th><td>583.223 / 582.077</td><td>546.907 / 545.748</td></tr><tr><th>decode 32 sampling 墙钟 / CPU µs</th><td>274.905 / 274.322</td><td>252.820 / 252.210</td></tr><tr><th>decode 32 token_to_list 墙钟 / CPU µs</th><td>111.348 / 110.883</td><td>101.040 / 100.452</td></tr><tr><th>decode 32 logprobs_to_cpu 墙钟 / CPU µs</th><td>86.350 / 75.712</td><td>86.503 / 75.707</td></tr><tr><th>decode 32 replay 墙钟 / CPU µs</th><td>未发生</td><td>316.317 / 302.652</td></tr><tr><th>请求内 replay 次数</th><td>0</td><td>1575</td></tr><tr><th>记录中的物理 stream 数</th><td>1</td><td>26</td></tr><tr><th>计算任务跨 stream 重叠 µs</th><td>0</td><td>0</td></tr></table><h2>输出核验</h2><pre>{
+  &quot;tokens_equal&quot;: true,
+  &quot;finish_reason_equal&quot;: true,
+  &quot;logprob_steps_equal&quot;: true,
+  &quot;logprob_keys_equal&quot;: true,
+  &quot;shared_logprob_values&quot;: 64,
+  &quot;shared_logprob_max_abs&quot;: 0.0,
+  &quot;shared_ranks_equal&quot;: true,
+  &quot;exact_output_equal&quot;: true
+}</pre><p>跨模式 logprob 不预设逐位一致，上面保留实际差值；模式内部参考、诊断与恢复输出另作精确一致性验证。多个 graph 内部 stream 不代表并行执行。</p><h2>观测影响</h2><pre>{
+  &quot;eager&quot;: {
+    &quot;reference_wall_us&quot;: {
+      &quot;n&quot;: 3,
+      &quot;median&quot;: 725879.471,
+      &quot;min&quot;: 722000.824,
+      &quot;max&quot;: 727261.12
+    },
+    &quot;diagnostic_wall_us&quot;: 1006390.86,
+    &quot;diagnostic_over_reference_median&quot;: 1.386443480228965,
+    &quot;recovery_wall_us&quot;: 716618.075,
+    &quot;limits&quot;: &quot;One diagnostic vs three controls; combines profiling/observer overhead and run variation.&quot;
+  },
+  &quot;graph&quot;: {
+    &quot;reference_wall_us&quot;: {
+      &quot;n&quot;: 3,
+      &quot;median&quot;: 291453.939,
+      &quot;min&quot;: 291054.635,
+      &quot;max&quot;: 291484.209
+    },
+    &quot;diagnostic_wall_us&quot;: 458633.789,
+    &quot;diagnostic_over_reference_median&quot;: 1.5736064181311338,
+    &quot;recovery_wall_us&quot;: 290973.946,
+    &quot;limits&quot;: &quot;One diagnostic vs three controls; combines profiling/observer overhead and run variation.&quot;
+  }
+}</pre><p>完整数值与边界见 <a href="comparison.json">comparison.json</a>。同步调用不代表全部潜在等待；未覆盖的设备区间不证明整颗 NPU 空闲。</p></html>

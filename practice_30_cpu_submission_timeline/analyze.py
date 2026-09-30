@@ -92,6 +92,15 @@ def main():
             if len(candidates)>1:raise ValueError('ambiguous native dequeue range')
             if candidates:t['queue_id']=candidates[0]['id']
 
+    # A graph-internal task belongs to one replay submission; it has no fresh
+    # per-kernel enqueue. Preserve that distinction in evidence and the viewer.
+    tasks_by_id={t['id']:t for t in data['tasks']}
+    replays_by_label={r['label']:r for r in data['replays']}
+    for t in data['tasks']:
+        launch=tasks_by_id[replays_by_label[t['replay']]['launch']] if t.get('replay') else t
+        t['submission_queue_id']=launch['queue_id']
+        t['replay_launch_id']=launch['id'] if t.get('replay') else None
+
     sync=[]
     for index,e in enumerate(events):
         if e.get('ph')=='X' and e.get('name','').startswith('AscendCL@') and 'Synchronize' in e['name']:
@@ -117,8 +126,9 @@ def main():
         g['next_queue']=None
         if len(g['next_tasks'])==1:
             task=tasks_by_id[g['next_tasks'][0]]
-            if task['queue_id']:
-                q=queues_by_id[task['queue_id']];g['next_queue']=q
+            if task['submission_queue_id']:
+                q=queues_by_id[task['submission_queue_id']];g['next_queue']=q
+                g['queue_submission_kind']=task['submission_kind']
                 g['before_next_enqueue_us']=str(max(D(0),min(hi,D(q['enqueue']['ts']))-lo))
                 g['queue_start_state']=('not_enqueued' if D(q['enqueue']['ts'])>lo else
                     'enqueued_dequeue_not_started' if D(q['dequeue']['ts'])>lo else 'dequeue_started')
@@ -164,11 +174,27 @@ def main():
     frame=next(r for r in phases if r['kind']=='engine_step' and r['index']==32)
     focused_ops=[dict(index=i,event=e,phase_id=(p['id'] if (p:=enclosing(e)) else None)) for i,e in op_events
         if D(frame['trace_start_us'])<=D(e['ts']) and exact.end(e)<=D(frame['trace_end_us'])]
-    data.update(phases=phases,phase_sources=sources,phase_summary=phase_summary,synchronizations=sync,
+    graph_captures=exact.read(run/'graph_captures.json') if (run/'graph_captures.json').exists() else []
+    graph_info=dict(mode=data['config']['mode'],captures=graph_captures,
+        capture_during_measurement=sum(r['during_measurement'] for r in graph_captures),
+        replay_by_step={str(i):sum(r['index']==i and r['kind']=='replay' for r in phases) for i in range(64)},
+        update_python_calls=sum(r['kind'].startswith('graph_task_update') for r in phases),
+        update_native_events=[e for e in events if e.get('ph')=='X' and e.get('name','').startswith('AscendCL@') and 'update' in e['name'].lower()],
+        effective_compilation=exact.read(run/'effective_compilation.json') if (run/'effective_compilation.json').exists() else None,
+        initialization={name:exact.read(root/name/'initialization.json') for name in ('reference','diagnostic','recovery')
+                        if (root/name/'initialization.json').exists()})
+    if graph_info['mode']=='graph':
+        exact.require(graph_captures and data['replays'],'graph requested but no captures/replays proven')
+        exact.require(graph_info['capture_during_measurement']==0,'steady request recaptured')
+        exact.require(all(r['wall_end_ns']<=req['wall_start_ns'] for r in graph_captures),
+                      'capture not completed before measured request')
+        exact.require(exact.read(run/'graph_binding_recovery.json')['restored'],'graph binding recovery')
+        exact.require(all(graph_info['replay_by_step'][str(i)]>0 for i in range(1,64)),'decode replay coverage')
+    data.update(phases=phases,phase_sources=sources,phase_summary=phase_summary,synchronizations=sync,graph=graph_info,
         focused_cpu_ops=focused_ops,top_gaps=gaps,examples=examples,overhead=overhead,
         request_cpu_thread_id=req['tid'],source_manifest=exact.read(root/'source_manifest.json'))
     out=root/'analysis';save(out/'evidence.json',data)
-    summary=dict(exact=data['summary'],phases=len(phases),queues=len(data['queues']),
+    summary=dict(exact=data['summary'],phases=len(phases),queues=len(data['queues']),graph=graph_info,
         device_tasks_with_queue=sum(t['queue_id'] is not None for t in data['tasks']),
         unattributed_runtime=[t for t in data['tasks'] if t['step'] is None],
         cpu_sync_calls=len(sync),sync_by_phase={kind:dict(count=sum(s['kind']==kind for s in sync),

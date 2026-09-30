@@ -372,6 +372,12 @@ See [guide](practice_30_cpu_submission_timeline/README.md),
 [findings](practice_30_cpu_submission_timeline/RESULTS.md), and
 [offline CPU timeline](practice_30_cpu_submission_timeline/report/index.html).
 
+The [PIECEWISE graph comparison](practice_30_cpu_submission_timeline/GRAPH_RESULTS.md)
+adds matched eager/graph requests: unprofiled median latency is 725.879/291.454 ms,
+with identical outputs. Each decode replays 25 graphs; 26 physical streams show
+no compute overlap. Explore the [comparison](practice_30_cpu_submission_timeline/report/comparison/index.html)
+and [graph submission timeline](practice_30_cpu_submission_timeline/report/graph-01/index.html).
+
 ## References
 
 See the [reference index](references/README.md) for CUDA multi-stream use cases,
