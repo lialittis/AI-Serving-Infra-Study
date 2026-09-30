@@ -1,7 +1,7 @@
 # Practice 30：拆解单请求 CPU 时间线
 
 - 日期：2026-09-30。
-- 状态：首轮 eager 及做厚第一步的 graph mode 同类分析均已完成；forward 内部细分仍待开始。见[复现说明](../practice_30_cpu_submission_timeline/README.md)、[首轮结果](../practice_30_cpu_submission_timeline/RESULTS.md)、[graph 结果](../practice_30_cpu_submission_timeline/GRAPH_RESULTS.md)和[双模式报告](../practice_30_cpu_submission_timeline/report/comparison/index.html)。
+- 状态：eager、graph 同类分析及首轮 forward 细分均已完成。graph 工作已在 `d14b25a` 提交并推送；本轮细分见 [forward 结果](../practice_30_cpu_submission_timeline/FORWARD_RESULTS.md)和[报告](../practice_30_cpu_submission_timeline/report/forward/index.html)。另见[复现说明](../practice_30_cpu_submission_timeline/README.md)、[首轮结果](../practice_30_cpu_submission_timeline/RESULTS.md)、[graph 结果](../practice_30_cpu_submission_timeline/GRAPH_RESULTS.md)和[双模式报告](../practice_30_cpu_submission_timeline/report/comparison/index.html)。
 
 ## 要回答的问题
 
@@ -94,10 +94,22 @@ decode 32 检查的三个较大设备任务间隙约 **127–135 µs**，其中�
 
 ## Subtask 2：分析 forward 内部各部分占比与执行情况
 
-- [ ] **状态：待开始，排在 graph mode 同类分析之后；本次不推进分析、插桩或远端实验。**
+- [x] **状态：首轮已完成。已有 trace 的非重叠占比和一次 RoPE 细读已实现；剩余时间仍明确保留为未归因。**
 - 目标：细分 decode 32 的 forward CPU 侧耗时，解释哪些部分在准备参数、执行框架逻辑、调用 launcher、入队或等待，以及它们与 NPU 执行如何交叠。首轮 eager 为约 11.95 ms；现有匹配对照为 eager 13.099 ms / graph 4.249 ms，后续以明确标注轮次的证据为准，不混算。
 - 范围：以现有单请求、BF16、eager 的 decode 32 为起点，结合 Subtask 1 的 graph 对照决定优先细分范围；不立即增加模型、并发或 benchmark 矩阵。
 - 第一步：先用已有证据整理 forward 内已记录范围的包含关系，区分包含子调用的时间与扣除子调用的自身时间；占比统一以前述 forward 范围为分母，明确未归属时间，不拼凑出缺少证据的完整分解。
 - 最小深入范围：优先选择已定位的 **RoPE Host→Enqueue**，沿实际调用关系区分 Python 参数处理、Triton launcher、C++ 入队边界；观察结果后再决定是否扩大到其他部分。
 - 证据要求：分别报告主线程与下发线程、墙钟与线程 CPU 时间、Host 范围与 NPU 任务时间；保留跨线程关联，避免嵌套重复计数。新增观测若有必要，继续采用可恢复的临时包装，并核验输出与观测成本。
 - 预期产出：一张 forward 内部耗时与占比表（含未解释部分）、一条细化的 RoPE 提交时间线，以及已确认事实、仍待验证的原因和下一小步建议。
+
+### Forward subtask 首轮回填
+
+- [x] 复用已有 `eager-02` / `graph-01`，按同线程包含关系计数，父子不重复相加。占比分母采用 forward profiler 范围，并与内部双时钟边界明确区分。
+- [x] eager：attention 28.70%、RoPE 18.78%、GEMM 12.46%、add RMSNorm 9.03%，其他已记录操作 6.32%，未覆盖 24.71%。graph：图外 attention 66.60%、replay profiler 范围 15.55%、未覆盖 17.85%。
+- [x] graph 的 24 次 attention 进一步分到直接子范围；扣除这些子调用后，自身余量合计 1,013.285 µs，未强行命名为 Python 或等待。
+- [x] 新增 `--forward-detail`：只选中 eager decode 32 的第一次 RoPE。Python 包装、JIT.run、动态 binder、native launcher 均记录双时钟，并通过队列/CANN/CSV 身份关联到一个 3.320 µs 的 NPU kernel。
+- [x] 选中调用无编译，预热缓存指纹不变；30 个已审计文件未变，11 次输出精确一致，包装和原生执行恢复通过。
+- [x] 明确记录观察扰动：被包装的 RoPE 外层约 268.323 µs，其余 23 次中位数约 108.489 µs。新增计时用于读调用结构，不作为稳定性能占比；native C++ 内部未完整采集。
+- [x] 输出占比表、可展开调用树、RoPE SVG、机器可读证据、复现命令及便携归档。
+
+下一小步候选：只选一个 graph 图外 attention 调用，解释其 Host 自身余量；当前尚未开展，不增加 benchmark 矩阵。

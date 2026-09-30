@@ -36,7 +36,9 @@ def main():
     p=argparse.ArgumentParser(description=__doc__)
     p.add_argument('--output',type=Path,required=True)
     p.add_argument('--mode', choices=['eager','graph'], default='eager')
+    p.add_argument('--forward-detail', action='store_true')
     a=p.parse_args();out=a.output.resolve()
+    if a.forward_detail and a.mode!='eager':p.error('RoPE detail is eager-only')
     if os.environ.get('LD_AUDIT') or os.environ.get('ASCEND_LAUNCH_BLOCKING')=='1':
         raise RuntimeError('conflicting instrumentation environment')
     device=require_idle()
@@ -47,7 +49,12 @@ def main():
     for name in ('native.py','common.py'):
         shutil.copy2(REPO/'practice_28_native_decode_streams'/name,collector/name)
     save(out/'collector_hashes.json',{f.name:sha256(f) for f in collector.glob('*.py')})
-    files=sorted(set(FILES+EXTRA));before={f:sha256(f) for f in files}
+    detail_sources=[
+        '/usr/local/python3.12.13/lib/python3.12/site-packages/triton/runtime/jit.py',
+        '/usr/local/python3.12.13/lib/python3.12/site-packages/triton/compiler/compiler.py',
+        '/usr/local/python3.12.13/lib/python3.12/site-packages/triton/backends/ascend/driver.py',
+    ] if a.forward_detail else []
+    files=sorted(set(FILES+EXTRA+detail_sources));before={f:sha256(f) for f in files}
     save(out/'sources_before.json',before)
     manifest={}
     for index,file in enumerate(files):
@@ -59,10 +66,11 @@ def main():
     save(out/'revisions.json',{repo:subprocess.check_output(['git','-C',repo,'rev-parse','HEAD'],text=True).strip()
          for repo in ('/vllm-workspace/vllm','/vllm-workspace/vllm-ascend')})
     (out/'cann_version.txt').write_text(Path('/usr/local/Ascend/cann-9.0.0/share/info/runtime/version.info').read_text())
-    status=dict(status='running',stages=[],mode=a.mode)
+    status=dict(status='running',stages=[],mode=a.mode,forward_detail=a.forward_detail)
     save(out/'status.json',status)
     def stage(name):
-        launch(out,name,'child.py',('--stage',name,'--mode',a.mode),timeout=900 if a.mode=='graph' else 300)
+        extra=('--forward-detail',) if a.forward_detail else ()
+        launch(out,name,'child.py',('--stage',name,'--mode',a.mode,*extra),timeout=900 if a.mode=='graph' else 300)
         status['stages'].append(name);save(out/'status.json',status)
     try:
         stage('reference')

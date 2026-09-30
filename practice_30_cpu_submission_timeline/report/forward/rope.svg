@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 510">
+<style>text{font:14px sans-serif;fill:#203545}</style><rect width="1280" height="510" fill="#f4f7fb"/>
+<text x="20" y="30" style="font-size:22px">一次 RoPE：Python → JIT → native launcher → 队列 → NPU</text>
+<text x="20" y="57">新增观测会扰动这一次调用；连线表示已验证关联，不表示逐指令因果或纯排队等待。</text>
+<text x="15" y="105">rope_forward_triton</text>
+<text x="15" y="151">JITFunction.run</text>
+<text x="15" y="197">generated binder</text>
+<text x="15" y="243">native launcher</text>
+<text x="15" y="289">CPU Enqueue</text>
+<text x="15" y="335">下发线程 Dequeue</text>
+<text x="15" y="381">CANN launch</text>
+<text x="15" y="427">NPU kernel</text>
+<rect x="230.000" y="88" width="1010.000" height="23" fill="#386eba"><title>rope_python · 213.371 µs</title></rect>
+<rect x="350.241" y="134" width="838.636" height="23" fill="#386eba"><title>rope_jit · 177.169 µs</title></rect>
+<rect x="586.189" y="180" width="163.151" height="23" fill="#386eba"><title>rope_bind · 34.467 µs</title></rect>
+<rect x="887.214" y="226" width="240.369" height="23" fill="#386eba"><title>rope_native · 50.780 µs</title></rect>
+<rect x="1034.370" y="272" width="16.993" height="23" fill="#386eba"><title>Enqueue@_triton_rope · 3.590 µs</title></rect>
+<rect x="1073.663" y="318" width="15.725" height="23" fill="#386eba"><title>Dequeue@_triton_rope · 3.322 µs</title></rect>
+<rect x="1075.528" y="364" width="8.459" height="23" fill="#386eba"><title>Node@launch · 1.787 µs</title></rect>
+<rect x="1183.046" y="410" width="15.715" height="23" fill="#248c82"><title>_triton_rope · 3.320 µs</title></rect>
+<path d="M1034.370 295 L1073.663 318" stroke="#bc4260" stroke-width="1.5"/>
+<path d="M1073.663 341 L1075.528 364" stroke="#bc4260" stroke-width="1.5"/>
+<path d="M1075.528 387 L1183.046 410" stroke="#bc4260" stroke-width="1.5"/>
+<text x="230.0" y="495">0.0 µs</text>
+<text x="432.0" y="495">42.7 µs</text>
+<text x="634.0" y="495">85.3 µs</text>
+<text x="836.0" y="495">128.0 µs</text>
+<text x="1038.0" y="495">170.7 µs</text>
+<text x="1240.0" y="495">213.4 µs</text>
+</svg>

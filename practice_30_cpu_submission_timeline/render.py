@@ -14,7 +14,9 @@ NAMES={'schedule':'调度', 'state_update':'请求状态', 'prepare_inputs':'输
  'core_step':'EngineCore 单步','execute':'runner.execute_model','executor_submit':'executor 提交',
  'sample':'sample_tokens','bookkeeping':'结果整理','request':'完整请求',
  'replay':'graph replay','graph_task_update_begin':'graph task update begin',
- 'graph_task_update_end':'graph task update end'}
+ 'graph_task_update_end':'graph task update end','rope_python':'RoPE Python 包装',
+ 'rope_jit':'RoPE JIT.run','rope_bind':'RoPE 参数绑定','rope_native':'RoPE native launcher',
+ 'rope_compile':'RoPE 编译（若发生）'}
 LEAVES=('schedule','state_update','prepare_inputs','preprocess','forward','logits','sampling',
         'token_to_list','logprobs_to_cpu','scheduler_update','output_processing')
 COLORS={'forward':'#2864c7','logits':'#2864c7','sampling':'#cc7915','token_to_list':'#bd4250',

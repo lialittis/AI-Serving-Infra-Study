@@ -378,6 +378,12 @@ with identical outputs. Each decode replays 25 graphs; 26 physical streams show
 no compute overlap. Explore the [comparison](practice_30_cpu_submission_timeline/report/comparison/index.html)
 and [graph submission timeline](practice_30_cpu_submission_timeline/report/graph-01/index.html).
 
+The [forward breakdown](practice_30_cpu_submission_timeline/FORWARD_RESULTS.md)
+partitions existing Host scopes without double counting: graph's uncaptured
+attention accounts for 66.6% of the observed forward range. A single warmed
+RoPE probe connects Python, JIT binding, native launch, queue and NPU execution;
+its measurement overhead is explicit in the [report](practice_30_cpu_submission_timeline/report/forward/index.html).
+
 ## References
 
 See the [reference index](references/README.md) for CUDA multi-stream use cases,

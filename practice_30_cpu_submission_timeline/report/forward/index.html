@@ -1,0 +1,303 @@
+<!doctype html><html lang="zh-CN"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Practice 30 · forward 内部细分</title><style>body{font:16px/1.7 system-ui;max-width:1250px;margin:24px auto;padding:18px;color:#203545}table{border-collapse:collapse;width:100%}td,th{border:1px solid #d2dce8;padding:9px;text-align:left}pre{white-space:pre-wrap;overflow-wrap:anywhere;background:#f1f5fa;padding:15px}svg{width:100%}details{margin:14px 0}a{color:#2457ac}</style>
+<h1>forward 内部：已有 trace 的占比 + 一次 RoPE 细读</h1>
+<p>第一部分复用 eager-02 / graph-01，不增加测量；第二部分仅放大一个新请求 decode 32 的第一次 RoPE。Host 范围不是设备计算时间；父子时长不能重复累加。</p>
+<h2>eager · eager-02 · decode 32</h2><p>占比分母：forward profiler 范围 13127.186 µs；范围内部双时钟：墙钟 13098.944 / 线程 CPU 13097.706 µs。两种边界差异来自标记等观测开销，不混算。</p>
+<table><tr><th>互不重叠的顶层范围</th><th>次数</th><th>Host 墙钟 µs</th><th>占 forward</th></tr>
+<tr><td>vllm::unified_attention_with_output</td><td>24</td><td>3767.559</td><td>28.70%</td></tr>
+<tr><td>vllm::npu_rotary_embedding</td><td>24</td><td>2465.838</td><td>18.78%</td></tr>
+<tr><td>vllm::unquantized_gemm</td><td>96</td><td>1635.459</td><td>12.46%</td></tr>
+<tr><td>_C_ascend::npu_add_rms_norm_bias</td><td>48</td><td>1185.222</td><td>9.03%</td></tr>
+<tr><td>npu::npu_swiglu</td><td>24</td><td>350.852</td><td>2.67%</td></tr>
+<tr><td>vllm::maybe_chunk_residual</td><td>48</td><td>117.974</td><td>0.90%</td></tr>
+<tr><td>aten::view</td><td>120</td><td>117.766</td><td>0.90%</td></tr>
+<tr><td>aten::split_with_sizes</td><td>24</td><td>103.830</td><td>0.79%</td></tr>
+<tr><td>aten::empty</td><td>24</td><td>78.942</td><td>0.60%</td></tr>
+<tr><td>npu::npu_rms_norm</td><td>1</td><td>29.364</td><td>0.22%</td></tr>
+<tr><td>aten::to</td><td>1</td><td>16.214</td><td>0.12%</td></tr>
+<tr><td>aten::embedding</td><td>1</td><td>8.622</td><td>0.07%</td></tr>
+<tr><td>vllm::maybe_pad_and_reduce</td><td>1</td><td>6.280</td><td>0.05%</td></tr>
+<tr><td>未被这些范围覆盖的时间</td><td>—</td><td>3243.264</td><td>24.71%</td></tr>
+</table><p>未覆盖部分可能包含框架衔接、参数处理和观测开销；不能全部称为 Python 或 CPU 等待。</p>
+<details><summary>24 次图外 attention 的直接子范围合计（仍是 Host 时间）</summary><table><tr><th>直接子范围或剩余</th><th>次数</th><th>Host µs</th></tr>
+<tr><td>attention self（未被子范围解释）</td><td>24</td><td>1202.082</td></tr>
+<tr><td>npu::npu_fused_infer_attention_score</td><td>24</td><td>1043.595</td></tr>
+<tr><td>aten::copy_</td><td>48</td><td>665.462</td></tr>
+<tr><td>atb::_npu_reshape_and_cache</td><td>24</td><td>422.924</td></tr>
+<tr><td>aten::slice</td><td>144</td><td>334.484</td></tr>
+<tr><td>aten::view</td><td>72</td><td>99.012</td></tr>
+</table></details>
+<details><summary>展开第一处 attention 的包含关系（self 已扣除直接子范围）</summary><table><tr><th>调用</th><th>inclusive µs</th><th>self µs</th></tr>
+<tr><td>vllm::unified_attention_with_output</td><td>181.440</td><td>59.957</td></tr>
+<tr><td>　aten::slice</td><td>4.113</td><td>1.580</td></tr>
+<tr><td>　　aten::as_strided</td><td>2.533</td><td>2.533</td></tr>
+<tr><td>　aten::slice</td><td>1.644</td><td>0.945</td></tr>
+<tr><td>　　aten::as_strided</td><td>0.699</td><td>0.699</td></tr>
+<tr><td>　aten::slice</td><td>3.042</td><td>2.028</td></tr>
+<tr><td>　　aten::as_strided</td><td>1.014</td><td>1.014</td></tr>
+<tr><td>　atb::_npu_reshape_and_cache</td><td>21.163</td><td>17.525</td></tr>
+<tr><td>　　ReshapeCacheOperation</td><td>3.638</td><td>3.638</td></tr>
+<tr><td>　aten::view</td><td>2.295</td><td>2.295</td></tr>
+<tr><td>　aten::view</td><td>0.991</td><td>0.991</td></tr>
+<tr><td>　aten::slice</td><td>1.724</td><td>0.871</td></tr>
+<tr><td>　　aten::as_strided</td><td>0.853</td><td>0.853</td></tr>
+<tr><td>　npu::npu_fused_infer_attention_score</td><td>51.677</td><td>43.315</td></tr>
+<tr><td>　　empty_tensor</td><td>2.114</td><td>2.114</td></tr>
+<tr><td>　　empty_tensor</td><td>0.903</td><td>0.903</td></tr>
+<tr><td>　　empty_tensor</td><td>0.754</td><td>0.754</td></tr>
+<tr><td>　　empty_tensor</td><td>0.742</td><td>0.742</td></tr>
+<tr><td>　　aclnnFusedInferAttentionScoreV3</td><td>3.849</td><td>3.849</td></tr>
+<tr><td>　aten::view</td><td>1.087</td><td>1.087</td></tr>
+<tr><td>　aten::slice</td><td>2.112</td><td>1.232</td></tr>
+<tr><td>　　aten::as_strided</td><td>0.880</td><td>0.880</td></tr>
+<tr><td>　aten::copy_</td><td>19.123</td><td>17.546</td></tr>
+<tr><td>　　aclnnInplaceCopy</td><td>1.577</td><td>1.577</td></tr>
+<tr><td>　aten::slice</td><td>1.821</td><td>1.113</td></tr>
+<tr><td>　　aten::as_strided</td><td>0.708</td><td>0.708</td></tr>
+<tr><td>　aten::copy_</td><td>10.691</td><td>7.943</td></tr>
+<tr><td>　　aclnnInplaceCopy</td><td>2.748</td><td>2.748</td></tr>
+</table></details>
+<h2>graph · graph-01 · decode 32</h2><p>占比分母：forward profiler 范围 4263.469 µs；范围内部双时钟：墙钟 4249.342 / 线程 CPU 4248.771 µs。两种边界差异来自标记等观测开销，不混算。</p>
+<table><tr><th>互不重叠的顶层范围</th><th>次数</th><th>Host 墙钟 µs</th><th>占 forward</th></tr>
+<tr><td>vllm::unified_attention_with_output</td><td>24</td><td>2839.592</td><td>66.60%</td></tr>
+<tr><td>NPUGraph.replay scope</td><td>25</td><td>662.933</td><td>15.55%</td></tr>
+<tr><td>未被这些范围覆盖的时间</td><td>—</td><td>760.944</td><td>17.85%</td></tr>
+</table><p>未覆盖部分可能包含框架衔接、参数处理和观测开销；不能全部称为 Python 或 CPU 等待。</p>
+<details><summary>24 次图外 attention 的直接子范围合计（仍是 Host 时间）</summary><table><tr><th>直接子范围或剩余</th><th>次数</th><th>Host µs</th></tr>
+<tr><td>attention self（未被子范围解释）</td><td>24</td><td>1013.285</td></tr>
+<tr><td>npu::npu_fused_infer_attention_score</td><td>24</td><td>742.934</td></tr>
+<tr><td>aten::copy_</td><td>48</td><td>413.705</td></tr>
+<tr><td>aten::slice</td><td>144</td><td>290.193</td></tr>
+<tr><td>atb::_npu_reshape_and_cache</td><td>24</td><td>286.004</td></tr>
+<tr><td>aten::view</td><td>72</td><td>93.471</td></tr>
+</table></details>
+<details><summary>展开第一处 attention 的包含关系（self 已扣除直接子范围）</summary><table><tr><th>调用</th><th>inclusive µs</th><th>self µs</th></tr>
+<tr><td>vllm::unified_attention_with_output</td><td>178.814</td><td>67.691</td></tr>
+<tr><td>　aten::slice</td><td>3.930</td><td>2.165</td></tr>
+<tr><td>　　aten::as_strided</td><td>1.765</td><td>1.765</td></tr>
+<tr><td>　aten::slice</td><td>1.555</td><td>0.877</td></tr>
+<tr><td>　　aten::as_strided</td><td>0.678</td><td>0.678</td></tr>
+<tr><td>　aten::slice</td><td>3.254</td><td>2.192</td></tr>
+<tr><td>　　aten::as_strided</td><td>1.062</td><td>1.062</td></tr>
+<tr><td>　atb::_npu_reshape_and_cache</td><td>17.570</td><td>13.505</td></tr>
+<tr><td>　　ReshapeCacheOperation</td><td>4.065</td><td>4.065</td></tr>
+<tr><td>　aten::view</td><td>2.336</td><td>2.336</td></tr>
+<tr><td>　aten::view</td><td>1.090</td><td>1.090</td></tr>
+<tr><td>　aten::slice</td><td>1.737</td><td>1.020</td></tr>
+<tr><td>　　aten::as_strided</td><td>0.717</td><td>0.717</td></tr>
+<tr><td>　npu::npu_fused_infer_attention_score</td><td>50.124</td><td>40.844</td></tr>
+<tr><td>　　empty_tensor</td><td>3.958</td><td>3.958</td></tr>
+<tr><td>　　empty_tensor</td><td>1.098</td><td>1.098</td></tr>
+<tr><td>　　empty_tensor</td><td>0.798</td><td>0.798</td></tr>
+<tr><td>　　empty_tensor</td><td>0.728</td><td>0.728</td></tr>
+<tr><td>　　aclnnFusedInferAttentionScoreV3</td><td>2.698</td><td>2.698</td></tr>
+<tr><td>　aten::view</td><td>1.235</td><td>1.235</td></tr>
+<tr><td>　aten::slice</td><td>2.310</td><td>1.188</td></tr>
+<tr><td>　　aten::as_strided</td><td>1.122</td><td>1.122</td></tr>
+<tr><td>　aten::copy_</td><td>16.461</td><td>15.574</td></tr>
+<tr><td>　　aclnnInplaceCopy</td><td>0.887</td><td>0.887</td></tr>
+<tr><td>　aten::slice</td><td>1.846</td><td>1.118</td></tr>
+<tr><td>　　aten::as_strided</td><td>0.728</td><td>0.728</td></tr>
+<tr><td>　aten::copy_</td><td>7.675</td><td>5.853</td></tr>
+<tr><td>　　aclnnInplaceCopy</td><td>1.822</td><td>1.822</td></tr>
+</table></details>
+<h2>只细读一次 RoPE</h2><p>这次新增包装只在 decode 32 的第一次 RoPE 内计时。预热缓存保持不变，无选中调用内编译；结果和恢复验证见原始记录。native 的内部细节以 profiler 事件为限。</p>
+<a href="rope.svg">打开精确时间线 SVG</a><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 510">
+<style>text{font:14px sans-serif;fill:#203545}</style><rect width="1280" height="510" fill="#f4f7fb"/>
+<text x="20" y="30" style="font-size:22px">一次 RoPE：Python → JIT → native launcher → 队列 → NPU</text>
+<text x="20" y="57">新增观测会扰动这一次调用；连线表示已验证关联，不表示逐指令因果或纯排队等待。</text>
+<text x="15" y="105">rope_forward_triton</text>
+<text x="15" y="151">JITFunction.run</text>
+<text x="15" y="197">generated binder</text>
+<text x="15" y="243">native launcher</text>
+<text x="15" y="289">CPU Enqueue</text>
+<text x="15" y="335">下发线程 Dequeue</text>
+<text x="15" y="381">CANN launch</text>
+<text x="15" y="427">NPU kernel</text>
+<rect x="230.000" y="88" width="1010.000" height="23" fill="#386eba"><title>rope_python · 213.371 µs</title></rect>
+<rect x="350.241" y="134" width="838.636" height="23" fill="#386eba"><title>rope_jit · 177.169 µs</title></rect>
+<rect x="586.189" y="180" width="163.151" height="23" fill="#386eba"><title>rope_bind · 34.467 µs</title></rect>
+<rect x="887.214" y="226" width="240.369" height="23" fill="#386eba"><title>rope_native · 50.780 µs</title></rect>
+<rect x="1034.370" y="272" width="16.993" height="23" fill="#386eba"><title>Enqueue@_triton_rope · 3.590 µs</title></rect>
+<rect x="1073.663" y="318" width="15.725" height="23" fill="#386eba"><title>Dequeue@_triton_rope · 3.322 µs</title></rect>
+<rect x="1075.528" y="364" width="8.459" height="23" fill="#386eba"><title>Node@launch · 1.787 µs</title></rect>
+<rect x="1183.046" y="410" width="15.715" height="23" fill="#248c82"><title>_triton_rope · 3.320 µs</title></rect>
+<path d="M1034.370 295 L1073.663 318" stroke="#bc4260" stroke-width="1.5"/>
+<path d="M1073.663 341 L1075.528 364" stroke="#bc4260" stroke-width="1.5"/>
+<path d="M1075.528 387 L1183.046 410" stroke="#bc4260" stroke-width="1.5"/>
+<text x="230.0" y="495">0.0 µs</text>
+<text x="432.0" y="495">42.7 µs</text>
+<text x="634.0" y="495">85.3 µs</text>
+<text x="836.0" y="495">128.0 µs</text>
+<text x="1038.0" y="495">170.7 µs</text>
+<text x="1240.0" y="495">213.4 µs</text>
+</svg>
+<table><tr><th>包装范围</th><th>墙钟 µs</th><th>线程 CPU µs</th><th>自身墙钟 µs</th></tr>
+<tr><td>rope_python</td><td>201.253</td><td>200.749</td><td>34.294</td></tr>
+<tr><td>rope_jit</td><td>166.959</td><td>166.554</td><td>113.621</td></tr>
+<tr><td>rope_bind</td><td>16.878</td><td>16.375</td><td>16.878</td></tr>
+<tr><td>rope_native</td><td>36.460</td><td>35.910</td><td>36.460</td></tr>
+</table><p>自身时间仍包含子包装边界成本；单次、微秒级诊断值不可作为稳定性能占比。下面的入队前/入队/入队后使用 native profiler 范围，不能与上表内部双时钟范围混算。新旧两轮不相减归因。</p><pre>{
+  &quot;native_scope_before_enqueue_us&quot;: &quot;31.088&quot;,
+  &quot;native_profiler_scope_us&quot;: &quot;50.780&quot;,
+  &quot;enqueue_duration_us&quot;: &quot;3.59&quot;,
+  &quot;native_scope_after_enqueue_us&quot;: &quot;16.102&quot;,
+  &quot;selected_outer_rope_us&quot;: &quot;268.323&quot;,
+  &quot;other_23_rope_median_us&quot;: &quot;108.489&quot;,
+  &quot;other_23_rope_min_us&quot;: &quot;99.598&quot;,
+  &quot;other_23_rope_max_us&quot;: &quot;125.89&quot;,
+  &quot;kernel_duration_us&quot;: &quot;3.32&quot;
+}</pre>
+<details><summary>精确设备/队列身份、源码入口和观测边界</summary><pre>{
+  &quot;task&quot;: {
+    &quot;id&quot;: &quot;k:325476&quot;,
+    &quot;trace_index&quot;: 325476,
+    &quot;name&quot;: &quot;_triton_rope&quot;,
+    &quot;stream&quot;: &quot;46&quot;,
+    &quot;task_id&quot;: &quot;55088&quot;,
+    &quot;model_id&quot;: 4294967295,
+    &quot;task_type&quot;: &quot;AI_VECTOR_CORE&quot;,
+    &quot;connection_id&quot;: &quot;101148&quot;,
+    &quot;start_us&quot;: &quot;1790779626432720.537&quot;,
+    &quot;end_us&quot;: &quot;1790779626432723.857&quot;,
+    &quot;duration_us&quot;: &quot;3.32&quot;,
+    &quot;scope&quot;: &quot;P30/32/rope_native/558&quot;,
+    &quot;step&quot;: &quot;p30-measure/step-32&quot;,
+    &quot;stage&quot;: &quot;rope_native&quot;,
+    &quot;csv_row&quot;: 9715,
+    &quot;is_compute&quot;: true,
+    &quot;host_index&quot;: 91144,
+    &quot;cann_index&quot;: 407909,
+    &quot;host_flow&quot;: &quot;1790779626432720537&quot;,
+    &quot;cann_flow&quot;: &quot;434427352055808&quot;,
+    &quot;core_type&quot;: &quot;AI_VECTOR_CORE&quot;,
+    &quot;block_num&quot;: 1,
+    &quot;mix_block_num&quot;: null,
+    &quot;submission_kind&quot;: &quot;direct&quot;,
+    &quot;submission_index&quot;: 407909,
+    &quot;queue_id&quot;: &quot;q:54355&quot;,
+    &quot;submission_queue_id&quot;: &quot;q:54355&quot;,
+    &quot;replay_launch_id&quot;: null
+  },
+  &quot;queue&quot;: {
+    &quot;id&quot;: &quot;q:54355&quot;,
+    &quot;flow_id&quot;: &quot;54355&quot;,
+    &quot;enqueue_index&quot;: 245985,
+    &quot;dequeue_index&quot;: 202961,
+    &quot;enqueue&quot;: {
+      &quot;ph&quot;: &quot;X&quot;,
+      &quot;name&quot;: &quot;Enqueue@_triton_rope&quot;,
+      &quot;pid&quot;: 1456742,
+      &quot;tid&quot;: 1456742,
+      &quot;ts&quot;: &quot;1790779626432689.128&quot;,
+      &quot;dur&quot;: &quot;3.59&quot;,
+      &quot;cat&quot;: &quot;enqueue&quot;,
+      &quot;args&quot;: {
+        &quot;correlation_id&quot;: 54355
+      }
+    },
+    &quot;dequeue&quot;: {
+      &quot;ph&quot;: &quot;X&quot;,
+      &quot;name&quot;: &quot;Dequeue@_triton_rope&quot;,
+      &quot;pid&quot;: 1456742,
+      &quot;tid&quot;: 1458210,
+      &quot;ts&quot;: &quot;1790779626432697.429&quot;,
+      &quot;dur&quot;: &quot;3.322&quot;,
+      &quot;cat&quot;: &quot;dequeue&quot;,
+      &quot;args&quot;: {
+        &quot;correlation_id&quot;: 54355
+      }
+    },
+    &quot;scope&quot;: &quot;P30/32/rope_native/558&quot;,
+    &quot;step&quot;: &quot;p30-measure/step-32&quot;,
+    &quot;enqueue_to_dequeue_start_us&quot;: &quot;8.301&quot;,
+    &quot;dequeue_start_minus_enqueue_end_us&quot;: &quot;4.711&quot;
+  },
+  &quot;sources&quot;: [
+    {
+      &quot;path&quot;: &quot;/vllm-workspace/vllm-ascend/vllm_ascend/ops/triton/rope.py&quot;,
+      &quot;line&quot;: 256,
+      &quot;qualname&quot;: &quot;rope_forward_triton&quot;
+    },
+    {
+      &quot;path&quot;: &quot;/usr/local/python3.12.13/lib/python3.12/site-packages/triton/runtime/jit.py&quot;,
+      &quot;line&quot;: 566,
+      &quot;qualname&quot;: &quot;JITFunction.run&quot;
+    },
+    {
+      &quot;path&quot;: null,
+      &quot;line&quot;: null,
+      &quot;qualname&quot;: &quot;dynamic_func&quot;,
+      &quot;source_role&quot;: &quot;generated callable; no source text&quot;
+    },
+    {
+      &quot;path&quot;: &quot;/usr/local/python3.12.13/lib/python3.12/site-packages/triton/runtime/jit.py&quot;,
+      &quot;line&quot;: 650,
+      &quot;qualname&quot;: &quot;JITFunction.run → cached kernel.run (native callable)&quot;,
+      &quot;source_role&quot;: &quot;Python callsite, not native implementation&quot;
+    }
+  ],
+  &quot;metadata&quot;: {
+    &quot;target_step&quot;: 32,
+    &quot;target_rope_ordinal&quot;: 0,
+    &quot;cache_before&quot;: [
+      [
+        &quot;0&quot;,
+        &quot;*bf16i32*bf16i32nonenonenonenone*bf16i32*i64i32DDDDDDDDDDD1((14, 2, 64, 64, 64, 64, True, True), {&#x27;debug&#x27;: False})&quot;,
+        &quot;8c45b973ab055b95f87a04d234a6753b9ebbe5cc9dab802620fd8df581808135&quot;
+      ],
+      [
+        &quot;0&quot;,
+        &quot;*bf16i32*bf16i32nonenonenonenone*bf16i32*i64i32DDDDDDDDDDDD((14, 2, 64, 64, 64, 64, True, True), {&#x27;debug&#x27;: False})&quot;,
+        &quot;b30e5898d7d6ce2fa95d6c43d6819515dd2b70f6d705c8917872c63528fe1727&quot;
+      ],
+      [
+        &quot;0&quot;,
+        &quot;*bf16i32*bf16i32nonenonenonenone*bf16i32*i64i32DDDDDDDDDDDN((14, 2, 64, 64, 64, 64, True, True), {&#x27;debug&#x27;: False})&quot;,
+        &quot;2ef91852ce19b094acfe1a55e8897a66c26cb935067d8d5cfd7d5d1af75e0116&quot;
+      ]
+    ],
+    &quot;launchers&quot;: [
+      {
+        &quot;name&quot;: &quot;_triton_rope_aiv&quot;,
+        &quot;hash&quot;: &quot;b30e5898d7d6ce2fa95d6c43d6819515dd2b70f6d705c8917872c63528fe1727&quot;,
+        &quot;launcher_type&quot;: &quot;ascend.NPULauncher&quot;,
+        &quot;native_body_source&quot;: &quot;not captured; only callable boundary and profiler events&quot;
+      },
+      {
+        &quot;name&quot;: &quot;_triton_rope_aiv&quot;,
+        &quot;hash&quot;: &quot;2ef91852ce19b094acfe1a55e8897a66c26cb935067d8d5cfd7d5d1af75e0116&quot;,
+        &quot;launcher_type&quot;: &quot;ascend.NPULauncher&quot;,
+        &quot;native_body_source&quot;: &quot;not captured; only callable boundary and profiler events&quot;
+      },
+      {
+        &quot;name&quot;: &quot;_triton_rope_aiv&quot;,
+        &quot;hash&quot;: &quot;8c45b973ab055b95f87a04d234a6753b9ebbe5cc9dab802620fd8df581808135&quot;,
+        &quot;launcher_type&quot;: &quot;ascend.NPULauncher&quot;,
+        &quot;native_body_source&quot;: &quot;not captured; only callable boundary and profiler events&quot;
+      }
+    ],
+    &quot;limits&quot;: &quot;Only one warmed eager RoPE invocation. Timings include observation cost; native internals are not Python stacks.&quot;,
+    &quot;selected_calls&quot;: 1,
+    &quot;restored&quot;: true,
+    &quot;cache_after&quot;: [
+      [
+        &quot;0&quot;,
+        &quot;*bf16i32*bf16i32nonenonenonenone*bf16i32*i64i32DDDDDDDDDDD1((14, 2, 64, 64, 64, 64, True, True), {&#x27;debug&#x27;: False})&quot;,
+        &quot;8c45b973ab055b95f87a04d234a6753b9ebbe5cc9dab802620fd8df581808135&quot;
+      ],
+      [
+        &quot;0&quot;,
+        &quot;*bf16i32*bf16i32nonenonenonenone*bf16i32*i64i32DDDDDDDDDDDD((14, 2, 64, 64, 64, 64, True, True), {&#x27;debug&#x27;: False})&quot;,
+        &quot;b30e5898d7d6ce2fa95d6c43d6819515dd2b70f6d705c8917872c63528fe1727&quot;
+      ],
+      [
+        &quot;0&quot;,
+        &quot;*bf16i32*bf16i32nonenonenonenone*bf16i32*i64i32DDDDDDDDDDDN((14, 2, 64, 64, 64, 64, True, True), {&#x27;debug&#x27;: False})&quot;,
+        &quot;2ef91852ce19b094acfe1a55e8897a66c26cb935067d8d5cfd7d5d1af75e0116&quot;
+      ]
+    ],
+    &quot;cache_unchanged&quot;: true
+  }
+}</pre></details>
+<p><a href="forward.json">完整机器可读证据</a> · <a href="../comparison/index.html">上一轮 eager / graph 对照</a></p></html>

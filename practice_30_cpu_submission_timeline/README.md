@@ -6,6 +6,8 @@
 
 现已补充可切换的 **eager / PIECEWISE graph**：[对照报告](report/comparison/index.html) · [graph 发现](GRAPH_RESULTS.md) · [graph 时间线](report/graph-01/index.html) · [新 eager 对照](report/eager-02/index.html)。无 profiler 参考请求中位数分别为 725.879 / 291.454 ms；graph 每个 decode 有 25 次 replay，26 条物理 stream 上未观察到计算重叠。以下首轮链接保留原始 eager 结果。
 
+继续细分：[forward 报告](report/forward/index.html) · [细分结论](FORWARD_RESULTS.md) · [单次 RoPE 时间线](report/forward/rope.svg)。已有 trace 显示 graph forward 的图外 attention Host 范围约占 66.6%；新增观测只放大一次 eager RoPE，明确记录插桩扰动。
+
 ## 怎么读
 
 1. 先看完整请求的 64 个步骤：prefill 一次，decode 63 次。
@@ -31,6 +33,8 @@ Qwen2.5-0.5B-Instruct，BF16，单 Ascend910B2C，eager；固定 10-token 输入
 | [exact_join.py](exact_join.py) | 从 Practice 26 复用精确 flow/CSV 关联，适配本轮输入并导出队列证据 |
 | [render.py](render.py) / [viewer.html](viewer.html) | 生成两张 SVG 和离线可点击报告 |
 | [compare.py](compare.py) | 核对跨模式的版本、源码、配置、输入和输出，生成同口径对照 |
+| [forward_analysis.py](forward_analysis.py) | 按同线程包含关系整理 forward 的非重叠范围、保留余量，再关联单次 RoPE |
+| [forward_observer.py](forward_observer.py) | 只选中 eager decode 32 的第一次 RoPE，临时包装 Python/JIT/binder/native 四段并恢复 |
 
 `child.py` 只复用 Practice 28 的 `make_engine`、配置、prompt 和 `generate`，不调用其 capsule、快照恢复或双流提交。模型计算由原生引擎驱动。
 
@@ -132,3 +136,27 @@ tar -xzf practice_30_cpu_submission_timeline/results/round-01-archive/evidence.t
 本地离线工具使用 Python 3.10+；远端采集使用安装的 Python 3.12。归档内离线分析不需要 NPU。原始 trace 的 profiler 停止提示保留在日志中，本轮通过完整 kernel CSV 覆盖和身份关联检查核验用于结论的数据。
 
 本轮没有采集完整 Python/C++ 栈、OS `sched_switch` 或硬件计数器。尚未覆盖的时间保留“未归因”，下一轮再针对具体空隙加细粒度观察。
+
+## Forward 内部细分复现
+
+第一部分使用已有 `eager-02` / `graph-01` 证据整理占比；第二部分只增加一次选中的 RoPE 调用，不扩展 workload 矩阵。两部分使用不同轮次，不把耗时相减归因。
+
+```bash
+cd /data/tianchi
+python -B practice_30_cpu_submission_timeline/run.py \
+  --mode eager --forward-detail \
+  --output practice_30_cpu_submission_timeline/results/new-forward
+python -B practice_30_cpu_submission_timeline/analyze.py \
+  practice_30_cpu_submission_timeline/results/new-forward
+python -B practice_30_cpu_submission_timeline/forward_analysis.py \
+  --eager practice_30_cpu_submission_timeline/results/eager-02 \
+  --graph practice_30_cpu_submission_timeline/results/graph-01 \
+  --detail practice_30_cpu_submission_timeline/results/new-forward \
+  --output practice_30_cpu_submission_timeline/report/new-forward
+```
+
+`--forward-detail` 只允许 eager；reference/recovery 不安装细分包装，diagnostic 在两次预热后安装，只有 step 32 的第一次 RoPE 记录四个 scope。包装全在实验子进程内，缓存须已加载，结束检查绑定和缓存指纹恢复。其余 RoPE 只经过选择条件检查，不新增计时 scope。已有设备等待、stream 和算子参数不改；本轮增加三个 Triton 源码文件的审计，总计 30 个。
+
+离线复核可解压 `results/{eager-02,graph-01,forward-01}-archive/evidence.tgz` 到同一临时目录，再使用 `forward-01/analysis_tools/practice_30_cpu_submission_timeline/forward_analysis.py`，将三个参数指向各自解压目录。新归档包含冻结的采集代码和最终离线分析脚本，无需 NPU。
+
+占比使用 profiler 的 forward 范围；调用内部双时钟另列。微秒级多层 scope 的扰动已显式报告，不能用新插桩调用的百分比外推生产耗时。
