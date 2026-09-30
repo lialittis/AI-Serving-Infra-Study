@@ -361,6 +361,17 @@ checks and native recovery pass. See [guide](practice_29_prequeued_streams/READM
 [results](practice_29_prequeued_streams/RESULTS.md), and
 [the measured dual-stream timeline](practice_29_prequeued_streams/figures/gated-dual.svg).
 
+## Practice 30: explain the CPU timeline of one native request
+
+Trace one BF16 eager request through scheduling, input preparation, forward,
+sampling and result recovery. Correlate 1,089 phase scopes, 21,512 queue pairs
+and all 19,298 compute tasks. Separate wall time from submission-thread CPU time;
+the observed CANN synchronization calls total only 0.836 ms in a roughly 936 ms
+diagnostic request. Keep profiling overhead and unresolved intervals explicit.
+See [guide](practice_30_cpu_submission_timeline/README.md),
+[findings](practice_30_cpu_submission_timeline/RESULTS.md), and
+[offline CPU timeline](practice_30_cpu_submission_timeline/report/index.html).
+
 ## References
 
 See the [reference index](references/README.md) for CUDA multi-stream use cases,
