@@ -1,0 +1,236 @@
+[
+  {
+    "trial": {
+      "case": "same32",
+      "strategy": "parallel",
+      "order": "AB",
+      "profile": "plain",
+      "label": "gated-dual",
+      "gated": true,
+      "timing": {
+        "wall_us": 39651.7,
+        "release_to_join_us": 4309.64,
+        "rescued": false,
+        "gate_log": [
+          {
+            "action": "wait_enqueued",
+            "monotonic_ns": 5002300953065016,
+            "index": 0
+          },
+          {
+            "action": "wait_enqueued",
+            "monotonic_ns": 5002300953074003,
+            "index": 1
+          },
+          {
+            "action": "python_submit_return",
+            "monotonic_ns": 5002300970786882,
+            "role": "A"
+          },
+          {
+            "action": "python_submit_return",
+            "monotonic_ns": 5002300984965418,
+            "role": "B"
+          },
+          {
+            "action": "query",
+            "monotonic_ns": 5002300985000853,
+            "status": [
+              1,
+              1
+            ]
+          },
+          {
+            "action": "both_python_submissions_returned",
+            "monotonic_ns": 5002300985003129,
+            "closed_status": [
+              1,
+              1
+            ]
+          },
+          {
+            "action": "release_begin",
+            "monotonic_ns": 5002300985041469,
+            "rescue": false
+          },
+          {
+            "action": "release_return",
+            "monotonic_ns": 5002300985061190,
+            "rescue": false
+          }
+        ],
+        "python_prequeue": true
+      }
+    },
+    "compute_tasks": 576,
+    "stream_ids": [
+      "43",
+      "44"
+    ],
+    "overlap_us": "3949.499",
+    "device_compute_span_us": "4211.608",
+    "branch_timing": {
+      "order": "AB",
+      "second_host_start_minus_first_compute_end_us": "-18362.029",
+      "second_compute_start_minus_first_compute_end_us": "-4107.044",
+      "second_native_submit_minus_first_compute_end_us": "-18266.359"
+    },
+    "forward_cpu_synchronizations": [],
+    "provenance": {
+      "trace": "profiler/fe561f2e72a8_1406892_20260930080541913_ascend_pt/ASCEND_PROFILER_OUTPUT/trace_view.json",
+      "trace_sha256": "9f5ef0bd3de5bcd783d540081f8a26886a819cda263e360b300e1caa930fac56",
+      "csv": "profiler/fe561f2e72a8_1406892_20260930080541913_ascend_pt/ASCEND_PROFILER_OUTPUT/kernel_details.csv",
+      "csv_sha256": "d41ca36f6af6b3958feab1a8dc6fe7b0fb3f543cbf58d7fda105fa09f68ec660"
+    },
+    "gate_evidence": {
+      "release_native_us": "1790755542026153.255",
+      "gate_waits": 2,
+      "independent_release_streams": [
+        "12"
+      ],
+      "all_compute_after_wait": true,
+      "kernel_launches_returned_before_release": 576,
+      "kernel_launches_total": 576,
+      "python_forward_returned_before_release": true,
+      "last_launch_return_minus_release_us": "-247.591",
+      "rescued": false,
+      "prequeue_proven": true,
+      "pending_by_role": {},
+      "evidence": "frozen Notify ownership + exact CANN/device flows and CSV identities; no timestamp-only role assignment"
+    }
+  },
+  {
+    "trial": {
+      "case": "same32",
+      "strategy": "serial",
+      "order": "AB",
+      "profile": "plain",
+      "label": "gated-single",
+      "gated": true,
+      "timing": {
+        "wall_us": 37101.462,
+        "release_to_join_us": 5056.344,
+        "rescued": false,
+        "gate_log": [
+          {
+            "action": "wait_enqueued",
+            "monotonic_ns": 5002296757343863,
+            "index": 0
+          },
+          {
+            "action": "python_submit_return",
+            "monotonic_ns": 5002296772968811,
+            "role": "A"
+          },
+          {
+            "action": "python_submit_return",
+            "monotonic_ns": 5002296786309848,
+            "role": "B"
+          },
+          {
+            "action": "query",
+            "monotonic_ns": 5002296786337076,
+            "status": [
+              1
+            ]
+          },
+          {
+            "action": "both_python_submissions_returned",
+            "monotonic_ns": 5002296786339943,
+            "closed_status": [
+              1
+            ]
+          },
+          {
+            "action": "release_begin",
+            "monotonic_ns": 5002296786375027,
+            "rescue": false
+          },
+          {
+            "action": "release_return",
+            "monotonic_ns": 5002296786393255,
+            "rescue": false
+          }
+        ],
+        "python_prequeue": true
+      }
+    },
+    "compute_tasks": 576,
+    "stream_ids": [
+      "44"
+    ],
+    "overlap_us": "0",
+    "device_compute_span_us": "4985.460",
+    "branch_timing": {
+      "order": "AB",
+      "second_host_start_minus_first_compute_end_us": "-15908.260",
+      "second_compute_start_minus_first_compute_end_us": "0.200",
+      "second_native_submit_minus_first_compute_end_us": "-15816.740"
+    },
+    "forward_cpu_synchronizations": [],
+    "provenance": {
+      "trace": "profiler/fe561f2e72a8_1406892_20260930080537719_ascend_pt/ASCEND_PROFILER_OUTPUT/trace_view.json",
+      "trace_sha256": "023e43504a7de69063caec765cd306a5cb51486ad63a3778260c7640e0e3fcaf",
+      "csv": "profiler/fe561f2e72a8_1406892_20260930080537719_ascend_pt/ASCEND_PROFILER_OUTPUT/kernel_details.csv",
+      "csv_sha256": "79023a9343f794f36fc3bb4ca6cb6298f7ccc4943b4922c144ce5d778aaa9c35"
+    },
+    "gate_evidence": {
+      "release_native_us": "1790755537827486.742",
+      "gate_waits": 1,
+      "independent_release_streams": [
+        "12"
+      ],
+      "all_compute_after_wait": true,
+      "kernel_launches_returned_before_release": 576,
+      "kernel_launches_total": 576,
+      "python_forward_returned_before_release": true,
+      "last_launch_return_minus_release_us": "-228.430",
+      "rescued": false,
+      "prequeue_proven": true,
+      "pending_by_role": {},
+      "evidence": "frozen Notify ownership + exact CANN/device flows and CSV identities; no timestamp-only role assignment"
+    }
+  },
+  {
+    "trial": {
+      "case": "same32",
+      "strategy": "parallel",
+      "order": "AB",
+      "profile": "plain",
+      "label": "normal-dual",
+      "gated": false,
+      "timing": {
+        "wall_us": 29052.752,
+        "ready_us": {
+          "A": 15329.999923706055,
+          "B": 28662.860870361328
+        },
+        "host_submission_us": {
+          "A": 15584.823,
+          "B": 28922.414
+        }
+      }
+    },
+    "compute_tasks": 576,
+    "stream_ids": [
+      "43",
+      "44"
+    ],
+    "overlap_us": "0",
+    "device_compute_span_us": "28263.150",
+    "branch_timing": {
+      "order": "AB",
+      "second_host_start_minus_first_compute_end_us": "248.912",
+      "second_compute_start_minus_first_compute_end_us": "349.994",
+      "second_native_submit_minus_first_compute_end_us": "337.891"
+    },
+    "forward_cpu_synchronizations": [],
+    "provenance": {
+      "trace": "profiler/fe561f2e72a8_1406892_20260930080533513_ascend_pt/ASCEND_PROFILER_OUTPUT/trace_view.json",
+      "trace_sha256": "5a145cddc18ac08254dc8b88217d13b05754eb3de5f95ea12565ed8e49c09039",
+      "csv": "profiler/fe561f2e72a8_1406892_20260930080533513_ascend_pt/ASCEND_PROFILER_OUTPUT/kernel_details.csv",
+      "csv_sha256": "70cc81f15739228107cd2e5c9e50539fe51f685d897bc0a096b200eae2e00cfa"
+    },
+    "gate_evidence": null
+  }
+]

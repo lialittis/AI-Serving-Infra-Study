@@ -350,6 +350,17 @@ See [guide](practice_27_vision_metadata/README.md),
 [findings](practice_27_vision_metadata/RESULTS.md), and
 [interactive comparisons](practice_27_vision_metadata/report/index.html).
 
+## Practice 29: prequeue native decode work behind a device gate
+
+Keep the first round small: one BF16 eager decode case and three schedules.
+A CANN Notify gate lets all 576 native kernel launches return before release.
+Two compute streams then overlap for 3.949 ms, while normal dual-stream submission
+still shows no overlap. Three unprofiled samples show shorter post-release
+completion but longer total execution than normal submission. All 28 branch
+checks and native recovery pass. See [guide](practice_29_prequeued_streams/README.md),
+[results](practice_29_prequeued_streams/RESULTS.md), and
+[the measured dual-stream timeline](practice_29_prequeued_streams/figures/gated-dual.svg).
+
 ## References
 
 See the [reference index](references/README.md) for CUDA multi-stream use cases,
