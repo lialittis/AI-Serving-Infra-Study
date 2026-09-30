@@ -1,0 +1,329 @@
+{
+  "input": {
+    "device": "npu:0",
+    "dtype": "torch.int32",
+    "shape": [
+      20
+    ],
+    "stride": [
+      1
+    ],
+    "ptr": 20616935636992,
+    "storage_ptr": 20616935636992,
+    "offset": 0,
+    "bytes": 80,
+    "pinned": null
+  },
+  "cpu_input": {
+    "device": "cpu",
+    "dtype": "torch.int32",
+    "shape": [
+      20
+    ],
+    "stride": [
+      1
+    ],
+    "ptr": 583393920,
+    "storage_ptr": 583393920,
+    "offset": 0,
+    "bytes": 80,
+    "pinned": false
+  },
+  "stream_handle": 553467440,
+  "main_tid": 1439203,
+  "scopes": [
+    {
+      "id": 1,
+      "name": "observed_tolist",
+      "begin_ns": 5022873614725593,
+      "end_ns": 5022873615616323
+    },
+    {
+      "id": 2,
+      "name": "triple_tolist",
+      "begin_ns": 5022873615625503,
+      "end_ns": 5022873615933606
+    },
+    {
+      "id": 3,
+      "name": "single_reused",
+      "begin_ns": 5022873615938913,
+      "end_ns": 5022873615949051
+    },
+    {
+      "id": 4,
+      "name": "explicit_cpu_copy",
+      "begin_ns": 5022873615951643,
+      "end_ns": 5022873616052752
+    },
+    {
+      "id": 5,
+      "name": "cpu_list_construction",
+      "begin_ns": 5022873616055410,
+      "end_ns": 5022873616056461
+    }
+  ],
+  "dispatch": [
+    {
+      "op": "aten._to_copy.default",
+      "kwargs": {
+        "dtype": "torch.int32",
+        "layout": "torch.strided",
+        "device": "cpu"
+      },
+      "input": {
+        "device": "npu:0",
+        "dtype": "torch.int32",
+        "shape": [
+          20
+        ],
+        "stride": [
+          1
+        ],
+        "ptr": 20616935636992,
+        "storage_ptr": 20616935636992,
+        "offset": 0,
+        "bytes": 80,
+        "pinned": null
+      },
+      "output": {
+        "device": "cpu",
+        "dtype": "torch.int32",
+        "shape": [
+          20
+        ],
+        "stride": [
+          1
+        ],
+        "ptr": 583400576,
+        "storage_ptr": 583400576,
+        "offset": 0,
+        "bytes": 80,
+        "pinned": false
+      },
+      "begin_ns": 5022873615251883,
+      "end_ns": 5022873615332099
+    },
+    {
+      "op": "aten._to_copy.default",
+      "kwargs": {
+        "dtype": "torch.int32",
+        "layout": "torch.strided",
+        "device": "cpu"
+      },
+      "input": {
+        "device": "npu:0",
+        "dtype": "torch.int32",
+        "shape": [
+          20
+        ],
+        "stride": [
+          1
+        ],
+        "ptr": 20616935636992,
+        "storage_ptr": 20616935636992,
+        "offset": 0,
+        "bytes": 80,
+        "pinned": null
+      },
+      "output": {
+        "device": "cpu",
+        "dtype": "torch.int32",
+        "shape": [
+          20
+        ],
+        "stride": [
+          1
+        ],
+        "ptr": 583395648,
+        "storage_ptr": 583395648,
+        "offset": 0,
+        "bytes": 80,
+        "pinned": false
+      },
+      "begin_ns": 5022873615982031,
+      "end_ns": 5022873616015903
+    }
+  ],
+  "acl": [
+    {
+      "scope": 1,
+      "op": 1,
+      "begin_ns": 5022873615310852,
+      "end_ns": 5022873615313055,
+      "tid": 1439203,
+      "src": 0,
+      "dst": 0,
+      "bytes": 0,
+      "kind": 0,
+      "stream": 553467440,
+      "result": 0
+    },
+    {
+      "scope": 1,
+      "op": 2,
+      "begin_ns": 5022873615313745,
+      "end_ns": 5022873615327214,
+      "tid": 1439203,
+      "src": 20616935636992,
+      "dst": 583400576,
+      "bytes": 80,
+      "kind": 2,
+      "stream": 0,
+      "result": 0
+    },
+    {
+      "scope": 2,
+      "op": 1,
+      "begin_ns": 5022873615633670,
+      "end_ns": 5022873615634870,
+      "tid": 1439203,
+      "src": 0,
+      "dst": 0,
+      "bytes": 0,
+      "kind": 0,
+      "stream": 553467440,
+      "result": 0
+    },
+    {
+      "scope": 2,
+      "op": 2,
+      "begin_ns": 5022873615896392,
+      "end_ns": 5022873615908757,
+      "tid": 1439203,
+      "src": 20616935636992,
+      "dst": 583395648,
+      "bytes": 80,
+      "kind": 2,
+      "stream": 0,
+      "result": 0
+    },
+    {
+      "scope": 2,
+      "op": 1,
+      "begin_ns": 5022873615914449,
+      "end_ns": 5022873615915025,
+      "tid": 1439203,
+      "src": 0,
+      "dst": 0,
+      "bytes": 0,
+      "kind": 0,
+      "stream": 553467440,
+      "result": 0
+    },
+    {
+      "scope": 2,
+      "op": 2,
+      "begin_ns": 5022873615915254,
+      "end_ns": 5022873615921867,
+      "tid": 1439203,
+      "src": 20616935636992,
+      "dst": 583395648,
+      "bytes": 80,
+      "kind": 2,
+      "stream": 0,
+      "result": 0
+    },
+    {
+      "scope": 2,
+      "op": 1,
+      "begin_ns": 5022873615924846,
+      "end_ns": 5022873615925102,
+      "tid": 1439203,
+      "src": 0,
+      "dst": 0,
+      "bytes": 0,
+      "kind": 0,
+      "stream": 553467440,
+      "result": 0
+    },
+    {
+      "scope": 2,
+      "op": 2,
+      "begin_ns": 5022873615925331,
+      "end_ns": 5022873615931404,
+      "tid": 1439203,
+      "src": 20616935636992,
+      "dst": 583395648,
+      "bytes": 80,
+      "kind": 2,
+      "stream": 0,
+      "result": 0
+    },
+    {
+      "scope": 3,
+      "op": 1,
+      "begin_ns": 5022873615940924,
+      "end_ns": 5022873615941162,
+      "tid": 1439203,
+      "src": 0,
+      "dst": 0,
+      "bytes": 0,
+      "kind": 0,
+      "stream": 553467440,
+      "result": 0
+    },
+    {
+      "scope": 3,
+      "op": 2,
+      "begin_ns": 5022873615941396,
+      "end_ns": 5022873615947419,
+      "tid": 1439203,
+      "src": 20616935636992,
+      "dst": 583395648,
+      "bytes": 80,
+      "kind": 2,
+      "stream": 0,
+      "result": 0
+    },
+    {
+      "scope": 4,
+      "op": 1,
+      "begin_ns": 5022873615995991,
+      "end_ns": 5022873615996346,
+      "tid": 1439203,
+      "src": 0,
+      "dst": 0,
+      "bytes": 0,
+      "kind": 0,
+      "stream": 553467440,
+      "result": 0
+    },
+    {
+      "scope": 4,
+      "op": 2,
+      "begin_ns": 5022873615996488,
+      "end_ns": 5022873616013001,
+      "tid": 1439203,
+      "src": 20616935636992,
+      "dst": 583395648,
+      "bytes": 80,
+      "kind": 2,
+      "stream": 0,
+      "result": 0
+    }
+  ],
+  "outputs_equal": true,
+  "host_copy_values": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    18,
+    19,
+    20
+  ]
+}

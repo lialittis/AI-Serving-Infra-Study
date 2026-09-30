@@ -4,6 +4,10 @@
 
 关于分段长度的定义、实际 Sub kernel 和后续的同步/D2H、编译提交/地址、结果校验问题，见独立的 [lengths 专题笔记](LENGTHS.md)。
 
+待办 1 已完成：[`.tolist()` 调用链与 D2H 实测](TOLIST_D2H.md)，包含实际 NPU `_to_copy` / OpApi 路径、内存地址及三次读取和一次复用的对照。
+
+待办 2 已完成可观测层分析：[Sub 的 CPU 提交、设备执行与内存地址](SUB_EXECUTION.md)，包含首次/预热对照、执行缓存、已有 ELF 加载、主机队列和 slice 地址。待办 1 另补充了 [non_blocking 的作用与消费前等待](TOLIST_D2H.md#7-non_blocking-能改变什么)。
+
 本实验说明：**两个任务没有数据依赖、也已经分配到不同 stream，仍可能因为 CPU 在提交途中等待 NPU，无法产生计算重叠。同步的位置与等待时间，比同步 API 的条数更能解释这种现象。**
 
 本文范围是 Ascend 910B2C 上 Qwen2.5-VL-3B-Instruct 的 HF eager 阶段实验：BF16、单图视觉输入、32 个视觉 block、一个 CPU 提交线程。结论对应本次固定实现和采集路径，不直接代表其他 attention 后端、graph replay 或 vLLM 在线调度。
@@ -214,13 +218,13 @@ CPU：临时 tensor 的数值缓冲区 → 逐元素转换 → Python list[int]
 
 ### 8.3 本次阻塞拷贝为什么要等 stream
 
-[torch-npu v2.10.0 CopyKernel.cpp](https://github.com/Ascend/pytorch/blob/v2.10.0/torch_npu/csrc/aten/common/CopyKernel.cpp) 的普通连续、相同 dtype 的 D2H 路径，进入 `copy_between_host_and_device`。其阻塞分支先取得当前 NPU stream，调用 `AclrtSynchronizeStreamWithTimeout`，再执行 `AclrtMemcpyWithModeSwitch`，方向为 `ACL_MEMCPY_DEVICE_TO_HOST`。
+2026-09-30 的[专项核验](TOLIST_D2H.md)修正了最初的函数定位：实际安装版本采用 [CopyKernelOpApi.cpp](tolist_probe/sources/CopyKernelOpApi.cpp) 的 `copy_between_host_and_device_opapi`，阻塞分支直接调用 `aclrtSynchronizeStream`，再执行 `AclrtMemcpyWithModeSwitch`，方向为 `ACL_MEMCPY_DEVICE_TO_HOST`。`CopyKernel.cpp` 中调用 `AclrtSynchronizeStreamWithTimeout` 的实现是另一条路径，不能拿它替代本次实际调用点。
 
 这意味着调用线程先等当前 stream 的已提交工作完成，随后进行 D2H，最后才能读主机副本并生成列表。等待范围由 stream 顺序决定，不是只针对这几个长度值进行最小依赖等待；它可能包含在前面排队的 Q/K/V 投影等计算。其他 stream 上已经提交的任务不必因此停止。
 
 PyTorch 在转 CPU 的这段代码中释放了 GIL，但当前调用线程仍要等函数返回。本实验只有一个 CPU 提交线程，所以释放 GIL 并不会自动让它转去提交另一请求。
 
-这里使用公开的同版本源码解释机制，并用下述真实 trace 确认“先同步、后 memcpy”的调用顺序；没有声称已对安装的 torch-npu 二进制做逐指令审计。当前 trace 也没有完整记录 host buffer 是否 pinned、运行时内部暂存区或物理传输引擎，不能进一步断言具体 DMA 通道或内部复制次数。
+下述 P27 trace 确认“先同步、后 memcpy”的调用顺序；后续专项诊断进一步核对了安装版本、dispatcher、二进制调用点和 D2H 源/目标地址，并实测临时 CPU tensor 未 pinned。CANN/驱动内部暂存区和物理传输引擎仍不可见，不能进一步断言具体 DMA 通道或内部复制次数。
 
 ### 8.4 真实 trace：80 字节也会触发等待
 

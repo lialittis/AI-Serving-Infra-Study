@@ -1,6 +1,6 @@
 # 笔记：视觉 attention 的 lengths、Sub 计算与后续研究问题
 
-记录日期：2026-09-30。本文整理 Practice 27 中已经确认的概念和证据，并保留三个待研究方向；没有新增远端实验。同步操作的整体分布见[同步分析笔记](README.md)。
+记录日期：2026-09-30。本文整理 Practice 27 中已经确认的概念和证据，并记录三个研究方向。待办 1、2 已完成可观测层的源码核验与独立小数组实验，见 [tolist / D2H 报告](TOLIST_D2H.md)和 [Sub 提交与内存报告](SUB_EXECUTION.md)；待办 3 尚未开展专项实验。同步操作的整体分布见[同步分析笔记](README.md)。
 
 实验范围：Qwen2.5-VL-3B-Instruct、HF eager、Ascend 910B2C、torch / torch-npu 2.10、Transformers 5.5.4。以下设备归属和调用链对应这次固定实现，不能直接推广到所有 attention 后端。
 
@@ -114,33 +114,39 @@ P27 的 `lengths` 变体在 CPU 上预计算相同长度并保存为 tuple，绕
 
 ## 5. 待研究问题 1：tolist 同步在哪，如何连接到 D2H
 
+**状态：2026-09-30 完成当前可观测层的分析和独立小数组对照。** 详细结论、实际源码行号、内存与二进制证据见 [TOLIST_D2H.md](TOLIST_D2H.md)。驱动内部暂存/DMA 等不可见项在报告中保留边界。
+
 **问题：** `.tolist()` 触发的同步具体在哪一层？Python、PyTorch、torch-npu 和 CANN 之间怎样连接到 D2H？
 
-已确认的基础：PyTorch `tensor_to_list` 对非 CPU tensor 转到 CPU，然后生成 Python 对象；本次 trace 可见 `aten::to → aten::_to_copy → aten::copy_`，copy 区间内先同步、后 `aclrtMemcpy`。公开 torch-npu 2.10 源码的普通阻塞 D2H 路径先等待当前 stream，再调用拷贝封装。详见[同步笔记第 8 节](README.md#8-深入-tolist内存拷贝与主机等待)。
+已确认：PyTorch `tensor_to_list` 对非 CPU tensor 转到 CPU，然后生成 Python 对象；实际 NPU `_to_copy` 和 OpApi copy 路径中，`non_blocking=false`，CPU 副本未 pinned，先 `aclrtSynchronizeStream`、后 `aclrtMemcpy`。原笔记引用的 WithTimeout 是另一条拷贝实现，已按实际路径修正。
 
-- [ ] 对照实际安装版本，补全从 `Tensor.tolist` Python 绑定、`tensor_to_list`、ATen dispatcher 到 NPU copy 实现的函数/文件/行号；记录源码与二进制版本。
-- [ ] 跟踪 `toBackend(CPU)` 的参数传递，确认 `non_blocking`、目标分配器和 D2H 方向在哪一层确定。
-- [ ] 核对同步封装、主机任务队列和 CANN runtime 的关系，确定等待的是哪条 stream、哪些已提交任务；区分 Python 提交线程与运行时 worker。
-- [ ] 记录源/目标缓冲区、大小、是否使用 pinned host memory、是否有中间缓冲；若底层不可见，明确标为未知，不由 API 名称推断硬件 DMA 路径。
-- [ ] 分别测量同步等待、memcpy API、Python list 构造；验证重复三次 `.tolist()` 与只做一次再复用的区别。
+- [x] 对照实际安装版本，补全从 `Tensor.tolist` Python 绑定、`tensor_to_list`、ATen dispatcher 到 NPU copy 实现的函数/文件/行号；记录源码与二进制版本。
+- [x] 跟踪 `toBackend(CPU)` 的参数传递，确认 `non_blocking`、目标分配器和 D2H 方向在哪一层确定。
+- [x] 核对同步封装、主机任务队列和 CANN runtime 的关系，确定等待的是哪条 stream、哪些已提交任务；区分 Python 提交线程与运行时 worker。队列排空没有单独计时。
+- [x] 记录源/目标缓冲区、大小、是否使用 pinned host memory、是否有中间缓冲；框架到 CANN 的地址已核对，驱动内部缓冲/DMA 保留未知。
+- [x] 分别记录同步与 memcpy API 耗时，以 CPU-only 调用测量列表构造路径，并完成三次 `.tolist()` 与一次复用对照；不将测量解释为精确拆分同一调用的所有成本。
+
+补充说明：`non_blocking` 对显式异步 D2H 有作用，但 `.tolist()` 内部固定为 false，且 CPU 消费异步结果前仍需等待，见 [non_blocking 分析](TOLIST_D2H.md#7-non_blocking-能改变什么)。
 
 预期产物：带源码位置的完整调用链，以及同一次调用中同步、D2H 和主机消费的时间线。不要将公开同版本源码等同于已验证的安装二进制内部执行轨迹。
 
 ## 6. 待研究问题 2：Sub 是否阻塞 CPU，怎样编译、提交及寻址
 
+**状态：2026-09-30 已完成可观测层专项实验。** 见 [Sub 提交、执行与内存地址报告](SUB_EXECUTION.md)。CANN 描述符、两段 API、缓存和 runtime/device 时间线已核对；最终设备参数块和内部 tiling 仍不可见。
+
 **问题：** Sub 是否完全阻塞 CPU？从 host 到 device 怎样完成编译和传递？输入输出地址是什么，kernel 如何被调用？
 
 已有实例证明主机 Sub 返回早于设备执行，但“阻塞 CPU”需要具体到线程和阶段：调用线程可能进行参数检查、内存分配或提交；运行时 worker 可能处理队列；设备可能尚在执行之前的任务。这几种状态不能合称为“CPU 被完全阻塞”。
 
-- [ ] 对比仅 Sub、Sub 后立即 `.tolist()`、Sub 后显式同步三组，分别记录主机调用返回、设备 kernel 起止和等待区间；比较首次与预热后的调用。
-- [ ] 跟踪 `aten::sub → aclnnSub → runtime launch → 设备任务`，说明参数检查、输出分配、算子选择、tiling、workspace、入队与实际 launch 分别在哪发生。
-- [ ] 确认该路径使用已有 kernel 二进制、首次加载/缓存，还是涉及即时编译；若有编译，记录发生位置和产物。不要预设“每次 Python 减法都会在设备上编译”。
-- [ ] 采集父 tensor、两个 slice、Sub 输出的 `data_ptr()`、storage 基址、`storage_offset()`、shape、stride、dtype、有效字节范围、分配和释放时间。
-- [ ] 对连续 int32 一维父 tensor，验证 `[1:]` 的逻辑起点是否较父 tensor 前移 4 字节、`[:-1]` 是否共享基址。区分正常切片偏移与错误地址；地址按同一次运行解释，不把虚拟地址当作物理地址。
-- [ ] 对照 kernel 实际参数或可获得的运行时记录，确认是否直接使用切片地址、是否插入格式转换/连续化临时 tensor，以及输出、workspace 的存储关系。
-- [ ] 将线程、队列、stream、task ID 和内存生命周期关联起来，区分算子 launch 的输入输出地址与 Python 对象身份。
+- [x] 对比仅 Sub、Sub 后立即 `.tolist()`、Sub 后显式同步三组，分别记录主机调用返回、设备 kernel 起止和等待区间；比较首次与预热后的调用。
+- [x] 跟踪 `aten::sub → aclnnSub → runtime launch → 设备任务`，说明参数检查、输出分配、算子选择、workspace、入队与实际 launch 分别在哪发生；tiling 仅定位到 CANN 执行准备边界，具体函数和选中 key 未捕获。
+- [x] 确认该路径使用已有 kernel 二进制、首次加载/缓存，还是涉及即时编译；若有编译，记录发生位置和产物。不要预设“每次 Python 减法都会在设备上编译”。
+- [x] 采集父 tensor、两个 slice、Sub 输出的 `data_ptr()`、storage 基址、`storage_offset()`、shape、stride、dtype、有效字节范围，以及输出创建/释放引用和同步区间；未跟踪底层 malloc/free 的精确时刻。
+- [x] 对连续 int32 一维父 tensor，验证 `[1:]` 的逻辑起点是否较父 tensor 向高地址移动 4 字节、`[:-1]` 是否共享基址。区分正常切片偏移与错误地址；地址按同一次运行解释，不把虚拟地址当作物理地址。
+- [x] 对照 kernel 实际参数或可获得的运行时记录，核对 storage 基址 + offset 描述符及输出、workspace 的关系；未见额外转换 kernel，最终设备参数块未解码。
+- [x] 将线程、队列、stream、task ID 和内存生命周期关联起来，区分算子 launch 的输入输出地址与 Python 对象身份。
 
-预期产物：一次 Sub 的主机—设备时序图和输入/输出内存表，分别标明计算、排队、等待、地址别名及编译/加载证据。当前 P27 的完整长度数组指针和 kernel 参数尚未据此恢复。
+已产出：一次 Sub 的主机—设备时序图、三组首次/后续对照、输入/输出内存表、现有 ELF 加载与执行缓存证据。以上是隔离小数组实验；P27 全模型的完整长度数组指针和最终 kernel 参数尚未据此恢复。
 
 ## 7. 待研究问题 3：偏移、溢出、翻转与校验
 
@@ -162,7 +168,7 @@ P27 已做源码哈希/实现契约检查、grid 与像素形状匹配检查，�
 
 ## 8. 证据入口与建议研究顺序
 
-建议按 **问题 1 → 问题 2 → 问题 3** 推进：先明确主机等待与 D2H 的链路，再恢复 Sub 的提交和内存关系，最后针对这些关系设计校验。这里仅登记后续问题，未执行新增测试。
+建议按 **问题 1 → 问题 2 → 问题 3** 推进：问题 1、2 已完成可观测层分析并链接独立报告；下一步针对这些关系设计问题 3 的范围、数值和访存校验，问题 3 尚未执行专项实验。
 
 | 证据 | 位置 |
 |---|---|

@@ -1,0 +1,951 @@
+{
+  "api": {
+    "rows": [
+      {
+        "index": 0,
+        "cache_hit": false,
+        "host_sub_us": 47972.833,
+        "phase2_start_after_python_return_us": -1889.027,
+        "phase2_tid": 1460996,
+        "output_ptr": 20616935637504
+      },
+      {
+        "index": 1,
+        "cache_hit": true,
+        "host_sub_us": 34.134,
+        "phase2_start_after_python_return_us": 5.236,
+        "phase2_tid": 1460996,
+        "output_ptr": 20616935638016
+      },
+      {
+        "index": 2,
+        "cache_hit": true,
+        "host_sub_us": 10.475,
+        "phase2_start_after_python_return_us": 3.447,
+        "phase2_tid": 1460996,
+        "output_ptr": 20616935638528
+      },
+      {
+        "index": 3,
+        "cache_hit": true,
+        "host_sub_us": 10.063,
+        "phase2_start_after_python_return_us": 3.385,
+        "phase2_tid": 1460996,
+        "output_ptr": 20616935639040
+      },
+      {
+        "index": 4,
+        "cache_hit": true,
+        "host_sub_us": 9.948,
+        "phase2_start_after_python_return_us": 3.626,
+        "phase2_tid": 1460996,
+        "output_ptr": 20616935639552
+      },
+      {
+        "index": 5,
+        "cache_hit": true,
+        "host_sub_us": 7.707,
+        "phase2_start_after_python_return_us": 3.675,
+        "phase2_tid": 1460996,
+        "output_ptr": 20616935640064
+      }
+    ],
+    "phase1_us": 45362.654,
+    "main_tid": 1460894,
+    "stream_handle": 140012811935744,
+    "lifetime": {
+      "input_and_outputs_retained_until_join": true,
+      "initial_allocated": 512,
+      "allocated_with_outputs": 3584,
+      "allocated_after_drop": 512,
+      "last_reference_drop_begin_ns": 5026487140196658,
+      "release_joined_ns": 5026487313221785
+    }
+  },
+  "timings": {
+    "sub": {
+      "sub": {
+        "first_us": 47380.118,
+        "warm_median_us": 6.274,
+        "warm_n": 100
+      },
+      "consume": {
+        "first_us": 47382.938,
+        "warm_median_us": 6.3815,
+        "warm_n": 100
+      },
+      "outer_join": {
+        "first_us": 19.257,
+        "warm_median_us": 23.674,
+        "warm_n": 100
+      },
+      "total": {
+        "first_us": 47404.632,
+        "warm_median_us": 30.573,
+        "warm_n": 100
+      }
+    },
+    "tolist": {
+      "sub": {
+        "first_us": 47485.489,
+        "warm_median_us": 6.1884999999999994,
+        "warm_n": 100
+      },
+      "consume": {
+        "first_us": 47563.069,
+        "warm_median_us": 38.828500000000005,
+        "warm_n": 100
+      },
+      "outer_join": {
+        "first_us": 11.306,
+        "warm_median_us": 1.7934999999999999,
+        "warm_n": 100
+      },
+      "total": {
+        "first_us": 47578.134,
+        "warm_median_us": 40.958,
+        "warm_n": 100
+      }
+    },
+    "sync": {
+      "sub": {
+        "first_us": 51531.973,
+        "warm_median_us": 6.218,
+        "warm_n": 100
+      },
+      "consume": {
+        "first_us": 51572.261,
+        "warm_median_us": 32.6235,
+        "warm_n": 100
+      },
+      "outer_join": {
+        "first_us": 3.141,
+        "warm_median_us": 2.2525,
+        "warm_n": 100
+      },
+      "total": {
+        "first_us": 51579.509,
+        "warm_median_us": 35.042500000000004,
+        "warm_n": 100
+      }
+    }
+  },
+  "profiles": {
+    "sub": [
+      {
+        "label": "SUB/sub/0",
+        "aten": {
+          "trace_index": 2,
+          "name": "aten::sub",
+          "tid": 1463815,
+          "ts_us": "1790780186624150.928",
+          "dur_us": 47591.079
+        },
+        "launch": {
+          "trace_index": 139,
+          "name": "Node@launch",
+          "tid": 1463917,
+          "ts_us": "1790780186671428.409",
+          "dur_us": 128.816
+        },
+        "dequeue": {
+          "trace_index": 61,
+          "name": "Dequeue@aclnnSub",
+          "tid": 1463917,
+          "ts_us": "1790780186669795.075",
+          "dur_us": 1866.743
+        },
+        "queue_flow_id": 0,
+        "kernel": {
+          "trace_index": 93,
+          "name": "aclnnSub_SubAiCore_Sub",
+          "tid": 44,
+          "ts_us": "1790780186671556.152",
+          "dur_us": 3.8
+        },
+        "stream": 44,
+        "task_id": 0,
+        "block_num": 1,
+        "aten_return_before_kernel_start": false,
+        "scope_runtime": []
+      },
+      {
+        "label": "SUB/sub/1",
+        "aten": {
+          "trace_index": 12,
+          "name": "aten::sub",
+          "tid": 1463815,
+          "ts_us": "1790780186672093.843",
+          "dur_us": 28.364
+        },
+        "launch": {
+          "trace_index": 146,
+          "name": "Node@launch",
+          "tid": 1463917,
+          "ts_us": "1790780186672136.445",
+          "dur_us": 5.373
+        },
+        "dequeue": {
+          "trace_index": 63,
+          "name": "Dequeue@aclnnSub",
+          "tid": 1463917,
+          "ts_us": "1790780186672127.124",
+          "dur_us": 37.429
+        },
+        "queue_flow_id": 1,
+        "kernel": {
+          "trace_index": 95,
+          "name": "aclnnSub_SubAiCore_Sub",
+          "tid": 44,
+          "ts_us": "1790780186672155.056",
+          "dur_us": 3.6
+        },
+        "stream": 44,
+        "task_id": 1,
+        "block_num": 1,
+        "aten_return_before_kernel_start": true,
+        "scope_runtime": []
+      },
+      {
+        "label": "SUB/sub/2",
+        "aten": {
+          "trace_index": 22,
+          "name": "aten::sub",
+          "tid": 1463815,
+          "ts_us": "1790780186672227.953",
+          "dur_us": 9.615
+        },
+        "launch": {
+          "trace_index": 153,
+          "name": "Node@launch",
+          "tid": 1463917,
+          "ts_us": "1790780186672242.339",
+          "dur_us": 2.496
+        },
+        "dequeue": {
+          "trace_index": 65,
+          "name": "Dequeue@aclnnSub",
+          "tid": 1463917,
+          "ts_us": "1790780186672241.090",
+          "dur_us": 4.728
+        },
+        "queue_flow_id": 2,
+        "kernel": {
+          "trace_index": 97,
+          "name": "aclnnSub_SubAiCore_Sub",
+          "tid": 44,
+          "ts_us": "1790780186672257.600",
+          "dur_us": 1.7
+        },
+        "stream": 44,
+        "task_id": 2,
+        "block_num": 1,
+        "aten_return_before_kernel_start": true,
+        "scope_runtime": []
+      },
+      {
+        "label": "SUB/sub/3",
+        "aten": {
+          "trace_index": 32,
+          "name": "aten::sub",
+          "tid": 1463815,
+          "ts_us": "1790780186672303.750",
+          "dur_us": 11.848
+        },
+        "launch": {
+          "trace_index": 160,
+          "name": "Node@launch",
+          "tid": 1463917,
+          "ts_us": "1790780186672320.297",
+          "dur_us": 2.647
+        },
+        "dequeue": {
+          "trace_index": 67,
+          "name": "Dequeue@aclnnSub",
+          "tid": 1463917,
+          "ts_us": "1790780186672319.282",
+          "dur_us": 4.206
+        },
+        "queue_flow_id": 3,
+        "kernel": {
+          "trace_index": 99,
+          "name": "aclnnSub_SubAiCore_Sub",
+          "tid": 44,
+          "ts_us": "1790780186672334.343",
+          "dur_us": 3.26
+        },
+        "stream": 44,
+        "task_id": 3,
+        "block_num": 1,
+        "aten_return_before_kernel_start": true,
+        "scope_runtime": []
+      },
+      {
+        "label": "SUB/sub/4",
+        "aten": {
+          "trace_index": 42,
+          "name": "aten::sub",
+          "tid": 1463815,
+          "ts_us": "1790780186672381.143",
+          "dur_us": 7.751
+        },
+        "launch": {
+          "trace_index": 167,
+          "name": "Node@launch",
+          "tid": 1463917,
+          "ts_us": "1790780186672393.713",
+          "dur_us": 2.922
+        },
+        "dequeue": {
+          "trace_index": 69,
+          "name": "Dequeue@aclnnSub",
+          "tid": 1463917,
+          "ts_us": "1790780186672392.718",
+          "dur_us": 4.448
+        },
+        "queue_flow_id": 4,
+        "kernel": {
+          "trace_index": 101,
+          "name": "aclnnSub_SubAiCore_Sub",
+          "tid": 44,
+          "ts_us": "1790780186672406.526",
+          "dur_us": 1.56
+        },
+        "stream": 44,
+        "task_id": 4,
+        "block_num": 1,
+        "aten_return_before_kernel_start": true,
+        "scope_runtime": []
+      },
+      {
+        "label": "SUB/sub/5",
+        "aten": {
+          "trace_index": 52,
+          "name": "aten::sub",
+          "tid": 1463815,
+          "ts_us": "1790780186672447.607",
+          "dur_us": 9.851
+        },
+        "launch": {
+          "trace_index": 174,
+          "name": "Node@launch",
+          "tid": 1463917,
+          "ts_us": "1790780186672462.156",
+          "dur_us": 2.538
+        },
+        "dequeue": {
+          "trace_index": 71,
+          "name": "Dequeue@aclnnSub",
+          "tid": 1463917,
+          "ts_us": "1790780186672461.333",
+          "dur_us": 4.185
+        },
+        "queue_flow_id": 5,
+        "kernel": {
+          "trace_index": 103,
+          "name": "aclnnSub_SubAiCore_Sub",
+          "tid": 44,
+          "ts_us": "1790780186672476.249",
+          "dur_us": 3.22
+        },
+        "stream": 44,
+        "task_id": 5,
+        "block_num": 1,
+        "aten_return_before_kernel_start": true,
+        "scope_runtime": []
+      }
+    ],
+    "tolist": [
+      {
+        "label": "SUB/tolist/0",
+        "aten": {
+          "trace_index": 2,
+          "name": "aten::sub",
+          "tid": 1464218,
+          "ts_us": "1790780198481476.769",
+          "dur_us": 47641.561
+        },
+        "launch": {
+          "trace_index": 175,
+          "name": "Node@launch",
+          "tid": 1464320,
+          "ts_us": "1790780198528758.810",
+          "dur_us": 136.521
+        },
+        "dequeue": {
+          "trace_index": 97,
+          "name": "Dequeue@aclnnSub",
+          "tid": 1464320,
+          "ts_us": "1790780198527100.790",
+          "dur_us": 1916.744
+        },
+        "queue_flow_id": 0,
+        "kernel": {
+          "trace_index": 129,
+          "name": "aclnnSub_SubAiCore_Sub",
+          "tid": 44,
+          "ts_us": "1790780198528898.437",
+          "dur_us": 3.36
+        },
+        "stream": 44,
+        "task_id": 0,
+        "block_num": 1,
+        "aten_return_before_kernel_start": false,
+        "scope_runtime": [
+          {
+            "trace_index": 177,
+            "name": "AscendCL@aclrtSynchronizeStream",
+            "tid": 1464218,
+            "ts_us": "1790780198529236.416",
+            "dur_us": 14.007
+          },
+          {
+            "trace_index": 178,
+            "name": "AscendCL@aclrtMemcpy",
+            "tid": 1464218,
+            "ts_us": "1790780198529252.154",
+            "dur_us": 27.37
+          }
+        ]
+      },
+      {
+        "label": "SUB/tolist/1",
+        "aten": {
+          "trace_index": 18,
+          "name": "aten::sub",
+          "tid": 1464218,
+          "ts_us": "1790780198529539.614",
+          "dur_us": 42.651
+        },
+        "launch": {
+          "trace_index": 184,
+          "name": "Node@launch",
+          "tid": 1464320,
+          "ts_us": "1790780198529595.442",
+          "dur_us": 5.852
+        },
+        "dequeue": {
+          "trace_index": 99,
+          "name": "Dequeue@aclnnSub",
+          "tid": 1464320,
+          "ts_us": "1790780198529587.401",
+          "dur_us": 39.119
+        },
+        "queue_flow_id": 1,
+        "kernel": {
+          "trace_index": 131,
+          "name": "aclnnSub_SubAiCore_Sub",
+          "tid": 44,
+          "ts_us": "1790780198529615.165",
+          "dur_us": 3.301
+        },
+        "stream": 44,
+        "task_id": 1,
+        "block_num": 1,
+        "aten_return_before_kernel_start": true,
+        "scope_runtime": [
+          {
+            "trace_index": 186,
+            "name": "AscendCL@aclrtSynchronizeStream",
+            "tid": 1464218,
+            "ts_us": "1790780198529634.155",
+            "dur_us": 4.124
+          },
+          {
+            "trace_index": 187,
+            "name": "AscendCL@aclrtMemcpy",
+            "tid": 1464218,
+            "ts_us": "1790780198529638.674",
+            "dur_us": 8.456
+          }
+        ]
+      },
+      {
+        "label": "SUB/tolist/2",
+        "aten": {
+          "trace_index": 34,
+          "name": "aten::sub",
+          "tid": 1464218,
+          "ts_us": "1790780198529716.894",
+          "dur_us": 9.741
+        },
+        "launch": {
+          "trace_index": 193,
+          "name": "Node@launch",
+          "tid": 1464320,
+          "ts_us": "1790780198529732.039",
+          "dur_us": 3.542
+        },
+        "dequeue": {
+          "trace_index": 101,
+          "name": "Dequeue@aclnnSub",
+          "tid": 1464320,
+          "ts_us": "1790780198529730.799",
+          "dur_us": 5.77
+        },
+        "queue_flow_id": 2,
+        "kernel": {
+          "trace_index": 133,
+          "name": "aclnnSub_SubAiCore_Sub",
+          "tid": 44,
+          "ts_us": "1790780198529747.911",
+          "dur_us": 1.7
+        },
+        "stream": 44,
+        "task_id": 2,
+        "block_num": 1,
+        "aten_return_before_kernel_start": true,
+        "scope_runtime": [
+          {
+            "trace_index": 195,
+            "name": "AscendCL@aclrtSynchronizeStream",
+            "tid": 1464218,
+            "ts_us": "1790780198529739.645",
+            "dur_us": 15.768
+          },
+          {
+            "trace_index": 196,
+            "name": "AscendCL@aclrtMemcpy",
+            "tid": 1464218,
+            "ts_us": "1790780198529755.889",
+            "dur_us": 7.63
+          }
+        ]
+      },
+      {
+        "label": "SUB/tolist/3",
+        "aten": {
+          "trace_index": 50,
+          "name": "aten::sub",
+          "tid": 1464218,
+          "ts_us": "1790780198529811.983",
+          "dur_us": 7.965
+        },
+        "launch": {
+          "trace_index": 202,
+          "name": "Node@launch",
+          "tid": 1464320,
+          "ts_us": "1790780198529824.772",
+          "dur_us": 2.649
+        },
+        "dequeue": {
+          "trace_index": 103,
+          "name": "Dequeue@aclnnSub",
+          "tid": 1464320,
+          "ts_us": "1790780198529823.958",
+          "dur_us": 4.26
+        },
+        "queue_flow_id": 3,
+        "kernel": {
+          "trace_index": 135,
+          "name": "aclnnSub_SubAiCore_Sub",
+          "tid": 44,
+          "ts_us": "1790780198529839.554",
+          "dur_us": 3.32
+        },
+        "stream": 44,
+        "task_id": 3,
+        "block_num": 1,
+        "aten_return_before_kernel_start": true,
+        "scope_runtime": [
+          {
+            "trace_index": 204,
+            "name": "AscendCL@aclrtSynchronizeStream",
+            "tid": 1464218,
+            "ts_us": "1790780198529829.691",
+            "dur_us": 19.425
+          },
+          {
+            "trace_index": 205,
+            "name": "AscendCL@aclrtMemcpy",
+            "tid": 1464218,
+            "ts_us": "1790780198529849.386",
+            "dur_us": 7.431
+          }
+        ]
+      },
+      {
+        "label": "SUB/tolist/4",
+        "aten": {
+          "trace_index": 66,
+          "name": "aten::sub",
+          "tid": 1464218,
+          "ts_us": "1790780198529900.329",
+          "dur_us": 10.856
+        },
+        "launch": {
+          "trace_index": 211,
+          "name": "Node@launch",
+          "tid": 1464320,
+          "ts_us": "1790780198529916.060",
+          "dur_us": 2.912
+        },
+        "dequeue": {
+          "trace_index": 105,
+          "name": "Dequeue@aclnnSub",
+          "tid": 1464320,
+          "ts_us": "1790780198529915.083",
+          "dur_us": 4.442
+        },
+        "queue_flow_id": 4,
+        "kernel": {
+          "trace_index": 137,
+          "name": "aclnnSub_SubAiCore_Sub",
+          "tid": 44,
+          "ts_us": "1790780198529930.718",
+          "dur_us": 1.68
+        },
+        "stream": 44,
+        "task_id": 4,
+        "block_num": 1,
+        "aten_return_before_kernel_start": true,
+        "scope_runtime": [
+          {
+            "trace_index": 213,
+            "name": "AscendCL@aclrtSynchronizeStream",
+            "tid": 1464218,
+            "ts_us": "1790780198529922.560",
+            "dur_us": 16.279
+          },
+          {
+            "trace_index": 214,
+            "name": "AscendCL@aclrtMemcpy",
+            "tid": 1464218,
+            "ts_us": "1790780198529939.408",
+            "dur_us": 6.953
+          }
+        ]
+      },
+      {
+        "label": "SUB/tolist/5",
+        "aten": {
+          "trace_index": 82,
+          "name": "aten::sub",
+          "tid": 1464218,
+          "ts_us": "1790780198529989.904",
+          "dur_us": 7.294
+        },
+        "launch": {
+          "trace_index": 220,
+          "name": "Node@launch",
+          "tid": 1464320,
+          "ts_us": "1790780198530001.964",
+          "dur_us": 2.602
+        },
+        "dequeue": {
+          "trace_index": 107,
+          "name": "Dequeue@aclnnSub",
+          "tid": 1464320,
+          "ts_us": "1790780198530001.103",
+          "dur_us": 4.011
+        },
+        "queue_flow_id": 5,
+        "kernel": {
+          "trace_index": 139,
+          "name": "aclnnSub_SubAiCore_Sub",
+          "tid": 44,
+          "ts_us": "1790780198530016.901",
+          "dur_us": 3.701
+        },
+        "stream": 44,
+        "task_id": 5,
+        "block_num": 1,
+        "aten_return_before_kernel_start": true,
+        "scope_runtime": [
+          {
+            "trace_index": 222,
+            "name": "AscendCL@aclrtSynchronizeStream",
+            "tid": 1464218,
+            "ts_us": "1790780198530007.969",
+            "dur_us": 19.561
+          },
+          {
+            "trace_index": 223,
+            "name": "AscendCL@aclrtMemcpy",
+            "tid": 1464218,
+            "ts_us": "1790780198530027.949",
+            "dur_us": 6.769
+          }
+        ]
+      }
+    ],
+    "sync": [
+      {
+        "label": "SUB/sync/0",
+        "aten": {
+          "trace_index": 2,
+          "name": "aten::sub",
+          "tid": 1464620,
+          "ts_us": "1790780210312600.317",
+          "dur_us": 47049.039
+        },
+        "launch": {
+          "trace_index": 139,
+          "name": "Node@launch",
+          "tid": 1464722,
+          "ts_us": "1790780210359357.946",
+          "dur_us": 117.042
+        },
+        "dequeue": {
+          "trace_index": 61,
+          "name": "Dequeue@aclnnSub",
+          "tid": 1464722,
+          "ts_us": "1790780210357810.207",
+          "dur_us": 1762.989
+        },
+        "queue_flow_id": 0,
+        "kernel": {
+          "trace_index": 93,
+          "name": "aclnnSub_SubAiCore_Sub",
+          "tid": 44,
+          "ts_us": "1790780210359473.939",
+          "dur_us": 3.7
+        },
+        "stream": 44,
+        "task_id": 0,
+        "block_num": 1,
+        "aten_return_before_kernel_start": false,
+        "scope_runtime": [
+          {
+            "trace_index": 141,
+            "name": "AscendCL@aclrtSynchronizeStreamWithTimeout",
+            "tid": 1464620,
+            "ts_us": "1790780210359680.414",
+            "dur_us": 12.472
+          }
+        ]
+      },
+      {
+        "label": "SUB/sync/1",
+        "aten": {
+          "trace_index": 12,
+          "name": "aten::sub",
+          "tid": 1464620,
+          "ts_us": "1790780210359989.329",
+          "dur_us": 27.516
+        },
+        "launch": {
+          "trace_index": 147,
+          "name": "Node@launch",
+          "tid": 1464722,
+          "ts_us": "1790780210360030.328",
+          "dur_us": 5.169
+        },
+        "dequeue": {
+          "trace_index": 63,
+          "name": "Dequeue@aclnnSub",
+          "tid": 1464722,
+          "ts_us": "1790780210360021.724",
+          "dur_us": 37.519
+        },
+        "queue_flow_id": 1,
+        "kernel": {
+          "trace_index": 95,
+          "name": "aclnnSub_SubAiCore_Sub",
+          "tid": 44,
+          "ts_us": "1790780210360047.362",
+          "dur_us": 3.38
+        },
+        "stream": 44,
+        "task_id": 1,
+        "block_num": 1,
+        "aten_return_before_kernel_start": true,
+        "scope_runtime": [
+          {
+            "trace_index": 149,
+            "name": "AscendCL@aclrtSynchronizeStreamWithTimeout",
+            "tid": 1464620,
+            "ts_us": "1790780210360067.926",
+            "dur_us": 4.027
+          }
+        ]
+      },
+      {
+        "label": "SUB/sync/2",
+        "aten": {
+          "trace_index": 22,
+          "name": "aten::sub",
+          "tid": 1464620,
+          "ts_us": "1790780210360138.323",
+          "dur_us": 8.414
+        },
+        "launch": {
+          "trace_index": 155,
+          "name": "Node@launch",
+          "tid": 1464722,
+          "ts_us": "1790780210360151.648",
+          "dur_us": 2.625
+        },
+        "dequeue": {
+          "trace_index": 65,
+          "name": "Dequeue@aclnnSub",
+          "tid": 1464722,
+          "ts_us": "1790780210360150.565",
+          "dur_us": 4.515
+        },
+        "queue_flow_id": 2,
+        "kernel": {
+          "trace_index": 97,
+          "name": "aclnnSub_SubAiCore_Sub",
+          "tid": 44,
+          "ts_us": "1790780210360164.047",
+          "dur_us": 1.7
+        },
+        "stream": 44,
+        "task_id": 2,
+        "block_num": 1,
+        "aten_return_before_kernel_start": true,
+        "scope_runtime": [
+          {
+            "trace_index": 157,
+            "name": "AscendCL@aclrtSynchronizeStreamWithTimeout",
+            "tid": 1464620,
+            "ts_us": "1790780210360159.183",
+            "dur_us": 13.335
+          }
+        ]
+      },
+      {
+        "label": "SUB/sync/3",
+        "aten": {
+          "trace_index": 32,
+          "name": "aten::sub",
+          "tid": 1464620,
+          "ts_us": "1790780210360221.379",
+          "dur_us": 8.989
+        },
+        "launch": {
+          "trace_index": 163,
+          "name": "Node@launch",
+          "tid": 1464722,
+          "ts_us": "1790780210360234.896",
+          "dur_us": 2.585
+        },
+        "dequeue": {
+          "trace_index": 67,
+          "name": "Dequeue@aclnnSub",
+          "tid": 1464722,
+          "ts_us": "1790780210360234.111",
+          "dur_us": 3.926
+        },
+        "queue_flow_id": 3,
+        "kernel": {
+          "trace_index": 99,
+          "name": "aclnnSub_SubAiCore_Sub",
+          "tid": 44,
+          "ts_us": "1790780210360245.990",
+          "dur_us": 3.42
+        },
+        "stream": 44,
+        "task_id": 3,
+        "block_num": 1,
+        "aten_return_before_kernel_start": true,
+        "scope_runtime": [
+          {
+            "trace_index": 165,
+            "name": "AscendCL@aclrtSynchronizeStreamWithTimeout",
+            "tid": 1464620,
+            "ts_us": "1790780210360245.934",
+            "dur_us": 9.32
+          }
+        ]
+      },
+      {
+        "label": "SUB/sync/4",
+        "aten": {
+          "trace_index": 42,
+          "name": "aten::sub",
+          "tid": 1464620,
+          "ts_us": "1790780210360297.710",
+          "dur_us": 7.106
+        },
+        "launch": {
+          "trace_index": 171,
+          "name": "Node@launch",
+          "tid": 1464722,
+          "ts_us": "1790780210360309.681",
+          "dur_us": 2.963
+        },
+        "dequeue": {
+          "trace_index": 69,
+          "name": "Dequeue@aclnnSub",
+          "tid": 1464722,
+          "ts_us": "1790780210360308.697",
+          "dur_us": 4.531
+        },
+        "queue_flow_id": 4,
+        "kernel": {
+          "trace_index": 101,
+          "name": "aclnnSub_SubAiCore_Sub",
+          "tid": 44,
+          "ts_us": "1790780210360321.753",
+          "dur_us": 1.52
+        },
+        "stream": 44,
+        "task_id": 4,
+        "block_num": 1,
+        "aten_return_before_kernel_start": true,
+        "scope_runtime": [
+          {
+            "trace_index": 173,
+            "name": "AscendCL@aclrtSynchronizeStreamWithTimeout",
+            "tid": 1464620,
+            "ts_us": "1790780210360321.113",
+            "dur_us": 8.157
+          }
+        ]
+      },
+      {
+        "label": "SUB/sync/5",
+        "aten": {
+          "trace_index": 52,
+          "name": "aten::sub",
+          "tid": 1464620,
+          "ts_us": "1790780210360373.578",
+          "dur_us": 13.54
+        },
+        "launch": {
+          "trace_index": 179,
+          "name": "Node@launch",
+          "tid": 1464722,
+          "ts_us": "1790780210360392.687",
+          "dur_us": 2.699
+        },
+        "dequeue": {
+          "trace_index": 71,
+          "name": "Dequeue@aclnnSub",
+          "tid": 1464722,
+          "ts_us": "1790780210360391.341",
+          "dur_us": 4.715
+        },
+        "queue_flow_id": 5,
+        "kernel": {
+          "trace_index": 103,
+          "name": "aclnnSub_SubAiCore_Sub",
+          "tid": 44,
+          "ts_us": "1790780210360404.316",
+          "dur_us": 3.26
+        },
+        "stream": 44,
+        "task_id": 5,
+        "block_num": 1,
+        "aten_return_before_kernel_start": true,
+        "scope_runtime": [
+          {
+            "trace_index": 181,
+            "name": "AscendCL@aclrtSynchronizeStreamWithTimeout",
+            "tid": 1464620,
+            "ts_us": "1790780210360403.650",
+            "dur_us": 10.251
+          }
+        ]
+      }
+    ]
+  },
+  "loaded_binary": {
+    "path": "/usr/local/Ascend/cann-9.0.0/opp/built-in/op_impl/ai_core/tbe//kernel/ascend910b/ops_legacy/sub/Sub_9342884c99c006e21fc9d5d9260b8bef_high_performance.o",
+    "size": 262656,
+    "sha256": "832be2b4750b56ae3f7a86029bed8b2ac2a3d28d18d3ce80c14fcdc1c2466429",
+    "file_type": "/usr/local/Ascend/cann-9.0.0/opp/built-in/op_impl/ai_core/tbe//kernel/ascend910b/ops_legacy/sub/Sub_9342884c99c006e21fc9d5d9260b8bef_high_performance.o: ELF 64-bit LSB executable, *unknown arch 0x1029* version 1 (SYSV), statically linked, not stripped"
+  }
+}
