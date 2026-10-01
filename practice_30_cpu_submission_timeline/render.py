@@ -71,7 +71,7 @@ def svg(view,title):
       '<style>text{font:13px sans-serif;fill:#203545}.title{font-size:21px;font-weight:bold}</style>',
       '<rect width="100%" height="100%" fill="#f6f8fb"/>',
       f'<text x="20" y="30" class="title">{escape(title)}</text>',
-      '<text x="20" y="54">实测墙钟区间；CPU 调用范围不等于持续运行。蓝：forward；红：结果回收/同步；绿：设备计算。</text>']
+      '<text x="20" y="54">实测墙钟；CPU 范围不等于持续运行。蓝：forward/logits；紫：调度/下发；绿：准备/计算；红：回收/同步；橙：CPU 采样、NPU 拷贝/控制。</text>']
     for row,label in enumerate(view['labels']):
         y=80+row*46;out.append(f'<text x="20" y="{y+16}">{escape(label)}</text><path d="M215 {y+26}H1280" stroke="#d5dce5"/>')
     for b in view['bars']:

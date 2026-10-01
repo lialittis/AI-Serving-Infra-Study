@@ -8,7 +8,7 @@
 <div id="error">正在加载离线证据…</div><div id="metrics" class="metrics"></div>
 <section><h2>1. 完整请求：64 个生成步骤</h2><p class="muted">第 0 步是 prefill，之后是 63 个 decode。各行可能属于同一线程的不同阶段，不应解释为多个 CPU 线程并行。</p><div class="scroll" id="overview"></div><a href="request.svg">打开独立 SVG</a></section>
 <section><h2>2. 一步怎样下发到设备</h2><label>选择步骤 <select id="step"></select></label><button id="focus32">回到 decode 32</button>
-<div class="legend muted"><span>蓝：forward / logits</span><span>紫：调度 / 下发</span><span>绿：输入准备 / 设备计算</span><span>红：结果回收 / 同步</span></div>
+<div class="legend muted"><span>蓝：forward / logits</span><span>紫：调度 / 下发</span><span>绿：输入准备 / 设备计算</span><span>橙：CPU 采样 / NPU 拷贝与控制任务</span><span>红：结果回收 / 同步</span></div>
 <p id="threads" class="small"></p><div id="timeline" class="scroll"></div><a href="decode32.svg">打开 decode 32 独立 SVG</a>
 <p class="muted">点击方块查看身份、调用阶段和源码。极短事件使用最小可见宽度；其精确时长见详情。CPU 方块表示调用范围，不表示线程一直在运行。</p>
 <div id="examples"></div><div class="detail"><div><h3 id="detail-title">事件详情</h3><div id="detail"></div></div><div><h3>对应源码入口</h3><div id="source"></div></div></div></section>
