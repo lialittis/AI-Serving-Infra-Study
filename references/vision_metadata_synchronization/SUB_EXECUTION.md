@@ -164,4 +164,4 @@ python -m unittest discover -s references/vision_metadata_synchronization/sub_pr
 
 待办 2 已完成到 **PyTorch→CANN 描述符/执行 API→runtime trace→设备 kernel** 的可观测层。尚未恢复最终设备参数块、实际 tiling key、内部缓冲及精确分配释放调用；也未对原全模型所有 Sub 地址作追踪。它们是进一步深挖的边界，不作为“完整 kernel 内存依赖 DAG 已完成”的证据。
 
-下一项仍是 [待办 3](LENGTHS.md#7-待研究问题-3偏移溢出翻转与校验)：独立高精度参考、范围与单调性检查，以及操作数互换/长度错位/溢出等故障注入。本次正常 `[1,…,20]` 对照只验证了基线路径，不能代替异常覆盖实验。
+本次正常 `[1,…,20]` 对照只验证了基线路径。后续于 2026-10-01 完成 [待办 3 的正确性与异常校验](CORRECTNESS.md)，另有 [HTML 报告](correctness_probe/report/index.html)展示 slice 共享存储、偏移和分段对照；最终设备参数块仍未解码。

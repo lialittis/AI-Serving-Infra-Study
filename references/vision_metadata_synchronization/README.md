@@ -8,6 +8,8 @@
 
 待办 2 已完成可观测层分析：[Sub 的 CPU 提交、设备执行与内存地址](SUB_EXECUTION.md)，包含首次/预热对照、执行缓存、已有 ELF 加载、主机队列和 slice 地址。待办 1 另补充了 [non_blocking 的作用与消费前等待](TOLIST_D2H.md#7-non_blocking-能改变什么)。
 
+待办 3 已完成隔离正确性实验：[lengths 校验覆盖笔记](CORRECTNESS.md)和 [交互 HTML 报告](correctness_probe/report/index.html)。包括 26 个样例、slice 地址、错误分段及 int32 溢出被差分掩盖的反例。
+
 本实验说明：**两个任务没有数据依赖、也已经分配到不同 stream，仍可能因为 CPU 在提交途中等待 NPU，无法产生计算重叠。同步的位置与等待时间，比同步 API 的条数更能解释这种现象。**
 
 本文范围是 Ascend 910B2C 上 Qwen2.5-VL-3B-Instruct 的 HF eager 阶段实验：BF16、单图视觉输入、32 个视觉 block、一个 CPU 提交线程。结论对应本次固定实现和采集路径，不直接代表其他 attention 后端、graph replay 或 vLLM 在线调度。

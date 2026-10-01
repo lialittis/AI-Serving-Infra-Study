@@ -1,0 +1,541 @@
+{
+  "case_count": 26,
+  "valid": 12,
+  "injected": 14,
+  "split_counts": {
+    "accepted": 18,
+    "rejected": 4,
+    "skipped": 4
+  },
+  "invalid_split_accepted": [
+    "reverse_lengths",
+    "same_sum",
+    "wrong_count",
+    "duplicate",
+    "changed_boundary",
+    "wrong_origin",
+    "wrap_origin"
+  ],
+  "check_labels": {
+    "pre_int32": "转换前所有边界在 int32 范围",
+    "pre_origin": "转换前首边界为 0",
+    "pre_increasing": "转换前边界严格递增",
+    "pre_terminal": "转换前末边界等于实际序列长度",
+    "source_exact": "转换前边界等于独立参考",
+    "device_boundary_exact": "设备边界等于转换前 Python 整数",
+    "positive": "输出长度全部为正",
+    "count": "输出段数等于参考边界数减 1",
+    "sum": "Python 整数长度总和等于序列长度",
+    "exact": "输出逐元素等于独立参考",
+    "input_unchanged": "父存储（含 guard）未改写",
+    "layout": "实际 view 与预期 offset/stride/范围一致",
+    "no_output_alias": "输出不与父存储重叠"
+  },
+  "rows": [
+    {
+      "id": "baseline",
+      "label": "正常差分",
+      "expect_valid": true,
+      "failed": [],
+      "split": "accepted"
+    },
+    {
+      "id": "offset",
+      "label": "合法非零 offset：前置 3 元素",
+      "expect_valid": true,
+      "failed": [],
+      "split": "accepted"
+    },
+    {
+      "id": "stride2",
+      "label": "合法 stride=2 的 view",
+      "expect_valid": true,
+      "failed": [],
+      "split": "accepted"
+    },
+    {
+      "id": "single",
+      "label": "单个长度 1",
+      "expect_valid": true,
+      "failed": [],
+      "split": "accepted"
+    },
+    {
+      "id": "int32_limit",
+      "label": "合法 int32 最大累计边界",
+      "expect_valid": true,
+      "failed": [],
+      "split": "skipped"
+    },
+    {
+      "id": "swap",
+      "label": "互换 Sub 操作数",
+      "expect_valid": false,
+      "failed": [
+        "positive",
+        "sum",
+        "exact"
+      ],
+      "split": "rejected"
+    },
+    {
+      "id": "reverse_lengths",
+      "label": "颠倒输出顺序",
+      "expect_valid": false,
+      "failed": [
+        "exact"
+      ],
+      "split": "accepted"
+    },
+    {
+      "id": "single_error",
+      "label": "单个长度加 1",
+      "expect_valid": false,
+      "failed": [
+        "sum",
+        "exact"
+      ],
+      "split": "rejected"
+    },
+    {
+      "id": "same_sum",
+      "label": "总和不变的错误分段",
+      "expect_valid": false,
+      "failed": [
+        "exact"
+      ],
+      "split": "accepted"
+    },
+    {
+      "id": "single_bit",
+      "label": "软件注入一个数值 bit 改动",
+      "expect_valid": false,
+      "failed": [
+        "sum",
+        "exact"
+      ],
+      "split": "rejected"
+    },
+    {
+      "id": "wrong_count",
+      "label": "段数减少但总和正确",
+      "expect_valid": false,
+      "failed": [
+        "count",
+        "exact"
+      ],
+      "split": "accepted"
+    },
+    {
+      "id": "duplicate",
+      "label": "未去重的重复边界",
+      "expect_valid": false,
+      "failed": [
+        "pre_increasing",
+        "source_exact",
+        "positive",
+        "exact"
+      ],
+      "split": "accepted"
+    },
+    {
+      "id": "changed_boundary",
+      "label": "合法形状但语义错误的边界",
+      "expect_valid": false,
+      "failed": [
+        "source_exact",
+        "exact"
+      ],
+      "split": "accepted"
+    },
+    {
+      "id": "wrong_origin",
+      "label": "边界整体平移 2，差分不变",
+      "expect_valid": false,
+      "failed": [
+        "pre_origin",
+        "pre_terminal",
+        "source_exact"
+      ],
+      "split": "accepted"
+    },
+    {
+      "id": "reversed_boundary",
+      "label": "颠倒累计边界顺序",
+      "expect_valid": false,
+      "failed": [
+        "pre_origin",
+        "pre_increasing",
+        "pre_terminal",
+        "source_exact",
+        "positive",
+        "sum",
+        "exact"
+      ],
+      "split": "rejected"
+    },
+    {
+      "id": "overflow_cast",
+      "label": "累计边界超 int32，差分可能仍正确",
+      "expect_valid": false,
+      "failed": [
+        "pre_int32",
+        "device_boundary_exact"
+      ],
+      "split": "skipped"
+    },
+    {
+      "id": "overflow_sub",
+      "label": "int32 Sub 正向溢出",
+      "expect_valid": false,
+      "failed": [
+        "pre_origin",
+        "pre_terminal",
+        "positive",
+        "sum",
+        "exact"
+      ],
+      "split": "skipped"
+    },
+    {
+      "id": "underflow_sub",
+      "label": "int32 Sub 负向溢出",
+      "expect_valid": false,
+      "failed": [
+        "pre_origin",
+        "pre_increasing",
+        "pre_terminal",
+        "sum",
+        "exact"
+      ],
+      "split": "skipped"
+    },
+    {
+      "id": "wrap_origin",
+      "label": "边界加 2^32 后窄化，差分与基线相同",
+      "expect_valid": false,
+      "failed": [
+        "pre_int32",
+        "pre_origin",
+        "pre_terminal",
+        "source_exact",
+        "device_boundary_exact"
+      ],
+      "split": "accepted"
+    },
+    {
+      "id": "grid_1_window",
+      "label": "P27 grid=[[1, 12, 18]] / window",
+      "expect_valid": true,
+      "failed": [],
+      "split": "accepted"
+    },
+    {
+      "id": "grid_1_full",
+      "label": "P27 grid=[[1, 12, 18]] / full",
+      "expect_valid": true,
+      "failed": [],
+      "split": "accepted"
+    },
+    {
+      "id": "grid_2_window",
+      "label": "P27 grid=[[1, 26, 38]] / window",
+      "expect_valid": true,
+      "failed": [],
+      "split": "accepted"
+    },
+    {
+      "id": "grid_2_full",
+      "label": "P27 grid=[[1, 26, 38]] / full",
+      "expect_valid": true,
+      "failed": [],
+      "split": "accepted"
+    },
+    {
+      "id": "exact_window",
+      "label": "窗口边界样例 [[1, 8, 8]]",
+      "expect_valid": true,
+      "failed": [],
+      "split": "accepted"
+    },
+    {
+      "id": "edge_window",
+      "label": "窗口边界样例 [[1, 10, 10]]",
+      "expect_valid": true,
+      "failed": [],
+      "split": "accepted"
+    },
+    {
+      "id": "two_frames",
+      "label": "窗口边界样例 [[2, 10, 10]]",
+      "expect_valid": true,
+      "failed": [],
+      "split": "accepted"
+    }
+  ],
+  "framework": [
+    {
+      "id": "alpha_float",
+      "status": "rejected",
+      "error_type": "RuntimeError",
+      "error": "For integral input tensors, argument alpha must not be a floating point number.\n[ERROR] 2026-10-01-16:06:41 (PID:1558771, Device:0, RankID:-1) ERR01002 OPS invalid type"
+    },
+    {
+      "id": "shape_mismatch",
+      "status": "rejected",
+      "error_type": "RuntimeError",
+      "error": "The size of tensor a (3) must match the size of tensor b (2) at non-singleton dimension 0"
+    },
+    {
+      "id": "constructor_int32_overflow",
+      "status": "rejected",
+      "error_type": "RuntimeError",
+      "error": "value cannot be converted to type int32 without overflow"
+    },
+    {
+      "id": "cast_int64_to_int32",
+      "status": "accepted",
+      "value": [
+        -2147483648
+      ]
+    }
+  ],
+  "upstream": {
+    "product_reference": 2147580964,
+    "product_int32": [
+      -2147386332
+    ],
+    "cumulative_reference": [
+      2147483647,
+      2147483649
+    ],
+    "cumsum_int32": [
+      2147483647,
+      -2147483647
+    ],
+    "cumsum_int64": [
+      2147483647,
+      2147483649
+    ]
+  },
+  "model_reference": [
+    {
+      "id": "grid_1_window",
+      "raw_boundaries": [
+        0,
+        64,
+        128,
+        144,
+        176,
+        208,
+        216
+      ],
+      "unique_boundaries": [
+        0,
+        64,
+        128,
+        144,
+        176,
+        208,
+        216
+      ],
+      "reference": [
+        0,
+        64,
+        128,
+        144,
+        176,
+        208,
+        216
+      ],
+      "exact": true
+    },
+    {
+      "id": "grid_1_full",
+      "raw_boundaries": [
+        0,
+        216
+      ],
+      "unique_boundaries": [
+        0,
+        216
+      ],
+      "reference": [
+        0,
+        216
+      ],
+      "exact": true
+    },
+    {
+      "id": "grid_2_window",
+      "raw_boundaries": [
+        0,
+        64,
+        128,
+        192,
+        256,
+        304,
+        368,
+        432,
+        496,
+        560,
+        608,
+        672,
+        736,
+        800,
+        864,
+        912,
+        928,
+        944,
+        960,
+        976,
+        988
+      ],
+      "unique_boundaries": [
+        0,
+        64,
+        128,
+        192,
+        256,
+        304,
+        368,
+        432,
+        496,
+        560,
+        608,
+        672,
+        736,
+        800,
+        864,
+        912,
+        928,
+        944,
+        960,
+        976,
+        988
+      ],
+      "reference": [
+        0,
+        64,
+        128,
+        192,
+        256,
+        304,
+        368,
+        432,
+        496,
+        560,
+        608,
+        672,
+        736,
+        800,
+        864,
+        912,
+        928,
+        944,
+        960,
+        976,
+        988
+      ],
+      "exact": true
+    },
+    {
+      "id": "grid_2_full",
+      "raw_boundaries": [
+        0,
+        988
+      ],
+      "unique_boundaries": [
+        0,
+        988
+      ],
+      "reference": [
+        0,
+        988
+      ],
+      "exact": true
+    },
+    {
+      "id": "exact_window",
+      "raw_boundaries": [
+        0,
+        64,
+        64,
+        64,
+        64
+      ],
+      "unique_boundaries": [
+        0,
+        64
+      ],
+      "reference": [
+        0,
+        64
+      ],
+      "exact": true
+    },
+    {
+      "id": "edge_window",
+      "raw_boundaries": [
+        0,
+        64,
+        80,
+        96,
+        100
+      ],
+      "unique_boundaries": [
+        0,
+        64,
+        80,
+        96,
+        100
+      ],
+      "reference": [
+        0,
+        64,
+        80,
+        96,
+        100
+      ],
+      "exact": true
+    },
+    {
+      "id": "two_frames",
+      "raw_boundaries": [
+        0,
+        64,
+        80,
+        96,
+        100,
+        164,
+        180,
+        196,
+        200
+      ],
+      "unique_boundaries": [
+        0,
+        64,
+        80,
+        96,
+        100,
+        164,
+        180,
+        196,
+        200
+      ],
+      "reference": [
+        0,
+        64,
+        80,
+        96,
+        100,
+        164,
+        180,
+        196,
+        200
+      ],
+      "exact": true
+    }
+  ],
+  "boundary": "Single-stream correctness, injected software faults; not performance, ECC, allocator stress or final device argument decoding."
+}
