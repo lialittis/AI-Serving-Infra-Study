@@ -1,0 +1,133 @@
+torch-npu
+torch_npu/__init__.py:1:__all__ = ["erase_stream", "matmul_checksum", "HiFloat8Tensor"]
+torch_npu/__init__.py:88:from torch_npu.npu.utils import _erase_stream as erase_stream
+torch_npu/npu/utils.py:460:def _erase_stream(tensor, stream):
+torch_npu/npu/utils.py:461:    r"""Remove the tags of the tensor that are used by this stream through the record_stream function.
+torch_npu/npu/utils.py:463:    The memory can be reused between multiple streams. By default, the record_stream is used to mark the memory pool
+torch_npu/npu/utils.py:470:    This api provides the erase_stream capability with memory pool. The memory can be returned in advance by actively
+torch_npu/npu/utils.py:487:    torch_npu._C._npu_eraseStream(tensor=tensor,
+torch_npu/utils/_dynamo.py:345:def fake_record_stream(self, s):
+torch_npu/utils/_dynamo.py:347:    let dynamo trace Tensor.record_stream as this emtpy function,
+torch_npu/utils/_dynamo.py:352:    raise RuntimeError("tensor.record_stream is not supported on torch.compile! "
+torch_npu/utils/_dynamo.py:353:                       "You should write a pass to replace torch.npu.fake_record_stream to an actual function in FX graph "
+torch_npu/utils/_dynamo.py:357:def patch_record_stream():
+torch_npu/utils/_dynamo.py:358:    torch.npu.fake_record_stream = fake_record_stream
+torch_npu/utils/_dynamo.py:360:    def method_record_stream(self, s):
+torch_npu/utils/_dynamo.py:363:            torch.npu.fake_record_stream
+torch_npu/utils/_dynamo.py:366:    torch._dynamo.variables.tensor.TensorVariable.method_record_stream = method_record_stream  
+torch_npu/utils/_dynamo.py:396:    patch_record_stream()
+torch_npu/csrc/npu/Module.cpp:403:        "set_record_stream_fn",
+torch_npu/csrc/npu/Module.cpp:409:            self.set_record_stream_fn(func);
+torch_npu/csrc/npu/Module.cpp:412:        "set_erase_stream_fn",
+torch_npu/csrc/npu/Module.cpp:418:            self.set_erase_stream_fn(func);
+torch_npu/csrc/npu/Module.cpp:1093:PyObject* THNPModule_npu_eraseStream_wrap(PyObject* self, PyObject* args, PyObject* kwargs)
+torch_npu/csrc/npu/Module.cpp:1122:    c10_npu::NPUCachingAllocator::eraseStream(tensor.storage().data_ptr(), stream);
+torch_npu/csrc/npu/Module.cpp:2352:    {"_npu_eraseStream", (PyCFunction)THNPModule_npu_eraseStream_wrap, METH_VARARGS | METH_KEYWORDS, nullptr},
+torch_npu/csrc/core/npu/CachingHostAllocator.cpp:314:    void record_stream(std::optional<std::vector<EventPool::Event>>& events, c10_npu::NPUStream stream) override
+torch_npu/csrc/core/npu/CachingHostAllocator.cpp:730:                    record_stream(events, c10_npu::NPUStream(stream));
+torch_npu/csrc/core/npu/CachingHostAllocator.cpp:935:    void record_stream(std::optional<std::vector<EventPool::Event>>& events, c10_npu::NPUStream stream) override
+torch_npu/csrc/npu/NPUPluggableAllocator.cpp:40:      record_stream_fn_(other.record_stream_fn_),
+torch_npu/csrc/npu/NPUPluggableAllocator.cpp:41:      erase_stream_fn_(other.erase_stream_fn_),
+torch_npu/csrc/npu/NPUPluggableAllocator.cpp:70:void NPUPluggableAllocator::set_record_stream_fn(
+torch_npu/csrc/npu/NPUPluggableAllocator.cpp:71:    std::function<void(void* ptr, c10_npu::NPUStream stream)> record_stream_fn)
+torch_npu/csrc/npu/NPUPluggableAllocator.cpp:73:    record_stream_fn_ = std::move(record_stream_fn);
+torch_npu/csrc/npu/NPUPluggableAllocator.cpp:76:void NPUPluggableAllocator::set_erase_stream_fn(
+torch_npu/csrc/npu/NPUPluggableAllocator.cpp:77:    std::function<void(void* ptr, c10_npu::NPUStream stream)> erase_stream_fn)
+torch_npu/csrc/npu/NPUPluggableAllocator.cpp:79:    erase_stream_fn_ = std::move(erase_stream_fn);
+torch_npu/csrc/npu/NPUPluggableAllocator.cpp:250:void NPUPluggableAllocator::recordStream(
+torch_npu/csrc/npu/NPUPluggableAllocator.cpp:254:    if (record_stream_fn_) {
+torch_npu/csrc/npu/NPUPluggableAllocator.cpp:255:        record_stream_fn_(ptr.get(), stream);
+torch_npu/csrc/npu/NPUPluggableAllocator.cpp:259:void NPUPluggableAllocator::eraseStream(
+torch_npu/csrc/npu/NPUPluggableAllocator.cpp:263:    if (erase_stream_fn_) {
+torch_npu/csrc/npu/NPUPluggableAllocator.cpp:264:        erase_stream_fn_(ptr.get(), stream);
+torch_npu/csrc/npu/NPUPluggableAllocator.cpp:268:void NPUPluggableAllocator::eraseStreamWithBlockPtr(void* block_ptr, c10_npu::NPUStream stream, void* work_ptr)
+torch_npu/csrc/npu/NPUPluggableAllocator.cpp:270:    TORCH_NPU_WARN("NPUPluggableAllocator does not yet support eraseStreamWithBlockPtr. "
+torch_npu/csrc/npu/NPUPluggableAllocator.h:44:    void set_record_stream_fn(
+torch_npu/csrc/npu/NPUPluggableAllocator.h:45:        std::function<void(void* ptr, c10_npu::NPUStream stream)> record_stream_fn);
+torch_npu/csrc/npu/NPUPluggableAllocator.h:46:    void set_erase_stream_fn(
+torch_npu/csrc/npu/NPUPluggableAllocator.h:47:        std::function<void(void* ptr, c10_npu::NPUStream stream)> erase_stream_fn);
+torch_npu/csrc/npu/NPUPluggableAllocator.h:72:    void recordStream(const c10::DataPtr&, streamType stream) override;
+torch_npu/csrc/npu/NPUPluggableAllocator.h:73:    void eraseStream(const c10::DataPtr&, streamType stream) override;
+torch_npu/csrc/npu/NPUPluggableAllocator.h:74:    void eraseStreamWithBlockPtr(void* block_ptr, c10_npu::NPUStream stream, void* work_ptr) override;
+torch_npu/csrc/npu/NPUPluggableAllocator.h:123:    std::function<void(void* ptr, c10_npu::NPUStream stream)> record_stream_fn_;
+torch_npu/csrc/npu/NPUPluggableAllocator.h:124:    std::function<void(void* ptr, c10_npu::NPUStream stream)> erase_stream_fn_;
+torch_npu/csrc/core/npu/impl/NPUGuardImpl.cpp:241:void NPUGuardImpl::recordDataPtrOnStream(const c10::DataPtr &data_ptr, const c10::Stream &stream) const
+torch_npu/csrc/core/npu/impl/NPUGuardImpl.cpp:244:    c10_npu::NPUCachingAllocator::recordStream(data_ptr, npu_stream);
+torch_npu/csrc/core/npu/impl/NPUGuardImpl.h:61:    void recordDataPtrOnStream(const c10::DataPtr &data_ptr, const c10::Stream &stream) const override;
+torch_npu/csrc/distributed/rpc/tensorpipe_npu.cpp:39:        c10_npu::NPUCachingAllocator::recordStream(storage.data_ptr(), stream);
+torch_npu/csrc/distributed/rpc/tensorpipe_npu.cpp:59:        // NPUCachingAllocator will call recordStream accordingly on the current
+torch_npu/csrc/distributed/ProcessGroupLCCL.cpp:244:        c10_npu::NPUCachingAllocator::recordStream(inputs[i].storage().data_ptr(), lcclStream);
+torch_npu/csrc/distributed/ProcessGroupLCCL.cpp:334:                c10_npu::NPUCachingAllocator::recordStream(output.storage().data_ptr(), stream);
+torch_npu/csrc/distributed/ProcessGroupLCCL.cpp:356:                        c10_npu::NPUCachingAllocator::recordStream(outputTensors[i][j].storage().data_ptr(),
+torch_npu/csrc/distributed/ProcessGroupLCCL.cpp:411:                c10_npu::NPUCachingAllocator::recordStream(output.storage().data_ptr(), stream);
+torch_npu/csrc/distributed/ProcessGroupLCCL.cpp:430:                        c10_npu::NPUCachingAllocator::recordStream(inputTensors[i][j].storage().data_ptr(),
+torch_npu/csrc/core/npu/NPUCachingAllocator.h:169:                        // record_stream This event is generated when a free
+torch_npu/csrc/core/npu/NPUCachingAllocator.h:242:    virtual void recordStream(const c10::DataPtr& ptr, c10_npu::NPUStream stream) = 0;
+torch_npu/csrc/core/npu/NPUCachingAllocator.h:243:    virtual void eraseStream(const c10::DataPtr& ptr, c10_npu::NPUStream stream) = 0;
+torch_npu/csrc/core/npu/NPUCachingAllocator.h:244:    virtual void eraseStreamWithBlockPtr(void* block_ptr, c10_npu::NPUStream stream, void* work_ptr) = 0;
+torch_npu/csrc/core/npu/NPUCachingAllocator.h:376:inline void recordStream(const c10::DataPtr& ptr, c10_npu::NPUStream stream)
+torch_npu/csrc/core/npu/NPUCachingAllocator.h:378:    return get()->recordStream(ptr, stream);
+torch_npu/csrc/core/npu/NPUCachingAllocator.h:381:inline void eraseStream(const c10::DataPtr& ptr, c10_npu::NPUStream stream)
+torch_npu/csrc/core/npu/NPUCachingAllocator.h:383:    return get()->eraseStream(ptr, stream);
+torch_npu/csrc/core/npu/NPUCachingAllocator.h:386:inline void eraseStreamWithBlockPtr(void* block_ptr, c10_npu::NPUStream stream, void* work_ptr)
+torch_npu/csrc/core/npu/NPUCachingAllocator.h:388:    return get()->eraseStreamWithBlockPtr(block_ptr, stream, work_ptr);
+torch_npu/csrc/distributed/ProcessGroupHCCL.cpp:251:// can be achieved by calling ::recordStream,
+torch_npu/csrc/distributed/ProcessGroupHCCL.cpp:920:                c10_npu::NPUCachingAllocator::eraseStream(storage->data_ptr(), recorded_inputs_[i].second);
+torch_npu/csrc/distributed/ProcessGroupHCCL.cpp:922:                c10_npu::NPUCachingAllocator::eraseStreamWithBlockPtr(recorded_block_ptr_for_inputs_[i], recorded_inputs_[i].second, static_cast<void*>(this));
+torch_npu/csrc/distributed/ProcessGroupHCCL.cpp:930:                c10_npu::NPUCachingAllocator::eraseStream(storage->data_ptr(), it->second);
+torch_npu/csrc/distributed/ProcessGroupHCCL.cpp:3932:            // Therefore, we warn and fall back to the typical recordStream logic:
+torch_npu/csrc/distributed/ProcessGroupHCCL.cpp:3934:                c10_npu::NPUCachingAllocator::recordStream(inputs[i].storage().data_ptr(), hcclStream);
+torch_npu/csrc/distributed/ProcessGroupHCCL.cpp:3940:            c10_npu::NPUCachingAllocator::recordStream(inputs[i].storage().data_ptr(), hcclStream);
+torch_npu/csrc/distributed/ProcessGroupHCCL.cpp:4163:            c10_npu::NPUCachingAllocator::recordStream(inputs[i].storage().data_ptr(), hcclStream);
+torch_npu/csrc/distributed/ProcessGroupHCCL.cpp:4242:    // Therefore, we warn and fall back to the typical recordStream logic:
+torch_npu/csrc/distributed/ProcessGroupHCCL.cpp:4412:        c10_npu::NPUCachingAllocator::recordStream(tensors[i].storage().data_ptr(), hcclStream);
+torch_npu/csrc/distributed/ProcessGroupHCCL.cpp:4588:                c10_npu::NPUCachingAllocator::recordStream(tensors_cp[0].storage().data_ptr(), hcclStreams[0]);
+torch_npu/csrc/distributed/ProcessGroupHCCL.cpp:4825:                    c10_npu::NPUCachingAllocator::recordStream(tensors_cp[i].storage().data_ptr(), hcclStreams[0]);
+torch_npu/csrc/distributed/ProcessGroupHCCL.cpp:4902:                c10_npu::NPUCachingAllocator::recordStream(tensors_cp[0].storage().data_ptr(), hcclStreams[0]);
+torch_npu/csrc/distributed/ProcessGroupHCCL.cpp:4982:                c10_npu::NPUCachingAllocator::recordStream(outputTensors[0].storage().data_ptr(), hcclStreams[0]);
+torch_npu/csrc/distributed/ProcessGroupHCCL.cpp:5299:                    c10_npu::NPUCachingAllocator::recordStream(output.storage().data_ptr(), stream);
+torch_npu/csrc/distributed/ProcessGroupHCCL.cpp:5334:                            c10_npu::NPUCachingAllocator::recordStream(
+torch_npu/csrc/distributed/ProcessGroupHCCL.cpp:5425:                            c10_npu::NPUCachingAllocator::recordStream(
+torch_npu/csrc/distributed/ProcessGroupHCCL.cpp:5504:                c10_npu::NPUCachingAllocator::recordStream(output.storage().data_ptr(), stream);
+torch_npu/csrc/distributed/ProcessGroupHCCL.cpp:5552:                c10_npu::NPUCachingAllocator::recordStream(output.storage().data_ptr(), stream);
+torch_npu/csrc/distributed/ProcessGroupHCCL.cpp:5609:                c10_npu::NPUCachingAllocator::recordStream(output.storage().data_ptr(), stream);
+torch_npu/csrc/distributed/ProcessGroupHCCL.cpp:5662:                c10_npu::NPUCachingAllocator::recordStream(output.storage().data_ptr(), stream);
+torch_npu/csrc/distributed/ProcessGroupHCCL.cpp:5697:                        c10_npu::NPUCachingAllocator::recordStream(inputTensors[i][j].storage().data_ptr(), hcclStreams[i]);
+torch_npu/csrc/distributed/ProcessGroupHCCL.cpp:5817:                        c10_npu::NPUCachingAllocator::recordStream(
+torch_npu/csrc/distributed/ProcessGroupHCCL.cpp:5891:                c10_npu::NPUCachingAllocator::recordStream(output.storage().data_ptr(), stream);
+torch_npu/csrc/distributed/ProcessGroupHCCL.cpp:5955:                c10_npu::NPUCachingAllocator::recordStream(output.storage().data_ptr(), stream);
+torch_npu/csrc/distributed/ProcessGroupHCCL.cpp:6286:                    c10_npu::NPUCachingAllocator::recordStream(inputTensors[i].storage().data_ptr(), hcclStreams[i]);
+torch_npu/csrc/distributed/ProcessGroupHCCL.cpp:6388:                    c10_npu::NPUCachingAllocator::recordStream(output.storage().data_ptr(), stream);
+torch_npu/csrc/distributed/ProcessGroupHCCL.cpp:6453:                    c10_npu::NPUCachingAllocator::recordStream(output.storage().data_ptr(), stream);
+torch_npu/csrc/distributed/ProcessGroupHCCL.cpp:6490:                            c10_npu::NPUCachingAllocator::recordStream(inputTensors[i][j].storage().data_ptr(), hcclStreams[i]);
+torch_npu/csrc/distributed/ProcessGroupHCCL.cpp:6514:                            c10_npu::NPUCachingAllocator::recordStream(inputTensors[0][j].storage().data_ptr(), hcclStreams[0]);
+torch_npu/csrc/distributed/ProcessGroupHCCL.cpp:6583:            c10_npu::NPUCachingAllocator::recordStream(output.storage().data_ptr(), stream);
+torch_npu/csrc/distributed/ProcessGroupHCCL.cpp:6609:                c10_npu::NPUCachingAllocator::recordStream(tensors_[i].storage().data_ptr(), hcclStreams[i]);
+torch_npu/csrc/distributed/ProcessGroupHCCL.cpp:6713:                        c10_npu::NPUCachingAllocator::recordStream(outputTensors_[i].storage().data_ptr(), hcclStreams[i]);
+torch_npu/csrc/distributed/ProcessGroupHCCL.cpp:6820:                        c10_npu::NPUCachingAllocator::recordStream(outputTensors_[i].storage().data_ptr(), hcclStreams[i]);
+torch_npu/csrc/distributed/ProcessGroupHCCL.cpp:6957:                    c10_npu::NPUCachingAllocator::recordStream(output.storage().data_ptr(), stream);
+torch_npu/csrc/distributed/ProcessGroupHCCL.cpp:7064:                    c10_npu::NPUCachingAllocator::recordStream(output_tensors_[0].storage().data_ptr(), hcclStreams[0]);
+torch_npu/csrc/distributed/ProcessGroupHCCL.cpp:7079:                        c10_npu::NPUCachingAllocator::recordStream(input_tensors[i].storage().data_ptr(), hcclStreams[0]);
+torch_npu/csrc/distributed/ProcessGroupHCCL.cpp:7098:                        c10_npu::NPUCachingAllocator::recordStream(output_tensors[i].storage().data_ptr(), hcclStreams[0]);
+torch_npu/csrc/aten/ops/StreamAndEventKernelNpu.cpp:7:void NPUNativeFunctions::record_stream(at::Tensor& self, c10::Stream stream)
+torch_npu/csrc/aten/ops/StreamAndEventKernelNpu.cpp:10:    c10_npu::NPUCachingAllocator::recordStream(
+torch_npu/csrc/core/npu/NPUCachingAllocator.cpp:84:// The library provides a recordStream() function to help insert the correct
+torch_npu/csrc/core/npu/NPUCachingAllocator.cpp:1557:    void recordStream(Block *block, c10_npu::NPUStream stream)
+torch_npu/csrc/core/npu/NPUCachingAllocator.cpp:1566:    void eraseStream(Block *block, c10_npu::NPUStream stream)
+torch_npu/csrc/core/npu/NPUCachingAllocator.cpp:3348:    void recordStream(const c10::DataPtr &ptr, c10_npu::NPUStream stream) override
+torch_npu/csrc/core/npu/NPUCachingAllocator.cpp:3368:        device_allocator[block->device]->recordStream(block, stream);
+torch_npu/csrc/core/npu/NPUCachingAllocator.cpp:3371:    void eraseStream(const c10::DataPtr &ptr, c10_npu::NPUStream stream)
+torch_npu/csrc/core/npu/NPUCachingAllocator.cpp:3383:            TORCH_NPU_WARN_ONCE("Tensor not is not allocated by NPUCachingAllocator, skip eraseStream.");
+torch_npu/csrc/core/npu/NPUCachingAllocator.cpp:3400:        device_allocator[block->device]->eraseStream(block, stream);
+torch_npu/csrc/core/npu/NPUCachingAllocator.cpp:3403:    void eraseStreamWithBlockPtr(void* block_ptr, c10_npu::NPUStream stream, void* work_ptr) override
+torch_npu/csrc/core/npu/NPUCachingAllocator.cpp:3422:        device_allocator[block->device]->eraseStream(block, stream);
+
+op-plugin
+op_plugin/ops/aclops/FusedAttentionScoreKernelNpu.cpp:180:  c10_npu::NPUCachingAllocator::recordStream(drop_mask.storage().data_ptr(), original_stream);
+op_plugin/ops/aclops/DropoutWithAddSoftmaxKernelNpu.cpp:63:    c10_npu::NPUCachingAllocator::recordStream(mask.storage().data_ptr(), original_stream);
+op_plugin/ops/aclops/DropoutKernelNpu.cpp:127:  // recordStream needs to be called to ensure the correctness of memory reuse.
+op_plugin/ops/aclops/DropoutKernelNpu.cpp:128:  c10_npu::NPUCachingAllocator::recordStream(mask.storage().data_ptr(), original_stream);
+op_plugin/ops/aclops/DropoutWithByteMaskKernelNpu.cpp:99:    // recordStream needs to be called to ensure the correctness of memory reuse.
+op_plugin/ops/aclops/DropoutWithByteMaskKernelNpu.cpp:100:    c10_npu::NPUCachingAllocator::recordStream(mask.storage().data_ptr(), original_stream);
+op_plugin/ops/opapi/NativeDropoutKernelNpuOpApi.cpp:116:    // recordStream needs to be called to ensure the correctness of memory reuse.
+op_plugin/ops/opapi/NativeDropoutKernelNpuOpApi.cpp:117:    c10_npu::NPUCachingAllocator::recordStream(mask.storage().data_ptr(), original_stream);

@@ -1,0 +1,109 @@
+torch_npu/csrc/npu/DataParallelComm.cpp:410:    c10_npu::OptionalNPUStreamGuard npu_guard;
+torch_npu/csrc/npu/DataParallelComm.cpp:451:    c10_npu::OptionalNPUStreamGuard npu_guard;
+torch_npu/csrc/aten/NPUGeneratorImpl.cpp:4:#include <c10/core/StreamGuard.h>
+torch_npu/csrc/npu/Module.cpp:1088:    c10_npu::setCurrentNPUStream(stream);
+torch_npu/csrc/core/npu/NPUStream.cpp:440:NPUStream getCurrentSecondaryStream(c10::DeviceIndex device_index)
+torch_npu/csrc/core/npu/NPUStream.cpp:639:void setCurrentNPUStream(NPUStream stream)
+torch_npu/csrc/core/npu/NPUStream.h:127:NPUStream getCurrentSecondaryStream(c10::DeviceIndex device_index = -1);
+torch_npu/csrc/core/npu/NPUStream.h:145:C10_NPU_API void setCurrentNPUStream(NPUStream stream);
+torch_npu/csrc/core/npu/NPUGuard.h:5:#include <c10/core/impl/InlineStreamGuard.h>
+torch_npu/csrc/core/npu/NPUGuard.h:150:// / A variant of StreamGuard that is specialized for NPU.  See NPUGuard
+torch_npu/csrc/core/npu/NPUGuard.h:152:struct NPUStreamGuard {
+torch_npu/csrc/core/npu/NPUGuard.h:154:    explicit NPUStreamGuard() = delete;
+torch_npu/csrc/core/npu/NPUGuard.h:159:    explicit NPUStreamGuard(c10::Stream stream) : guard_(stream) {}
+torch_npu/csrc/core/npu/NPUGuard.h:162:    NPUStreamGuard(const NPUStreamGuard &) = delete;
+torch_npu/csrc/core/npu/NPUGuard.h:163:    NPUStreamGuard &operator = (const NPUStreamGuard &) = delete;
+torch_npu/csrc/core/npu/NPUGuard.h:165:    // / Move is disallowed, as NPUStreamGuard does not have an uninitialized
+torch_npu/csrc/core/npu/NPUGuard.h:167:    NPUStreamGuard(NPUStreamGuard &&other) = delete;
+torch_npu/csrc/core/npu/NPUGuard.h:168:    NPUStreamGuard &operator = (NPUStreamGuard &&other) = delete;
+torch_npu/csrc/core/npu/NPUGuard.h:181:    // / on NPU, use NPUMultiStreamGuard instead.
+torch_npu/csrc/core/npu/NPUGuard.h:215:    c10::impl::InlineStreamGuard<c10_npu::impl::NPUGuardImpl> guard_;
+torch_npu/csrc/core/npu/NPUGuard.h:218:// / A variant of OptionalStreamGuard that is specialized for NPU.  See NPUGuard
+torch_npu/csrc/core/npu/NPUGuard.h:220:struct OptionalNPUStreamGuard {
+torch_npu/csrc/core/npu/NPUGuard.h:222:    explicit OptionalNPUStreamGuard() : guard_() {}
+torch_npu/csrc/core/npu/NPUGuard.h:227:    explicit OptionalNPUStreamGuard(c10::Stream stream) : guard_(stream) {}
+torch_npu/csrc/core/npu/NPUGuard.h:232:    explicit OptionalNPUStreamGuard(c10::optional<c10::Stream> stream_opt) : guard_(stream_opt) {}
+torch_npu/csrc/core/npu/NPUGuard.h:235:    OptionalNPUStreamGuard(const OptionalNPUStreamGuard &) = delete;
+torch_npu/csrc/core/npu/NPUGuard.h:236:    OptionalNPUStreamGuard &operator = (const OptionalNPUStreamGuard &) = delete;
+torch_npu/csrc/core/npu/NPUGuard.h:239:    OptionalNPUStreamGuard(OptionalNPUStreamGuard &&other) = delete;
+torch_npu/csrc/core/npu/NPUGuard.h:242:    OptionalNPUStreamGuard &operator = (OptionalNPUStreamGuard &&other) = delete;
+torch_npu/csrc/core/npu/NPUGuard.h:287:    c10::impl::InlineOptionalStreamGuard<c10_npu::impl::NPUGuardImpl> guard_;
+torch_npu/csrc/core/npu/NPUGuard.h:290:// / A variant of MultiStreamGuard that is specialized for NPU.
+torch_npu/csrc/core/npu/NPUGuard.h:291:struct NPUMultiStreamGuard {
+torch_npu/csrc/core/npu/NPUGuard.h:292:    explicit NPUMultiStreamGuard(at::ArrayRef<NPUStream> streams) : guard_(unwrapStreams(streams)) {}
+torch_npu/csrc/core/npu/NPUGuard.h:295:    NPUMultiStreamGuard(const NPUMultiStreamGuard &) = delete;
+torch_npu/csrc/core/npu/NPUGuard.h:296:    NPUMultiStreamGuard &operator = (const NPUMultiStreamGuard &) = delete;
+torch_npu/csrc/core/npu/NPUGuard.h:299:    NPUMultiStreamGuard(NPUMultiStreamGuard &&other) = delete;
+torch_npu/csrc/core/npu/NPUGuard.h:302:    NPUMultiStreamGuard &operator = (NPUMultiStreamGuard &&other) = delete;
+torch_npu/csrc/core/npu/NPUGuard.h:305:    c10::impl::InlineMultiStreamGuard<c10_npu::impl::NPUGuardImpl> guard_;
+torch_npu/csrc/core/npu/impl/NPUGuardImpl.cpp:88:    c10_npu::setCurrentNPUStream(cs);
+torch_npu/csrc/core/npu/SecondaryStreamGuard.cpp:17:#include "torch_npu/csrc/core/npu/SecondaryStreamGuard.h"
+torch_npu/csrc/core/npu/SecondaryStreamGuard.cpp:22:SecondaryStreamGuard::~SecondaryStreamGuard()
+torch_npu/csrc/framework/utils/RandomOpAdapter.h:4:#include "torch_npu/csrc/core/npu/SecondaryStreamGuard.h"
+torch_npu/csrc/core/npu/SecondaryStreamGuard.h:8:struct SecondaryStreamGuard {
+torch_npu/csrc/core/npu/SecondaryStreamGuard.h:9:    explicit SecondaryStreamGuard() = delete;
+torch_npu/csrc/core/npu/SecondaryStreamGuard.h:10:    explicit SecondaryStreamGuard(c10::Stream stream) : guard_(stream) {};
+torch_npu/csrc/core/npu/SecondaryStreamGuard.h:12:    ~SecondaryStreamGuard();
+torch_npu/csrc/core/npu/SecondaryStreamGuard.h:15:    c10_npu::NPUStreamGuard guard_;
+torch_npu/csrc/distributed/ProcessGroupLCCL.cpp:259:        c10_npu::NPUMultiStreamGuard guard(lcclStreams);
+torch_npu/csrc/distributed/ProcessGroupLCCL.cpp:353:                    c10_npu::NPUStreamGuard guard(lcclStreams[i]);
+torch_npu/csrc/distributed/ProcessGroupLCCL.cpp:427:                    c10_npu::NPUStreamGuard guard(lcclStreams[i]);
+torch_npu/csrc/distributed/rpc/tensorpipe_npu.cpp:13:#include "torch_npu/csrc/core/npu/SecondaryStreamGuard.h"
+torch_npu/csrc/distributed/rpc/tensorpipe_npu.cpp:61:        c10_npu::NPUStreamGuard guard(stream);
+torch_npu/csrc/distributed/rpc/tensorpipe_utils.cpp:164:        c10::MultiStreamGuard guard(streams);
+torch_npu/csrc/distributed/reducer.cpp:21:#include <c10/core/StreamGuard.h>
+torch_npu/csrc/distributed/rpc/tensorpipe_agent.cpp:10:#include <c10/core/StreamGuard.h>
+torch_npu/csrc/distributed/rpc/tensorpipe_agent.cpp:671:                    // Instead of creating a MultiStreamGuard here, the ctx is passed
+torch_npu/csrc/distributed/rpc/tensorpipe_agent.cpp:672:                    // to the callback and the MultiStreamGuard is created there,
+torch_npu/csrc/distributed/rpc/tensorpipe_agent.cpp:1212:            c10::MultiStreamGuard guard(streams);
+torch_npu/csrc/core/npu/interface/AsyncTaskQueueInterface.cpp:194:            c10_npu::NPUStreamGuard guard(npuStream);
+torch_npu/csrc/core/npu/interface/AsyncTaskQueueInterface.cpp:245:            c10_npu::NPUStreamGuard guard(npuStream);
+torch_npu/csrc/distributed/ProcessGroupHCCL.cpp:3855:            c10_npu::NPUStreamGuard guard(hcclStreams[i]);
+torch_npu/csrc/distributed/ProcessGroupHCCL.cpp:3975:        c10_npu::NPUMultiStreamGuard guard(hcclStreams);
+torch_npu/csrc/distributed/ProcessGroupHCCL.cpp:4090:            c10_npu::NPUStreamGuard guard(hcclStreams[0]);
+torch_npu/csrc/distributed/ProcessGroupHCCL.cpp:4198:        c10_npu::NPUMultiStreamGuard guard(hcclStreams);
+torch_npu/csrc/distributed/ProcessGroupHCCL.cpp:4342:            c10_npu::NPUStreamGuard guard(hcclStreams_[key][i]);
+torch_npu/csrc/distributed/ProcessGroupHCCL.cpp:4454:            c10_npu::NPUMultiStreamGuard guard(hcclStreams_[key]);
+torch_npu/csrc/distributed/ProcessGroupHCCL.cpp:4565:                c10_npu::NPUStreamGuard guard(hcclStreams[0]);
+torch_npu/csrc/distributed/ProcessGroupHCCL.cpp:4569:                c10_npu::NPUStreamGuard guard(hcclStreams[0]);
+torch_npu/csrc/distributed/ProcessGroupHCCL.cpp:4581:                c10_npu::NPUStreamGuard guard(hcclStreams[0]);
+torch_npu/csrc/distributed/ProcessGroupHCCL.cpp:4587:                c10_npu::NPUStreamGuard guard(hcclStreams[0]);
+torch_npu/csrc/distributed/ProcessGroupHCCL.cpp:4670:                        c10_npu::NPUStreamGuard guard(hcclStreams[0]);
+torch_npu/csrc/distributed/ProcessGroupHCCL.cpp:4749:                        c10_npu::NPUStreamGuard guard(hcclStreams[0]);
+torch_npu/csrc/distributed/ProcessGroupHCCL.cpp:4800:                    c10_npu::NPUStreamGuard guard(hcclStreams[0]);
+torch_npu/csrc/distributed/ProcessGroupHCCL.cpp:4805:                c10_npu::NPUStreamGuard guard(hcclStreams[0]);
+torch_npu/csrc/distributed/ProcessGroupHCCL.cpp:4817:                c10_npu::NPUStreamGuard guard(hcclStreams[0]);
+torch_npu/csrc/distributed/ProcessGroupHCCL.cpp:4824:                    c10_npu::NPUStreamGuard guard(hcclStreams[0]);
+torch_npu/csrc/distributed/ProcessGroupHCCL.cpp:4879:                c10_npu::NPUStreamGuard guard(hcclStreams[0]);
+torch_npu/csrc/distributed/ProcessGroupHCCL.cpp:4883:                c10_npu::NPUStreamGuard guard(hcclStreams[0]);
+torch_npu/csrc/distributed/ProcessGroupHCCL.cpp:4895:                c10_npu::NPUStreamGuard guard(hcclStreams[0]);
+torch_npu/csrc/distributed/ProcessGroupHCCL.cpp:4901:                c10_npu::NPUStreamGuard guard(hcclStreams[0]);
+torch_npu/csrc/distributed/ProcessGroupHCCL.cpp:4955:                c10_npu::NPUStreamGuard guard(hcclStreams[0]);
+torch_npu/csrc/distributed/ProcessGroupHCCL.cpp:4959:                c10_npu::NPUStreamGuard guard(hcclStreams[0]);
+torch_npu/csrc/distributed/ProcessGroupHCCL.cpp:4963:                c10_npu::NPUStreamGuard guard(hcclStreams[0]);
+torch_npu/csrc/distributed/ProcessGroupHCCL.cpp:4975:                c10_npu::NPUStreamGuard guard(hcclStreams[0]);
+torch_npu/csrc/distributed/ProcessGroupHCCL.cpp:4981:                c10_npu::NPUStreamGuard guard(hcclStreams[0]);
+torch_npu/csrc/distributed/ProcessGroupHCCL.cpp:5101:                c10_npu::NPUStreamGuard guard(hcclStreams[0]);
+torch_npu/csrc/distributed/ProcessGroupHCCL.cpp:5113:                c10_npu::NPUStreamGuard guard(hcclStreams[0]);
+torch_npu/csrc/distributed/ProcessGroupHCCL.cpp:5328:                    c10_npu::NPUStreamGuard guard(hcclStreams[i]);
+torch_npu/csrc/distributed/ProcessGroupHCCL.cpp:5419:                    c10_npu::NPUStreamGuard guard(hcclStreams[i]);
+torch_npu/csrc/distributed/ProcessGroupHCCL.cpp:5691:                c10_npu::NPUStreamGuard guard(hcclStreams[i]);
+torch_npu/csrc/distributed/ProcessGroupHCCL.cpp:5722:                c10_npu::NPUStreamGuard guard(hcclStreams[0]);
+torch_npu/csrc/distributed/ProcessGroupHCCL.cpp:5798:                    c10_npu::NPUStreamGuard guard(hcclStreams[0]);
+torch_npu/csrc/distributed/ProcessGroupHCCL.cpp:5813:                    c10_npu::NPUStreamGuard guard(hcclStreams[i]);
+torch_npu/csrc/distributed/ProcessGroupHCCL.cpp:5829:                    c10_npu::NPUStreamGuard guard(hcclStreams[0]);
+torch_npu/csrc/distributed/ProcessGroupHCCL.cpp:5920:                c10_npu::NPUStreamGuard guard(hcclStreams[0]);
+torch_npu/csrc/distributed/ProcessGroupHCCL.cpp:5932:                c10_npu::NPUStreamGuard guard(hcclStreams[0]);
+torch_npu/csrc/distributed/ProcessGroupHCCL.cpp:5984:                c10_npu::NPUStreamGuard guard(hcclStreams[0]);
+torch_npu/csrc/distributed/ProcessGroupHCCL.cpp:5996:                c10_npu::NPUStreamGuard guard(hcclStreams[0]);
+torch_npu/csrc/distributed/ProcessGroupHCCL.cpp:6107:        c10_npu::NPUMultiStreamGuard guard(hcclStreams);
+torch_npu/csrc/distributed/ProcessGroupHCCL.cpp:6281:                c10_npu::NPUStreamGuard guard(hcclStreams[i]);
+torch_npu/csrc/distributed/ProcessGroupHCCL.cpp:6484:                    c10_npu::NPUStreamGuard guard(hcclStreams[i]);
+torch_npu/csrc/distributed/ProcessGroupHCCL.cpp:6510:                        c10_npu::NPUStreamGuard guard(hcclStreams[0]);
+torch_npu/csrc/distributed/ProcessGroupHCCL.cpp:6608:                c10_npu::NPUStreamGuard guard(hcclStreams[i]);
+torch_npu/csrc/distributed/ProcessGroupHCCL.cpp:6709:                    c10_npu::NPUStreamGuard guard(hcclStreams[i]);
+torch_npu/csrc/distributed/ProcessGroupHCCL.cpp:6816:                    c10_npu::NPUStreamGuard guard(hcclStreams[i]);
+torch_npu/csrc/distributed/ProcessGroupHCCL.cpp:7060:                c10_npu::NPUStreamGuard guard(hcclStreams[0]);
+torch_npu/csrc/distributed/ProcessGroupHCCL.cpp:7075:                    c10_npu::NPUStreamGuard guard(hcclStreams[0]);
+torch_npu/csrc/distributed/ProcessGroupHCCL.cpp:7094:                    c10_npu::NPUStreamGuard guard(hcclStreams[0]);
+torch_npu/csrc/distributed/ProcessGroupHCCL.cpp:7110:                c10_npu::NPUStreamGuard guard(hcclStreams[0]);

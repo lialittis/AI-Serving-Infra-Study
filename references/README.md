@@ -2,6 +2,7 @@
 
 | 资料 | 主要内容 |
 |---|---|
+| [torch-npu allocator 与异步内存生命周期](torch_npu_allocator_lifetime/README.md) | 远端安装版本对应的源码、分配到复用状态、record_stream 与事件回收、跨线程与 HCCL/graph 特殊路径，以及未执行的最小实验方案 |
 | [Triton JIT 与 Ascend launcher](Triton/README.md) | RoPE 的参数绑定与特化、内存/磁盘缓存、编译产物、Python/C++ launcher、torch-npu 队列和 CANN 下发，以及源码行号与时序图 |
 | [视觉 forward 同步分析笔记](vision_metadata_synchronization/README.md) | P27 同步发生位置、逐条时间证据、91→7→0 消融，以及主机等待对多 stream 提交和计算重叠的影响 |
 | [lengths 概念、Sub 计算与待研究问题](vision_metadata_synchronization/LENGTHS.md) | 分段长度与累计边界、NPU Tensor 如何经 PyTorch dispatcher 进入 torch-npu/CANN、真实 Sub kernel，以及同步/D2H、地址与数值校验 |
