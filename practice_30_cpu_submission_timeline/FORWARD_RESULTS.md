@@ -46,9 +46,9 @@
 1. `/vllm-workspace/vllm-ascend/vllm_ascend/ops/rotary_embedding.py:153` 的 `rope_forward_oot`，在 `:168` 调用 Triton 分支。
 2. `/vllm-workspace/vllm-ascend/vllm_ascend/ops/triton/rope.py:256` 的 `rope_forward_triton`，处理形状、stride、连续性条件和 grid，再调用 `_triton_rope[...]`。
 3. `/usr/local/python3.12.13/lib/python3.12/site-packages/triton/runtime/jit.py:566` 的 `JITFunction.run`，读取设备/stream，绑定参数，查缓存，准备 launch metadata。
-4. 同文件 `:650` 的 `kernel.run(...)`，本次实际 callable 类型为 **`ascend.NPULauncher`**。这是 native 边界；不能把安装目录里同名 Python launcher 类的源码直接当成本次 native 实现。
+4. 同文件 `:650` 的 `kernel.run(...)`，本次实际 callable 类型为 **`ascend.NPULauncher`**。2026-10-02 检查实际方法的 `__code__` 后确认，它是 `triton/backends/ascend/driver.py:105、127` 的 Python 包装类，内部 `self.launch` 才调用生成的 C++ 扩展。此前将整个调用视为纯 native 边界的判断不准确；历史事件名 `rope_native` 保留，但应读作“launcher 包装调用范围”。
 
-参数 binder 是生成的 `dynamic_func`，没有取到独立源码文本；保留实际调用范围，不伪造源码行号。native launcher 内部也未采集逐函数 C++ 栈，本轮仅将其外层调用与 profiler 的 Host/队列/CANN 记录关联。
+参数 binder 是生成的 `dynamic_func`；后续核查定位到 `triton/runtime/jit.py:348` 的 `create_function_from_signature()` 及 `:396` 的生成模板，不存在独立的手写 binder 源文件。launcher 内部仍未采集逐函数 C++ 栈，本轮仅将其外层调用与 profiler 的 Host/队列/CANN 记录关联。完整源码解释、缓存/编译流程与时序图见 [Triton 参考笔记](../references/Triton/README.md)。该补充更正范围解释，不改变原始测量和 trace。
 
 新增四个嵌套范围的内部双时钟：
 
@@ -57,11 +57,11 @@
 | `rope_forward_triton` Python 包装 | 201.253 | 200.749 | 34.294 |
 | `JITFunction.run` | 166.959 | 166.554 | 113.621 |
 | 参数 binder | 16.878 | 16.375 | 16.878 |
-| native launcher | 36.460 | 35.910 | 36.460 |
+| launcher 包装调用（`rope_native`，含 Python/C++） | 36.460 | 35.910 | 36.460 |
 
 JIT 自身余量仍包含 binder/native 子包装的边界成本，不能把 113.621 µs 全部归因于缓存查找或参数处理。初始化及预热留下的三个缓存 kernel 均已加载；选中调用的编译次数为 0，前后缓存指纹相同。这是使用已编译 kernel 的一次执行，不是首次编译成本。
 
-## 4. 从 native launcher 到设备的精确关联
+## 4. 从 launcher 包装调用到设备的精确关联
 
 本次选中的记录是：
 
@@ -75,7 +75,7 @@ CPU rope_native scope
 
 kernel CSV 的名称、stream、task、开始时刻和持续时间全部核验；NPU kernel 持续 **3.320 µs**。
 
-native 的 profiler 范围为 **50.780 µs**，可按观测边界分为：Enqueue 开始前 31.088 µs、Enqueue 自身 3.590 µs、Enqueue 结束后 16.102 µs。这个分母包含 profiler 标记，**不能与上表内部计时的 36.460 µs 混算**。Dequeue 范围为 3.322 µs；它属于下发线程，与主线程范围不能串行相加。队列边界差也不等于纯排队等待。
+`rope_native` 的 profiler 范围为 **50.780 µs**，可按观测边界分为：Enqueue 开始前 31.088 µs、Enqueue 自身 3.590 µs、Enqueue 结束后 16.102 µs。这个分母包含 profiler 标记，**不能与上表内部计时的 36.460 µs 混算**。Dequeue 范围为 3.322 µs；它属于下发线程，与主线程范围不能串行相加。队列边界差也不等于纯排队等待。
 
 ## 5. 这次细分的观察成本必须保留
 
