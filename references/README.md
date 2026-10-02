@@ -2,6 +2,7 @@
 
 | 资料 | 主要内容 |
 |---|---|
+| [Triton JIT 与 Ascend launcher](Triton/README.md) | RoPE 的参数绑定与特化、内存/磁盘缓存、编译产物、Python/C++ launcher、torch-npu 队列和 CANN 下发，以及源码行号与时序图 |
 | [视觉 forward 同步分析笔记](vision_metadata_synchronization/README.md) | P27 同步发生位置、逐条时间证据、91→7→0 消融，以及主机等待对多 stream 提交和计算重叠的影响 |
 | [lengths 概念、Sub 计算与待研究问题](vision_metadata_synchronization/LENGTHS.md) | 分段长度与累计边界、NPU Tensor 如何经 PyTorch dispatcher 进入 torch-npu/CANN、真实 Sub kernel，以及同步/D2H、地址与数值校验 |
 | [tolist 同步调用链与 D2H 实测](vision_metadata_synchronization/TOLIST_D2H.md) | 实际安装版本的 NPU `_to_copy` / OpApi 分发、同步位置、CPU 缓冲区和 D2H 地址证据，以及三次读取与一次复用的对照 |
