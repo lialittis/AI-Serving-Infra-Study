@@ -84,7 +84,7 @@ Transformers 模型中的 Python 表达式
 | CPU PyTorch Tensor | dispatcher 选择 CPU Sub，在 CPU 上计算 |
 | NPU PyTorch Tensor | dispatcher 选择 torch-npu Sub，提交 NPU kernel |
 
-因此不能简称为“torch-npu 定义了一种特殊 tensor”。上层对象仍是 `torch.Tensor`；torch-npu 为 NPU device 接入 PyTorch dispatcher、内存和算子实现。也不是 Python 解释器把源码直接编译成 NPU kernel。本次模型业务表达式位于 Hugging Face Transformers 的 Qwen2.5-VL eager forward，我们的实验程序负责调用和观测；这条实测路径不经过 vLLM-Ascend。
+因此不能简称为“torch-npu 定义了一种特殊 tensor”。上层对象仍是 `torch.Tensor`；torch-npu 为 NPU device 接入 PyTorch dispatcher、内存和算子实现。也不是 Python 解释器把源码直接编译成 NPU kernel。本次模型业务表达式位于 Hugging Face Transformers 的 Qwen2.5-VL eager forward，我们的实验程序负责调用和观测；这条实测路径不经过 vLLM-Ascend。两套调用与模型实现的详细对照见 [Hugging Face eager 与 vLLM-Ascend 笔记](../hf_vllm_execution/README.md)。
 
 `lengths` Tensor 返回 Python 后，NPU kernel 可能尚未完成。只有后续 CPU 需要数值，例如调用 `.tolist()`，才会在当前实现中等待 stream、执行 D2H 并构造 Python `list[int]`。详细的 dispatcher、主机队列和 CANN 两阶段接口见 [Sub 提交与执行报告](SUB_EXECUTION.md#2-cpu-到-npu-的实际调用链)。
 
