@@ -1,0 +1,118 @@
+{
+  "run": "attention-01",
+  "trace_path": "/tmp/p30-attention-review/attention-01/diagnostic/profiler/fe561f2e72a8_1624824_20261002090910457_ascend_pt/ASCEND_PROFILER_OUTPUT/trace_view.json",
+  "trace_index": 220711,
+  "trace_sha256": "bb56ffeacd27f9861a9e5a20c9d16b5bb698d031c5bcee4c782b1482e8f4eaf5",
+  "attention_report_sha256": "d84c197b2d7578cb695e289204dc0787aaf114574624f034c83f68715e26c913",
+  "launch": {
+    "name": "AscendCL@aclrtLaunchKernelWithHostArgs",
+    "pid": 1663820031,
+    "tid": 1625419,
+    "ts": "1790932150788359.967",
+    "dur": "15.733",
+    "ph": "X",
+    "args": {
+      "Thread Id": 1625419,
+      "Mode": "ACL_RTS",
+      "level": "acl",
+      "id": "aclrtLaunchKernelWithHostArgs",
+      "item_id": "0",
+      "connection_id": 45284
+    }
+  },
+  "link": {
+    "task": {
+      "id": "k:167500",
+      "trace_index": 167500,
+      "name": "FusedInferAttentionScore",
+      "stream": "46",
+      "task_id": "28820",
+      "model_id": 4294967295,
+      "task_type": "MIX_AIC",
+      "connection_id": "45283",
+      "start_us": "1790932150788386.849",
+      "end_us": "1790932150788410.430",
+      "duration_us": "23.581",
+      "scope": "P30/32/attn_fia_submit/1338",
+      "step": "p30-measure/step-32",
+      "stage": "attn_fia_submit",
+      "csv_row": 9717,
+      "is_compute": true,
+      "host_index": 36444,
+      "cann_index": 220710,
+      "host_flow": "1790932150788386849",
+      "cann_flow": "194489004064768",
+      "core_type": "MIX_AIC",
+      "block_num": 24,
+      "mix_block_num": 48,
+      "submission_kind": "direct",
+      "submission_index": 220710,
+      "queue_id": "q:24390",
+      "submission_queue_id": "q:24390",
+      "replay_launch_id": null
+    },
+    "queue": {
+      "id": "q:24390",
+      "flow_id": "24390",
+      "enqueue_index": 98151,
+      "dequeue_index": 79697,
+      "enqueue": {
+        "ph": "X",
+        "name": "Enqueue@aclnnFusedInferAttentionScoreV3",
+        "pid": 1624824,
+        "tid": 1624824,
+        "ts": "1790932150788349.338",
+        "dur": "2.613",
+        "cat": "enqueue",
+        "args": {
+          "correlation_id": 24390
+        }
+      },
+      "dequeue": {
+        "ph": "X",
+        "name": "Dequeue@aclnnFusedInferAttentionScoreV3",
+        "pid": 1624824,
+        "tid": 1625419,
+        "ts": "1790932150788356.510",
+        "dur": "24.762",
+        "cat": "dequeue",
+        "args": {
+          "correlation_id": 24390
+        }
+      },
+      "scope": "P30/32/attn_fia_submit/1338",
+      "step": "p30-measure/step-32",
+      "enqueue_to_dequeue_start_us": "7.172",
+      "dequeue_start_minus_enqueue_end_us": "4.559"
+    },
+    "host": {
+      "ph": "X",
+      "name": "aclnnFusedInferAttentionScoreV3",
+      "pid": 1624824,
+      "tid": 1624824,
+      "ts": "1790932150788349.267",
+      "dur": "2.828",
+      "cat": "cpu_op",
+      "args": {
+        "Sequence number": -1,
+        "Fwd thread id": 0
+      }
+    },
+    "cann": {
+      "name": "Node@launch",
+      "pid": 1663820031,
+      "tid": 1625419,
+      "ts": "1790932150788359.234",
+      "dur": "16.81",
+      "ph": "X",
+      "args": {
+        "Thread Id": 1625419,
+        "Mode": "launch",
+        "level": "node",
+        "id": "0",
+        "item_id": "FusedInferAttentionScore",
+        "connection_id": 45283
+      }
+    }
+  }
+}

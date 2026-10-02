@@ -10,6 +10,8 @@
 
 下一轮已完成：[单次 graph 图外 attention 报告](report/attention/index.html) · [结论](ATTENTION_RESULTS.md) · [精确时间线](report/attention/attention.svg)。只在 decode 32 第一层记录上下文、KV 准备/调用、FIA 参数与调用，保持原生请求和同步逻辑。
 
+FIA 继续细读：[提交时间、参数与 binary 选择](fia_probe/README.md)。原模型 trace 确认入队到设备开始为 37.511 µs；独立最小探针核验 `.o` 字节哈希 → binary/入口/function handle → launch。KV 长度 42→43 保持同一入口，BF16→FP16 更换文件与入口，两组证据分开解释。
+
 ## 怎么读
 
 1. 先看完整请求的 64 个步骤：prefill 一次，decode 63 次。

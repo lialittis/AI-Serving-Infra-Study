@@ -124,4 +124,14 @@ decode 32 检查的三个较大设备任务间隙约 **127–135 µs**，其中�
 
 RoPE 的补充源码分析已独立整理到 [Triton 参考笔记](../references/Triton/README.md)：历史 `rope_native` 包含 Python launcher 包装，不能当作纯 C++ 耗时。核数与 CANN 工具另见[未来任务](2026-10-02-triton-core-execution-observability.md)。
 
-下一小步候选：减少嵌套观测，只继续解释一个 FIA 调用或输出 copy 边界；尚未开展，不扩展 benchmark 矩阵。
+### Subtask 2 后续：FIA 提交、参数与预编译 binary（2026-10-02）
+
+- [x] 复用 `attention-01` 精确身份：q=24390、connection=45283、stream/task=46/28820。以入队开始为零点，下发线程 7.172 µs 取任务，10.629 µs 开始 `aclrtLaunchKernelWithHostArgs`，NPU 在 37.511 µs 开始，设备耗时 23.581 µs。
+- [x] “先做薄”：仅新增 BF16/KV=42、BF16/43、FP16/42 三种独立合成输入探针，匹配原调用形状和配置，每进程两次调用。它们用于查 binary/入口，明确不是原模型那次调用的原始记录，不扩展 benchmark 矩阵。
+- [x] 原样转发 aclnn/runtime 接口，核验预装 `.o` SHA256 = `BinaryLoadFromData` 字节 SHA256，再按 binary handle → entry → function handle → launch 关联。首次加载包含在主线程的 GetWorkspaceSize 内，execute/launch 在下发线程。
+- [x] BF16 42→43：同一 `3b093497...o`、同一 entry `5000000000010200203`；FP16/42：`8cd36e66...o`、entry `5000000000010200103`。从远端安装 metadata/Ascend C 常量与模板分支确认 TND、paged cache、causal mask、dtype 特化；不猜 tilingKey 每位编码。
+- [x] 三例均为 88 MiB workspace、24 blocks、2960 bytes hostArgs、5 placeholders。BF16 binary 有 327 个入口条目：文件选择与文件内入口选择必须分层。第二次调用不重新加载 binary，但仍有 GetWorkspaceSize，不能推断整个准备过程被缓存跳过。
+- [x] 五进程（原生基线、三诊断、原生恢复）参考数值校验通过；同配置三进程输出精确一致，四个审计文件前后不变、设备空闲。9 项离线测试拒绝错误哈希、handle、队列/connection、线程及时间包含关联。
+- [x] 整理 [FIA 细读笔记、时序图及复现命令](../practice_30_cpu_submission_timeline/fia_probe/README.md)，保留接口记录、metadata 和机器可读分析。不分发设备 `.o`。
+
+当前边界：原模型调用的 binary 选择尚未直接插桩；Host tiling 的完整判定树、hostArgs 内部布局、代码/参数 DMA 的精确起止均未知。输出 copy 的 native 判断未推进。下一步应仍从一个明确缺口开始，不一次扩大全部情况。

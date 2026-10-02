@@ -1,0 +1,138 @@
+{
+  "model_timeline": [
+    {
+      "event": "enqueue",
+      "start_us": "0.000",
+      "end_us": "2.613",
+      "tid": 1624824
+    },
+    {
+      "event": "dequeue",
+      "start_us": "7.172",
+      "end_us": "31.934",
+      "tid": 1625419
+    },
+    {
+      "event": "Node@launch",
+      "start_us": "9.896",
+      "end_us": "26.706",
+      "tid": 1625419
+    },
+    {
+      "event": "aclrtLaunchKernelWithHostArgs",
+      "start_us": "10.629",
+      "end_us": "26.362",
+      "tid": 1625419
+    },
+    {
+      "event": "NPU FIA",
+      "start_us": "37.511",
+      "end_us": "61.092",
+      "stream": "46",
+      "task": "28820"
+    }
+  ],
+  "synthetic_cases": {
+    "bf16-l42": {
+      "object_path": "/usr/local/Ascend/cann-9.0.0/opp/built-in/op_impl/ai_core/tbe/kernel/ascend910b/ops_transformer/fused_infer_attention_score/FusedInferAttentionScore_3b093497fc536d61a77a7a3293a524da.o",
+      "sha256": "68d62254dd49dcb398adb340636d4b8a7686aa6e67a4a6e3bc079bfd7bd76ae2",
+      "kernel_count": 327,
+      "calls": [
+        {
+          "scope": 1,
+          "entry": 5000000000010200203,
+          "num_blocks": 24,
+          "args_size": 2960,
+          "placeholder_count": 5,
+          "workspace_bytes": 92274688,
+          "prepare_tid": 1640280,
+          "execute_tid": 1640382,
+          "prepare_wall_us": 215889.933,
+          "execute_wall_us": 1852.265
+        },
+        {
+          "scope": 2,
+          "entry": 5000000000010200203,
+          "num_blocks": 24,
+          "args_size": 2960,
+          "placeholder_count": 5,
+          "workspace_bytes": 92274688,
+          "prepare_tid": 1640280,
+          "execute_tid": 1640382,
+          "prepare_wall_us": 26.413,
+          "execute_wall_us": 33.973
+        }
+      ],
+      "max_abs_error": 0.001992940902709961
+    },
+    "bf16-l43": {
+      "object_path": "/usr/local/Ascend/cann-9.0.0/opp/built-in/op_impl/ai_core/tbe/kernel/ascend910b/ops_transformer/fused_infer_attention_score/FusedInferAttentionScore_3b093497fc536d61a77a7a3293a524da.o",
+      "sha256": "68d62254dd49dcb398adb340636d4b8a7686aa6e67a4a6e3bc079bfd7bd76ae2",
+      "kernel_count": 327,
+      "calls": [
+        {
+          "scope": 1,
+          "entry": 5000000000010200203,
+          "num_blocks": 24,
+          "args_size": 2960,
+          "placeholder_count": 5,
+          "workspace_bytes": 92274688,
+          "prepare_tid": 1640835,
+          "execute_tid": 1640937,
+          "prepare_wall_us": 217138.822,
+          "execute_wall_us": 1810.391
+        },
+        {
+          "scope": 2,
+          "entry": 5000000000010200203,
+          "num_blocks": 24,
+          "args_size": 2960,
+          "placeholder_count": 5,
+          "workspace_bytes": 92274688,
+          "prepare_tid": 1640835,
+          "execute_tid": 1640937,
+          "prepare_wall_us": 29.137,
+          "execute_wall_us": 34.4
+        }
+      ],
+      "max_abs_error": 0.0018410086631774902
+    },
+    "fp16-l42": {
+      "object_path": "/usr/local/Ascend/cann-9.0.0/opp/built-in/op_impl/ai_core/tbe/kernel/ascend910b/ops_transformer/fused_infer_attention_score/FusedInferAttentionScore_8cd36e66e4ceb2d60ef96db29a147347.o",
+      "sha256": "aec0a9834450591ca927a66880fd764deff75e1f8139744c92c321068f48d13f",
+      "kernel_count": 333,
+      "calls": [
+        {
+          "scope": 1,
+          "entry": 5000000000010200103,
+          "num_blocks": 24,
+          "args_size": 2960,
+          "placeholder_count": 5,
+          "workspace_bytes": 92274688,
+          "prepare_tid": 1641056,
+          "execute_tid": 1641158,
+          "prepare_wall_us": 234176.694,
+          "execute_wall_us": 1922.095
+        },
+        {
+          "scope": 2,
+          "entry": 5000000000010200103,
+          "num_blocks": 24,
+          "args_size": 2960,
+          "placeholder_count": 5,
+          "workspace_bytes": 92274688,
+          "prepare_tid": 1641056,
+          "execute_tid": 1641158,
+          "prepare_wall_us": 28.096,
+          "execute_wall_us": 34.147
+        }
+      ],
+      "max_abs_error": 0.0002493858337402344
+    }
+  },
+  "limits": [
+    "Model timing and synthetic binary selection are separate experiments.",
+    "The hook does not measure device execution or binary/argument DMA completion.",
+    "Binary hashing and wrappers perturb CPU time; no performance claim."
+  ]
+}
