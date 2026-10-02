@@ -55,6 +55,39 @@ cu_window_seqlens = torch.unique_consecutive(cu_window_seqlens)
 
 本次 32 个视觉 block 中，28 个窗口 attention 使用这条 NPU 长度路径；4 个整图 attention 使用由 CPU grid 得到的 CPU 累计长度。不是所有 attention 的 `lengths` 都在 NPU。
 
+### 2.1 为什么一行 Python 减法会变成 NPU Sub
+
+决定执行后端的关键不是这行代码的写法，而是参与运算的对象类型和 `device`。本次窗口路径先用 `torch.tensor(..., device=hidden_states.device, dtype=torch.int32)` 创建 `cu_window_seqlens`；`hidden_states` 位于 NPU，所以 `cu_seqlens` 是 `device='npu'` 的 PyTorch Tensor，其数值存储在 NPU 内存中。Python 侧仍持有 Tensor 对象及 shape、dtype、device 等元信息。
+
+```python
+left = cu_seqlens[1:]    # NPU Tensor view
+right = cu_seqlens[:-1]  # NPU Tensor view
+lengths = left - right
+```
+
+两个切片仍是 NPU Tensor view，共享父 tensor 的设备存储。`-` 先进入 PyTorch 的 Tensor 运算绑定，形成标准 ATen 算子 `aten::sub.Tensor`；dispatcher 再根据输入 tensor 的 NPU dispatch key（本版本为 `PrivateUse1`）选择 torch-npu 注册的实现。该实现分配 NPU 输出并进入 `aclnnSubGetWorkspaceSize → aclnnSub`，最终由 CANN runtime 把 `aclnnSub_SubAiCore_Sub` 提交到当前 NPU stream。
+
+```text
+Transformers 模型中的 Python 表达式
+  → Tensor.__sub__ / aten::sub.Tensor
+  → PyTorch dispatcher 根据 device 选择 PrivateUse1
+  → torch-npu / op-plugin 的 Sub 实现
+  → aclnnSubGetWorkspaceSize → aclnnSub
+  → CANN runtime → NPU Sub kernel
+```
+
+同一行表达式因对象不同会有不同结果：
+
+| `cu_seqlens` 的对象 | `cu_seqlens[1:] - cu_seqlens[:-1]` 的行为 |
+|---|---|
+| Python `list` | 切片仍是 list，list 不支持减法，直接报错 |
+| CPU PyTorch Tensor | dispatcher 选择 CPU Sub，在 CPU 上计算 |
+| NPU PyTorch Tensor | dispatcher 选择 torch-npu Sub，提交 NPU kernel |
+
+因此不能简称为“torch-npu 定义了一种特殊 tensor”。上层对象仍是 `torch.Tensor`；torch-npu 为 NPU device 接入 PyTorch dispatcher、内存和算子实现。也不是 Python 解释器把源码直接编译成 NPU kernel。本次模型业务表达式位于 Hugging Face Transformers 的 Qwen2.5-VL eager forward，我们的实验程序负责调用和观测；这条实测路径不经过 vLLM-Ascend。
+
+`lengths` Tensor 返回 Python 后，NPU kernel 可能尚未完成。只有后续 CPU 需要数值，例如调用 `.tolist()`，才会在当前实现中等待 stream、执行 D2H 并构造 Python `list[int]`。详细的 dispatcher、主机队列和 CANN 两阶段接口见 [Sub 提交与执行报告](SUB_EXECUTION.md#2-cpu-到-npu-的实际调用链)。
+
 ## 3. Sub 的实际调用与计算证据
 
 差分使用普通逐元素减法，不是一个专门的“窗口长度计算”kernel：

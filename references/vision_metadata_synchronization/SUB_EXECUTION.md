@@ -20,6 +20,8 @@
 
 ## 2. CPU 到 NPU 的实际调用链
 
+上层业务表达式来自 Hugging Face Transformers 的 Qwen2.5-VL eager forward：`cu_seqlens[1:] - cu_seqlens[:-1]`。由于 `cu_seqlens` 已按 `hidden_states.device` 创建为 NPU PyTorch Tensor，两个 slice 仍是 NPU view；Python `-` 进入 `aten::sub.Tensor` 后，PyTorch dispatcher 根据 NPU 的 `PrivateUse1` dispatch key 选择 torch-npu 注册实现。若输入是 CPU Tensor，同一 ATen 算子会选择 CPU 实现；若输入是普通 Python list，列表减法会报错。这里没有经过 vLLM-Ascend，也不是 Python 源码直接编译成设备 kernel。概念和对象对照见 [lengths 笔记 2.1 节](LENGTHS.md#21-为什么一行-python-减法会变成-npu-sub)。
+
 本机 `TASK_QUEUE_ENABLE` 和 `ASCEND_LAUNCH_BLOCKING` 均未设置。当前 [OptionsManager.cpp](sub_probe/sources/OptionsManager.cpp) 的 `GetTaskQueueEnable`（552–567 行）默认返回 **1**；`EXEC_NPU_CMD` 因而进入 **V1**。名称中的 `RunOpApiV2` 是另一层封装，不意味着启用了 `TASK_QUEUE_ENABLE=2`。
 
 | 阶段 | 源码入口 | 当前路径的工作与线程 |

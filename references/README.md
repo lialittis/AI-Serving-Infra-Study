@@ -3,7 +3,7 @@
 | 资料 | 主要内容 |
 |---|---|
 | [视觉 forward 同步分析笔记](vision_metadata_synchronization/README.md) | P27 同步发生位置、逐条时间证据、91→7→0 消融，以及主机等待对多 stream 提交和计算重叠的影响 |
-| [lengths 概念、Sub 计算与待研究问题](vision_metadata_synchronization/LENGTHS.md) | 分段长度与累计边界、CPU/NPU 数据流、真实 Sub kernel，以及同步/D2H、编译提交/地址、数值与访存校验三个研究方向 |
+| [lengths 概念、Sub 计算与待研究问题](vision_metadata_synchronization/LENGTHS.md) | 分段长度与累计边界、NPU Tensor 如何经 PyTorch dispatcher 进入 torch-npu/CANN、真实 Sub kernel，以及同步/D2H、地址与数值校验 |
 | [tolist 同步调用链与 D2H 实测](vision_metadata_synchronization/TOLIST_D2H.md) | 实际安装版本的 NPU `_to_copy` / OpApi 分发、同步位置、CPU 缓冲区和 D2H 地址证据，以及三次读取与一次复用的对照 |
 | [Sub 提交、执行与内存地址](vision_metadata_synchronization/SUB_EXECUTION.md) | 首次/预热与 Sub/tolist/sync 对照，实际主机队列、CANN 执行缓存、已有 ELF 加载及 slice 地址证据 |
 | [lengths 正确性与异常校验](vision_metadata_synchronization/CORRECTNESS.md) / [HTML](vision_metadata_synchronization/correctness_probe/report/index.html) | 26 个隔离样例、独立 Python 整数参考、slice 地址、split 接受盲区与 int32 窄化/溢出反例 |
