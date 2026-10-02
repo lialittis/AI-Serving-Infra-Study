@@ -1,0 +1,118 @@
+{
+  "schema": 1,
+  "case": "c2-diagnostic",
+  "phase": "diagnostic",
+  "concurrency": 2,
+  "metrics": {
+    "requests": 6,
+    "failed": 0,
+    "trials": [
+      {
+        "repetition": 0,
+        "requests": 6,
+        "peak_http_inflight": 2,
+        "generated_tokens": 384,
+        "window_s": 3.830265489,
+        "output_tokens_per_s": 100.25414716102465
+      }
+    ],
+    "ttft_ms": {
+      "n": 6,
+      "median": 39.6613895,
+      "min": 27.468621,
+      "max": 47.36391
+    },
+    "latency_ms": {
+      "n": 6,
+      "median": 1273.3978415,
+      "min": 1263.170198,
+      "max": 1282.826021
+    }
+  },
+  "validation": {
+    "status": "passed",
+    "phase": "diagnostic",
+    "concurrency": 2,
+    "requests": 6
+  },
+  "streams": [
+    {
+      "stream": "46",
+      "tasks": 79838,
+      "compute_tasks": 72186,
+      "types": {
+        "EVENT_RECORD": 396,
+        "AI_VECTOR_CORE": 48399,
+        "AI_CORE": 18915,
+        "MIX_AIC": 4680,
+        "AI_CPU": 192,
+        "PLACE_HOLDER_SQE": 2,
+        "PCIE_DMA_SQE": 2178,
+        "SDMA_SQE": 5076
+      },
+      "compute_busy_us": "566282.029",
+      "observed_python_objects": [
+        {
+          "kind": "stream_identity",
+          "pid": 1658658,
+          "tid": 1658658,
+          "wall_ns": 1790946424068589211,
+          "mono_ns": 5193183027476671,
+          "handle": "140408818806784",
+          "runtime_stream_id": 46,
+          "query_return": 0,
+          "python_stream_id": "0",
+          "device": "npu:0",
+          "origin": "observed_existing_object",
+          "creation_proven": false
+        }
+      ],
+      "identity_basis": "runtime ID equality (TP1, one device)",
+      "creation_proven": false
+    }
+  ],
+  "coverage": {
+    "requests_mapped": 6,
+    "requests_expected": 6,
+    "csv_rows": 72186,
+    "csv_matched": 72186,
+    "compute_tasks": 72186,
+    "compute_attributed": 72186,
+    "scopes_expected": 780,
+    "scopes_found": 780,
+    "scheduler_steps": 195,
+    "worker_steps": 195,
+    "observer_errors": [],
+    "identity_issues": [],
+    "flow_issues": [],
+    "unclassified_csv_rows": [],
+    "compute_csv_classified": true,
+    "same_stream_compute_overlaps": []
+  },
+  "analysis_status": "passed",
+  "device_metrics": {
+    "compute_union_us": "566282.029",
+    "compute_overlap_us": "0",
+    "overlap_fraction": 0.0,
+    "peak_compute_streams": 1,
+    "copy_compute_overlap_us": "0",
+    "batch_histogram": {
+      "1": 6,
+      "2": 189
+    },
+    "physical_streams": 1,
+    "compute_streams": 1
+  },
+  "raw_sources": [
+    {
+      "path": "profiler/rank0_1658658_20261002130706361_ascend_pt/ASCEND_PROFILER_OUTPUT/trace_view.json",
+      "sha256": "8ab2a078b2ec5ce49ffb361c372f9412324b9d5205f18e49ab05ac01f018a3a4",
+      "bytes": 371421962
+    },
+    {
+      "path": "profiler/rank0_1658658_20261002130706361_ascend_pt/ASCEND_PROFILER_OUTPUT/kernel_details.csv",
+      "sha256": "f753b0065ba1411b9eff28635e11ea2d6dda50e340d2eba5af05a58a83594b87",
+      "bytes": 17908396
+    }
+  ]
+}

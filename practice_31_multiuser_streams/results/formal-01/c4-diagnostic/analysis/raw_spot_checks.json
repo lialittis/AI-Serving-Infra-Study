@@ -1,0 +1,285 @@
+{
+  "case": "c4-diagnostic",
+  "examples": [
+    {
+      "phase": "prefill",
+      "task": {
+        "id": "k:1079107",
+        "trace_index": 1079107,
+        "name": "aclnnAddmm_MatMulCommon_MatMulV2",
+        "stream": "46",
+        "task_id": "54414",
+        "task_type": "AI_CORE",
+        "start_us": "1790946593731544.981",
+        "end_us": "1790946593731561.341",
+        "duration_us": "16.36",
+        "scope": "P31/b26966ccef47569c506c:1/forward",
+        "step": "b26966ccef47569c506c:1",
+        "stage": "forward",
+        "csv_row": 411,
+        "is_compute": true,
+        "is_copy": false,
+        "host_index": 3575,
+        "cann_index": 1240940,
+        "host_flow": "1790946593731544981",
+        "cann_flow": "686142500372480",
+        "connection_id": "159755",
+        "core_type": "AI_CORE",
+        "requests": [
+          "p31-measure-formal-01-c4-diagnostic-b0-u03-r00",
+          "p31-measure-formal-01-c4-diagnostic-b0-u01-r00",
+          "p31-measure-formal-01-c4-diagnostic-b0-u00-r00",
+          "p31-measure-formal-01-c4-diagnostic-b0-u02-r00"
+        ]
+      },
+      "raw_device": {
+        "name": "aclnnAddmm_MatMulCommon_MatMulV2",
+        "pid": 1700879776,
+        "tid": 46,
+        "ts": "1790946593731544.981",
+        "dur": "16.36",
+        "ph": "X",
+        "args": {
+          "Model Id": 4294967295,
+          "Task Type": "AI_CORE",
+          "Physic Stream Id": 46,
+          "Task Id": 54414,
+          "Batch Id": 0,
+          "Subtask Id": 4294967295,
+          "connection_id": 159755
+        }
+      },
+      "csv_row": {
+        "Device_id": "0",
+        "Model ID": "4294967295",
+        "Task ID": "54414",
+        "Stream ID": "46",
+        "Name": "aclnnAddmm_MatMulCommon_MatMulV2",
+        "Type": "MatMulV2",
+        "OP State": "dynamic",
+        "Accelerator Core": "AI_CORE",
+        "Start Time(us)": "1790946593731544.981\t",
+        "Duration(us)": "16.360",
+        "Wait Time(us)": "2.110000",
+        "Block Num": "24",
+        "Mix Block Num": "0",
+        "HF32 Eligible": "NO",
+        "Input Shapes": "\"385,896;1152,896;1152\"",
+        "Input Data Types": "DT_BF16;DT_BF16;FLOAT",
+        "Input Formats": "ND;ND;ND",
+        "Output Shapes": "\"385,1152\"",
+        "Output Data Types": "DT_BF16",
+        "Output Formats": "ND",
+        "Context ID": "N/A"
+      },
+      "raw_host": {
+        "ph": "X",
+        "name": "aclnnAddmm",
+        "pid": 1661015,
+        "tid": 1661015,
+        "ts": "1790946593731520.662",
+        "dur": "2.49",
+        "cat": "cpu_op",
+        "args": {
+          "Sequence number": -1,
+          "Fwd thread id": 0
+        }
+      },
+      "raw_native": {
+        "name": "Node@launch",
+        "pid": 1700879615,
+        "tid": 1661407,
+        "ts": "1790946593731530.835",
+        "dur": "4.469",
+        "ph": "X",
+        "args": {
+          "Thread Id": 1661407,
+          "Mode": "launch",
+          "level": "node",
+          "id": "0",
+          "item_id": "aclnnAddmm_MatMulCommon_MatMulV2",
+          "connection_id": 159755
+        }
+      },
+      "scheduler": {
+        "kind": "schedule",
+        "pid": 1661015,
+        "tid": 1661015,
+        "wall_ns": 1790946593728918062,
+        "mono_ns": 5193352687804446,
+        "key": "b26966ccef47569c506c:1",
+        "scheduled": {
+          "cmpl-p31-measure-formal-01-c4-diagnostic-b0-u03-r00-0-896d90c7": 1,
+          "cmpl-p31-measure-formal-01-c4-diagnostic-b0-u01-r00-0-99e6fd2a": 128,
+          "cmpl-p31-measure-formal-01-c4-diagnostic-b0-u00-r00-0-ab99b384": 128,
+          "cmpl-p31-measure-formal-01-c4-diagnostic-b0-u02-r00-0-a08e1c0d": 128
+        },
+        "requests": {
+          "cmpl-p31-measure-formal-01-c4-diagnostic-b0-u03-r00-0-896d90c7": {
+            "computed_before": 128,
+            "prompt_tokens": 128,
+            "phase": "decode"
+          },
+          "cmpl-p31-measure-formal-01-c4-diagnostic-b0-u01-r00-0-99e6fd2a": {
+            "computed_before": 0,
+            "prompt_tokens": 128,
+            "phase": "prefill"
+          },
+          "cmpl-p31-measure-formal-01-c4-diagnostic-b0-u00-r00-0-ab99b384": {
+            "computed_before": 0,
+            "prompt_tokens": 128,
+            "phase": "prefill"
+          },
+          "cmpl-p31-measure-formal-01-c4-diagnostic-b0-u02-r00-0-a08e1c0d": {
+            "computed_before": 0,
+            "prompt_tokens": 128,
+            "phase": "prefill"
+          }
+        },
+        "start_ns": 1790946593728572258,
+        "end_ns": 1790946593728916380
+      },
+      "note": "requests is batch membership, not proof of per-request tensor reads/writes"
+    },
+    {
+      "phase": "decode",
+      "task": {
+        "id": "k:1079949",
+        "trace_index": 1079949,
+        "name": "aclnnAddmm_MatMulCommon_MatMulV2",
+        "stream": "46",
+        "task_id": "54848",
+        "task_type": "AI_CORE",
+        "start_us": "1790946593751033.340",
+        "end_us": "1790946593751044.180",
+        "duration_us": "10.84",
+        "scope": "P31/74861dfaac4d9bc553f3:1/forward",
+        "step": "74861dfaac4d9bc553f3:1",
+        "stage": "forward",
+        "csv_row": 830,
+        "is_compute": true,
+        "is_copy": false,
+        "host_index": 6744,
+        "cann_index": 1242951,
+        "host_flow": "1790946593751033340",
+        "cann_flow": "694779679604736",
+        "connection_id": "161766",
+        "core_type": "AI_CORE",
+        "requests": [
+          "p31-measure-formal-01-c4-diagnostic-b0-u03-r00",
+          "p31-measure-formal-01-c4-diagnostic-b0-u01-r00",
+          "p31-measure-formal-01-c4-diagnostic-b0-u00-r00",
+          "p31-measure-formal-01-c4-diagnostic-b0-u02-r00"
+        ]
+      },
+      "raw_device": {
+        "name": "aclnnAddmm_MatMulCommon_MatMulV2",
+        "pid": 1700879776,
+        "tid": 46,
+        "ts": "1790946593751033.340",
+        "dur": "10.84",
+        "ph": "X",
+        "args": {
+          "Model Id": 4294967295,
+          "Task Type": "AI_CORE",
+          "Physic Stream Id": 46,
+          "Task Id": 54848,
+          "Batch Id": 0,
+          "Subtask Id": 4294967295,
+          "connection_id": 161766
+        }
+      },
+      "csv_row": {
+        "Device_id": "0",
+        "Model ID": "4294967295",
+        "Task ID": "54848",
+        "Stream ID": "46",
+        "Name": "aclnnAddmm_MatMulCommon_MatMulV2",
+        "Type": "MatMulV2",
+        "OP State": "dynamic",
+        "Accelerator Core": "AI_CORE",
+        "Start Time(us)": "1790946593751033.340\t",
+        "Duration(us)": "10.840",
+        "Wait Time(us)": "1.340000",
+        "Block Num": "24",
+        "Mix Block Num": "0",
+        "HF32 Eligible": "NO",
+        "Input Shapes": "\"4,896;1152,896;1152\"",
+        "Input Data Types": "DT_BF16;DT_BF16;FLOAT",
+        "Input Formats": "ND;ND;ND",
+        "Output Shapes": "\"4,1152\"",
+        "Output Data Types": "DT_BF16",
+        "Output Formats": "ND",
+        "Context ID": "N/A"
+      },
+      "raw_host": {
+        "ph": "X",
+        "name": "aclnnAddmm",
+        "pid": 1661015,
+        "tid": 1661015,
+        "ts": "1790946593751011.619",
+        "dur": "4.326",
+        "cat": "cpu_op",
+        "args": {
+          "Sequence number": -1,
+          "Fwd thread id": 0
+        }
+      },
+      "raw_native": {
+        "name": "Node@launch",
+        "pid": 1700879615,
+        "tid": 1661407,
+        "ts": "1790946593751021.954",
+        "dur": "3.416",
+        "ph": "X",
+        "args": {
+          "Thread Id": 1661407,
+          "Mode": "launch",
+          "level": "node",
+          "id": "0",
+          "item_id": "aclnnAddmm_MatMulCommon_MatMulV2",
+          "connection_id": 161766
+        }
+      },
+      "scheduler": {
+        "kind": "schedule",
+        "pid": 1661015,
+        "tid": 1661015,
+        "wall_ns": 1790946593748883129,
+        "mono_ns": 5193352707769533,
+        "key": "74861dfaac4d9bc553f3:1",
+        "scheduled": {
+          "cmpl-p31-measure-formal-01-c4-diagnostic-b0-u03-r00-0-896d90c7": 1,
+          "cmpl-p31-measure-formal-01-c4-diagnostic-b0-u01-r00-0-99e6fd2a": 1,
+          "cmpl-p31-measure-formal-01-c4-diagnostic-b0-u00-r00-0-ab99b384": 1,
+          "cmpl-p31-measure-formal-01-c4-diagnostic-b0-u02-r00-0-a08e1c0d": 1
+        },
+        "requests": {
+          "cmpl-p31-measure-formal-01-c4-diagnostic-b0-u03-r00-0-896d90c7": {
+            "computed_before": 129,
+            "prompt_tokens": 128,
+            "phase": "decode"
+          },
+          "cmpl-p31-measure-formal-01-c4-diagnostic-b0-u01-r00-0-99e6fd2a": {
+            "computed_before": 128,
+            "prompt_tokens": 128,
+            "phase": "decode"
+          },
+          "cmpl-p31-measure-formal-01-c4-diagnostic-b0-u00-r00-0-ab99b384": {
+            "computed_before": 128,
+            "prompt_tokens": 128,
+            "phase": "decode"
+          },
+          "cmpl-p31-measure-formal-01-c4-diagnostic-b0-u02-r00-0-a08e1c0d": {
+            "computed_before": 128,
+            "prompt_tokens": 128,
+            "phase": "decode"
+          }
+        },
+        "start_ns": 1790946593748634925,
+        "end_ns": 1790946593748881322
+      },
+      "note": "requests is batch membership, not proof of per-request tensor reads/writes"
+    }
+  ]
+}

@@ -1,0 +1,691 @@
+[
+  {
+    "schema": 1,
+    "case": "c1-benchmark",
+    "phase": "benchmark",
+    "concurrency": 1,
+    "metrics": {
+      "requests": 9,
+      "failed": 0,
+      "trials": [
+        {
+          "repetition": 0,
+          "requests": 3,
+          "peak_http_inflight": 1,
+          "generated_tokens": 192,
+          "window_s": 2.108753384,
+          "output_tokens_per_s": 91.04905365263897
+        },
+        {
+          "repetition": 1,
+          "requests": 3,
+          "peak_http_inflight": 1,
+          "generated_tokens": 192,
+          "window_s": 2.102599589,
+          "output_tokens_per_s": 91.31553197502313
+        },
+        {
+          "repetition": 2,
+          "requests": 3,
+          "peak_http_inflight": 1,
+          "generated_tokens": 192,
+          "window_s": 2.09919831,
+          "output_tokens_per_s": 91.46348826852858
+        }
+      ],
+      "ttft_ms": {
+        "n": 9,
+        "median": 14.086316,
+        "min": 13.882278,
+        "max": 14.528424
+      },
+      "latency_ms": {
+        "n": 9,
+        "median": 701.386108,
+        "min": 694.872882,
+        "max": 703.849793
+      }
+    },
+    "validation": {
+      "status": "passed",
+      "phase": "benchmark",
+      "concurrency": 1,
+      "requests": 9
+    }
+  },
+  {
+    "schema": 1,
+    "case": "c1-diagnostic",
+    "phase": "diagnostic",
+    "concurrency": 1,
+    "metrics": {
+      "requests": 3,
+      "failed": 0,
+      "trials": [
+        {
+          "repetition": 0,
+          "requests": 3,
+          "peak_http_inflight": 1,
+          "generated_tokens": 192,
+          "window_s": 3.659567038,
+          "output_tokens_per_s": 52.46522279994369
+        }
+      ],
+      "ttft_ms": {
+        "n": 3,
+        "median": 24.81521,
+        "min": 24.175393,
+        "max": 26.283271
+      },
+      "latency_ms": {
+        "n": 3,
+        "median": 1218.358219,
+        "min": 1215.318995,
+        "max": 1225.678734
+      }
+    },
+    "validation": {
+      "status": "passed",
+      "phase": "diagnostic",
+      "concurrency": 1,
+      "requests": 3
+    },
+    "streams": [
+      {
+        "stream": "46",
+        "tasks": 65185,
+        "compute_tasks": 57309,
+        "types": {
+          "EVENT_RECORD": 384,
+          "AI_VECTOR_CORE": 33888,
+          "AI_CORE": 18624,
+          "MIX_AIC": 4608,
+          "AI_CPU": 189,
+          "PLACE_HOLDER_SQE": 1,
+          "PCIE_DMA_SQE": 2121,
+          "SDMA_SQE": 5370
+        },
+        "compute_busy_us": "530032.492",
+        "observed_python_objects": [
+          {
+            "kind": "stream_identity",
+            "pid": 1656571,
+            "tid": 1656571,
+            "wall_ns": 1790946270199930720,
+            "mono_ns": 5193029158817841,
+            "handle": "140427576373248",
+            "runtime_stream_id": 46,
+            "query_return": 0,
+            "python_stream_id": "0",
+            "device": "npu:0",
+            "origin": "observed_existing_object",
+            "creation_proven": false
+          }
+        ],
+        "identity_basis": "runtime ID equality (TP1, one device)",
+        "creation_proven": false
+      }
+    ],
+    "coverage": {
+      "requests_mapped": 3,
+      "requests_expected": 3,
+      "csv_rows": 57309,
+      "csv_matched": 57309,
+      "compute_tasks": 57309,
+      "compute_attributed": 57309,
+      "scopes_expected": 768,
+      "scopes_found": 768,
+      "scheduler_steps": 192,
+      "worker_steps": 192,
+      "observer_errors": [],
+      "identity_issues": [],
+      "flow_issues": [],
+      "unclassified_csv_rows": [],
+      "compute_csv_classified": true,
+      "same_stream_compute_overlaps": []
+    },
+    "analysis_status": "passed",
+    "device_metrics": {
+      "compute_union_us": "530032.492",
+      "compute_overlap_us": "0",
+      "overlap_fraction": 0.0,
+      "peak_compute_streams": 1,
+      "copy_compute_overlap_us": "0",
+      "batch_histogram": {
+        "1": 192
+      },
+      "physical_streams": 1,
+      "compute_streams": 1
+    },
+    "raw_sources": [
+      {
+        "path": "profiler/rank0_1656571_20261002130432366_ascend_pt/ASCEND_PROFILER_OUTPUT/trace_view.json",
+        "sha256": "e335652a48b51dab9329dc893239a3403bab5c624e57ad291561d6d424068988",
+        "bytes": 313713471
+      },
+      {
+        "path": "profiler/rank0_1656571_20261002130432366_ascend_pt/ASCEND_PROFILER_OUTPUT/kernel_details.csv",
+        "sha256": "cd93d183f24e766b3a550a9ecdd45e9a8231fbc4976669060dc3e9ada7957ce6",
+        "bytes": 14757528
+      }
+    ]
+  },
+  {
+    "schema": 1,
+    "case": "c2-benchmark",
+    "phase": "benchmark",
+    "concurrency": 2,
+    "metrics": {
+      "requests": 18,
+      "failed": 0,
+      "trials": [
+        {
+          "repetition": 0,
+          "requests": 6,
+          "peak_http_inflight": 2,
+          "generated_tokens": 384,
+          "window_s": 2.170315585,
+          "output_tokens_per_s": 176.93279385449375
+        },
+        {
+          "repetition": 1,
+          "requests": 6,
+          "peak_http_inflight": 2,
+          "generated_tokens": 384,
+          "window_s": 2.163189125,
+          "output_tokens_per_s": 177.51568531947015
+        },
+        {
+          "repetition": 2,
+          "requests": 6,
+          "peak_http_inflight": 2,
+          "generated_tokens": 384,
+          "window_s": 2.268180559,
+          "output_tokens_per_s": 169.29869118060807
+        }
+      ],
+      "ttft_ms": {
+        "n": 18,
+        "median": 22.596077,
+        "min": 13.776872,
+        "max": 25.67441
+      },
+      "latency_ms": {
+        "n": 18,
+        "median": 720.574016,
+        "min": 709.677594,
+        "max": 826.71382
+      }
+    },
+    "validation": {
+      "status": "passed",
+      "phase": "benchmark",
+      "concurrency": 2,
+      "requests": 18
+    }
+  },
+  {
+    "schema": 1,
+    "case": "c2-diagnostic",
+    "phase": "diagnostic",
+    "concurrency": 2,
+    "metrics": {
+      "requests": 6,
+      "failed": 0,
+      "trials": [
+        {
+          "repetition": 0,
+          "requests": 6,
+          "peak_http_inflight": 2,
+          "generated_tokens": 384,
+          "window_s": 3.830265489,
+          "output_tokens_per_s": 100.25414716102465
+        }
+      ],
+      "ttft_ms": {
+        "n": 6,
+        "median": 39.6613895,
+        "min": 27.468621,
+        "max": 47.36391
+      },
+      "latency_ms": {
+        "n": 6,
+        "median": 1273.3978415,
+        "min": 1263.170198,
+        "max": 1282.826021
+      }
+    },
+    "validation": {
+      "status": "passed",
+      "phase": "diagnostic",
+      "concurrency": 2,
+      "requests": 6
+    },
+    "streams": [
+      {
+        "stream": "46",
+        "tasks": 79838,
+        "compute_tasks": 72186,
+        "types": {
+          "EVENT_RECORD": 396,
+          "AI_VECTOR_CORE": 48399,
+          "AI_CORE": 18915,
+          "MIX_AIC": 4680,
+          "AI_CPU": 192,
+          "PLACE_HOLDER_SQE": 2,
+          "PCIE_DMA_SQE": 2178,
+          "SDMA_SQE": 5076
+        },
+        "compute_busy_us": "566282.029",
+        "observed_python_objects": [
+          {
+            "kind": "stream_identity",
+            "pid": 1658658,
+            "tid": 1658658,
+            "wall_ns": 1790946424068589211,
+            "mono_ns": 5193183027476671,
+            "handle": "140408818806784",
+            "runtime_stream_id": 46,
+            "query_return": 0,
+            "python_stream_id": "0",
+            "device": "npu:0",
+            "origin": "observed_existing_object",
+            "creation_proven": false
+          }
+        ],
+        "identity_basis": "runtime ID equality (TP1, one device)",
+        "creation_proven": false
+      }
+    ],
+    "coverage": {
+      "requests_mapped": 6,
+      "requests_expected": 6,
+      "csv_rows": 72186,
+      "csv_matched": 72186,
+      "compute_tasks": 72186,
+      "compute_attributed": 72186,
+      "scopes_expected": 780,
+      "scopes_found": 780,
+      "scheduler_steps": 195,
+      "worker_steps": 195,
+      "observer_errors": [],
+      "identity_issues": [],
+      "flow_issues": [],
+      "unclassified_csv_rows": [],
+      "compute_csv_classified": true,
+      "same_stream_compute_overlaps": []
+    },
+    "analysis_status": "passed",
+    "device_metrics": {
+      "compute_union_us": "566282.029",
+      "compute_overlap_us": "0",
+      "overlap_fraction": 0.0,
+      "peak_compute_streams": 1,
+      "copy_compute_overlap_us": "0",
+      "batch_histogram": {
+        "1": 6,
+        "2": 189
+      },
+      "physical_streams": 1,
+      "compute_streams": 1
+    },
+    "raw_sources": [
+      {
+        "path": "profiler/rank0_1658658_20261002130706361_ascend_pt/ASCEND_PROFILER_OUTPUT/trace_view.json",
+        "sha256": "8ab2a078b2ec5ce49ffb361c372f9412324b9d5205f18e49ab05ac01f018a3a4",
+        "bytes": 371421962
+      },
+      {
+        "path": "profiler/rank0_1658658_20261002130706361_ascend_pt/ASCEND_PROFILER_OUTPUT/kernel_details.csv",
+        "sha256": "f753b0065ba1411b9eff28635e11ea2d6dda50e340d2eba5af05a58a83594b87",
+        "bytes": 17908396
+      }
+    ]
+  },
+  {
+    "schema": 1,
+    "case": "c4-benchmark",
+    "phase": "benchmark",
+    "concurrency": 4,
+    "metrics": {
+      "requests": 36,
+      "failed": 0,
+      "trials": [
+        {
+          "repetition": 0,
+          "requests": 12,
+          "peak_http_inflight": 4,
+          "generated_tokens": 768,
+          "window_s": 2.273559898,
+          "output_tokens_per_s": 337.79624661553567
+        },
+        {
+          "repetition": 1,
+          "requests": 12,
+          "peak_http_inflight": 4,
+          "generated_tokens": 768,
+          "window_s": 2.265811941,
+          "output_tokens_per_s": 338.9513428290296
+        },
+        {
+          "repetition": 2,
+          "requests": 12,
+          "peak_http_inflight": 4,
+          "generated_tokens": 768,
+          "window_s": 2.27246121,
+          "output_tokens_per_s": 337.959564115068
+        }
+      ],
+      "ttft_ms": {
+        "n": 36,
+        "median": 23.987281,
+        "min": 15.365762,
+        "max": 28.008058
+      },
+      "latency_ms": {
+        "n": 36,
+        "median": 754.5479235,
+        "min": 737.087508,
+        "max": 778.054588
+      }
+    },
+    "validation": {
+      "status": "passed",
+      "phase": "benchmark",
+      "concurrency": 4,
+      "requests": 36
+    }
+  },
+  {
+    "schema": 1,
+    "case": "c4-diagnostic",
+    "phase": "diagnostic",
+    "concurrency": 4,
+    "metrics": {
+      "requests": 12,
+      "failed": 0,
+      "trials": [
+        {
+          "repetition": 0,
+          "requests": 12,
+          "peak_http_inflight": 4,
+          "generated_tokens": 768,
+          "window_s": 3.843116125,
+          "output_tokens_per_s": 199.83783341961856
+        }
+      ],
+      "ttft_ms": {
+        "n": 12,
+        "median": 39.616279500000005,
+        "min": 30.422371,
+        "max": 50.295768
+      },
+      "latency_ms": {
+        "n": 12,
+        "median": 1283.5062505,
+        "min": 1263.354519,
+        "max": 1285.250171
+      }
+    },
+    "validation": {
+      "status": "passed",
+      "phase": "diagnostic",
+      "concurrency": 4,
+      "requests": 12
+    },
+    "streams": [
+      {
+        "stream": "46",
+        "tasks": 80126,
+        "compute_tasks": 72552,
+        "types": {
+          "EVENT_RECORD": 396,
+          "AI_VECTOR_CORE": 48765,
+          "AI_CORE": 18915,
+          "MIX_AIC": 4680,
+          "AI_CPU": 192,
+          "PLACE_HOLDER_SQE": 2,
+          "PCIE_DMA_SQE": 2178,
+          "SDMA_SQE": 4998
+        },
+        "compute_busy_us": "600645.859",
+        "observed_python_objects": [
+          {
+            "kind": "stream_identity",
+            "pid": 1661015,
+            "tid": 1661015,
+            "wall_ns": 1790946591302751257,
+            "mono_ns": 5193350261638508,
+            "handle": "139697402703872",
+            "runtime_stream_id": 46,
+            "query_return": 0,
+            "python_stream_id": "0",
+            "device": "npu:0",
+            "origin": "observed_existing_object",
+            "creation_proven": false
+          }
+        ],
+        "identity_basis": "runtime ID equality (TP1, one device)",
+        "creation_proven": false
+      }
+    ],
+    "coverage": {
+      "requests_mapped": 12,
+      "requests_expected": 12,
+      "csv_rows": 72552,
+      "csv_matched": 72552,
+      "compute_tasks": 72552,
+      "compute_attributed": 72552,
+      "scopes_expected": 780,
+      "scopes_found": 780,
+      "scheduler_steps": 195,
+      "worker_steps": 195,
+      "observer_errors": [],
+      "identity_issues": [],
+      "flow_issues": [],
+      "unclassified_csv_rows": [],
+      "compute_csv_classified": true,
+      "same_stream_compute_overlaps": []
+    },
+    "analysis_status": "passed",
+    "device_metrics": {
+      "compute_union_us": "600645.859",
+      "compute_overlap_us": "0",
+      "overlap_fraction": 0.0,
+      "peak_compute_streams": 1,
+      "copy_compute_overlap_us": "0",
+      "batch_histogram": {
+        "1": 3,
+        "4": 189,
+        "3": 3
+      },
+      "physical_streams": 1,
+      "compute_streams": 1
+    },
+    "raw_sources": [
+      {
+        "path": "profiler/rank0_1661015_20261002130953599_ascend_pt/ASCEND_PROFILER_OUTPUT/trace_view.json",
+        "sha256": "f8f82c9563696db428ae1d2b2de541575d6a480c937798616f84ed56ad6ed942",
+        "bytes": 372276240
+      },
+      {
+        "path": "profiler/rank0_1661015_20261002130953599_ascend_pt/ASCEND_PROFILER_OUTPUT/kernel_details.csv",
+        "sha256": "167986ac1d228c69afb9bc7c971112e748e281e09302b688bb2312ebdc784a4c",
+        "bytes": 17983582
+      }
+    ]
+  },
+  {
+    "schema": 1,
+    "case": "c8-benchmark",
+    "phase": "benchmark",
+    "concurrency": 8,
+    "metrics": {
+      "requests": 72,
+      "failed": 0,
+      "trials": [
+        {
+          "repetition": 0,
+          "requests": 24,
+          "peak_http_inflight": 8,
+          "generated_tokens": 1536,
+          "window_s": 2.355471846,
+          "output_tokens_per_s": 652.098645376889
+        },
+        {
+          "repetition": 1,
+          "requests": 24,
+          "peak_http_inflight": 8,
+          "generated_tokens": 1536,
+          "window_s": 2.341226329,
+          "output_tokens_per_s": 656.0664302182465
+        },
+        {
+          "repetition": 2,
+          "requests": 24,
+          "peak_http_inflight": 8,
+          "generated_tokens": 1536,
+          "window_s": 2.446364323,
+          "output_tokens_per_s": 627.8705038162053
+        }
+      ],
+      "ttft_ms": {
+        "n": 72,
+        "median": 24.373740499999997,
+        "min": 17.751098,
+        "max": 42.444536
+      },
+      "latency_ms": {
+        "n": 72,
+        "median": 783.438987,
+        "min": 766.479138,
+        "max": 885.115217
+      }
+    },
+    "validation": {
+      "status": "passed",
+      "phase": "benchmark",
+      "concurrency": 8,
+      "requests": 72
+    }
+  },
+  {
+    "schema": 1,
+    "case": "c8-diagnostic",
+    "phase": "diagnostic",
+    "concurrency": 8,
+    "metrics": {
+      "requests": 24,
+      "failed": 0,
+      "trials": [
+        {
+          "repetition": 0,
+          "requests": 24,
+          "peak_http_inflight": 8,
+          "generated_tokens": 1536,
+          "window_s": 3.951289679,
+          "output_tokens_per_s": 388.73383750207194
+        }
+      ],
+      "ttft_ms": {
+        "n": 24,
+        "median": 41.0317705,
+        "min": 33.602102,
+        "max": 56.034311
+      },
+      "latency_ms": {
+        "n": 24,
+        "median": 1310.54214,
+        "min": 1287.910178,
+        "max": 1342.545817
+      }
+    },
+    "validation": {
+      "status": "passed",
+      "phase": "diagnostic",
+      "concurrency": 8,
+      "requests": 24
+    },
+    "streams": [
+      {
+        "stream": "46",
+        "tasks": 79937,
+        "compute_tasks": 72363,
+        "types": {
+          "EVENT_RECORD": 396,
+          "AI_VECTOR_CORE": 48576,
+          "AI_CORE": 18915,
+          "MIX_AIC": 4680,
+          "AI_CPU": 192,
+          "PLACE_HOLDER_SQE": 2,
+          "PCIE_DMA_SQE": 2178,
+          "SDMA_SQE": 4998
+        },
+        "compute_busy_us": "648882.110",
+        "observed_python_objects": [
+          {
+            "kind": "stream_identity",
+            "pid": 1663134,
+            "tid": 1663134,
+            "wall_ns": 1790946758473747372,
+            "mono_ns": 5193517432634840,
+            "handle": "140579298807808",
+            "runtime_stream_id": 46,
+            "query_return": 0,
+            "python_stream_id": "0",
+            "device": "npu:0",
+            "origin": "observed_existing_object",
+            "creation_proven": false
+          }
+        ],
+        "identity_basis": "runtime ID equality (TP1, one device)",
+        "creation_proven": false
+      }
+    ],
+    "coverage": {
+      "requests_mapped": 24,
+      "requests_expected": 24,
+      "csv_rows": 72363,
+      "csv_matched": 72363,
+      "compute_tasks": 72363,
+      "compute_attributed": 72363,
+      "scopes_expected": 780,
+      "scopes_found": 780,
+      "scheduler_steps": 195,
+      "worker_steps": 195,
+      "observer_errors": [],
+      "identity_issues": [],
+      "flow_issues": [],
+      "unclassified_csv_rows": [],
+      "compute_csv_classified": true,
+      "same_stream_compute_overlaps": []
+    },
+    "analysis_status": "passed",
+    "device_metrics": {
+      "compute_union_us": "648882.110",
+      "compute_overlap_us": "0",
+      "overlap_fraction": 0.0,
+      "peak_compute_streams": 1,
+      "copy_compute_overlap_us": "0",
+      "batch_histogram": {
+        "1": 3,
+        "8": 189,
+        "7": 3
+      },
+      "physical_streams": 1,
+      "compute_streams": 1
+    },
+    "raw_sources": [
+      {
+        "path": "profiler/rank0_1663134_20261002131240861_ascend_pt/ASCEND_PROFILER_OUTPUT/trace_view.json",
+        "sha256": "dbd9cfd78b4be6d503d1380468c90d8749d1165ede27048e2c21007438ce8ec3",
+        "bytes": 371889072
+      },
+      {
+        "path": "profiler/rank0_1663134_20261002131240861_ascend_pt/ASCEND_PROFILER_OUTPUT/kernel_details.csv",
+        "sha256": "e69494548e3d7e6bb6c226cf3527838f108601aa6ee3e7985290a3685a9a2e2e",
+        "bytes": 17948885
+      }
+    ]
+  }
+]

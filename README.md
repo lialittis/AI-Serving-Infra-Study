@@ -388,3 +388,16 @@ its measurement overhead is explicit in the [report](practice_30_cpu_submission_
 
 See the [reference index](references/README.md) for CUDA multi-stream use cases,
 PyTorch CUDA Stream Sanitizer analysis, and vLLM KV offload synchronization cases.
+
+## Practice 31: independent users through one vLLM service
+
+Send repeated, independent HTTP requests from 1/2/4/8 users to one native
+vLLM-Ascend eager service. Correlate exact request IDs with shared scheduler
+batches, host submissions, physical streams and NPU kernels. Keep request
+concurrency, batching, stream count and compute overlap as separate measurements;
+benchmark performance in a separate service without instrumentation.
+
+See the [reproduction guide](practice_31_multiuser_streams/README.md),
+[measured results](practice_31_multiuser_streams/RESULTS.md),
+[full report retrieval](practice_31_multiuser_streams/README.md#完整报告与大文件), and
+[staged task list](tasks/2026-10-02-practice31-multiuser-streams.md).
