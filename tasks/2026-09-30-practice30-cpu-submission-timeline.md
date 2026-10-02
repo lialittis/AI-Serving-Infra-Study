@@ -112,4 +112,16 @@ decode 32 检查的三个较大设备任务间隙约 **127–135 µs**，其中�
 - [x] 明确记录观察扰动：被包装的 RoPE 外层约 268.323 µs，其余 23 次中位数约 108.489 µs。新增计时用于读调用结构，不作为稳定性能占比；native C++ 内部未完整采集。
 - [x] 输出占比表、可展开调用树、RoPE SVG、机器可读证据、复现命令及便携归档。
 
-下一小步候选：只选一个 graph 图外 attention 调用，解释其 Host 自身余量；当前尚未开展，不增加 benchmark 矩阵。
+### Subtask 2 后续：一次 graph 图外 attention（2026-10-02）
+
+- [x] 只细化预热后 decode 32 第一层的一次调用，保留原生 PIECEWISE 请求；新增 `--attention-detail` 与 8 个可恢复的方法范围。
+- [x] 沿远端源码确认 context → backend.forward → KV 写入 → FIA 参数准备/提交 → output 整理；实际 DecodeOnly 使用主机长度列表 `[42]` 和 NPU KV view，没有在此路径 `.tolist()` 回收长度。
+- [x] 精确关联两项计算与一项设备拷贝：KV 写入 1.900 µs、FIA 23.581 µs、MEMCPY 0.600 µs。同一次调用的两个 copy 队列只有一个设备任务；另一个无设备任务，与源码中的 output 别名自拷贝相容，native no-op 判断仍未追入。
+- [x] 分开报告内部双时钟和 profiler 包含树，保留各方法余量；不将旧的 24 次 attention 约 1.013 ms 余量与新单次重度观测直接相减。
+- [x] 披露扰动：选中 Host 范围 395.780 µs，其余 23 次中位数 109.082 µs；诊断请求约为原生参考中位数的 1.530 倍，不能作为稳定性能占比。
+- [x] 11 次响应完全一致、29 个源文件不变、绑定与原生推理恢复；测量期间无重新 capture，保持每 decode 25 次 replay。选中范围没有显式 CANN 同步记录，不推断 native 绝无等待。
+- [x] 输出 [结论](../practice_30_cpu_submission_timeline/ATTENTION_RESULTS.md)、[HTML/SVG](../practice_30_cpu_submission_timeline/report/attention/index.html) 与便携证据。
+
+RoPE 的补充源码分析已独立整理到 [Triton 参考笔记](../references/Triton/README.md)：历史 `rope_native` 包含 Python launcher 包装，不能当作纯 C++ 耗时。核数与 CANN 工具另见[未来任务](2026-10-02-triton-core-execution-observability.md)。
+
+下一小步候选：减少嵌套观测，只继续解释一个 FIA 调用或输出 copy 边界；尚未开展，不扩展 benchmark 矩阵。

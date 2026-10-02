@@ -25,8 +25,10 @@ def main():
     p.add_argument('--stage',choices=['reference','diagnostic','recovery'],required=True)
     p.add_argument('--mode',choices=['eager','graph'],default='eager')
     p.add_argument('--forward-detail',action='store_true')
+    p.add_argument('--attention-detail',action='store_true')
     a=p.parse_args();a.output.mkdir(parents=True,exist_ok=False)
     if a.forward_detail and a.mode!='eager':p.error('RoPE detail is a warmed eager-only probe')
+    if a.attention_detail and a.mode!='graph':p.error('attention detail requires graph mode')
     os.environ.update(VLLM_ENABLE_V1_MULTIPROCESSING='0',HF_HUB_OFFLINE='1',TRANSFORMERS_OFFLINE='1',
         TRITON_CACHE_DIR=str(a.output/'triton_cache'),VLLM_CACHE_ROOT=str(a.output/'vllm_cache'))
     status=dict(status='running',stage=a.stage,mode=a.mode,pid=os.getpid())
@@ -61,6 +63,9 @@ def main():
             if a.forward_detail:
                 from forward_observer import ForwardObserver
                 detail=ForwardObserver(observer)
+            if a.attention_detail:
+                from attention_observer import AttentionObserver
+                detail=AttentionObserver(observer)
             save(a.output/'phase_sources.json',observer.sources)
             profiler=torch_npu.profiler.profile(
                 activities=[torch_npu.profiler.ProfilerActivity.CPU,torch_npu.profiler.ProfilerActivity.NPU],
@@ -86,7 +91,7 @@ def main():
             if observer:
                 save(a.output/'observer.json',observer.records)
                 save(a.output/'binding_recovery.json',dict(restored=observer.restored))
-            if detail:save(a.output/'forward_detail.json',detail.metadata)
+            if detail:save(a.output/('attention_detail.json' if a.attention_detail else 'forward_detail.json'),detail.metadata)
         save(a.output/'responses.json',responses)
         assert all(r['output']==warmups[0] for r in responses) and warmups[0]==warmups[1]
         if observer:
@@ -96,6 +101,10 @@ def main():
         if detail:
             assert detail.selected==1
             assert not any(r['kind']=='rope_compile' for r in observer.records),'unexpected compilation during selected call'
+        if a.attention_detail and detail:
+            assert detail.context_calls==1
+            kinds=[r['kind'] for r in observer.records if r['kind'].startswith('attn_')]
+            assert len(kinds)==8 and len(set(kinds))==8, ('unexpected attention path', kinds)
         status.update(status='passed',requests=count,exact_warmup_output_match=True)
     except BaseException as exc:
         status.update(status='failed',reason=repr(exc),traceback=traceback.format_exc())

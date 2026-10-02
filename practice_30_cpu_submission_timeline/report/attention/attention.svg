@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1290 623">
+<style>text{font:13px sans-serif;fill:#203545}</style>
+<rect width="1290" height="623" fill="#f5f8fb"/>
+<text x="18" y="28" style="font-size:21px">一次 graph 图外 attention：Host 方法 → 队列 → CANN → NPU</text>
+<text x="18" y="53">蓝：Host 方法；紫：队列/提交；绿：设备计算；橙：设备拷贝/控制。宽度为实际时间，悬停查看身份。</text>
+<text x="18" y="75">只展示选中调用；CPU 和下发线程可重叠，设备任务完成可能晚于 Host 返回。新增 scope 会扰动时间。</text>
+<text x="12" y="111">attn_context</text>
+<text x="12" y="150">attn_backend</text>
+<text x="12" y="189">attn_kv_prepare</text>
+<text x="12" y="228">attn_kv_submit</text>
+<text x="12" y="267">attn_dispatch</text>
+<text x="12" y="306">attn_fia</text>
+<text x="12" y="345">attn_fia_params</text>
+<text x="12" y="384">attn_fia_submit</text>
+<text x="12" y="423">CPU Enqueue</text>
+<text x="12" y="462">下发线程 Dequeue</text>
+<text x="12" y="501">CANN 提交</text>
+<text x="12" y="540">NPU stream 46</text>
+<rect x="240.000" y="94" width="41.725" height="22" fill="#376cb1"><title>P30/32/attn_context/1331 · 15.467 µs</title></rect>
+<rect x="411.340" y="133" width="843.660" height="22" fill="#376cb1"><title>P30/32/attn_backend/1332 · 312.732 µs</title></rect>
+<rect x="444.157" y="172" width="195.684" height="22" fill="#376cb1"><title>P30/32/attn_kv_prepare/1333 · 72.537 µs</title></rect>
+<rect x="505.940" y="211" width="103.964" height="22" fill="#376cb1"><title>P30/32/attn_kv_submit/1334 · 38.538 µs</title></rect>
+<rect x="663.557" y="250" width="527.305" height="22" fill="#376cb1"><title>P30/32/attn_dispatch/1335 · 195.464 µs</title></rect>
+<rect x="695.436" y="289" width="472.647" height="22" fill="#376cb1"><title>P30/32/attn_fia/1336 · 175.203 µs</title></rect>
+<rect x="722.512" y="328" width="52.230" height="22" fill="#376cb1"><title>P30/32/attn_fia_params/1337 · 19.361 µs</title></rect>
+<rect x="847.357" y="367" width="213.686" height="22" fill="#376cb1"><title>P30/32/attn_fia_submit/1338 · 79.210 µs</title></rect>
+<rect x="568.217" y="406" width="7.780" height="22" fill="#8855ad"><title>Enqueue@ReshapeCacheOperation / q:24389 · 2.884 µs</title></rect>
+<rect x="587.182" y="445" width="40.584" height="22" fill="#8855ad"><title>Dequeue@ReshapeCacheOperation / q:24389 · 15.044 µs</title></rect>
+<rect x="1013.315" y="406" width="7.049" height="22" fill="#8855ad"><title>Enqueue@aclnnFusedInferAttentionScoreV3 / q:24390 · 2.613 µs</title></rect>
+<rect x="1032.663" y="445" width="66.801" height="22" fill="#8855ad"><title>Dequeue@aclnnFusedInferAttentionScoreV3 / q:24390 · 24.762 µs</title></rect>
+<rect x="1130.476" y="406" width="6.037" height="22" fill="#8855ad"><title>Enqueue@aclnnInplaceCopy / q:24391 · 2.238 µs</title></rect>
+<rect x="1148.071" y="445" width="10.607" height="22" fill="#8855ad"><title>Dequeue@aclnnInplaceCopy / q:24391 · 3.932 µs</title></rect>
+<rect x="1226.628" y="406" width="6.037" height="22" fill="#8855ad"><title>Enqueue@aclnnInplaceCopy / q:24392 · 2.238 µs</title></rect>
+<rect x="1244.730" y="445" width="4.592" height="22" fill="#8855ad"><title>Dequeue@aclnnInplaceCopy / q:24392 · 1.702 µs</title></rect>
+<rect x="605.559" y="484" width="9.067" height="22" fill="#8855ad"><title>Node@launch / connection 45278 · 3.361 µs</title></rect>
+<rect x="655.612" y="523" width="5.126" height="22" fill="#208977"><title>ReshapeAndCacheNdKernel / task 28819 / 1.9 us · 1.900 µs</title></rect>
+<rect x="1040.011" y="484" width="45.349" height="22" fill="#8855ad"><title>Node@launch / connection 45283 · 16.810 µs</title></rect>
+<rect x="1114.509" y="523" width="63.615" height="22" fill="#208977"><title>FusedInferAttentionScore / task 28820 / 23.581 us · 23.581 µs</title></rect>
+<rect x="1149.439" y="484" width="7.974" height="22" fill="#8855ad"><title>AscendCL@aclnnInplaceCopy / connection 45289 · 2.956 µs</title></rect>
+<rect x="1181.522" y="523" width="1.619" height="22" fill="#d88b22"><title>MEMCPY_ASYNC / task 28821 / 0.6 us · 0.600 µs</title></rect>
+<text x="240" y="605">0.0 µs</text>
+<text x="443" y="605">75.2 µs</text>
+<text x="646" y="605">150.5 µs</text>
+<text x="849" y="605">225.7 µs</text>
+<text x="1052" y="605">301.0 µs</text>
+<text x="1255" y="605">376.2 µs</text>
+</svg>

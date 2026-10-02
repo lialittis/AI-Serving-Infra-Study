@@ -1,0 +1,1661 @@
+{
+  "run": "attention-01",
+  "metadata": {
+    "target_step": 32,
+    "target_attention_ordinal": 0,
+    "limits": "One warmed graph-external attention. Shape/host metadata only; no tensor contents, extra waits, stream changes or changed arguments. Wrappers/profiler perturb timings.",
+    "context_layer": "model.layers.0.self_attn.attn",
+    "call": {
+      "layer_name": "model.layers.0.self_attn.attn",
+      "implementation": "AscendAttentionBackendImpl",
+      "attn_state": "AscendAttentionState.DecodeOnly",
+      "capturing": false,
+      "causal": true,
+      "sinks": false,
+      "sliding_window": null,
+      "hamming_sparse": false,
+      "is_kv_producer": false,
+      "cache_already_initialized": true,
+      "num_actual_tokens": 1,
+      "actual_seq_lengths_q": [
+        1
+      ],
+      "seq_lens_list": [
+        42
+      ],
+      "query": {
+        "shape": [
+          1,
+          14,
+          64
+        ],
+        "stride": [
+          896,
+          64,
+          1
+        ],
+        "dtype": "torch.bfloat16",
+        "device": "npu:0"
+      },
+      "key": {
+        "shape": [
+          1,
+          2,
+          64
+        ],
+        "stride": [
+          128,
+          64,
+          1
+        ],
+        "dtype": "torch.bfloat16",
+        "device": "npu:0"
+      },
+      "value": {
+        "shape": [
+          1,
+          2,
+          64
+        ],
+        "stride": [
+          128,
+          64,
+          1
+        ],
+        "dtype": "torch.bfloat16",
+        "device": "npu:0"
+      },
+      "output": {
+        "shape": [
+          1,
+          14,
+          64
+        ],
+        "stride": [
+          896,
+          64,
+          1
+        ],
+        "dtype": "torch.bfloat16",
+        "device": "npu:0"
+      },
+      "block_tables": {
+        "shape": [
+          1,
+          2
+        ],
+        "stride": [
+          2,
+          1
+        ],
+        "dtype": "torch.int32",
+        "device": "npu:0"
+      },
+      "slot_mapping": {
+        "shape": [
+          1
+        ],
+        "stride": [
+          1
+        ],
+        "dtype": "torch.int32",
+        "device": "npu:0"
+      }
+    },
+    "fia_arguments": {
+      "query": {
+        "shape": [
+          1,
+          14,
+          64
+        ],
+        "stride": [
+          896,
+          64,
+          1
+        ],
+        "dtype": "torch.bfloat16",
+        "device": "npu:0"
+      },
+      "key": {
+        "shape": [
+          10,
+          128,
+          128
+        ],
+        "stride": [
+          16384,
+          128,
+          1
+        ],
+        "dtype": "torch.bfloat16",
+        "device": "npu:0"
+      },
+      "value": {
+        "shape": [
+          10,
+          128,
+          128
+        ],
+        "stride": [
+          16384,
+          128,
+          1
+        ],
+        "dtype": "torch.bfloat16",
+        "device": "npu:0"
+      },
+      "atten_mask": {
+        "shape": [
+          2048,
+          2048
+        ],
+        "stride": [
+          2048,
+          1
+        ],
+        "dtype": "torch.int8",
+        "device": "npu:0"
+      },
+      "block_table": {
+        "shape": [
+          1,
+          2
+        ],
+        "stride": [
+          2,
+          1
+        ],
+        "dtype": "torch.int32",
+        "device": "npu:0"
+      },
+      "input_layout": "TND",
+      "block_size": 128,
+      "actual_seq_lengths": [
+        1
+      ],
+      "actual_seq_lengths_kv": [
+        42
+      ],
+      "num_key_value_heads": 2,
+      "num_heads": 14,
+      "scale": 0.125,
+      "sparse_mode": 3
+    },
+    "selected_calls": 1,
+    "context_calls": 1,
+    "restored": true
+  },
+  "phases": [
+    {
+      "id": 1331,
+      "parent": 1329,
+      "kind": "attn_context",
+      "index": 32,
+      "step": "p30-measure/step-32",
+      "label": "P30/32/attn_context/1331",
+      "pid": 1624824,
+      "tid": 1624824,
+      "request_id": "2-b4f461a1",
+      "wall_start_ns": 5178909746954283,
+      "wall_end_ns": 5178909746956877,
+      "wall_ns": 2594,
+      "thread_cpu_ns": 2068,
+      "self_wall_us": 2.594,
+      "self_thread_cpu_us": 2.068,
+      "wall_us": 2.594,
+      "thread_cpu_us": 2.068,
+      "wall_minus_thread_cpu_us": 0.526,
+      "trace_start_us": "1790932150788062.682",
+      "trace_end_us": "1790932150788078.149",
+      "source": {
+        "path": "/vllm-workspace/vllm/vllm/model_executor/layers/attention/attention.py",
+        "line": 620,
+        "qualname": "get_attention_context"
+      }
+    },
+    {
+      "id": 1332,
+      "parent": 1329,
+      "kind": "attn_backend",
+      "index": 32,
+      "step": "p30-measure/step-32",
+      "label": "P30/32/attn_backend/1332",
+      "pid": 1624824,
+      "tid": 1624824,
+      "request_id": "2-b4f461a1",
+      "wall_start_ns": 5178909747016192,
+      "wall_end_ns": 5178909747319709,
+      "wall_ns": 303517,
+      "thread_cpu_ns": 302973,
+      "self_wall_us": 52.891,
+      "self_thread_cpu_us": 53.035,
+      "wall_us": 303.517,
+      "thread_cpu_us": 302.973,
+      "wall_minus_thread_cpu_us": 0.544,
+      "trace_start_us": "1790932150788126.195",
+      "trace_end_us": "1790932150788438.927",
+      "source": {
+        "path": "/vllm-workspace/vllm-ascend/vllm_ascend/attention/attention_v1.py",
+        "line": 1279,
+        "qualname": "AscendAttentionBackendImpl.forward"
+      }
+    },
+    {
+      "id": 1333,
+      "parent": 1332,
+      "kind": "attn_kv_prepare",
+      "index": 32,
+      "step": "p30-measure/step-32",
+      "label": "P30/32/attn_kv_prepare/1333",
+      "pid": 1624824,
+      "tid": 1624824,
+      "request_id": "2-b4f461a1",
+      "wall_start_ns": 5178909747027801,
+      "wall_end_ns": 5178909747091326,
+      "wall_ns": 63525,
+      "thread_cpu_ns": 63193,
+      "self_wall_us": 37.615,
+      "self_thread_cpu_us": 37.762,
+      "wall_us": 63.525,
+      "thread_cpu_us": 63.193,
+      "wall_minus_thread_cpu_us": 0.332,
+      "trace_start_us": "1790932150788138.360",
+      "trace_end_us": "1790932150788210.897",
+      "source": {
+        "path": "/vllm-workspace/vllm-ascend/vllm_ascend/attention/attention_v1.py",
+        "line": 1229,
+        "qualname": "AscendAttentionBackendImpl.reshape_and_cache"
+      }
+    },
+    {
+      "id": 1334,
+      "parent": 1333,
+      "kind": "attn_kv_submit",
+      "index": 32,
+      "step": "p30-measure/step-32",
+      "label": "P30/32/attn_kv_submit/1334",
+      "pid": 1624824,
+      "tid": 1624824,
+      "request_id": "2-b4f461a1",
+      "wall_start_ns": 5178909747051472,
+      "wall_end_ns": 5178909747077382,
+      "wall_ns": 25910,
+      "thread_cpu_ns": 25431,
+      "self_wall_us": 25.91,
+      "self_thread_cpu_us": 25.431,
+      "wall_us": 25.91,
+      "thread_cpu_us": 25.431,
+      "wall_minus_thread_cpu_us": 0.479,
+      "trace_start_us": "1790932150788161.262",
+      "trace_end_us": "1790932150788199.800",
+      "source": {
+        "path": null,
+        "line": null,
+        "qualname": "pybind11_detail_function_record_v1_system_libstdcpp_gxx_abi_1xxx_use_cxx11_abi_1._npu_reshape_and_cache",
+        "source_role": "exported torch-npu callable boundary; native body not timed separately"
+      }
+    },
+    {
+      "id": 1335,
+      "parent": 1332,
+      "kind": "attn_dispatch",
+      "index": 32,
+      "step": "p30-measure/step-32",
+      "label": "P30/32/attn_dispatch/1335",
+      "pid": 1624824,
+      "tid": 1624824,
+      "request_id": "2-b4f461a1",
+      "wall_start_ns": 5178909747109183,
+      "wall_end_ns": 5178909747296284,
+      "wall_ns": 187101,
+      "thread_cpu_ns": 186745,
+      "self_wall_us": 21.507,
+      "self_thread_cpu_us": 21.546,
+      "wall_us": 187.101,
+      "thread_cpu_us": 186.745,
+      "wall_minus_thread_cpu_us": 0.356,
+      "trace_start_us": "1790932150788219.688",
+      "trace_end_us": "1790932150788415.152",
+      "source": {
+        "path": "/vllm-workspace/vllm-ascend/vllm_ascend/attention/attention_v1.py",
+        "line": 1258,
+        "qualname": "AscendAttentionBackendImpl.forward_impl"
+      }
+    },
+    {
+      "id": 1336,
+      "parent": 1335,
+      "kind": "attn_fia",
+      "index": 32,
+      "step": "p30-measure/step-32",
+      "label": "P30/32/attn_fia/1336",
+      "pid": 1624824,
+      "tid": 1624824,
+      "request_id": "2-b4f461a1",
+      "wall_start_ns": 5178909747120663,
+      "wall_end_ns": 5178909747286257,
+      "wall_ns": 165594,
+      "thread_cpu_ns": 165199,
+      "self_wall_us": 88.905,
+      "self_thread_cpu_us": 89.404,
+      "wall_us": 165.594,
+      "thread_cpu_us": 165.199,
+      "wall_minus_thread_cpu_us": 0.395,
+      "trace_start_us": "1790932150788231.505",
+      "trace_end_us": "1790932150788406.708",
+      "source": {
+        "path": "/vllm-workspace/vllm-ascend/vllm_ascend/attention/attention_v1.py",
+        "line": 1045,
+        "qualname": "AscendAttentionBackendImpl.forward_fused_infer_attention"
+      }
+    },
+    {
+      "id": 1337,
+      "parent": 1336,
+      "kind": "attn_fia_params",
+      "index": 32,
+      "step": "p30-measure/step-32",
+      "label": "P30/32/attn_fia_params/1337",
+      "pid": 1624824,
+      "tid": 1624824,
+      "request_id": "2-b4f461a1",
+      "wall_start_ns": 5178909747131133,
+      "wall_end_ns": 5178909747140979,
+      "wall_ns": 9846,
+      "thread_cpu_ns": 9434,
+      "self_wall_us": 9.846,
+      "self_thread_cpu_us": 9.434,
+      "wall_us": 9.846,
+      "thread_cpu_us": 9.434,
+      "wall_minus_thread_cpu_us": 0.412,
+      "trace_start_us": "1790932150788241.542",
+      "trace_end_us": "1790932150788260.903",
+      "source": {
+        "path": "/vllm-workspace/vllm-ascend/vllm_ascend/attention/attention_v1.py",
+        "line": 985,
+        "qualname": "AscendAttentionBackendImpl._get_fia_params"
+      }
+    },
+    {
+      "id": 1338,
+      "parent": 1336,
+      "kind": "attn_fia_submit",
+      "index": 32,
+      "step": "p30-measure/step-32",
+      "label": "P30/32/attn_fia_submit/1338",
+      "pid": 1624824,
+      "tid": 1624824,
+      "request_id": "2-b4f461a1",
+      "wall_start_ns": 5178909747177658,
+      "wall_end_ns": 5178909747244501,
+      "wall_ns": 66843,
+      "thread_cpu_ns": 66361,
+      "self_wall_us": 66.843,
+      "self_thread_cpu_us": 66.361,
+      "wall_us": 66.843,
+      "thread_cpu_us": 66.361,
+      "wall_minus_thread_cpu_us": 0.482,
+      "trace_start_us": "1790932150788287.820",
+      "trace_end_us": "1790932150788367.030",
+      "source": {
+        "path": null,
+        "line": null,
+        "qualname": "pybind11_detail_function_record_v1_system_libstdcpp_gxx_abi_1xxx_use_cxx11_abi_1.npu_fused_infer_attention_score",
+        "source_role": "exported torch-npu callable boundary; native body not timed separately"
+      }
+    }
+  ],
+  "parent": {
+    "ph": "X",
+    "name": "vllm::unified_attention_with_output",
+    "pid": 1624824,
+    "tid": 1624824,
+    "ts": "1790932150788047.007",
+    "dur": "395.78",
+    "cat": "cpu_op",
+    "args": {
+      "Sequence number": -1,
+      "Fwd thread id": 0,
+      "Input Dims": "1,14,64;\r\n1,2,64;\r\n1,2,64;\r\n1,14,64;\r\n;\r\n;\r\n;\r\n",
+      "Input type": "c10::BFloat16;\r\nc10::BFloat16;\r\nc10::BFloat16;\r\nc10::BFloat16;\r\nNone;\r\nNone;\r\nNone;\r\nNone"
+    }
+  },
+  "tree": {
+    "nodes": [
+      {
+        "id": "cpu:36459",
+        "name": "vllm::unified_attention_with_output",
+        "start_us": "1790932150788047.007",
+        "end_us": "1790932150788442.787",
+        "duration_us": "395.780",
+        "parent": null,
+        "children": [
+          1,
+          2
+        ],
+        "kind": "cpu_op",
+        "self_us": "67.581"
+      },
+      {
+        "id": "P30/32/attn_context/1331",
+        "name": "attn_context",
+        "start_us": "1790932150788062.682",
+        "end_us": "1790932150788078.149",
+        "duration_us": "15.467",
+        "parent": 0,
+        "children": [],
+        "kind": "phase",
+        "self_us": "15.467"
+      },
+      {
+        "id": "P30/32/attn_backend/1332",
+        "name": "attn_backend",
+        "start_us": "1790932150788126.195",
+        "end_us": "1790932150788438.927",
+        "duration_us": "312.732",
+        "parent": 0,
+        "children": [
+          3,
+          13,
+          32,
+          34
+        ],
+        "kind": "phase",
+        "self_us": "32.073"
+      },
+      {
+        "id": "P30/32/attn_kv_prepare/1333",
+        "name": "attn_kv_prepare",
+        "start_us": "1790932150788138.360",
+        "end_us": "1790932150788210.897",
+        "duration_us": "72.537",
+        "parent": 2,
+        "children": [
+          4,
+          6,
+          8,
+          10
+        ],
+        "kind": "phase",
+        "self_us": "26.183"
+      },
+      {
+        "id": "cpu:36426",
+        "name": "aten::slice",
+        "start_us": "1790932150788143.773",
+        "end_us": "1790932150788147.318",
+        "duration_us": "3.545",
+        "parent": 3,
+        "children": [
+          5
+        ],
+        "kind": "cpu_op",
+        "self_us": "2.027"
+      },
+      {
+        "id": "cpu:36425",
+        "name": "aten::as_strided",
+        "start_us": "1790932150788145.563",
+        "end_us": "1790932150788147.081",
+        "duration_us": "1.518",
+        "parent": 4,
+        "children": [],
+        "kind": "cpu_op",
+        "self_us": "1.518"
+      },
+      {
+        "id": "cpu:36428",
+        "name": "aten::slice",
+        "start_us": "1790932150788148.437",
+        "end_us": "1790932150788149.893",
+        "duration_us": "1.456",
+        "parent": 3,
+        "children": [
+          7
+        ],
+        "kind": "cpu_op",
+        "self_us": "0.785"
+      },
+      {
+        "id": "cpu:36427",
+        "name": "aten::as_strided",
+        "start_us": "1790932150788149.134",
+        "end_us": "1790932150788149.805",
+        "duration_us": "0.671",
+        "parent": 6,
+        "children": [],
+        "kind": "cpu_op",
+        "self_us": "0.671"
+      },
+      {
+        "id": "cpu:36430",
+        "name": "aten::slice",
+        "start_us": "1790932150788150.677",
+        "end_us": "1790932150788153.492",
+        "duration_us": "2.815",
+        "parent": 3,
+        "children": [
+          9
+        ],
+        "kind": "cpu_op",
+        "self_us": "1.925"
+      },
+      {
+        "id": "cpu:36429",
+        "name": "aten::as_strided",
+        "start_us": "1790932150788151.765",
+        "end_us": "1790932150788152.655",
+        "duration_us": "0.890",
+        "parent": 8,
+        "children": [],
+        "kind": "cpu_op",
+        "self_us": "0.890"
+      },
+      {
+        "id": "P30/32/attn_kv_submit/1334",
+        "name": "attn_kv_submit",
+        "start_us": "1790932150788161.262",
+        "end_us": "1790932150788199.800",
+        "duration_us": "38.538",
+        "parent": 3,
+        "children": [
+          11
+        ],
+        "kind": "phase",
+        "self_us": "19.311"
+      },
+      {
+        "id": "cpu:36432",
+        "name": "atb::_npu_reshape_and_cache",
+        "start_us": "1790932150788169.220",
+        "end_us": "1790932150788188.447",
+        "duration_us": "19.227",
+        "parent": 10,
+        "children": [
+          12
+        ],
+        "kind": "cpu_op",
+        "self_us": "16.007"
+      },
+      {
+        "id": "cpu:36431",
+        "name": "ReshapeCacheOperation",
+        "start_us": "1790932150788184.222",
+        "end_us": "1790932150788187.442",
+        "duration_us": "3.220",
+        "parent": 11,
+        "children": [],
+        "kind": "cpu_op",
+        "self_us": "3.220"
+      },
+      {
+        "id": "P30/32/attn_dispatch/1335",
+        "name": "attn_dispatch",
+        "start_us": "1790932150788219.688",
+        "end_us": "1790932150788415.152",
+        "duration_us": "195.464",
+        "parent": 2,
+        "children": [
+          14
+        ],
+        "kind": "phase",
+        "self_us": "20.261"
+      },
+      {
+        "id": "P30/32/attn_fia/1336",
+        "name": "attn_fia",
+        "start_us": "1790932150788231.505",
+        "end_us": "1790932150788406.708",
+        "duration_us": "175.203",
+        "parent": 13,
+        "children": [
+          15,
+          18,
+          20,
+          27,
+          28,
+          30
+        ],
+        "kind": "phase",
+        "self_us": "53.283"
+      },
+      {
+        "id": "P30/32/attn_fia_params/1337",
+        "name": "attn_fia_params",
+        "start_us": "1790932150788241.542",
+        "end_us": "1790932150788260.903",
+        "duration_us": "19.361",
+        "parent": 14,
+        "children": [
+          16,
+          17
+        ],
+        "kind": "phase",
+        "self_us": "15.686"
+      },
+      {
+        "id": "cpu:36435",
+        "name": "aten::view",
+        "start_us": "1790932150788247.877",
+        "end_us": "1790932150788250.495",
+        "duration_us": "2.618",
+        "parent": 15,
+        "children": [],
+        "kind": "cpu_op",
+        "self_us": "2.618"
+      },
+      {
+        "id": "cpu:36436",
+        "name": "aten::view",
+        "start_us": "1790932150788251.499",
+        "end_us": "1790932150788252.556",
+        "duration_us": "1.057",
+        "parent": 15,
+        "children": [],
+        "kind": "cpu_op",
+        "self_us": "1.057"
+      },
+      {
+        "id": "cpu:36439",
+        "name": "aten::slice",
+        "start_us": "1790932150788263.982",
+        "end_us": "1790932150788265.840",
+        "duration_us": "1.858",
+        "parent": 14,
+        "children": [
+          19
+        ],
+        "kind": "cpu_op",
+        "self_us": "0.891"
+      },
+      {
+        "id": "cpu:36438",
+        "name": "aten::as_strided",
+        "start_us": "1790932150788264.782",
+        "end_us": "1790932150788265.749",
+        "duration_us": "0.967",
+        "parent": 18,
+        "children": [],
+        "kind": "cpu_op",
+        "self_us": "0.967"
+      },
+      {
+        "id": "P30/32/attn_fia_submit/1338",
+        "name": "attn_fia_submit",
+        "start_us": "1790932150788287.820",
+        "end_us": "1790932150788367.030",
+        "duration_us": "79.210",
+        "parent": 14,
+        "children": [
+          21
+        ],
+        "kind": "phase",
+        "self_us": "31.050"
+      },
+      {
+        "id": "cpu:36445",
+        "name": "npu::npu_fused_infer_attention_score",
+        "start_us": "1790932150788306.605",
+        "end_us": "1790932150788354.765",
+        "duration_us": "48.160",
+        "parent": 20,
+        "children": [
+          22,
+          23,
+          24,
+          25,
+          26
+        ],
+        "kind": "cpu_op",
+        "self_us": "38.754"
+      },
+      {
+        "id": "cpu:36440",
+        "name": "empty_tensor",
+        "start_us": "1790932150788316.785",
+        "end_us": "1790932150788320.240",
+        "duration_us": "3.455",
+        "parent": 21,
+        "children": [],
+        "kind": "cpu_op",
+        "self_us": "3.455"
+      },
+      {
+        "id": "cpu:36441",
+        "name": "empty_tensor",
+        "start_us": "1790932150788320.887",
+        "end_us": "1790932150788321.962",
+        "duration_us": "1.075",
+        "parent": 21,
+        "children": [],
+        "kind": "cpu_op",
+        "self_us": "1.075"
+      },
+      {
+        "id": "cpu:36442",
+        "name": "empty_tensor",
+        "start_us": "1790932150788322.963",
+        "end_us": "1790932150788324.103",
+        "duration_us": "1.140",
+        "parent": 21,
+        "children": [],
+        "kind": "cpu_op",
+        "self_us": "1.140"
+      },
+      {
+        "id": "cpu:36443",
+        "name": "empty_tensor",
+        "start_us": "1790932150788324.292",
+        "end_us": "1790932150788325.200",
+        "duration_us": "0.908",
+        "parent": 21,
+        "children": [],
+        "kind": "cpu_op",
+        "self_us": "0.908"
+      },
+      {
+        "id": "cpu:36444",
+        "name": "aclnnFusedInferAttentionScoreV3",
+        "start_us": "1790932150788349.267",
+        "end_us": "1790932150788352.095",
+        "duration_us": "2.828",
+        "parent": 21,
+        "children": [],
+        "kind": "cpu_op",
+        "self_us": "2.828"
+      },
+      {
+        "id": "cpu:36447",
+        "name": "aten::view",
+        "start_us": "1790932150788370.695",
+        "end_us": "1790932150788372.050",
+        "duration_us": "1.355",
+        "parent": 14,
+        "children": [],
+        "kind": "cpu_op",
+        "self_us": "1.355"
+      },
+      {
+        "id": "cpu:36449",
+        "name": "aten::slice",
+        "start_us": "1790932150788373.474",
+        "end_us": "1790932150788375.755",
+        "duration_us": "2.281",
+        "parent": 14,
+        "children": [
+          29
+        ],
+        "kind": "cpu_op",
+        "self_us": "1.116"
+      },
+      {
+        "id": "cpu:36448",
+        "name": "aten::as_strided",
+        "start_us": "1790932150788374.422",
+        "end_us": "1790932150788375.587",
+        "duration_us": "1.165",
+        "parent": 28,
+        "children": [],
+        "kind": "cpu_op",
+        "self_us": "1.165"
+      },
+      {
+        "id": "cpu:36451",
+        "name": "aten::copy_",
+        "start_us": "1790932150788377.952",
+        "end_us": "1790932150788395.807",
+        "duration_us": "17.855",
+        "parent": 14,
+        "children": [
+          31
+        ],
+        "kind": "cpu_op",
+        "self_us": "15.268"
+      },
+      {
+        "id": "cpu:36450",
+        "name": "aclnnInplaceCopy",
+        "start_us": "1790932150788392.657",
+        "end_us": "1790932150788395.244",
+        "duration_us": "2.587",
+        "parent": 30,
+        "children": [],
+        "kind": "cpu_op",
+        "self_us": "2.587"
+      },
+      {
+        "id": "cpu:36455",
+        "name": "aten::slice",
+        "start_us": "1790932150788417.459",
+        "end_us": "1790932150788420.443",
+        "duration_us": "2.984",
+        "parent": 2,
+        "children": [
+          33
+        ],
+        "kind": "cpu_op",
+        "self_us": "2.126"
+      },
+      {
+        "id": "cpu:36454",
+        "name": "aten::as_strided",
+        "start_us": "1790932150788419.477",
+        "end_us": "1790932150788420.335",
+        "duration_us": "0.858",
+        "parent": 32,
+        "children": [],
+        "kind": "cpu_op",
+        "self_us": "0.858"
+      },
+      {
+        "id": "cpu:36457",
+        "name": "aten::copy_",
+        "start_us": "1790932150788421.587",
+        "end_us": "1790932150788431.261",
+        "duration_us": "9.674",
+        "parent": 2,
+        "children": [
+          35
+        ],
+        "kind": "cpu_op",
+        "self_us": "7.202"
+      },
+      {
+        "id": "cpu:36456",
+        "name": "aclnnInplaceCopy",
+        "start_us": "1790932150788428.340",
+        "end_us": "1790932150788430.812",
+        "duration_us": "2.472",
+        "parent": 34,
+        "children": [],
+        "kind": "cpu_op",
+        "self_us": "2.472"
+      }
+    ],
+    "roots": [
+      0
+    ],
+    "denominator_us": "395.780",
+    "covered_us": "395.780",
+    "unattributed_us": "0.000"
+  },
+  "method_rows": [
+    {
+      "name": "vllm::unified_attention_with_output",
+      "inclusive_us": "395.780",
+      "child_phase_us": "328.199",
+      "direct_cpu_op_us": "0",
+      "residual_us": "67.581",
+      "direct_cpu_ops": []
+    },
+    {
+      "name": "attn_context",
+      "inclusive_us": "15.467",
+      "child_phase_us": "0",
+      "direct_cpu_op_us": "0",
+      "residual_us": "15.467",
+      "direct_cpu_ops": []
+    },
+    {
+      "name": "attn_backend",
+      "inclusive_us": "312.732",
+      "child_phase_us": "268.001",
+      "direct_cpu_op_us": "12.658",
+      "residual_us": "32.073",
+      "direct_cpu_ops": [
+        {
+          "name": "aten::slice",
+          "duration_us": "2.984"
+        },
+        {
+          "name": "aten::copy_",
+          "duration_us": "9.674"
+        }
+      ]
+    },
+    {
+      "name": "attn_kv_prepare",
+      "inclusive_us": "72.537",
+      "child_phase_us": "38.538",
+      "direct_cpu_op_us": "7.816",
+      "residual_us": "26.183",
+      "direct_cpu_ops": [
+        {
+          "name": "aten::slice",
+          "duration_us": "3.545"
+        },
+        {
+          "name": "aten::slice",
+          "duration_us": "1.456"
+        },
+        {
+          "name": "aten::slice",
+          "duration_us": "2.815"
+        }
+      ]
+    },
+    {
+      "name": "attn_kv_submit",
+      "inclusive_us": "38.538",
+      "child_phase_us": "0",
+      "direct_cpu_op_us": "19.227",
+      "residual_us": "19.311",
+      "direct_cpu_ops": [
+        {
+          "name": "atb::_npu_reshape_and_cache",
+          "duration_us": "19.227"
+        }
+      ]
+    },
+    {
+      "name": "attn_dispatch",
+      "inclusive_us": "195.464",
+      "child_phase_us": "175.203",
+      "direct_cpu_op_us": "0",
+      "residual_us": "20.261",
+      "direct_cpu_ops": []
+    },
+    {
+      "name": "attn_fia",
+      "inclusive_us": "175.203",
+      "child_phase_us": "98.571",
+      "direct_cpu_op_us": "23.349",
+      "residual_us": "53.283",
+      "direct_cpu_ops": [
+        {
+          "name": "aten::slice",
+          "duration_us": "1.858"
+        },
+        {
+          "name": "aten::view",
+          "duration_us": "1.355"
+        },
+        {
+          "name": "aten::slice",
+          "duration_us": "2.281"
+        },
+        {
+          "name": "aten::copy_",
+          "duration_us": "17.855"
+        }
+      ]
+    },
+    {
+      "name": "attn_fia_params",
+      "inclusive_us": "19.361",
+      "child_phase_us": "0",
+      "direct_cpu_op_us": "3.675",
+      "residual_us": "15.686",
+      "direct_cpu_ops": [
+        {
+          "name": "aten::view",
+          "duration_us": "2.618"
+        },
+        {
+          "name": "aten::view",
+          "duration_us": "1.057"
+        }
+      ]
+    },
+    {
+      "name": "attn_fia_submit",
+      "inclusive_us": "79.210",
+      "child_phase_us": "0",
+      "direct_cpu_op_us": "48.160",
+      "residual_us": "31.050",
+      "direct_cpu_ops": [
+        {
+          "name": "npu::npu_fused_infer_attention_score",
+          "duration_us": "48.160"
+        }
+      ]
+    }
+  ],
+  "links": [
+    {
+      "task": {
+        "id": "k:167498",
+        "trace_index": 167498,
+        "name": "ReshapeAndCacheNdKernel",
+        "stream": "46",
+        "task_id": "28819",
+        "model_id": 4294967295,
+        "task_type": "AI_VECTOR_CORE",
+        "connection_id": "45278",
+        "start_us": "1790932150788216.743",
+        "end_us": "1790932150788218.643",
+        "duration_us": "1.9",
+        "scope": "P30/32/attn_kv_submit/1334",
+        "step": "p30-measure/step-32",
+        "stage": "attn_kv_submit",
+        "csv_row": 9716,
+        "is_compute": true,
+        "host_index": 36431,
+        "cann_index": 220705,
+        "host_flow": "1790932150788216743",
+        "cann_flow": "194467529228288",
+        "core_type": "AI_VECTOR_CORE",
+        "block_num": 1,
+        "mix_block_num": null,
+        "submission_kind": "direct",
+        "submission_index": 220705,
+        "queue_id": "q:24389",
+        "submission_queue_id": "q:24389",
+        "replay_launch_id": null
+      },
+      "queue": {
+        "id": "q:24389",
+        "flow_id": "24389",
+        "enqueue_index": 98149,
+        "dequeue_index": 79695,
+        "enqueue": {
+          "ph": "X",
+          "name": "Enqueue@ReshapeCacheOperation",
+          "pid": 1624824,
+          "tid": 1624824,
+          "ts": "1790932150788184.347",
+          "dur": "2.884",
+          "cat": "enqueue",
+          "args": {
+            "correlation_id": 24389
+          }
+        },
+        "dequeue": {
+          "ph": "X",
+          "name": "Dequeue@ReshapeCacheOperation",
+          "pid": 1624824,
+          "tid": 1625419,
+          "ts": "1790932150788191.377",
+          "dur": "15.044",
+          "cat": "dequeue",
+          "args": {
+            "correlation_id": 24389
+          }
+        },
+        "scope": "P30/32/attn_kv_submit/1334",
+        "step": "p30-measure/step-32",
+        "enqueue_to_dequeue_start_us": "7.030",
+        "dequeue_start_minus_enqueue_end_us": "4.146"
+      },
+      "host": {
+        "ph": "X",
+        "name": "ReshapeCacheOperation",
+        "pid": 1624824,
+        "tid": 1624824,
+        "ts": "1790932150788184.222",
+        "dur": "3.22",
+        "cat": "cpu_op",
+        "args": {
+          "Sequence number": -1,
+          "Fwd thread id": 0
+        }
+      },
+      "cann": {
+        "name": "Node@launch",
+        "pid": 1663820031,
+        "tid": 1625419,
+        "ts": "1790932150788198.189",
+        "dur": "3.361",
+        "ph": "X",
+        "args": {
+          "Thread Id": 1625419,
+          "Mode": "launch",
+          "level": "node",
+          "id": "0",
+          "item_id": "ReshapeAndCacheNdKernel",
+          "connection_id": 45278
+        }
+      }
+    },
+    {
+      "task": {
+        "id": "k:167500",
+        "trace_index": 167500,
+        "name": "FusedInferAttentionScore",
+        "stream": "46",
+        "task_id": "28820",
+        "model_id": 4294967295,
+        "task_type": "MIX_AIC",
+        "connection_id": "45283",
+        "start_us": "1790932150788386.849",
+        "end_us": "1790932150788410.430",
+        "duration_us": "23.581",
+        "scope": "P30/32/attn_fia_submit/1338",
+        "step": "p30-measure/step-32",
+        "stage": "attn_fia_submit",
+        "csv_row": 9717,
+        "is_compute": true,
+        "host_index": 36444,
+        "cann_index": 220710,
+        "host_flow": "1790932150788386849",
+        "cann_flow": "194489004064768",
+        "core_type": "MIX_AIC",
+        "block_num": 24,
+        "mix_block_num": 48,
+        "submission_kind": "direct",
+        "submission_index": 220710,
+        "queue_id": "q:24390",
+        "submission_queue_id": "q:24390",
+        "replay_launch_id": null
+      },
+      "queue": {
+        "id": "q:24390",
+        "flow_id": "24390",
+        "enqueue_index": 98151,
+        "dequeue_index": 79697,
+        "enqueue": {
+          "ph": "X",
+          "name": "Enqueue@aclnnFusedInferAttentionScoreV3",
+          "pid": 1624824,
+          "tid": 1624824,
+          "ts": "1790932150788349.338",
+          "dur": "2.613",
+          "cat": "enqueue",
+          "args": {
+            "correlation_id": 24390
+          }
+        },
+        "dequeue": {
+          "ph": "X",
+          "name": "Dequeue@aclnnFusedInferAttentionScoreV3",
+          "pid": 1624824,
+          "tid": 1625419,
+          "ts": "1790932150788356.510",
+          "dur": "24.762",
+          "cat": "dequeue",
+          "args": {
+            "correlation_id": 24390
+          }
+        },
+        "scope": "P30/32/attn_fia_submit/1338",
+        "step": "p30-measure/step-32",
+        "enqueue_to_dequeue_start_us": "7.172",
+        "dequeue_start_minus_enqueue_end_us": "4.559"
+      },
+      "host": {
+        "ph": "X",
+        "name": "aclnnFusedInferAttentionScoreV3",
+        "pid": 1624824,
+        "tid": 1624824,
+        "ts": "1790932150788349.267",
+        "dur": "2.828",
+        "cat": "cpu_op",
+        "args": {
+          "Sequence number": -1,
+          "Fwd thread id": 0
+        }
+      },
+      "cann": {
+        "name": "Node@launch",
+        "pid": 1663820031,
+        "tid": 1625419,
+        "ts": "1790932150788359.234",
+        "dur": "16.81",
+        "ph": "X",
+        "args": {
+          "Thread Id": 1625419,
+          "Mode": "launch",
+          "level": "node",
+          "id": "0",
+          "item_id": "FusedInferAttentionScore",
+          "connection_id": 45283
+        }
+      }
+    },
+    {
+      "task": {
+        "id": "k:191578",
+        "trace_index": 191578,
+        "name": "MEMCPY_ASYNC",
+        "stream": "46",
+        "task_id": "28821",
+        "model_id": 4294967295,
+        "task_type": "SDMA_SQE",
+        "connection_id": "45289",
+        "start_us": "1790932150788411.690",
+        "end_us": "1790932150788412.290",
+        "duration_us": "0.6",
+        "scope": "P30/32/attn_fia/1336",
+        "step": "p30-measure/step-32",
+        "stage": "attn_fia",
+        "csv_row": null,
+        "is_compute": false,
+        "host_index": 36450,
+        "cann_index": 220716,
+        "host_flow": "1790932150788411690",
+        "cann_flow": "194514773868544",
+        "submission_kind": "direct",
+        "submission_index": 220716,
+        "queue_id": "q:24391",
+        "submission_queue_id": "q:24391",
+        "replay_launch_id": null
+      },
+      "queue": {
+        "id": "q:24391",
+        "flow_id": "24391",
+        "enqueue_index": 98153,
+        "dequeue_index": 79699,
+        "enqueue": {
+          "ph": "X",
+          "name": "Enqueue@aclnnInplaceCopy",
+          "pid": 1624824,
+          "tid": 1624824,
+          "ts": "1790932150788392.768",
+          "dur": "2.238",
+          "cat": "enqueue",
+          "args": {
+            "correlation_id": 24391
+          }
+        },
+        "dequeue": {
+          "ph": "X",
+          "name": "Dequeue@aclnnInplaceCopy",
+          "pid": 1624824,
+          "tid": 1625419,
+          "ts": "1790932150788399.290",
+          "dur": "3.932",
+          "cat": "dequeue",
+          "args": {
+            "correlation_id": 24391
+          }
+        },
+        "scope": "P30/32/attn_fia/1336",
+        "step": "p30-measure/step-32",
+        "enqueue_to_dequeue_start_us": "6.522",
+        "dequeue_start_minus_enqueue_end_us": "4.284"
+      },
+      "host": {
+        "ph": "X",
+        "name": "aclnnInplaceCopy",
+        "pid": 1624824,
+        "tid": 1624824,
+        "ts": "1790932150788392.657",
+        "dur": "2.587",
+        "cat": "cpu_op",
+        "args": {
+          "Sequence number": -1,
+          "Fwd thread id": 0
+        }
+      },
+      "cann": {
+        "name": "AscendCL@aclnnInplaceCopy",
+        "pid": 1663820031,
+        "tid": 1625419,
+        "ts": "1790932150788399.797",
+        "dur": "2.956",
+        "ph": "X",
+        "args": {
+          "Thread Id": 1625419,
+          "Mode": "ACL_NN",
+          "level": "acl",
+          "id": "aclnnInplaceCopy",
+          "item_id": "0",
+          "connection_id": 45289
+        }
+      }
+    }
+  ],
+  "queues": [
+    {
+      "id": "q:24389",
+      "flow_id": "24389",
+      "enqueue_index": 98149,
+      "dequeue_index": 79695,
+      "enqueue": {
+        "ph": "X",
+        "name": "Enqueue@ReshapeCacheOperation",
+        "pid": 1624824,
+        "tid": 1624824,
+        "ts": "1790932150788184.347",
+        "dur": "2.884",
+        "cat": "enqueue",
+        "args": {
+          "correlation_id": 24389
+        }
+      },
+      "dequeue": {
+        "ph": "X",
+        "name": "Dequeue@ReshapeCacheOperation",
+        "pid": 1624824,
+        "tid": 1625419,
+        "ts": "1790932150788191.377",
+        "dur": "15.044",
+        "cat": "dequeue",
+        "args": {
+          "correlation_id": 24389
+        }
+      },
+      "scope": "P30/32/attn_kv_submit/1334",
+      "step": "p30-measure/step-32",
+      "enqueue_to_dequeue_start_us": "7.030",
+      "dequeue_start_minus_enqueue_end_us": "4.146"
+    },
+    {
+      "id": "q:24390",
+      "flow_id": "24390",
+      "enqueue_index": 98151,
+      "dequeue_index": 79697,
+      "enqueue": {
+        "ph": "X",
+        "name": "Enqueue@aclnnFusedInferAttentionScoreV3",
+        "pid": 1624824,
+        "tid": 1624824,
+        "ts": "1790932150788349.338",
+        "dur": "2.613",
+        "cat": "enqueue",
+        "args": {
+          "correlation_id": 24390
+        }
+      },
+      "dequeue": {
+        "ph": "X",
+        "name": "Dequeue@aclnnFusedInferAttentionScoreV3",
+        "pid": 1624824,
+        "tid": 1625419,
+        "ts": "1790932150788356.510",
+        "dur": "24.762",
+        "cat": "dequeue",
+        "args": {
+          "correlation_id": 24390
+        }
+      },
+      "scope": "P30/32/attn_fia_submit/1338",
+      "step": "p30-measure/step-32",
+      "enqueue_to_dequeue_start_us": "7.172",
+      "dequeue_start_minus_enqueue_end_us": "4.559"
+    },
+    {
+      "id": "q:24391",
+      "flow_id": "24391",
+      "enqueue_index": 98153,
+      "dequeue_index": 79699,
+      "enqueue": {
+        "ph": "X",
+        "name": "Enqueue@aclnnInplaceCopy",
+        "pid": 1624824,
+        "tid": 1624824,
+        "ts": "1790932150788392.768",
+        "dur": "2.238",
+        "cat": "enqueue",
+        "args": {
+          "correlation_id": 24391
+        }
+      },
+      "dequeue": {
+        "ph": "X",
+        "name": "Dequeue@aclnnInplaceCopy",
+        "pid": 1624824,
+        "tid": 1625419,
+        "ts": "1790932150788399.290",
+        "dur": "3.932",
+        "cat": "dequeue",
+        "args": {
+          "correlation_id": 24391
+        }
+      },
+      "scope": "P30/32/attn_fia/1336",
+      "step": "p30-measure/step-32",
+      "enqueue_to_dequeue_start_us": "6.522",
+      "dequeue_start_minus_enqueue_end_us": "4.284"
+    },
+    {
+      "id": "q:24392",
+      "flow_id": "24392",
+      "enqueue_index": 98155,
+      "dequeue_index": 79701,
+      "enqueue": {
+        "ph": "X",
+        "name": "Enqueue@aclnnInplaceCopy",
+        "pid": 1624824,
+        "tid": 1624824,
+        "ts": "1790932150788428.410",
+        "dur": "2.238",
+        "cat": "enqueue",
+        "args": {
+          "correlation_id": 24392
+        }
+      },
+      "dequeue": {
+        "ph": "X",
+        "name": "Dequeue@aclnnInplaceCopy",
+        "pid": 1624824,
+        "tid": 1625419,
+        "ts": "1790932150788435.120",
+        "dur": "1.702",
+        "cat": "dequeue",
+        "args": {
+          "correlation_id": 24392
+        }
+      },
+      "scope": "P30/32/attn_backend/1332",
+      "step": "p30-measure/step-32",
+      "enqueue_to_dequeue_start_us": "6.710",
+      "dequeue_start_minus_enqueue_end_us": "4.472"
+    }
+  ],
+  "synchronizations": [],
+  "surrounding_replays": {
+    "previous": {
+      "id": 1330,
+      "parent": 1329,
+      "kind": "replay",
+      "index": 32,
+      "step": "p30-measure/step-32",
+      "label": "P30/32/replay/1330",
+      "pid": 1624824,
+      "tid": 1624824,
+      "request_id": "2-b4f461a1",
+      "uid": "g1",
+      "wall_start_ns": 5178909746886409,
+      "wall_end_ns": 5178909746909938,
+      "wall_ns": 23529,
+      "thread_cpu_ns": 22997,
+      "self_wall_us": 23.529,
+      "self_thread_cpu_us": 22.997,
+      "wall_us": 23.529,
+      "thread_cpu_us": 22.997,
+      "wall_minus_thread_cpu_us": 0.532,
+      "trace_start_us": "1790932150787995.697",
+      "trace_end_us": "1790932150788035.938",
+      "source": {
+        "path": "/usr/local/python3.12.13/lib/python3.12/site-packages/torch_npu/npu/graphs.py",
+        "line": 372,
+        "qualname": "NPUGraph.replay"
+      }
+    },
+    "following": {
+      "id": 1339,
+      "parent": 1329,
+      "kind": "replay",
+      "index": 32,
+      "step": "p30-measure/step-32",
+      "label": "P30/32/replay/1339",
+      "pid": 1624824,
+      "tid": 1624824,
+      "request_id": "2-b4f461a1",
+      "uid": "g2",
+      "wall_start_ns": 5178909747358475,
+      "wall_end_ns": 5178909747374948,
+      "wall_ns": 16473,
+      "thread_cpu_ns": 15969,
+      "self_wall_us": 16.473,
+      "self_thread_cpu_us": 15.969,
+      "wall_us": 16.473,
+      "thread_cpu_us": 15.969,
+      "wall_minus_thread_cpu_us": 0.504,
+      "trace_start_us": "1790932150788467.217",
+      "trace_end_us": "1790932150788495.700",
+      "source": {
+        "path": "/usr/local/python3.12.13/lib/python3.12/site-packages/torch_npu/npu/graphs.py",
+        "line": 372,
+        "qualname": "NPUGraph.replay"
+      }
+    }
+  },
+  "observed_cpu_op_counts": {
+    "aten::as_strided": 6,
+    "aten::slice": 6,
+    "ReshapeCacheOperation": 1,
+    "atb::_npu_reshape_and_cache": 1,
+    "aten::view": 3,
+    "empty_tensor": 4,
+    "aclnnFusedInferAttentionScoreV3": 1,
+    "npu::npu_fused_infer_attention_score": 1,
+    "aclnnInplaceCopy": 2,
+    "aten::copy_": 2,
+    "vllm::unified_attention_with_output": 1
+  },
+  "overhead": {
+    "selected_outer_us": "395.780",
+    "other_23_median_us": "109.082",
+    "other_23_min_us": "102.74",
+    "other_23_max_us": "138.36",
+    "request": {
+      "reference_wall_us": {
+        "n": 3,
+        "median": 288011.444,
+        "min": 287978.101,
+        "max": 288203.229
+      },
+      "diagnostic_wall_us": 440768.347,
+      "diagnostic_over_reference_median": 1.5303848377635993,
+      "recovery_wall_us": 292556.838,
+      "limits": "One diagnostic vs three controls; combines profiling/observer overhead and run variation."
+    }
+  },
+  "source_manifest": {
+    "/data/huggingface_home/hub/Qwen2.5-0.5B-Instruct/config.json": {
+      "path": "sources/00-config.json",
+      "sha256": "18e18afcaccafade98daf13a54092927904649e1dd4eba8299ab717d5d94ff45"
+    },
+    "/usr/local/python3.12.13/lib/python3.12/site-packages/torch_npu/npu/graphs.py": {
+      "path": "sources/01-graphs.py",
+      "sha256": "5ed98b6b5bbbaa162513801e877a24671b58ec2b8eaba3c8d446357efe0e5dc1"
+    },
+    "/usr/local/python3.12.13/lib/python3.12/site-packages/torch_npu/npu/streams.py": {
+      "path": "sources/02-streams.py",
+      "sha256": "241741b356db5006797dbec119007afb33b73b0e1753bfb06ab27c989c5bfac4"
+    },
+    "/vllm-workspace/vllm-ascend/vllm_ascend/ascend_forward_context.py": {
+      "path": "sources/03-ascend_forward_context.py",
+      "sha256": "e688fb9529628f4987f6f796765cc18bfe8387b3e08af6d36f2e1ee900f45d9b"
+    },
+    "/vllm-workspace/vllm-ascend/vllm_ascend/attention/attention_v1.py": {
+      "path": "sources/04-attention_v1.py",
+      "sha256": "b21443d6c4340b1e697a56f6a1f559d15137c2e40888cbf94a4219a73ba01d4b"
+    },
+    "/vllm-workspace/vllm-ascend/vllm_ascend/compilation/acl_graph.py": {
+      "path": "sources/05-acl_graph.py",
+      "sha256": "3b054c10af75cbc34cd0134b9f25203e81b7bf0d3a3df0a4972792bf9017de83"
+    },
+    "/vllm-workspace/vllm-ascend/vllm_ascend/device/device_op.py": {
+      "path": "sources/06-device_op.py",
+      "sha256": "4c6bc150fa2359614ec9b1a7e2894e7e4d18b06f1aae91c22585c4c7fb4178bc"
+    },
+    "/vllm-workspace/vllm-ascend/vllm_ascend/ops/linear.py": {
+      "path": "sources/07-linear.py",
+      "sha256": "319b0c5763bd00cc849d8cf556eeb5328d986964c948b9f66985849ebd07cc3b"
+    },
+    "/vllm-workspace/vllm-ascend/vllm_ascend/ops/rotary_embedding.py": {
+      "path": "sources/08-rotary_embedding.py",
+      "sha256": "c705592190e45930e14fa1c7c19b69139ac70fe044add5443f7312031f6184eb"
+    },
+    "/vllm-workspace/vllm-ascend/vllm_ascend/ops/triton/rope.py": {
+      "path": "sources/09-rope.py",
+      "sha256": "491992be6331527cd467ca8285c7a9aceb91799fe3b72658226e782be50f5afc"
+    },
+    "/vllm-workspace/vllm-ascend/vllm_ascend/patch/platform/patch_balance_schedule.py": {
+      "path": "sources/10-patch_balance_schedule.py",
+      "sha256": "13e4407040d82ba29a35e12901551c94da0961439b23e507e73ccfe124e42ba5"
+    },
+    "/vllm-workspace/vllm-ascend/vllm_ascend/sample/sampler.py": {
+      "path": "sources/11-sampler.py",
+      "sha256": "c64b8def29b328f1248476c2a068a862cb9ee8c8b88e52b02353f092344da9fa"
+    },
+    "/vllm-workspace/vllm-ascend/vllm_ascend/utils.py": {
+      "path": "sources/12-utils.py",
+      "sha256": "b9a1f29ed0810236cc3c5f82a4070e4fd1583d8a6ebb880c85530202ea467ea9"
+    },
+    "/vllm-workspace/vllm-ascend/vllm_ascend/worker/model_runner_v1.py": {
+      "path": "sources/13-model_runner_v1.py",
+      "sha256": "b912e997f3e9bfa1d7c50addc3c352c2034ca25ed836a8f1c1ce74e6260812bb"
+    },
+    "/vllm-workspace/vllm-ascend/vllm_ascend/worker/worker.py": {
+      "path": "sources/14-worker.py",
+      "sha256": "670b7a069ca4f5779085a80961598524b1cef7ee87dd95a90b0ba435afb3b751"
+    },
+    "/vllm-workspace/vllm/vllm/config/vllm.py": {
+      "path": "sources/15-vllm.py",
+      "sha256": "2d584b6534cb874af34ffd97bfa642bb07fdedf15c43c1b424683d98647c3852"
+    },
+    "/vllm-workspace/vllm/vllm/entrypoints/llm.py": {
+      "path": "sources/16-llm.py",
+      "sha256": "891379696a23934b8b823a4a28f3d9fd903f0ee98c190af4c20b6e3ae7dc329d"
+    },
+    "/vllm-workspace/vllm/vllm/model_executor/layers/attention/attention.py": {
+      "path": "sources/17-attention.py",
+      "sha256": "7f9b2fd715014e079816c0eec94276234a5225e5ea8460e6a251bed80fe24aca"
+    },
+    "/vllm-workspace/vllm/vllm/model_executor/layers/rotary_embedding/__init__.py": {
+      "path": "sources/18-__init__.py",
+      "sha256": "9be95c90b7074f66e543f12f6d31d1fd18a9ab38ff727a4ee1d78b7c27455854"
+    },
+    "/vllm-workspace/vllm/vllm/model_executor/models/qwen2.py": {
+      "path": "sources/19-qwen2.py",
+      "sha256": "b4ba6122ae4418772117baea8140c6605d6fd0fdf3dc04e3fcceb68fa4f75d29"
+    },
+    "/vllm-workspace/vllm/vllm/v1/core/sched/scheduler.py": {
+      "path": "sources/20-scheduler.py",
+      "sha256": "4145257a7ecaf921026cf76d61d615c366d2cabcff9cb826a4c1ce32001edfa4"
+    },
+    "/vllm-workspace/vllm/vllm/v1/engine/core.py": {
+      "path": "sources/21-core.py",
+      "sha256": "53ff4df24745e3ac4ac09028ddeb310f6627b90f6374dbfa82548e97c9bc65bc"
+    },
+    "/vllm-workspace/vllm/vllm/v1/engine/core_client.py": {
+      "path": "sources/22-core_client.py",
+      "sha256": "b350e95b61799c1f3f0876274ac5ea3cfc697fd2b263955199739334b010b91d"
+    },
+    "/vllm-workspace/vllm/vllm/v1/engine/llm_engine.py": {
+      "path": "sources/23-llm_engine.py",
+      "sha256": "67630b541b49d79108e7acf14741450ba328c9d469dec5613278421e625d60b6"
+    },
+    "/vllm-workspace/vllm/vllm/v1/engine/output_processor.py": {
+      "path": "sources/24-output_processor.py",
+      "sha256": "b0b1949992bafaef6c40bddb4b6b12c8085a46910e2e6764efb7c270d33fb6bf"
+    },
+    "/vllm-workspace/vllm/vllm/v1/executor/uniproc_executor.py": {
+      "path": "sources/25-uniproc_executor.py",
+      "sha256": "93fac0cbecffb9800b1a90746fd179bfdc7c61bf22c6c1337ebe0d917157f247"
+    },
+    "/vllm-workspace/vllm/vllm/v1/outputs.py": {
+      "path": "sources/26-outputs.py",
+      "sha256": "e4a25e559d604518e786239d221928154efb9fe018d5ea2adbe1b35ce21dfd25"
+    },
+    "/vllm-workspace/vllm/vllm/v1/worker/gpu_model_runner.py": {
+      "path": "sources/27-gpu_model_runner.py",
+      "sha256": "95b7ee3ff5eecdb0fa791f375b2aeedc6ac507f3ea4a9683700d3b202b2caf08"
+    },
+    "/vllm-workspace/vllm/vllm/v1/worker/workspace.py": {
+      "path": "sources/28-workspace.py",
+      "sha256": "d0650393bc657064acc97fe2b227ebff8f85799a8f727a8c136098f1f79964df"
+    }
+  },
+  "evidence_sha256": "5ce7b5cbe751507e2903da6d3fdc57c75e274bdd0b1db1e9e00afeff3c177d31",
+  "validation": {
+    "single_call": true,
+    "nested_partition": true,
+    "exact_queue_and_device_identity": true,
+    "graph_external_tasks": true,
+    "capture_during_measurement": 0,
+    "decode32_replays": 25
+  },
+  "limits": [
+    "Residual includes Python/framework glue, metadata inspection, wrapper and profiler cost; not pure Python time.",
+    "Inner dual clocks and outer profiler boundaries differ; do not mix denominators.",
+    "No observed explicit synchronization is not proof that native code never waits.",
+    "No changed stream, device waits, operator arguments, or tensor data reads are introduced.",
+    "Same-step other layers are an observation-cost indicator, not a matched causal control."
+  ]
+}

@@ -1,0 +1,1039 @@
+<!doctype html><html lang="zh-CN"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>P30 · 一次 graph 图外 attention</title><style>body{font:16px/1.7 system-ui;max-width:1280px;margin:24px auto;padding:18px;color:#203545}table{border-collapse:collapse;width:100%}td,th{border:1px solid #ccd8e6;padding:8px;text-align:left}pre{white-space:pre-wrap;overflow-wrap:anywhere;background:#f1f5fa;padding:14px}svg{width:100%}details{margin:16px 0}</style>
+<h1>一次 graph 图外 attention 的 CPU 调用</h1>
+<p>decode 32，第一层，预热后只增加一次细分。调用仍走原生 PIECEWISE 路径，输出与恢复检查见原始证据。Host 时间不等于 NPU 计算或纯 Python 时间。</p>
+<p><a href="attention.svg">独立 SVG</a> · <a href="attention.json">完整关联数据</a></p>
+<p>实际调用：get_attention_context → backend.forward → reshape_and_cache → forward_impl → forward_fused_infer_attention。FIA 内部先用 _get_fia_params 选择缓存和长度，再调用 torch-npu FIA，随后写回 output。</p>
+<p>本轮 model.layers.0.self_attn.attn / AscendAttentionState.DecodeOnly：Q=[1, 14, 64]，K=[1, 2, 64]，KV 长度=[42]，block size=128。长度参数是已有主机列表；_get_fia_params 将 NPU KV pool 变成 view，view 不代表设备数据复制。</p>
+<p>2 个 copy_ Host 调用，关联到 1 个设备 MEMCPY 任务。源码中内层返回 output，外层再次对 output 赋值；本轮无设备任务的第二次提交与别名自拷贝跳过相容，但未追入 native no-op 判断。选中范围显式 CANN Synchronize 记录数为 0；不能据此断言 native 内部绝无等待。</p>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1290 623">
+<style>text{font:13px sans-serif;fill:#203545}</style>
+<rect width="1290" height="623" fill="#f5f8fb"/>
+<text x="18" y="28" style="font-size:21px">一次 graph 图外 attention：Host 方法 → 队列 → CANN → NPU</text>
+<text x="18" y="53">蓝：Host 方法；紫：队列/提交；绿：设备计算；橙：设备拷贝/控制。宽度为实际时间，悬停查看身份。</text>
+<text x="18" y="75">只展示选中调用；CPU 和下发线程可重叠，设备任务完成可能晚于 Host 返回。新增 scope 会扰动时间。</text>
+<text x="12" y="111">attn_context</text>
+<text x="12" y="150">attn_backend</text>
+<text x="12" y="189">attn_kv_prepare</text>
+<text x="12" y="228">attn_kv_submit</text>
+<text x="12" y="267">attn_dispatch</text>
+<text x="12" y="306">attn_fia</text>
+<text x="12" y="345">attn_fia_params</text>
+<text x="12" y="384">attn_fia_submit</text>
+<text x="12" y="423">CPU Enqueue</text>
+<text x="12" y="462">下发线程 Dequeue</text>
+<text x="12" y="501">CANN 提交</text>
+<text x="12" y="540">NPU stream 46</text>
+<rect x="240.000" y="94" width="41.725" height="22" fill="#376cb1"><title>P30/32/attn_context/1331 · 15.467 µs</title></rect>
+<rect x="411.340" y="133" width="843.660" height="22" fill="#376cb1"><title>P30/32/attn_backend/1332 · 312.732 µs</title></rect>
+<rect x="444.157" y="172" width="195.684" height="22" fill="#376cb1"><title>P30/32/attn_kv_prepare/1333 · 72.537 µs</title></rect>
+<rect x="505.940" y="211" width="103.964" height="22" fill="#376cb1"><title>P30/32/attn_kv_submit/1334 · 38.538 µs</title></rect>
+<rect x="663.557" y="250" width="527.305" height="22" fill="#376cb1"><title>P30/32/attn_dispatch/1335 · 195.464 µs</title></rect>
+<rect x="695.436" y="289" width="472.647" height="22" fill="#376cb1"><title>P30/32/attn_fia/1336 · 175.203 µs</title></rect>
+<rect x="722.512" y="328" width="52.230" height="22" fill="#376cb1"><title>P30/32/attn_fia_params/1337 · 19.361 µs</title></rect>
+<rect x="847.357" y="367" width="213.686" height="22" fill="#376cb1"><title>P30/32/attn_fia_submit/1338 · 79.210 µs</title></rect>
+<rect x="568.217" y="406" width="7.780" height="22" fill="#8855ad"><title>Enqueue@ReshapeCacheOperation / q:24389 · 2.884 µs</title></rect>
+<rect x="587.182" y="445" width="40.584" height="22" fill="#8855ad"><title>Dequeue@ReshapeCacheOperation / q:24389 · 15.044 µs</title></rect>
+<rect x="1013.315" y="406" width="7.049" height="22" fill="#8855ad"><title>Enqueue@aclnnFusedInferAttentionScoreV3 / q:24390 · 2.613 µs</title></rect>
+<rect x="1032.663" y="445" width="66.801" height="22" fill="#8855ad"><title>Dequeue@aclnnFusedInferAttentionScoreV3 / q:24390 · 24.762 µs</title></rect>
+<rect x="1130.476" y="406" width="6.037" height="22" fill="#8855ad"><title>Enqueue@aclnnInplaceCopy / q:24391 · 2.238 µs</title></rect>
+<rect x="1148.071" y="445" width="10.607" height="22" fill="#8855ad"><title>Dequeue@aclnnInplaceCopy / q:24391 · 3.932 µs</title></rect>
+<rect x="1226.628" y="406" width="6.037" height="22" fill="#8855ad"><title>Enqueue@aclnnInplaceCopy / q:24392 · 2.238 µs</title></rect>
+<rect x="1244.730" y="445" width="4.592" height="22" fill="#8855ad"><title>Dequeue@aclnnInplaceCopy / q:24392 · 1.702 µs</title></rect>
+<rect x="605.559" y="484" width="9.067" height="22" fill="#8855ad"><title>Node@launch / connection 45278 · 3.361 µs</title></rect>
+<rect x="655.612" y="523" width="5.126" height="22" fill="#208977"><title>ReshapeAndCacheNdKernel / task 28819 / 1.9 us · 1.900 µs</title></rect>
+<rect x="1040.011" y="484" width="45.349" height="22" fill="#8855ad"><title>Node@launch / connection 45283 · 16.810 µs</title></rect>
+<rect x="1114.509" y="523" width="63.615" height="22" fill="#208977"><title>FusedInferAttentionScore / task 28820 / 23.581 us · 23.581 µs</title></rect>
+<rect x="1149.439" y="484" width="7.974" height="22" fill="#8855ad"><title>AscendCL@aclnnInplaceCopy / connection 45289 · 2.956 µs</title></rect>
+<rect x="1181.522" y="523" width="1.619" height="22" fill="#d88b22"><title>MEMCPY_ASYNC / task 28821 / 0.6 us · 0.600 µs</title></rect>
+<text x="240" y="605">0.0 µs</text>
+<text x="443" y="605">75.2 µs</text>
+<text x="646" y="605">150.5 µs</text>
+<text x="849" y="605">225.7 µs</text>
+<text x="1052" y="605">301.0 µs</text>
+<text x="1255" y="605">376.2 µs</text>
+</svg>
+<h2>函数内部双时钟</h2><table><tr><th>范围</th><th>墙钟 µs</th><th>线程 CPU µs</th><th>扣除子 scope 后墙钟 µs</th></tr>
+<tr><td>attn_context</td><td>2.594</td><td>2.068</td><td>2.594</td></tr>
+<tr><td>attn_backend</td><td>303.517</td><td>302.973</td><td>52.891</td></tr>
+<tr><td>attn_kv_prepare</td><td>63.525</td><td>63.193</td><td>37.615</td></tr>
+<tr><td>attn_kv_submit</td><td>25.910</td><td>25.431</td><td>25.910</td></tr>
+<tr><td>attn_dispatch</td><td>187.101</td><td>186.745</td><td>21.507</td></tr>
+<tr><td>attn_fia</td><td>165.594</td><td>165.199</td><td>88.905</td></tr>
+<tr><td>attn_fia_params</td><td>9.846</td><td>9.434</td><td>9.846</td></tr>
+<tr><td>attn_fia_submit</td><td>66.843</td><td>66.361</td><td>66.843</td></tr>
+</table><p>自身墙钟仍含子包装边界成本；下面改用 profiler 边界，与本表分开阅读。</p>
+<h2>Profiler 嵌套范围分账</h2><table><tr><th>范围</th><th>包含子项 µs</th><th>直接子 scope µs</th><th>直接子 CPU op µs</th><th>尚未解释的自身余量 µs</th></tr>
+<tr><td>vllm::unified_attention_with_output</td><td>395.780</td><td>328.199</td><td>0</td><td>67.581</td></tr>
+<tr><td>attn_context</td><td>15.467</td><td>0</td><td>0</td><td>15.467</td></tr>
+<tr><td>attn_backend</td><td>312.732</td><td>268.001</td><td>12.658</td><td>32.073</td></tr>
+<tr><td>attn_kv_prepare</td><td>72.537</td><td>38.538</td><td>7.816</td><td>26.183</td></tr>
+<tr><td>attn_kv_submit</td><td>38.538</td><td>0</td><td>19.227</td><td>19.311</td></tr>
+<tr><td>attn_dispatch</td><td>195.464</td><td>175.203</td><td>0</td><td>20.261</td></tr>
+<tr><td>attn_fia</td><td>175.203</td><td>98.571</td><td>23.349</td><td>53.283</td></tr>
+<tr><td>attn_fia_params</td><td>19.361</td><td>0</td><td>3.675</td><td>15.686</td></tr>
+<tr><td>attn_fia_submit</td><td>79.210</td><td>0</td><td>48.160</td><td>31.050</td></tr>
+</table><p>每行后三项之和等于包含时间；不同层级不能再次相加。余量包括参数准备、框架与插桩开销，不强行归因。</p>
+<h2>精确关联的设备任务</h2><table><tr><th>任务</th><th>stream / task</th><th>connection / queue</th><th>设备 µs</th></tr>
+<tr><td>ReshapeAndCacheNdKernel</td><td>46 / 28819</td><td>45278 / q:24389</td><td>1.9</td></tr>
+<tr><td>FusedInferAttentionScore</td><td>46 / 28820</td><td>45283 / q:24390</td><td>23.581</td></tr>
+<tr><td>MEMCPY_ASYNC</td><td>46 / 28821</td><td>45289 / q:24391</td><td>0.6</td></tr>
+</table>
+<details><summary>实际分支与参数（仅形状/主机 metadata）</summary><pre>{
+  &quot;target_step&quot;: 32,
+  &quot;target_attention_ordinal&quot;: 0,
+  &quot;limits&quot;: &quot;One warmed graph-external attention. Shape/host metadata only; no tensor contents, extra waits, stream changes or changed arguments. Wrappers/profiler perturb timings.&quot;,
+  &quot;context_layer&quot;: &quot;model.layers.0.self_attn.attn&quot;,
+  &quot;call&quot;: {
+    &quot;layer_name&quot;: &quot;model.layers.0.self_attn.attn&quot;,
+    &quot;implementation&quot;: &quot;AscendAttentionBackendImpl&quot;,
+    &quot;attn_state&quot;: &quot;AscendAttentionState.DecodeOnly&quot;,
+    &quot;capturing&quot;: false,
+    &quot;causal&quot;: true,
+    &quot;sinks&quot;: false,
+    &quot;sliding_window&quot;: null,
+    &quot;hamming_sparse&quot;: false,
+    &quot;is_kv_producer&quot;: false,
+    &quot;cache_already_initialized&quot;: true,
+    &quot;num_actual_tokens&quot;: 1,
+    &quot;actual_seq_lengths_q&quot;: [
+      1
+    ],
+    &quot;seq_lens_list&quot;: [
+      42
+    ],
+    &quot;query&quot;: {
+      &quot;shape&quot;: [
+        1,
+        14,
+        64
+      ],
+      &quot;stride&quot;: [
+        896,
+        64,
+        1
+      ],
+      &quot;dtype&quot;: &quot;torch.bfloat16&quot;,
+      &quot;device&quot;: &quot;npu:0&quot;
+    },
+    &quot;key&quot;: {
+      &quot;shape&quot;: [
+        1,
+        2,
+        64
+      ],
+      &quot;stride&quot;: [
+        128,
+        64,
+        1
+      ],
+      &quot;dtype&quot;: &quot;torch.bfloat16&quot;,
+      &quot;device&quot;: &quot;npu:0&quot;
+    },
+    &quot;value&quot;: {
+      &quot;shape&quot;: [
+        1,
+        2,
+        64
+      ],
+      &quot;stride&quot;: [
+        128,
+        64,
+        1
+      ],
+      &quot;dtype&quot;: &quot;torch.bfloat16&quot;,
+      &quot;device&quot;: &quot;npu:0&quot;
+    },
+    &quot;output&quot;: {
+      &quot;shape&quot;: [
+        1,
+        14,
+        64
+      ],
+      &quot;stride&quot;: [
+        896,
+        64,
+        1
+      ],
+      &quot;dtype&quot;: &quot;torch.bfloat16&quot;,
+      &quot;device&quot;: &quot;npu:0&quot;
+    },
+    &quot;block_tables&quot;: {
+      &quot;shape&quot;: [
+        1,
+        2
+      ],
+      &quot;stride&quot;: [
+        2,
+        1
+      ],
+      &quot;dtype&quot;: &quot;torch.int32&quot;,
+      &quot;device&quot;: &quot;npu:0&quot;
+    },
+    &quot;slot_mapping&quot;: {
+      &quot;shape&quot;: [
+        1
+      ],
+      &quot;stride&quot;: [
+        1
+      ],
+      &quot;dtype&quot;: &quot;torch.int32&quot;,
+      &quot;device&quot;: &quot;npu:0&quot;
+    }
+  },
+  &quot;fia_arguments&quot;: {
+    &quot;query&quot;: {
+      &quot;shape&quot;: [
+        1,
+        14,
+        64
+      ],
+      &quot;stride&quot;: [
+        896,
+        64,
+        1
+      ],
+      &quot;dtype&quot;: &quot;torch.bfloat16&quot;,
+      &quot;device&quot;: &quot;npu:0&quot;
+    },
+    &quot;key&quot;: {
+      &quot;shape&quot;: [
+        10,
+        128,
+        128
+      ],
+      &quot;stride&quot;: [
+        16384,
+        128,
+        1
+      ],
+      &quot;dtype&quot;: &quot;torch.bfloat16&quot;,
+      &quot;device&quot;: &quot;npu:0&quot;
+    },
+    &quot;value&quot;: {
+      &quot;shape&quot;: [
+        10,
+        128,
+        128
+      ],
+      &quot;stride&quot;: [
+        16384,
+        128,
+        1
+      ],
+      &quot;dtype&quot;: &quot;torch.bfloat16&quot;,
+      &quot;device&quot;: &quot;npu:0&quot;
+    },
+    &quot;atten_mask&quot;: {
+      &quot;shape&quot;: [
+        2048,
+        2048
+      ],
+      &quot;stride&quot;: [
+        2048,
+        1
+      ],
+      &quot;dtype&quot;: &quot;torch.int8&quot;,
+      &quot;device&quot;: &quot;npu:0&quot;
+    },
+    &quot;block_table&quot;: {
+      &quot;shape&quot;: [
+        1,
+        2
+      ],
+      &quot;stride&quot;: [
+        2,
+        1
+      ],
+      &quot;dtype&quot;: &quot;torch.int32&quot;,
+      &quot;device&quot;: &quot;npu:0&quot;
+    },
+    &quot;input_layout&quot;: &quot;TND&quot;,
+    &quot;block_size&quot;: 128,
+    &quot;actual_seq_lengths&quot;: [
+      1
+    ],
+    &quot;actual_seq_lengths_kv&quot;: [
+      42
+    ],
+    &quot;num_key_value_heads&quot;: 2,
+    &quot;num_heads&quot;: 14,
+    &quot;scale&quot;: 0.125,
+    &quot;sparse_mode&quot;: 3
+  },
+  &quot;selected_calls&quot;: 1,
+  &quot;context_calls&quot;: 1,
+  &quot;restored&quot;: true
+}</pre></details>
+<details><summary>观察扰动</summary><pre>{
+  &quot;selected_outer_us&quot;: &quot;395.780&quot;,
+  &quot;other_23_median_us&quot;: &quot;109.082&quot;,
+  &quot;other_23_min_us&quot;: &quot;102.74&quot;,
+  &quot;other_23_max_us&quot;: &quot;138.36&quot;,
+  &quot;request&quot;: {
+    &quot;reference_wall_us&quot;: {
+      &quot;n&quot;: 3,
+      &quot;median&quot;: 288011.444,
+      &quot;min&quot;: 287978.101,
+      &quot;max&quot;: 288203.229
+    },
+    &quot;diagnostic_wall_us&quot;: 440768.347,
+    &quot;diagnostic_over_reference_median&quot;: 1.5303848377635993,
+    &quot;recovery_wall_us&quot;: 292556.838,
+    &quot;limits&quot;: &quot;One diagnostic vs three controls; combines profiling/observer overhead and run variation.&quot;
+  }
+}</pre></details>
+<details><summary>原生同步记录</summary><pre>[]</pre></details>
+<details><summary>前后 replay</summary><pre>{
+  &quot;previous&quot;: {
+    &quot;id&quot;: 1330,
+    &quot;parent&quot;: 1329,
+    &quot;kind&quot;: &quot;replay&quot;,
+    &quot;index&quot;: 32,
+    &quot;step&quot;: &quot;p30-measure/step-32&quot;,
+    &quot;label&quot;: &quot;P30/32/replay/1330&quot;,
+    &quot;pid&quot;: 1624824,
+    &quot;tid&quot;: 1624824,
+    &quot;request_id&quot;: &quot;2-b4f461a1&quot;,
+    &quot;uid&quot;: &quot;g1&quot;,
+    &quot;wall_start_ns&quot;: 5178909746886409,
+    &quot;wall_end_ns&quot;: 5178909746909938,
+    &quot;wall_ns&quot;: 23529,
+    &quot;thread_cpu_ns&quot;: 22997,
+    &quot;self_wall_us&quot;: 23.529,
+    &quot;self_thread_cpu_us&quot;: 22.997,
+    &quot;wall_us&quot;: 23.529,
+    &quot;thread_cpu_us&quot;: 22.997,
+    &quot;wall_minus_thread_cpu_us&quot;: 0.532,
+    &quot;trace_start_us&quot;: &quot;1790932150787995.697&quot;,
+    &quot;trace_end_us&quot;: &quot;1790932150788035.938&quot;,
+    &quot;source&quot;: {
+      &quot;path&quot;: &quot;/usr/local/python3.12.13/lib/python3.12/site-packages/torch_npu/npu/graphs.py&quot;,
+      &quot;line&quot;: 372,
+      &quot;qualname&quot;: &quot;NPUGraph.replay&quot;
+    }
+  },
+  &quot;following&quot;: {
+    &quot;id&quot;: 1339,
+    &quot;parent&quot;: 1329,
+    &quot;kind&quot;: &quot;replay&quot;,
+    &quot;index&quot;: 32,
+    &quot;step&quot;: &quot;p30-measure/step-32&quot;,
+    &quot;label&quot;: &quot;P30/32/replay/1339&quot;,
+    &quot;pid&quot;: 1624824,
+    &quot;tid&quot;: 1624824,
+    &quot;request_id&quot;: &quot;2-b4f461a1&quot;,
+    &quot;uid&quot;: &quot;g2&quot;,
+    &quot;wall_start_ns&quot;: 5178909747358475,
+    &quot;wall_end_ns&quot;: 5178909747374948,
+    &quot;wall_ns&quot;: 16473,
+    &quot;thread_cpu_ns&quot;: 15969,
+    &quot;self_wall_us&quot;: 16.473,
+    &quot;self_thread_cpu_us&quot;: 15.969,
+    &quot;wall_us&quot;: 16.473,
+    &quot;thread_cpu_us&quot;: 15.969,
+    &quot;wall_minus_thread_cpu_us&quot;: 0.504,
+    &quot;trace_start_us&quot;: &quot;1790932150788467.217&quot;,
+    &quot;trace_end_us&quot;: &quot;1790932150788495.700&quot;,
+    &quot;source&quot;: {
+      &quot;path&quot;: &quot;/usr/local/python3.12.13/lib/python3.12/site-packages/torch_npu/npu/graphs.py&quot;,
+      &quot;line&quot;: 372,
+      &quot;qualname&quot;: &quot;NPUGraph.replay&quot;
+    }
+  }
+}</pre></details>
+<details><summary>源码位置与详细方法计时</summary><pre>[
+  {
+    &quot;id&quot;: 1331,
+    &quot;parent&quot;: 1329,
+    &quot;kind&quot;: &quot;attn_context&quot;,
+    &quot;index&quot;: 32,
+    &quot;step&quot;: &quot;p30-measure/step-32&quot;,
+    &quot;label&quot;: &quot;P30/32/attn_context/1331&quot;,
+    &quot;pid&quot;: 1624824,
+    &quot;tid&quot;: 1624824,
+    &quot;request_id&quot;: &quot;2-b4f461a1&quot;,
+    &quot;wall_start_ns&quot;: 5178909746954283,
+    &quot;wall_end_ns&quot;: 5178909746956877,
+    &quot;wall_ns&quot;: 2594,
+    &quot;thread_cpu_ns&quot;: 2068,
+    &quot;self_wall_us&quot;: 2.594,
+    &quot;self_thread_cpu_us&quot;: 2.068,
+    &quot;wall_us&quot;: 2.594,
+    &quot;thread_cpu_us&quot;: 2.068,
+    &quot;wall_minus_thread_cpu_us&quot;: 0.526,
+    &quot;trace_start_us&quot;: &quot;1790932150788062.682&quot;,
+    &quot;trace_end_us&quot;: &quot;1790932150788078.149&quot;,
+    &quot;source&quot;: {
+      &quot;path&quot;: &quot;/vllm-workspace/vllm/vllm/model_executor/layers/attention/attention.py&quot;,
+      &quot;line&quot;: 620,
+      &quot;qualname&quot;: &quot;get_attention_context&quot;
+    }
+  },
+  {
+    &quot;id&quot;: 1332,
+    &quot;parent&quot;: 1329,
+    &quot;kind&quot;: &quot;attn_backend&quot;,
+    &quot;index&quot;: 32,
+    &quot;step&quot;: &quot;p30-measure/step-32&quot;,
+    &quot;label&quot;: &quot;P30/32/attn_backend/1332&quot;,
+    &quot;pid&quot;: 1624824,
+    &quot;tid&quot;: 1624824,
+    &quot;request_id&quot;: &quot;2-b4f461a1&quot;,
+    &quot;wall_start_ns&quot;: 5178909747016192,
+    &quot;wall_end_ns&quot;: 5178909747319709,
+    &quot;wall_ns&quot;: 303517,
+    &quot;thread_cpu_ns&quot;: 302973,
+    &quot;self_wall_us&quot;: 52.891,
+    &quot;self_thread_cpu_us&quot;: 53.035,
+    &quot;wall_us&quot;: 303.517,
+    &quot;thread_cpu_us&quot;: 302.973,
+    &quot;wall_minus_thread_cpu_us&quot;: 0.544,
+    &quot;trace_start_us&quot;: &quot;1790932150788126.195&quot;,
+    &quot;trace_end_us&quot;: &quot;1790932150788438.927&quot;,
+    &quot;source&quot;: {
+      &quot;path&quot;: &quot;/vllm-workspace/vllm-ascend/vllm_ascend/attention/attention_v1.py&quot;,
+      &quot;line&quot;: 1279,
+      &quot;qualname&quot;: &quot;AscendAttentionBackendImpl.forward&quot;
+    }
+  },
+  {
+    &quot;id&quot;: 1333,
+    &quot;parent&quot;: 1332,
+    &quot;kind&quot;: &quot;attn_kv_prepare&quot;,
+    &quot;index&quot;: 32,
+    &quot;step&quot;: &quot;p30-measure/step-32&quot;,
+    &quot;label&quot;: &quot;P30/32/attn_kv_prepare/1333&quot;,
+    &quot;pid&quot;: 1624824,
+    &quot;tid&quot;: 1624824,
+    &quot;request_id&quot;: &quot;2-b4f461a1&quot;,
+    &quot;wall_start_ns&quot;: 5178909747027801,
+    &quot;wall_end_ns&quot;: 5178909747091326,
+    &quot;wall_ns&quot;: 63525,
+    &quot;thread_cpu_ns&quot;: 63193,
+    &quot;self_wall_us&quot;: 37.615,
+    &quot;self_thread_cpu_us&quot;: 37.762,
+    &quot;wall_us&quot;: 63.525,
+    &quot;thread_cpu_us&quot;: 63.193,
+    &quot;wall_minus_thread_cpu_us&quot;: 0.332,
+    &quot;trace_start_us&quot;: &quot;1790932150788138.360&quot;,
+    &quot;trace_end_us&quot;: &quot;1790932150788210.897&quot;,
+    &quot;source&quot;: {
+      &quot;path&quot;: &quot;/vllm-workspace/vllm-ascend/vllm_ascend/attention/attention_v1.py&quot;,
+      &quot;line&quot;: 1229,
+      &quot;qualname&quot;: &quot;AscendAttentionBackendImpl.reshape_and_cache&quot;
+    }
+  },
+  {
+    &quot;id&quot;: 1334,
+    &quot;parent&quot;: 1333,
+    &quot;kind&quot;: &quot;attn_kv_submit&quot;,
+    &quot;index&quot;: 32,
+    &quot;step&quot;: &quot;p30-measure/step-32&quot;,
+    &quot;label&quot;: &quot;P30/32/attn_kv_submit/1334&quot;,
+    &quot;pid&quot;: 1624824,
+    &quot;tid&quot;: 1624824,
+    &quot;request_id&quot;: &quot;2-b4f461a1&quot;,
+    &quot;wall_start_ns&quot;: 5178909747051472,
+    &quot;wall_end_ns&quot;: 5178909747077382,
+    &quot;wall_ns&quot;: 25910,
+    &quot;thread_cpu_ns&quot;: 25431,
+    &quot;self_wall_us&quot;: 25.91,
+    &quot;self_thread_cpu_us&quot;: 25.431,
+    &quot;wall_us&quot;: 25.91,
+    &quot;thread_cpu_us&quot;: 25.431,
+    &quot;wall_minus_thread_cpu_us&quot;: 0.479,
+    &quot;trace_start_us&quot;: &quot;1790932150788161.262&quot;,
+    &quot;trace_end_us&quot;: &quot;1790932150788199.800&quot;,
+    &quot;source&quot;: {
+      &quot;path&quot;: null,
+      &quot;line&quot;: null,
+      &quot;qualname&quot;: &quot;pybind11_detail_function_record_v1_system_libstdcpp_gxx_abi_1xxx_use_cxx11_abi_1._npu_reshape_and_cache&quot;,
+      &quot;source_role&quot;: &quot;exported torch-npu callable boundary; native body not timed separately&quot;
+    }
+  },
+  {
+    &quot;id&quot;: 1335,
+    &quot;parent&quot;: 1332,
+    &quot;kind&quot;: &quot;attn_dispatch&quot;,
+    &quot;index&quot;: 32,
+    &quot;step&quot;: &quot;p30-measure/step-32&quot;,
+    &quot;label&quot;: &quot;P30/32/attn_dispatch/1335&quot;,
+    &quot;pid&quot;: 1624824,
+    &quot;tid&quot;: 1624824,
+    &quot;request_id&quot;: &quot;2-b4f461a1&quot;,
+    &quot;wall_start_ns&quot;: 5178909747109183,
+    &quot;wall_end_ns&quot;: 5178909747296284,
+    &quot;wall_ns&quot;: 187101,
+    &quot;thread_cpu_ns&quot;: 186745,
+    &quot;self_wall_us&quot;: 21.507,
+    &quot;self_thread_cpu_us&quot;: 21.546,
+    &quot;wall_us&quot;: 187.101,
+    &quot;thread_cpu_us&quot;: 186.745,
+    &quot;wall_minus_thread_cpu_us&quot;: 0.356,
+    &quot;trace_start_us&quot;: &quot;1790932150788219.688&quot;,
+    &quot;trace_end_us&quot;: &quot;1790932150788415.152&quot;,
+    &quot;source&quot;: {
+      &quot;path&quot;: &quot;/vllm-workspace/vllm-ascend/vllm_ascend/attention/attention_v1.py&quot;,
+      &quot;line&quot;: 1258,
+      &quot;qualname&quot;: &quot;AscendAttentionBackendImpl.forward_impl&quot;
+    }
+  },
+  {
+    &quot;id&quot;: 1336,
+    &quot;parent&quot;: 1335,
+    &quot;kind&quot;: &quot;attn_fia&quot;,
+    &quot;index&quot;: 32,
+    &quot;step&quot;: &quot;p30-measure/step-32&quot;,
+    &quot;label&quot;: &quot;P30/32/attn_fia/1336&quot;,
+    &quot;pid&quot;: 1624824,
+    &quot;tid&quot;: 1624824,
+    &quot;request_id&quot;: &quot;2-b4f461a1&quot;,
+    &quot;wall_start_ns&quot;: 5178909747120663,
+    &quot;wall_end_ns&quot;: 5178909747286257,
+    &quot;wall_ns&quot;: 165594,
+    &quot;thread_cpu_ns&quot;: 165199,
+    &quot;self_wall_us&quot;: 88.905,
+    &quot;self_thread_cpu_us&quot;: 89.404,
+    &quot;wall_us&quot;: 165.594,
+    &quot;thread_cpu_us&quot;: 165.199,
+    &quot;wall_minus_thread_cpu_us&quot;: 0.395,
+    &quot;trace_start_us&quot;: &quot;1790932150788231.505&quot;,
+    &quot;trace_end_us&quot;: &quot;1790932150788406.708&quot;,
+    &quot;source&quot;: {
+      &quot;path&quot;: &quot;/vllm-workspace/vllm-ascend/vllm_ascend/attention/attention_v1.py&quot;,
+      &quot;line&quot;: 1045,
+      &quot;qualname&quot;: &quot;AscendAttentionBackendImpl.forward_fused_infer_attention&quot;
+    }
+  },
+  {
+    &quot;id&quot;: 1337,
+    &quot;parent&quot;: 1336,
+    &quot;kind&quot;: &quot;attn_fia_params&quot;,
+    &quot;index&quot;: 32,
+    &quot;step&quot;: &quot;p30-measure/step-32&quot;,
+    &quot;label&quot;: &quot;P30/32/attn_fia_params/1337&quot;,
+    &quot;pid&quot;: 1624824,
+    &quot;tid&quot;: 1624824,
+    &quot;request_id&quot;: &quot;2-b4f461a1&quot;,
+    &quot;wall_start_ns&quot;: 5178909747131133,
+    &quot;wall_end_ns&quot;: 5178909747140979,
+    &quot;wall_ns&quot;: 9846,
+    &quot;thread_cpu_ns&quot;: 9434,
+    &quot;self_wall_us&quot;: 9.846,
+    &quot;self_thread_cpu_us&quot;: 9.434,
+    &quot;wall_us&quot;: 9.846,
+    &quot;thread_cpu_us&quot;: 9.434,
+    &quot;wall_minus_thread_cpu_us&quot;: 0.412,
+    &quot;trace_start_us&quot;: &quot;1790932150788241.542&quot;,
+    &quot;trace_end_us&quot;: &quot;1790932150788260.903&quot;,
+    &quot;source&quot;: {
+      &quot;path&quot;: &quot;/vllm-workspace/vllm-ascend/vllm_ascend/attention/attention_v1.py&quot;,
+      &quot;line&quot;: 985,
+      &quot;qualname&quot;: &quot;AscendAttentionBackendImpl._get_fia_params&quot;
+    }
+  },
+  {
+    &quot;id&quot;: 1338,
+    &quot;parent&quot;: 1336,
+    &quot;kind&quot;: &quot;attn_fia_submit&quot;,
+    &quot;index&quot;: 32,
+    &quot;step&quot;: &quot;p30-measure/step-32&quot;,
+    &quot;label&quot;: &quot;P30/32/attn_fia_submit/1338&quot;,
+    &quot;pid&quot;: 1624824,
+    &quot;tid&quot;: 1624824,
+    &quot;request_id&quot;: &quot;2-b4f461a1&quot;,
+    &quot;wall_start_ns&quot;: 5178909747177658,
+    &quot;wall_end_ns&quot;: 5178909747244501,
+    &quot;wall_ns&quot;: 66843,
+    &quot;thread_cpu_ns&quot;: 66361,
+    &quot;self_wall_us&quot;: 66.843,
+    &quot;self_thread_cpu_us&quot;: 66.361,
+    &quot;wall_us&quot;: 66.843,
+    &quot;thread_cpu_us&quot;: 66.361,
+    &quot;wall_minus_thread_cpu_us&quot;: 0.482,
+    &quot;trace_start_us&quot;: &quot;1790932150788287.820&quot;,
+    &quot;trace_end_us&quot;: &quot;1790932150788367.030&quot;,
+    &quot;source&quot;: {
+      &quot;path&quot;: null,
+      &quot;line&quot;: null,
+      &quot;qualname&quot;: &quot;pybind11_detail_function_record_v1_system_libstdcpp_gxx_abi_1xxx_use_cxx11_abi_1.npu_fused_infer_attention_score&quot;,
+      &quot;source_role&quot;: &quot;exported torch-npu callable boundary; native body not timed separately&quot;
+    }
+  }
+]</pre></details>
+<details><summary>完整调用树</summary><pre>{
+  &quot;nodes&quot;: [
+    {
+      &quot;id&quot;: &quot;cpu:36459&quot;,
+      &quot;name&quot;: &quot;vllm::unified_attention_with_output&quot;,
+      &quot;start_us&quot;: &quot;1790932150788047.007&quot;,
+      &quot;end_us&quot;: &quot;1790932150788442.787&quot;,
+      &quot;duration_us&quot;: &quot;395.780&quot;,
+      &quot;parent&quot;: null,
+      &quot;children&quot;: [
+        1,
+        2
+      ],
+      &quot;kind&quot;: &quot;cpu_op&quot;,
+      &quot;self_us&quot;: &quot;67.581&quot;
+    },
+    {
+      &quot;id&quot;: &quot;P30/32/attn_context/1331&quot;,
+      &quot;name&quot;: &quot;attn_context&quot;,
+      &quot;start_us&quot;: &quot;1790932150788062.682&quot;,
+      &quot;end_us&quot;: &quot;1790932150788078.149&quot;,
+      &quot;duration_us&quot;: &quot;15.467&quot;,
+      &quot;parent&quot;: 0,
+      &quot;children&quot;: [],
+      &quot;kind&quot;: &quot;phase&quot;,
+      &quot;self_us&quot;: &quot;15.467&quot;
+    },
+    {
+      &quot;id&quot;: &quot;P30/32/attn_backend/1332&quot;,
+      &quot;name&quot;: &quot;attn_backend&quot;,
+      &quot;start_us&quot;: &quot;1790932150788126.195&quot;,
+      &quot;end_us&quot;: &quot;1790932150788438.927&quot;,
+      &quot;duration_us&quot;: &quot;312.732&quot;,
+      &quot;parent&quot;: 0,
+      &quot;children&quot;: [
+        3,
+        13,
+        32,
+        34
+      ],
+      &quot;kind&quot;: &quot;phase&quot;,
+      &quot;self_us&quot;: &quot;32.073&quot;
+    },
+    {
+      &quot;id&quot;: &quot;P30/32/attn_kv_prepare/1333&quot;,
+      &quot;name&quot;: &quot;attn_kv_prepare&quot;,
+      &quot;start_us&quot;: &quot;1790932150788138.360&quot;,
+      &quot;end_us&quot;: &quot;1790932150788210.897&quot;,
+      &quot;duration_us&quot;: &quot;72.537&quot;,
+      &quot;parent&quot;: 2,
+      &quot;children&quot;: [
+        4,
+        6,
+        8,
+        10
+      ],
+      &quot;kind&quot;: &quot;phase&quot;,
+      &quot;self_us&quot;: &quot;26.183&quot;
+    },
+    {
+      &quot;id&quot;: &quot;cpu:36426&quot;,
+      &quot;name&quot;: &quot;aten::slice&quot;,
+      &quot;start_us&quot;: &quot;1790932150788143.773&quot;,
+      &quot;end_us&quot;: &quot;1790932150788147.318&quot;,
+      &quot;duration_us&quot;: &quot;3.545&quot;,
+      &quot;parent&quot;: 3,
+      &quot;children&quot;: [
+        5
+      ],
+      &quot;kind&quot;: &quot;cpu_op&quot;,
+      &quot;self_us&quot;: &quot;2.027&quot;
+    },
+    {
+      &quot;id&quot;: &quot;cpu:36425&quot;,
+      &quot;name&quot;: &quot;aten::as_strided&quot;,
+      &quot;start_us&quot;: &quot;1790932150788145.563&quot;,
+      &quot;end_us&quot;: &quot;1790932150788147.081&quot;,
+      &quot;duration_us&quot;: &quot;1.518&quot;,
+      &quot;parent&quot;: 4,
+      &quot;children&quot;: [],
+      &quot;kind&quot;: &quot;cpu_op&quot;,
+      &quot;self_us&quot;: &quot;1.518&quot;
+    },
+    {
+      &quot;id&quot;: &quot;cpu:36428&quot;,
+      &quot;name&quot;: &quot;aten::slice&quot;,
+      &quot;start_us&quot;: &quot;1790932150788148.437&quot;,
+      &quot;end_us&quot;: &quot;1790932150788149.893&quot;,
+      &quot;duration_us&quot;: &quot;1.456&quot;,
+      &quot;parent&quot;: 3,
+      &quot;children&quot;: [
+        7
+      ],
+      &quot;kind&quot;: &quot;cpu_op&quot;,
+      &quot;self_us&quot;: &quot;0.785&quot;
+    },
+    {
+      &quot;id&quot;: &quot;cpu:36427&quot;,
+      &quot;name&quot;: &quot;aten::as_strided&quot;,
+      &quot;start_us&quot;: &quot;1790932150788149.134&quot;,
+      &quot;end_us&quot;: &quot;1790932150788149.805&quot;,
+      &quot;duration_us&quot;: &quot;0.671&quot;,
+      &quot;parent&quot;: 6,
+      &quot;children&quot;: [],
+      &quot;kind&quot;: &quot;cpu_op&quot;,
+      &quot;self_us&quot;: &quot;0.671&quot;
+    },
+    {
+      &quot;id&quot;: &quot;cpu:36430&quot;,
+      &quot;name&quot;: &quot;aten::slice&quot;,
+      &quot;start_us&quot;: &quot;1790932150788150.677&quot;,
+      &quot;end_us&quot;: &quot;1790932150788153.492&quot;,
+      &quot;duration_us&quot;: &quot;2.815&quot;,
+      &quot;parent&quot;: 3,
+      &quot;children&quot;: [
+        9
+      ],
+      &quot;kind&quot;: &quot;cpu_op&quot;,
+      &quot;self_us&quot;: &quot;1.925&quot;
+    },
+    {
+      &quot;id&quot;: &quot;cpu:36429&quot;,
+      &quot;name&quot;: &quot;aten::as_strided&quot;,
+      &quot;start_us&quot;: &quot;1790932150788151.765&quot;,
+      &quot;end_us&quot;: &quot;1790932150788152.655&quot;,
+      &quot;duration_us&quot;: &quot;0.890&quot;,
+      &quot;parent&quot;: 8,
+      &quot;children&quot;: [],
+      &quot;kind&quot;: &quot;cpu_op&quot;,
+      &quot;self_us&quot;: &quot;0.890&quot;
+    },
+    {
+      &quot;id&quot;: &quot;P30/32/attn_kv_submit/1334&quot;,
+      &quot;name&quot;: &quot;attn_kv_submit&quot;,
+      &quot;start_us&quot;: &quot;1790932150788161.262&quot;,
+      &quot;end_us&quot;: &quot;1790932150788199.800&quot;,
+      &quot;duration_us&quot;: &quot;38.538&quot;,
+      &quot;parent&quot;: 3,
+      &quot;children&quot;: [
+        11
+      ],
+      &quot;kind&quot;: &quot;phase&quot;,
+      &quot;self_us&quot;: &quot;19.311&quot;
+    },
+    {
+      &quot;id&quot;: &quot;cpu:36432&quot;,
+      &quot;name&quot;: &quot;atb::_npu_reshape_and_cache&quot;,
+      &quot;start_us&quot;: &quot;1790932150788169.220&quot;,
+      &quot;end_us&quot;: &quot;1790932150788188.447&quot;,
+      &quot;duration_us&quot;: &quot;19.227&quot;,
+      &quot;parent&quot;: 10,
+      &quot;children&quot;: [
+        12
+      ],
+      &quot;kind&quot;: &quot;cpu_op&quot;,
+      &quot;self_us&quot;: &quot;16.007&quot;
+    },
+    {
+      &quot;id&quot;: &quot;cpu:36431&quot;,
+      &quot;name&quot;: &quot;ReshapeCacheOperation&quot;,
+      &quot;start_us&quot;: &quot;1790932150788184.222&quot;,
+      &quot;end_us&quot;: &quot;1790932150788187.442&quot;,
+      &quot;duration_us&quot;: &quot;3.220&quot;,
+      &quot;parent&quot;: 11,
+      &quot;children&quot;: [],
+      &quot;kind&quot;: &quot;cpu_op&quot;,
+      &quot;self_us&quot;: &quot;3.220&quot;
+    },
+    {
+      &quot;id&quot;: &quot;P30/32/attn_dispatch/1335&quot;,
+      &quot;name&quot;: &quot;attn_dispatch&quot;,
+      &quot;start_us&quot;: &quot;1790932150788219.688&quot;,
+      &quot;end_us&quot;: &quot;1790932150788415.152&quot;,
+      &quot;duration_us&quot;: &quot;195.464&quot;,
+      &quot;parent&quot;: 2,
+      &quot;children&quot;: [
+        14
+      ],
+      &quot;kind&quot;: &quot;phase&quot;,
+      &quot;self_us&quot;: &quot;20.261&quot;
+    },
+    {
+      &quot;id&quot;: &quot;P30/32/attn_fia/1336&quot;,
+      &quot;name&quot;: &quot;attn_fia&quot;,
+      &quot;start_us&quot;: &quot;1790932150788231.505&quot;,
+      &quot;end_us&quot;: &quot;1790932150788406.708&quot;,
+      &quot;duration_us&quot;: &quot;175.203&quot;,
+      &quot;parent&quot;: 13,
+      &quot;children&quot;: [
+        15,
+        18,
+        20,
+        27,
+        28,
+        30
+      ],
+      &quot;kind&quot;: &quot;phase&quot;,
+      &quot;self_us&quot;: &quot;53.283&quot;
+    },
+    {
+      &quot;id&quot;: &quot;P30/32/attn_fia_params/1337&quot;,
+      &quot;name&quot;: &quot;attn_fia_params&quot;,
+      &quot;start_us&quot;: &quot;1790932150788241.542&quot;,
+      &quot;end_us&quot;: &quot;1790932150788260.903&quot;,
+      &quot;duration_us&quot;: &quot;19.361&quot;,
+      &quot;parent&quot;: 14,
+      &quot;children&quot;: [
+        16,
+        17
+      ],
+      &quot;kind&quot;: &quot;phase&quot;,
+      &quot;self_us&quot;: &quot;15.686&quot;
+    },
+    {
+      &quot;id&quot;: &quot;cpu:36435&quot;,
+      &quot;name&quot;: &quot;aten::view&quot;,
+      &quot;start_us&quot;: &quot;1790932150788247.877&quot;,
+      &quot;end_us&quot;: &quot;1790932150788250.495&quot;,
+      &quot;duration_us&quot;: &quot;2.618&quot;,
+      &quot;parent&quot;: 15,
+      &quot;children&quot;: [],
+      &quot;kind&quot;: &quot;cpu_op&quot;,
+      &quot;self_us&quot;: &quot;2.618&quot;
+    },
+    {
+      &quot;id&quot;: &quot;cpu:36436&quot;,
+      &quot;name&quot;: &quot;aten::view&quot;,
+      &quot;start_us&quot;: &quot;1790932150788251.499&quot;,
+      &quot;end_us&quot;: &quot;1790932150788252.556&quot;,
+      &quot;duration_us&quot;: &quot;1.057&quot;,
+      &quot;parent&quot;: 15,
+      &quot;children&quot;: [],
+      &quot;kind&quot;: &quot;cpu_op&quot;,
+      &quot;self_us&quot;: &quot;1.057&quot;
+    },
+    {
+      &quot;id&quot;: &quot;cpu:36439&quot;,
+      &quot;name&quot;: &quot;aten::slice&quot;,
+      &quot;start_us&quot;: &quot;1790932150788263.982&quot;,
+      &quot;end_us&quot;: &quot;1790932150788265.840&quot;,
+      &quot;duration_us&quot;: &quot;1.858&quot;,
+      &quot;parent&quot;: 14,
+      &quot;children&quot;: [
+        19
+      ],
+      &quot;kind&quot;: &quot;cpu_op&quot;,
+      &quot;self_us&quot;: &quot;0.891&quot;
+    },
+    {
+      &quot;id&quot;: &quot;cpu:36438&quot;,
+      &quot;name&quot;: &quot;aten::as_strided&quot;,
+      &quot;start_us&quot;: &quot;1790932150788264.782&quot;,
+      &quot;end_us&quot;: &quot;1790932150788265.749&quot;,
+      &quot;duration_us&quot;: &quot;0.967&quot;,
+      &quot;parent&quot;: 18,
+      &quot;children&quot;: [],
+      &quot;kind&quot;: &quot;cpu_op&quot;,
+      &quot;self_us&quot;: &quot;0.967&quot;
+    },
+    {
+      &quot;id&quot;: &quot;P30/32/attn_fia_submit/1338&quot;,
+      &quot;name&quot;: &quot;attn_fia_submit&quot;,
+      &quot;start_us&quot;: &quot;1790932150788287.820&quot;,
+      &quot;end_us&quot;: &quot;1790932150788367.030&quot;,
+      &quot;duration_us&quot;: &quot;79.210&quot;,
+      &quot;parent&quot;: 14,
+      &quot;children&quot;: [
+        21
+      ],
+      &quot;kind&quot;: &quot;phase&quot;,
+      &quot;self_us&quot;: &quot;31.050&quot;
+    },
+    {
+      &quot;id&quot;: &quot;cpu:36445&quot;,
+      &quot;name&quot;: &quot;npu::npu_fused_infer_attention_score&quot;,
+      &quot;start_us&quot;: &quot;1790932150788306.605&quot;,
+      &quot;end_us&quot;: &quot;1790932150788354.765&quot;,
+      &quot;duration_us&quot;: &quot;48.160&quot;,
+      &quot;parent&quot;: 20,
+      &quot;children&quot;: [
+        22,
+        23,
+        24,
+        25,
+        26
+      ],
+      &quot;kind&quot;: &quot;cpu_op&quot;,
+      &quot;self_us&quot;: &quot;38.754&quot;
+    },
+    {
+      &quot;id&quot;: &quot;cpu:36440&quot;,
+      &quot;name&quot;: &quot;empty_tensor&quot;,
+      &quot;start_us&quot;: &quot;1790932150788316.785&quot;,
+      &quot;end_us&quot;: &quot;1790932150788320.240&quot;,
+      &quot;duration_us&quot;: &quot;3.455&quot;,
+      &quot;parent&quot;: 21,
+      &quot;children&quot;: [],
+      &quot;kind&quot;: &quot;cpu_op&quot;,
+      &quot;self_us&quot;: &quot;3.455&quot;
+    },
+    {
+      &quot;id&quot;: &quot;cpu:36441&quot;,
+      &quot;name&quot;: &quot;empty_tensor&quot;,
+      &quot;start_us&quot;: &quot;1790932150788320.887&quot;,
+      &quot;end_us&quot;: &quot;1790932150788321.962&quot;,
+      &quot;duration_us&quot;: &quot;1.075&quot;,
+      &quot;parent&quot;: 21,
+      &quot;children&quot;: [],
+      &quot;kind&quot;: &quot;cpu_op&quot;,
+      &quot;self_us&quot;: &quot;1.075&quot;
+    },
+    {
+      &quot;id&quot;: &quot;cpu:36442&quot;,
+      &quot;name&quot;: &quot;empty_tensor&quot;,
+      &quot;start_us&quot;: &quot;1790932150788322.963&quot;,
+      &quot;end_us&quot;: &quot;1790932150788324.103&quot;,
+      &quot;duration_us&quot;: &quot;1.140&quot;,
+      &quot;parent&quot;: 21,
+      &quot;children&quot;: [],
+      &quot;kind&quot;: &quot;cpu_op&quot;,
+      &quot;self_us&quot;: &quot;1.140&quot;
+    },
+    {
+      &quot;id&quot;: &quot;cpu:36443&quot;,
+      &quot;name&quot;: &quot;empty_tensor&quot;,
+      &quot;start_us&quot;: &quot;1790932150788324.292&quot;,
+      &quot;end_us&quot;: &quot;1790932150788325.200&quot;,
+      &quot;duration_us&quot;: &quot;0.908&quot;,
+      &quot;parent&quot;: 21,
+      &quot;children&quot;: [],
+      &quot;kind&quot;: &quot;cpu_op&quot;,
+      &quot;self_us&quot;: &quot;0.908&quot;
+    },
+    {
+      &quot;id&quot;: &quot;cpu:36444&quot;,
+      &quot;name&quot;: &quot;aclnnFusedInferAttentionScoreV3&quot;,
+      &quot;start_us&quot;: &quot;1790932150788349.267&quot;,
+      &quot;end_us&quot;: &quot;1790932150788352.095&quot;,
+      &quot;duration_us&quot;: &quot;2.828&quot;,
+      &quot;parent&quot;: 21,
+      &quot;children&quot;: [],
+      &quot;kind&quot;: &quot;cpu_op&quot;,
+      &quot;self_us&quot;: &quot;2.828&quot;
+    },
+    {
+      &quot;id&quot;: &quot;cpu:36447&quot;,
+      &quot;name&quot;: &quot;aten::view&quot;,
+      &quot;start_us&quot;: &quot;1790932150788370.695&quot;,
+      &quot;end_us&quot;: &quot;1790932150788372.050&quot;,
+      &quot;duration_us&quot;: &quot;1.355&quot;,
+      &quot;parent&quot;: 14,
+      &quot;children&quot;: [],
+      &quot;kind&quot;: &quot;cpu_op&quot;,
+      &quot;self_us&quot;: &quot;1.355&quot;
+    },
+    {
+      &quot;id&quot;: &quot;cpu:36449&quot;,
+      &quot;name&quot;: &quot;aten::slice&quot;,
+      &quot;start_us&quot;: &quot;1790932150788373.474&quot;,
+      &quot;end_us&quot;: &quot;1790932150788375.755&quot;,
+      &quot;duration_us&quot;: &quot;2.281&quot;,
+      &quot;parent&quot;: 14,
+      &quot;children&quot;: [
+        29
+      ],
+      &quot;kind&quot;: &quot;cpu_op&quot;,
+      &quot;self_us&quot;: &quot;1.116&quot;
+    },
+    {
+      &quot;id&quot;: &quot;cpu:36448&quot;,
+      &quot;name&quot;: &quot;aten::as_strided&quot;,
+      &quot;start_us&quot;: &quot;1790932150788374.422&quot;,
+      &quot;end_us&quot;: &quot;1790932150788375.587&quot;,
+      &quot;duration_us&quot;: &quot;1.165&quot;,
+      &quot;parent&quot;: 28,
+      &quot;children&quot;: [],
+      &quot;kind&quot;: &quot;cpu_op&quot;,
+      &quot;self_us&quot;: &quot;1.165&quot;
+    },
+    {
+      &quot;id&quot;: &quot;cpu:36451&quot;,
+      &quot;name&quot;: &quot;aten::copy_&quot;,
+      &quot;start_us&quot;: &quot;1790932150788377.952&quot;,
+      &quot;end_us&quot;: &quot;1790932150788395.807&quot;,
+      &quot;duration_us&quot;: &quot;17.855&quot;,
+      &quot;parent&quot;: 14,
+      &quot;children&quot;: [
+        31
+      ],
+      &quot;kind&quot;: &quot;cpu_op&quot;,
+      &quot;self_us&quot;: &quot;15.268&quot;
+    },
+    {
+      &quot;id&quot;: &quot;cpu:36450&quot;,
+      &quot;name&quot;: &quot;aclnnInplaceCopy&quot;,
+      &quot;start_us&quot;: &quot;1790932150788392.657&quot;,
+      &quot;end_us&quot;: &quot;1790932150788395.244&quot;,
+      &quot;duration_us&quot;: &quot;2.587&quot;,
+      &quot;parent&quot;: 30,
+      &quot;children&quot;: [],
+      &quot;kind&quot;: &quot;cpu_op&quot;,
+      &quot;self_us&quot;: &quot;2.587&quot;
+    },
+    {
+      &quot;id&quot;: &quot;cpu:36455&quot;,
+      &quot;name&quot;: &quot;aten::slice&quot;,
+      &quot;start_us&quot;: &quot;1790932150788417.459&quot;,
+      &quot;end_us&quot;: &quot;1790932150788420.443&quot;,
+      &quot;duration_us&quot;: &quot;2.984&quot;,
+      &quot;parent&quot;: 2,
+      &quot;children&quot;: [
+        33
+      ],
+      &quot;kind&quot;: &quot;cpu_op&quot;,
+      &quot;self_us&quot;: &quot;2.126&quot;
+    },
+    {
+      &quot;id&quot;: &quot;cpu:36454&quot;,
+      &quot;name&quot;: &quot;aten::as_strided&quot;,
+      &quot;start_us&quot;: &quot;1790932150788419.477&quot;,
+      &quot;end_us&quot;: &quot;1790932150788420.335&quot;,
+      &quot;duration_us&quot;: &quot;0.858&quot;,
+      &quot;parent&quot;: 32,
+      &quot;children&quot;: [],
+      &quot;kind&quot;: &quot;cpu_op&quot;,
+      &quot;self_us&quot;: &quot;0.858&quot;
+    },
+    {
+      &quot;id&quot;: &quot;cpu:36457&quot;,
+      &quot;name&quot;: &quot;aten::copy_&quot;,
+      &quot;start_us&quot;: &quot;1790932150788421.587&quot;,
+      &quot;end_us&quot;: &quot;1790932150788431.261&quot;,
+      &quot;duration_us&quot;: &quot;9.674&quot;,
+      &quot;parent&quot;: 2,
+      &quot;children&quot;: [
+        35
+      ],
+      &quot;kind&quot;: &quot;cpu_op&quot;,
+      &quot;self_us&quot;: &quot;7.202&quot;
+    },
+    {
+      &quot;id&quot;: &quot;cpu:36456&quot;,
+      &quot;name&quot;: &quot;aclnnInplaceCopy&quot;,
+      &quot;start_us&quot;: &quot;1790932150788428.340&quot;,
+      &quot;end_us&quot;: &quot;1790932150788430.812&quot;,
+      &quot;duration_us&quot;: &quot;2.472&quot;,
+      &quot;parent&quot;: 34,
+      &quot;children&quot;: [],
+      &quot;kind&quot;: &quot;cpu_op&quot;,
+      &quot;self_us&quot;: &quot;2.472&quot;
+    }
+  ],
+  &quot;roots&quot;: [
+    0
+  ],
+  &quot;denominator_us&quot;: &quot;395.780&quot;,
+  &quot;covered_us&quot;: &quot;395.780&quot;,
+  &quot;unattributed_us&quot;: &quot;0.000&quot;
+}</pre></details>
+<details><summary>校验与限制</summary><pre>{
+  &quot;single_call&quot;: true,
+  &quot;nested_partition&quot;: true,
+  &quot;exact_queue_and_device_identity&quot;: true,
+  &quot;graph_external_tasks&quot;: true,
+  &quot;capture_during_measurement&quot;: 0,
+  &quot;decode32_replays&quot;: 25
+}</pre></details>
+<details><summary>证据边界</summary><pre>[
+  &quot;Residual includes Python/framework glue, metadata inspection, wrapper and profiler cost; not pure Python time.&quot;,
+  &quot;Inner dual clocks and outer profiler boundaries differ; do not mix denominators.&quot;,
+  &quot;No observed explicit synchronization is not proof that native code never waits.&quot;,
+  &quot;No changed stream, device waits, operator arguments, or tensor data reads are introduced.&quot;,
+  &quot;Same-step other layers are an observation-cost indicator, not a matched causal control.&quot;
+]</pre></details>
+</html>

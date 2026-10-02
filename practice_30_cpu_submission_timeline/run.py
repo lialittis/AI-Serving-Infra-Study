@@ -37,8 +37,10 @@ def main():
     p.add_argument('--output',type=Path,required=True)
     p.add_argument('--mode', choices=['eager','graph'], default='eager')
     p.add_argument('--forward-detail', action='store_true')
+    p.add_argument('--attention-detail', action='store_true')
     a=p.parse_args();out=a.output.resolve()
     if a.forward_detail and a.mode!='eager':p.error('RoPE detail is eager-only')
+    if a.attention_detail and a.mode!='graph':p.error('attention detail requires graph mode')
     if os.environ.get('LD_AUDIT') or os.environ.get('ASCEND_LAUNCH_BLOCKING')=='1':
         raise RuntimeError('conflicting instrumentation environment')
     device=require_idle()
@@ -54,7 +56,11 @@ def main():
         '/usr/local/python3.12.13/lib/python3.12/site-packages/triton/compiler/compiler.py',
         '/usr/local/python3.12.13/lib/python3.12/site-packages/triton/backends/ascend/driver.py',
     ] if a.forward_detail else []
-    files=sorted(set(FILES+EXTRA+detail_sources));before={f:sha256(f) for f in files}
+    attention_sources=[
+        '/vllm-workspace/vllm/vllm/model_executor/layers/attention/attention.py',
+        '/vllm-workspace/vllm-ascend/vllm_ascend/ascend_forward_context.py',
+    ] if a.attention_detail else []
+    files=sorted(set(FILES+EXTRA+detail_sources+attention_sources));before={f:sha256(f) for f in files}
     save(out/'sources_before.json',before)
     manifest={}
     for index,file in enumerate(files):
@@ -66,10 +72,11 @@ def main():
     save(out/'revisions.json',{repo:subprocess.check_output(['git','-C',repo,'rev-parse','HEAD'],text=True).strip()
          for repo in ('/vllm-workspace/vllm','/vllm-workspace/vllm-ascend')})
     (out/'cann_version.txt').write_text(Path('/usr/local/Ascend/cann-9.0.0/share/info/runtime/version.info').read_text())
-    status=dict(status='running',stages=[],mode=a.mode,forward_detail=a.forward_detail)
+    status=dict(status='running',stages=[],mode=a.mode,forward_detail=a.forward_detail,attention_detail=a.attention_detail)
     save(out/'status.json',status)
     def stage(name):
         extra=('--forward-detail',) if a.forward_detail else ()
+        if a.attention_detail:extra=('--attention-detail',)
         launch(out,name,'child.py',('--stage',name,'--mode',a.mode,*extra),timeout=900 if a.mode=='graph' else 300)
         status['stages'].append(name);save(out/'status.json',status)
     try:

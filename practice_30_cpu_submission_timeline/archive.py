@@ -16,7 +16,9 @@ def main():
     a.output.mkdir(parents=True,exist_ok=False)
     root=Path(__file__).resolve().parent;repo=root.parent
     tools=[root/name for name in ('analyze.py','exact_join.py','render.py','viewer.html','compare.py',
-                                 'forward_analysis.py','test_analysis.py','test_forward.py')]
+                                 'forward_analysis.py','test_analysis.py','test_forward.py',
+                                 'attention_analysis.py','attention_observer.py','test_attention.py')]
+    tools.append(repo/'practice_28_native_decode_streams/common.py')
     tools.append(repo/'practice_17_vllm_multistream/analyze_run.py')
     for source in tools:
         target=a.run/'analysis_tools'/source.relative_to(repo);target.parent.mkdir(parents=True,exist_ok=True);shutil.copy2(source,target)

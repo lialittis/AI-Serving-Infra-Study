@@ -8,6 +8,8 @@
 
 继续细分：[forward 报告](report/forward/index.html) · [细分结论](FORWARD_RESULTS.md) · [单次 RoPE 时间线](report/forward/rope.svg)。已有 trace 显示 graph forward 的图外 attention Host 范围约占 66.6%；新增观测只放大一次 eager RoPE，明确记录插桩扰动。
 
+下一轮已完成：[单次 graph 图外 attention 报告](report/attention/index.html) · [结论](ATTENTION_RESULTS.md) · [精确时间线](report/attention/attention.svg)。只在 decode 32 第一层记录上下文、KV 准备/调用、FIA 参数与调用，保持原生请求和同步逻辑。
+
 ## 怎么读
 
 1. 先看完整请求的 64 个步骤：prefill 一次，decode 63 次。
@@ -160,3 +162,38 @@ python -B practice_30_cpu_submission_timeline/forward_analysis.py \
 离线复核可解压 `results/{eager-02,graph-01,forward-01}-archive/evidence.tgz` 到同一临时目录，再使用 `forward-01/analysis_tools/practice_30_cpu_submission_timeline/forward_analysis.py`，将三个参数指向各自解压目录。新归档包含冻结的采集代码和最终离线分析脚本，无需 NPU。
 
 占比使用 profiler 的 forward 范围；调用内部双时钟另列。微秒级多层 scope 的扰动已显式报告，不能用新插桩调用的百分比外推生产耗时。
+
+## 单次 graph 图外 attention 复现
+
+```bash
+cd /data/tianchi
+python -B practice_30_cpu_submission_timeline/run.py \
+  --mode graph --attention-detail \
+  --output practice_30_cpu_submission_timeline/results/new-attention
+python -B practice_30_cpu_submission_timeline/analyze.py \
+  practice_30_cpu_submission_timeline/results/new-attention
+python -B practice_30_cpu_submission_timeline/attention_analysis.py \
+  practice_30_cpu_submission_timeline/results/new-attention \
+  --output practice_30_cpu_submission_timeline/report/new-attention
+```
+
+`--attention-detail` 只允许 graph；与 eager 的 `--forward-detail` 不能同时启用。reference / recovery 保持原生调用；diagnostic 在初始化、捕获、两次完整预热之后才安装包装。完整请求仍为 10 输入 / 64 输出，只有 decode 32 第一层新增 8 个方法范围。其他调用经过选择条件后直接调用原函数；不新增设备等待、Tensor 内容读取或 stream 切换。审计新增 attention 入口及 Ascend forward context，合计 29 个源文件。
+
+入口代码：[attention_observer.py](attention_observer.py)；离线分析和 HTML/SVG 生成：[attention_analysis.py](attention_analysis.py)。记录的是 Python/torch-npu callable 边界，不是完整 C++ 栈。保留没有设备任务的队列记录，区分 profiler 外层时间、范围内部双时钟与设备时间。
+
+离线复核无需 NPU：
+
+```bash
+mkdir -p /tmp/p30-attention-review
+tar -xzf practice_30_cpu_submission_timeline/results/attention-01-archive/evidence.tgz \
+  -C /tmp/p30-attention-review
+/usr/bin/python3 -B /tmp/p30-attention-review/attention-01/analysis_tools/practice_30_cpu_submission_timeline/analyze.py \
+  /tmp/p30-attention-review/attention-01
+/usr/bin/python3 -B /tmp/p30-attention-review/attention-01/analysis_tools/practice_30_cpu_submission_timeline/attention_analysis.py \
+  /tmp/p30-attention-review/attention-01 --output /tmp/p30-attention-review/report
+/usr/bin/python3 -B -m unittest discover \
+  -s /tmp/p30-attention-review/attention-01/analysis_tools/practice_30_cpu_submission_timeline \
+  -p 'test_*.py' -v
+```
+
+完整原始结果在远端 `results/attention-01`；本地便携归档冻结 trace/CSV、源码审计、采集代码、离线分析及哈希，不包含编译缓存。关于新增 scope 的显著扰动及尚未解释的余量，见 [ATTENTION_RESULTS.md](ATTENTION_RESULTS.md)。
