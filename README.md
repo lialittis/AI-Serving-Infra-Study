@@ -431,3 +431,17 @@ See the [guide](practice_33_conflict_access/README.md),
 [interactive conflict timeline](practice_33_conflict_access/results/profile-01/index.html),
 and the companion [cross-stream call-site audit](references/cross_stream_call_site_audit/README.md)
 locating which installed vLLM/torch-npu sites rely on ordering instead of recording.
+
+## Practice 34: quantify the default sampling path's reuse hazard
+
+Confirm the audited `fill_exponential` pattern is the default non-greedy
+sampling path (`enable_async_exponential` defaults to False), then sweep the
+consumer delay (0/8/32 enqueued matrix multiplies) against the inter-iteration
+gap (0 µs–50 ms) in 600 controlled iterations. Corruption occurs in every
+corruptible iteration exactly when consumer delay exceeds the gap, and never
+otherwise; both fixes (`record_stream`, leading wait) stay clean across all
+gaps while the address still recycles. The hazard is a measurable timing
+margin, not a protection.
+
+See the [guide](practice_34_sampling_gap/README.md) and
+[results](practice_34_sampling_gap/RESULTS.md).

@@ -1,0 +1,3131 @@
+{
+  "schema": 1,
+  "captured_at_utc": "2026-10-03T15:46:10.275499+00:00",
+  "arguments": {
+    "output": "/data/tianchi/practice_34_sampling_gap/results/formal-01/baseline-asis-b32",
+    "mode": "asis",
+    "gaps_us": [
+      0,
+      200,
+      1000,
+      5000,
+      25000,
+      50000
+    ],
+    "iterations": 20,
+    "elements": 1048576,
+    "consumer_backlog": 32,
+    "matrix": 4096
+  },
+  "pid": 1786826,
+  "torch_version": "2.10.0+cpu",
+  "torch_npu_version": "2.10.0",
+  "torch_git_version": "449b1768410104d3ed79d3bcfe4ba1d65c7f22c0",
+  "torch_npu_git_version": "94f8a8e6b523d7ba553e1b80d5b5248478391526",
+  "device": "Ascend910B2C",
+  "allocator_backend": "native",
+  "environment": {
+    "ASCEND_HOME_PATH": "/usr/local/Ascend/cann-9.0.0",
+    "ASCEND_RT_VISIBLE_DEVICES": null,
+    "TASK_QUEUE_ENABLE": "1",
+    "PER_STREAM_QUEUE": "0",
+    "PYTORCH_NPU_ALLOC_CONF": "expandable_segments:False,multi_stream_lazy_reclaim:False",
+    "PYTORCH_NO_NPU_MEMORY_CACHING": null,
+    "ASCEND_LAUNCH_BLOCKING": null,
+    "MULTI_STREAM_MEMORY_REUSE": "1"
+  },
+  "allow_internal_format": false,
+  "deterministic_algorithms": false,
+  "streams": {
+    "producer": {
+      "handle": "139891574333440",
+      "id": "96"
+    },
+    "main": {
+      "handle": "139891560558592",
+      "id": "0"
+    }
+  },
+  "tensor_bytes": 4194304,
+  "elements": 1048576,
+  "source_sha256": {
+    "sources/probe.py": "8968dad09eb61d0f86ee8c0d0f4341a7ea42d140846621607bd8cc33db280b62",
+    "sources/streams.py": "241741b356db5006797dbec119007afb33b73b0e1753bfb06ab27c989c5bfac4",
+    "sources/memory.py": "9689894e9cb47ba6884f191e1b45326576441233475142108b05671866ed4947"
+  },
+  "duration_mono_ns": 5424984345,
+  "thread_id": 1786826,
+  "substitution": "exponential_ is replaced by fill_(iteration+1); the device-write task, its stream and the release timing keep the audited structure",
+  "memory_bound_description": "iterations x 4 MiB observed buffers plus one 4 MiB q at a time; warm-up blocks cached; runtime/workspace additional",
+  "candidate_access": "q is written on the producer stream and read once by the main-stream copy",
+  "records": [],
+  "trace_entries_for_first_address": [
+    {
+      "trace_index": 26,
+      "action": "free_requested",
+      "addr": 20616948221440,
+      "size": 4194304,
+      "stream": 139891574333440
+    },
+    {
+      "trace_index": 27,
+      "action": "free_completed",
+      "addr": 20616948221440,
+      "size": 4194304,
+      "stream": 139891574333440
+    },
+    {
+      "trace_index": 28,
+      "action": "alloc",
+      "addr": 20616948221440,
+      "size": 4194304,
+      "stream": 139891574333440
+    },
+    {
+      "trace_index": 125,
+      "action": "free_requested",
+      "addr": 20616948221440,
+      "size": 4194304,
+      "stream": 139891574333440
+    },
+    {
+      "trace_index": 126,
+      "action": "free_completed",
+      "addr": 20616948221440,
+      "size": 4194304,
+      "stream": 139891574333440
+    },
+    {
+      "trace_index": 127,
+      "action": "alloc",
+      "addr": 20616948221440,
+      "size": 4194304,
+      "stream": 139891574333440
+    },
+    {
+      "trace_index": 224,
+      "action": "free_requested",
+      "addr": 20616948221440,
+      "size": 4194304,
+      "stream": 139891574333440
+    },
+    {
+      "trace_index": 225,
+      "action": "free_completed",
+      "addr": 20616948221440,
+      "size": 4194304,
+      "stream": 139891574333440
+    },
+    {
+      "trace_index": 226,
+      "action": "alloc",
+      "addr": 20616948221440,
+      "size": 4194304,
+      "stream": 139891574333440
+    },
+    {
+      "trace_index": 323,
+      "action": "free_requested",
+      "addr": 20616948221440,
+      "size": 4194304,
+      "stream": 139891574333440
+    },
+    {
+      "trace_index": 324,
+      "action": "free_completed",
+      "addr": 20616948221440,
+      "size": 4194304,
+      "stream": 139891574333440
+    },
+    {
+      "trace_index": 790,
+      "action": "alloc",
+      "addr": 20616948221440,
+      "size": 4194304,
+      "stream": 139891574333440
+    },
+    {
+      "trace_index": 887,
+      "action": "free_requested",
+      "addr": 20616948221440,
+      "size": 4194304,
+      "stream": 139891574333440
+    },
+    {
+      "trace_index": 888,
+      "action": "free_completed",
+      "addr": 20616948221440,
+      "size": 4194304,
+      "stream": 139891574333440
+    },
+    {
+      "trace_index": 889,
+      "action": "alloc",
+      "addr": 20616948221440,
+      "size": 4194304,
+      "stream": 139891574333440
+    },
+    {
+      "trace_index": 986,
+      "action": "free_requested",
+      "addr": 20616948221440,
+      "size": 4194304,
+      "stream": 139891574333440
+    },
+    {
+      "trace_index": 987,
+      "action": "free_completed",
+      "addr": 20616948221440,
+      "size": 4194304,
+      "stream": 139891574333440
+    },
+    {
+      "trace_index": 988,
+      "action": "alloc",
+      "addr": 20616948221440,
+      "size": 4194304,
+      "stream": 139891574333440
+    },
+    {
+      "trace_index": 1085,
+      "action": "free_requested",
+      "addr": 20616948221440,
+      "size": 4194304,
+      "stream": 139891574333440
+    },
+    {
+      "trace_index": 1086,
+      "action": "free_completed",
+      "addr": 20616948221440,
+      "size": 4194304,
+      "stream": 139891574333440
+    },
+    {
+      "trace_index": 1087,
+      "action": "alloc",
+      "addr": 20616948221440,
+      "size": 4194304,
+      "stream": 139891574333440
+    },
+    {
+      "trace_index": 1184,
+      "action": "free_requested",
+      "addr": 20616948221440,
+      "size": 4194304,
+      "stream": 139891574333440
+    },
+    {
+      "trace_index": 1185,
+      "action": "free_completed",
+      "addr": 20616948221440,
+      "size": 4194304,
+      "stream": 139891574333440
+    },
+    {
+      "trace_index": 1186,
+      "action": "alloc",
+      "addr": 20616948221440,
+      "size": 4194304,
+      "stream": 139891574333440
+    },
+    {
+      "trace_index": 1283,
+      "action": "free_requested",
+      "addr": 20616948221440,
+      "size": 4194304,
+      "stream": 139891574333440
+    },
+    {
+      "trace_index": 1284,
+      "action": "free_completed",
+      "addr": 20616948221440,
+      "size": 4194304,
+      "stream": 139891574333440
+    },
+    {
+      "trace_index": 1285,
+      "action": "alloc",
+      "addr": 20616948221440,
+      "size": 4194304,
+      "stream": 139891574333440
+    },
+    {
+      "trace_index": 1382,
+      "action": "free_requested",
+      "addr": 20616948221440,
+      "size": 4194304,
+      "stream": 139891574333440
+    },
+    {
+      "trace_index": 1383,
+      "action": "free_completed",
+      "addr": 20616948221440,
+      "size": 4194304,
+      "stream": 139891574333440
+    },
+    {
+      "trace_index": 1384,
+      "action": "alloc",
+      "addr": 20616948221440,
+      "size": 4194304,
+      "stream": 139891574333440
+    },
+    {
+      "trace_index": 1481,
+      "action": "free_requested",
+      "addr": 20616948221440,
+      "size": 4194304,
+      "stream": 139891574333440
+    },
+    {
+      "trace_index": 1482,
+      "action": "free_completed",
+      "addr": 20616948221440,
+      "size": 4194304,
+      "stream": 139891574333440
+    },
+    {
+      "trace_index": 1483,
+      "action": "alloc",
+      "addr": 20616948221440,
+      "size": 4194304,
+      "stream": 139891574333440
+    },
+    {
+      "trace_index": 1580,
+      "action": "free_requested",
+      "addr": 20616948221440,
+      "size": 4194304,
+      "stream": 139891574333440
+    },
+    {
+      "trace_index": 1581,
+      "action": "free_completed",
+      "addr": 20616948221440,
+      "size": 4194304,
+      "stream": 139891574333440
+    },
+    {
+      "trace_index": 1582,
+      "action": "alloc",
+      "addr": 20616948221440,
+      "size": 4194304,
+      "stream": 139891574333440
+    },
+    {
+      "trace_index": 1679,
+      "action": "free_requested",
+      "addr": 20616948221440,
+      "size": 4194304,
+      "stream": 139891574333440
+    },
+    {
+      "trace_index": 1680,
+      "action": "free_completed",
+      "addr": 20616948221440,
+      "size": 4194304,
+      "stream": 139891574333440
+    },
+    {
+      "trace_index": 1681,
+      "action": "alloc",
+      "addr": 20616948221440,
+      "size": 4194304,
+      "stream": 139891574333440
+    },
+    {
+      "trace_index": 1778,
+      "action": "free_requested",
+      "addr": 20616948221440,
+      "size": 4194304,
+      "stream": 139891574333440
+    },
+    {
+      "trace_index": 1779,
+      "action": "free_completed",
+      "addr": 20616948221440,
+      "size": 4194304,
+      "stream": 139891574333440
+    },
+    {
+      "trace_index": 1780,
+      "action": "alloc",
+      "addr": 20616948221440,
+      "size": 4194304,
+      "stream": 139891574333440
+    },
+    {
+      "trace_index": 1877,
+      "action": "free_requested",
+      "addr": 20616948221440,
+      "size": 4194304,
+      "stream": 139891574333440
+    },
+    {
+      "trace_index": 1878,
+      "action": "free_completed",
+      "addr": 20616948221440,
+      "size": 4194304,
+      "stream": 139891574333440
+    },
+    {
+      "trace_index": 1879,
+      "action": "alloc",
+      "addr": 20616948221440,
+      "size": 4194304,
+      "stream": 139891574333440
+    },
+    {
+      "trace_index": 1976,
+      "action": "free_requested",
+      "addr": 20616948221440,
+      "size": 4194304,
+      "stream": 139891574333440
+    },
+    {
+      "trace_index": 1977,
+      "action": "free_completed",
+      "addr": 20616948221440,
+      "size": 4194304,
+      "stream": 139891574333440
+    },
+    {
+      "trace_index": 1978,
+      "action": "alloc",
+      "addr": 20616948221440,
+      "size": 4194304,
+      "stream": 139891574333440
+    },
+    {
+      "trace_index": 2075,
+      "action": "free_requested",
+      "addr": 20616948221440,
+      "size": 4194304,
+      "stream": 139891574333440
+    },
+    {
+      "trace_index": 2076,
+      "action": "free_completed",
+      "addr": 20616948221440,
+      "size": 4194304,
+      "stream": 139891574333440
+    },
+    {
+      "trace_index": 2077,
+      "action": "alloc",
+      "addr": 20616948221440,
+      "size": 4194304,
+      "stream": 139891574333440
+    },
+    {
+      "trace_index": 2174,
+      "action": "free_requested",
+      "addr": 20616948221440,
+      "size": 4194304,
+      "stream": 139891574333440
+    },
+    {
+      "trace_index": 2175,
+      "action": "free_completed",
+      "addr": 20616948221440,
+      "size": 4194304,
+      "stream": 139891574333440
+    },
+    {
+      "trace_index": 2176,
+      "action": "alloc",
+      "addr": 20616948221440,
+      "size": 4194304,
+      "stream": 139891574333440
+    },
+    {
+      "trace_index": 2273,
+      "action": "free_requested",
+      "addr": 20616948221440,
+      "size": 4194304,
+      "stream": 139891574333440
+    },
+    {
+      "trace_index": 2274,
+      "action": "free_completed",
+      "addr": 20616948221440,
+      "size": 4194304,
+      "stream": 139891574333440
+    },
+    {
+      "trace_index": 2275,
+      "action": "alloc",
+      "addr": 20616948221440,
+      "size": 4194304,
+      "stream": 139891574333440
+    },
+    {
+      "trace_index": 2372,
+      "action": "free_requested",
+      "addr": 20616948221440,
+      "size": 4194304,
+      "stream": 139891574333440
+    },
+    {
+      "trace_index": 2373,
+      "action": "free_completed",
+      "addr": 20616948221440,
+      "size": 4194304,
+      "stream": 139891574333440
+    },
+    {
+      "trace_index": 2374,
+      "action": "alloc",
+      "addr": 20616948221440,
+      "size": 4194304,
+      "stream": 139891574333440
+    },
+    {
+      "trace_index": 2471,
+      "action": "free_requested",
+      "addr": 20616948221440,
+      "size": 4194304,
+      "stream": 139891574333440
+    },
+    {
+      "trace_index": 2472,
+      "action": "free_completed",
+      "addr": 20616948221440,
+      "size": 4194304,
+      "stream": 139891574333440
+    },
+    {
+      "trace_index": 2473,
+      "action": "alloc",
+      "addr": 20616948221440,
+      "size": 4194304,
+      "stream": 139891574333440
+    },
+    {
+      "trace_index": 2570,
+      "action": "free_requested",
+      "addr": 20616948221440,
+      "size": 4194304,
+      "stream": 139891574333440
+    },
+    {
+      "trace_index": 2571,
+      "action": "free_completed",
+      "addr": 20616948221440,
+      "size": 4194304,
+      "stream": 139891574333440
+    },
+    {
+      "trace_index": 2572,
+      "action": "alloc",
+      "addr": 20616948221440,
+      "size": 4194304,
+      "stream": 139891574333440
+    },
+    {
+      "trace_index": 2669,
+      "action": "free_requested",
+      "addr": 20616948221440,
+      "size": 4194304,
+      "stream": 139891574333440
+    },
+    {
+      "trace_index": 2670,
+      "action": "free_completed",
+      "addr": 20616948221440,
+      "size": 4194304,
+      "stream": 139891574333440
+    },
+    {
+      "trace_index": 2671,
+      "action": "alloc",
+      "addr": 20616948221440,
+      "size": 4194304,
+      "stream": 139891574333440
+    },
+    {
+      "trace_index": 2768,
+      "action": "free_requested",
+      "addr": 20616948221440,
+      "size": 4194304,
+      "stream": 139891574333440
+    },
+    {
+      "trace_index": 2769,
+      "action": "free_completed",
+      "addr": 20616948221440,
+      "size": 4194304,
+      "stream": 139891574333440
+    },
+    {
+      "trace_index": 3235,
+      "action": "alloc",
+      "addr": 20616948221440,
+      "size": 4194304,
+      "stream": 139891574333440
+    },
+    {
+      "trace_index": 3332,
+      "action": "free_requested",
+      "addr": 20616948221440,
+      "size": 4194304,
+      "stream": 139891574333440
+    },
+    {
+      "trace_index": 3333,
+      "action": "free_completed",
+      "addr": 20616948221440,
+      "size": 4194304,
+      "stream": 139891574333440
+    },
+    {
+      "trace_index": 3334,
+      "action": "alloc",
+      "addr": 20616948221440,
+      "size": 4194304,
+      "stream": 139891574333440
+    },
+    {
+      "trace_index": 3431,
+      "action": "free_requested",
+      "addr": 20616948221440,
+      "size": 4194304,
+      "stream": 139891574333440
+    },
+    {
+      "trace_index": 3432,
+      "action": "free_completed",
+      "addr": 20616948221440,
+      "size": 4194304,
+      "stream": 139891574333440
+    },
+    {
+      "trace_index": 3433,
+      "action": "alloc",
+      "addr": 20616948221440,
+      "size": 4194304,
+      "stream": 139891574333440
+    },
+    {
+      "trace_index": 3530,
+      "action": "free_requested",
+      "addr": 20616948221440,
+      "size": 4194304,
+      "stream": 139891574333440
+    },
+    {
+      "trace_index": 3531,
+      "action": "free_completed",
+      "addr": 20616948221440,
+      "size": 4194304,
+      "stream": 139891574333440
+    },
+    {
+      "trace_index": 3532,
+      "action": "alloc",
+      "addr": 20616948221440,
+      "size": 4194304,
+      "stream": 139891574333440
+    },
+    {
+      "trace_index": 3629,
+      "action": "free_requested",
+      "addr": 20616948221440,
+      "size": 4194304,
+      "stream": 139891574333440
+    },
+    {
+      "trace_index": 3630,
+      "action": "free_completed",
+      "addr": 20616948221440,
+      "size": 4194304,
+      "stream": 139891574333440
+    },
+    {
+      "trace_index": 3631,
+      "action": "alloc",
+      "addr": 20616948221440,
+      "size": 4194304,
+      "stream": 139891574333440
+    },
+    {
+      "trace_index": 3728,
+      "action": "free_requested",
+      "addr": 20616948221440,
+      "size": 4194304,
+      "stream": 139891574333440
+    },
+    {
+      "trace_index": 3729,
+      "action": "free_completed",
+      "addr": 20616948221440,
+      "size": 4194304,
+      "stream": 139891574333440
+    },
+    {
+      "trace_index": 3730,
+      "action": "alloc",
+      "addr": 20616948221440,
+      "size": 4194304,
+      "stream": 139891574333440
+    },
+    {
+      "trace_index": 3827,
+      "action": "free_requested",
+      "addr": 20616948221440,
+      "size": 4194304,
+      "stream": 139891574333440
+    },
+    {
+      "trace_index": 3828,
+      "action": "free_completed",
+      "addr": 20616948221440,
+      "size": 4194304,
+      "stream": 139891574333440
+    },
+    {
+      "trace_index": 3829,
+      "action": "alloc",
+      "addr": 20616948221440,
+      "size": 4194304,
+      "stream": 139891574333440
+    },
+    {
+      "trace_index": 3926,
+      "action": "free_requested",
+      "addr": 20616948221440,
+      "size": 4194304,
+      "stream": 139891574333440
+    },
+    {
+      "trace_index": 3927,
+      "action": "free_completed",
+      "addr": 20616948221440,
+      "size": 4194304,
+      "stream": 139891574333440
+    },
+    {
+      "trace_index": 3928,
+      "action": "alloc",
+      "addr": 20616948221440,
+      "size": 4194304,
+      "stream": 139891574333440
+    },
+    {
+      "trace_index": 4025,
+      "action": "free_requested",
+      "addr": 20616948221440,
+      "size": 4194304,
+      "stream": 139891574333440
+    },
+    {
+      "trace_index": 4026,
+      "action": "free_completed",
+      "addr": 20616948221440,
+      "size": 4194304,
+      "stream": 139891574333440
+    },
+    {
+      "trace_index": 4027,
+      "action": "alloc",
+      "addr": 20616948221440,
+      "size": 4194304,
+      "stream": 139891574333440
+    },
+    {
+      "trace_index": 4124,
+      "action": "free_requested",
+      "addr": 20616948221440,
+      "size": 4194304,
+      "stream": 139891574333440
+    },
+    {
+      "trace_index": 4125,
+      "action": "free_completed",
+      "addr": 20616948221440,
+      "size": 4194304,
+      "stream": 139891574333440
+    },
+    {
+      "trace_index": 4126,
+      "action": "alloc",
+      "addr": 20616948221440,
+      "size": 4194304,
+      "stream": 139891574333440
+    },
+    {
+      "trace_index": 4223,
+      "action": "free_requested",
+      "addr": 20616948221440,
+      "size": 4194304,
+      "stream": 139891574333440
+    },
+    {
+      "trace_index": 4224,
+      "action": "free_completed",
+      "addr": 20616948221440,
+      "size": 4194304,
+      "stream": 139891574333440
+    },
+    {
+      "trace_index": 4225,
+      "action": "alloc",
+      "addr": 20616948221440,
+      "size": 4194304,
+      "stream": 139891574333440
+    },
+    {
+      "trace_index": 4322,
+      "action": "free_requested",
+      "addr": 20616948221440,
+      "size": 4194304,
+      "stream": 139891574333440
+    },
+    {
+      "trace_index": 4323,
+      "action": "free_completed",
+      "addr": 20616948221440,
+      "size": 4194304,
+      "stream": 139891574333440
+    },
+    {
+      "trace_index": 4324,
+      "action": "alloc",
+      "addr": 20616948221440,
+      "size": 4194304,
+      "stream": 139891574333440
+    },
+    {
+      "trace_index": 4421,
+      "action": "free_requested",
+      "addr": 20616948221440,
+      "size": 4194304,
+      "stream": 139891574333440
+    },
+    {
+      "trace_index": 4422,
+      "action": "free_completed",
+      "addr": 20616948221440,
+      "size": 4194304,
+      "stream": 139891574333440
+    },
+    {
+      "trace_index": 4423,
+      "action": "alloc",
+      "addr": 20616948221440,
+      "size": 4194304,
+      "stream": 139891574333440
+    },
+    {
+      "trace_index": 4520,
+      "action": "free_requested",
+      "addr": 20616948221440,
+      "size": 4194304,
+      "stream": 139891574333440
+    },
+    {
+      "trace_index": 4521,
+      "action": "free_completed",
+      "addr": 20616948221440,
+      "size": 4194304,
+      "stream": 139891574333440
+    },
+    {
+      "trace_index": 4522,
+      "action": "alloc",
+      "addr": 20616948221440,
+      "size": 4194304,
+      "stream": 139891574333440
+    },
+    {
+      "trace_index": 4619,
+      "action": "free_requested",
+      "addr": 20616948221440,
+      "size": 4194304,
+      "stream": 139891574333440
+    },
+    {
+      "trace_index": 4620,
+      "action": "free_completed",
+      "addr": 20616948221440,
+      "size": 4194304,
+      "stream": 139891574333440
+    },
+    {
+      "trace_index": 4621,
+      "action": "alloc",
+      "addr": 20616948221440,
+      "size": 4194304,
+      "stream": 139891574333440
+    },
+    {
+      "trace_index": 4718,
+      "action": "free_requested",
+      "addr": 20616948221440,
+      "size": 4194304,
+      "stream": 139891574333440
+    },
+    {
+      "trace_index": 4719,
+      "action": "free_completed",
+      "addr": 20616948221440,
+      "size": 4194304,
+      "stream": 139891574333440
+    },
+    {
+      "trace_index": 4720,
+      "action": "alloc",
+      "addr": 20616948221440,
+      "size": 4194304,
+      "stream": 139891574333440
+    },
+    {
+      "trace_index": 4817,
+      "action": "free_requested",
+      "addr": 20616948221440,
+      "size": 4194304,
+      "stream": 139891574333440
+    },
+    {
+      "trace_index": 4818,
+      "action": "free_completed",
+      "addr": 20616948221440,
+      "size": 4194304,
+      "stream": 139891574333440
+    },
+    {
+      "trace_index": 4819,
+      "action": "alloc",
+      "addr": 20616948221440,
+      "size": 4194304,
+      "stream": 139891574333440
+    },
+    {
+      "trace_index": 4916,
+      "action": "free_requested",
+      "addr": 20616948221440,
+      "size": 4194304,
+      "stream": 139891574333440
+    },
+    {
+      "trace_index": 4917,
+      "action": "free_completed",
+      "addr": 20616948221440,
+      "size": 4194304,
+      "stream": 139891574333440
+    },
+    {
+      "trace_index": 4918,
+      "action": "alloc",
+      "addr": 20616948221440,
+      "size": 4194304,
+      "stream": 139891574333440
+    },
+    {
+      "trace_index": 5015,
+      "action": "free_requested",
+      "addr": 20616948221440,
+      "size": 4194304,
+      "stream": 139891574333440
+    },
+    {
+      "trace_index": 5016,
+      "action": "free_completed",
+      "addr": 20616948221440,
+      "size": 4194304,
+      "stream": 139891574333440
+    },
+    {
+      "trace_index": 5017,
+      "action": "alloc",
+      "addr": 20616948221440,
+      "size": 4194304,
+      "stream": 139891574333440
+    },
+    {
+      "trace_index": 5114,
+      "action": "free_requested",
+      "addr": 20616948221440,
+      "size": 4194304,
+      "stream": 139891574333440
+    },
+    {
+      "trace_index": 5115,
+      "action": "free_completed",
+      "addr": 20616948221440,
+      "size": 4194304,
+      "stream": 139891574333440
+    },
+    {
+      "trace_index": 5116,
+      "action": "alloc",
+      "addr": 20616948221440,
+      "size": 4194304,
+      "stream": 139891574333440
+    },
+    {
+      "trace_index": 5213,
+      "action": "free_requested",
+      "addr": 20616948221440,
+      "size": 4194304,
+      "stream": 139891574333440
+    },
+    {
+      "trace_index": 5214,
+      "action": "free_completed",
+      "addr": 20616948221440,
+      "size": 4194304,
+      "stream": 139891574333440
+    },
+    {
+      "trace_index": 5680,
+      "action": "alloc",
+      "addr": 20616948221440,
+      "size": 4194304,
+      "stream": 139891574333440
+    },
+    {
+      "trace_index": 5777,
+      "action": "free_requested",
+      "addr": 20616948221440,
+      "size": 4194304,
+      "stream": 139891574333440
+    },
+    {
+      "trace_index": 5778,
+      "action": "free_completed",
+      "addr": 20616948221440,
+      "size": 4194304,
+      "stream": 139891574333440
+    },
+    {
+      "trace_index": 5779,
+      "action": "alloc",
+      "addr": 20616948221440,
+      "size": 4194304,
+      "stream": 139891574333440
+    },
+    {
+      "trace_index": 5876,
+      "action": "free_requested",
+      "addr": 20616948221440,
+      "size": 4194304,
+      "stream": 139891574333440
+    },
+    {
+      "trace_index": 5877,
+      "action": "free_completed",
+      "addr": 20616948221440,
+      "size": 4194304,
+      "stream": 139891574333440
+    },
+    {
+      "trace_index": 5878,
+      "action": "alloc",
+      "addr": 20616948221440,
+      "size": 4194304,
+      "stream": 139891574333440
+    },
+    {
+      "trace_index": 5975,
+      "action": "free_requested",
+      "addr": 20616948221440,
+      "size": 4194304,
+      "stream": 139891574333440
+    },
+    {
+      "trace_index": 5976,
+      "action": "free_completed",
+      "addr": 20616948221440,
+      "size": 4194304,
+      "stream": 139891574333440
+    },
+    {
+      "trace_index": 5977,
+      "action": "alloc",
+      "addr": 20616948221440,
+      "size": 4194304,
+      "stream": 139891574333440
+    },
+    {
+      "trace_index": 6074,
+      "action": "free_requested",
+      "addr": 20616948221440,
+      "size": 4194304,
+      "stream": 139891574333440
+    },
+    {
+      "trace_index": 6075,
+      "action": "free_completed",
+      "addr": 20616948221440,
+      "size": 4194304,
+      "stream": 139891574333440
+    },
+    {
+      "trace_index": 6076,
+      "action": "alloc",
+      "addr": 20616948221440,
+      "size": 4194304,
+      "stream": 139891574333440
+    },
+    {
+      "trace_index": 6173,
+      "action": "free_requested",
+      "addr": 20616948221440,
+      "size": 4194304,
+      "stream": 139891574333440
+    },
+    {
+      "trace_index": 6174,
+      "action": "free_completed",
+      "addr": 20616948221440,
+      "size": 4194304,
+      "stream": 139891574333440
+    },
+    {
+      "trace_index": 6175,
+      "action": "alloc",
+      "addr": 20616948221440,
+      "size": 4194304,
+      "stream": 139891574333440
+    },
+    {
+      "trace_index": 6272,
+      "action": "free_requested",
+      "addr": 20616948221440,
+      "size": 4194304,
+      "stream": 139891574333440
+    },
+    {
+      "trace_index": 6273,
+      "action": "free_completed",
+      "addr": 20616948221440,
+      "size": 4194304,
+      "stream": 139891574333440
+    },
+    {
+      "trace_index": 6274,
+      "action": "alloc",
+      "addr": 20616948221440,
+      "size": 4194304,
+      "stream": 139891574333440
+    },
+    {
+      "trace_index": 6371,
+      "action": "free_requested",
+      "addr": 20616948221440,
+      "size": 4194304,
+      "stream": 139891574333440
+    },
+    {
+      "trace_index": 6372,
+      "action": "free_completed",
+      "addr": 20616948221440,
+      "size": 4194304,
+      "stream": 139891574333440
+    },
+    {
+      "trace_index": 6373,
+      "action": "alloc",
+      "addr": 20616948221440,
+      "size": 4194304,
+      "stream": 139891574333440
+    },
+    {
+      "trace_index": 6470,
+      "action": "free_requested",
+      "addr": 20616948221440,
+      "size": 4194304,
+      "stream": 139891574333440
+    },
+    {
+      "trace_index": 6471,
+      "action": "free_completed",
+      "addr": 20616948221440,
+      "size": 4194304,
+      "stream": 139891574333440
+    },
+    {
+      "trace_index": 6472,
+      "action": "alloc",
+      "addr": 20616948221440,
+      "size": 4194304,
+      "stream": 139891574333440
+    },
+    {
+      "trace_index": 6569,
+      "action": "free_requested",
+      "addr": 20616948221440,
+      "size": 4194304,
+      "stream": 139891574333440
+    },
+    {
+      "trace_index": 6570,
+      "action": "free_completed",
+      "addr": 20616948221440,
+      "size": 4194304,
+      "stream": 139891574333440
+    },
+    {
+      "trace_index": 6571,
+      "action": "alloc",
+      "addr": 20616948221440,
+      "size": 4194304,
+      "stream": 139891574333440
+    },
+    {
+      "trace_index": 6668,
+      "action": "free_requested",
+      "addr": 20616948221440,
+      "size": 4194304,
+      "stream": 139891574333440
+    },
+    {
+      "trace_index": 6669,
+      "action": "free_completed",
+      "addr": 20616948221440,
+      "size": 4194304,
+      "stream": 139891574333440
+    },
+    {
+      "trace_index": 6670,
+      "action": "alloc",
+      "addr": 20616948221440,
+      "size": 4194304,
+      "stream": 139891574333440
+    },
+    {
+      "trace_index": 6767,
+      "action": "free_requested",
+      "addr": 20616948221440,
+      "size": 4194304,
+      "stream": 139891574333440
+    },
+    {
+      "trace_index": 6768,
+      "action": "free_completed",
+      "addr": 20616948221440,
+      "size": 4194304,
+      "stream": 139891574333440
+    },
+    {
+      "trace_index": 6769,
+      "action": "alloc",
+      "addr": 20616948221440,
+      "size": 4194304,
+      "stream": 139891574333440
+    },
+    {
+      "trace_index": 6866,
+      "action": "free_requested",
+      "addr": 20616948221440,
+      "size": 4194304,
+      "stream": 139891574333440
+    },
+    {
+      "trace_index": 6867,
+      "action": "free_completed",
+      "addr": 20616948221440,
+      "size": 4194304,
+      "stream": 139891574333440
+    },
+    {
+      "trace_index": 6868,
+      "action": "alloc",
+      "addr": 20616948221440,
+      "size": 4194304,
+      "stream": 139891574333440
+    },
+    {
+      "trace_index": 6965,
+      "action": "free_requested",
+      "addr": 20616948221440,
+      "size": 4194304,
+      "stream": 139891574333440
+    },
+    {
+      "trace_index": 6966,
+      "action": "free_completed",
+      "addr": 20616948221440,
+      "size": 4194304,
+      "stream": 139891574333440
+    },
+    {
+      "trace_index": 6967,
+      "action": "alloc",
+      "addr": 20616948221440,
+      "size": 4194304,
+      "stream": 139891574333440
+    },
+    {
+      "trace_index": 7064,
+      "action": "free_requested",
+      "addr": 20616948221440,
+      "size": 4194304,
+      "stream": 139891574333440
+    },
+    {
+      "trace_index": 7065,
+      "action": "free_completed",
+      "addr": 20616948221440,
+      "size": 4194304,
+      "stream": 139891574333440
+    },
+    {
+      "trace_index": 7066,
+      "action": "alloc",
+      "addr": 20616948221440,
+      "size": 4194304,
+      "stream": 139891574333440
+    },
+    {
+      "trace_index": 7163,
+      "action": "free_requested",
+      "addr": 20616948221440,
+      "size": 4194304,
+      "stream": 139891574333440
+    },
+    {
+      "trace_index": 7164,
+      "action": "free_completed",
+      "addr": 20616948221440,
+      "size": 4194304,
+      "stream": 139891574333440
+    },
+    {
+      "trace_index": 7165,
+      "action": "alloc",
+      "addr": 20616948221440,
+      "size": 4194304,
+      "stream": 139891574333440
+    },
+    {
+      "trace_index": 7262,
+      "action": "free_requested",
+      "addr": 20616948221440,
+      "size": 4194304,
+      "stream": 139891574333440
+    },
+    {
+      "trace_index": 7263,
+      "action": "free_completed",
+      "addr": 20616948221440,
+      "size": 4194304,
+      "stream": 139891574333440
+    },
+    {
+      "trace_index": 7264,
+      "action": "alloc",
+      "addr": 20616948221440,
+      "size": 4194304,
+      "stream": 139891574333440
+    },
+    {
+      "trace_index": 7361,
+      "action": "free_requested",
+      "addr": 20616948221440,
+      "size": 4194304,
+      "stream": 139891574333440
+    },
+    {
+      "trace_index": 7362,
+      "action": "free_completed",
+      "addr": 20616948221440,
+      "size": 4194304,
+      "stream": 139891574333440
+    },
+    {
+      "trace_index": 7363,
+      "action": "alloc",
+      "addr": 20616948221440,
+      "size": 4194304,
+      "stream": 139891574333440
+    },
+    {
+      "trace_index": 7460,
+      "action": "free_requested",
+      "addr": 20616948221440,
+      "size": 4194304,
+      "stream": 139891574333440
+    },
+    {
+      "trace_index": 7461,
+      "action": "free_completed",
+      "addr": 20616948221440,
+      "size": 4194304,
+      "stream": 139891574333440
+    },
+    {
+      "trace_index": 7462,
+      "action": "alloc",
+      "addr": 20616948221440,
+      "size": 4194304,
+      "stream": 139891574333440
+    },
+    {
+      "trace_index": 7559,
+      "action": "free_requested",
+      "addr": 20616948221440,
+      "size": 4194304,
+      "stream": 139891574333440
+    },
+    {
+      "trace_index": 7560,
+      "action": "free_completed",
+      "addr": 20616948221440,
+      "size": 4194304,
+      "stream": 139891574333440
+    },
+    {
+      "trace_index": 7561,
+      "action": "alloc",
+      "addr": 20616948221440,
+      "size": 4194304,
+      "stream": 139891574333440
+    },
+    {
+      "trace_index": 7658,
+      "action": "free_requested",
+      "addr": 20616948221440,
+      "size": 4194304,
+      "stream": 139891574333440
+    },
+    {
+      "trace_index": 7659,
+      "action": "free_completed",
+      "addr": 20616948221440,
+      "size": 4194304,
+      "stream": 139891574333440
+    },
+    {
+      "trace_index": 7840,
+      "action": "alloc",
+      "addr": 20616948221440,
+      "size": 4194304,
+      "stream": 139891574333440
+    },
+    {
+      "trace_index": 7937,
+      "action": "free_requested",
+      "addr": 20616948221440,
+      "size": 4194304,
+      "stream": 139891574333440
+    },
+    {
+      "trace_index": 7938,
+      "action": "free_completed",
+      "addr": 20616948221440,
+      "size": 4194304,
+      "stream": 139891574333440
+    },
+    {
+      "trace_index": 7939,
+      "action": "alloc",
+      "addr": 20616948221440,
+      "size": 4194304,
+      "stream": 139891574333440
+    },
+    {
+      "trace_index": 8036,
+      "action": "free_requested",
+      "addr": 20616948221440,
+      "size": 4194304,
+      "stream": 139891574333440
+    },
+    {
+      "trace_index": 8037,
+      "action": "free_completed",
+      "addr": 20616948221440,
+      "size": 4194304,
+      "stream": 139891574333440
+    },
+    {
+      "trace_index": 8038,
+      "action": "alloc",
+      "addr": 20616948221440,
+      "size": 4194304,
+      "stream": 139891574333440
+    },
+    {
+      "trace_index": 8135,
+      "action": "free_requested",
+      "addr": 20616948221440,
+      "size": 4194304,
+      "stream": 139891574333440
+    },
+    {
+      "trace_index": 8136,
+      "action": "free_completed",
+      "addr": 20616948221440,
+      "size": 4194304,
+      "stream": 139891574333440
+    },
+    {
+      "trace_index": 8137,
+      "action": "alloc",
+      "addr": 20616948221440,
+      "size": 4194304,
+      "stream": 139891574333440
+    },
+    {
+      "trace_index": 8234,
+      "action": "free_requested",
+      "addr": 20616948221440,
+      "size": 4194304,
+      "stream": 139891574333440
+    },
+    {
+      "trace_index": 8235,
+      "action": "free_completed",
+      "addr": 20616948221440,
+      "size": 4194304,
+      "stream": 139891574333440
+    },
+    {
+      "trace_index": 8236,
+      "action": "alloc",
+      "addr": 20616948221440,
+      "size": 4194304,
+      "stream": 139891574333440
+    },
+    {
+      "trace_index": 8333,
+      "action": "free_requested",
+      "addr": 20616948221440,
+      "size": 4194304,
+      "stream": 139891574333440
+    },
+    {
+      "trace_index": 8334,
+      "action": "free_completed",
+      "addr": 20616948221440,
+      "size": 4194304,
+      "stream": 139891574333440
+    },
+    {
+      "trace_index": 8335,
+      "action": "alloc",
+      "addr": 20616948221440,
+      "size": 4194304,
+      "stream": 139891574333440
+    },
+    {
+      "trace_index": 8432,
+      "action": "free_requested",
+      "addr": 20616948221440,
+      "size": 4194304,
+      "stream": 139891574333440
+    },
+    {
+      "trace_index": 8433,
+      "action": "free_completed",
+      "addr": 20616948221440,
+      "size": 4194304,
+      "stream": 139891574333440
+    },
+    {
+      "trace_index": 8434,
+      "action": "alloc",
+      "addr": 20616948221440,
+      "size": 4194304,
+      "stream": 139891574333440
+    },
+    {
+      "trace_index": 8531,
+      "action": "free_requested",
+      "addr": 20616948221440,
+      "size": 4194304,
+      "stream": 139891574333440
+    },
+    {
+      "trace_index": 8532,
+      "action": "free_completed",
+      "addr": 20616948221440,
+      "size": 4194304,
+      "stream": 139891574333440
+    },
+    {
+      "trace_index": 8533,
+      "action": "alloc",
+      "addr": 20616948221440,
+      "size": 4194304,
+      "stream": 139891574333440
+    },
+    {
+      "trace_index": 8630,
+      "action": "free_requested",
+      "addr": 20616948221440,
+      "size": 4194304,
+      "stream": 139891574333440
+    },
+    {
+      "trace_index": 8631,
+      "action": "free_completed",
+      "addr": 20616948221440,
+      "size": 4194304,
+      "stream": 139891574333440
+    },
+    {
+      "trace_index": 8632,
+      "action": "alloc",
+      "addr": 20616948221440,
+      "size": 4194304,
+      "stream": 139891574333440
+    },
+    {
+      "trace_index": 8729,
+      "action": "free_requested",
+      "addr": 20616948221440,
+      "size": 4194304,
+      "stream": 139891574333440
+    },
+    {
+      "trace_index": 8730,
+      "action": "free_completed",
+      "addr": 20616948221440,
+      "size": 4194304,
+      "stream": 139891574333440
+    },
+    {
+      "trace_index": 8731,
+      "action": "alloc",
+      "addr": 20616948221440,
+      "size": 4194304,
+      "stream": 139891574333440
+    },
+    {
+      "trace_index": 8828,
+      "action": "free_requested",
+      "addr": 20616948221440,
+      "size": 4194304,
+      "stream": 139891574333440
+    },
+    {
+      "trace_index": 8829,
+      "action": "free_completed",
+      "addr": 20616948221440,
+      "size": 4194304,
+      "stream": 139891574333440
+    },
+    {
+      "trace_index": 8830,
+      "action": "alloc",
+      "addr": 20616948221440,
+      "size": 4194304,
+      "stream": 139891574333440
+    },
+    {
+      "trace_index": 8927,
+      "action": "free_requested",
+      "addr": 20616948221440,
+      "size": 4194304,
+      "stream": 139891574333440
+    },
+    {
+      "trace_index": 8928,
+      "action": "free_completed",
+      "addr": 20616948221440,
+      "size": 4194304,
+      "stream": 139891574333440
+    },
+    {
+      "trace_index": 8929,
+      "action": "alloc",
+      "addr": 20616948221440,
+      "size": 4194304,
+      "stream": 139891574333440
+    },
+    {
+      "trace_index": 9026,
+      "action": "free_requested",
+      "addr": 20616948221440,
+      "size": 4194304,
+      "stream": 139891574333440
+    },
+    {
+      "trace_index": 9027,
+      "action": "free_completed",
+      "addr": 20616948221440,
+      "size": 4194304,
+      "stream": 139891574333440
+    },
+    {
+      "trace_index": 9028,
+      "action": "alloc",
+      "addr": 20616948221440,
+      "size": 4194304,
+      "stream": 139891574333440
+    },
+    {
+      "trace_index": 9125,
+      "action": "free_requested",
+      "addr": 20616948221440,
+      "size": 4194304,
+      "stream": 139891574333440
+    },
+    {
+      "trace_index": 9126,
+      "action": "free_completed",
+      "addr": 20616948221440,
+      "size": 4194304,
+      "stream": 139891574333440
+    },
+    {
+      "trace_index": 9127,
+      "action": "alloc",
+      "addr": 20616948221440,
+      "size": 4194304,
+      "stream": 139891574333440
+    },
+    {
+      "trace_index": 9224,
+      "action": "free_requested",
+      "addr": 20616948221440,
+      "size": 4194304,
+      "stream": 139891574333440
+    },
+    {
+      "trace_index": 9225,
+      "action": "free_completed",
+      "addr": 20616948221440,
+      "size": 4194304,
+      "stream": 139891574333440
+    },
+    {
+      "trace_index": 9226,
+      "action": "alloc",
+      "addr": 20616948221440,
+      "size": 4194304,
+      "stream": 139891574333440
+    },
+    {
+      "trace_index": 9323,
+      "action": "free_requested",
+      "addr": 20616948221440,
+      "size": 4194304,
+      "stream": 139891574333440
+    },
+    {
+      "trace_index": 9324,
+      "action": "free_completed",
+      "addr": 20616948221440,
+      "size": 4194304,
+      "stream": 139891574333440
+    },
+    {
+      "trace_index": 9325,
+      "action": "alloc",
+      "addr": 20616948221440,
+      "size": 4194304,
+      "stream": 139891574333440
+    },
+    {
+      "trace_index": 9422,
+      "action": "free_requested",
+      "addr": 20616948221440,
+      "size": 4194304,
+      "stream": 139891574333440
+    },
+    {
+      "trace_index": 9423,
+      "action": "free_completed",
+      "addr": 20616948221440,
+      "size": 4194304,
+      "stream": 139891574333440
+    },
+    {
+      "trace_index": 9424,
+      "action": "alloc",
+      "addr": 20616948221440,
+      "size": 4194304,
+      "stream": 139891574333440
+    },
+    {
+      "trace_index": 9521,
+      "action": "free_requested",
+      "addr": 20616948221440,
+      "size": 4194304,
+      "stream": 139891574333440
+    },
+    {
+      "trace_index": 9522,
+      "action": "free_completed",
+      "addr": 20616948221440,
+      "size": 4194304,
+      "stream": 139891574333440
+    },
+    {
+      "trace_index": 9523,
+      "action": "alloc",
+      "addr": 20616948221440,
+      "size": 4194304,
+      "stream": 139891574333440
+    },
+    {
+      "trace_index": 9620,
+      "action": "free_requested",
+      "addr": 20616948221440,
+      "size": 4194304,
+      "stream": 139891574333440
+    },
+    {
+      "trace_index": 9621,
+      "action": "free_completed",
+      "addr": 20616948221440,
+      "size": 4194304,
+      "stream": 139891574333440
+    },
+    {
+      "trace_index": 9622,
+      "action": "alloc",
+      "addr": 20616948221440,
+      "size": 4194304,
+      "stream": 139891574333440
+    },
+    {
+      "trace_index": 9719,
+      "action": "free_requested",
+      "addr": 20616948221440,
+      "size": 4194304,
+      "stream": 139891574333440
+    },
+    {
+      "trace_index": 9720,
+      "action": "free_completed",
+      "addr": 20616948221440,
+      "size": 4194304,
+      "stream": 139891574333440
+    },
+    {
+      "trace_index": 9721,
+      "action": "alloc",
+      "addr": 20616948221440,
+      "size": 4194304,
+      "stream": 139891574333440
+    },
+    {
+      "trace_index": 9818,
+      "action": "free_requested",
+      "addr": 20616948221440,
+      "size": 4194304,
+      "stream": 139891574333440
+    },
+    {
+      "trace_index": 9819,
+      "action": "free_completed",
+      "addr": 20616948221440,
+      "size": 4194304,
+      "stream": 139891574333440
+    }
+  ],
+  "intervals": [
+    {
+      "gap_us": 0,
+      "rows": [
+        {
+          "index": 0,
+          "expected": 1,
+          "address": "20616948221440",
+          "all_elements_expected": false,
+          "mismatch_count": 1048576,
+          "foreign_values": [
+            20.0
+          ],
+          "outcome": "overwritten",
+          "next_address_reused": true
+        },
+        {
+          "index": 1,
+          "expected": 2,
+          "address": "20616948221440",
+          "all_elements_expected": false,
+          "mismatch_count": 1048576,
+          "foreign_values": [
+            20.0
+          ],
+          "outcome": "overwritten",
+          "next_address_reused": true
+        },
+        {
+          "index": 2,
+          "expected": 3,
+          "address": "20616948221440",
+          "all_elements_expected": false,
+          "mismatch_count": 1048576,
+          "foreign_values": [
+            20.0
+          ],
+          "outcome": "overwritten",
+          "next_address_reused": true
+        },
+        {
+          "index": 3,
+          "expected": 4,
+          "address": "20616948221440",
+          "all_elements_expected": false,
+          "mismatch_count": 1048576,
+          "foreign_values": [
+            20.0
+          ],
+          "outcome": "overwritten",
+          "next_address_reused": true
+        },
+        {
+          "index": 4,
+          "expected": 5,
+          "address": "20616948221440",
+          "all_elements_expected": false,
+          "mismatch_count": 1048576,
+          "foreign_values": [
+            20.0
+          ],
+          "outcome": "overwritten",
+          "next_address_reused": true
+        },
+        {
+          "index": 5,
+          "expected": 6,
+          "address": "20616948221440",
+          "all_elements_expected": false,
+          "mismatch_count": 1048576,
+          "foreign_values": [
+            20.0
+          ],
+          "outcome": "overwritten",
+          "next_address_reused": true
+        },
+        {
+          "index": 6,
+          "expected": 7,
+          "address": "20616948221440",
+          "all_elements_expected": false,
+          "mismatch_count": 1048576,
+          "foreign_values": [
+            20.0
+          ],
+          "outcome": "overwritten",
+          "next_address_reused": true
+        },
+        {
+          "index": 7,
+          "expected": 8,
+          "address": "20616948221440",
+          "all_elements_expected": false,
+          "mismatch_count": 1048576,
+          "foreign_values": [
+            20.0
+          ],
+          "outcome": "overwritten",
+          "next_address_reused": true
+        },
+        {
+          "index": 8,
+          "expected": 9,
+          "address": "20616948221440",
+          "all_elements_expected": false,
+          "mismatch_count": 1048576,
+          "foreign_values": [
+            20.0
+          ],
+          "outcome": "overwritten",
+          "next_address_reused": true
+        },
+        {
+          "index": 9,
+          "expected": 10,
+          "address": "20616948221440",
+          "all_elements_expected": false,
+          "mismatch_count": 1048576,
+          "foreign_values": [
+            20.0
+          ],
+          "outcome": "overwritten",
+          "next_address_reused": true
+        },
+        {
+          "index": 10,
+          "expected": 11,
+          "address": "20616948221440",
+          "all_elements_expected": false,
+          "mismatch_count": 1048576,
+          "foreign_values": [
+            20.0
+          ],
+          "outcome": "overwritten",
+          "next_address_reused": true
+        },
+        {
+          "index": 11,
+          "expected": 12,
+          "address": "20616948221440",
+          "all_elements_expected": false,
+          "mismatch_count": 1048576,
+          "foreign_values": [
+            20.0
+          ],
+          "outcome": "overwritten",
+          "next_address_reused": true
+        },
+        {
+          "index": 12,
+          "expected": 13,
+          "address": "20616948221440",
+          "all_elements_expected": false,
+          "mismatch_count": 1048576,
+          "foreign_values": [
+            20.0
+          ],
+          "outcome": "overwritten",
+          "next_address_reused": true
+        },
+        {
+          "index": 13,
+          "expected": 14,
+          "address": "20616948221440",
+          "all_elements_expected": false,
+          "mismatch_count": 1048576,
+          "foreign_values": [
+            20.0
+          ],
+          "outcome": "overwritten",
+          "next_address_reused": true
+        },
+        {
+          "index": 14,
+          "expected": 15,
+          "address": "20616948221440",
+          "all_elements_expected": false,
+          "mismatch_count": 1048576,
+          "foreign_values": [
+            20.0
+          ],
+          "outcome": "overwritten",
+          "next_address_reused": true
+        },
+        {
+          "index": 15,
+          "expected": 16,
+          "address": "20616948221440",
+          "all_elements_expected": false,
+          "mismatch_count": 1048576,
+          "foreign_values": [
+            20.0
+          ],
+          "outcome": "overwritten",
+          "next_address_reused": true
+        },
+        {
+          "index": 16,
+          "expected": 17,
+          "address": "20616948221440",
+          "all_elements_expected": false,
+          "mismatch_count": 1048576,
+          "foreign_values": [
+            20.0
+          ],
+          "outcome": "overwritten",
+          "next_address_reused": true
+        },
+        {
+          "index": 17,
+          "expected": 18,
+          "address": "20616948221440",
+          "all_elements_expected": false,
+          "mismatch_count": 1048576,
+          "foreign_values": [
+            20.0
+          ],
+          "outcome": "overwritten",
+          "next_address_reused": true
+        },
+        {
+          "index": 18,
+          "expected": 19,
+          "address": "20616948221440",
+          "all_elements_expected": false,
+          "mismatch_count": 1048576,
+          "foreign_values": [
+            20.0
+          ],
+          "outcome": "overwritten",
+          "next_address_reused": true
+        },
+        {
+          "index": 19,
+          "expected": 20,
+          "address": "20616948221440",
+          "all_elements_expected": true,
+          "outcome": "intact",
+          "next_address_reused": null
+        }
+      ]
+    },
+    {
+      "gap_us": 200,
+      "rows": [
+        {
+          "index": 0,
+          "expected": 1,
+          "address": "20616948221440",
+          "all_elements_expected": false,
+          "mismatch_count": 1048576,
+          "foreign_values": [
+            20.0
+          ],
+          "outcome": "overwritten",
+          "next_address_reused": true
+        },
+        {
+          "index": 1,
+          "expected": 2,
+          "address": "20616948221440",
+          "all_elements_expected": false,
+          "mismatch_count": 1048576,
+          "foreign_values": [
+            20.0
+          ],
+          "outcome": "overwritten",
+          "next_address_reused": true
+        },
+        {
+          "index": 2,
+          "expected": 3,
+          "address": "20616948221440",
+          "all_elements_expected": false,
+          "mismatch_count": 1048576,
+          "foreign_values": [
+            20.0
+          ],
+          "outcome": "overwritten",
+          "next_address_reused": true
+        },
+        {
+          "index": 3,
+          "expected": 4,
+          "address": "20616948221440",
+          "all_elements_expected": false,
+          "mismatch_count": 1048576,
+          "foreign_values": [
+            20.0
+          ],
+          "outcome": "overwritten",
+          "next_address_reused": true
+        },
+        {
+          "index": 4,
+          "expected": 5,
+          "address": "20616948221440",
+          "all_elements_expected": false,
+          "mismatch_count": 1048576,
+          "foreign_values": [
+            20.0
+          ],
+          "outcome": "overwritten",
+          "next_address_reused": true
+        },
+        {
+          "index": 5,
+          "expected": 6,
+          "address": "20616948221440",
+          "all_elements_expected": false,
+          "mismatch_count": 1048576,
+          "foreign_values": [
+            20.0
+          ],
+          "outcome": "overwritten",
+          "next_address_reused": true
+        },
+        {
+          "index": 6,
+          "expected": 7,
+          "address": "20616948221440",
+          "all_elements_expected": false,
+          "mismatch_count": 1048576,
+          "foreign_values": [
+            20.0
+          ],
+          "outcome": "overwritten",
+          "next_address_reused": true
+        },
+        {
+          "index": 7,
+          "expected": 8,
+          "address": "20616948221440",
+          "all_elements_expected": false,
+          "mismatch_count": 1048576,
+          "foreign_values": [
+            20.0
+          ],
+          "outcome": "overwritten",
+          "next_address_reused": true
+        },
+        {
+          "index": 8,
+          "expected": 9,
+          "address": "20616948221440",
+          "all_elements_expected": false,
+          "mismatch_count": 1048576,
+          "foreign_values": [
+            20.0
+          ],
+          "outcome": "overwritten",
+          "next_address_reused": true
+        },
+        {
+          "index": 9,
+          "expected": 10,
+          "address": "20616948221440",
+          "all_elements_expected": false,
+          "mismatch_count": 1048576,
+          "foreign_values": [
+            20.0
+          ],
+          "outcome": "overwritten",
+          "next_address_reused": true
+        },
+        {
+          "index": 10,
+          "expected": 11,
+          "address": "20616948221440",
+          "all_elements_expected": false,
+          "mismatch_count": 1048576,
+          "foreign_values": [
+            20.0
+          ],
+          "outcome": "overwritten",
+          "next_address_reused": true
+        },
+        {
+          "index": 11,
+          "expected": 12,
+          "address": "20616948221440",
+          "all_elements_expected": false,
+          "mismatch_count": 1048576,
+          "foreign_values": [
+            20.0
+          ],
+          "outcome": "overwritten",
+          "next_address_reused": true
+        },
+        {
+          "index": 12,
+          "expected": 13,
+          "address": "20616948221440",
+          "all_elements_expected": false,
+          "mismatch_count": 1048576,
+          "foreign_values": [
+            20.0
+          ],
+          "outcome": "overwritten",
+          "next_address_reused": true
+        },
+        {
+          "index": 13,
+          "expected": 14,
+          "address": "20616948221440",
+          "all_elements_expected": false,
+          "mismatch_count": 1048576,
+          "foreign_values": [
+            20.0
+          ],
+          "outcome": "overwritten",
+          "next_address_reused": true
+        },
+        {
+          "index": 14,
+          "expected": 15,
+          "address": "20616948221440",
+          "all_elements_expected": false,
+          "mismatch_count": 1048576,
+          "foreign_values": [
+            20.0
+          ],
+          "outcome": "overwritten",
+          "next_address_reused": true
+        },
+        {
+          "index": 15,
+          "expected": 16,
+          "address": "20616948221440",
+          "all_elements_expected": false,
+          "mismatch_count": 1048576,
+          "foreign_values": [
+            20.0
+          ],
+          "outcome": "overwritten",
+          "next_address_reused": true
+        },
+        {
+          "index": 16,
+          "expected": 17,
+          "address": "20616948221440",
+          "all_elements_expected": false,
+          "mismatch_count": 1048576,
+          "foreign_values": [
+            20.0
+          ],
+          "outcome": "overwritten",
+          "next_address_reused": true
+        },
+        {
+          "index": 17,
+          "expected": 18,
+          "address": "20616948221440",
+          "all_elements_expected": false,
+          "mismatch_count": 1048576,
+          "foreign_values": [
+            20.0
+          ],
+          "outcome": "overwritten",
+          "next_address_reused": true
+        },
+        {
+          "index": 18,
+          "expected": 19,
+          "address": "20616948221440",
+          "all_elements_expected": false,
+          "mismatch_count": 1048576,
+          "foreign_values": [
+            20.0
+          ],
+          "outcome": "overwritten",
+          "next_address_reused": true
+        },
+        {
+          "index": 19,
+          "expected": 20,
+          "address": "20616948221440",
+          "all_elements_expected": true,
+          "outcome": "intact",
+          "next_address_reused": null
+        }
+      ]
+    },
+    {
+      "gap_us": 1000,
+      "rows": [
+        {
+          "index": 0,
+          "expected": 1,
+          "address": "20616948221440",
+          "all_elements_expected": false,
+          "mismatch_count": 1048576,
+          "foreign_values": [
+            12.0
+          ],
+          "outcome": "overwritten",
+          "next_address_reused": true
+        },
+        {
+          "index": 1,
+          "expected": 2,
+          "address": "20616948221440",
+          "all_elements_expected": false,
+          "mismatch_count": 1048576,
+          "foreign_values": [
+            20.0
+          ],
+          "outcome": "overwritten",
+          "next_address_reused": true
+        },
+        {
+          "index": 2,
+          "expected": 3,
+          "address": "20616948221440",
+          "all_elements_expected": false,
+          "mismatch_count": 1048576,
+          "foreign_values": [
+            20.0
+          ],
+          "outcome": "overwritten",
+          "next_address_reused": true
+        },
+        {
+          "index": 3,
+          "expected": 4,
+          "address": "20616948221440",
+          "all_elements_expected": false,
+          "mismatch_count": 1048576,
+          "foreign_values": [
+            20.0
+          ],
+          "outcome": "overwritten",
+          "next_address_reused": true
+        },
+        {
+          "index": 4,
+          "expected": 5,
+          "address": "20616948221440",
+          "all_elements_expected": false,
+          "mismatch_count": 1048576,
+          "foreign_values": [
+            20.0
+          ],
+          "outcome": "overwritten",
+          "next_address_reused": true
+        },
+        {
+          "index": 5,
+          "expected": 6,
+          "address": "20616948221440",
+          "all_elements_expected": false,
+          "mismatch_count": 1048576,
+          "foreign_values": [
+            20.0
+          ],
+          "outcome": "overwritten",
+          "next_address_reused": true
+        },
+        {
+          "index": 6,
+          "expected": 7,
+          "address": "20616948221440",
+          "all_elements_expected": false,
+          "mismatch_count": 1048576,
+          "foreign_values": [
+            20.0
+          ],
+          "outcome": "overwritten",
+          "next_address_reused": true
+        },
+        {
+          "index": 7,
+          "expected": 8,
+          "address": "20616948221440",
+          "all_elements_expected": false,
+          "mismatch_count": 1048576,
+          "foreign_values": [
+            20.0
+          ],
+          "outcome": "overwritten",
+          "next_address_reused": true
+        },
+        {
+          "index": 8,
+          "expected": 9,
+          "address": "20616948221440",
+          "all_elements_expected": false,
+          "mismatch_count": 1048576,
+          "foreign_values": [
+            20.0
+          ],
+          "outcome": "overwritten",
+          "next_address_reused": true
+        },
+        {
+          "index": 9,
+          "expected": 10,
+          "address": "20616948221440",
+          "all_elements_expected": false,
+          "mismatch_count": 1048576,
+          "foreign_values": [
+            20.0
+          ],
+          "outcome": "overwritten",
+          "next_address_reused": true
+        },
+        {
+          "index": 10,
+          "expected": 11,
+          "address": "20616948221440",
+          "all_elements_expected": false,
+          "mismatch_count": 1048576,
+          "foreign_values": [
+            20.0
+          ],
+          "outcome": "overwritten",
+          "next_address_reused": true
+        },
+        {
+          "index": 11,
+          "expected": 12,
+          "address": "20616948221440",
+          "all_elements_expected": false,
+          "mismatch_count": 1048576,
+          "foreign_values": [
+            20.0
+          ],
+          "outcome": "overwritten",
+          "next_address_reused": true
+        },
+        {
+          "index": 12,
+          "expected": 13,
+          "address": "20616948221440",
+          "all_elements_expected": false,
+          "mismatch_count": 1048576,
+          "foreign_values": [
+            20.0
+          ],
+          "outcome": "overwritten",
+          "next_address_reused": true
+        },
+        {
+          "index": 13,
+          "expected": 14,
+          "address": "20616948221440",
+          "all_elements_expected": false,
+          "mismatch_count": 1048576,
+          "foreign_values": [
+            20.0
+          ],
+          "outcome": "overwritten",
+          "next_address_reused": true
+        },
+        {
+          "index": 14,
+          "expected": 15,
+          "address": "20616948221440",
+          "all_elements_expected": false,
+          "mismatch_count": 1048576,
+          "foreign_values": [
+            20.0
+          ],
+          "outcome": "overwritten",
+          "next_address_reused": true
+        },
+        {
+          "index": 15,
+          "expected": 16,
+          "address": "20616948221440",
+          "all_elements_expected": false,
+          "mismatch_count": 1048576,
+          "foreign_values": [
+            20.0
+          ],
+          "outcome": "overwritten",
+          "next_address_reused": true
+        },
+        {
+          "index": 16,
+          "expected": 17,
+          "address": "20616948221440",
+          "all_elements_expected": false,
+          "mismatch_count": 1048576,
+          "foreign_values": [
+            20.0
+          ],
+          "outcome": "overwritten",
+          "next_address_reused": true
+        },
+        {
+          "index": 17,
+          "expected": 18,
+          "address": "20616948221440",
+          "all_elements_expected": false,
+          "mismatch_count": 1048576,
+          "foreign_values": [
+            20.0
+          ],
+          "outcome": "overwritten",
+          "next_address_reused": true
+        },
+        {
+          "index": 18,
+          "expected": 19,
+          "address": "20616948221440",
+          "all_elements_expected": false,
+          "mismatch_count": 1048576,
+          "foreign_values": [
+            20.0
+          ],
+          "outcome": "overwritten",
+          "next_address_reused": true
+        },
+        {
+          "index": 19,
+          "expected": 20,
+          "address": "20616948221440",
+          "all_elements_expected": true,
+          "outcome": "intact",
+          "next_address_reused": null
+        }
+      ]
+    },
+    {
+      "gap_us": 5000,
+      "rows": [
+        {
+          "index": 0,
+          "expected": 1,
+          "address": "20616948221440",
+          "all_elements_expected": false,
+          "mismatch_count": 1048576,
+          "foreign_values": [
+            3.0
+          ],
+          "outcome": "overwritten",
+          "next_address_reused": true
+        },
+        {
+          "index": 1,
+          "expected": 2,
+          "address": "20616948221440",
+          "all_elements_expected": false,
+          "mismatch_count": 1048576,
+          "foreign_values": [
+            6.0
+          ],
+          "outcome": "overwritten",
+          "next_address_reused": true
+        },
+        {
+          "index": 2,
+          "expected": 3,
+          "address": "20616948221440",
+          "all_elements_expected": false,
+          "mismatch_count": 1048576,
+          "foreign_values": [
+            8.0
+          ],
+          "outcome": "overwritten",
+          "next_address_reused": true
+        },
+        {
+          "index": 3,
+          "expected": 4,
+          "address": "20616948221440",
+          "all_elements_expected": false,
+          "mismatch_count": 1048576,
+          "foreign_values": [
+            11.0
+          ],
+          "outcome": "overwritten",
+          "next_address_reused": true
+        },
+        {
+          "index": 4,
+          "expected": 5,
+          "address": "20616948221440",
+          "all_elements_expected": false,
+          "mismatch_count": 1048576,
+          "foreign_values": [
+            14.0
+          ],
+          "outcome": "overwritten",
+          "next_address_reused": true
+        },
+        {
+          "index": 5,
+          "expected": 6,
+          "address": "20616948221440",
+          "all_elements_expected": false,
+          "mismatch_count": 1048576,
+          "foreign_values": [
+            16.0
+          ],
+          "outcome": "overwritten",
+          "next_address_reused": true
+        },
+        {
+          "index": 6,
+          "expected": 7,
+          "address": "20616948221440",
+          "all_elements_expected": false,
+          "mismatch_count": 1048576,
+          "foreign_values": [
+            19.0
+          ],
+          "outcome": "overwritten",
+          "next_address_reused": true
+        },
+        {
+          "index": 7,
+          "expected": 8,
+          "address": "20616948221440",
+          "all_elements_expected": false,
+          "mismatch_count": 1048576,
+          "foreign_values": [
+            20.0
+          ],
+          "outcome": "overwritten",
+          "next_address_reused": true
+        },
+        {
+          "index": 8,
+          "expected": 9,
+          "address": "20616948221440",
+          "all_elements_expected": false,
+          "mismatch_count": 1048576,
+          "foreign_values": [
+            20.0
+          ],
+          "outcome": "overwritten",
+          "next_address_reused": true
+        },
+        {
+          "index": 9,
+          "expected": 10,
+          "address": "20616948221440",
+          "all_elements_expected": false,
+          "mismatch_count": 1048576,
+          "foreign_values": [
+            20.0
+          ],
+          "outcome": "overwritten",
+          "next_address_reused": true
+        },
+        {
+          "index": 10,
+          "expected": 11,
+          "address": "20616948221440",
+          "all_elements_expected": false,
+          "mismatch_count": 1048576,
+          "foreign_values": [
+            20.0
+          ],
+          "outcome": "overwritten",
+          "next_address_reused": true
+        },
+        {
+          "index": 11,
+          "expected": 12,
+          "address": "20616948221440",
+          "all_elements_expected": false,
+          "mismatch_count": 1048576,
+          "foreign_values": [
+            20.0
+          ],
+          "outcome": "overwritten",
+          "next_address_reused": true
+        },
+        {
+          "index": 12,
+          "expected": 13,
+          "address": "20616948221440",
+          "all_elements_expected": false,
+          "mismatch_count": 1048576,
+          "foreign_values": [
+            20.0
+          ],
+          "outcome": "overwritten",
+          "next_address_reused": true
+        },
+        {
+          "index": 13,
+          "expected": 14,
+          "address": "20616948221440",
+          "all_elements_expected": false,
+          "mismatch_count": 1048576,
+          "foreign_values": [
+            20.0
+          ],
+          "outcome": "overwritten",
+          "next_address_reused": true
+        },
+        {
+          "index": 14,
+          "expected": 15,
+          "address": "20616948221440",
+          "all_elements_expected": false,
+          "mismatch_count": 1048576,
+          "foreign_values": [
+            20.0
+          ],
+          "outcome": "overwritten",
+          "next_address_reused": true
+        },
+        {
+          "index": 15,
+          "expected": 16,
+          "address": "20616948221440",
+          "all_elements_expected": false,
+          "mismatch_count": 1048576,
+          "foreign_values": [
+            20.0
+          ],
+          "outcome": "overwritten",
+          "next_address_reused": true
+        },
+        {
+          "index": 16,
+          "expected": 17,
+          "address": "20616948221440",
+          "all_elements_expected": false,
+          "mismatch_count": 1048576,
+          "foreign_values": [
+            20.0
+          ],
+          "outcome": "overwritten",
+          "next_address_reused": true
+        },
+        {
+          "index": 17,
+          "expected": 18,
+          "address": "20616948221440",
+          "all_elements_expected": false,
+          "mismatch_count": 1048576,
+          "foreign_values": [
+            20.0
+          ],
+          "outcome": "overwritten",
+          "next_address_reused": true
+        },
+        {
+          "index": 18,
+          "expected": 19,
+          "address": "20616948221440",
+          "all_elements_expected": false,
+          "mismatch_count": 1048576,
+          "foreign_values": [
+            20.0
+          ],
+          "outcome": "overwritten",
+          "next_address_reused": true
+        },
+        {
+          "index": 19,
+          "expected": 20,
+          "address": "20616948221440",
+          "all_elements_expected": true,
+          "outcome": "intact",
+          "next_address_reused": null
+        }
+      ]
+    },
+    {
+      "gap_us": 25000,
+      "rows": [
+        {
+          "index": 0,
+          "expected": 1,
+          "address": "20616948221440",
+          "all_elements_expected": true,
+          "outcome": "intact",
+          "next_address_reused": true
+        },
+        {
+          "index": 1,
+          "expected": 2,
+          "address": "20616948221440",
+          "all_elements_expected": true,
+          "outcome": "intact",
+          "next_address_reused": true
+        },
+        {
+          "index": 2,
+          "expected": 3,
+          "address": "20616948221440",
+          "all_elements_expected": true,
+          "outcome": "intact",
+          "next_address_reused": true
+        },
+        {
+          "index": 3,
+          "expected": 4,
+          "address": "20616948221440",
+          "all_elements_expected": true,
+          "outcome": "intact",
+          "next_address_reused": true
+        },
+        {
+          "index": 4,
+          "expected": 5,
+          "address": "20616948221440",
+          "all_elements_expected": true,
+          "outcome": "intact",
+          "next_address_reused": true
+        },
+        {
+          "index": 5,
+          "expected": 6,
+          "address": "20616948221440",
+          "all_elements_expected": true,
+          "outcome": "intact",
+          "next_address_reused": true
+        },
+        {
+          "index": 6,
+          "expected": 7,
+          "address": "20616948221440",
+          "all_elements_expected": true,
+          "outcome": "intact",
+          "next_address_reused": true
+        },
+        {
+          "index": 7,
+          "expected": 8,
+          "address": "20616948221440",
+          "all_elements_expected": true,
+          "outcome": "intact",
+          "next_address_reused": true
+        },
+        {
+          "index": 8,
+          "expected": 9,
+          "address": "20616948221440",
+          "all_elements_expected": true,
+          "outcome": "intact",
+          "next_address_reused": true
+        },
+        {
+          "index": 9,
+          "expected": 10,
+          "address": "20616948221440",
+          "all_elements_expected": true,
+          "outcome": "intact",
+          "next_address_reused": true
+        },
+        {
+          "index": 10,
+          "expected": 11,
+          "address": "20616948221440",
+          "all_elements_expected": true,
+          "outcome": "intact",
+          "next_address_reused": true
+        },
+        {
+          "index": 11,
+          "expected": 12,
+          "address": "20616948221440",
+          "all_elements_expected": true,
+          "outcome": "intact",
+          "next_address_reused": true
+        },
+        {
+          "index": 12,
+          "expected": 13,
+          "address": "20616948221440",
+          "all_elements_expected": true,
+          "outcome": "intact",
+          "next_address_reused": true
+        },
+        {
+          "index": 13,
+          "expected": 14,
+          "address": "20616948221440",
+          "all_elements_expected": true,
+          "outcome": "intact",
+          "next_address_reused": true
+        },
+        {
+          "index": 14,
+          "expected": 15,
+          "address": "20616948221440",
+          "all_elements_expected": true,
+          "outcome": "intact",
+          "next_address_reused": true
+        },
+        {
+          "index": 15,
+          "expected": 16,
+          "address": "20616948221440",
+          "all_elements_expected": true,
+          "outcome": "intact",
+          "next_address_reused": true
+        },
+        {
+          "index": 16,
+          "expected": 17,
+          "address": "20616948221440",
+          "all_elements_expected": true,
+          "outcome": "intact",
+          "next_address_reused": true
+        },
+        {
+          "index": 17,
+          "expected": 18,
+          "address": "20616948221440",
+          "all_elements_expected": true,
+          "outcome": "intact",
+          "next_address_reused": true
+        },
+        {
+          "index": 18,
+          "expected": 19,
+          "address": "20616948221440",
+          "all_elements_expected": true,
+          "outcome": "intact",
+          "next_address_reused": true
+        },
+        {
+          "index": 19,
+          "expected": 20,
+          "address": "20616948221440",
+          "all_elements_expected": true,
+          "outcome": "intact",
+          "next_address_reused": null
+        }
+      ]
+    },
+    {
+      "gap_us": 50000,
+      "rows": [
+        {
+          "index": 0,
+          "expected": 1,
+          "address": "20616948221440",
+          "all_elements_expected": true,
+          "outcome": "intact",
+          "next_address_reused": true
+        },
+        {
+          "index": 1,
+          "expected": 2,
+          "address": "20616948221440",
+          "all_elements_expected": true,
+          "outcome": "intact",
+          "next_address_reused": true
+        },
+        {
+          "index": 2,
+          "expected": 3,
+          "address": "20616948221440",
+          "all_elements_expected": true,
+          "outcome": "intact",
+          "next_address_reused": true
+        },
+        {
+          "index": 3,
+          "expected": 4,
+          "address": "20616948221440",
+          "all_elements_expected": true,
+          "outcome": "intact",
+          "next_address_reused": true
+        },
+        {
+          "index": 4,
+          "expected": 5,
+          "address": "20616948221440",
+          "all_elements_expected": true,
+          "outcome": "intact",
+          "next_address_reused": true
+        },
+        {
+          "index": 5,
+          "expected": 6,
+          "address": "20616948221440",
+          "all_elements_expected": true,
+          "outcome": "intact",
+          "next_address_reused": true
+        },
+        {
+          "index": 6,
+          "expected": 7,
+          "address": "20616948221440",
+          "all_elements_expected": true,
+          "outcome": "intact",
+          "next_address_reused": true
+        },
+        {
+          "index": 7,
+          "expected": 8,
+          "address": "20616948221440",
+          "all_elements_expected": true,
+          "outcome": "intact",
+          "next_address_reused": true
+        },
+        {
+          "index": 8,
+          "expected": 9,
+          "address": "20616948221440",
+          "all_elements_expected": true,
+          "outcome": "intact",
+          "next_address_reused": true
+        },
+        {
+          "index": 9,
+          "expected": 10,
+          "address": "20616948221440",
+          "all_elements_expected": true,
+          "outcome": "intact",
+          "next_address_reused": true
+        },
+        {
+          "index": 10,
+          "expected": 11,
+          "address": "20616948221440",
+          "all_elements_expected": true,
+          "outcome": "intact",
+          "next_address_reused": true
+        },
+        {
+          "index": 11,
+          "expected": 12,
+          "address": "20616948221440",
+          "all_elements_expected": true,
+          "outcome": "intact",
+          "next_address_reused": true
+        },
+        {
+          "index": 12,
+          "expected": 13,
+          "address": "20616948221440",
+          "all_elements_expected": true,
+          "outcome": "intact",
+          "next_address_reused": true
+        },
+        {
+          "index": 13,
+          "expected": 14,
+          "address": "20616948221440",
+          "all_elements_expected": true,
+          "outcome": "intact",
+          "next_address_reused": true
+        },
+        {
+          "index": 14,
+          "expected": 15,
+          "address": "20616948221440",
+          "all_elements_expected": true,
+          "outcome": "intact",
+          "next_address_reused": true
+        },
+        {
+          "index": 15,
+          "expected": 16,
+          "address": "20616948221440",
+          "all_elements_expected": true,
+          "outcome": "intact",
+          "next_address_reused": true
+        },
+        {
+          "index": 16,
+          "expected": 17,
+          "address": "20616948221440",
+          "all_elements_expected": true,
+          "outcome": "intact",
+          "next_address_reused": true
+        },
+        {
+          "index": 17,
+          "expected": 18,
+          "address": "20616948221440",
+          "all_elements_expected": true,
+          "outcome": "intact",
+          "next_address_reused": true
+        },
+        {
+          "index": 18,
+          "expected": 19,
+          "address": "20616948221440",
+          "all_elements_expected": true,
+          "outcome": "intact",
+          "next_address_reused": true
+        },
+        {
+          "index": 19,
+          "expected": 20,
+          "address": "20616948221440",
+          "all_elements_expected": true,
+          "outcome": "intact",
+          "next_address_reused": null
+        }
+      ]
+    }
+  ],
+  "statistics_before": {
+    "num_alloc_retries": 0,
+    "num_ooms": 0,
+    "allocated_bytes.all.current": 188755968,
+    "reserved_bytes.all.current": 278921216,
+    "active_bytes.all.current": 188755968
+  },
+  "statistics_after": {
+    "num_alloc_retries": 0,
+    "num_ooms": 0,
+    "allocated_bytes.all.current": 188755968,
+    "reserved_bytes.all.current": 278921216,
+    "active_bytes.all.current": 188755968
+  }
+}

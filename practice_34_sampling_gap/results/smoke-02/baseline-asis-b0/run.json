@@ -1,0 +1,318 @@
+{
+  "schema": 1,
+  "captured_at_utc": "2026-10-03T15:44:38.974320+00:00",
+  "arguments": {
+    "output": "/data/tianchi/practice_34_sampling_gap/results/smoke-02/baseline-asis-b0",
+    "mode": "asis",
+    "gaps_us": [
+      0,
+      1000
+    ],
+    "iterations": 4,
+    "elements": 1048576,
+    "consumer_backlog": 0,
+    "matrix": 4096
+  },
+  "pid": 1785849,
+  "torch_version": "2.10.0+cpu",
+  "torch_npu_version": "2.10.0",
+  "torch_git_version": "449b1768410104d3ed79d3bcfe4ba1d65c7f22c0",
+  "torch_npu_git_version": "94f8a8e6b523d7ba553e1b80d5b5248478391526",
+  "device": "Ascend910B2C",
+  "allocator_backend": "native",
+  "environment": {
+    "ASCEND_HOME_PATH": "/usr/local/Ascend/cann-9.0.0",
+    "ASCEND_RT_VISIBLE_DEVICES": null,
+    "TASK_QUEUE_ENABLE": "1",
+    "PER_STREAM_QUEUE": "0",
+    "PYTORCH_NPU_ALLOC_CONF": "expandable_segments:False,multi_stream_lazy_reclaim:False",
+    "PYTORCH_NO_NPU_MEMORY_CACHING": null,
+    "ASCEND_LAUNCH_BLOCKING": null,
+    "MULTI_STREAM_MEMORY_REUSE": "1"
+  },
+  "allow_internal_format": false,
+  "deterministic_algorithms": false,
+  "streams": {
+    "producer": {
+      "handle": "140520680316928",
+      "id": "96"
+    },
+    "main": {
+      "handle": "140520680288256",
+      "id": "0"
+    }
+  },
+  "tensor_bytes": 4194304,
+  "elements": 1048576,
+  "source_sha256": {
+    "sources/probe.py": "8968dad09eb61d0f86ee8c0d0f4341a7ea42d140846621607bd8cc33db280b62",
+    "sources/streams.py": "241741b356db5006797dbec119007afb33b73b0e1753bfb06ab27c989c5bfac4",
+    "sources/memory.py": "9689894e9cb47ba6884f191e1b45326576441233475142108b05671866ed4947"
+  },
+  "duration_mono_ns": 5876155,
+  "thread_id": 1785849,
+  "substitution": "exponential_ is replaced by fill_(iteration+1); the device-write task, its stream and the release timing keep the audited structure",
+  "memory_bound_description": "iterations x 4 MiB observed buffers plus one 4 MiB q at a time; warm-up blocks cached; runtime/workspace additional",
+  "candidate_access": "q is written on the producer stream and read once by the main-stream copy",
+  "records": [],
+  "trace_entries_for_first_address": [
+    {
+      "trace_index": 1,
+      "action": "alloc",
+      "addr": 20616948221440,
+      "size": 4194304,
+      "stream": 140520680316928
+    },
+    {
+      "trace_index": 2,
+      "action": "free_requested",
+      "addr": 20616948221440,
+      "size": 4194304,
+      "stream": 140520680316928
+    },
+    {
+      "trace_index": 3,
+      "action": "free_completed",
+      "addr": 20616948221440,
+      "size": 4194304,
+      "stream": 140520680316928
+    },
+    {
+      "trace_index": 4,
+      "action": "alloc",
+      "addr": 20616948221440,
+      "size": 4194304,
+      "stream": 140520680316928
+    },
+    {
+      "trace_index": 5,
+      "action": "free_requested",
+      "addr": 20616948221440,
+      "size": 4194304,
+      "stream": 140520680316928
+    },
+    {
+      "trace_index": 6,
+      "action": "free_completed",
+      "addr": 20616948221440,
+      "size": 4194304,
+      "stream": 140520680316928
+    },
+    {
+      "trace_index": 7,
+      "action": "alloc",
+      "addr": 20616948221440,
+      "size": 4194304,
+      "stream": 140520680316928
+    },
+    {
+      "trace_index": 8,
+      "action": "free_requested",
+      "addr": 20616948221440,
+      "size": 4194304,
+      "stream": 140520680316928
+    },
+    {
+      "trace_index": 9,
+      "action": "free_completed",
+      "addr": 20616948221440,
+      "size": 4194304,
+      "stream": 140520680316928
+    },
+    {
+      "trace_index": 10,
+      "action": "alloc",
+      "addr": 20616948221440,
+      "size": 4194304,
+      "stream": 140520680316928
+    },
+    {
+      "trace_index": 11,
+      "action": "free_requested",
+      "addr": 20616948221440,
+      "size": 4194304,
+      "stream": 140520680316928
+    },
+    {
+      "trace_index": 12,
+      "action": "free_completed",
+      "addr": 20616948221440,
+      "size": 4194304,
+      "stream": 140520680316928
+    },
+    {
+      "trace_index": 49,
+      "action": "alloc",
+      "addr": 20616948221440,
+      "size": 4194304,
+      "stream": 140520680316928
+    },
+    {
+      "trace_index": 50,
+      "action": "free_requested",
+      "addr": 20616948221440,
+      "size": 4194304,
+      "stream": 140520680316928
+    },
+    {
+      "trace_index": 51,
+      "action": "free_completed",
+      "addr": 20616948221440,
+      "size": 4194304,
+      "stream": 140520680316928
+    },
+    {
+      "trace_index": 52,
+      "action": "alloc",
+      "addr": 20616948221440,
+      "size": 4194304,
+      "stream": 140520680316928
+    },
+    {
+      "trace_index": 53,
+      "action": "free_requested",
+      "addr": 20616948221440,
+      "size": 4194304,
+      "stream": 140520680316928
+    },
+    {
+      "trace_index": 54,
+      "action": "free_completed",
+      "addr": 20616948221440,
+      "size": 4194304,
+      "stream": 140520680316928
+    },
+    {
+      "trace_index": 55,
+      "action": "alloc",
+      "addr": 20616948221440,
+      "size": 4194304,
+      "stream": 140520680316928
+    },
+    {
+      "trace_index": 56,
+      "action": "free_requested",
+      "addr": 20616948221440,
+      "size": 4194304,
+      "stream": 140520680316928
+    },
+    {
+      "trace_index": 57,
+      "action": "free_completed",
+      "addr": 20616948221440,
+      "size": 4194304,
+      "stream": 140520680316928
+    },
+    {
+      "trace_index": 58,
+      "action": "alloc",
+      "addr": 20616948221440,
+      "size": 4194304,
+      "stream": 140520680316928
+    },
+    {
+      "trace_index": 59,
+      "action": "free_requested",
+      "addr": 20616948221440,
+      "size": 4194304,
+      "stream": 140520680316928
+    },
+    {
+      "trace_index": 60,
+      "action": "free_completed",
+      "addr": 20616948221440,
+      "size": 4194304,
+      "stream": 140520680316928
+    }
+  ],
+  "intervals": [
+    {
+      "gap_us": 0,
+      "rows": [
+        {
+          "index": 0,
+          "expected": 1,
+          "address": "20616948221440",
+          "all_elements_expected": true,
+          "outcome": "intact",
+          "next_address_reused": true
+        },
+        {
+          "index": 1,
+          "expected": 2,
+          "address": "20616948221440",
+          "all_elements_expected": true,
+          "outcome": "intact",
+          "next_address_reused": true
+        },
+        {
+          "index": 2,
+          "expected": 3,
+          "address": "20616948221440",
+          "all_elements_expected": true,
+          "outcome": "intact",
+          "next_address_reused": true
+        },
+        {
+          "index": 3,
+          "expected": 4,
+          "address": "20616948221440",
+          "all_elements_expected": true,
+          "outcome": "intact",
+          "next_address_reused": null
+        }
+      ]
+    },
+    {
+      "gap_us": 1000,
+      "rows": [
+        {
+          "index": 0,
+          "expected": 1,
+          "address": "20616948221440",
+          "all_elements_expected": true,
+          "outcome": "intact",
+          "next_address_reused": true
+        },
+        {
+          "index": 1,
+          "expected": 2,
+          "address": "20616948221440",
+          "all_elements_expected": true,
+          "outcome": "intact",
+          "next_address_reused": true
+        },
+        {
+          "index": 2,
+          "expected": 3,
+          "address": "20616948221440",
+          "all_elements_expected": true,
+          "outcome": "intact",
+          "next_address_reused": true
+        },
+        {
+          "index": 3,
+          "expected": 4,
+          "address": "20616948221440",
+          "all_elements_expected": true,
+          "outcome": "intact",
+          "next_address_reused": null
+        }
+      ]
+    }
+  ],
+  "statistics_before": {
+    "num_alloc_retries": 0,
+    "num_ooms": 0,
+    "allocated_bytes.all.current": 121638912,
+    "reserved_bytes.all.current": 195035136,
+    "active_bytes.all.current": 121638912
+  },
+  "statistics_after": {
+    "num_alloc_retries": 0,
+    "num_ooms": 0,
+    "allocated_bytes.all.current": 121638912,
+    "reserved_bytes.all.current": 195035136,
+    "active_bytes.all.current": 121638912
+  }
+}

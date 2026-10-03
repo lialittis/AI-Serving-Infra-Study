@@ -1,0 +1,42 @@
+{
+  "schema": 1,
+  "start_ns": 1791042336228939408,
+  "arguments": {
+    "output": "/data/tianchi/practice_34_sampling_gap/results/formal-01",
+    "configs": [
+      "baseline"
+    ],
+    "modes": [
+      "asis",
+      "record",
+      "leading-wait"
+    ],
+    "gaps_us": [
+      0,
+      200,
+      1000,
+      5000,
+      25000,
+      50000
+    ],
+    "iterations": 20,
+    "backlogs": [
+      0,
+      8,
+      32
+    ]
+  },
+  "configurations": {
+    "baseline": {
+      "TASK_QUEUE_ENABLE": "1",
+      "PER_STREAM_QUEUE": "0",
+      "PYTORCH_NPU_ALLOC_CONF": "expandable_segments:False,multi_stream_lazy_reclaim:False"
+    }
+  },
+  "source_sha256": {
+    "analyze.py": "82a909a867a1364f0c54107a2f6ceee6eb511d6fd4479ac999a81ad21e6b72f4",
+    "probe.py": "8968dad09eb61d0f86ee8c0d0f4341a7ea42d140846621607bd8cc33db280b62",
+    "run.py": "890c13d9996553574fe87ec999642867a9fb50acf388496517cf2e3ec97aac4b",
+    "test_analysis.py": "1c79462f9ad3c68ed0d15768ac1a19b294d1648cfe6fe619dc531b5917f00e4d"
+  }
+}

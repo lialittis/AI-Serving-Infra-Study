@@ -36,9 +36,12 @@ grep -rn 'RecordStream' torch_npu/csrc op-plugin/   # C++ 侧
 | `do_async_exponential`（[sampler.py:89-102](sources/vllm-ascend/vllm_ascend/sample/sampler.py#L89)） | q 在 global_stream(44) 分配+填充，先导 `global.wait_stream(current)`；消费端 `self.async_event.synchronize()`（host 级，[L188](sources/vllm-ascend/vllm_ascend/sample/sampler.py#L188)）后才 `div_`；旧 q 由 `self.q` 持有到下一轮替换 | **join 等价，受保护**：下一轮 fill 先导等待排在旧消费之后，事件链完整。代价是 host 同步 |
 | `fill_exponential`（[sampler.py:32-41](sources/vllm-ascend/vllm_ascend/sample/sampler.py#L32)） | q 在 global_stream 上 `empty_like`+`exponential_`，**无先导等待**；块随函数返回进入 global_stream 池；消费在 current(46) 上 `div_(q)`；下一轮 fill 直接从同池取回同块（P32 已证同 stream 池内即刻复用） | **omit 等价（结构）**：下一轮 fill（global 上的写）与上一轮 `div_`（current 上的读）之间无顺序关系。实践中被调度间隔缓解（div_ 早于下一轮 forward 结束执行），属 **mitigated-by-timing**，非受保护 |
 
-`fill_exponential` 是本轮审计最重要的候选：它不是当前 greedy 基线（greedy 走 argmax 不用 q），
-但任何 top-k/top-p 采样配置都会进入；结构上与 P33 omit 模式同构（S44↔S0 分配者、S46↔S1 消费者、
-下一轮 fill↔B 写入）。
+`fill_exponential` 是本轮审计最重要的候选：greedy 采样不走 q（argmax），但
+**`enable_async_exponential` 默认 False（[ascend_config.py:228](sources/vllm-ascend/vllm_ascend/ascend_config.py#L228) 附近），
+此时所有非 greedy 采样默认走 `random_sample` → `fill_exponential`**；受保护的 `do_async_exponential` 需要显式开启
+（[sampler.py:184-192](sources/vllm-ascend/vllm_ascend/sample/sampler.py#L184) 的分支）。结构上与 P33 omit 模式同构
+（S44↔S0 分配者、S46↔S1 消费者、下一轮 fill↔B 写入）。2026-10-03 由 [P34](../../practice_34_sampling_gap/RESULTS.md)
+做间隔与消费端延迟的定量实验。
 
 ### vllm_ascend/attention/（按可达性分层）
 
@@ -63,7 +66,8 @@ grep -rn 'RecordStream' torch_npu/csrc op-plugin/   # C++ 侧
 
 ## 候选与后续实验
 
-1. **[候选 1] `fill_exponential` 定向实验**：用 P33 的探针结构直接复刻该模式（S44 分配→S46 消费→立即释放→S44 再分配写入），验证在 vLLM 真实调度间隔下是否复现损坏，以及缩小间隔（如连续采样循环）时是否必然复现。这能把"结构 omit 等价 + 实践缓解"变成定量结论。
+1. **[候选 1，已完成 → P34](../../practice_34_sampling_gap/RESULTS.md)**：间隔 × 消费端延迟扫描给出损坏不等式
+   （延迟 > 间隔即 19/19 损坏，否则 0）；默认路径靠时序余量而非结构保护；record_stream 与先导等待均实测有效。
 2. **[候选 2] graph update_stream 与 replay 的存储边界**：P32 遗留项，attention_v1 的 update_stream 是入口。
 3. **[候选 3] HCCL/CP 路径**：需要多卡环境。
 4. vllm core 若未来出现 NPU 通用 record_stream 需求，目前无任何先例可循（唯一实现是 CUDA 分支）。

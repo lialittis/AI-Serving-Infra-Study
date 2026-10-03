@@ -1,0 +1,54 @@
+[
+  {
+    "case": "baseline-asis-b0",
+    "command": [
+      "/usr/local/python3.12.13/bin/python",
+      "/data/tianchi/practice_34_sampling_gap/probe.py",
+      "--output",
+      "/data/tianchi/practice_34_sampling_gap/results/smoke-02/baseline-asis-b0",
+      "--mode",
+      "asis",
+      "--iterations",
+      "4",
+      "--consumer-backlog",
+      "0",
+      "--gaps-us",
+      "0",
+      "1000"
+    ],
+    "environment": {
+      "TASK_QUEUE_ENABLE": "1",
+      "PER_STREAM_QUEUE": "0",
+      "PYTORCH_NPU_ALLOC_CONF": "expandable_segments:False,multi_stream_lazy_reclaim:False"
+    },
+    "start_ns": 1791042274201808652,
+    "end_ns": 1791042282726880504,
+    "returncode": 0
+  },
+  {
+    "case": "baseline-asis-b32",
+    "command": [
+      "/usr/local/python3.12.13/bin/python",
+      "/data/tianchi/practice_34_sampling_gap/probe.py",
+      "--output",
+      "/data/tianchi/practice_34_sampling_gap/results/smoke-02/baseline-asis-b32",
+      "--mode",
+      "asis",
+      "--iterations",
+      "4",
+      "--consumer-backlog",
+      "32",
+      "--gaps-us",
+      "0",
+      "1000"
+    ],
+    "environment": {
+      "TASK_QUEUE_ENABLE": "1",
+      "PER_STREAM_QUEUE": "0",
+      "PYTORCH_NPU_ALLOC_CONF": "expandable_segments:False,multi_stream_lazy_reclaim:False"
+    },
+    "start_ns": 1791042282727197039,
+    "end_ns": 1791042291301491708,
+    "returncode": 0
+  }
+]

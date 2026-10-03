@@ -191,6 +191,13 @@ vllm-ascend 全库 0 处 record_stream，采样同步路径 `fill_exponential` �
 （实践中被调度间隔缓解），op-plugin 4 处显式 recordStream 为正向对照。
 候选 1（fill_exponential 定向实验）、graph update_stream 与 HCCL 路径留待后续。
 
+2026-10-03 新增 [Practice 34](practice_34_sampling_gap/README.md)：量化默认采样路径的复用危险。
+源码确认 `enable_async_exponential` 默认 False，非 greedy 采样默认走 fill_exponential（omit 等价结构）。
+600 轮受控迭代给出损坏不等式：**消费端设备延迟 > 下一轮填充间隔即 100% 损坏（19/19），
+否则为 0**；正常 vLLM 节奏（步进约 10ms > 采样链 µs–ms）靠时序余量安全。record_stream 与
+先导等待两种修法全程 0 损坏，后者与 do_async_exponential 的先导等待同构。
+真实服务的确定性触发验证与 graph/HCCL 候选留待后续。
+
 ## 参考入口
 
 - [vLLM Architecture](https://docs.vllm.ai/en/latest/design/arch_overview/)

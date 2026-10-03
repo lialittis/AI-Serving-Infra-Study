@@ -1,0 +1,338 @@
+{
+  "schema": 1,
+  "analysis_status": "passed",
+  "cases": [
+    {
+      "case": "asis-b0",
+      "mode": "asis",
+      "consumer_backlog": 0,
+      "environment": {
+        "ASCEND_HOME_PATH": "/usr/local/Ascend/cann-9.0.0",
+        "ASCEND_RT_VISIBLE_DEVICES": null,
+        "TASK_QUEUE_ENABLE": "1",
+        "PER_STREAM_QUEUE": "0",
+        "PYTORCH_NPU_ALLOC_CONF": "expandable_segments:False,multi_stream_lazy_reclaim:False",
+        "PYTORCH_NO_NPU_MEMORY_CACHING": null,
+        "ASCEND_LAUNCH_BLOCKING": null,
+        "MULTI_STREAM_MEMORY_REUSE": "1"
+      },
+      "iterations": 4,
+      "gaps_us": [
+        0,
+        1000
+      ],
+      "corrupt_by_gap": {
+        "0": 0,
+        "1000": 0
+      },
+      "adjacent_reuse_by_gap": {
+        "0": 3,
+        "1000": 3
+      },
+      "total_corrupt": 0,
+      "total_iterations": 8,
+      "first_fully_corrupt_gap": null,
+      "intervals": [
+        {
+          "gap_us": 0,
+          "iterations": 4,
+          "corrupt_iterations": 0,
+          "adjacent_address_reuse": 3,
+          "corrupt_indices": [],
+          "first_corrupt_index": null,
+          "fully_overwritten_iterations": 0,
+          "rows": [
+            {
+              "index": 0,
+              "expected": 1,
+              "address": "20616948221440",
+              "outcome": "intact",
+              "mismatch_count": null,
+              "foreign_values": null,
+              "next_address_reused": true
+            },
+            {
+              "index": 1,
+              "expected": 2,
+              "address": "20616948221440",
+              "outcome": "intact",
+              "mismatch_count": null,
+              "foreign_values": null,
+              "next_address_reused": true
+            },
+            {
+              "index": 2,
+              "expected": 3,
+              "address": "20616948221440",
+              "outcome": "intact",
+              "mismatch_count": null,
+              "foreign_values": null,
+              "next_address_reused": true
+            },
+            {
+              "index": 3,
+              "expected": 4,
+              "address": "20616948221440",
+              "outcome": "intact",
+              "mismatch_count": null,
+              "foreign_values": null,
+              "next_address_reused": null
+            }
+          ]
+        },
+        {
+          "gap_us": 1000,
+          "iterations": 4,
+          "corrupt_iterations": 0,
+          "adjacent_address_reuse": 3,
+          "corrupt_indices": [],
+          "first_corrupt_index": null,
+          "fully_overwritten_iterations": 0,
+          "rows": [
+            {
+              "index": 0,
+              "expected": 1,
+              "address": "20616948221440",
+              "outcome": "intact",
+              "mismatch_count": null,
+              "foreign_values": null,
+              "next_address_reused": true
+            },
+            {
+              "index": 1,
+              "expected": 2,
+              "address": "20616948221440",
+              "outcome": "intact",
+              "mismatch_count": null,
+              "foreign_values": null,
+              "next_address_reused": true
+            },
+            {
+              "index": 2,
+              "expected": 3,
+              "address": "20616948221440",
+              "outcome": "intact",
+              "mismatch_count": null,
+              "foreign_values": null,
+              "next_address_reused": true
+            },
+            {
+              "index": 3,
+              "expected": 4,
+              "address": "20616948221440",
+              "outcome": "intact",
+              "mismatch_count": null,
+              "foreign_values": null,
+              "next_address_reused": null
+            }
+          ]
+        }
+      ],
+      "allocator_actions_for_first_address": [
+        "alloc",
+        "free_requested",
+        "free_completed",
+        "alloc",
+        "free_requested",
+        "free_completed",
+        "alloc",
+        "free_requested",
+        "free_completed",
+        "alloc",
+        "free_requested",
+        "free_completed",
+        "alloc",
+        "free_requested",
+        "free_completed",
+        "alloc",
+        "free_requested",
+        "free_completed",
+        "alloc",
+        "free_requested",
+        "free_completed",
+        "alloc",
+        "free_requested",
+        "free_completed"
+      ]
+    },
+    {
+      "case": "asis-b32",
+      "mode": "asis",
+      "consumer_backlog": 32,
+      "environment": {
+        "ASCEND_HOME_PATH": "/usr/local/Ascend/cann-9.0.0",
+        "ASCEND_RT_VISIBLE_DEVICES": null,
+        "TASK_QUEUE_ENABLE": "1",
+        "PER_STREAM_QUEUE": "0",
+        "PYTORCH_NPU_ALLOC_CONF": "expandable_segments:False,multi_stream_lazy_reclaim:False",
+        "PYTORCH_NO_NPU_MEMORY_CACHING": null,
+        "ASCEND_LAUNCH_BLOCKING": null,
+        "MULTI_STREAM_MEMORY_REUSE": "1"
+      },
+      "iterations": 4,
+      "gaps_us": [
+        0,
+        1000
+      ],
+      "corrupt_by_gap": {
+        "0": 3,
+        "1000": 3
+      },
+      "adjacent_reuse_by_gap": {
+        "0": 3,
+        "1000": 3
+      },
+      "total_corrupt": 6,
+      "total_iterations": 8,
+      "first_fully_corrupt_gap": 0,
+      "intervals": [
+        {
+          "gap_us": 0,
+          "iterations": 4,
+          "corrupt_iterations": 3,
+          "adjacent_address_reuse": 3,
+          "corrupt_indices": [
+            0,
+            1,
+            2
+          ],
+          "first_corrupt_index": 0,
+          "fully_overwritten_iterations": 3,
+          "rows": [
+            {
+              "index": 0,
+              "expected": 1,
+              "address": "20616948221440",
+              "outcome": "overwritten",
+              "mismatch_count": 1048576,
+              "foreign_values": [
+                4.0
+              ],
+              "next_address_reused": true
+            },
+            {
+              "index": 1,
+              "expected": 2,
+              "address": "20616948221440",
+              "outcome": "overwritten",
+              "mismatch_count": 1048576,
+              "foreign_values": [
+                4.0
+              ],
+              "next_address_reused": true
+            },
+            {
+              "index": 2,
+              "expected": 3,
+              "address": "20616948221440",
+              "outcome": "overwritten",
+              "mismatch_count": 1048576,
+              "foreign_values": [
+                4.0
+              ],
+              "next_address_reused": true
+            },
+            {
+              "index": 3,
+              "expected": 4,
+              "address": "20616948221440",
+              "outcome": "intact",
+              "mismatch_count": null,
+              "foreign_values": null,
+              "next_address_reused": null
+            }
+          ]
+        },
+        {
+          "gap_us": 1000,
+          "iterations": 4,
+          "corrupt_iterations": 3,
+          "adjacent_address_reuse": 3,
+          "corrupt_indices": [
+            0,
+            1,
+            2
+          ],
+          "first_corrupt_index": 0,
+          "fully_overwritten_iterations": 3,
+          "rows": [
+            {
+              "index": 0,
+              "expected": 1,
+              "address": "20616948221440",
+              "outcome": "overwritten",
+              "mismatch_count": 1048576,
+              "foreign_values": [
+                4.0
+              ],
+              "next_address_reused": true
+            },
+            {
+              "index": 1,
+              "expected": 2,
+              "address": "20616948221440",
+              "outcome": "overwritten",
+              "mismatch_count": 1048576,
+              "foreign_values": [
+                4.0
+              ],
+              "next_address_reused": true
+            },
+            {
+              "index": 2,
+              "expected": 3,
+              "address": "20616948221440",
+              "outcome": "overwritten",
+              "mismatch_count": 1048576,
+              "foreign_values": [
+                4.0
+              ],
+              "next_address_reused": true
+            },
+            {
+              "index": 3,
+              "expected": 4,
+              "address": "20616948221440",
+              "outcome": "intact",
+              "mismatch_count": null,
+              "foreign_values": null,
+              "next_address_reused": null
+            }
+          ]
+        }
+      ],
+      "allocator_actions_for_first_address": [
+        "alloc",
+        "free_requested",
+        "free_completed",
+        "alloc",
+        "free_requested",
+        "free_completed",
+        "alloc",
+        "free_requested",
+        "free_completed",
+        "alloc",
+        "free_requested",
+        "free_completed",
+        "alloc",
+        "free_requested",
+        "free_completed",
+        "alloc",
+        "free_requested",
+        "free_completed",
+        "alloc",
+        "free_requested",
+        "free_completed",
+        "alloc",
+        "free_requested",
+        "free_completed"
+      ]
+    }
+  ],
+  "selected_configurations": [
+    "baseline"
+  ],
+  "excluded_case_statuses": [],
+  "iteration_count": 16,
+  "observation": "Corruption counts come from full element checks after each interval's synchronization. Gaps are host-side sleeps standing in for scheduler/forward latency; they do not enqueue device work on the main stream."
+}
