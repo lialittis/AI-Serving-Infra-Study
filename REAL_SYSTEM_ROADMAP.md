@@ -205,6 +205,12 @@ enable_async_exponential 变体 0 次进入该路径。P32→P35 证据链闭合
 引擎结构与负载余量，而非显式保护；结构性修法已由 P34 验证。重负载深积压场景与 graph/HCCL
 候选留待后续。
 
+2026-10-03 新增 [Practice 36](practice_36_graph_pool_boundary/README.md)：闭合 P32 遗留的 graph 边界项。
+捕获前普通池分配的外部输入被图烘焙地址后，释放→复用→重放 5/5 全量读到复用者数据（有序与跨流同），
+源码与实验一致确认外部存储无任何保护、存活责任在使用者；私有池 freeable 块经 npuFree 归还驱动，
+与普通池地址空间隔离（带 pending replay 删除 graph 后 0/5 地址重叠）。vLLM 的静态输入拷贝模式
+正是规避方式。P32 任务清单仅剩 HCCL 项（需多卡）。
+
 ## 参考入口
 
 - [vLLM Architecture](https://docs.vllm.ai/en/latest/design/arch_overview/)

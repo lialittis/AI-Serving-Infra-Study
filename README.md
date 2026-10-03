@@ -460,3 +460,18 @@ safe by engine structure and load margin, not by explicit protection.
 
 See the [guide](practice_35_live_sampling_reuse/README.md) and
 [results](practice_35_live_sampling_reuse/RESULTS.md).
+
+## Practice 36: graph capture/replay storage boundaries
+
+Close the Practice 32 deferred graph item with controlled probes: a tensor
+allocated on the normal pool before capture, whose address a captured graph
+bakes in, is freed and its address re-taken by a normal allocation — the
+replayed graph then reads the replacement's data in 5/5 trials, ordered or
+cross-stream. The private pool, however, never leaks addresses back to the
+normal pool: destroying a graph with a pending replay leaves later allocations
+disjoint (0/5 overlap) and intact, matching the releasePool/npuFree source
+path. External-storage lifetime is entirely the caller's responsibility;
+vLLM's static-input-copy pattern is the avoidance mechanism.
+
+See the [guide](practice_36_graph_pool_boundary/README.md) and
+[results](practice_36_graph_pool_boundary/RESULTS.md).

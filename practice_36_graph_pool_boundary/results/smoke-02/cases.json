@@ -1,0 +1,65 @@
+[
+  {
+    "case": "baseline-keep-alive",
+    "command": [
+      "/usr/local/python3.12.13/bin/python",
+      "/data/tianchi/practice_36_graph_pool_boundary/probe.py",
+      "--output",
+      "/data/tianchi/practice_36_graph_pool_boundary/results/smoke-02/baseline-keep-alive",
+      "--mode",
+      "keep-alive",
+      "--repeats",
+      "2"
+    ],
+    "environment": {
+      "TASK_QUEUE_ENABLE": "1",
+      "PER_STREAM_QUEUE": "0",
+      "PYTORCH_NPU_ALLOC_CONF": "expandable_segments:False,multi_stream_lazy_reclaim:False"
+    },
+    "start_ns": 1791064334280222382,
+    "end_ns": 1791064342804573345,
+    "returncode": 0
+  },
+  {
+    "case": "baseline-external-free-ordered",
+    "command": [
+      "/usr/local/python3.12.13/bin/python",
+      "/data/tianchi/practice_36_graph_pool_boundary/probe.py",
+      "--output",
+      "/data/tianchi/practice_36_graph_pool_boundary/results/smoke-02/baseline-external-free-ordered",
+      "--mode",
+      "external-free-ordered",
+      "--repeats",
+      "2"
+    ],
+    "environment": {
+      "TASK_QUEUE_ENABLE": "1",
+      "PER_STREAM_QUEUE": "0",
+      "PYTORCH_NPU_ALLOC_CONF": "expandable_segments:False,multi_stream_lazy_reclaim:False"
+    },
+    "start_ns": 1791064342804913351,
+    "end_ns": 1791064351081100094,
+    "returncode": 0
+  },
+  {
+    "case": "baseline-external-free-cross",
+    "command": [
+      "/usr/local/python3.12.13/bin/python",
+      "/data/tianchi/practice_36_graph_pool_boundary/probe.py",
+      "--output",
+      "/data/tianchi/practice_36_graph_pool_boundary/results/smoke-02/baseline-external-free-cross",
+      "--mode",
+      "external-free-cross",
+      "--repeats",
+      "2"
+    ],
+    "environment": {
+      "TASK_QUEUE_ENABLE": "1",
+      "PER_STREAM_QUEUE": "0",
+      "PYTORCH_NPU_ALLOC_CONF": "expandable_segments:False,multi_stream_lazy_reclaim:False"
+    },
+    "start_ns": 1791064351081542938,
+    "end_ns": 1791064359405912899,
+    "returncode": 0
+  }
+]

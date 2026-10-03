@@ -1,0 +1,86 @@
+[
+  {
+    "case": "baseline-keep-alive",
+    "command": [
+      "/usr/local/python3.12.13/bin/python",
+      "/data/tianchi/practice_36_graph_pool_boundary/probe.py",
+      "--output",
+      "/data/tianchi/practice_36_graph_pool_boundary/results/formal-01/baseline-keep-alive",
+      "--mode",
+      "keep-alive",
+      "--repeats",
+      "5"
+    ],
+    "environment": {
+      "TASK_QUEUE_ENABLE": "1",
+      "PER_STREAM_QUEUE": "0",
+      "PYTORCH_NPU_ALLOC_CONF": "expandable_segments:False,multi_stream_lazy_reclaim:False"
+    },
+    "start_ns": 1791064370950939477,
+    "end_ns": 1791064379251442313,
+    "returncode": 0
+  },
+  {
+    "case": "baseline-external-free-ordered",
+    "command": [
+      "/usr/local/python3.12.13/bin/python",
+      "/data/tianchi/practice_36_graph_pool_boundary/probe.py",
+      "--output",
+      "/data/tianchi/practice_36_graph_pool_boundary/results/formal-01/baseline-external-free-ordered",
+      "--mode",
+      "external-free-ordered",
+      "--repeats",
+      "5"
+    ],
+    "environment": {
+      "TASK_QUEUE_ENABLE": "1",
+      "PER_STREAM_QUEUE": "0",
+      "PYTORCH_NPU_ALLOC_CONF": "expandable_segments:False,multi_stream_lazy_reclaim:False"
+    },
+    "start_ns": 1791064379251809329,
+    "end_ns": 1791064388777372281,
+    "returncode": 0
+  },
+  {
+    "case": "baseline-external-free-cross",
+    "command": [
+      "/usr/local/python3.12.13/bin/python",
+      "/data/tianchi/practice_36_graph_pool_boundary/probe.py",
+      "--output",
+      "/data/tianchi/practice_36_graph_pool_boundary/results/formal-01/baseline-external-free-cross",
+      "--mode",
+      "external-free-cross",
+      "--repeats",
+      "5"
+    ],
+    "environment": {
+      "TASK_QUEUE_ENABLE": "1",
+      "PER_STREAM_QUEUE": "0",
+      "PYTORCH_NPU_ALLOC_CONF": "expandable_segments:False,multi_stream_lazy_reclaim:False"
+    },
+    "start_ns": 1791064388777750867,
+    "end_ns": 1791064397101949867,
+    "returncode": 0
+  },
+  {
+    "case": "baseline-pool-release-pending",
+    "command": [
+      "/usr/local/python3.12.13/bin/python",
+      "/data/tianchi/practice_36_graph_pool_boundary/probe.py",
+      "--output",
+      "/data/tianchi/practice_36_graph_pool_boundary/results/formal-01/baseline-pool-release-pending",
+      "--mode",
+      "pool-release-pending",
+      "--repeats",
+      "5"
+    ],
+    "environment": {
+      "TASK_QUEUE_ENABLE": "1",
+      "PER_STREAM_QUEUE": "0",
+      "PYTORCH_NPU_ALLOC_CONF": "expandable_segments:False,multi_stream_lazy_reclaim:False"
+    },
+    "start_ns": 1791064397102367004,
+    "end_ns": 1791064405426753444,
+    "returncode": 0
+  }
+]
