@@ -1,0 +1,31 @@
+{
+  "schema": 1,
+  "start_ns": 1791050668219012931,
+  "arguments": {
+    "output": "/data/tianchi/practice_35_live_sampling_reuse/results/smoke-01",
+    "configs": [
+      "baseline"
+    ],
+    "variants": [
+      "default"
+    ],
+    "prompts": 4,
+    "max_tokens": 16,
+    "repeats": 1
+  },
+  "configurations": {
+    "baseline": {
+      "TASK_QUEUE_ENABLE": "1",
+      "PER_STREAM_QUEUE": "0",
+      "PYTORCH_NPU_ALLOC_CONF": "expandable_segments:False,multi_stream_lazy_reclaim:False"
+    }
+  },
+  "source_sha256": {
+    "analyze.py": "ad950a9537cc5602d9ac6f87de40527f1ab675786807a6c8dec69a68b383d94a",
+    "observer.py": "21d2b7dc15886f1860d7e9375f6c1f65e43feda900e578ba335fd3f0cd7c3d1a",
+    "probe.py": "a241c78c06c1c433675b40fc322513d1b3f4c8b744f972658190eb1e6f1b9143",
+    "run.py": "9fa410facdfb4e4145753f5680ba0a3253b3a3746d45a77c96908fc93fe58669",
+    "sitecustomize.py": "b8cc9306339751f916b8b6e08af1b5c37f8e1a8f3d3531cadcc71f70ffc1d1da",
+    "test_analysis.py": "06b9fb04da9a8a11277e8a4d7143a9d31c2d75c47ed859d0ab01c241238b9c78"
+  }
+}

@@ -1,0 +1,10 @@
+{
+ "pid": 1803433,
+ "calls": 0,
+ "records": [],
+ "original_source": {
+  "file": "/vllm-workspace/vllm-ascend/vllm_ascend/sample/sampler.py",
+  "text": "def random_sample(\n    probs: torch.Tensor,\n    generators: dict[int, torch.Generator],\n) -> torch.Tensor:\n    \"\"\"Randomly sample from the probabilities.\n\n    We use this function instead of torch.multinomial because torch.multinomial\n    causes CPU-NPU synchronization.\n    \"\"\"\n    # NOTE(woosuk): To batch-process the requests without their own seeds,\n    # which is the common case, we first assume that every request does\n    # not have its own seed. Then, we overwrite the values for the requests\n    # that have their own seeds.\n    with npu_stream_switch(global_stream()):\n        q = torch.empty_like(probs)\n        if len(generators) != probs.shape[0]:\n            q.exponential_()\n        if generators:\n            # TODO(woosuk): This can be slow because we handle each request\n            # one by one. Optimize this.\n            for i, generator in generators.items():\n                q[i].exponential_(generator=generator)\n    torch.npu.current_stream().wait_stream(global_stream())\n    return probs.div_(q).argmax(dim=-1).view(-1)\n",
+  "sha256": "9e6ad4d8b18c9f1d149d54f72f6de965b6fdb5304c215b79304b3e72c08809de"
+ }
+}

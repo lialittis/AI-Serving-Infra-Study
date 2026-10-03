@@ -1,0 +1,33 @@
+{
+  "schema": 1,
+  "analysis_status": "passed",
+  "cases": [
+    {
+      "case": "baseline-default",
+      "variant": "default",
+      "executor_pid": 1800108,
+      "calls": 17,
+      "rows_first": 1,
+      "address_reuse": 15,
+      "prev_div_pending_while_reused": 0,
+      "precondition_indices": [],
+      "unique_addresses": 2,
+      "prev_gap_ms": {
+        "min": 11.36043,
+        "median": 11.824024,
+        "max": 20.278591
+      },
+      "repeats_identical": true,
+      "original_source_sha256": "9e6ad4d8b18c9f1d149d54f72f6de965b6fdb5304c215b79304b3e72c08809de",
+      "rows_samples": [
+        1,
+        4,
+        4,
+        4,
+        4
+      ],
+      "interpretation": "Address reuse while the previous div_ was still pending is the P34 race precondition; pending flags come from host-side event queries, which do not reconstruct device instruction order."
+    }
+  ],
+  "observation": "Precondition counts are host-observed; they bound when the P34 hazard could begin, and do not by themselves demonstrate corrupted tokens."
+}

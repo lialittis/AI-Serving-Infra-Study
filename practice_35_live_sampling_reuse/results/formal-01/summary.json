@@ -1,0 +1,71 @@
+{
+  "schema": 1,
+  "analysis_status": "passed",
+  "cases": [
+    {
+      "case": "baseline-default",
+      "variant": "default",
+      "executor_pid": 1801400,
+      "calls": 68,
+      "rows_first": 1,
+      "address_reuse": 64,
+      "prev_div_pending_while_reused": 0,
+      "precondition_indices": [],
+      "unique_addresses": 2,
+      "prev_gap_ms": {
+        "min": 12.02696,
+        "median": 12.396168,
+        "max": 21.586545
+      },
+      "repeats_identical": true,
+      "original_source_sha256": "9e6ad4d8b18c9f1d149d54f72f6de965b6fdb5304c215b79304b3e72c08809de",
+      "rows_samples": [
+        1,
+        16,
+        16,
+        16,
+        16
+      ],
+      "interpretation": "Address reuse while the previous div_ was still pending is the P34 race precondition; pending flags come from host-side event queries, which do not reconstruct device instruction order."
+    },
+    {
+      "case": "baseline-async",
+      "variant": "async",
+      "executor_pid": 1802417,
+      "calls": 68,
+      "rows_first": 1,
+      "address_reuse": 64,
+      "prev_div_pending_while_reused": 0,
+      "precondition_indices": [],
+      "unique_addresses": 2,
+      "prev_gap_ms": {
+        "min": 11.451323,
+        "median": 11.836362,
+        "max": 20.890005
+      },
+      "repeats_identical": true,
+      "original_source_sha256": "9e6ad4d8b18c9f1d149d54f72f6de965b6fdb5304c215b79304b3e72c08809de",
+      "rows_samples": [
+        1,
+        16,
+        16,
+        16,
+        16
+      ],
+      "interpretation": "Address reuse while the previous div_ was still pending is the P34 race precondition; pending flags come from host-side event queries, which do not reconstruct device instruction order."
+    },
+    {
+      "case": "baseline-protected",
+      "variant": "protected",
+      "calls": 0,
+      "address_reuse": 0,
+      "prev_div_pending_while_reused": 0,
+      "precondition_indices": [],
+      "unique_addresses": 0,
+      "prev_gap_ms": null,
+      "repeats_identical": true,
+      "interpretation": "enable_async_exponential path never enters random_sample."
+    }
+  ],
+  "observation": "Precondition counts are host-observed; they bound when the P34 hazard could begin, and do not by themselves demonstrate corrupted tokens."
+}

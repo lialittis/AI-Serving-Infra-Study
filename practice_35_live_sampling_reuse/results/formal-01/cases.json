@@ -1,0 +1,77 @@
+[
+  {
+    "case": "baseline-default",
+    "command": [
+      "/usr/local/python3.12.13/bin/python",
+      "/data/tianchi/practice_35_live_sampling_reuse/probe.py",
+      "--output",
+      "/data/tianchi/practice_35_live_sampling_reuse/results/formal-01/baseline-default",
+      "--variant",
+      "default",
+      "--prompts",
+      "16",
+      "--max-tokens",
+      "48",
+      "--repeats",
+      "2"
+    ],
+    "environment": {
+      "TASK_QUEUE_ENABLE": "1",
+      "PER_STREAM_QUEUE": "0",
+      "PYTORCH_NPU_ALLOC_CONF": "expandable_segments:False,multi_stream_lazy_reclaim:False"
+    },
+    "start_ns": 1791050721126217363,
+    "end_ns": 1791050760015747624,
+    "returncode": 0
+  },
+  {
+    "case": "baseline-async",
+    "command": [
+      "/usr/local/python3.12.13/bin/python",
+      "/data/tianchi/practice_35_live_sampling_reuse/probe.py",
+      "--output",
+      "/data/tianchi/practice_35_live_sampling_reuse/results/formal-01/baseline-async",
+      "--variant",
+      "async",
+      "--prompts",
+      "16",
+      "--max-tokens",
+      "48",
+      "--repeats",
+      "2"
+    ],
+    "environment": {
+      "TASK_QUEUE_ENABLE": "1",
+      "PER_STREAM_QUEUE": "0",
+      "PYTORCH_NPU_ALLOC_CONF": "expandable_segments:False,multi_stream_lazy_reclaim:False"
+    },
+    "start_ns": 1791050760016142473,
+    "end_ns": 1791050798566703808,
+    "returncode": 0
+  },
+  {
+    "case": "baseline-protected",
+    "command": [
+      "/usr/local/python3.12.13/bin/python",
+      "/data/tianchi/practice_35_live_sampling_reuse/probe.py",
+      "--output",
+      "/data/tianchi/practice_35_live_sampling_reuse/results/formal-01/baseline-protected",
+      "--variant",
+      "protected",
+      "--prompts",
+      "16",
+      "--max-tokens",
+      "48",
+      "--repeats",
+      "2"
+    ],
+    "environment": {
+      "TASK_QUEUE_ENABLE": "1",
+      "PER_STREAM_QUEUE": "0",
+      "PYTORCH_NPU_ALLOC_CONF": "expandable_segments:False,multi_stream_lazy_reclaim:False"
+    },
+    "start_ns": 1791050798567236076,
+    "end_ns": 1791050837265142678,
+    "returncode": 0
+  }
+]

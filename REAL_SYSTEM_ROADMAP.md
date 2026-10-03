@@ -198,6 +198,13 @@ vllm-ascend 全库 0 处 record_stream，采样同步路径 `fill_exponential` �
 先导等待两种修法全程 0 损坏，后者与 do_async_exponential 的先导等待同构。
 真实服务的确定性触发验证与 graph/HCCL 候选留待后续。
 
+2026-10-03 新增 [Practice 35](practice_35_live_sampling_reuse/README.md)：真实 vLLM 引擎上的复用前置条件测量。
+经 sitecustomize 注入逐行同语义的 random_sample 包装（不修改安装源码），default 与 async_scheduling
+两种引擎下地址复用 64/68 常态发生、前置条件 0 次、步进间隔中位约 12 ms、重复生成一致；
+enable_async_exponential 变体 0 次进入该路径。P32→P35 证据链闭合：默认采样路径的安全性来自
+引擎结构与负载余量，而非显式保护；结构性修法已由 P34 验证。重负载深积压场景与 graph/HCCL
+候选留待后续。
+
 ## 参考入口
 
 - [vLLM Architecture](https://docs.vllm.ai/en/latest/design/arch_overview/)

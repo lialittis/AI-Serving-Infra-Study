@@ -1,0 +1,163 @@
+{
+ "pid": 1800108,
+ "calls": 17,
+ "records": [
+  {
+   "index": 0,
+   "t_mono_ns": 5297456111083707,
+   "rows": 1,
+   "address": 20623461974016,
+   "reused_prev": null,
+   "prev_div_pending": null
+  },
+  {
+   "index": 1,
+   "t_mono_ns": 5297456131362298,
+   "rows": 4,
+   "address": 20649024159744,
+   "reused_prev": false,
+   "prev_div_pending": false,
+   "prev_gap_ms": 20.278591
+  },
+  {
+   "index": 2,
+   "t_mono_ns": 5297456144846745,
+   "rows": 4,
+   "address": 20649024159744,
+   "reused_prev": true,
+   "prev_div_pending": false,
+   "prev_gap_ms": 13.484447
+  },
+  {
+   "index": 3,
+   "t_mono_ns": 5297456157092658,
+   "rows": 4,
+   "address": 20649024159744,
+   "reused_prev": true,
+   "prev_div_pending": false,
+   "prev_gap_ms": 12.245913
+  },
+  {
+   "index": 4,
+   "t_mono_ns": 5297456168944477,
+   "rows": 4,
+   "address": 20649024159744,
+   "reused_prev": true,
+   "prev_div_pending": false,
+   "prev_gap_ms": 11.851819
+  },
+  {
+   "index": 5,
+   "t_mono_ns": 5297456180801282,
+   "rows": 4,
+   "address": 20649024159744,
+   "reused_prev": true,
+   "prev_div_pending": false,
+   "prev_gap_ms": 11.856805
+  },
+  {
+   "index": 6,
+   "t_mono_ns": 5297456192625306,
+   "rows": 4,
+   "address": 20649024159744,
+   "reused_prev": true,
+   "prev_div_pending": false,
+   "prev_gap_ms": 11.824024
+  },
+  {
+   "index": 7,
+   "t_mono_ns": 5297456204518220,
+   "rows": 4,
+   "address": 20649024159744,
+   "reused_prev": true,
+   "prev_div_pending": false,
+   "prev_gap_ms": 11.892914
+  },
+  {
+   "index": 8,
+   "t_mono_ns": 5297456216189773,
+   "rows": 4,
+   "address": 20649024159744,
+   "reused_prev": true,
+   "prev_div_pending": false,
+   "prev_gap_ms": 11.671553
+  },
+  {
+   "index": 9,
+   "t_mono_ns": 5297456227553929,
+   "rows": 4,
+   "address": 20649024159744,
+   "reused_prev": true,
+   "prev_div_pending": false,
+   "prev_gap_ms": 11.364156
+  },
+  {
+   "index": 10,
+   "t_mono_ns": 5297456238927066,
+   "rows": 4,
+   "address": 20649024159744,
+   "reused_prev": true,
+   "prev_div_pending": false,
+   "prev_gap_ms": 11.373137
+  },
+  {
+   "index": 11,
+   "t_mono_ns": 5297456250361403,
+   "rows": 4,
+   "address": 20649024159744,
+   "reused_prev": true,
+   "prev_div_pending": false,
+   "prev_gap_ms": 11.434337
+  },
+  {
+   "index": 12,
+   "t_mono_ns": 5297456261721833,
+   "rows": 4,
+   "address": 20649024159744,
+   "reused_prev": true,
+   "prev_div_pending": false,
+   "prev_gap_ms": 11.36043
+  },
+  {
+   "index": 13,
+   "t_mono_ns": 5297456273136742,
+   "rows": 4,
+   "address": 20649024159744,
+   "reused_prev": true,
+   "prev_div_pending": false,
+   "prev_gap_ms": 11.414909
+  },
+  {
+   "index": 14,
+   "t_mono_ns": 5297456284661249,
+   "rows": 4,
+   "address": 20649024159744,
+   "reused_prev": true,
+   "prev_div_pending": false,
+   "prev_gap_ms": 11.524507
+  },
+  {
+   "index": 15,
+   "t_mono_ns": 5297456296348972,
+   "rows": 4,
+   "address": 20649024159744,
+   "reused_prev": true,
+   "prev_div_pending": false,
+   "prev_gap_ms": 11.687723
+  },
+  {
+   "index": 16,
+   "t_mono_ns": 5297456311133893,
+   "rows": 3,
+   "address": 20649024159744,
+   "reused_prev": true,
+   "prev_div_pending": false,
+   "prev_gap_ms": 14.784921
+  }
+ ],
+ "original_source": {
+  "file": "/vllm-workspace/vllm-ascend/vllm_ascend/sample/sampler.py",
+  "text": "def random_sample(\n    probs: torch.Tensor,\n    generators: dict[int, torch.Generator],\n) -> torch.Tensor:\n    \"\"\"Randomly sample from the probabilities.\n\n    We use this function instead of torch.multinomial because torch.multinomial\n    causes CPU-NPU synchronization.\n    \"\"\"\n    # NOTE(woosuk): To batch-process the requests without their own seeds,\n    # which is the common case, we first assume that every request does\n    # not have its own seed. Then, we overwrite the values for the requests\n    # that have their own seeds.\n    with npu_stream_switch(global_stream()):\n        q = torch.empty_like(probs)\n        if len(generators) != probs.shape[0]:\n            q.exponential_()\n        if generators:\n            # TODO(woosuk): This can be slow because we handle each request\n            # one by one. Optimize this.\n            for i, generator in generators.items():\n                q[i].exponential_(generator=generator)\n    torch.npu.current_stream().wait_stream(global_stream())\n    return probs.div_(q).argmax(dim=-1).view(-1)\n",
+  "sha256": "9e6ad4d8b18c9f1d149d54f72f6de965b6fdb5304c215b79304b3e72c08809de"
+ }
+}

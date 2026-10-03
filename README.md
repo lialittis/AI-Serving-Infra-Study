@@ -445,3 +445,18 @@ margin, not a protection.
 
 See the [guide](practice_34_sampling_gap/README.md) and
 [results](practice_34_sampling_gap/RESULTS.md).
+
+## Practice 35: measure the reuse precondition on a live vLLM engine
+
+Run real offline `vllm.LLM` generation (Qwen2.5-0.5B, eager, temperature/top-k
+sampling, fixed seed) with a line-identical instrumented `random_sample`
+injected via `sitecustomize` — no installed files modified. Across sync and
+`async_scheduling` engines the q address reuses the previous step's address in
+64/68 calls, yet the Practice 34 race precondition (previous main-stream
+consumer still pending when the next fill is submitted) never occurs; the
+measured inter-step gap is ~12 ms. The protected variant never enters
+`random_sample`. This closes the P32→P35 evidence chain: the default path is
+safe by engine structure and load margin, not by explicit protection.
+
+See the [guide](practice_35_live_sampling_reuse/README.md) and
+[results](practice_35_live_sampling_reuse/RESULTS.md).
