@@ -1,0 +1,40 @@
+{
+  "schema": 1,
+  "start_ns": 1790958832280205033,
+  "arguments": {
+    "output": "/data/tianchi/practice_32_allocator_lifetime/results/custom-owner-01",
+    "configs": [
+      "baseline"
+    ],
+    "modes": [
+      "omit",
+      "record",
+      "join"
+    ],
+    "threads": [
+      1,
+      2
+    ],
+    "owner": "custom",
+    "repeats": 3,
+    "backlog": 64,
+    "candidates": 32,
+    "matrix": 4096,
+    "profile": false
+  },
+  "configurations": {
+    "baseline": {
+      "TASK_QUEUE_ENABLE": "1",
+      "PER_STREAM_QUEUE": "0",
+      "PYTORCH_NPU_ALLOC_CONF": "expandable_segments:False,multi_stream_lazy_reclaim:False"
+    }
+  },
+  "source_sha256": {
+    "analyze.py": "2c52e2f4f9730ed33f635b2ebf12bc8fff750fd769e199d45185a9c02a1a8b21",
+    "analyze_profile.py": "e9370506327a45fb57e810127418ac8b1658984850ce3c850f6e38dec87f24a6",
+    "probe.py": "0dbe2fae053466acb1aa1c1cc29be0a154b2aae1a16c348230afed8065a8bd71",
+    "run.py": "a8a8681176a181e0190009d28977ac6647e1c5f32c460d795bb2d28c437f32bf",
+    "test_analysis.py": "4497f809a67abd10ac2886309001b6674238591a9f53b19055aec61b55c81d5a",
+    "test_profile.py": "fbb4ee26e2ff40b58175de9356240040aa7a9ea0d579dea5f56ae1c21eb4e6f4"
+  }
+}

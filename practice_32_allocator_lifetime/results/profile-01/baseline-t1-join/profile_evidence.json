@@ -1,0 +1,4328 @@
+{
+  "schema": 1,
+  "analysis_status": "passed",
+  "mode": "join",
+  "trials": [
+    {
+      "trial": "t00",
+      "copy_tasks": [
+        {
+          "trial": "t00",
+          "label": "P32/t00/consumer-copy",
+          "operation": "consumer-copy",
+          "task_index": 1664,
+          "task_name": "aclnnInplaceCopy_TensorMoveAiCore_TensorMove",
+          "task_type": "AI_VECTOR_CORE",
+          "physical_stream": "44",
+          "task_id": "79",
+          "device_start_us": "1790958915954955.847",
+          "device_end_us": "1790958915954965.228",
+          "host_index": 142,
+          "host_name": "aclnnInplaceCopy",
+          "cann_index": 2179,
+          "cann_name": "Node@launch",
+          "connection_id": "337",
+          "torch_flow": {
+            "id": "1790958915954955847",
+            "start_index": 3509,
+            "end_index": 3510
+          },
+          "cann_flow": {
+            "id": "1447403978752",
+            "start_index": 3013,
+            "end_index": 1665
+          }
+        }
+      ],
+      "device_copy_start_us": "1790958915954955.847",
+      "device_copy_end_us": "1790958915954965.228",
+      "reused_before_copy_tasks_start": [
+        {
+          "index": 0,
+          "allocation_scope_end_us": "1790958915928636.016",
+          "device_copy_start_us": "1790958915954955.847",
+          "gap_us": "26319.831"
+        }
+      ],
+      "copy_end_marker_progress_separate": true
+    },
+    {
+      "trial": "t01",
+      "copy_tasks": [
+        {
+          "trial": "t01",
+          "label": "P32/t01/consumer-copy",
+          "operation": "consumer-copy",
+          "task_index": 1810,
+          "task_name": "aclnnInplaceCopy_TensorMoveAiCore_TensorMove",
+          "task_type": "AI_VECTOR_CORE",
+          "physical_stream": "44",
+          "task_id": "147",
+          "device_start_us": "1790958915992233.337",
+          "device_end_us": "1790958915992242.698",
+          "host_index": 606,
+          "host_name": "aclnnInplaceCopy",
+          "cann_index": 2727,
+          "cann_name": "Node@launch",
+          "connection_id": "1021",
+          "torch_flow": {
+            "id": "1790958915992233337",
+            "start_index": 3655,
+            "end_index": 3656
+          },
+          "cann_flow": {
+            "id": "4385161609216",
+            "start_index": 3087,
+            "end_index": 1811
+          }
+        }
+      ],
+      "device_copy_start_us": "1790958915992233.337",
+      "device_copy_end_us": "1790958915992242.698",
+      "reused_before_copy_tasks_start": [
+        {
+          "index": 0,
+          "allocation_scope_end_us": "1790958915965686.228",
+          "device_copy_start_us": "1790958915992233.337",
+          "gap_us": "26547.109"
+        }
+      ],
+      "copy_end_marker_progress_separate": true
+    }
+  ],
+  "mapped_tasks": [
+    {
+      "trial": "t00",
+      "label": "P32/t00/create-a",
+      "operation": "create-a",
+      "task_index": 1528,
+      "task_name": "aclnnInplaceFillScalar_FillAiCore_Fill",
+      "task_type": "AI_VECTOR_CORE",
+      "physical_stream": "46",
+      "task_id": "5",
+      "device_start_us": "1790958915927407.046",
+      "device_end_us": "1790958915927420.146",
+      "host_index": 2,
+      "host_name": "aclnnInplaceFillScalar",
+      "cann_index": 1851,
+      "cann_name": "Node@launch",
+      "connection_id": "9",
+      "torch_flow": {
+        "id": "1790958915927407046",
+        "start_index": 3375,
+        "end_index": 3376
+      },
+      "cann_flow": {
+        "id": "38654705664",
+        "start_index": 2945,
+        "end_index": 1529
+      }
+    },
+    {
+      "trial": "t00",
+      "label": "P32/t00/backlog",
+      "operation": "backlog",
+      "task_index": 1532,
+      "task_name": "aclnnMm_MatMulV3Common_MatMulV3",
+      "task_type": "AI_CORE",
+      "physical_stream": "44",
+      "task_id": "14",
+      "device_start_us": "1790958915927715.398",
+      "device_end_us": "1790958915928140.755",
+      "host_index": 10,
+      "host_name": "aclnnMm",
+      "cann_index": 1858,
+      "cann_name": "Node@launch",
+      "connection_id": "16",
+      "torch_flow": {
+        "id": "1790958915927715398",
+        "start_index": 3379,
+        "end_index": 3380
+      },
+      "cann_flow": {
+        "id": "68719476736",
+        "start_index": 2948,
+        "end_index": 1533
+      }
+    },
+    {
+      "trial": "t00",
+      "label": "P32/t00/backlog",
+      "operation": "backlog",
+      "task_index": 1534,
+      "task_name": "aclnnMm_MatMulV3Common_MatMulV3",
+      "task_type": "AI_CORE",
+      "physical_stream": "44",
+      "task_id": "15",
+      "device_start_us": "1790958915928140.775",
+      "device_end_us": "1790958915928566.332",
+      "host_index": 12,
+      "host_name": "aclnnMm",
+      "cann_index": 1863,
+      "cann_name": "Node@launch",
+      "connection_id": "21",
+      "torch_flow": {
+        "id": "1790958915928140775",
+        "start_index": 3381,
+        "end_index": 3382
+      },
+      "cann_flow": {
+        "id": "90194313216",
+        "start_index": 2949,
+        "end_index": 1535
+      }
+    },
+    {
+      "trial": "t00",
+      "label": "P32/t00/owner-joins-consumer",
+      "operation": "owner-joins-consumer",
+      "task_index": 1536,
+      "task_name": "EVENT_WAIT",
+      "task_type": "EVENT_WAIT",
+      "physical_stream": "46",
+      "task_id": "7",
+      "device_start_us": "1790958915928228.979",
+      "device_end_us": "1790958915954965.728",
+      "host_index": 151,
+      "host_name": "wait_event",
+      "cann_index": 2183,
+      "cann_name": "AscendCL@aclrtStreamWaitEvent",
+      "connection_id": "341",
+      "torch_flow": {
+        "id": "1790958915928228979",
+        "start_index": 3515,
+        "end_index": 3516
+      },
+      "cann_flow": {
+        "id": "1464583847936",
+        "start_index": 3016,
+        "end_index": 1537
+      }
+    },
+    {
+      "trial": "t00",
+      "label": "P32/t00/backlog",
+      "operation": "backlog",
+      "task_index": 1538,
+      "task_name": "aclnnMm_MatMulV3Common_MatMulV3",
+      "task_type": "AI_CORE",
+      "physical_stream": "44",
+      "task_id": "16",
+      "device_start_us": "1790958915928566.352",
+      "device_end_us": "1790958915928994.589",
+      "host_index": 14,
+      "host_name": "aclnnMm",
+      "cann_index": 1868,
+      "cann_name": "Node@launch",
+      "connection_id": "26",
+      "torch_flow": {
+        "id": "1790958915928566352",
+        "start_index": 3383,
+        "end_index": 3384
+      },
+      "cann_flow": {
+        "id": "111669149696",
+        "start_index": 2950,
+        "end_index": 1539
+      }
+    },
+    {
+      "trial": "t00",
+      "label": "P32/t00/backlog",
+      "operation": "backlog",
+      "task_index": 1540,
+      "task_name": "aclnnMm_MatMulV3Common_MatMulV3",
+      "task_type": "AI_CORE",
+      "physical_stream": "44",
+      "task_id": "17",
+      "device_start_us": "1790958915928994.609",
+      "device_end_us": "1790958915929420.346",
+      "host_index": 16,
+      "host_name": "aclnnMm",
+      "cann_index": 1873,
+      "cann_name": "Node@launch",
+      "connection_id": "31",
+      "torch_flow": {
+        "id": "1790958915928994609",
+        "start_index": 3385,
+        "end_index": 3386
+      },
+      "cann_flow": {
+        "id": "133143986176",
+        "start_index": 2951,
+        "end_index": 1541
+      }
+    },
+    {
+      "trial": "t00",
+      "label": "P32/t00/backlog",
+      "operation": "backlog",
+      "task_index": 1542,
+      "task_name": "aclnnMm_MatMulV3Common_MatMulV3",
+      "task_type": "AI_CORE",
+      "physical_stream": "44",
+      "task_id": "18",
+      "device_start_us": "1790958915929420.366",
+      "device_end_us": "1790958915929846.463",
+      "host_index": 18,
+      "host_name": "aclnnMm",
+      "cann_index": 1878,
+      "cann_name": "Node@launch",
+      "connection_id": "36",
+      "torch_flow": {
+        "id": "1790958915929420366",
+        "start_index": 3387,
+        "end_index": 3388
+      },
+      "cann_flow": {
+        "id": "154618822656",
+        "start_index": 2952,
+        "end_index": 1543
+      }
+    },
+    {
+      "trial": "t00",
+      "label": "P32/t00/backlog",
+      "operation": "backlog",
+      "task_index": 1544,
+      "task_name": "aclnnMm_MatMulV3Common_MatMulV3",
+      "task_type": "AI_CORE",
+      "physical_stream": "44",
+      "task_id": "19",
+      "device_start_us": "1790958915929846.483",
+      "device_end_us": "1790958915930272.460",
+      "host_index": 20,
+      "host_name": "aclnnMm",
+      "cann_index": 1883,
+      "cann_name": "Node@launch",
+      "connection_id": "41",
+      "torch_flow": {
+        "id": "1790958915929846483",
+        "start_index": 3389,
+        "end_index": 3390
+      },
+      "cann_flow": {
+        "id": "176093659136",
+        "start_index": 2953,
+        "end_index": 1545
+      }
+    },
+    {
+      "trial": "t00",
+      "label": "P32/t00/backlog",
+      "operation": "backlog",
+      "task_index": 1546,
+      "task_name": "aclnnMm_MatMulV3Common_MatMulV3",
+      "task_type": "AI_CORE",
+      "physical_stream": "44",
+      "task_id": "20",
+      "device_start_us": "1790958915930272.500",
+      "device_end_us": "1790958915930698.037",
+      "host_index": 22,
+      "host_name": "aclnnMm",
+      "cann_index": 1888,
+      "cann_name": "Node@launch",
+      "connection_id": "46",
+      "torch_flow": {
+        "id": "1790958915930272500",
+        "start_index": 3391,
+        "end_index": 3392
+      },
+      "cann_flow": {
+        "id": "197568495616",
+        "start_index": 2954,
+        "end_index": 1547
+      }
+    },
+    {
+      "trial": "t00",
+      "label": "P32/t00/backlog",
+      "operation": "backlog",
+      "task_index": 1548,
+      "task_name": "aclnnMm_MatMulV3Common_MatMulV3",
+      "task_type": "AI_CORE",
+      "physical_stream": "44",
+      "task_id": "21",
+      "device_start_us": "1790958915930698.057",
+      "device_end_us": "1790958915931123.114",
+      "host_index": 24,
+      "host_name": "aclnnMm",
+      "cann_index": 1893,
+      "cann_name": "Node@launch",
+      "connection_id": "51",
+      "torch_flow": {
+        "id": "1790958915930698057",
+        "start_index": 3393,
+        "end_index": 3394
+      },
+      "cann_flow": {
+        "id": "219043332096",
+        "start_index": 2955,
+        "end_index": 1549
+      }
+    },
+    {
+      "trial": "t00",
+      "label": "P32/t00/backlog",
+      "operation": "backlog",
+      "task_index": 1550,
+      "task_name": "aclnnMm_MatMulV3Common_MatMulV3",
+      "task_type": "AI_CORE",
+      "physical_stream": "44",
+      "task_id": "22",
+      "device_start_us": "1790958915931123.134",
+      "device_end_us": "1790958915931548.371",
+      "host_index": 26,
+      "host_name": "aclnnMm",
+      "cann_index": 1898,
+      "cann_name": "Node@launch",
+      "connection_id": "56",
+      "torch_flow": {
+        "id": "1790958915931123134",
+        "start_index": 3395,
+        "end_index": 3396
+      },
+      "cann_flow": {
+        "id": "240518168576",
+        "start_index": 2956,
+        "end_index": 1551
+      }
+    },
+    {
+      "trial": "t00",
+      "label": "P32/t00/backlog",
+      "operation": "backlog",
+      "task_index": 1552,
+      "task_name": "aclnnMm_MatMulV3Common_MatMulV3",
+      "task_type": "AI_CORE",
+      "physical_stream": "44",
+      "task_id": "23",
+      "device_start_us": "1790958915931548.391",
+      "device_end_us": "1790958915931974.728",
+      "host_index": 28,
+      "host_name": "aclnnMm",
+      "cann_index": 1903,
+      "cann_name": "Node@launch",
+      "connection_id": "61",
+      "torch_flow": {
+        "id": "1790958915931548391",
+        "start_index": 3397,
+        "end_index": 3398
+      },
+      "cann_flow": {
+        "id": "261993005056",
+        "start_index": 2957,
+        "end_index": 1553
+      }
+    },
+    {
+      "trial": "t00",
+      "label": "P32/t00/backlog",
+      "operation": "backlog",
+      "task_index": 1554,
+      "task_name": "aclnnMm_MatMulV3Common_MatMulV3",
+      "task_type": "AI_CORE",
+      "physical_stream": "44",
+      "task_id": "24",
+      "device_start_us": "1790958915931974.748",
+      "device_end_us": "1790958915932400.705",
+      "host_index": 30,
+      "host_name": "aclnnMm",
+      "cann_index": 1908,
+      "cann_name": "Node@launch",
+      "connection_id": "66",
+      "torch_flow": {
+        "id": "1790958915931974748",
+        "start_index": 3399,
+        "end_index": 3400
+      },
+      "cann_flow": {
+        "id": "283467841536",
+        "start_index": 2958,
+        "end_index": 1555
+      }
+    },
+    {
+      "trial": "t00",
+      "label": "P32/t00/backlog",
+      "operation": "backlog",
+      "task_index": 1556,
+      "task_name": "aclnnMm_MatMulV3Common_MatMulV3",
+      "task_type": "AI_CORE",
+      "physical_stream": "44",
+      "task_id": "25",
+      "device_start_us": "1790958915932400.745",
+      "device_end_us": "1790958915932827.222",
+      "host_index": 32,
+      "host_name": "aclnnMm",
+      "cann_index": 1913,
+      "cann_name": "Node@launch",
+      "connection_id": "71",
+      "torch_flow": {
+        "id": "1790958915932400745",
+        "start_index": 3401,
+        "end_index": 3402
+      },
+      "cann_flow": {
+        "id": "304942678016",
+        "start_index": 2959,
+        "end_index": 1557
+      }
+    },
+    {
+      "trial": "t00",
+      "label": "P32/t00/backlog",
+      "operation": "backlog",
+      "task_index": 1558,
+      "task_name": "aclnnMm_MatMulV3Common_MatMulV3",
+      "task_type": "AI_CORE",
+      "physical_stream": "44",
+      "task_id": "26",
+      "device_start_us": "1790958915932827.262",
+      "device_end_us": "1790958915933253.099",
+      "host_index": 34,
+      "host_name": "aclnnMm",
+      "cann_index": 1918,
+      "cann_name": "Node@launch",
+      "connection_id": "76",
+      "torch_flow": {
+        "id": "1790958915932827262",
+        "start_index": 3403,
+        "end_index": 3404
+      },
+      "cann_flow": {
+        "id": "326417514496",
+        "start_index": 2960,
+        "end_index": 1559
+      }
+    },
+    {
+      "trial": "t00",
+      "label": "P32/t00/backlog",
+      "operation": "backlog",
+      "task_index": 1560,
+      "task_name": "aclnnMm_MatMulV3Common_MatMulV3",
+      "task_type": "AI_CORE",
+      "physical_stream": "44",
+      "task_id": "27",
+      "device_start_us": "1790958915933253.119",
+      "device_end_us": "1790958915933679.796",
+      "host_index": 36,
+      "host_name": "aclnnMm",
+      "cann_index": 1923,
+      "cann_name": "Node@launch",
+      "connection_id": "81",
+      "torch_flow": {
+        "id": "1790958915933253119",
+        "start_index": 3405,
+        "end_index": 3406
+      },
+      "cann_flow": {
+        "id": "347892350976",
+        "start_index": 2961,
+        "end_index": 1561
+      }
+    },
+    {
+      "trial": "t00",
+      "label": "P32/t00/backlog",
+      "operation": "backlog",
+      "task_index": 1562,
+      "task_name": "aclnnMm_MatMulV3Common_MatMulV3",
+      "task_type": "AI_CORE",
+      "physical_stream": "44",
+      "task_id": "28",
+      "device_start_us": "1790958915933679.816",
+      "device_end_us": "1790958915934105.734",
+      "host_index": 38,
+      "host_name": "aclnnMm",
+      "cann_index": 1928,
+      "cann_name": "Node@launch",
+      "connection_id": "86",
+      "torch_flow": {
+        "id": "1790958915933679816",
+        "start_index": 3407,
+        "end_index": 3408
+      },
+      "cann_flow": {
+        "id": "369367187456",
+        "start_index": 2962,
+        "end_index": 1563
+      }
+    },
+    {
+      "trial": "t00",
+      "label": "P32/t00/backlog",
+      "operation": "backlog",
+      "task_index": 1564,
+      "task_name": "aclnnMm_MatMulV3Common_MatMulV3",
+      "task_type": "AI_CORE",
+      "physical_stream": "44",
+      "task_id": "29",
+      "device_start_us": "1790958915934105.754",
+      "device_end_us": "1790958915934529.730",
+      "host_index": 40,
+      "host_name": "aclnnMm",
+      "cann_index": 1933,
+      "cann_name": "Node@launch",
+      "connection_id": "91",
+      "torch_flow": {
+        "id": "1790958915934105754",
+        "start_index": 3409,
+        "end_index": 3410
+      },
+      "cann_flow": {
+        "id": "390842023936",
+        "start_index": 2963,
+        "end_index": 1565
+      }
+    },
+    {
+      "trial": "t00",
+      "label": "P32/t00/backlog",
+      "operation": "backlog",
+      "task_index": 1566,
+      "task_name": "aclnnMm_MatMulV3Common_MatMulV3",
+      "task_type": "AI_CORE",
+      "physical_stream": "44",
+      "task_id": "30",
+      "device_start_us": "1790958915934529.750",
+      "device_end_us": "1790958915934956.028",
+      "host_index": 42,
+      "host_name": "aclnnMm",
+      "cann_index": 1938,
+      "cann_name": "Node@launch",
+      "connection_id": "96",
+      "torch_flow": {
+        "id": "1790958915934529750",
+        "start_index": 3411,
+        "end_index": 3412
+      },
+      "cann_flow": {
+        "id": "412316860416",
+        "start_index": 2964,
+        "end_index": 1567
+      }
+    },
+    {
+      "trial": "t00",
+      "label": "P32/t00/backlog",
+      "operation": "backlog",
+      "task_index": 1568,
+      "task_name": "aclnnMm_MatMulV3Common_MatMulV3",
+      "task_type": "AI_CORE",
+      "physical_stream": "44",
+      "task_id": "31",
+      "device_start_us": "1790958915934956.048",
+      "device_end_us": "1790958915935382.285",
+      "host_index": 44,
+      "host_name": "aclnnMm",
+      "cann_index": 1943,
+      "cann_name": "Node@launch",
+      "connection_id": "101",
+      "torch_flow": {
+        "id": "1790958915934956048",
+        "start_index": 3413,
+        "end_index": 3414
+      },
+      "cann_flow": {
+        "id": "433791696896",
+        "start_index": 2965,
+        "end_index": 1569
+      }
+    },
+    {
+      "trial": "t00",
+      "label": "P32/t00/backlog",
+      "operation": "backlog",
+      "task_index": 1570,
+      "task_name": "aclnnMm_MatMulV3Common_MatMulV3",
+      "task_type": "AI_CORE",
+      "physical_stream": "44",
+      "task_id": "32",
+      "device_start_us": "1790958915935382.305",
+      "device_end_us": "1790958915935807.522",
+      "host_index": 46,
+      "host_name": "aclnnMm",
+      "cann_index": 1948,
+      "cann_name": "Node@launch",
+      "connection_id": "106",
+      "torch_flow": {
+        "id": "1790958915935382305",
+        "start_index": 3415,
+        "end_index": 3416
+      },
+      "cann_flow": {
+        "id": "455266533376",
+        "start_index": 2966,
+        "end_index": 1571
+      }
+    },
+    {
+      "trial": "t00",
+      "label": "P32/t00/backlog",
+      "operation": "backlog",
+      "task_index": 1572,
+      "task_name": "aclnnMm_MatMulV3Common_MatMulV3",
+      "task_type": "AI_CORE",
+      "physical_stream": "44",
+      "task_id": "33",
+      "device_start_us": "1790958915935807.562",
+      "device_end_us": "1790958915936232.819",
+      "host_index": 48,
+      "host_name": "aclnnMm",
+      "cann_index": 1953,
+      "cann_name": "Node@launch",
+      "connection_id": "111",
+      "torch_flow": {
+        "id": "1790958915935807562",
+        "start_index": 3417,
+        "end_index": 3418
+      },
+      "cann_flow": {
+        "id": "476741369856",
+        "start_index": 2967,
+        "end_index": 1573
+      }
+    },
+    {
+      "trial": "t00",
+      "label": "P32/t00/backlog",
+      "operation": "backlog",
+      "task_index": 1574,
+      "task_name": "aclnnMm_MatMulV3Common_MatMulV3",
+      "task_type": "AI_CORE",
+      "physical_stream": "44",
+      "task_id": "34",
+      "device_start_us": "1790958915936232.839",
+      "device_end_us": "1790958915936657.276",
+      "host_index": 50,
+      "host_name": "aclnnMm",
+      "cann_index": 1958,
+      "cann_name": "Node@launch",
+      "connection_id": "116",
+      "torch_flow": {
+        "id": "1790958915936232839",
+        "start_index": 3419,
+        "end_index": 3420
+      },
+      "cann_flow": {
+        "id": "498216206336",
+        "start_index": 2968,
+        "end_index": 1575
+      }
+    },
+    {
+      "trial": "t00",
+      "label": "P32/t00/backlog",
+      "operation": "backlog",
+      "task_index": 1576,
+      "task_name": "aclnnMm_MatMulV3Common_MatMulV3",
+      "task_type": "AI_CORE",
+      "physical_stream": "44",
+      "task_id": "35",
+      "device_start_us": "1790958915936657.296",
+      "device_end_us": "1790958915937083.453",
+      "host_index": 52,
+      "host_name": "aclnnMm",
+      "cann_index": 1963,
+      "cann_name": "Node@launch",
+      "connection_id": "121",
+      "torch_flow": {
+        "id": "1790958915936657296",
+        "start_index": 3421,
+        "end_index": 3422
+      },
+      "cann_flow": {
+        "id": "519691042816",
+        "start_index": 2969,
+        "end_index": 1577
+      }
+    },
+    {
+      "trial": "t00",
+      "label": "P32/t00/backlog",
+      "operation": "backlog",
+      "task_index": 1578,
+      "task_name": "aclnnMm_MatMulV3Common_MatMulV3",
+      "task_type": "AI_CORE",
+      "physical_stream": "44",
+      "task_id": "36",
+      "device_start_us": "1790958915937083.473",
+      "device_end_us": "1790958915937509.110",
+      "host_index": 54,
+      "host_name": "aclnnMm",
+      "cann_index": 1968,
+      "cann_name": "Node@launch",
+      "connection_id": "126",
+      "torch_flow": {
+        "id": "1790958915937083473",
+        "start_index": 3423,
+        "end_index": 3424
+      },
+      "cann_flow": {
+        "id": "541165879296",
+        "start_index": 2970,
+        "end_index": 1579
+      }
+    },
+    {
+      "trial": "t00",
+      "label": "P32/t00/backlog",
+      "operation": "backlog",
+      "task_index": 1580,
+      "task_name": "aclnnMm_MatMulV3Common_MatMulV3",
+      "task_type": "AI_CORE",
+      "physical_stream": "44",
+      "task_id": "37",
+      "device_start_us": "1790958915937509.130",
+      "device_end_us": "1790958915937934.147",
+      "host_index": 56,
+      "host_name": "aclnnMm",
+      "cann_index": 1973,
+      "cann_name": "Node@launch",
+      "connection_id": "131",
+      "torch_flow": {
+        "id": "1790958915937509130",
+        "start_index": 3425,
+        "end_index": 3426
+      },
+      "cann_flow": {
+        "id": "562640715776",
+        "start_index": 2971,
+        "end_index": 1581
+      }
+    },
+    {
+      "trial": "t00",
+      "label": "P32/t00/backlog",
+      "operation": "backlog",
+      "task_index": 1582,
+      "task_name": "aclnnMm_MatMulV3Common_MatMulV3",
+      "task_type": "AI_CORE",
+      "physical_stream": "44",
+      "task_id": "38",
+      "device_start_us": "1790958915937934.167",
+      "device_end_us": "1790958915938358.924",
+      "host_index": 58,
+      "host_name": "aclnnMm",
+      "cann_index": 1978,
+      "cann_name": "Node@launch",
+      "connection_id": "136",
+      "torch_flow": {
+        "id": "1790958915937934167",
+        "start_index": 3427,
+        "end_index": 3428
+      },
+      "cann_flow": {
+        "id": "584115552256",
+        "start_index": 2972,
+        "end_index": 1583
+      }
+    },
+    {
+      "trial": "t00",
+      "label": "P32/t00/backlog",
+      "operation": "backlog",
+      "task_index": 1584,
+      "task_name": "aclnnMm_MatMulV3Common_MatMulV3",
+      "task_type": "AI_CORE",
+      "physical_stream": "44",
+      "task_id": "39",
+      "device_start_us": "1790958915938358.944",
+      "device_end_us": "1790958915938784.341",
+      "host_index": 60,
+      "host_name": "aclnnMm",
+      "cann_index": 1983,
+      "cann_name": "Node@launch",
+      "connection_id": "141",
+      "torch_flow": {
+        "id": "1790958915938358944",
+        "start_index": 3429,
+        "end_index": 3430
+      },
+      "cann_flow": {
+        "id": "605590388736",
+        "start_index": 2973,
+        "end_index": 1585
+      }
+    },
+    {
+      "trial": "t00",
+      "label": "P32/t00/backlog",
+      "operation": "backlog",
+      "task_index": 1586,
+      "task_name": "aclnnMm_MatMulV3Common_MatMulV3",
+      "task_type": "AI_CORE",
+      "physical_stream": "44",
+      "task_id": "40",
+      "device_start_us": "1790958915938784.361",
+      "device_end_us": "1790958915939209.958",
+      "host_index": 62,
+      "host_name": "aclnnMm",
+      "cann_index": 1988,
+      "cann_name": "Node@launch",
+      "connection_id": "146",
+      "torch_flow": {
+        "id": "1790958915938784361",
+        "start_index": 3431,
+        "end_index": 3432
+      },
+      "cann_flow": {
+        "id": "627065225216",
+        "start_index": 2974,
+        "end_index": 1587
+      }
+    },
+    {
+      "trial": "t00",
+      "label": "P32/t00/backlog",
+      "operation": "backlog",
+      "task_index": 1588,
+      "task_name": "aclnnMm_MatMulV3Common_MatMulV3",
+      "task_type": "AI_CORE",
+      "physical_stream": "44",
+      "task_id": "41",
+      "device_start_us": "1790958915939209.978",
+      "device_end_us": "1790958915939633.595",
+      "host_index": 64,
+      "host_name": "aclnnMm",
+      "cann_index": 1993,
+      "cann_name": "Node@launch",
+      "connection_id": "151",
+      "torch_flow": {
+        "id": "1790958915939209978",
+        "start_index": 3433,
+        "end_index": 3434
+      },
+      "cann_flow": {
+        "id": "648540061696",
+        "start_index": 2975,
+        "end_index": 1589
+      }
+    },
+    {
+      "trial": "t00",
+      "label": "P32/t00/backlog",
+      "operation": "backlog",
+      "task_index": 1590,
+      "task_name": "aclnnMm_MatMulV3Common_MatMulV3",
+      "task_type": "AI_CORE",
+      "physical_stream": "44",
+      "task_id": "42",
+      "device_start_us": "1790958915939633.615",
+      "device_end_us": "1790958915940057.372",
+      "host_index": 66,
+      "host_name": "aclnnMm",
+      "cann_index": 1998,
+      "cann_name": "Node@launch",
+      "connection_id": "156",
+      "torch_flow": {
+        "id": "1790958915939633615",
+        "start_index": 3435,
+        "end_index": 3436
+      },
+      "cann_flow": {
+        "id": "670014898176",
+        "start_index": 2976,
+        "end_index": 1591
+      }
+    },
+    {
+      "trial": "t00",
+      "label": "P32/t00/backlog",
+      "operation": "backlog",
+      "task_index": 1592,
+      "task_name": "aclnnMm_MatMulV3Common_MatMulV3",
+      "task_type": "AI_CORE",
+      "physical_stream": "44",
+      "task_id": "43",
+      "device_start_us": "1790958915940057.392",
+      "device_end_us": "1790958915940482.708",
+      "host_index": 68,
+      "host_name": "aclnnMm",
+      "cann_index": 2003,
+      "cann_name": "Node@launch",
+      "connection_id": "161",
+      "torch_flow": {
+        "id": "1790958915940057392",
+        "start_index": 3437,
+        "end_index": 3438
+      },
+      "cann_flow": {
+        "id": "691489734656",
+        "start_index": 2977,
+        "end_index": 1593
+      }
+    },
+    {
+      "trial": "t00",
+      "label": "P32/t00/backlog",
+      "operation": "backlog",
+      "task_index": 1594,
+      "task_name": "aclnnMm_MatMulV3Common_MatMulV3",
+      "task_type": "AI_CORE",
+      "physical_stream": "44",
+      "task_id": "44",
+      "device_start_us": "1790958915940482.748",
+      "device_end_us": "1790958915940908.166",
+      "host_index": 70,
+      "host_name": "aclnnMm",
+      "cann_index": 2008,
+      "cann_name": "Node@launch",
+      "connection_id": "166",
+      "torch_flow": {
+        "id": "1790958915940482748",
+        "start_index": 3439,
+        "end_index": 3440
+      },
+      "cann_flow": {
+        "id": "712964571136",
+        "start_index": 2978,
+        "end_index": 1595
+      }
+    },
+    {
+      "trial": "t00",
+      "label": "P32/t00/backlog",
+      "operation": "backlog",
+      "task_index": 1596,
+      "task_name": "aclnnMm_MatMulV3Common_MatMulV3",
+      "task_type": "AI_CORE",
+      "physical_stream": "44",
+      "task_id": "45",
+      "device_start_us": "1790958915940908.206",
+      "device_end_us": "1790958915941333.462",
+      "host_index": 72,
+      "host_name": "aclnnMm",
+      "cann_index": 2013,
+      "cann_name": "Node@launch",
+      "connection_id": "171",
+      "torch_flow": {
+        "id": "1790958915940908206",
+        "start_index": 3441,
+        "end_index": 3442
+      },
+      "cann_flow": {
+        "id": "734439407616",
+        "start_index": 2979,
+        "end_index": 1597
+      }
+    },
+    {
+      "trial": "t00",
+      "label": "P32/t00/backlog",
+      "operation": "backlog",
+      "task_index": 1598,
+      "task_name": "aclnnMm_MatMulV3Common_MatMulV3",
+      "task_type": "AI_CORE",
+      "physical_stream": "44",
+      "task_id": "46",
+      "device_start_us": "1790958915941333.482",
+      "device_end_us": "1790958915941757.739",
+      "host_index": 74,
+      "host_name": "aclnnMm",
+      "cann_index": 2018,
+      "cann_name": "Node@launch",
+      "connection_id": "176",
+      "torch_flow": {
+        "id": "1790958915941333482",
+        "start_index": 3443,
+        "end_index": 3444
+      },
+      "cann_flow": {
+        "id": "755914244096",
+        "start_index": 2980,
+        "end_index": 1599
+      }
+    },
+    {
+      "trial": "t00",
+      "label": "P32/t00/backlog",
+      "operation": "backlog",
+      "task_index": 1600,
+      "task_name": "aclnnMm_MatMulV3Common_MatMulV3",
+      "task_type": "AI_CORE",
+      "physical_stream": "44",
+      "task_id": "47",
+      "device_start_us": "1790958915941757.759",
+      "device_end_us": "1790958915942183.116",
+      "host_index": 76,
+      "host_name": "aclnnMm",
+      "cann_index": 2023,
+      "cann_name": "Node@launch",
+      "connection_id": "181",
+      "torch_flow": {
+        "id": "1790958915941757759",
+        "start_index": 3445,
+        "end_index": 3446
+      },
+      "cann_flow": {
+        "id": "777389080576",
+        "start_index": 2981,
+        "end_index": 1601
+      }
+    },
+    {
+      "trial": "t00",
+      "label": "P32/t00/backlog",
+      "operation": "backlog",
+      "task_index": 1602,
+      "task_name": "aclnnMm_MatMulV3Common_MatMulV3",
+      "task_type": "AI_CORE",
+      "physical_stream": "44",
+      "task_id": "48",
+      "device_start_us": "1790958915942183.136",
+      "device_end_us": "1790958915942609.794",
+      "host_index": 78,
+      "host_name": "aclnnMm",
+      "cann_index": 2028,
+      "cann_name": "Node@launch",
+      "connection_id": "186",
+      "torch_flow": {
+        "id": "1790958915942183136",
+        "start_index": 3447,
+        "end_index": 3448
+      },
+      "cann_flow": {
+        "id": "798863917056",
+        "start_index": 2982,
+        "end_index": 1603
+      }
+    },
+    {
+      "trial": "t00",
+      "label": "P32/t00/backlog",
+      "operation": "backlog",
+      "task_index": 1604,
+      "task_name": "aclnnMm_MatMulV3Common_MatMulV3",
+      "task_type": "AI_CORE",
+      "physical_stream": "44",
+      "task_id": "49",
+      "device_start_us": "1790958915942609.834",
+      "device_end_us": "1790958915943035.951",
+      "host_index": 80,
+      "host_name": "aclnnMm",
+      "cann_index": 2033,
+      "cann_name": "Node@launch",
+      "connection_id": "191",
+      "torch_flow": {
+        "id": "1790958915942609834",
+        "start_index": 3449,
+        "end_index": 3450
+      },
+      "cann_flow": {
+        "id": "820338753536",
+        "start_index": 2983,
+        "end_index": 1605
+      }
+    },
+    {
+      "trial": "t00",
+      "label": "P32/t00/backlog",
+      "operation": "backlog",
+      "task_index": 1606,
+      "task_name": "aclnnMm_MatMulV3Common_MatMulV3",
+      "task_type": "AI_CORE",
+      "physical_stream": "44",
+      "task_id": "50",
+      "device_start_us": "1790958915943035.991",
+      "device_end_us": "1790958915943462.168",
+      "host_index": 82,
+      "host_name": "aclnnMm",
+      "cann_index": 2038,
+      "cann_name": "Node@launch",
+      "connection_id": "196",
+      "torch_flow": {
+        "id": "1790958915943035991",
+        "start_index": 3451,
+        "end_index": 3452
+      },
+      "cann_flow": {
+        "id": "841813590016",
+        "start_index": 2984,
+        "end_index": 1607
+      }
+    },
+    {
+      "trial": "t00",
+      "label": "P32/t00/backlog",
+      "operation": "backlog",
+      "task_index": 1608,
+      "task_name": "aclnnMm_MatMulV3Common_MatMulV3",
+      "task_type": "AI_CORE",
+      "physical_stream": "44",
+      "task_id": "51",
+      "device_start_us": "1790958915943462.208",
+      "device_end_us": "1790958915943887.905",
+      "host_index": 84,
+      "host_name": "aclnnMm",
+      "cann_index": 2043,
+      "cann_name": "Node@launch",
+      "connection_id": "201",
+      "torch_flow": {
+        "id": "1790958915943462208",
+        "start_index": 3453,
+        "end_index": 3454
+      },
+      "cann_flow": {
+        "id": "863288426496",
+        "start_index": 2985,
+        "end_index": 1609
+      }
+    },
+    {
+      "trial": "t00",
+      "label": "P32/t00/backlog",
+      "operation": "backlog",
+      "task_index": 1610,
+      "task_name": "aclnnMm_MatMulV3Common_MatMulV3",
+      "task_type": "AI_CORE",
+      "physical_stream": "44",
+      "task_id": "52",
+      "device_start_us": "1790958915943887.925",
+      "device_end_us": "1790958915944315.402",
+      "host_index": 86,
+      "host_name": "aclnnMm",
+      "cann_index": 2048,
+      "cann_name": "Node@launch",
+      "connection_id": "206",
+      "torch_flow": {
+        "id": "1790958915943887925",
+        "start_index": 3455,
+        "end_index": 3456
+      },
+      "cann_flow": {
+        "id": "884763262976",
+        "start_index": 2986,
+        "end_index": 1611
+      }
+    },
+    {
+      "trial": "t00",
+      "label": "P32/t00/backlog",
+      "operation": "backlog",
+      "task_index": 1612,
+      "task_name": "aclnnMm_MatMulV3Common_MatMulV3",
+      "task_type": "AI_CORE",
+      "physical_stream": "44",
+      "task_id": "53",
+      "device_start_us": "1790958915944315.422",
+      "device_end_us": "1790958915944741.839",
+      "host_index": 88,
+      "host_name": "aclnnMm",
+      "cann_index": 2053,
+      "cann_name": "Node@launch",
+      "connection_id": "211",
+      "torch_flow": {
+        "id": "1790958915944315422",
+        "start_index": 3457,
+        "end_index": 3458
+      },
+      "cann_flow": {
+        "id": "906238099456",
+        "start_index": 2987,
+        "end_index": 1613
+      }
+    },
+    {
+      "trial": "t00",
+      "label": "P32/t00/backlog",
+      "operation": "backlog",
+      "task_index": 1614,
+      "task_name": "aclnnMm_MatMulV3Common_MatMulV3",
+      "task_type": "AI_CORE",
+      "physical_stream": "44",
+      "task_id": "54",
+      "device_start_us": "1790958915944741.859",
+      "device_end_us": "1790958915945168.016",
+      "host_index": 90,
+      "host_name": "aclnnMm",
+      "cann_index": 2058,
+      "cann_name": "Node@launch",
+      "connection_id": "216",
+      "torch_flow": {
+        "id": "1790958915944741859",
+        "start_index": 3459,
+        "end_index": 3460
+      },
+      "cann_flow": {
+        "id": "927712935936",
+        "start_index": 2988,
+        "end_index": 1615
+      }
+    },
+    {
+      "trial": "t00",
+      "label": "P32/t00/backlog",
+      "operation": "backlog",
+      "task_index": 1616,
+      "task_name": "aclnnMm_MatMulV3Common_MatMulV3",
+      "task_type": "AI_CORE",
+      "physical_stream": "44",
+      "task_id": "55",
+      "device_start_us": "1790958915945168.036",
+      "device_end_us": "1790958915945593.573",
+      "host_index": 92,
+      "host_name": "aclnnMm",
+      "cann_index": 2063,
+      "cann_name": "Node@launch",
+      "connection_id": "221",
+      "torch_flow": {
+        "id": "1790958915945168036",
+        "start_index": 3461,
+        "end_index": 3462
+      },
+      "cann_flow": {
+        "id": "949187772416",
+        "start_index": 2989,
+        "end_index": 1617
+      }
+    },
+    {
+      "trial": "t00",
+      "label": "P32/t00/backlog",
+      "operation": "backlog",
+      "task_index": 1618,
+      "task_name": "aclnnMm_MatMulV3Common_MatMulV3",
+      "task_type": "AI_CORE",
+      "physical_stream": "44",
+      "task_id": "56",
+      "device_start_us": "1790958915945593.613",
+      "device_end_us": "1790958915946021.510",
+      "host_index": 94,
+      "host_name": "aclnnMm",
+      "cann_index": 2068,
+      "cann_name": "Node@launch",
+      "connection_id": "226",
+      "torch_flow": {
+        "id": "1790958915945593613",
+        "start_index": 3463,
+        "end_index": 3464
+      },
+      "cann_flow": {
+        "id": "970662608896",
+        "start_index": 2990,
+        "end_index": 1619
+      }
+    },
+    {
+      "trial": "t00",
+      "label": "P32/t00/backlog",
+      "operation": "backlog",
+      "task_index": 1620,
+      "task_name": "aclnnMm_MatMulV3Common_MatMulV3",
+      "task_type": "AI_CORE",
+      "physical_stream": "44",
+      "task_id": "57",
+      "device_start_us": "1790958915946021.530",
+      "device_end_us": "1790958915946446.507",
+      "host_index": 96,
+      "host_name": "aclnnMm",
+      "cann_index": 2073,
+      "cann_name": "Node@launch",
+      "connection_id": "231",
+      "torch_flow": {
+        "id": "1790958915946021530",
+        "start_index": 3465,
+        "end_index": 3466
+      },
+      "cann_flow": {
+        "id": "992137445376",
+        "start_index": 2991,
+        "end_index": 1621
+      }
+    },
+    {
+      "trial": "t00",
+      "label": "P32/t00/backlog",
+      "operation": "backlog",
+      "task_index": 1622,
+      "task_name": "aclnnMm_MatMulV3Common_MatMulV3",
+      "task_type": "AI_CORE",
+      "physical_stream": "44",
+      "task_id": "58",
+      "device_start_us": "1790958915946446.527",
+      "device_end_us": "1790958915946871.824",
+      "host_index": 98,
+      "host_name": "aclnnMm",
+      "cann_index": 2078,
+      "cann_name": "Node@launch",
+      "connection_id": "236",
+      "torch_flow": {
+        "id": "1790958915946446527",
+        "start_index": 3467,
+        "end_index": 3468
+      },
+      "cann_flow": {
+        "id": "1013612281856",
+        "start_index": 2992,
+        "end_index": 1623
+      }
+    },
+    {
+      "trial": "t00",
+      "label": "P32/t00/backlog",
+      "operation": "backlog",
+      "task_index": 1624,
+      "task_name": "aclnnMm_MatMulV3Common_MatMulV3",
+      "task_type": "AI_CORE",
+      "physical_stream": "44",
+      "task_id": "59",
+      "device_start_us": "1790958915946871.844",
+      "device_end_us": "1790958915947297.701",
+      "host_index": 100,
+      "host_name": "aclnnMm",
+      "cann_index": 2083,
+      "cann_name": "Node@launch",
+      "connection_id": "241",
+      "torch_flow": {
+        "id": "1790958915946871844",
+        "start_index": 3469,
+        "end_index": 3470
+      },
+      "cann_flow": {
+        "id": "1035087118336",
+        "start_index": 2993,
+        "end_index": 1625
+      }
+    },
+    {
+      "trial": "t00",
+      "label": "P32/t00/backlog",
+      "operation": "backlog",
+      "task_index": 1626,
+      "task_name": "aclnnMm_MatMulV3Common_MatMulV3",
+      "task_type": "AI_CORE",
+      "physical_stream": "44",
+      "task_id": "60",
+      "device_start_us": "1790958915947297.721",
+      "device_end_us": "1790958915947723.338",
+      "host_index": 102,
+      "host_name": "aclnnMm",
+      "cann_index": 2088,
+      "cann_name": "Node@launch",
+      "connection_id": "246",
+      "torch_flow": {
+        "id": "1790958915947297721",
+        "start_index": 3471,
+        "end_index": 3472
+      },
+      "cann_flow": {
+        "id": "1056561954816",
+        "start_index": 2994,
+        "end_index": 1627
+      }
+    },
+    {
+      "trial": "t00",
+      "label": "P32/t00/backlog",
+      "operation": "backlog",
+      "task_index": 1628,
+      "task_name": "aclnnMm_MatMulV3Common_MatMulV3",
+      "task_type": "AI_CORE",
+      "physical_stream": "44",
+      "task_id": "61",
+      "device_start_us": "1790958915947723.358",
+      "device_end_us": "1790958915948150.015",
+      "host_index": 104,
+      "host_name": "aclnnMm",
+      "cann_index": 2093,
+      "cann_name": "Node@launch",
+      "connection_id": "251",
+      "torch_flow": {
+        "id": "1790958915947723358",
+        "start_index": 3473,
+        "end_index": 3474
+      },
+      "cann_flow": {
+        "id": "1078036791296",
+        "start_index": 2995,
+        "end_index": 1629
+      }
+    },
+    {
+      "trial": "t00",
+      "label": "P32/t00/backlog",
+      "operation": "backlog",
+      "task_index": 1630,
+      "task_name": "aclnnMm_MatMulV3Common_MatMulV3",
+      "task_type": "AI_CORE",
+      "physical_stream": "44",
+      "task_id": "62",
+      "device_start_us": "1790958915948150.035",
+      "device_end_us": "1790958915948575.412",
+      "host_index": 106,
+      "host_name": "aclnnMm",
+      "cann_index": 2098,
+      "cann_name": "Node@launch",
+      "connection_id": "256",
+      "torch_flow": {
+        "id": "1790958915948150035",
+        "start_index": 3475,
+        "end_index": 3476
+      },
+      "cann_flow": {
+        "id": "1099511627776",
+        "start_index": 2996,
+        "end_index": 1631
+      }
+    },
+    {
+      "trial": "t00",
+      "label": "P32/t00/backlog",
+      "operation": "backlog",
+      "task_index": 1632,
+      "task_name": "aclnnMm_MatMulV3Common_MatMulV3",
+      "task_type": "AI_CORE",
+      "physical_stream": "44",
+      "task_id": "63",
+      "device_start_us": "1790958915948575.432",
+      "device_end_us": "1790958915949000.689",
+      "host_index": 108,
+      "host_name": "aclnnMm",
+      "cann_index": 2103,
+      "cann_name": "Node@launch",
+      "connection_id": "261",
+      "torch_flow": {
+        "id": "1790958915948575432",
+        "start_index": 3477,
+        "end_index": 3478
+      },
+      "cann_flow": {
+        "id": "1120986464256",
+        "start_index": 2997,
+        "end_index": 1633
+      }
+    },
+    {
+      "trial": "t00",
+      "label": "P32/t00/backlog",
+      "operation": "backlog",
+      "task_index": 1634,
+      "task_name": "aclnnMm_MatMulV3Common_MatMulV3",
+      "task_type": "AI_CORE",
+      "physical_stream": "44",
+      "task_id": "64",
+      "device_start_us": "1790958915949000.709",
+      "device_end_us": "1790958915949425.926",
+      "host_index": 110,
+      "host_name": "aclnnMm",
+      "cann_index": 2108,
+      "cann_name": "Node@launch",
+      "connection_id": "266",
+      "torch_flow": {
+        "id": "1790958915949000709",
+        "start_index": 3479,
+        "end_index": 3480
+      },
+      "cann_flow": {
+        "id": "1142461300736",
+        "start_index": 2998,
+        "end_index": 1635
+      }
+    },
+    {
+      "trial": "t00",
+      "label": "P32/t00/backlog",
+      "operation": "backlog",
+      "task_index": 1636,
+      "task_name": "aclnnMm_MatMulV3Common_MatMulV3",
+      "task_type": "AI_CORE",
+      "physical_stream": "44",
+      "task_id": "65",
+      "device_start_us": "1790958915949425.966",
+      "device_end_us": "1790958915949851.743",
+      "host_index": 112,
+      "host_name": "aclnnMm",
+      "cann_index": 2113,
+      "cann_name": "Node@launch",
+      "connection_id": "271",
+      "torch_flow": {
+        "id": "1790958915949425966",
+        "start_index": 3481,
+        "end_index": 3482
+      },
+      "cann_flow": {
+        "id": "1163936137216",
+        "start_index": 2999,
+        "end_index": 1637
+      }
+    },
+    {
+      "trial": "t00",
+      "label": "P32/t00/backlog",
+      "operation": "backlog",
+      "task_index": 1638,
+      "task_name": "aclnnMm_MatMulV3Common_MatMulV3",
+      "task_type": "AI_CORE",
+      "physical_stream": "44",
+      "task_id": "66",
+      "device_start_us": "1790958915949851.763",
+      "device_end_us": "1790958915950276.300",
+      "host_index": 114,
+      "host_name": "aclnnMm",
+      "cann_index": 2118,
+      "cann_name": "Node@launch",
+      "connection_id": "276",
+      "torch_flow": {
+        "id": "1790958915949851763",
+        "start_index": 3483,
+        "end_index": 3484
+      },
+      "cann_flow": {
+        "id": "1185410973696",
+        "start_index": 3000,
+        "end_index": 1639
+      }
+    },
+    {
+      "trial": "t00",
+      "label": "P32/t00/backlog",
+      "operation": "backlog",
+      "task_index": 1640,
+      "task_name": "aclnnMm_MatMulV3Common_MatMulV3",
+      "task_type": "AI_CORE",
+      "physical_stream": "44",
+      "task_id": "67",
+      "device_start_us": "1790958915950276.320",
+      "device_end_us": "1790958915950701.137",
+      "host_index": 116,
+      "host_name": "aclnnMm",
+      "cann_index": 2123,
+      "cann_name": "Node@launch",
+      "connection_id": "281",
+      "torch_flow": {
+        "id": "1790958915950276320",
+        "start_index": 3485,
+        "end_index": 3486
+      },
+      "cann_flow": {
+        "id": "1206885810176",
+        "start_index": 3001,
+        "end_index": 1641
+      }
+    },
+    {
+      "trial": "t00",
+      "label": "P32/t00/backlog",
+      "operation": "backlog",
+      "task_index": 1642,
+      "task_name": "aclnnMm_MatMulV3Common_MatMulV3",
+      "task_type": "AI_CORE",
+      "physical_stream": "44",
+      "task_id": "68",
+      "device_start_us": "1790958915950701.157",
+      "device_end_us": "1790958915951127.174",
+      "host_index": 118,
+      "host_name": "aclnnMm",
+      "cann_index": 2128,
+      "cann_name": "Node@launch",
+      "connection_id": "286",
+      "torch_flow": {
+        "id": "1790958915950701157",
+        "start_index": 3487,
+        "end_index": 3488
+      },
+      "cann_flow": {
+        "id": "1228360646656",
+        "start_index": 3002,
+        "end_index": 1643
+      }
+    },
+    {
+      "trial": "t00",
+      "label": "P32/t00/backlog",
+      "operation": "backlog",
+      "task_index": 1644,
+      "task_name": "aclnnMm_MatMulV3Common_MatMulV3",
+      "task_type": "AI_CORE",
+      "physical_stream": "44",
+      "task_id": "69",
+      "device_start_us": "1790958915951127.194",
+      "device_end_us": "1790958915951554.451",
+      "host_index": 120,
+      "host_name": "aclnnMm",
+      "cann_index": 2133,
+      "cann_name": "Node@launch",
+      "connection_id": "291",
+      "torch_flow": {
+        "id": "1790958915951127194",
+        "start_index": 3489,
+        "end_index": 3490
+      },
+      "cann_flow": {
+        "id": "1249835483136",
+        "start_index": 3003,
+        "end_index": 1645
+      }
+    },
+    {
+      "trial": "t00",
+      "label": "P32/t00/backlog",
+      "operation": "backlog",
+      "task_index": 1646,
+      "task_name": "aclnnMm_MatMulV3Common_MatMulV3",
+      "task_type": "AI_CORE",
+      "physical_stream": "44",
+      "task_id": "70",
+      "device_start_us": "1790958915951554.471",
+      "device_end_us": "1790958915951978.548",
+      "host_index": 122,
+      "host_name": "aclnnMm",
+      "cann_index": 2138,
+      "cann_name": "Node@launch",
+      "connection_id": "296",
+      "torch_flow": {
+        "id": "1790958915951554471",
+        "start_index": 3491,
+        "end_index": 3492
+      },
+      "cann_flow": {
+        "id": "1271310319616",
+        "start_index": 3004,
+        "end_index": 1647
+      }
+    },
+    {
+      "trial": "t00",
+      "label": "P32/t00/backlog",
+      "operation": "backlog",
+      "task_index": 1648,
+      "task_name": "aclnnMm_MatMulV3Common_MatMulV3",
+      "task_type": "AI_CORE",
+      "physical_stream": "44",
+      "task_id": "71",
+      "device_start_us": "1790958915951978.568",
+      "device_end_us": "1790958915952403.645",
+      "host_index": 124,
+      "host_name": "aclnnMm",
+      "cann_index": 2143,
+      "cann_name": "Node@launch",
+      "connection_id": "301",
+      "torch_flow": {
+        "id": "1790958915951978568",
+        "start_index": 3493,
+        "end_index": 3494
+      },
+      "cann_flow": {
+        "id": "1292785156096",
+        "start_index": 3005,
+        "end_index": 1649
+      }
+    },
+    {
+      "trial": "t00",
+      "label": "P32/t00/backlog",
+      "operation": "backlog",
+      "task_index": 1650,
+      "task_name": "aclnnMm_MatMulV3Common_MatMulV3",
+      "task_type": "AI_CORE",
+      "physical_stream": "44",
+      "task_id": "72",
+      "device_start_us": "1790958915952403.685",
+      "device_end_us": "1790958915952828.502",
+      "host_index": 126,
+      "host_name": "aclnnMm",
+      "cann_index": 2148,
+      "cann_name": "Node@launch",
+      "connection_id": "306",
+      "torch_flow": {
+        "id": "1790958915952403685",
+        "start_index": 3495,
+        "end_index": 3496
+      },
+      "cann_flow": {
+        "id": "1314259992576",
+        "start_index": 3006,
+        "end_index": 1651
+      }
+    },
+    {
+      "trial": "t00",
+      "label": "P32/t00/backlog",
+      "operation": "backlog",
+      "task_index": 1652,
+      "task_name": "aclnnMm_MatMulV3Common_MatMulV3",
+      "task_type": "AI_CORE",
+      "physical_stream": "44",
+      "task_id": "73",
+      "device_start_us": "1790958915952828.522",
+      "device_end_us": "1790958915953254.899",
+      "host_index": 128,
+      "host_name": "aclnnMm",
+      "cann_index": 2153,
+      "cann_name": "Node@launch",
+      "connection_id": "311",
+      "torch_flow": {
+        "id": "1790958915952828522",
+        "start_index": 3497,
+        "end_index": 3498
+      },
+      "cann_flow": {
+        "id": "1335734829056",
+        "start_index": 3007,
+        "end_index": 1653
+      }
+    },
+    {
+      "trial": "t00",
+      "label": "P32/t00/backlog",
+      "operation": "backlog",
+      "task_index": 1654,
+      "task_name": "aclnnMm_MatMulV3Common_MatMulV3",
+      "task_type": "AI_CORE",
+      "physical_stream": "44",
+      "task_id": "74",
+      "device_start_us": "1790958915953254.939",
+      "device_end_us": "1790958915953679.056",
+      "host_index": 130,
+      "host_name": "aclnnMm",
+      "cann_index": 2158,
+      "cann_name": "Node@launch",
+      "connection_id": "316",
+      "torch_flow": {
+        "id": "1790958915953254939",
+        "start_index": 3499,
+        "end_index": 3500
+      },
+      "cann_flow": {
+        "id": "1357209665536",
+        "start_index": 3008,
+        "end_index": 1655
+      }
+    },
+    {
+      "trial": "t00",
+      "label": "P32/t00/backlog",
+      "operation": "backlog",
+      "task_index": 1656,
+      "task_name": "aclnnMm_MatMulV3Common_MatMulV3",
+      "task_type": "AI_CORE",
+      "physical_stream": "44",
+      "task_id": "75",
+      "device_start_us": "1790958915953679.076",
+      "device_end_us": "1790958915954105.013",
+      "host_index": 132,
+      "host_name": "aclnnMm",
+      "cann_index": 2163,
+      "cann_name": "Node@launch",
+      "connection_id": "321",
+      "torch_flow": {
+        "id": "1790958915953679076",
+        "start_index": 3501,
+        "end_index": 3502
+      },
+      "cann_flow": {
+        "id": "1378684502016",
+        "start_index": 3009,
+        "end_index": 1657
+      }
+    },
+    {
+      "trial": "t00",
+      "label": "P32/t00/backlog",
+      "operation": "backlog",
+      "task_index": 1658,
+      "task_name": "aclnnMm_MatMulV3Common_MatMulV3",
+      "task_type": "AI_CORE",
+      "physical_stream": "44",
+      "task_id": "76",
+      "device_start_us": "1790958915954105.033",
+      "device_end_us": "1790958915954530.410",
+      "host_index": 134,
+      "host_name": "aclnnMm",
+      "cann_index": 2168,
+      "cann_name": "Node@launch",
+      "connection_id": "326",
+      "torch_flow": {
+        "id": "1790958915954105033",
+        "start_index": 3503,
+        "end_index": 3504
+      },
+      "cann_flow": {
+        "id": "1400159338496",
+        "start_index": 3010,
+        "end_index": 1659
+      }
+    },
+    {
+      "trial": "t00",
+      "label": "P32/t00/backlog",
+      "operation": "backlog",
+      "task_index": 1660,
+      "task_name": "aclnnMm_MatMulV3Common_MatMulV3",
+      "task_type": "AI_CORE",
+      "physical_stream": "44",
+      "task_id": "77",
+      "device_start_us": "1790958915954530.450",
+      "device_end_us": "1790958915954955.767",
+      "host_index": 136,
+      "host_name": "aclnnMm",
+      "cann_index": 2173,
+      "cann_name": "Node@launch",
+      "connection_id": "331",
+      "torch_flow": {
+        "id": "1790958915954530450",
+        "start_index": 3505,
+        "end_index": 3506
+      },
+      "cann_flow": {
+        "id": "1421634174976",
+        "start_index": 3011,
+        "end_index": 1661
+      }
+    },
+    {
+      "trial": "t00",
+      "label": "P32/t00/read-start",
+      "operation": "read-start",
+      "task_index": 1662,
+      "task_name": "EVENT_RECORD",
+      "task_type": "EVENT_RECORD",
+      "physical_stream": "44",
+      "task_id": "78",
+      "device_start_us": "1790958915954955.807",
+      "device_end_us": "1790958915954955.807",
+      "host_index": 139,
+      "host_name": "record_event",
+      "cann_index": 2176,
+      "cann_name": "AscendCL@aclrtRecordEvent",
+      "connection_id": "334",
+      "torch_flow": {
+        "id": "1790958915954955807",
+        "start_index": 3507,
+        "end_index": 3508
+      },
+      "cann_flow": {
+        "id": "1434519076864",
+        "start_index": 3012,
+        "end_index": 1663
+      }
+    },
+    {
+      "trial": "t00",
+      "label": "P32/t00/consumer-copy",
+      "operation": "consumer-copy",
+      "task_index": 1664,
+      "task_name": "aclnnInplaceCopy_TensorMoveAiCore_TensorMove",
+      "task_type": "AI_VECTOR_CORE",
+      "physical_stream": "44",
+      "task_id": "79",
+      "device_start_us": "1790958915954955.847",
+      "device_end_us": "1790958915954965.228",
+      "host_index": 142,
+      "host_name": "aclnnInplaceCopy",
+      "cann_index": 2179,
+      "cann_name": "Node@launch",
+      "connection_id": "337",
+      "torch_flow": {
+        "id": "1790958915954955847",
+        "start_index": 3509,
+        "end_index": 3510
+      },
+      "cann_flow": {
+        "id": "1447403978752",
+        "start_index": 3013,
+        "end_index": 1665
+      }
+    },
+    {
+      "trial": "t00",
+      "label": "P32/t00/read-end",
+      "operation": "read-end",
+      "task_index": 1666,
+      "task_name": "EVENT_RECORD",
+      "task_type": "EVENT_RECORD",
+      "physical_stream": "44",
+      "task_id": "80",
+      "device_start_us": "1790958915954965.248",
+      "device_end_us": "1790958915954965.268",
+      "host_index": 145,
+      "host_name": "record_event",
+      "cann_index": 2181,
+      "cann_name": "AscendCL@aclrtRecordEvent",
+      "connection_id": "339",
+      "torch_flow": {
+        "id": "1790958915954965248",
+        "start_index": 3511,
+        "end_index": 3512
+      },
+      "cann_flow": {
+        "id": "1455993913344",
+        "start_index": 3014,
+        "end_index": 1667
+      }
+    },
+    {
+      "trial": "t00",
+      "label": "P32/t00/done",
+      "operation": "done",
+      "task_index": 1668,
+      "task_name": "EVENT_RECORD",
+      "task_type": "EVENT_RECORD",
+      "physical_stream": "44",
+      "task_id": "81",
+      "device_start_us": "1790958915954965.288",
+      "device_end_us": "1790958915954965.308",
+      "host_index": 148,
+      "host_name": "record_event",
+      "cann_index": 2182,
+      "cann_name": "AscendCL@aclrtRecordEvent",
+      "connection_id": "340",
+      "torch_flow": {
+        "id": "1790958915954965288",
+        "start_index": 3513,
+        "end_index": 3514
+      },
+      "cann_flow": {
+        "id": "1460288880640",
+        "start_index": 3015,
+        "end_index": 1669
+      }
+    },
+    {
+      "trial": "t00",
+      "label": "P32/t00/validate",
+      "operation": "validate",
+      "task_index": 1670,
+      "task_name": "aclnnEqScalar_EqualAiCore_Equal",
+      "task_type": "AI_VECTOR_CORE",
+      "physical_stream": "46",
+      "task_id": "8",
+      "device_start_us": "1790958915955421.106",
+      "device_end_us": "1790958915955431.766",
+      "host_index": 456,
+      "host_name": "aclnnEqScalar",
+      "cann_index": 2383,
+      "cann_name": "Node@launch",
+      "connection_id": "541",
+      "torch_flow": {
+        "id": "1790958915955421106",
+        "start_index": 3517,
+        "end_index": 3518
+      },
+      "cann_flow": {
+        "id": "2323577307136",
+        "start_index": 3017,
+        "end_index": 1671
+      }
+    },
+    {
+      "trial": "t00",
+      "label": "P32/t00/validate",
+      "operation": "validate",
+      "task_index": 1672,
+      "task_name": "aclnnAll_ReduceAll_ReduceAll",
+      "task_type": "MIX_AIV",
+      "physical_stream": "46",
+      "task_id": "9",
+      "device_start_us": "1790958915955445.327",
+      "device_end_us": "1790958915955461.807",
+      "host_index": 459,
+      "host_name": "aclnnAll",
+      "cann_index": 2387,
+      "cann_name": "Node@launch",
+      "connection_id": "545",
+      "torch_flow": {
+        "id": "1790958915955445327",
+        "start_index": 3519,
+        "end_index": 3520
+      },
+      "cann_flow": {
+        "id": "2340757176320",
+        "start_index": 3018,
+        "end_index": 1673
+      }
+    },
+    {
+      "trial": "t01",
+      "label": "P32/t01/create-a",
+      "operation": "create-a",
+      "task_index": 1674,
+      "task_name": "aclnnInplaceFillScalar_FillAiCore_Fill",
+      "task_type": "AI_VECTOR_CORE",
+      "physical_stream": "46",
+      "task_id": "10",
+      "device_start_us": "1790958915964809.761",
+      "device_end_us": "1790958915964823.082",
+      "host_index": 466,
+      "host_name": "aclnnInplaceFillScalar",
+      "cann_index": 2399,
+      "cann_name": "Node@launch",
+      "connection_id": "557",
+      "torch_flow": {
+        "id": "1790958915964809761",
+        "start_index": 3521,
+        "end_index": 3522
+      },
+      "cann_flow": {
+        "id": "2392296783872",
+        "start_index": 3019,
+        "end_index": 1675
+      }
+    },
+    {
+      "trial": "t01",
+      "label": "P32/t01/backlog",
+      "operation": "backlog",
+      "task_index": 1678,
+      "task_name": "aclnnMm_MatMulV3Common_MatMulV3",
+      "task_type": "AI_CORE",
+      "physical_stream": "44",
+      "task_id": "82",
+      "device_start_us": "1790958915964969.067",
+      "device_end_us": "1790958915965395.584",
+      "host_index": 474,
+      "host_name": "aclnnMm",
+      "cann_index": 2406,
+      "cann_name": "Node@launch",
+      "connection_id": "564",
+      "torch_flow": {
+        "id": "1790958915964969067",
+        "start_index": 3525,
+        "end_index": 3526
+      },
+      "cann_flow": {
+        "id": "2422361554944",
+        "start_index": 3022,
+        "end_index": 1679
+      }
+    },
+    {
+      "trial": "t01",
+      "label": "P32/t01/backlog",
+      "operation": "backlog",
+      "task_index": 1680,
+      "task_name": "aclnnMm_MatMulV3Common_MatMulV3",
+      "task_type": "AI_CORE",
+      "physical_stream": "44",
+      "task_id": "83",
+      "device_start_us": "1790958915965395.604",
+      "device_end_us": "1790958915965822.782",
+      "host_index": 476,
+      "host_name": "aclnnMm",
+      "cann_index": 2411,
+      "cann_name": "Node@launch",
+      "connection_id": "569",
+      "torch_flow": {
+        "id": "1790958915965395604",
+        "start_index": 3527,
+        "end_index": 3528
+      },
+      "cann_flow": {
+        "id": "2443836391424",
+        "start_index": 3023,
+        "end_index": 1681
+      }
+    },
+    {
+      "trial": "t01",
+      "label": "P32/t01/owner-joins-consumer",
+      "operation": "owner-joins-consumer",
+      "task_index": 1682,
+      "task_name": "EVENT_WAIT",
+      "task_type": "EVENT_WAIT",
+      "physical_stream": "46",
+      "task_id": "12",
+      "device_start_us": "1790958915965405.385",
+      "device_end_us": "1790958915992243.198",
+      "host_index": 615,
+      "host_name": "wait_event",
+      "cann_index": 2731,
+      "cann_name": "AscendCL@aclrtStreamWaitEvent",
+      "connection_id": "1025",
+      "torch_flow": {
+        "id": "1790958915965405385",
+        "start_index": 3661,
+        "end_index": 3662
+      },
+      "cann_flow": {
+        "id": "4402341478400",
+        "start_index": 3090,
+        "end_index": 1683
+      }
+    },
+    {
+      "trial": "t01",
+      "label": "P32/t01/backlog",
+      "operation": "backlog",
+      "task_index": 1684,
+      "task_name": "aclnnMm_MatMulV3Common_MatMulV3",
+      "task_type": "AI_CORE",
+      "physical_stream": "44",
+      "task_id": "84",
+      "device_start_us": "1790958915965822.802",
+      "device_end_us": "1790958915966249.319",
+      "host_index": 478,
+      "host_name": "aclnnMm",
+      "cann_index": 2416,
+      "cann_name": "Node@launch",
+      "connection_id": "574",
+      "torch_flow": {
+        "id": "1790958915965822802",
+        "start_index": 3529,
+        "end_index": 3530
+      },
+      "cann_flow": {
+        "id": "2465311227904",
+        "start_index": 3024,
+        "end_index": 1685
+      }
+    },
+    {
+      "trial": "t01",
+      "label": "P32/t01/backlog",
+      "operation": "backlog",
+      "task_index": 1686,
+      "task_name": "aclnnMm_MatMulV3Common_MatMulV3",
+      "task_type": "AI_CORE",
+      "physical_stream": "44",
+      "task_id": "85",
+      "device_start_us": "1790958915966249.339",
+      "device_end_us": "1790958915966674.496",
+      "host_index": 480,
+      "host_name": "aclnnMm",
+      "cann_index": 2421,
+      "cann_name": "Node@launch",
+      "connection_id": "579",
+      "torch_flow": {
+        "id": "1790958915966249339",
+        "start_index": 3531,
+        "end_index": 3532
+      },
+      "cann_flow": {
+        "id": "2486786064384",
+        "start_index": 3025,
+        "end_index": 1687
+      }
+    },
+    {
+      "trial": "t01",
+      "label": "P32/t01/backlog",
+      "operation": "backlog",
+      "task_index": 1688,
+      "task_name": "aclnnMm_MatMulV3Common_MatMulV3",
+      "task_type": "AI_CORE",
+      "physical_stream": "44",
+      "task_id": "86",
+      "device_start_us": "1790958915966674.516",
+      "device_end_us": "1790958915967100.773",
+      "host_index": 482,
+      "host_name": "aclnnMm",
+      "cann_index": 2426,
+      "cann_name": "Node@launch",
+      "connection_id": "584",
+      "torch_flow": {
+        "id": "1790958915966674516",
+        "start_index": 3533,
+        "end_index": 3534
+      },
+      "cann_flow": {
+        "id": "2508260900864",
+        "start_index": 3026,
+        "end_index": 1689
+      }
+    },
+    {
+      "trial": "t01",
+      "label": "P32/t01/backlog",
+      "operation": "backlog",
+      "task_index": 1690,
+      "task_name": "aclnnMm_MatMulV3Common_MatMulV3",
+      "task_type": "AI_CORE",
+      "physical_stream": "44",
+      "task_id": "87",
+      "device_start_us": "1790958915967100.793",
+      "device_end_us": "1790958915967525.770",
+      "host_index": 484,
+      "host_name": "aclnnMm",
+      "cann_index": 2431,
+      "cann_name": "Node@launch",
+      "connection_id": "589",
+      "torch_flow": {
+        "id": "1790958915967100793",
+        "start_index": 3535,
+        "end_index": 3536
+      },
+      "cann_flow": {
+        "id": "2529735737344",
+        "start_index": 3027,
+        "end_index": 1691
+      }
+    },
+    {
+      "trial": "t01",
+      "label": "P32/t01/backlog",
+      "operation": "backlog",
+      "task_index": 1692,
+      "task_name": "aclnnMm_MatMulV3Common_MatMulV3",
+      "task_type": "AI_CORE",
+      "physical_stream": "44",
+      "task_id": "88",
+      "device_start_us": "1790958915967525.790",
+      "device_end_us": "1790958915967950.767",
+      "host_index": 486,
+      "host_name": "aclnnMm",
+      "cann_index": 2436,
+      "cann_name": "Node@launch",
+      "connection_id": "594",
+      "torch_flow": {
+        "id": "1790958915967525790",
+        "start_index": 3537,
+        "end_index": 3538
+      },
+      "cann_flow": {
+        "id": "2551210573824",
+        "start_index": 3028,
+        "end_index": 1693
+      }
+    },
+    {
+      "trial": "t01",
+      "label": "P32/t01/backlog",
+      "operation": "backlog",
+      "task_index": 1694,
+      "task_name": "aclnnMm_MatMulV3Common_MatMulV3",
+      "task_type": "AI_CORE",
+      "physical_stream": "44",
+      "task_id": "89",
+      "device_start_us": "1790958915967950.807",
+      "device_end_us": "1790958915968377.864",
+      "host_index": 488,
+      "host_name": "aclnnMm",
+      "cann_index": 2441,
+      "cann_name": "Node@launch",
+      "connection_id": "599",
+      "torch_flow": {
+        "id": "1790958915967950807",
+        "start_index": 3539,
+        "end_index": 3540
+      },
+      "cann_flow": {
+        "id": "2572685410304",
+        "start_index": 3029,
+        "end_index": 1695
+      }
+    },
+    {
+      "trial": "t01",
+      "label": "P32/t01/backlog",
+      "operation": "backlog",
+      "task_index": 1696,
+      "task_name": "aclnnMm_MatMulV3Common_MatMulV3",
+      "task_type": "AI_CORE",
+      "physical_stream": "44",
+      "task_id": "90",
+      "device_start_us": "1790958915968377.884",
+      "device_end_us": "1790958915968804.261",
+      "host_index": 490,
+      "host_name": "aclnnMm",
+      "cann_index": 2446,
+      "cann_name": "Node@launch",
+      "connection_id": "604",
+      "torch_flow": {
+        "id": "1790958915968377884",
+        "start_index": 3541,
+        "end_index": 3542
+      },
+      "cann_flow": {
+        "id": "2594160246784",
+        "start_index": 3030,
+        "end_index": 1697
+      }
+    },
+    {
+      "trial": "t01",
+      "label": "P32/t01/backlog",
+      "operation": "backlog",
+      "task_index": 1698,
+      "task_name": "aclnnMm_MatMulV3Common_MatMulV3",
+      "task_type": "AI_CORE",
+      "physical_stream": "44",
+      "task_id": "91",
+      "device_start_us": "1790958915968804.281",
+      "device_end_us": "1790958915969230.958",
+      "host_index": 492,
+      "host_name": "aclnnMm",
+      "cann_index": 2451,
+      "cann_name": "Node@launch",
+      "connection_id": "609",
+      "torch_flow": {
+        "id": "1790958915968804281",
+        "start_index": 3543,
+        "end_index": 3544
+      },
+      "cann_flow": {
+        "id": "2615635083264",
+        "start_index": 3031,
+        "end_index": 1699
+      }
+    },
+    {
+      "trial": "t01",
+      "label": "P32/t01/backlog",
+      "operation": "backlog",
+      "task_index": 1700,
+      "task_name": "aclnnMm_MatMulV3Common_MatMulV3",
+      "task_type": "AI_CORE",
+      "physical_stream": "44",
+      "task_id": "92",
+      "device_start_us": "1790958915969230.978",
+      "device_end_us": "1790958915969657.535",
+      "host_index": 494,
+      "host_name": "aclnnMm",
+      "cann_index": 2456,
+      "cann_name": "Node@launch",
+      "connection_id": "614",
+      "torch_flow": {
+        "id": "1790958915969230978",
+        "start_index": 3545,
+        "end_index": 3546
+      },
+      "cann_flow": {
+        "id": "2637109919744",
+        "start_index": 3032,
+        "end_index": 1701
+      }
+    },
+    {
+      "trial": "t01",
+      "label": "P32/t01/backlog",
+      "operation": "backlog",
+      "task_index": 1702,
+      "task_name": "aclnnMm_MatMulV3Common_MatMulV3",
+      "task_type": "AI_CORE",
+      "physical_stream": "44",
+      "task_id": "93",
+      "device_start_us": "1790958915969657.555",
+      "device_end_us": "1790958915970082.132",
+      "host_index": 496,
+      "host_name": "aclnnMm",
+      "cann_index": 2461,
+      "cann_name": "Node@launch",
+      "connection_id": "619",
+      "torch_flow": {
+        "id": "1790958915969657555",
+        "start_index": 3547,
+        "end_index": 3548
+      },
+      "cann_flow": {
+        "id": "2658584756224",
+        "start_index": 3033,
+        "end_index": 1703
+      }
+    },
+    {
+      "trial": "t01",
+      "label": "P32/t01/backlog",
+      "operation": "backlog",
+      "task_index": 1704,
+      "task_name": "aclnnMm_MatMulV3Common_MatMulV3",
+      "task_type": "AI_CORE",
+      "physical_stream": "44",
+      "task_id": "94",
+      "device_start_us": "1790958915970082.152",
+      "device_end_us": "1790958915970507.189",
+      "host_index": 498,
+      "host_name": "aclnnMm",
+      "cann_index": 2466,
+      "cann_name": "Node@launch",
+      "connection_id": "624",
+      "torch_flow": {
+        "id": "1790958915970082152",
+        "start_index": 3549,
+        "end_index": 3550
+      },
+      "cann_flow": {
+        "id": "2680059592704",
+        "start_index": 3034,
+        "end_index": 1705
+      }
+    },
+    {
+      "trial": "t01",
+      "label": "P32/t01/backlog",
+      "operation": "backlog",
+      "task_index": 1706,
+      "task_name": "aclnnMm_MatMulV3Common_MatMulV3",
+      "task_type": "AI_CORE",
+      "physical_stream": "44",
+      "task_id": "95",
+      "device_start_us": "1790958915970507.209",
+      "device_end_us": "1790958915970935.286",
+      "host_index": 500,
+      "host_name": "aclnnMm",
+      "cann_index": 2471,
+      "cann_name": "Node@launch",
+      "connection_id": "629",
+      "torch_flow": {
+        "id": "1790958915970507209",
+        "start_index": 3551,
+        "end_index": 3552
+      },
+      "cann_flow": {
+        "id": "2701534429184",
+        "start_index": 3035,
+        "end_index": 1707
+      }
+    },
+    {
+      "trial": "t01",
+      "label": "P32/t01/backlog",
+      "operation": "backlog",
+      "task_index": 1708,
+      "task_name": "aclnnMm_MatMulV3Common_MatMulV3",
+      "task_type": "AI_CORE",
+      "physical_stream": "44",
+      "task_id": "96",
+      "device_start_us": "1790958915970935.306",
+      "device_end_us": "1790958915971360.863",
+      "host_index": 502,
+      "host_name": "aclnnMm",
+      "cann_index": 2476,
+      "cann_name": "Node@launch",
+      "connection_id": "634",
+      "torch_flow": {
+        "id": "1790958915970935306",
+        "start_index": 3553,
+        "end_index": 3554
+      },
+      "cann_flow": {
+        "id": "2723009265664",
+        "start_index": 3036,
+        "end_index": 1709
+      }
+    },
+    {
+      "trial": "t01",
+      "label": "P32/t01/backlog",
+      "operation": "backlog",
+      "task_index": 1710,
+      "task_name": "aclnnMm_MatMulV3Common_MatMulV3",
+      "task_type": "AI_CORE",
+      "physical_stream": "44",
+      "task_id": "97",
+      "device_start_us": "1790958915971360.883",
+      "device_end_us": "1790958915971786.920",
+      "host_index": 504,
+      "host_name": "aclnnMm",
+      "cann_index": 2481,
+      "cann_name": "Node@launch",
+      "connection_id": "639",
+      "torch_flow": {
+        "id": "1790958915971360883",
+        "start_index": 3555,
+        "end_index": 3556
+      },
+      "cann_flow": {
+        "id": "2744484102144",
+        "start_index": 3037,
+        "end_index": 1711
+      }
+    },
+    {
+      "trial": "t01",
+      "label": "P32/t01/backlog",
+      "operation": "backlog",
+      "task_index": 1712,
+      "task_name": "aclnnMm_MatMulV3Common_MatMulV3",
+      "task_type": "AI_CORE",
+      "physical_stream": "44",
+      "task_id": "98",
+      "device_start_us": "1790958915971786.960",
+      "device_end_us": "1790958915972210.797",
+      "host_index": 506,
+      "host_name": "aclnnMm",
+      "cann_index": 2486,
+      "cann_name": "Node@launch",
+      "connection_id": "645",
+      "torch_flow": {
+        "id": "1790958915971786960",
+        "start_index": 3557,
+        "end_index": 3558
+      },
+      "cann_flow": {
+        "id": "2770253905920",
+        "start_index": 3038,
+        "end_index": 1713
+      }
+    },
+    {
+      "trial": "t01",
+      "label": "P32/t01/backlog",
+      "operation": "backlog",
+      "task_index": 1714,
+      "task_name": "aclnnMm_MatMulV3Common_MatMulV3",
+      "task_type": "AI_CORE",
+      "physical_stream": "44",
+      "task_id": "99",
+      "device_start_us": "1790958915972210.817",
+      "device_end_us": "1790958915972636.474",
+      "host_index": 508,
+      "host_name": "aclnnMm",
+      "cann_index": 2491,
+      "cann_name": "Node@launch",
+      "connection_id": "650",
+      "torch_flow": {
+        "id": "1790958915972210817",
+        "start_index": 3559,
+        "end_index": 3560
+      },
+      "cann_flow": {
+        "id": "2791728742400",
+        "start_index": 3039,
+        "end_index": 1715
+      }
+    },
+    {
+      "trial": "t01",
+      "label": "P32/t01/backlog",
+      "operation": "backlog",
+      "task_index": 1716,
+      "task_name": "aclnnMm_MatMulV3Common_MatMulV3",
+      "task_type": "AI_CORE",
+      "physical_stream": "44",
+      "task_id": "100",
+      "device_start_us": "1790958915972636.514",
+      "device_end_us": "1790958915973061.991",
+      "host_index": 510,
+      "host_name": "aclnnMm",
+      "cann_index": 2496,
+      "cann_name": "Node@launch",
+      "connection_id": "655",
+      "torch_flow": {
+        "id": "1790958915972636514",
+        "start_index": 3561,
+        "end_index": 3562
+      },
+      "cann_flow": {
+        "id": "2813203578880",
+        "start_index": 3040,
+        "end_index": 1717
+      }
+    },
+    {
+      "trial": "t01",
+      "label": "P32/t01/backlog",
+      "operation": "backlog",
+      "task_index": 1718,
+      "task_name": "aclnnMm_MatMulV3Common_MatMulV3",
+      "task_type": "AI_CORE",
+      "physical_stream": "44",
+      "task_id": "101",
+      "device_start_us": "1790958915973062.011",
+      "device_end_us": "1790958915973487.928",
+      "host_index": 512,
+      "host_name": "aclnnMm",
+      "cann_index": 2501,
+      "cann_name": "Node@launch",
+      "connection_id": "660",
+      "torch_flow": {
+        "id": "1790958915973062011",
+        "start_index": 3563,
+        "end_index": 3564
+      },
+      "cann_flow": {
+        "id": "2834678415360",
+        "start_index": 3041,
+        "end_index": 1719
+      }
+    },
+    {
+      "trial": "t01",
+      "label": "P32/t01/backlog",
+      "operation": "backlog",
+      "task_index": 1720,
+      "task_name": "aclnnMm_MatMulV3Common_MatMulV3",
+      "task_type": "AI_CORE",
+      "physical_stream": "44",
+      "task_id": "102",
+      "device_start_us": "1790958915973487.948",
+      "device_end_us": "1790958915973913.705",
+      "host_index": 514,
+      "host_name": "aclnnMm",
+      "cann_index": 2506,
+      "cann_name": "Node@launch",
+      "connection_id": "665",
+      "torch_flow": {
+        "id": "1790958915973487948",
+        "start_index": 3565,
+        "end_index": 3566
+      },
+      "cann_flow": {
+        "id": "2856153251840",
+        "start_index": 3042,
+        "end_index": 1721
+      }
+    },
+    {
+      "trial": "t01",
+      "label": "P32/t01/backlog",
+      "operation": "backlog",
+      "task_index": 1722,
+      "task_name": "aclnnMm_MatMulV3Common_MatMulV3",
+      "task_type": "AI_CORE",
+      "physical_stream": "44",
+      "task_id": "103",
+      "device_start_us": "1790958915973913.745",
+      "device_end_us": "1790958915974338.362",
+      "host_index": 516,
+      "host_name": "aclnnMm",
+      "cann_index": 2511,
+      "cann_name": "Node@launch",
+      "connection_id": "670",
+      "torch_flow": {
+        "id": "1790958915973913745",
+        "start_index": 3567,
+        "end_index": 3568
+      },
+      "cann_flow": {
+        "id": "2877628088320",
+        "start_index": 3043,
+        "end_index": 1723
+      }
+    },
+    {
+      "trial": "t01",
+      "label": "P32/t01/backlog",
+      "operation": "backlog",
+      "task_index": 1724,
+      "task_name": "aclnnMm_MatMulV3Common_MatMulV3",
+      "task_type": "AI_CORE",
+      "physical_stream": "44",
+      "task_id": "104",
+      "device_start_us": "1790958915974338.382",
+      "device_end_us": "1790958915974765.479",
+      "host_index": 518,
+      "host_name": "aclnnMm",
+      "cann_index": 2516,
+      "cann_name": "Node@launch",
+      "connection_id": "675",
+      "torch_flow": {
+        "id": "1790958915974338382",
+        "start_index": 3569,
+        "end_index": 3570
+      },
+      "cann_flow": {
+        "id": "2899102924800",
+        "start_index": 3044,
+        "end_index": 1725
+      }
+    },
+    {
+      "trial": "t01",
+      "label": "P32/t01/backlog",
+      "operation": "backlog",
+      "task_index": 1726,
+      "task_name": "aclnnMm_MatMulV3Common_MatMulV3",
+      "task_type": "AI_CORE",
+      "physical_stream": "44",
+      "task_id": "105",
+      "device_start_us": "1790958915974765.499",
+      "device_end_us": "1790958915975191.976",
+      "host_index": 520,
+      "host_name": "aclnnMm",
+      "cann_index": 2521,
+      "cann_name": "Node@launch",
+      "connection_id": "680",
+      "torch_flow": {
+        "id": "1790958915974765499",
+        "start_index": 3571,
+        "end_index": 3572
+      },
+      "cann_flow": {
+        "id": "2920577761280",
+        "start_index": 3045,
+        "end_index": 1727
+      }
+    },
+    {
+      "trial": "t01",
+      "label": "P32/t01/backlog",
+      "operation": "backlog",
+      "task_index": 1728,
+      "task_name": "aclnnMm_MatMulV3Common_MatMulV3",
+      "task_type": "AI_CORE",
+      "physical_stream": "44",
+      "task_id": "106",
+      "device_start_us": "1790958915975191.996",
+      "device_end_us": "1790958915975617.533",
+      "host_index": 522,
+      "host_name": "aclnnMm",
+      "cann_index": 2526,
+      "cann_name": "Node@launch",
+      "connection_id": "685",
+      "torch_flow": {
+        "id": "1790958915975191996",
+        "start_index": 3573,
+        "end_index": 3574
+      },
+      "cann_flow": {
+        "id": "2942052597760",
+        "start_index": 3046,
+        "end_index": 1729
+      }
+    },
+    {
+      "trial": "t01",
+      "label": "P32/t01/backlog",
+      "operation": "backlog",
+      "task_index": 1730,
+      "task_name": "aclnnMm_MatMulV3Common_MatMulV3",
+      "task_type": "AI_CORE",
+      "physical_stream": "44",
+      "task_id": "107",
+      "device_start_us": "1790958915975617.553",
+      "device_end_us": "1790958915976043.810",
+      "host_index": 524,
+      "host_name": "aclnnMm",
+      "cann_index": 2531,
+      "cann_name": "Node@launch",
+      "connection_id": "690",
+      "torch_flow": {
+        "id": "1790958915975617553",
+        "start_index": 3575,
+        "end_index": 3576
+      },
+      "cann_flow": {
+        "id": "2963527434240",
+        "start_index": 3047,
+        "end_index": 1731
+      }
+    },
+    {
+      "trial": "t01",
+      "label": "P32/t01/backlog",
+      "operation": "backlog",
+      "task_index": 1732,
+      "task_name": "aclnnMm_MatMulV3Common_MatMulV3",
+      "task_type": "AI_CORE",
+      "physical_stream": "44",
+      "task_id": "108",
+      "device_start_us": "1790958915976043.830",
+      "device_end_us": "1790958915976470.107",
+      "host_index": 526,
+      "host_name": "aclnnMm",
+      "cann_index": 2536,
+      "cann_name": "Node@launch",
+      "connection_id": "695",
+      "torch_flow": {
+        "id": "1790958915976043830",
+        "start_index": 3577,
+        "end_index": 3578
+      },
+      "cann_flow": {
+        "id": "2985002270720",
+        "start_index": 3048,
+        "end_index": 1733
+      }
+    },
+    {
+      "trial": "t01",
+      "label": "P32/t01/backlog",
+      "operation": "backlog",
+      "task_index": 1734,
+      "task_name": "aclnnMm_MatMulV3Common_MatMulV3",
+      "task_type": "AI_CORE",
+      "physical_stream": "44",
+      "task_id": "109",
+      "device_start_us": "1790958915976470.147",
+      "device_end_us": "1790958915976896.324",
+      "host_index": 528,
+      "host_name": "aclnnMm",
+      "cann_index": 2541,
+      "cann_name": "Node@launch",
+      "connection_id": "718",
+      "torch_flow": {
+        "id": "1790958915976470147",
+        "start_index": 3579,
+        "end_index": 3580
+      },
+      "cann_flow": {
+        "id": "3083786518528",
+        "start_index": 3049,
+        "end_index": 1735
+      }
+    },
+    {
+      "trial": "t01",
+      "label": "P32/t01/backlog",
+      "operation": "backlog",
+      "task_index": 1736,
+      "task_name": "aclnnMm_MatMulV3Common_MatMulV3",
+      "task_type": "AI_CORE",
+      "physical_stream": "44",
+      "task_id": "110",
+      "device_start_us": "1790958915976896.344",
+      "device_end_us": "1790958915977321.941",
+      "host_index": 530,
+      "host_name": "aclnnMm",
+      "cann_index": 2546,
+      "cann_name": "Node@launch",
+      "connection_id": "733",
+      "torch_flow": {
+        "id": "1790958915976896344",
+        "start_index": 3581,
+        "end_index": 3582
+      },
+      "cann_flow": {
+        "id": "3148211027968",
+        "start_index": 3050,
+        "end_index": 1737
+      }
+    },
+    {
+      "trial": "t01",
+      "label": "P32/t01/backlog",
+      "operation": "backlog",
+      "task_index": 1738,
+      "task_name": "aclnnMm_MatMulV3Common_MatMulV3",
+      "task_type": "AI_CORE",
+      "physical_stream": "44",
+      "task_id": "111",
+      "device_start_us": "1790958915977321.961",
+      "device_end_us": "1790958915977746.478",
+      "host_index": 532,
+      "host_name": "aclnnMm",
+      "cann_index": 2551,
+      "cann_name": "Node@launch",
+      "connection_id": "743",
+      "torch_flow": {
+        "id": "1790958915977321961",
+        "start_index": 3583,
+        "end_index": 3584
+      },
+      "cann_flow": {
+        "id": "3191160700928",
+        "start_index": 3051,
+        "end_index": 1739
+      }
+    },
+    {
+      "trial": "t01",
+      "label": "P32/t01/backlog",
+      "operation": "backlog",
+      "task_index": 1740,
+      "task_name": "aclnnMm_MatMulV3Common_MatMulV3",
+      "task_type": "AI_CORE",
+      "physical_stream": "44",
+      "task_id": "112",
+      "device_start_us": "1790958915977746.498",
+      "device_end_us": "1790958915978172.395",
+      "host_index": 534,
+      "host_name": "aclnnMm",
+      "cann_index": 2556,
+      "cann_name": "Node@launch",
+      "connection_id": "752",
+      "torch_flow": {
+        "id": "1790958915977746498",
+        "start_index": 3585,
+        "end_index": 3586
+      },
+      "cann_flow": {
+        "id": "3229815406592",
+        "start_index": 3052,
+        "end_index": 1741
+      }
+    },
+    {
+      "trial": "t01",
+      "label": "P32/t01/backlog",
+      "operation": "backlog",
+      "task_index": 1742,
+      "task_name": "aclnnMm_MatMulV3Common_MatMulV3",
+      "task_type": "AI_CORE",
+      "physical_stream": "44",
+      "task_id": "113",
+      "device_start_us": "1790958915978172.415",
+      "device_end_us": "1790958915978598.112",
+      "host_index": 536,
+      "host_name": "aclnnMm",
+      "cann_index": 2561,
+      "cann_name": "Node@launch",
+      "connection_id": "762",
+      "torch_flow": {
+        "id": "1790958915978172415",
+        "start_index": 3587,
+        "end_index": 3588
+      },
+      "cann_flow": {
+        "id": "3272765079552",
+        "start_index": 3053,
+        "end_index": 1743
+      }
+    },
+    {
+      "trial": "t01",
+      "label": "P32/t01/backlog",
+      "operation": "backlog",
+      "task_index": 1744,
+      "task_name": "aclnnMm_MatMulV3Common_MatMulV3",
+      "task_type": "AI_CORE",
+      "physical_stream": "44",
+      "task_id": "114",
+      "device_start_us": "1790958915978598.132",
+      "device_end_us": "1790958915979024.069",
+      "host_index": 538,
+      "host_name": "aclnnMm",
+      "cann_index": 2566,
+      "cann_name": "Node@launch",
+      "connection_id": "772",
+      "torch_flow": {
+        "id": "1790958915978598132",
+        "start_index": 3589,
+        "end_index": 3590
+      },
+      "cann_flow": {
+        "id": "3315714752512",
+        "start_index": 3054,
+        "end_index": 1745
+      }
+    },
+    {
+      "trial": "t01",
+      "label": "P32/t01/backlog",
+      "operation": "backlog",
+      "task_index": 1746,
+      "task_name": "aclnnMm_MatMulV3Common_MatMulV3",
+      "task_type": "AI_CORE",
+      "physical_stream": "44",
+      "task_id": "115",
+      "device_start_us": "1790958915979024.089",
+      "device_end_us": "1790958915979449.486",
+      "host_index": 540,
+      "host_name": "aclnnMm",
+      "cann_index": 2571,
+      "cann_name": "Node@launch",
+      "connection_id": "782",
+      "torch_flow": {
+        "id": "1790958915979024089",
+        "start_index": 3591,
+        "end_index": 3592
+      },
+      "cann_flow": {
+        "id": "3358664425472",
+        "start_index": 3055,
+        "end_index": 1747
+      }
+    },
+    {
+      "trial": "t01",
+      "label": "P32/t01/backlog",
+      "operation": "backlog",
+      "task_index": 1748,
+      "task_name": "aclnnMm_MatMulV3Common_MatMulV3",
+      "task_type": "AI_CORE",
+      "physical_stream": "44",
+      "task_id": "116",
+      "device_start_us": "1790958915979449.506",
+      "device_end_us": "1790958915979876.603",
+      "host_index": 542,
+      "host_name": "aclnnMm",
+      "cann_index": 2576,
+      "cann_name": "Node@launch",
+      "connection_id": "787",
+      "torch_flow": {
+        "id": "1790958915979449506",
+        "start_index": 3593,
+        "end_index": 3594
+      },
+      "cann_flow": {
+        "id": "3380139261952",
+        "start_index": 3056,
+        "end_index": 1749
+      }
+    },
+    {
+      "trial": "t01",
+      "label": "P32/t01/backlog",
+      "operation": "backlog",
+      "task_index": 1750,
+      "task_name": "aclnnMm_MatMulV3Common_MatMulV3",
+      "task_type": "AI_CORE",
+      "physical_stream": "44",
+      "task_id": "117",
+      "device_start_us": "1790958915979876.623",
+      "device_end_us": "1790958915980303.741",
+      "host_index": 544,
+      "host_name": "aclnnMm",
+      "cann_index": 2581,
+      "cann_name": "Node@launch",
+      "connection_id": "792",
+      "torch_flow": {
+        "id": "1790958915979876623",
+        "start_index": 3595,
+        "end_index": 3596
+      },
+      "cann_flow": {
+        "id": "3401614098432",
+        "start_index": 3057,
+        "end_index": 1751
+      }
+    },
+    {
+      "trial": "t01",
+      "label": "P32/t01/backlog",
+      "operation": "backlog",
+      "task_index": 1752,
+      "task_name": "aclnnMm_MatMulV3Common_MatMulV3",
+      "task_type": "AI_CORE",
+      "physical_stream": "44",
+      "task_id": "118",
+      "device_start_us": "1790958915980303.781",
+      "device_end_us": "1790958915980729.858",
+      "host_index": 546,
+      "host_name": "aclnnMm",
+      "cann_index": 2586,
+      "cann_name": "Node@launch",
+      "connection_id": "797",
+      "torch_flow": {
+        "id": "1790958915980303781",
+        "start_index": 3597,
+        "end_index": 3598
+      },
+      "cann_flow": {
+        "id": "3423088934912",
+        "start_index": 3058,
+        "end_index": 1753
+      }
+    },
+    {
+      "trial": "t01",
+      "label": "P32/t01/backlog",
+      "operation": "backlog",
+      "task_index": 1754,
+      "task_name": "aclnnMm_MatMulV3Common_MatMulV3",
+      "task_type": "AI_CORE",
+      "physical_stream": "44",
+      "task_id": "119",
+      "device_start_us": "1790958915980729.878",
+      "device_end_us": "1790958915981156.255",
+      "host_index": 548,
+      "host_name": "aclnnMm",
+      "cann_index": 2591,
+      "cann_name": "Node@launch",
+      "connection_id": "802",
+      "torch_flow": {
+        "id": "1790958915980729878",
+        "start_index": 3599,
+        "end_index": 3600
+      },
+      "cann_flow": {
+        "id": "3444563771392",
+        "start_index": 3059,
+        "end_index": 1755
+      }
+    },
+    {
+      "trial": "t01",
+      "label": "P32/t01/backlog",
+      "operation": "backlog",
+      "task_index": 1756,
+      "task_name": "aclnnMm_MatMulV3Common_MatMulV3",
+      "task_type": "AI_CORE",
+      "physical_stream": "44",
+      "task_id": "120",
+      "device_start_us": "1790958915981156.275",
+      "device_end_us": "1790958915981583.232",
+      "host_index": 550,
+      "host_name": "aclnnMm",
+      "cann_index": 2596,
+      "cann_name": "Node@launch",
+      "connection_id": "807",
+      "torch_flow": {
+        "id": "1790958915981156275",
+        "start_index": 3601,
+        "end_index": 3602
+      },
+      "cann_flow": {
+        "id": "3466038607872",
+        "start_index": 3060,
+        "end_index": 1757
+      }
+    },
+    {
+      "trial": "t01",
+      "label": "P32/t01/backlog",
+      "operation": "backlog",
+      "task_index": 1758,
+      "task_name": "aclnnMm_MatMulV3Common_MatMulV3",
+      "task_type": "AI_CORE",
+      "physical_stream": "44",
+      "task_id": "121",
+      "device_start_us": "1790958915981583.272",
+      "device_end_us": "1790958915982009.409",
+      "host_index": 552,
+      "host_name": "aclnnMm",
+      "cann_index": 2601,
+      "cann_name": "Node@launch",
+      "connection_id": "830",
+      "torch_flow": {
+        "id": "1790958915981583272",
+        "start_index": 3603,
+        "end_index": 3604
+      },
+      "cann_flow": {
+        "id": "3564822855680",
+        "start_index": 3061,
+        "end_index": 1759
+      }
+    },
+    {
+      "trial": "t01",
+      "label": "P32/t01/backlog",
+      "operation": "backlog",
+      "task_index": 1760,
+      "task_name": "aclnnMm_MatMulV3Common_MatMulV3",
+      "task_type": "AI_CORE",
+      "physical_stream": "44",
+      "task_id": "122",
+      "device_start_us": "1790958915982009.449",
+      "device_end_us": "1790958915982434.426",
+      "host_index": 554,
+      "host_name": "aclnnMm",
+      "cann_index": 2606,
+      "cann_name": "Node@launch",
+      "connection_id": "840",
+      "torch_flow": {
+        "id": "1790958915982009449",
+        "start_index": 3605,
+        "end_index": 3606
+      },
+      "cann_flow": {
+        "id": "3607772528640",
+        "start_index": 3062,
+        "end_index": 1761
+      }
+    },
+    {
+      "trial": "t01",
+      "label": "P32/t01/backlog",
+      "operation": "backlog",
+      "task_index": 1762,
+      "task_name": "aclnnMm_MatMulV3Common_MatMulV3",
+      "task_type": "AI_CORE",
+      "physical_stream": "44",
+      "task_id": "123",
+      "device_start_us": "1790958915982434.446",
+      "device_end_us": "1790958915982858.183",
+      "host_index": 556,
+      "host_name": "aclnnMm",
+      "cann_index": 2611,
+      "cann_name": "Node@launch",
+      "connection_id": "855",
+      "torch_flow": {
+        "id": "1790958915982434446",
+        "start_index": 3607,
+        "end_index": 3608
+      },
+      "cann_flow": {
+        "id": "3672197038080",
+        "start_index": 3063,
+        "end_index": 1763
+      }
+    },
+    {
+      "trial": "t01",
+      "label": "P32/t01/backlog",
+      "operation": "backlog",
+      "task_index": 1764,
+      "task_name": "aclnnMm_MatMulV3Common_MatMulV3",
+      "task_type": "AI_CORE",
+      "physical_stream": "44",
+      "task_id": "124",
+      "device_start_us": "1790958915982858.203",
+      "device_end_us": "1790958915983284.300",
+      "host_index": 558,
+      "host_name": "aclnnMm",
+      "cann_index": 2616,
+      "cann_name": "Node@launch",
+      "connection_id": "865",
+      "torch_flow": {
+        "id": "1790958915982858203",
+        "start_index": 3609,
+        "end_index": 3610
+      },
+      "cann_flow": {
+        "id": "3715146711040",
+        "start_index": 3064,
+        "end_index": 1765
+      }
+    },
+    {
+      "trial": "t01",
+      "label": "P32/t01/backlog",
+      "operation": "backlog",
+      "task_index": 1766,
+      "task_name": "aclnnMm_MatMulV3Common_MatMulV3",
+      "task_type": "AI_CORE",
+      "physical_stream": "44",
+      "task_id": "125",
+      "device_start_us": "1790958915983284.320",
+      "device_end_us": "1790958915983710.697",
+      "host_index": 560,
+      "host_name": "aclnnMm",
+      "cann_index": 2621,
+      "cann_name": "Node@launch",
+      "connection_id": "875",
+      "torch_flow": {
+        "id": "1790958915983284320",
+        "start_index": 3611,
+        "end_index": 3612
+      },
+      "cann_flow": {
+        "id": "3758096384000",
+        "start_index": 3065,
+        "end_index": 1767
+      }
+    },
+    {
+      "trial": "t01",
+      "label": "P32/t01/backlog",
+      "operation": "backlog",
+      "task_index": 1768,
+      "task_name": "aclnnMm_MatMulV3Common_MatMulV3",
+      "task_type": "AI_CORE",
+      "physical_stream": "44",
+      "task_id": "126",
+      "device_start_us": "1790958915983710.717",
+      "device_end_us": "1790958915984137.274",
+      "host_index": 562,
+      "host_name": "aclnnMm",
+      "cann_index": 2626,
+      "cann_name": "Node@launch",
+      "connection_id": "885",
+      "torch_flow": {
+        "id": "1790958915983710717",
+        "start_index": 3613,
+        "end_index": 3614
+      },
+      "cann_flow": {
+        "id": "3801046056960",
+        "start_index": 3066,
+        "end_index": 1769
+      }
+    },
+    {
+      "trial": "t01",
+      "label": "P32/t01/backlog",
+      "operation": "backlog",
+      "task_index": 1770,
+      "task_name": "aclnnMm_MatMulV3Common_MatMulV3",
+      "task_type": "AI_CORE",
+      "physical_stream": "44",
+      "task_id": "127",
+      "device_start_us": "1790958915984137.294",
+      "device_end_us": "1790958915984561.311",
+      "host_index": 564,
+      "host_name": "aclnnMm",
+      "cann_index": 2631,
+      "cann_name": "Node@launch",
+      "connection_id": "895",
+      "torch_flow": {
+        "id": "1790958915984137294",
+        "start_index": 3615,
+        "end_index": 3616
+      },
+      "cann_flow": {
+        "id": "3843995729920",
+        "start_index": 3067,
+        "end_index": 1771
+      }
+    },
+    {
+      "trial": "t01",
+      "label": "P32/t01/backlog",
+      "operation": "backlog",
+      "task_index": 1772,
+      "task_name": "aclnnMm_MatMulV3Common_MatMulV3",
+      "task_type": "AI_CORE",
+      "physical_stream": "44",
+      "task_id": "128",
+      "device_start_us": "1790958915984561.331",
+      "device_end_us": "1790958915984987.788",
+      "host_index": 566,
+      "host_name": "aclnnMm",
+      "cann_index": 2636,
+      "cann_name": "Node@launch",
+      "connection_id": "905",
+      "torch_flow": {
+        "id": "1790958915984561331",
+        "start_index": 3617,
+        "end_index": 3618
+      },
+      "cann_flow": {
+        "id": "3886945402880",
+        "start_index": 3068,
+        "end_index": 1773
+      }
+    },
+    {
+      "trial": "t01",
+      "label": "P32/t01/backlog",
+      "operation": "backlog",
+      "task_index": 1774,
+      "task_name": "aclnnMm_MatMulV3Common_MatMulV3",
+      "task_type": "AI_CORE",
+      "physical_stream": "44",
+      "task_id": "129",
+      "device_start_us": "1790958915984987.828",
+      "device_end_us": "1790958915985414.125",
+      "host_index": 568,
+      "host_name": "aclnnMm",
+      "cann_index": 2641,
+      "cann_name": "Node@launch",
+      "connection_id": "915",
+      "torch_flow": {
+        "id": "1790958915984987828",
+        "start_index": 3619,
+        "end_index": 3620
+      },
+      "cann_flow": {
+        "id": "3929895075840",
+        "start_index": 3069,
+        "end_index": 1775
+      }
+    },
+    {
+      "trial": "t01",
+      "label": "P32/t01/backlog",
+      "operation": "backlog",
+      "task_index": 1776,
+      "task_name": "aclnnMm_MatMulV3Common_MatMulV3",
+      "task_type": "AI_CORE",
+      "physical_stream": "44",
+      "task_id": "130",
+      "device_start_us": "1790958915985414.145",
+      "device_end_us": "1790958915985839.062",
+      "host_index": 570,
+      "host_name": "aclnnMm",
+      "cann_index": 2646,
+      "cann_name": "Node@launch",
+      "connection_id": "921",
+      "torch_flow": {
+        "id": "1790958915985414145",
+        "start_index": 3621,
+        "end_index": 3622
+      },
+      "cann_flow": {
+        "id": "3955664879616",
+        "start_index": 3070,
+        "end_index": 1777
+      }
+    },
+    {
+      "trial": "t01",
+      "label": "P32/t01/backlog",
+      "operation": "backlog",
+      "task_index": 1778,
+      "task_name": "aclnnMm_MatMulV3Common_MatMulV3",
+      "task_type": "AI_CORE",
+      "physical_stream": "44",
+      "task_id": "131",
+      "device_start_us": "1790958915985839.082",
+      "device_end_us": "1790958915986266.079",
+      "host_index": 572,
+      "host_name": "aclnnMm",
+      "cann_index": 2651,
+      "cann_name": "Node@launch",
+      "connection_id": "926",
+      "torch_flow": {
+        "id": "1790958915985839082",
+        "start_index": 3623,
+        "end_index": 3624
+      },
+      "cann_flow": {
+        "id": "3977139716096",
+        "start_index": 3071,
+        "end_index": 1779
+      }
+    },
+    {
+      "trial": "t01",
+      "label": "P32/t01/backlog",
+      "operation": "backlog",
+      "task_index": 1780,
+      "task_name": "aclnnMm_MatMulV3Common_MatMulV3",
+      "task_type": "AI_CORE",
+      "physical_stream": "44",
+      "task_id": "132",
+      "device_start_us": "1790958915986266.099",
+      "device_end_us": "1790958915986692.656",
+      "host_index": 574,
+      "host_name": "aclnnMm",
+      "cann_index": 2656,
+      "cann_name": "Node@launch",
+      "connection_id": "931",
+      "torch_flow": {
+        "id": "1790958915986266099",
+        "start_index": 3625,
+        "end_index": 3626
+      },
+      "cann_flow": {
+        "id": "3998614552576",
+        "start_index": 3072,
+        "end_index": 1781
+      }
+    },
+    {
+      "trial": "t01",
+      "label": "P32/t01/backlog",
+      "operation": "backlog",
+      "task_index": 1782,
+      "task_name": "aclnnMm_MatMulV3Common_MatMulV3",
+      "task_type": "AI_CORE",
+      "physical_stream": "44",
+      "task_id": "133",
+      "device_start_us": "1790958915986692.676",
+      "device_end_us": "1790958915987122.493",
+      "host_index": 576,
+      "host_name": "aclnnMm",
+      "cann_index": 2661,
+      "cann_name": "Node@launch",
+      "connection_id": "936",
+      "torch_flow": {
+        "id": "1790958915986692676",
+        "start_index": 3627,
+        "end_index": 3628
+      },
+      "cann_flow": {
+        "id": "4020089389056",
+        "start_index": 3073,
+        "end_index": 1783
+      }
+    },
+    {
+      "trial": "t01",
+      "label": "P32/t01/backlog",
+      "operation": "backlog",
+      "task_index": 1784,
+      "task_name": "aclnnMm_MatMulV3Common_MatMulV3",
+      "task_type": "AI_CORE",
+      "physical_stream": "44",
+      "task_id": "134",
+      "device_start_us": "1790958915987122.513",
+      "device_end_us": "1790958915987547.730",
+      "host_index": 578,
+      "host_name": "aclnnMm",
+      "cann_index": 2666,
+      "cann_name": "Node@launch",
+      "connection_id": "960",
+      "torch_flow": {
+        "id": "1790958915987122513",
+        "start_index": 3629,
+        "end_index": 3630
+      },
+      "cann_flow": {
+        "id": "4123168604160",
+        "start_index": 3074,
+        "end_index": 1785
+      }
+    },
+    {
+      "trial": "t01",
+      "label": "P32/t01/backlog",
+      "operation": "backlog",
+      "task_index": 1786,
+      "task_name": "aclnnMm_MatMulV3Common_MatMulV3",
+      "task_type": "AI_CORE",
+      "physical_stream": "44",
+      "task_id": "135",
+      "device_start_us": "1790958915987547.750",
+      "device_end_us": "1790958915987973.427",
+      "host_index": 580,
+      "host_name": "aclnnMm",
+      "cann_index": 2671,
+      "cann_name": "Node@launch",
+      "connection_id": "965",
+      "torch_flow": {
+        "id": "1790958915987547750",
+        "start_index": 3631,
+        "end_index": 3632
+      },
+      "cann_flow": {
+        "id": "4144643440640",
+        "start_index": 3075,
+        "end_index": 1787
+      }
+    },
+    {
+      "trial": "t01",
+      "label": "P32/t01/backlog",
+      "operation": "backlog",
+      "task_index": 1788,
+      "task_name": "aclnnMm_MatMulV3Common_MatMulV3",
+      "task_type": "AI_CORE",
+      "physical_stream": "44",
+      "task_id": "136",
+      "device_start_us": "1790958915987973.467",
+      "device_end_us": "1790958915988399.324",
+      "host_index": 582,
+      "host_name": "aclnnMm",
+      "cann_index": 2676,
+      "cann_name": "Node@launch",
+      "connection_id": "970",
+      "torch_flow": {
+        "id": "1790958915987973467",
+        "start_index": 3633,
+        "end_index": 3634
+      },
+      "cann_flow": {
+        "id": "4166118277120",
+        "start_index": 3076,
+        "end_index": 1789
+      }
+    },
+    {
+      "trial": "t01",
+      "label": "P32/t01/backlog",
+      "operation": "backlog",
+      "task_index": 1790,
+      "task_name": "aclnnMm_MatMulV3Common_MatMulV3",
+      "task_type": "AI_CORE",
+      "physical_stream": "44",
+      "task_id": "137",
+      "device_start_us": "1790958915988399.344",
+      "device_end_us": "1790958915988826.481",
+      "host_index": 584,
+      "host_name": "aclnnMm",
+      "cann_index": 2681,
+      "cann_name": "Node@launch",
+      "connection_id": "975",
+      "torch_flow": {
+        "id": "1790958915988399344",
+        "start_index": 3635,
+        "end_index": 3636
+      },
+      "cann_flow": {
+        "id": "4187593113600",
+        "start_index": 3077,
+        "end_index": 1791
+      }
+    },
+    {
+      "trial": "t01",
+      "label": "P32/t01/backlog",
+      "operation": "backlog",
+      "task_index": 1792,
+      "task_name": "aclnnMm_MatMulV3Common_MatMulV3",
+      "task_type": "AI_CORE",
+      "physical_stream": "44",
+      "task_id": "138",
+      "device_start_us": "1790958915988826.501",
+      "device_end_us": "1790958915989251.598",
+      "host_index": 586,
+      "host_name": "aclnnMm",
+      "cann_index": 2686,
+      "cann_name": "Node@launch",
+      "connection_id": "980",
+      "torch_flow": {
+        "id": "1790958915988826501",
+        "start_index": 3637,
+        "end_index": 3638
+      },
+      "cann_flow": {
+        "id": "4209067950080",
+        "start_index": 3078,
+        "end_index": 1793
+      }
+    },
+    {
+      "trial": "t01",
+      "label": "P32/t01/backlog",
+      "operation": "backlog",
+      "task_index": 1794,
+      "task_name": "aclnnMm_MatMulV3Common_MatMulV3",
+      "task_type": "AI_CORE",
+      "physical_stream": "44",
+      "task_id": "139",
+      "device_start_us": "1790958915989251.618",
+      "device_end_us": "1790958915989677.535",
+      "host_index": 588,
+      "host_name": "aclnnMm",
+      "cann_index": 2691,
+      "cann_name": "Node@launch",
+      "connection_id": "985",
+      "torch_flow": {
+        "id": "1790958915989251618",
+        "start_index": 3639,
+        "end_index": 3640
+      },
+      "cann_flow": {
+        "id": "4230542786560",
+        "start_index": 3079,
+        "end_index": 1795
+      }
+    },
+    {
+      "trial": "t01",
+      "label": "P32/t01/backlog",
+      "operation": "backlog",
+      "task_index": 1796,
+      "task_name": "aclnnMm_MatMulV3Common_MatMulV3",
+      "task_type": "AI_CORE",
+      "physical_stream": "44",
+      "task_id": "140",
+      "device_start_us": "1790958915989677.555",
+      "device_end_us": "1790958915990103.052",
+      "host_index": 590,
+      "host_name": "aclnnMm",
+      "cann_index": 2696,
+      "cann_name": "Node@launch",
+      "connection_id": "990",
+      "torch_flow": {
+        "id": "1790958915989677555",
+        "start_index": 3641,
+        "end_index": 3642
+      },
+      "cann_flow": {
+        "id": "4252017623040",
+        "start_index": 3080,
+        "end_index": 1797
+      }
+    },
+    {
+      "trial": "t01",
+      "label": "P32/t01/backlog",
+      "operation": "backlog",
+      "task_index": 1798,
+      "task_name": "aclnnMm_MatMulV3Common_MatMulV3",
+      "task_type": "AI_CORE",
+      "physical_stream": "44",
+      "task_id": "141",
+      "device_start_us": "1790958915990103.072",
+      "device_end_us": "1790958915990530.929",
+      "host_index": 592,
+      "host_name": "aclnnMm",
+      "cann_index": 2701,
+      "cann_name": "Node@launch",
+      "connection_id": "995",
+      "torch_flow": {
+        "id": "1790958915990103072",
+        "start_index": 3643,
+        "end_index": 3644
+      },
+      "cann_flow": {
+        "id": "4273492459520",
+        "start_index": 3081,
+        "end_index": 1799
+      }
+    },
+    {
+      "trial": "t01",
+      "label": "P32/t01/backlog",
+      "operation": "backlog",
+      "task_index": 1800,
+      "task_name": "aclnnMm_MatMulV3Common_MatMulV3",
+      "task_type": "AI_CORE",
+      "physical_stream": "44",
+      "task_id": "142",
+      "device_start_us": "1790958915990530.969",
+      "device_end_us": "1790958915990957.006",
+      "host_index": 594,
+      "host_name": "aclnnMm",
+      "cann_index": 2706,
+      "cann_name": "Node@launch",
+      "connection_id": "1000",
+      "torch_flow": {
+        "id": "1790958915990530969",
+        "start_index": 3645,
+        "end_index": 3646
+      },
+      "cann_flow": {
+        "id": "4294967296000",
+        "start_index": 3082,
+        "end_index": 1801
+      }
+    },
+    {
+      "trial": "t01",
+      "label": "P32/t01/backlog",
+      "operation": "backlog",
+      "task_index": 1802,
+      "task_name": "aclnnMm_MatMulV3Common_MatMulV3",
+      "task_type": "AI_CORE",
+      "physical_stream": "44",
+      "task_id": "143",
+      "device_start_us": "1790958915990957.026",
+      "device_end_us": "1790958915991382.183",
+      "host_index": 596,
+      "host_name": "aclnnMm",
+      "cann_index": 2711,
+      "cann_name": "Node@launch",
+      "connection_id": "1005",
+      "torch_flow": {
+        "id": "1790958915990957026",
+        "start_index": 3647,
+        "end_index": 3648
+      },
+      "cann_flow": {
+        "id": "4316442132480",
+        "start_index": 3083,
+        "end_index": 1803
+      }
+    },
+    {
+      "trial": "t01",
+      "label": "P32/t01/backlog",
+      "operation": "backlog",
+      "task_index": 1804,
+      "task_name": "aclnnMm_MatMulV3Common_MatMulV3",
+      "task_type": "AI_CORE",
+      "physical_stream": "44",
+      "task_id": "144",
+      "device_start_us": "1790958915991382.203",
+      "device_end_us": "1790958915991807.920",
+      "host_index": 598,
+      "host_name": "aclnnMm",
+      "cann_index": 2716,
+      "cann_name": "Node@launch",
+      "connection_id": "1010",
+      "torch_flow": {
+        "id": "1790958915991382203",
+        "start_index": 3649,
+        "end_index": 3650
+      },
+      "cann_flow": {
+        "id": "4337916968960",
+        "start_index": 3084,
+        "end_index": 1805
+      }
+    },
+    {
+      "trial": "t01",
+      "label": "P32/t01/backlog",
+      "operation": "backlog",
+      "task_index": 1806,
+      "task_name": "aclnnMm_MatMulV3Common_MatMulV3",
+      "task_type": "AI_CORE",
+      "physical_stream": "44",
+      "task_id": "145",
+      "device_start_us": "1790958915991807.940",
+      "device_end_us": "1790958915992233.257",
+      "host_index": 600,
+      "host_name": "aclnnMm",
+      "cann_index": 2721,
+      "cann_name": "Node@launch",
+      "connection_id": "1015",
+      "torch_flow": {
+        "id": "1790958915991807940",
+        "start_index": 3651,
+        "end_index": 3652
+      },
+      "cann_flow": {
+        "id": "4359391805440",
+        "start_index": 3085,
+        "end_index": 1807
+      }
+    },
+    {
+      "trial": "t01",
+      "label": "P32/t01/read-start",
+      "operation": "read-start",
+      "task_index": 1808,
+      "task_name": "EVENT_RECORD",
+      "task_type": "EVENT_RECORD",
+      "physical_stream": "44",
+      "task_id": "146",
+      "device_start_us": "1790958915992233.297",
+      "device_end_us": "1790958915992233.317",
+      "host_index": 603,
+      "host_name": "record_event",
+      "cann_index": 2724,
+      "cann_name": "AscendCL@aclrtRecordEvent",
+      "connection_id": "1018",
+      "torch_flow": {
+        "id": "1790958915992233297",
+        "start_index": 3653,
+        "end_index": 3654
+      },
+      "cann_flow": {
+        "id": "4372276707328",
+        "start_index": 3086,
+        "end_index": 1809
+      }
+    },
+    {
+      "trial": "t01",
+      "label": "P32/t01/consumer-copy",
+      "operation": "consumer-copy",
+      "task_index": 1810,
+      "task_name": "aclnnInplaceCopy_TensorMoveAiCore_TensorMove",
+      "task_type": "AI_VECTOR_CORE",
+      "physical_stream": "44",
+      "task_id": "147",
+      "device_start_us": "1790958915992233.337",
+      "device_end_us": "1790958915992242.698",
+      "host_index": 606,
+      "host_name": "aclnnInplaceCopy",
+      "cann_index": 2727,
+      "cann_name": "Node@launch",
+      "connection_id": "1021",
+      "torch_flow": {
+        "id": "1790958915992233337",
+        "start_index": 3655,
+        "end_index": 3656
+      },
+      "cann_flow": {
+        "id": "4385161609216",
+        "start_index": 3087,
+        "end_index": 1811
+      }
+    },
+    {
+      "trial": "t01",
+      "label": "P32/t01/read-end",
+      "operation": "read-end",
+      "task_index": 1812,
+      "task_name": "EVENT_RECORD",
+      "task_type": "EVENT_RECORD",
+      "physical_stream": "44",
+      "task_id": "148",
+      "device_start_us": "1790958915992242.718",
+      "device_end_us": "1790958915992242.738",
+      "host_index": 609,
+      "host_name": "record_event",
+      "cann_index": 2729,
+      "cann_name": "AscendCL@aclrtRecordEvent",
+      "connection_id": "1023",
+      "torch_flow": {
+        "id": "1790958915992242718",
+        "start_index": 3657,
+        "end_index": 3658
+      },
+      "cann_flow": {
+        "id": "4393751543808",
+        "start_index": 3088,
+        "end_index": 1813
+      }
+    },
+    {
+      "trial": "t01",
+      "label": "P32/t01/done",
+      "operation": "done",
+      "task_index": 1814,
+      "task_name": "EVENT_RECORD",
+      "task_type": "EVENT_RECORD",
+      "physical_stream": "44",
+      "task_id": "149",
+      "device_start_us": "1790958915992242.758",
+      "device_end_us": "1790958915992242.778",
+      "host_index": 612,
+      "host_name": "record_event",
+      "cann_index": 2730,
+      "cann_name": "AscendCL@aclrtRecordEvent",
+      "connection_id": "1024",
+      "torch_flow": {
+        "id": "1790958915992242758",
+        "start_index": 3659,
+        "end_index": 3660
+      },
+      "cann_flow": {
+        "id": "4398046511104",
+        "start_index": 3089,
+        "end_index": 1815
+      }
+    },
+    {
+      "trial": "t01",
+      "label": "P32/t01/validate",
+      "operation": "validate",
+      "task_index": 1816,
+      "task_name": "aclnnEqScalar_EqualAiCore_Equal",
+      "task_type": "AI_VECTOR_CORE",
+      "physical_stream": "46",
+      "task_id": "13",
+      "device_start_us": "1790958915992847.782",
+      "device_end_us": "1790958915992858.442",
+      "host_index": 920,
+      "host_name": "aclnnEqScalar",
+      "cann_index": 2935,
+      "cann_name": "Node@launch",
+      "connection_id": "1229",
+      "torch_flow": {
+        "id": "1790958915992847782",
+        "start_index": 3663,
+        "end_index": 3664
+      },
+      "cann_flow": {
+        "id": "5278514806784",
+        "start_index": 3091,
+        "end_index": 1817
+      }
+    },
+    {
+      "trial": "t01",
+      "label": "P32/t01/validate",
+      "operation": "validate",
+      "task_index": 1818,
+      "task_name": "aclnnAll_ReduceAll_ReduceAll",
+      "task_type": "MIX_AIV",
+      "physical_stream": "46",
+      "task_id": "14",
+      "device_start_us": "1790958915992859.623",
+      "device_end_us": "1790958915992876.043",
+      "host_index": 923,
+      "host_name": "aclnnAll",
+      "cann_index": 2939,
+      "cann_name": "Node@launch",
+      "connection_id": "1233",
+      "torch_flow": {
+        "id": "1790958915992859623",
+        "start_index": 3665,
+        "end_index": 3666
+      },
+      "cann_flow": {
+        "id": "5295694675968",
+        "start_index": 3092,
+        "end_index": 1819
+      }
+    }
+  ],
+  "host_scopes": {
+    "P32/t00/create-a": {
+      "start_us": "1790958915925642.065",
+      "end_us": "1790958915926865.118"
+    },
+    "P32/t00/backlog": {
+      "start_us": "1790958915927638.762",
+      "end_us": "1790958915928011.437"
+    },
+    "P32/t00/read-start": {
+      "start_us": "1790958915928023.585",
+      "end_us": "1790958915928066.094"
+    },
+    "P32/t00/consumer-copy": {
+      "start_us": "1790958915928073.238",
+      "end_us": "1790958915928102.991"
+    },
+    "P32/t00/read-end": {
+      "start_us": "1790958915928108.918",
+      "end_us": "1790958915928131.331"
+    },
+    "P32/t00/done": {
+      "start_us": "1790958915928139.012",
+      "end_us": "1790958915928164.969"
+    },
+    "P32/t00/owner-joins-consumer": {
+      "start_us": "1790958915928197.893",
+      "end_us": "1790958915928229.418"
+    },
+    "P32/t00/release-a": {
+      "start_us": "1790958915928256.356",
+      "end_us": "1790958915928269.119"
+    },
+    "P32/t00/allocate-000": {
+      "start_us": "1790958915928601.292",
+      "end_us": "1790958915928636.016"
+    },
+    "P32/t00/allocate-001": {
+      "start_us": "1790958915928730.027",
+      "end_us": "1790958915928744.812"
+    },
+    "P32/t00/allocate-002": {
+      "start_us": "1790958915928844.329",
+      "end_us": "1790958915928856.620"
+    },
+    "P32/t00/allocate-003": {
+      "start_us": "1790958915928939.623",
+      "end_us": "1790958915928951.194"
+    },
+    "P32/t00/allocate-004": {
+      "start_us": "1790958915929046.834",
+      "end_us": "1790958915929067.287"
+    },
+    "P32/t00/allocate-005": {
+      "start_us": "1790958915929162.657",
+      "end_us": "1790958915929174.664"
+    },
+    "P32/t00/allocate-006": {
+      "start_us": "1790958915929258.175",
+      "end_us": "1790958915929271.295"
+    },
+    "P32/t00/allocate-007": {
+      "start_us": "1790958915929352.418",
+      "end_us": "1790958915929379.914"
+    },
+    "P32/t00/allocate-008": {
+      "start_us": "1790958915929456.983",
+      "end_us": "1790958915929470.194"
+    },
+    "P32/t00/allocate-009": {
+      "start_us": "1790958915929546.827",
+      "end_us": "1790958915929559.959"
+    },
+    "P32/t00/allocate-010": {
+      "start_us": "1790958915929636.934",
+      "end_us": "1790958915929650.096"
+    },
+    "P32/t00/allocate-011": {
+      "start_us": "1790958915929736.048",
+      "end_us": "1790958915929750.550"
+    },
+    "P32/t00/allocate-012": {
+      "start_us": "1790958915929834.029",
+      "end_us": "1790958915929846.213"
+    },
+    "P32/t00/allocate-013": {
+      "start_us": "1790958915929930.693",
+      "end_us": "1790958915929943.246"
+    },
+    "P32/t00/allocate-014": {
+      "start_us": "1790958915930030.964",
+      "end_us": "1790958915930042.642"
+    },
+    "P32/t00/allocate-015": {
+      "start_us": "1790958915930124.608",
+      "end_us": "1790958915930136.786"
+    },
+    "P32/t00/allocate-016": {
+      "start_us": "1790958915930219.987",
+      "end_us": "1790958915930232.522"
+    },
+    "P32/t00/allocate-017": {
+      "start_us": "1790958915930326.075",
+      "end_us": "1790958915930337.919"
+    },
+    "P32/t00/allocate-018": {
+      "start_us": "1790958915930416.897",
+      "end_us": "1790958915930428.462"
+    },
+    "P32/t00/allocate-019": {
+      "start_us": "1790958915930516.943",
+      "end_us": "1790958915930528.898"
+    },
+    "P32/t00/allocate-020": {
+      "start_us": "1790958915930611.640",
+      "end_us": "1790958915930623.213"
+    },
+    "P32/t00/allocate-021": {
+      "start_us": "1790958915930699.244",
+      "end_us": "1790958915930710.628"
+    },
+    "P32/t00/allocate-022": {
+      "start_us": "1790958915930787.732",
+      "end_us": "1790958915930798.865"
+    },
+    "P32/t00/allocate-023": {
+      "start_us": "1790958915930878.647",
+      "end_us": "1790958915930890.922"
+    },
+    "P32/t00/allocate-024": {
+      "start_us": "1790958915930967.130",
+      "end_us": "1790958915930978.694"
+    },
+    "P32/t00/allocate-025": {
+      "start_us": "1790958915931056.969",
+      "end_us": "1790958915931068.757"
+    },
+    "P32/t00/allocate-026": {
+      "start_us": "1790958915931144.466",
+      "end_us": "1790958915931156.159"
+    },
+    "P32/t00/allocate-027": {
+      "start_us": "1790958915931231.443",
+      "end_us": "1790958915931242.948"
+    },
+    "P32/t00/allocate-028": {
+      "start_us": "1790958915931318.551",
+      "end_us": "1790958915931330.118"
+    },
+    "P32/t00/allocate-029": {
+      "start_us": "1790958915931406.997",
+      "end_us": "1790958915931418.688"
+    },
+    "P32/t00/allocate-030": {
+      "start_us": "1790958915931493.480",
+      "end_us": "1790958915931504.754"
+    },
+    "P32/t00/allocate-031": {
+      "start_us": "1790958915931579.498",
+      "end_us": "1790958915931592.173"
+    },
+    "P32/t00/completion-wait": {
+      "start_us": "1790958915931886.529",
+      "end_us": "1790958915955016.168"
+    },
+    "P32/t00/validate": {
+      "start_us": "1790958915955359.448",
+      "end_us": "1790958915955523.027"
+    },
+    "P32/t01/create-a": {
+      "start_us": "1790958915964683.256",
+      "end_us": "1790958915964796.194"
+    },
+    "P32/t01/backlog": {
+      "start_us": "1790958915964925.154",
+      "end_us": "1790958915965228.385"
+    },
+    "P32/t01/read-start": {
+      "start_us": "1790958915965237.938",
+      "end_us": "1790958915965259.134"
+    },
+    "P32/t01/consumer-copy": {
+      "start_us": "1790958915965265.108",
+      "end_us": "1790958915965280.893"
+    },
+    "P32/t01/read-end": {
+      "start_us": "1790958915965286.307",
+      "end_us": "1790958915965306.137"
+    },
+    "P32/t01/done": {
+      "start_us": "1790958915965312.184",
+      "end_us": "1790958915965332.199"
+    },
+    "P32/t01/owner-joins-consumer": {
+      "start_us": "1790958915965361.414",
+      "end_us": "1790958915965389.174"
+    },
+    "P32/t01/release-a": {
+      "start_us": "1790958915965413.253",
+      "end_us": "1790958915965430.999"
+    },
+    "P32/t01/allocate-000": {
+      "start_us": "1790958915965665.977",
+      "end_us": "1790958915965686.228"
+    },
+    "P32/t01/allocate-001": {
+      "start_us": "1790958915965783.847",
+      "end_us": "1790958915965797.331"
+    },
+    "P32/t01/allocate-002": {
+      "start_us": "1790958915965880.602",
+      "end_us": "1790958915965892.277"
+    },
+    "P32/t01/allocate-003": {
+      "start_us": "1790958915965970.529",
+      "end_us": "1790958915965982.182"
+    },
+    "P32/t01/allocate-004": {
+      "start_us": "1790958915966060.478",
+      "end_us": "1790958915966072.799"
+    },
+    "P32/t01/allocate-005": {
+      "start_us": "1790958915966148.738",
+      "end_us": "1790958915966160.373"
+    },
+    "P32/t01/allocate-006": {
+      "start_us": "1790958915966236.672",
+      "end_us": "1790958915966248.310"
+    },
+    "P32/t01/allocate-007": {
+      "start_us": "1790958915966332.364",
+      "end_us": "1790958915966344.074"
+    },
+    "P32/t01/allocate-008": {
+      "start_us": "1790958915966426.237",
+      "end_us": "1790958915966443.769"
+    },
+    "P32/t01/allocate-009": {
+      "start_us": "1790958915966519.292",
+      "end_us": "1790958915966531.195"
+    },
+    "P32/t01/allocate-010": {
+      "start_us": "1790958915966605.972",
+      "end_us": "1790958915966623.533"
+    },
+    "P32/t01/allocate-011": {
+      "start_us": "1790958915966697.942",
+      "end_us": "1790958915966709.200"
+    },
+    "P32/t01/allocate-012": {
+      "start_us": "1790958915966783.510",
+      "end_us": "1790958915966794.939"
+    },
+    "P32/t01/allocate-013": {
+      "start_us": "1790958915966870.173",
+      "end_us": "1790958915966882.051"
+    },
+    "P32/t01/allocate-014": {
+      "start_us": "1790958915966956.658",
+      "end_us": "1790958915966967.930"
+    },
+    "P32/t01/allocate-015": {
+      "start_us": "1790958915967042.420",
+      "end_us": "1790958915967054.049"
+    },
+    "P32/t01/allocate-016": {
+      "start_us": "1790958915967128.911",
+      "end_us": "1790958915967140.568"
+    },
+    "P32/t01/allocate-017": {
+      "start_us": "1790958915967215.470",
+      "end_us": "1790958915967226.785"
+    },
+    "P32/t01/allocate-018": {
+      "start_us": "1790958915967301.790",
+      "end_us": "1790958915967313.262"
+    },
+    "P32/t01/allocate-019": {
+      "start_us": "1790958915967390.087",
+      "end_us": "1790958915967401.495"
+    },
+    "P32/t01/allocate-020": {
+      "start_us": "1790958915967476.069",
+      "end_us": "1790958915967487.736"
+    },
+    "P32/t01/allocate-021": {
+      "start_us": "1790958915967561.809",
+      "end_us": "1790958915967573.421"
+    },
+    "P32/t01/allocate-022": {
+      "start_us": "1790958915967647.852",
+      "end_us": "1790958915967658.989"
+    },
+    "P32/t01/allocate-023": {
+      "start_us": "1790958915967734.959",
+      "end_us": "1790958915967746.284"
+    },
+    "P32/t01/allocate-024": {
+      "start_us": "1790958915967826.460",
+      "end_us": "1790958915967837.655"
+    },
+    "P32/t01/allocate-025": {
+      "start_us": "1790958915967911.999",
+      "end_us": "1790958915967923.491"
+    },
+    "P32/t01/allocate-026": {
+      "start_us": "1790958915967997.987",
+      "end_us": "1790958915968009.908"
+    },
+    "P32/t01/allocate-027": {
+      "start_us": "1790958915968085.319",
+      "end_us": "1790958915968096.704"
+    },
+    "P32/t01/allocate-028": {
+      "start_us": "1790958915968172.482",
+      "end_us": "1790958915968183.703"
+    },
+    "P32/t01/allocate-029": {
+      "start_us": "1790958915968258.017",
+      "end_us": "1790958915968317.088"
+    },
+    "P32/t01/allocate-030": {
+      "start_us": "1790958915968397.696",
+      "end_us": "1790958915968409.766"
+    },
+    "P32/t01/allocate-031": {
+      "start_us": "1790958915968491.051",
+      "end_us": "1790958915968502.975"
+    },
+    "P32/t01/completion-wait": {
+      "start_us": "1790958915968802.851",
+      "end_us": "1790958915992270.292"
+    },
+    "P32/t01/validate": {
+      "start_us": "1790958915992752.967",
+      "end_us": "1790958915992921.818"
+    }
+  },
+  "unresolved_device_task_flows": [],
+  "source": {
+    "trace": "/data/tianchi/practice_32_allocator_lifetime/results/profile-01/baseline-t1-join/profiler/fe561f2e72a8_1688151_20261002163515819_ascend_pt/ASCEND_PROFILER_OUTPUT/trace_view.json",
+    "trace_sha256": "394d4833712443a65a96177f6909944d5532135c5941e4aa08a5d9c74ede3ab7",
+    "metadata_sha256": "9f1f8e67625d10e513fbbf7dd39099a5760b933b802200af553a25458d6d12f4"
+  },
+  "limit": "Profiler-reported host/device order of address assignment and old copy; no candidate device accesses, instruction-level read intervals or conflicting access demonstrated."
+}

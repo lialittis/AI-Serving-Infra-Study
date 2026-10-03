@@ -1,0 +1,69 @@
+{
+  "schema": 1,
+  "start_ns": 1790958238407117805,
+  "arguments": {
+    "output": "/data/tianchi/practice_32_allocator_lifetime/results/formal-02",
+    "configs": [
+      "baseline",
+      "direct",
+      "queue2",
+      "perstream",
+      "expandable",
+      "lazy"
+    ],
+    "modes": [
+      "omit",
+      "record",
+      "join"
+    ],
+    "threads": [
+      1,
+      2
+    ],
+    "owner": "default",
+    "repeats": 5,
+    "backlog": 64,
+    "candidates": 32,
+    "matrix": 4096,
+    "profile": false
+  },
+  "configurations": {
+    "baseline": {
+      "TASK_QUEUE_ENABLE": "1",
+      "PER_STREAM_QUEUE": "0",
+      "PYTORCH_NPU_ALLOC_CONF": "expandable_segments:False,multi_stream_lazy_reclaim:False"
+    },
+    "direct": {
+      "TASK_QUEUE_ENABLE": "0",
+      "PER_STREAM_QUEUE": "0",
+      "PYTORCH_NPU_ALLOC_CONF": "expandable_segments:False,multi_stream_lazy_reclaim:False"
+    },
+    "queue2": {
+      "TASK_QUEUE_ENABLE": "2",
+      "PER_STREAM_QUEUE": "0",
+      "PYTORCH_NPU_ALLOC_CONF": "expandable_segments:False,multi_stream_lazy_reclaim:False"
+    },
+    "perstream": {
+      "TASK_QUEUE_ENABLE": "1",
+      "PER_STREAM_QUEUE": "1",
+      "PYTORCH_NPU_ALLOC_CONF": "expandable_segments:False,multi_stream_lazy_reclaim:False"
+    },
+    "expandable": {
+      "TASK_QUEUE_ENABLE": "1",
+      "PER_STREAM_QUEUE": "0",
+      "PYTORCH_NPU_ALLOC_CONF": "expandable_segments:True,multi_stream_lazy_reclaim:False"
+    },
+    "lazy": {
+      "TASK_QUEUE_ENABLE": "1",
+      "PER_STREAM_QUEUE": "0",
+      "PYTORCH_NPU_ALLOC_CONF": "expandable_segments:False,multi_stream_lazy_reclaim:True"
+    }
+  },
+  "source_sha256": {
+    "analyze.py": "748aec3f3e3a1acbc7b27132d2302aeeb823bccf1531bb2863964ec4309a7196",
+    "analyze_profile.py": "2f53486b0831c4d810923090d26e94ad7eee20e9650006f0a87dbaa126a9666f",
+    "probe.py": "daf8b65c6ded3e5e8afeb7d45265d17d4f572c436ed2ca99a0cc8dd7a4dd9bb0",
+    "run.py": "a8a8681176a181e0190009d28977ac6647e1c5f32c460d795bb2d28c437f32bf",
+    "test_analysis.py": "4497f809a67abd10ac2886309001b6674238591a9f53b19055aec61b55c81d5a"
+  }
+}

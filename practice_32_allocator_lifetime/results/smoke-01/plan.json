@@ -1,0 +1,35 @@
+{
+  "schema": 1,
+  "start_ns": 1790957543576057720,
+  "arguments": {
+    "output": "/data/tianchi/practice_32_allocator_lifetime/results/smoke-01",
+    "configs": [
+      "baseline"
+    ],
+    "modes": [
+      "omit",
+      "record",
+      "join"
+    ],
+    "threads": [
+      1
+    ],
+    "owner": "default",
+    "repeats": 2,
+    "backlog": 64,
+    "candidates": 32,
+    "matrix": 4096,
+    "profile": false
+  },
+  "configurations": {
+    "baseline": {
+      "TASK_QUEUE_ENABLE": "1",
+      "PER_STREAM_QUEUE": "0",
+      "PYTORCH_NPU_ALLOC_CONF": "expandable_segments:False,multi_stream_lazy_reclaim:False"
+    }
+  },
+  "source_sha256": {
+    "probe.py": "ca79a1d9c50435e42fb981c079914202ac0675b3a4b83f37c4c2fe1b9695a52c",
+    "run.py": "a8a8681176a181e0190009d28977ac6647e1c5f32c460d795bb2d28c437f32bf"
+  }
+}

@@ -1,0 +1,95 @@
+[
+  {
+    "case": "baseline-t1-omit",
+    "command": [
+      "/usr/local/python3.12.13/bin/python",
+      "/data/tianchi/practice_32_allocator_lifetime/probe.py",
+      "--output",
+      "/data/tianchi/practice_32_allocator_lifetime/results/smoke-01/baseline-t1-omit",
+      "--mode",
+      "omit",
+      "--threads",
+      "1",
+      "--owner",
+      "default",
+      "--repeats",
+      "2",
+      "--backlog",
+      "64",
+      "--candidates",
+      "32",
+      "--matrix",
+      "4096"
+    ],
+    "environment": {
+      "TASK_QUEUE_ENABLE": "1",
+      "PER_STREAM_QUEUE": "0",
+      "PYTORCH_NPU_ALLOC_CONF": "expandable_segments:False,multi_stream_lazy_reclaim:False"
+    },
+    "start_ns": 1790957543576198509,
+    "end_ns": 1790957551849671149,
+    "returncode": 0
+  },
+  {
+    "case": "baseline-t1-record",
+    "command": [
+      "/usr/local/python3.12.13/bin/python",
+      "/data/tianchi/practice_32_allocator_lifetime/probe.py",
+      "--output",
+      "/data/tianchi/practice_32_allocator_lifetime/results/smoke-01/baseline-t1-record",
+      "--mode",
+      "record",
+      "--threads",
+      "1",
+      "--owner",
+      "default",
+      "--repeats",
+      "2",
+      "--backlog",
+      "64",
+      "--candidates",
+      "32",
+      "--matrix",
+      "4096"
+    ],
+    "environment": {
+      "TASK_QUEUE_ENABLE": "1",
+      "PER_STREAM_QUEUE": "0",
+      "PYTORCH_NPU_ALLOC_CONF": "expandable_segments:False,multi_stream_lazy_reclaim:False"
+    },
+    "start_ns": 1790957551850026868,
+    "end_ns": 1790957560173569998,
+    "returncode": 0
+  },
+  {
+    "case": "baseline-t1-join",
+    "command": [
+      "/usr/local/python3.12.13/bin/python",
+      "/data/tianchi/practice_32_allocator_lifetime/probe.py",
+      "--output",
+      "/data/tianchi/practice_32_allocator_lifetime/results/smoke-01/baseline-t1-join",
+      "--mode",
+      "join",
+      "--threads",
+      "1",
+      "--owner",
+      "default",
+      "--repeats",
+      "2",
+      "--backlog",
+      "64",
+      "--candidates",
+      "32",
+      "--matrix",
+      "4096"
+    ],
+    "environment": {
+      "TASK_QUEUE_ENABLE": "1",
+      "PER_STREAM_QUEUE": "0",
+      "PYTORCH_NPU_ALLOC_CONF": "expandable_segments:False,multi_stream_lazy_reclaim:False"
+    },
+    "start_ns": 1790957560173941007,
+    "end_ns": 1790957568447935585,
+    "returncode": 0
+  }
+]

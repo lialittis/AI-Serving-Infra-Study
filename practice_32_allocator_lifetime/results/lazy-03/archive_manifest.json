@@ -1,0 +1,890 @@
+{
+  "schema": 1,
+  "remote_host": "ascend910",
+  "remote_root": "/data/tianchi/practice_32_allocator_lifetime/results/lazy-03",
+  "retained_files": [
+    {
+      "path": "cases.json",
+      "bytes": 4599,
+      "sha256": "c1fcba7bc6c03c4bb2b38365516281b273562ecf13d56ea823a5c63ec03c9da4"
+    },
+    {
+      "path": "device_after.json",
+      "bytes": 1752,
+      "sha256": "a4e6195046f3b750390553353efdd62867a1a0067f478a2b5fb05c735571391c"
+    },
+    {
+      "path": "device_before.json",
+      "bytes": 1752,
+      "sha256": "7fea7cfb1451c8047a5aac8a2888450102de74d1c470b6cf140964f97d1e420c"
+    },
+    {
+      "path": "health_after.json",
+      "bytes": 365,
+      "sha256": "9e54010e2bf29e857437756f9ddedd9261446dbe999fff10dc489cf2af989600"
+    },
+    {
+      "path": "health_before.json",
+      "bytes": 365,
+      "sha256": "9e54010e2bf29e857437756f9ddedd9261446dbe999fff10dc489cf2af989600"
+    },
+    {
+      "path": "lazy-t1-join/run.json",
+      "bytes": 203882,
+      "sha256": "e8fc4a222c800f86533f5a7f2c4ec9d125d73fb3a58887910648a997da410ee1"
+    },
+    {
+      "path": "lazy-t1-join/sources/memory.py",
+      "bytes": 39551,
+      "sha256": "9689894e9cb47ba6884f191e1b45326576441233475142108b05671866ed4947"
+    },
+    {
+      "path": "lazy-t1-join/sources/probe.py",
+      "bytes": 17708,
+      "sha256": "0dbe2fae053466acb1aa1c1cc29be0a154b2aae1a16c348230afed8065a8bd71"
+    },
+    {
+      "path": "lazy-t1-join/sources/streams.py",
+      "bytes": 12623,
+      "sha256": "241741b356db5006797dbec119007afb33b73b0e1753bfb06ab27c989c5bfac4"
+    },
+    {
+      "path": "lazy-t1-join/t00-polled.json.gz",
+      "bytes": 1319,
+      "sha256": "ab751fa8eadf4dd15523592644668870f0004ce13f0f47d560011e505af6a81a"
+    },
+    {
+      "path": "lazy-t1-join/t00-released.json.gz",
+      "bytes": 800,
+      "sha256": "843724bfa213a2801072c3f663c4af072e01e2c5730b580650c63b9652e723c1"
+    },
+    {
+      "path": "lazy-t1-join/t00-synchronized.json.gz",
+      "bytes": 1273,
+      "sha256": "94bf6dbfe67fc9b58c8f0d86175efa0be083f16e505e3a421274dfa41aa27463"
+    },
+    {
+      "path": "lazy-t1-join/t00-window.json.gz",
+      "bytes": 1257,
+      "sha256": "37bc8bcb2eebe9a44d8801f4c9653914757742e6a9531228fab12cf8f80c937a"
+    },
+    {
+      "path": "lazy-t1-join/t01-polled.json.gz",
+      "bytes": 1879,
+      "sha256": "4ef5ad7851ef9f6111b6f95fcdefd2b8c9ab48b5fdb7c5648b92ac5b63b392fd"
+    },
+    {
+      "path": "lazy-t1-join/t01-released.json.gz",
+      "bytes": 1582,
+      "sha256": "f5a6a6d670378c43163482287f2bc99add4459c094dd1628fc797a71dd331bf1"
+    },
+    {
+      "path": "lazy-t1-join/t01-synchronized.json.gz",
+      "bytes": 1859,
+      "sha256": "08a42c307ce3cd5fea14883ad64956a09f773aa2dddba6610ab01f98dcb1cbea"
+    },
+    {
+      "path": "lazy-t1-join/t01-window.json.gz",
+      "bytes": 1850,
+      "sha256": "e3eeed6200e1af5893503c186416e89a44c48e528dbe11a8857db1249cb5d7a9"
+    },
+    {
+      "path": "lazy-t1-join/t02-polled.json.gz",
+      "bytes": 2091,
+      "sha256": "9a33ab454b4d08bad6b97ac1523fee3b5efd93948818782c1136862e2e544139"
+    },
+    {
+      "path": "lazy-t1-join/t02-released.json.gz",
+      "bytes": 1794,
+      "sha256": "ab0972bfccdc3ba6197200d3f274aae22f17f4bacf93b9b1f700498e2ce9ec30"
+    },
+    {
+      "path": "lazy-t1-join/t02-synchronized.json.gz",
+      "bytes": 2071,
+      "sha256": "fb9b41d407f87bd1ff2b369c379d09d919e3487d73fc80a56bc96790e5b65a5b"
+    },
+    {
+      "path": "lazy-t1-join/t02-window.json.gz",
+      "bytes": 2064,
+      "sha256": "e693f48133c1fd2d8ca9ca5722176662406a5f8b4a1b3fac90609c946585b612"
+    },
+    {
+      "path": "lazy-t1-join/t03-polled.json.gz",
+      "bytes": 2292,
+      "sha256": "aec65b49b0ecf8cd806408e12cc92ce695e95433822807a1f97b91679f323d97"
+    },
+    {
+      "path": "lazy-t1-join/t03-released.json.gz",
+      "bytes": 1994,
+      "sha256": "e54b949310d99243f4c8c460a5b89c695da4399578934d4196e301c7ce5dc255"
+    },
+    {
+      "path": "lazy-t1-join/t03-synchronized.json.gz",
+      "bytes": 2273,
+      "sha256": "554ffcf71bdfbe33bc41c3be28395a84cf88697b89f5676b69823ebe5945dfdd"
+    },
+    {
+      "path": "lazy-t1-join/t03-window.json.gz",
+      "bytes": 2267,
+      "sha256": "91bffcc6ccc099d20f9f0da94307fd0230a788abc6d9bd6ab22d54a770cc546f"
+    },
+    {
+      "path": "lazy-t1-join/t04-polled.json.gz",
+      "bytes": 2488,
+      "sha256": "b8035fa7115d0b373d7311633302e69099912c05d5667f87211235dc471f3457"
+    },
+    {
+      "path": "lazy-t1-join/t04-released.json.gz",
+      "bytes": 2188,
+      "sha256": "a9190ad5a3872c40688c5babde6deb8181415f5ed7f448d4d00f6d1bdf9a448f"
+    },
+    {
+      "path": "lazy-t1-join/t04-synchronized.json.gz",
+      "bytes": 2467,
+      "sha256": "090164391b3a606bc933e8de9ea82d82b28fa68c04cdc54be77751397bcfe6bf"
+    },
+    {
+      "path": "lazy-t1-join/t04-window.json.gz",
+      "bytes": 2461,
+      "sha256": "2da70f581e1d5be752ebf685d686b9909a7bde9b62ff950feecb8a5c2b5fc108"
+    },
+    {
+      "path": "lazy-t1-join.log",
+      "bytes": 344,
+      "sha256": "f6dca7ed0e953068fb608aec9a1d7dfb74f947fe329bdd2ee2d8f6e7f622336c"
+    },
+    {
+      "path": "lazy-t1-omit/run.json",
+      "bytes": 202082,
+      "sha256": "d4b3fc41a67a221e43d7a736e6811e4c5d878750f4130dc9f894fd47b96761b4"
+    },
+    {
+      "path": "lazy-t1-omit/sources/memory.py",
+      "bytes": 39551,
+      "sha256": "9689894e9cb47ba6884f191e1b45326576441233475142108b05671866ed4947"
+    },
+    {
+      "path": "lazy-t1-omit/sources/probe.py",
+      "bytes": 17708,
+      "sha256": "0dbe2fae053466acb1aa1c1cc29be0a154b2aae1a16c348230afed8065a8bd71"
+    },
+    {
+      "path": "lazy-t1-omit/sources/streams.py",
+      "bytes": 12623,
+      "sha256": "241741b356db5006797dbec119007afb33b73b0e1753bfb06ab27c989c5bfac4"
+    },
+    {
+      "path": "lazy-t1-omit/t00-polled.json.gz",
+      "bytes": 1318,
+      "sha256": "f41845bf5a3a9507567cb9cf1e1a0c0a37d414914d57e7590d1c3292c3d17d2a"
+    },
+    {
+      "path": "lazy-t1-omit/t00-released.json.gz",
+      "bytes": 794,
+      "sha256": "338e582998a328a87f77b11446e9f6e58b64dba5b9c8336ee28381cc3f8d6e85"
+    },
+    {
+      "path": "lazy-t1-omit/t00-synchronized.json.gz",
+      "bytes": 1271,
+      "sha256": "ccaf9304660ffe9a11eb67ea28351e9987ef08fe63c717cf688ab55f4dc9d608"
+    },
+    {
+      "path": "lazy-t1-omit/t00-window.json.gz",
+      "bytes": 1256,
+      "sha256": "e00ff4c5863d431547a3838ca6bd5029e1ae012ce83effbc6fee6e9a774ef6ed"
+    },
+    {
+      "path": "lazy-t1-omit/t01-polled.json.gz",
+      "bytes": 1875,
+      "sha256": "09adf56f4a770b3ebe96ea1f91bf4eae57fd4194a41330c13e01c1e766a2f8a9"
+    },
+    {
+      "path": "lazy-t1-omit/t01-released.json.gz",
+      "bytes": 1579,
+      "sha256": "02c6b5d627731d9c1498df9b0473f8c45c96a2a8ad2360d2d19f535c39250c52"
+    },
+    {
+      "path": "lazy-t1-omit/t01-synchronized.json.gz",
+      "bytes": 1856,
+      "sha256": "71b1435d47addfcce6bea73afd0ceada4d57a6a98346c26d3de20b36d67406b6"
+    },
+    {
+      "path": "lazy-t1-omit/t01-window.json.gz",
+      "bytes": 1847,
+      "sha256": "bc8f89a22827c26f6aa0ca21c8fcf9fdcf7a8a026d37b08665413daa9187bc13"
+    },
+    {
+      "path": "lazy-t1-omit/t02-polled.json.gz",
+      "bytes": 2088,
+      "sha256": "746af8be26a3b97be174db8647070f9fd9f599bce4361a1d1f5db63545fffae9"
+    },
+    {
+      "path": "lazy-t1-omit/t02-released.json.gz",
+      "bytes": 1793,
+      "sha256": "00469a5c5c170ebcffaddce4c9fee3fa97f33f9ab6283530591c59504f649029"
+    },
+    {
+      "path": "lazy-t1-omit/t02-synchronized.json.gz",
+      "bytes": 2068,
+      "sha256": "2fecaf0877f8e9ba72f3114c1edfe5d5b941971746257fb71ec8c94e6f679547"
+    },
+    {
+      "path": "lazy-t1-omit/t02-window.json.gz",
+      "bytes": 2061,
+      "sha256": "7dd4ebb00bd20db2f246e111e9f8ea2a2119cdf018bbd4213fa670aad644fc4e"
+    },
+    {
+      "path": "lazy-t1-omit/t03-polled.json.gz",
+      "bytes": 2290,
+      "sha256": "0f49993cc846653bc0446078c65b10758b6f344246d7bd810b07edb90125cedf"
+    },
+    {
+      "path": "lazy-t1-omit/t03-released.json.gz",
+      "bytes": 1991,
+      "sha256": "dfb11331830f84ffa62782ae037591f68b5c1ef6d9c89bd6d5ecaf7aae4db176"
+    },
+    {
+      "path": "lazy-t1-omit/t03-synchronized.json.gz",
+      "bytes": 2269,
+      "sha256": "5a631234b0f2f852eb4b146ee15b7859f729538d8e4072cafe6a3900b8952b6b"
+    },
+    {
+      "path": "lazy-t1-omit/t03-window.json.gz",
+      "bytes": 2263,
+      "sha256": "ca524c80d4a77766d98afdc0a3f620c05e5c7d254c3ebd9f02c3bdcbf7f7cba6"
+    },
+    {
+      "path": "lazy-t1-omit/t04-polled.json.gz",
+      "bytes": 2485,
+      "sha256": "3f4c8a47595ce1797629b6fd375cd0b56af597e4facf607f71412a7cb09b9aba"
+    },
+    {
+      "path": "lazy-t1-omit/t04-released.json.gz",
+      "bytes": 2185,
+      "sha256": "8188f9c9ef42c9f23d0a26860758a65ce1f0c507e2927a591bec6949b82ff03c"
+    },
+    {
+      "path": "lazy-t1-omit/t04-synchronized.json.gz",
+      "bytes": 2464,
+      "sha256": "457f8800dbf6b805ae56cfb2e4b076e2ffe627c3fab3bdd94137f36d04d825f1"
+    },
+    {
+      "path": "lazy-t1-omit/t04-window.json.gz",
+      "bytes": 2457,
+      "sha256": "7aef4c8a4012612c19eb2882f85ee82ce217f6afd2029d00e82adacfdab44bd9"
+    },
+    {
+      "path": "lazy-t1-omit.log",
+      "bytes": 344,
+      "sha256": "90238fba7da012ec6caf47979aa0c5972492bc4342ab53ea3daca4c4e1dfc2ac"
+    },
+    {
+      "path": "lazy-t1-record/run.json",
+      "bytes": 207866,
+      "sha256": "e82384062fe7d541d04ccfd80ddc34e22c7c576369266351a3e82248ceadd39d"
+    },
+    {
+      "path": "lazy-t1-record/sources/memory.py",
+      "bytes": 39551,
+      "sha256": "9689894e9cb47ba6884f191e1b45326576441233475142108b05671866ed4947"
+    },
+    {
+      "path": "lazy-t1-record/sources/probe.py",
+      "bytes": 17708,
+      "sha256": "0dbe2fae053466acb1aa1c1cc29be0a154b2aae1a16c348230afed8065a8bd71"
+    },
+    {
+      "path": "lazy-t1-record/sources/streams.py",
+      "bytes": 12623,
+      "sha256": "241741b356db5006797dbec119007afb33b73b0e1753bfb06ab27c989c5bfac4"
+    },
+    {
+      "path": "lazy-t1-record/t00-miss-polled.json.gz",
+      "bytes": 1434,
+      "sha256": "aa196651c066e41f0d6345f4bd888126e89d3fa40a27b7bbcdecb5e9a99ba9dc"
+    },
+    {
+      "path": "lazy-t1-record/t00-polled.json.gz",
+      "bytes": 1361,
+      "sha256": "f211a51bdacb649d5e609d86c6c7b3c829420be5230db91269eb6a0cfee27dcf"
+    },
+    {
+      "path": "lazy-t1-record/t00-released.json.gz",
+      "bytes": 825,
+      "sha256": "253efb24c78db5246d937404af6bd73724a98a4d89209080754a74721c2b0c8d"
+    },
+    {
+      "path": "lazy-t1-record/t00-synchronized.json.gz",
+      "bytes": 1315,
+      "sha256": "9b2579a363d3a7f56119e25042e960dee52758d4ce5ee05f23ee37463cf1ca84"
+    },
+    {
+      "path": "lazy-t1-record/t00-window.json.gz",
+      "bytes": 1301,
+      "sha256": "35b2b50d6179a5b0f2bb883cca8f4523c832a5183b2a84f6b96ad13ee85ea12f"
+    },
+    {
+      "path": "lazy-t1-record/t01-miss-polled.json.gz",
+      "bytes": 2068,
+      "sha256": "573a7cbad238f20dee5f01aa23eaf1e74ffdb3313a0f8296a3967b4bbfe61d0c"
+    },
+    {
+      "path": "lazy-t1-record/t01-polled.json.gz",
+      "bytes": 2004,
+      "sha256": "da2db49cd515a774273322fd59c3fd4fabe2fce3c58d0601e3e5ba9dc5e2f233"
+    },
+    {
+      "path": "lazy-t1-record/t01-released.json.gz",
+      "bytes": 1693,
+      "sha256": "4fcded67695984cd01ac7a0be4a7c13c545c7d021b2b14d252703cc51f082a0b"
+    },
+    {
+      "path": "lazy-t1-record/t01-synchronized.json.gz",
+      "bytes": 1977,
+      "sha256": "2f31094af013d32b75ee2d4dc6aee7fdfdf7f801ff0273f9de694943d2d7af4b"
+    },
+    {
+      "path": "lazy-t1-record/t01-window.json.gz",
+      "bytes": 1972,
+      "sha256": "09c7aced46c2281ea66a35d2888a9c60dafb0938b4369b06a5d403ffc00e3fe8"
+    },
+    {
+      "path": "lazy-t1-record/t02-miss-polled.json.gz",
+      "bytes": 2355,
+      "sha256": "24d7c9531918f22eefa8ad2aed787b9fb162be0532e71849185958c5e9382431"
+    },
+    {
+      "path": "lazy-t1-record/t02-polled.json.gz",
+      "bytes": 2300,
+      "sha256": "68953082b6479e759b50677d30295734f0f522bb58c5e5476fb49480ef483df2"
+    },
+    {
+      "path": "lazy-t1-record/t02-released.json.gz",
+      "bytes": 1996,
+      "sha256": "f8d9484b09cfb03ad292118b8dc0c823921a5e8f1f1ad306bb52ddc871edea1c"
+    },
+    {
+      "path": "lazy-t1-record/t02-synchronized.json.gz",
+      "bytes": 2276,
+      "sha256": "41d767b26c3a53344dd036cc45da4e22f7854fcd712453306f64f40ea1b3d978"
+    },
+    {
+      "path": "lazy-t1-record/t02-window.json.gz",
+      "bytes": 2269,
+      "sha256": "8a2644b0575ca5be85ad7fd220a3e53171a9a883ae1b4ebc48f2b48a9f59ff25"
+    },
+    {
+      "path": "lazy-t1-record/t03-miss-polled.json.gz",
+      "bytes": 2640,
+      "sha256": "9a375288561ff928755ff33510818c5c77e219088b9505a1283fd96a826da961"
+    },
+    {
+      "path": "lazy-t1-record/t03-polled.json.gz",
+      "bytes": 2576,
+      "sha256": "cd2968aa2aeb70295b614313da3af6418a265471effd8687293d63e680ac3b63"
+    },
+    {
+      "path": "lazy-t1-record/t03-released.json.gz",
+      "bytes": 2273,
+      "sha256": "7efa0ae8c4c1f809a2d87f0458122d6a73cc37afc5e14e27e70d568321ccce2a"
+    },
+    {
+      "path": "lazy-t1-record/t03-synchronized.json.gz",
+      "bytes": 2551,
+      "sha256": "f9dd0276ef80da0b0bccc82437f9318e1dfe70f33c85ab6c2728c772054fc7e1"
+    },
+    {
+      "path": "lazy-t1-record/t03-window.json.gz",
+      "bytes": 2546,
+      "sha256": "863d19f1988ab55a9a6ef7cea8bd10fe9400dd2f3f8735d641dc678917b85e35"
+    },
+    {
+      "path": "lazy-t1-record/t04-miss-polled.json.gz",
+      "bytes": 2915,
+      "sha256": "b0fb890bebc52f6312bc612c4f48a8a90f3e0b9c099aaa6fa7165b6537bbe737"
+    },
+    {
+      "path": "lazy-t1-record/t04-polled.json.gz",
+      "bytes": 2853,
+      "sha256": "0965a0a827e4af0854b1a2bbf7e5ea0ab9dce6a5551a4a8150ca923067083de9"
+    },
+    {
+      "path": "lazy-t1-record/t04-released.json.gz",
+      "bytes": 2545,
+      "sha256": "d115265fbf0e8f0201edfc6b88b6efdffb677f9ee6302f02766a2a4b1f2ad506"
+    },
+    {
+      "path": "lazy-t1-record/t04-synchronized.json.gz",
+      "bytes": 2826,
+      "sha256": "1b762dd4d3a820e94e4ead975a533306b52bb9271789f3cad7cfb05a5c9e19ff"
+    },
+    {
+      "path": "lazy-t1-record/t04-window.json.gz",
+      "bytes": 2821,
+      "sha256": "67cb61f0e63f5fa1c72f11fa6f04f9fc8ac0a8358f89c55f406d8971dbcaebce"
+    },
+    {
+      "path": "lazy-t1-record.log",
+      "bytes": 346,
+      "sha256": "4204d07299dbf501deaf60b1e911e9cc629f27932d6f240d6fdf4697bdfc5634"
+    },
+    {
+      "path": "lazy-t2-join/run.json",
+      "bytes": 203882,
+      "sha256": "b5feee8c157056a8b08f8f8c94c1d89b198c8e3761629437a2fcec5db50c268b"
+    },
+    {
+      "path": "lazy-t2-join/sources/memory.py",
+      "bytes": 39551,
+      "sha256": "9689894e9cb47ba6884f191e1b45326576441233475142108b05671866ed4947"
+    },
+    {
+      "path": "lazy-t2-join/sources/probe.py",
+      "bytes": 17708,
+      "sha256": "0dbe2fae053466acb1aa1c1cc29be0a154b2aae1a16c348230afed8065a8bd71"
+    },
+    {
+      "path": "lazy-t2-join/sources/streams.py",
+      "bytes": 12623,
+      "sha256": "241741b356db5006797dbec119007afb33b73b0e1753bfb06ab27c989c5bfac4"
+    },
+    {
+      "path": "lazy-t2-join/t00-polled.json.gz",
+      "bytes": 1319,
+      "sha256": "e3223030446a8b894c5c66885801d40079ba8618934617cf2ce3bf94a591e761"
+    },
+    {
+      "path": "lazy-t2-join/t00-released.json.gz",
+      "bytes": 796,
+      "sha256": "e4179a2c92ba0b461cb65c548f4de2dbe6d1810c61b63a0d50c04b6628f1d1db"
+    },
+    {
+      "path": "lazy-t2-join/t00-synchronized.json.gz",
+      "bytes": 1272,
+      "sha256": "32d3a2830086c3d7246044a59ed6a1e2d89aeb95a6c8fa0e3cbe6b6a728f82bc"
+    },
+    {
+      "path": "lazy-t2-join/t00-window.json.gz",
+      "bytes": 1257,
+      "sha256": "45163df7ea7efab9bcca434fd19d77f39a7ae889e598c55d17c9c89d629903ab"
+    },
+    {
+      "path": "lazy-t2-join/t01-polled.json.gz",
+      "bytes": 1877,
+      "sha256": "099aaec1ddf1e006f85ce33e1aaa91451f0744b7ec0bc763a5e31a1fecb78779"
+    },
+    {
+      "path": "lazy-t2-join/t01-released.json.gz",
+      "bytes": 1580,
+      "sha256": "807b796400cd5803790fb58b3c0d6fca4eb63c50f078631ee547ae547d8914d0"
+    },
+    {
+      "path": "lazy-t2-join/t01-synchronized.json.gz",
+      "bytes": 1858,
+      "sha256": "db0715475abd5de7a2bee99da7ab572ae1304f1193e998bad4719cc8cb8c5e2f"
+    },
+    {
+      "path": "lazy-t2-join/t01-window.json.gz",
+      "bytes": 1850,
+      "sha256": "a057e64db53c6c9db5c51c8fa43201ac831099d11c8816b969bab4e10ec3a295"
+    },
+    {
+      "path": "lazy-t2-join/t02-polled.json.gz",
+      "bytes": 2089,
+      "sha256": "aa9bafbf3f4664ddd252c942e0d99360830f077c095670f3efc89abb75443323"
+    },
+    {
+      "path": "lazy-t2-join/t02-released.json.gz",
+      "bytes": 1793,
+      "sha256": "e064810ffc0ab397b6e116297818f31314c9419fe4dae4fada0d752818314943"
+    },
+    {
+      "path": "lazy-t2-join/t02-synchronized.json.gz",
+      "bytes": 2070,
+      "sha256": "ea1492fa72816d547840b7d16d8addb847095a8d8498362ac7ea30f643b880d6"
+    },
+    {
+      "path": "lazy-t2-join/t02-window.json.gz",
+      "bytes": 2063,
+      "sha256": "8b6d048a1ad95e43b71528312a540eff74b3827b2c02223be3da52129c60f4a1"
+    },
+    {
+      "path": "lazy-t2-join/t03-polled.json.gz",
+      "bytes": 2292,
+      "sha256": "d82286645bf5cd765db601ec2e030d16c062e288954b86e003974535ad100478"
+    },
+    {
+      "path": "lazy-t2-join/t03-released.json.gz",
+      "bytes": 1992,
+      "sha256": "1c60c09113996878912a7c48305383b5bf89f11d69e0282afe15f83b2ea81d79"
+    },
+    {
+      "path": "lazy-t2-join/t03-synchronized.json.gz",
+      "bytes": 2271,
+      "sha256": "b234887c71e11866870b3cb761aedc6c3df5e05fe50a30fc32866d882882582c"
+    },
+    {
+      "path": "lazy-t2-join/t03-window.json.gz",
+      "bytes": 2265,
+      "sha256": "776b8f194c5a4122f6bc9eb7d93230ef4e3e0c4b21cf08839560018921cb7e6d"
+    },
+    {
+      "path": "lazy-t2-join/t04-polled.json.gz",
+      "bytes": 2487,
+      "sha256": "eab5b685bafe419176e1aaf5bf5e64eab121e9769e3352cbb27e6f374c0281b2"
+    },
+    {
+      "path": "lazy-t2-join/t04-released.json.gz",
+      "bytes": 2185,
+      "sha256": "1ea4c1bd19b83f37d47b84b45029027b98b55ba92a5cfa40b21ba00080bcdc9f"
+    },
+    {
+      "path": "lazy-t2-join/t04-synchronized.json.gz",
+      "bytes": 2465,
+      "sha256": "8c4ffc7484f2c5196ae7b224f620b36cff313d85baf28fc599ace8e3cd725c40"
+    },
+    {
+      "path": "lazy-t2-join/t04-window.json.gz",
+      "bytes": 2459,
+      "sha256": "62f510f379c4d3db24bd71a977ba01576f4898e937b41246972362233853d100"
+    },
+    {
+      "path": "lazy-t2-join.log",
+      "bytes": 344,
+      "sha256": "93ef18667f08ccff014357cf5d6f41abf34358ecd66a9c200a33626b39fcd510"
+    },
+    {
+      "path": "lazy-t2-omit/run.json",
+      "bytes": 202082,
+      "sha256": "eb63d121fd863aabb6245266a1babab5fb2cc402cf1ee973bf75dda088676614"
+    },
+    {
+      "path": "lazy-t2-omit/sources/memory.py",
+      "bytes": 39551,
+      "sha256": "9689894e9cb47ba6884f191e1b45326576441233475142108b05671866ed4947"
+    },
+    {
+      "path": "lazy-t2-omit/sources/probe.py",
+      "bytes": 17708,
+      "sha256": "0dbe2fae053466acb1aa1c1cc29be0a154b2aae1a16c348230afed8065a8bd71"
+    },
+    {
+      "path": "lazy-t2-omit/sources/streams.py",
+      "bytes": 12623,
+      "sha256": "241741b356db5006797dbec119007afb33b73b0e1753bfb06ab27c989c5bfac4"
+    },
+    {
+      "path": "lazy-t2-omit/t00-polled.json.gz",
+      "bytes": 1322,
+      "sha256": "b6a82ecf9549783343a95142202af4b5bffa37766d180c58491495e6f9db1931"
+    },
+    {
+      "path": "lazy-t2-omit/t00-released.json.gz",
+      "bytes": 799,
+      "sha256": "a365b5d6cb3d71313f27e221db8444558987a9cdeedc9c8e9f38e4c1c5d71608"
+    },
+    {
+      "path": "lazy-t2-omit/t00-synchronized.json.gz",
+      "bytes": 1276,
+      "sha256": "f2c92b6de068a8e20033cc51a766b85bd142bc0cdbc43780dcfe9d791131547e"
+    },
+    {
+      "path": "lazy-t2-omit/t00-window.json.gz",
+      "bytes": 1260,
+      "sha256": "635794559eb8e84f5d1d3ca0620add046e75e40e92ca6a195e0920cc85cab1ab"
+    },
+    {
+      "path": "lazy-t2-omit/t01-polled.json.gz",
+      "bytes": 1882,
+      "sha256": "6a2b73dbe9d68962cc373b6490f39acb30f9429fa54ac8f3f5b63918916331f3"
+    },
+    {
+      "path": "lazy-t2-omit/t01-released.json.gz",
+      "bytes": 1581,
+      "sha256": "e9330515a03b9c47fd6f9580dd9c6dea20bdcc0c448616d04729a354654e0c35"
+    },
+    {
+      "path": "lazy-t2-omit/t01-synchronized.json.gz",
+      "bytes": 1861,
+      "sha256": "7ab3f9b6f2d63bf00b6eb0050c4fab17cf3a2e47d538bcde641bb974857cea51"
+    },
+    {
+      "path": "lazy-t2-omit/t01-window.json.gz",
+      "bytes": 1853,
+      "sha256": "4dab6c21f4f5c0b24c4d0b0d06740f2b20d48abadb53ca8153adcac9b5db7414"
+    },
+    {
+      "path": "lazy-t2-omit/t02-polled.json.gz",
+      "bytes": 2094,
+      "sha256": "6f96d444ba586c75ef3885322ca0ce0ebc3530cf5cc83f778467d685b662798e"
+    },
+    {
+      "path": "lazy-t2-omit/t02-released.json.gz",
+      "bytes": 1794,
+      "sha256": "8ccea870da6d5ee05fdeb9747c9997133b83fdf3caf2af36ab6e69b5445bc1e7"
+    },
+    {
+      "path": "lazy-t2-omit/t02-synchronized.json.gz",
+      "bytes": 2073,
+      "sha256": "498ddb7a1e64ac6eb03d4ce2f2012eee2df6cfeef0accc7ccafb828d6c48678a"
+    },
+    {
+      "path": "lazy-t2-omit/t02-window.json.gz",
+      "bytes": 2066,
+      "sha256": "0bf60355058383b1767fc62e2b3a307658a205ce37a1cc51ea8b9ac738579527"
+    },
+    {
+      "path": "lazy-t2-omit/t03-polled.json.gz",
+      "bytes": 2296,
+      "sha256": "bff18511f34d5435bc0c9f9bbf6fce6a2d0570c828cfa4aaf5505637c781ff0f"
+    },
+    {
+      "path": "lazy-t2-omit/t03-released.json.gz",
+      "bytes": 1993,
+      "sha256": "ca6fc097d86d2246ff95d0df38af30a39f33ca2c30433062bb91abf808836fad"
+    },
+    {
+      "path": "lazy-t2-omit/t03-synchronized.json.gz",
+      "bytes": 2275,
+      "sha256": "bc64d983ed57278cf3bfdd1601ddd3dc27bab44829ee95718a3d47d5342cca17"
+    },
+    {
+      "path": "lazy-t2-omit/t03-window.json.gz",
+      "bytes": 2269,
+      "sha256": "8d1918e27181d32c1f0d2a6f015fa42c7f59625bc9c982f3bfdf7b0f4c9d18d6"
+    },
+    {
+      "path": "lazy-t2-omit/t04-polled.json.gz",
+      "bytes": 2491,
+      "sha256": "5e8cc1a77c539f123658ba95303f483cd140d0cf435a008c93f78c2e8861d8ce"
+    },
+    {
+      "path": "lazy-t2-omit/t04-released.json.gz",
+      "bytes": 2187,
+      "sha256": "19aa59138cfb6a619fd47ef9f90e051bf87b56d7735acbfc7d67914c3c297dfd"
+    },
+    {
+      "path": "lazy-t2-omit/t04-synchronized.json.gz",
+      "bytes": 2470,
+      "sha256": "fd2189e116b6ea03bee665e7e3e65c700bc50e27e075a15bbb1b7d55bf0efda2"
+    },
+    {
+      "path": "lazy-t2-omit/t04-window.json.gz",
+      "bytes": 2463,
+      "sha256": "b4137488aba7cbc73042a8959c1868712dc1a2e74f04c4b0556ad7b95b3efbc9"
+    },
+    {
+      "path": "lazy-t2-omit.log",
+      "bytes": 344,
+      "sha256": "0fc729c5850f0f56494afd31b6defcd2e3d342d635d86e53e26deb5f2cb60683"
+    },
+    {
+      "path": "lazy-t2-record/run.json",
+      "bytes": 207866,
+      "sha256": "f6c6d4065c3ae48032a730f604cff579bdde9d5488b864863c171dd952692f33"
+    },
+    {
+      "path": "lazy-t2-record/sources/memory.py",
+      "bytes": 39551,
+      "sha256": "9689894e9cb47ba6884f191e1b45326576441233475142108b05671866ed4947"
+    },
+    {
+      "path": "lazy-t2-record/sources/probe.py",
+      "bytes": 17708,
+      "sha256": "0dbe2fae053466acb1aa1c1cc29be0a154b2aae1a16c348230afed8065a8bd71"
+    },
+    {
+      "path": "lazy-t2-record/sources/streams.py",
+      "bytes": 12623,
+      "sha256": "241741b356db5006797dbec119007afb33b73b0e1753bfb06ab27c989c5bfac4"
+    },
+    {
+      "path": "lazy-t2-record/t00-miss-polled.json.gz",
+      "bytes": 1431,
+      "sha256": "9f1a6c00ddfdff76dd87ee21b1deaee591785d0632908a57af9e34e5db686af1"
+    },
+    {
+      "path": "lazy-t2-record/t00-polled.json.gz",
+      "bytes": 1360,
+      "sha256": "a66d76b81a48ef93a70b723b63f6606ad2621c4e0a45057f95f63264d15ebe39"
+    },
+    {
+      "path": "lazy-t2-record/t00-released.json.gz",
+      "bytes": 824,
+      "sha256": "392381cbaaa6866717e268063d6f61e4374637b5a1543909cd512ecf691d688f"
+    },
+    {
+      "path": "lazy-t2-record/t00-synchronized.json.gz",
+      "bytes": 1316,
+      "sha256": "4f5470cfaab82946e05980efbfe5243e3456eb5ed01fa7b820ec4e9b730e43fc"
+    },
+    {
+      "path": "lazy-t2-record/t00-window.json.gz",
+      "bytes": 1302,
+      "sha256": "0203b212005dacdae069377458838f16588029caadfc79618f161fc997cbe4f1"
+    },
+    {
+      "path": "lazy-t2-record/t01-miss-polled.json.gz",
+      "bytes": 2066,
+      "sha256": "4e01d239348aa5f7ed71ebada1c431d920830410028f9e892f3243a150783046"
+    },
+    {
+      "path": "lazy-t2-record/t01-polled.json.gz",
+      "bytes": 2003,
+      "sha256": "0cd00fd9a7694c8a4bc721e6dc9829a6278db33ce00b7196936fdff6f68c563f"
+    },
+    {
+      "path": "lazy-t2-record/t01-released.json.gz",
+      "bytes": 1694,
+      "sha256": "4359ffd82c789002590c98e4df1b727b6ca5401efd31efac9d0f0c8576dc2e1a"
+    },
+    {
+      "path": "lazy-t2-record/t01-synchronized.json.gz",
+      "bytes": 1977,
+      "sha256": "319e1cdc0a8db229e28d41995aa549502d7e22a6665297a13345488bcb5fe992"
+    },
+    {
+      "path": "lazy-t2-record/t01-window.json.gz",
+      "bytes": 1972,
+      "sha256": "cf847c1c537942ff364d755cc8a51f000c657d364d223a89103c9c7d46f7ab18"
+    },
+    {
+      "path": "lazy-t2-record/t02-miss-polled.json.gz",
+      "bytes": 2357,
+      "sha256": "245a082483559b6e937709f25b12f19df7d6c211871d0e2e0b5000af9fe1ff64"
+    },
+    {
+      "path": "lazy-t2-record/t02-polled.json.gz",
+      "bytes": 2299,
+      "sha256": "f87a135c0e9f4e6ce373bb42249468417e4a6582c2abbd8db2e2ba2a5c5d2245"
+    },
+    {
+      "path": "lazy-t2-record/t02-released.json.gz",
+      "bytes": 1996,
+      "sha256": "973353b89a4edae27f8979faff693f52578aea37588e9b382d5ae1f251bfb284"
+    },
+    {
+      "path": "lazy-t2-record/t02-synchronized.json.gz",
+      "bytes": 2276,
+      "sha256": "01fa41a0cb31ba700bf034a1875f1277cecb6709155aa10f874accfedbc1d651"
+    },
+    {
+      "path": "lazy-t2-record/t02-window.json.gz",
+      "bytes": 2268,
+      "sha256": "4c8023083cce0a6fa1b346aedde8a4aad13461a968ef9298c3aa58c2d0355020"
+    },
+    {
+      "path": "lazy-t2-record/t03-miss-polled.json.gz",
+      "bytes": 2640,
+      "sha256": "461b7b65dc63dc4dfe4e8ccd3cdaf0354ab4217d455ad84652f30632416ece49"
+    },
+    {
+      "path": "lazy-t2-record/t03-polled.json.gz",
+      "bytes": 2575,
+      "sha256": "d3bd6a112895f5923ddbcb86ece0e97c5decba58be4087a41af131ac7912e96f"
+    },
+    {
+      "path": "lazy-t2-record/t03-released.json.gz",
+      "bytes": 2274,
+      "sha256": "530d6a5ae02d17d0318b79ce420d581607111bdcd5772468a7e37aefb8d2d514"
+    },
+    {
+      "path": "lazy-t2-record/t03-synchronized.json.gz",
+      "bytes": 2551,
+      "sha256": "800cb1fbb69d93b54253ad09687b3919f7f9fdbdac8e95204c542d908fd5bd71"
+    },
+    {
+      "path": "lazy-t2-record/t03-window.json.gz",
+      "bytes": 2546,
+      "sha256": "28faddc307059baea9677d3c2e089640b72f739d5f11d0c284a1157be421612e"
+    },
+    {
+      "path": "lazy-t2-record/t04-miss-polled.json.gz",
+      "bytes": 2913,
+      "sha256": "d0ae806b2b6116e49093c1f578ffd6f800e9d51cf4d704f5c53329339d82e846"
+    },
+    {
+      "path": "lazy-t2-record/t04-polled.json.gz",
+      "bytes": 2852,
+      "sha256": "beab7c904518c8ff629d1fa264f57697d7dae830e78b805f722b895984889793"
+    },
+    {
+      "path": "lazy-t2-record/t04-released.json.gz",
+      "bytes": 2546,
+      "sha256": "8bd097f50dbe634efdd3a410d0a678a5cf0a987181578461f3ce85a060d70bb9"
+    },
+    {
+      "path": "lazy-t2-record/t04-synchronized.json.gz",
+      "bytes": 2827,
+      "sha256": "459384b93ebb4196aea50e877622e6d49aef232294b84068b92b2a3594c2d853"
+    },
+    {
+      "path": "lazy-t2-record/t04-window.json.gz",
+      "bytes": 2821,
+      "sha256": "df0c20024928d233877723c6adc411cc3b80a077b160f760b613f7a728ba97f6"
+    },
+    {
+      "path": "lazy-t2-record.log",
+      "bytes": 346,
+      "sha256": "d2a8ee3436eef182380a49ae20af4c78059950855d6089d11e2ec95fa22128b2"
+    },
+    {
+      "path": "plan.json",
+      "bytes": 1175,
+      "sha256": "2a800fc5b6463cf3b6322cfb1de0b45b4bfcac10658ae784d36d704d8422cdd6"
+    },
+    {
+      "path": "sources/analyze.py",
+      "bytes": 7040,
+      "sha256": "2c52e2f4f9730ed33f635b2ebf12bc8fff750fd769e199d45185a9c02a1a8b21"
+    },
+    {
+      "path": "sources/analyze_profile.py",
+      "bytes": 6851,
+      "sha256": "e9370506327a45fb57e810127418ac8b1658984850ce3c850f6e38dec87f24a6"
+    },
+    {
+      "path": "sources/probe.py",
+      "bytes": 17708,
+      "sha256": "0dbe2fae053466acb1aa1c1cc29be0a154b2aae1a16c348230afed8065a8bd71"
+    },
+    {
+      "path": "sources/run.py",
+      "bytes": 5473,
+      "sha256": "a8a8681176a181e0190009d28977ac6647e1c5f32c460d795bb2d28c437f32bf"
+    },
+    {
+      "path": "sources/test_analysis.py",
+      "bytes": 2680,
+      "sha256": "4497f809a67abd10ac2886309001b6674238591a9f53b19055aec61b55c81d5a"
+    },
+    {
+      "path": "sources/test_profile.py",
+      "bytes": 2642,
+      "sha256": "fbb4ee26e2ff40b58175de9356240040aa7a9ea0d579dea5f56ae1c21eb4e6f4"
+    },
+    {
+      "path": "summary.json",
+      "bytes": 41068,
+      "sha256": "9d5ed02454ce94d11b12f2148c111fc47d43f1c855fa754bf551601b7c433a8a"
+    },
+    {
+      "path": "analysis_sources/analyze.py",
+      "bytes": 7040,
+      "sha256": "2c52e2f4f9730ed33f635b2ebf12bc8fff750fd769e199d45185a9c02a1a8b21"
+    },
+    {
+      "path": "analysis_sources/analyze_profile.py",
+      "bytes": 6851,
+      "sha256": "e9370506327a45fb57e810127418ac8b1658984850ce3c850f6e38dec87f24a6"
+    },
+    {
+      "path": "analysis_sources/archive.py",
+      "bytes": 2385,
+      "sha256": "81b609ae75bd79d73ff7c55aff03d310f90a3cde9641d44f08416cb8399c2f55"
+    }
+  ],
+  "raw_profiler_files": [],
+  "raw_profiler_retained_remote": false,
+  "reproduction": "Restore raw_profiler_files at their relative paths before rerunning raw flow analysis. Exact snapshots and run metadata are retained."
+}

@@ -1,0 +1,17 @@
+{
+  "schema": 1,
+  "pilots_excluded_from_primary_results": [
+    {"run": "smoke-01", "trials": 6, "reason": "Stream handle getter read during measurement can drain host task queues."},
+    {"run": "formal-01", "trials": 180, "reason": "Stream handle getter read during measurement; formal-02 cached handles before the window.", "local_scope": "summary and provenance only", "full_compact_remote_archive": "/data/tianchi/p32-evidence.tgz"}
+  ],
+  "stopped_matrix": {
+    "run": "formal-02",
+    "accepted_configurations": ["baseline", "direct", "queue2", "perstream", "expandable"],
+    "accepted_trials": 150,
+    "excluded_cases": [
+      {"case": "lazy-t1-omit", "completed_trials": 5, "reason": "Excluded to keep lazy coverage in the separate complete lazy-03 matrix."},
+      {"case": "lazy-t1-record", "returncode": 1, "reason": "Experiment guard: fixed completion-only 64 MiB trigger could not establish a cache miss after a prior trial; preserved failed-case artifacts."}
+    ],
+    "replacement": "lazy-03: bounded adaptive request exceeding largest owner-stream free cached block, only after device completion. 30 completed trials."
+  }
+}

@@ -1,0 +1,68 @@
+{
+  "schema": 1,
+  "start_ns": 1790957738265392745,
+  "arguments": {
+    "output": "/data/tianchi/practice_32_allocator_lifetime/results/formal-01",
+    "configs": [
+      "baseline",
+      "direct",
+      "queue2",
+      "perstream",
+      "expandable",
+      "lazy"
+    ],
+    "modes": [
+      "omit",
+      "record",
+      "join"
+    ],
+    "threads": [
+      1,
+      2
+    ],
+    "owner": "default",
+    "repeats": 5,
+    "backlog": 64,
+    "candidates": 32,
+    "matrix": 4096,
+    "profile": false
+  },
+  "configurations": {
+    "baseline": {
+      "TASK_QUEUE_ENABLE": "1",
+      "PER_STREAM_QUEUE": "0",
+      "PYTORCH_NPU_ALLOC_CONF": "expandable_segments:False,multi_stream_lazy_reclaim:False"
+    },
+    "direct": {
+      "TASK_QUEUE_ENABLE": "0",
+      "PER_STREAM_QUEUE": "0",
+      "PYTORCH_NPU_ALLOC_CONF": "expandable_segments:False,multi_stream_lazy_reclaim:False"
+    },
+    "queue2": {
+      "TASK_QUEUE_ENABLE": "2",
+      "PER_STREAM_QUEUE": "0",
+      "PYTORCH_NPU_ALLOC_CONF": "expandable_segments:False,multi_stream_lazy_reclaim:False"
+    },
+    "perstream": {
+      "TASK_QUEUE_ENABLE": "1",
+      "PER_STREAM_QUEUE": "1",
+      "PYTORCH_NPU_ALLOC_CONF": "expandable_segments:False,multi_stream_lazy_reclaim:False"
+    },
+    "expandable": {
+      "TASK_QUEUE_ENABLE": "1",
+      "PER_STREAM_QUEUE": "0",
+      "PYTORCH_NPU_ALLOC_CONF": "expandable_segments:True,multi_stream_lazy_reclaim:False"
+    },
+    "lazy": {
+      "TASK_QUEUE_ENABLE": "1",
+      "PER_STREAM_QUEUE": "0",
+      "PYTORCH_NPU_ALLOC_CONF": "expandable_segments:False,multi_stream_lazy_reclaim:True"
+    }
+  },
+  "source_sha256": {
+    "analyze.py": "f155e563e5aab335652f2628fa046c57d11f92b4902184ffb4f38bf073e4750a",
+    "probe.py": "ca79a1d9c50435e42fb981c079914202ac0675b3a4b83f37c4c2fe1b9695a52c",
+    "run.py": "a8a8681176a181e0190009d28977ac6647e1c5f32c460d795bb2d28c437f32bf",
+    "test_analysis.py": "fb9f1ad117bee88e9686fded07e98c71cbbc89716cdba9b2baab5e84099b7d55"
+  }
+}

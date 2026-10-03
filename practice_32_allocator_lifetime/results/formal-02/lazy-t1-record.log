@@ -1,0 +1,12 @@
+/data/tianchi/practice_32_allocator_lifetime/probe.py:76: UserWarning: Cannot create tensor with interal format while allow_internel_format=False, tensor will be created with base format. (Triggered internally at ../torch_npu/csrc/aten/common/TensorFactories.cpp:340.)
+  right = torch.full_like(left, 1 / 64)
+Traceback (most recent call last):
+  File "/data/tianchi/practice_32_allocator_lifetime/probe.py", line 331, in <module>
+    main()
+  File "/data/tianchi/practice_32_allocator_lifetime/probe.py", line 301, in main
+    trials.append(run_trial(index))
+                  ^^^^^^^^^^^^^^^^
+  File "/data/tianchi/practice_32_allocator_lifetime/probe.py", line 253, in run_trial
+    raise RuntimeError("Cannot establish the intended bounded cache miss")
+RuntimeError: Cannot establish the intended bounded cache miss
+[ERROR] 2026-10-02-16:28:28 (PID:1685156, Device:0, RankID:-1) ERR99999 UNKNOWN applicaiton exception

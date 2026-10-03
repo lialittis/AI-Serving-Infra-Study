@@ -1,0 +1,2637 @@
+{
+  "schema": 1,
+  "captured_at_utc": "2026-10-02T16:35:31.984116+00:00",
+  "arguments": {
+    "output": "/data/tianchi/practice_32_allocator_lifetime/results/profile-01/direct-t1-omit",
+    "mode": "omit",
+    "threads": 1,
+    "owner": "default",
+    "repeats": 2,
+    "backlog": 64,
+    "candidates": 32,
+    "matrix": 4096,
+    "profile": true
+  },
+  "pid": 1688542,
+  "torch_version": "2.10.0+cpu",
+  "torch_npu_version": "2.10.0",
+  "torch_git_version": "449b1768410104d3ed79d3bcfe4ba1d65c7f22c0",
+  "torch_npu_git_version": "94f8a8e6b523d7ba553e1b80d5b5248478391526",
+  "device": "Ascend910B2C",
+  "allocator_backend": "native",
+  "environment": {
+    "ASCEND_HOME_PATH": "/usr/local/Ascend/cann-9.0.0",
+    "ASCEND_RT_VISIBLE_DEVICES": null,
+    "TASK_QUEUE_ENABLE": "0",
+    "PER_STREAM_QUEUE": "0",
+    "PYTORCH_NPU_ALLOC_CONF": "expandable_segments:False,multi_stream_lazy_reclaim:False",
+    "PYTORCH_NO_NPU_MEMORY_CACHING": null,
+    "ASCEND_LAUNCH_BLOCKING": null,
+    "MULTI_STREAM_MEMORY_REUSE": "1"
+  },
+  "allow_internal_format": false,
+  "deterministic_algorithms": false,
+  "streams": {
+    "owner": {
+      "handle": "140193731796992",
+      "id": "0"
+    },
+    "consumer": {
+      "handle": "140193731919872",
+      "id": "96"
+    }
+  },
+  "tensor_bytes": 4194304,
+  "matrix": 4096,
+  "source_sha256": {
+    "sources/probe.py": "0dbe2fae053466acb1aa1c1cc29be0a154b2aae1a16c348230afed8065a8bd71",
+    "sources/streams.py": "241741b356db5006797dbec119007afb33b73b0e1753bfb06ab27c989c5bfac4",
+    "sources/memory.py": "9689894e9cb47ba6884f191e1b45326576441233475142108b05671866ed4947"
+  },
+  "memory_bound_description": "96 MiB matrices at 4096 FP16; same-size candidates <=148 MiB; optional completed-window miss buffer <=192 MiB; older cached triggers and runtime/workspace additional",
+  "candidate_access": "address only; no candidate value read, write, or raw dereference",
+  "records": [
+    {
+      "label": "P32/t00/create-a",
+      "trial": "t00",
+      "operation": "create-a",
+      "thread_id": 1688542,
+      "stream_handle": "140193731796992",
+      "start_wall_ns": 1790958928367689953,
+      "start_mono_ns": 5205687326579511,
+      "end_wall_ns": 1790958928369689915,
+      "end_mono_ns": 5205687328577172
+    },
+    {
+      "label": "P32/t00/backlog",
+      "trial": "t00",
+      "operation": "backlog",
+      "thread_id": 1688542,
+      "stream_handle": "140193731919872",
+      "start_wall_ns": 1790958928369985970,
+      "start_mono_ns": 5205687328872447,
+      "end_wall_ns": 1790958928370696628,
+      "end_mono_ns": 5205687329583081
+    },
+    {
+      "label": "P32/t00/read-start",
+      "trial": "t00",
+      "operation": "read-start",
+      "thread_id": 1688542,
+      "stream_handle": "140193731919872",
+      "start_wall_ns": 1790958928370703257,
+      "start_mono_ns": 5205687329589617,
+      "end_wall_ns": 1790958928370741394,
+      "end_mono_ns": 5205687329627739
+    },
+    {
+      "label": "P32/t00/consumer-copy",
+      "trial": "t00",
+      "operation": "consumer-copy",
+      "thread_id": 1688542,
+      "stream_handle": "140193731919872",
+      "start_wall_ns": 1790958928370744746,
+      "start_mono_ns": 5205687329631125,
+      "end_wall_ns": 1790958928370809768,
+      "end_mono_ns": 5205687329696124
+    },
+    {
+      "label": "P32/t00/read-end",
+      "trial": "t00",
+      "operation": "read-end",
+      "thread_id": 1688542,
+      "stream_handle": "140193731919872",
+      "start_wall_ns": 1790958928370812765,
+      "start_mono_ns": 5205687329699121,
+      "end_wall_ns": 1790958928370843756,
+      "end_mono_ns": 5205687329730111
+    },
+    {
+      "label": "P32/t00/done",
+      "trial": "t00",
+      "operation": "done",
+      "thread_id": 1688542,
+      "stream_handle": "140193731919872",
+      "start_wall_ns": 1790958928370847931,
+      "start_mono_ns": 5205687329734279,
+      "end_wall_ns": 1790958928370875505,
+      "end_mono_ns": 5205687329761852
+    },
+    {
+      "label": "P32/t00/release-a",
+      "trial": "t00",
+      "operation": "release-a",
+      "thread_id": 1688542,
+      "stream_handle": "140193731919872",
+      "start_wall_ns": 1790958928370906535,
+      "start_mono_ns": 5205687329792873,
+      "end_wall_ns": 1790958928370924389,
+      "end_mono_ns": 5205687329810729
+    },
+    {
+      "label": "P32/t00/allocate-000",
+      "trial": "t00",
+      "operation": "allocate-000",
+      "thread_id": 1688542,
+      "stream_handle": "140193731796992",
+      "start_wall_ns": 1790958928371238022,
+      "start_mono_ns": 5205687330124373,
+      "end_wall_ns": 1790958928371272777,
+      "end_mono_ns": 5205687330159141
+    },
+    {
+      "label": "P32/t00/allocate-001",
+      "trial": "t00",
+      "operation": "allocate-001",
+      "thread_id": 1688542,
+      "stream_handle": "140193731796992",
+      "start_wall_ns": 1790958928371357671,
+      "start_mono_ns": 5205687330244013,
+      "end_wall_ns": 1790958928371375705,
+      "end_mono_ns": 5205687330262043
+    },
+    {
+      "label": "P32/t00/allocate-002",
+      "trial": "t00",
+      "operation": "allocate-002",
+      "thread_id": 1688542,
+      "stream_handle": "140193731796992",
+      "start_wall_ns": 1790958928371452451,
+      "start_mono_ns": 5205687330338815,
+      "end_wall_ns": 1790958928371467939,
+      "end_mono_ns": 5205687330354291
+    },
+    {
+      "label": "P32/t00/allocate-003",
+      "trial": "t00",
+      "operation": "allocate-003",
+      "thread_id": 1688542,
+      "stream_handle": "140193731796992",
+      "start_wall_ns": 1790958928371541714,
+      "start_mono_ns": 5205687330428048,
+      "end_wall_ns": 1790958928371558123,
+      "end_mono_ns": 5205687330444465
+    },
+    {
+      "label": "P32/t00/allocate-004",
+      "trial": "t00",
+      "operation": "allocate-004",
+      "thread_id": 1688542,
+      "stream_handle": "140193731796992",
+      "start_wall_ns": 1790958928371632636,
+      "start_mono_ns": 5205687330519002,
+      "end_wall_ns": 1790958928371650167,
+      "end_mono_ns": 5205687330536539
+    },
+    {
+      "label": "P32/t00/allocate-005",
+      "trial": "t00",
+      "operation": "allocate-005",
+      "thread_id": 1688542,
+      "stream_handle": "140193731796992",
+      "start_wall_ns": 1790958928371725147,
+      "start_mono_ns": 5205687330611514,
+      "end_wall_ns": 1790958928371743821,
+      "end_mono_ns": 5205687330630181
+    },
+    {
+      "label": "P32/t00/allocate-006",
+      "trial": "t00",
+      "operation": "allocate-006",
+      "thread_id": 1688542,
+      "stream_handle": "140193731796992",
+      "start_wall_ns": 1790958928371818626,
+      "start_mono_ns": 5205687330704982,
+      "end_wall_ns": 1790958928371834903,
+      "end_mono_ns": 5205687330721247
+    },
+    {
+      "label": "P32/t00/allocate-007",
+      "trial": "t00",
+      "operation": "allocate-007",
+      "thread_id": 1688542,
+      "stream_handle": "140193731796992",
+      "start_wall_ns": 1790958928371909426,
+      "start_mono_ns": 5205687330795777,
+      "end_wall_ns": 1790958928371926869,
+      "end_mono_ns": 5205687330813212
+    },
+    {
+      "label": "P32/t00/allocate-008",
+      "trial": "t00",
+      "operation": "allocate-008",
+      "thread_id": 1688542,
+      "stream_handle": "140193731796992",
+      "start_wall_ns": 1790958928371999893,
+      "start_mono_ns": 5205687330886233,
+      "end_wall_ns": 1790958928372017010,
+      "end_mono_ns": 5205687330903423
+    },
+    {
+      "label": "P32/t00/allocate-009",
+      "trial": "t00",
+      "operation": "allocate-009",
+      "thread_id": 1688542,
+      "stream_handle": "140193731796992",
+      "start_wall_ns": 1790958928372091006,
+      "start_mono_ns": 5205687330977352,
+      "end_wall_ns": 1790958928372106181,
+      "end_mono_ns": 5205687330992551
+    },
+    {
+      "label": "P32/t00/allocate-010",
+      "trial": "t00",
+      "operation": "allocate-010",
+      "thread_id": 1688542,
+      "stream_handle": "140193731796992",
+      "start_wall_ns": 1790958928372179903,
+      "start_mono_ns": 5205687331066260,
+      "end_wall_ns": 1790958928372196890,
+      "end_mono_ns": 5205687331083228
+    },
+    {
+      "label": "P32/t00/allocate-011",
+      "trial": "t00",
+      "operation": "allocate-011",
+      "thread_id": 1688542,
+      "stream_handle": "140193731796992",
+      "start_wall_ns": 1790958928372271996,
+      "start_mono_ns": 5205687331158332,
+      "end_wall_ns": 1790958928372287104,
+      "end_mono_ns": 5205687331173445
+    },
+    {
+      "label": "P32/t00/allocate-012",
+      "trial": "t00",
+      "operation": "allocate-012",
+      "thread_id": 1688542,
+      "stream_handle": "140193731796992",
+      "start_wall_ns": 1790958928372361530,
+      "start_mono_ns": 5205687331247867,
+      "end_wall_ns": 1790958928372377618,
+      "end_mono_ns": 5205687331263956
+    },
+    {
+      "label": "P32/t00/allocate-013",
+      "trial": "t00",
+      "operation": "allocate-013",
+      "thread_id": 1688542,
+      "stream_handle": "140193731796992",
+      "start_wall_ns": 1790958928372452494,
+      "start_mono_ns": 5205687331338853,
+      "end_wall_ns": 1790958928372467396,
+      "end_mono_ns": 5205687331353738
+    },
+    {
+      "label": "P32/t00/allocate-014",
+      "trial": "t00",
+      "operation": "allocate-014",
+      "thread_id": 1688542,
+      "stream_handle": "140193731796992",
+      "start_wall_ns": 1790958928372545622,
+      "start_mono_ns": 5205687331431956,
+      "end_wall_ns": 1790958928372560356,
+      "end_mono_ns": 5205687331446695
+    },
+    {
+      "label": "P32/t00/allocate-015",
+      "trial": "t00",
+      "operation": "allocate-015",
+      "thread_id": 1688542,
+      "stream_handle": "140193731796992",
+      "start_wall_ns": 1790958928372634985,
+      "start_mono_ns": 5205687331521331,
+      "end_wall_ns": 1790958928372651720,
+      "end_mono_ns": 5205687331538062
+    },
+    {
+      "label": "P32/t00/allocate-016",
+      "trial": "t00",
+      "operation": "allocate-016",
+      "thread_id": 1688542,
+      "stream_handle": "140193731796992",
+      "start_wall_ns": 1790958928372730163,
+      "start_mono_ns": 5205687331616502,
+      "end_wall_ns": 1790958928372746429,
+      "end_mono_ns": 5205687331632785
+    },
+    {
+      "label": "P32/t00/allocate-017",
+      "trial": "t00",
+      "operation": "allocate-017",
+      "thread_id": 1688542,
+      "stream_handle": "140193731796992",
+      "start_wall_ns": 1790958928372821424,
+      "start_mono_ns": 5205687331707757,
+      "end_wall_ns": 1790958928372839136,
+      "end_mono_ns": 5205687331725478
+    },
+    {
+      "label": "P32/t00/allocate-018",
+      "trial": "t00",
+      "operation": "allocate-018",
+      "thread_id": 1688542,
+      "stream_handle": "140193731796992",
+      "start_wall_ns": 1790958928372914494,
+      "start_mono_ns": 5205687331800868,
+      "end_wall_ns": 1790958928372929574,
+      "end_mono_ns": 5205687331815912
+    },
+    {
+      "label": "P32/t00/allocate-019",
+      "trial": "t00",
+      "operation": "allocate-019",
+      "thread_id": 1688542,
+      "stream_handle": "140193731796992",
+      "start_wall_ns": 1790958928373004405,
+      "start_mono_ns": 5205687331890764,
+      "end_wall_ns": 1790958928373021595,
+      "end_mono_ns": 5205687331907957
+    },
+    {
+      "label": "P32/t00/allocate-020",
+      "trial": "t00",
+      "operation": "allocate-020",
+      "thread_id": 1688542,
+      "stream_handle": "140193731796992",
+      "start_wall_ns": 1790958928373095113,
+      "start_mono_ns": 5205687331981451,
+      "end_wall_ns": 1790958928373110763,
+      "end_mono_ns": 5205687331997108
+    },
+    {
+      "label": "P32/t00/allocate-021",
+      "trial": "t00",
+      "operation": "allocate-021",
+      "thread_id": 1688542,
+      "stream_handle": "140193731796992",
+      "start_wall_ns": 1790958928373192170,
+      "start_mono_ns": 5205687332078507,
+      "end_wall_ns": 1790958928373207538,
+      "end_mono_ns": 5205687332093876
+    },
+    {
+      "label": "P32/t00/allocate-022",
+      "trial": "t00",
+      "operation": "allocate-022",
+      "thread_id": 1688542,
+      "stream_handle": "140193731796992",
+      "start_wall_ns": 1790958928373279980,
+      "start_mono_ns": 5205687332166313,
+      "end_wall_ns": 1790958928373294956,
+      "end_mono_ns": 5205687332181296
+    },
+    {
+      "label": "P32/t00/allocate-023",
+      "trial": "t00",
+      "operation": "allocate-023",
+      "thread_id": 1688542,
+      "stream_handle": "140193731796992",
+      "start_wall_ns": 1790958928373367048,
+      "start_mono_ns": 5205687332253386,
+      "end_wall_ns": 1790958928373383612,
+      "end_mono_ns": 5205687332269955
+    },
+    {
+      "label": "P32/t00/allocate-024",
+      "trial": "t00",
+      "operation": "allocate-024",
+      "thread_id": 1688542,
+      "stream_handle": "140193731796992",
+      "start_wall_ns": 1790958928373455766,
+      "start_mono_ns": 5205687332342107,
+      "end_wall_ns": 1790958928373470721,
+      "end_mono_ns": 5205687332357061
+    },
+    {
+      "label": "P32/t00/allocate-025",
+      "trial": "t00",
+      "operation": "allocate-025",
+      "thread_id": 1688542,
+      "stream_handle": "140193731796992",
+      "start_wall_ns": 1790958928373543760,
+      "start_mono_ns": 5205687332430098,
+      "end_wall_ns": 1790958928373558361,
+      "end_mono_ns": 5205687332444696
+    },
+    {
+      "label": "P32/t00/allocate-026",
+      "trial": "t00",
+      "operation": "allocate-026",
+      "thread_id": 1688542,
+      "stream_handle": "140193731796992",
+      "start_wall_ns": 1790958928373631388,
+      "start_mono_ns": 5205687332517726,
+      "end_wall_ns": 1790958928373646270,
+      "end_mono_ns": 5205687332532607
+    },
+    {
+      "label": "P32/t00/allocate-027",
+      "trial": "t00",
+      "operation": "allocate-027",
+      "thread_id": 1688542,
+      "stream_handle": "140193731796992",
+      "start_wall_ns": 1790958928373720549,
+      "start_mono_ns": 5205687332606887,
+      "end_wall_ns": 1790958928373736749,
+      "end_mono_ns": 5205687332623088
+    },
+    {
+      "label": "P32/t00/allocate-028",
+      "trial": "t00",
+      "operation": "allocate-028",
+      "thread_id": 1688542,
+      "stream_handle": "140193731796992",
+      "start_wall_ns": 1790958928373810370,
+      "start_mono_ns": 5205687332696703,
+      "end_wall_ns": 1790958928373825342,
+      "end_mono_ns": 5205687332711682
+    },
+    {
+      "label": "P32/t00/allocate-029",
+      "trial": "t00",
+      "operation": "allocate-029",
+      "thread_id": 1688542,
+      "stream_handle": "140193731796992",
+      "start_wall_ns": 1790958928373897974,
+      "start_mono_ns": 5205687332784310,
+      "end_wall_ns": 1790958928373912761,
+      "end_mono_ns": 5205687332799100
+    },
+    {
+      "label": "P32/t00/allocate-030",
+      "trial": "t00",
+      "operation": "allocate-030",
+      "thread_id": 1688542,
+      "stream_handle": "140193731796992",
+      "start_wall_ns": 1790958928373985486,
+      "start_mono_ns": 5205687332871824,
+      "end_wall_ns": 1790958928374000173,
+      "end_mono_ns": 5205687332886511
+    },
+    {
+      "label": "P32/t00/allocate-031",
+      "trial": "t00",
+      "operation": "allocate-031",
+      "thread_id": 1688542,
+      "stream_handle": "140193731796992",
+      "start_wall_ns": 1790958928374074045,
+      "start_mono_ns": 5205687332960378,
+      "end_wall_ns": 1790958928374088856,
+      "end_mono_ns": 5205687332975216
+    },
+    {
+      "label": "P32/t00/completion-wait",
+      "trial": "t00",
+      "operation": "completion-wait",
+      "thread_id": 1688542,
+      "stream_handle": "140193731919872",
+      "start_wall_ns": 1790958928374392650,
+      "start_mono_ns": 5205687333279000,
+      "end_wall_ns": 1790958928397639091,
+      "end_mono_ns": 5205687356525492
+    },
+    {
+      "label": "P32/t00/validate",
+      "trial": "t00",
+      "operation": "validate",
+      "thread_id": 1688542,
+      "stream_handle": "140193731919872",
+      "start_wall_ns": 1790958928397965197,
+      "start_mono_ns": 5205687356851734,
+      "end_wall_ns": 1790958928398173876,
+      "end_mono_ns": 5205687357060475
+    },
+    {
+      "label": "P32/t01/create-a",
+      "trial": "t01",
+      "operation": "create-a",
+      "thread_id": 1688542,
+      "stream_handle": "140193731796992",
+      "start_wall_ns": 1790958928407092393,
+      "start_mono_ns": 5205687365979076,
+      "end_wall_ns": 1790958928407263604,
+      "end_mono_ns": 5205687366150061
+    },
+    {
+      "label": "P32/t01/backlog",
+      "trial": "t01",
+      "operation": "backlog",
+      "thread_id": 1688542,
+      "stream_handle": "140193731919872",
+      "start_wall_ns": 1790958928407398013,
+      "start_mono_ns": 5205687366284424,
+      "end_wall_ns": 1790958928408012053,
+      "end_mono_ns": 5205687366898447
+    },
+    {
+      "label": "P32/t01/read-start",
+      "trial": "t01",
+      "operation": "read-start",
+      "thread_id": 1688542,
+      "stream_handle": "140193731919872",
+      "start_wall_ns": 1790958928408017054,
+      "start_mono_ns": 5205687366903417,
+      "end_wall_ns": 1790958928408052340,
+      "end_mono_ns": 5205687366938705
+    },
+    {
+      "label": "P32/t01/consumer-copy",
+      "trial": "t01",
+      "operation": "consumer-copy",
+      "thread_id": 1688542,
+      "stream_handle": "140193731919872",
+      "start_wall_ns": 1790958928408055429,
+      "start_mono_ns": 5205687366941766,
+      "end_wall_ns": 1790958928408083013,
+      "end_mono_ns": 5205687366969376
+    },
+    {
+      "label": "P32/t01/read-end",
+      "trial": "t01",
+      "operation": "read-end",
+      "thread_id": 1688542,
+      "stream_handle": "140193731919872",
+      "start_wall_ns": 1790958928408085635,
+      "start_mono_ns": 5205687366972007,
+      "end_wall_ns": 1790958928408113392,
+      "end_mono_ns": 5205687366999752
+    },
+    {
+      "label": "P32/t01/done",
+      "trial": "t01",
+      "operation": "done",
+      "thread_id": 1688542,
+      "stream_handle": "140193731919872",
+      "start_wall_ns": 1790958928408116527,
+      "start_mono_ns": 5205687367002860,
+      "end_wall_ns": 1790958928408141625,
+      "end_mono_ns": 5205687367027984
+    },
+    {
+      "label": "P32/t01/release-a",
+      "trial": "t01",
+      "operation": "release-a",
+      "thread_id": 1688542,
+      "stream_handle": "140193731919872",
+      "start_wall_ns": 1790958928408168269,
+      "start_mono_ns": 5205687367054639,
+      "end_wall_ns": 1790958928408192478,
+      "end_mono_ns": 5205687367078838
+    },
+    {
+      "label": "P32/t01/allocate-000",
+      "trial": "t01",
+      "operation": "allocate-000",
+      "thread_id": 1688542,
+      "stream_handle": "140193731796992",
+      "start_wall_ns": 1790958928408427426,
+      "start_mono_ns": 5205687367313778,
+      "end_wall_ns": 1790958928408452630,
+      "end_mono_ns": 5205687367338976
+    },
+    {
+      "label": "P32/t01/allocate-001",
+      "trial": "t01",
+      "operation": "allocate-001",
+      "thread_id": 1688542,
+      "stream_handle": "140193731796992",
+      "start_wall_ns": 1790958928408532929,
+      "start_mono_ns": 5205687367419269,
+      "end_wall_ns": 1790958928408549444,
+      "end_mono_ns": 5205687367435785
+    },
+    {
+      "label": "P32/t01/allocate-002",
+      "trial": "t01",
+      "operation": "allocate-002",
+      "thread_id": 1688542,
+      "stream_handle": "140193731796992",
+      "start_wall_ns": 1790958928408627485,
+      "start_mono_ns": 5205687367513823,
+      "end_wall_ns": 1790958928408646596,
+      "end_mono_ns": 5205687367532939
+    },
+    {
+      "label": "P32/t01/allocate-003",
+      "trial": "t01",
+      "operation": "allocate-003",
+      "thread_id": 1688542,
+      "stream_handle": "140193731796992",
+      "start_wall_ns": 1790958928408721488,
+      "start_mono_ns": 5205687367607823,
+      "end_wall_ns": 1790958928408737133,
+      "end_mono_ns": 5205687367623477
+    },
+    {
+      "label": "P32/t01/allocate-004",
+      "trial": "t01",
+      "operation": "allocate-004",
+      "thread_id": 1688542,
+      "stream_handle": "140193731796992",
+      "start_wall_ns": 1790958928408811456,
+      "start_mono_ns": 5205687367697829,
+      "end_wall_ns": 1790958928408827083,
+      "end_mono_ns": 5205687367713451
+    },
+    {
+      "label": "P32/t01/allocate-005",
+      "trial": "t01",
+      "operation": "allocate-005",
+      "thread_id": 1688542,
+      "stream_handle": "140193731796992",
+      "start_wall_ns": 1790958928408901617,
+      "start_mono_ns": 5205687367787990,
+      "end_wall_ns": 1790958928408917062,
+      "end_mono_ns": 5205687367803418
+    },
+    {
+      "label": "P32/t01/allocate-006",
+      "trial": "t01",
+      "operation": "allocate-006",
+      "thread_id": 1688542,
+      "stream_handle": "140193731796992",
+      "start_wall_ns": 1790958928408991162,
+      "start_mono_ns": 5205687367877500,
+      "end_wall_ns": 1790958928409006670,
+      "end_mono_ns": 5205687367893055
+    },
+    {
+      "label": "P32/t01/allocate-007",
+      "trial": "t01",
+      "operation": "allocate-007",
+      "thread_id": 1688542,
+      "stream_handle": "140193731796992",
+      "start_wall_ns": 1790958928409078751,
+      "start_mono_ns": 5205687367965085,
+      "end_wall_ns": 1790958928409093458,
+      "end_mono_ns": 5205687367979801
+    },
+    {
+      "label": "P32/t01/allocate-008",
+      "trial": "t01",
+      "operation": "allocate-008",
+      "thread_id": 1688542,
+      "stream_handle": "140193731796992",
+      "start_wall_ns": 1790958928409175410,
+      "start_mono_ns": 5205687368061745,
+      "end_wall_ns": 1790958928409190943,
+      "end_mono_ns": 5205687368077313
+    },
+    {
+      "label": "P32/t01/allocate-009",
+      "trial": "t01",
+      "operation": "allocate-009",
+      "thread_id": 1688542,
+      "stream_handle": "140193731796992",
+      "start_wall_ns": 1790958928409265125,
+      "start_mono_ns": 5205687368151509,
+      "end_wall_ns": 1790958928409280724,
+      "end_mono_ns": 5205687368167069
+    },
+    {
+      "label": "P32/t01/allocate-010",
+      "trial": "t01",
+      "operation": "allocate-010",
+      "thread_id": 1688542,
+      "stream_handle": "140193731796992",
+      "start_wall_ns": 1790958928409355030,
+      "start_mono_ns": 5205687368241369,
+      "end_wall_ns": 1790958928409370091,
+      "end_mono_ns": 5205687368256430
+    },
+    {
+      "label": "P32/t01/allocate-011",
+      "trial": "t01",
+      "operation": "allocate-011",
+      "thread_id": 1688542,
+      "stream_handle": "140193731796992",
+      "start_wall_ns": 1790958928409442299,
+      "start_mono_ns": 5205687368328665,
+      "end_wall_ns": 1790958928409457424,
+      "end_mono_ns": 5205687368343786
+    },
+    {
+      "label": "P32/t01/allocate-012",
+      "trial": "t01",
+      "operation": "allocate-012",
+      "thread_id": 1688542,
+      "stream_handle": "140193731796992",
+      "start_wall_ns": 1790958928409531150,
+      "start_mono_ns": 5205687368417485,
+      "end_wall_ns": 1790958928409546794,
+      "end_mono_ns": 5205687368433135
+    },
+    {
+      "label": "P32/t01/allocate-013",
+      "trial": "t01",
+      "operation": "allocate-013",
+      "thread_id": 1688542,
+      "stream_handle": "140193731796992",
+      "start_wall_ns": 1790958928409620051,
+      "start_mono_ns": 5205687368506397,
+      "end_wall_ns": 1790958928409634994,
+      "end_mono_ns": 5205687368521334
+    },
+    {
+      "label": "P32/t01/allocate-014",
+      "trial": "t01",
+      "operation": "allocate-014",
+      "thread_id": 1688542,
+      "stream_handle": "140193731796992",
+      "start_wall_ns": 1790958928409707982,
+      "start_mono_ns": 5205687368594322,
+      "end_wall_ns": 1790958928409722788,
+      "end_mono_ns": 5205687368609133
+    },
+    {
+      "label": "P32/t01/allocate-015",
+      "trial": "t01",
+      "operation": "allocate-015",
+      "thread_id": 1688542,
+      "stream_handle": "140193731796992",
+      "start_wall_ns": 1790958928409795383,
+      "start_mono_ns": 5205687368681718,
+      "end_wall_ns": 1790958928409810136,
+      "end_mono_ns": 5205687368696477
+    },
+    {
+      "label": "P32/t01/allocate-016",
+      "trial": "t01",
+      "operation": "allocate-016",
+      "thread_id": 1688542,
+      "stream_handle": "140193731796992",
+      "start_wall_ns": 1790958928409883478,
+      "start_mono_ns": 5205687368769816,
+      "end_wall_ns": 1790958928409899047,
+      "end_mono_ns": 5205687368785389
+    },
+    {
+      "label": "P32/t01/allocate-017",
+      "trial": "t01",
+      "operation": "allocate-017",
+      "thread_id": 1688542,
+      "stream_handle": "140193731796992",
+      "start_wall_ns": 1790958928409972782,
+      "start_mono_ns": 5205687368859154,
+      "end_wall_ns": 1790958928409987898,
+      "end_mono_ns": 5205687368874239
+    },
+    {
+      "label": "P32/t01/allocate-018",
+      "trial": "t01",
+      "operation": "allocate-018",
+      "thread_id": 1688542,
+      "stream_handle": "140193731796992",
+      "start_wall_ns": 1790958928410063140,
+      "start_mono_ns": 5205687368949502,
+      "end_wall_ns": 1790958928410078179,
+      "end_mono_ns": 5205687368964522
+    },
+    {
+      "label": "P32/t01/allocate-019",
+      "trial": "t01",
+      "operation": "allocate-019",
+      "thread_id": 1688542,
+      "stream_handle": "140193731796992",
+      "start_wall_ns": 1790958928410150672,
+      "start_mono_ns": 5205687369037004,
+      "end_wall_ns": 1790958928410165348,
+      "end_mono_ns": 5205687369051688
+    },
+    {
+      "label": "P32/t01/allocate-020",
+      "trial": "t01",
+      "operation": "allocate-020",
+      "thread_id": 1688542,
+      "stream_handle": "140193731796992",
+      "start_wall_ns": 1790958928410236942,
+      "start_mono_ns": 5205687369123276,
+      "end_wall_ns": 1790958928410252245,
+      "end_mono_ns": 5205687369138584
+    },
+    {
+      "label": "P32/t01/allocate-021",
+      "trial": "t01",
+      "operation": "allocate-021",
+      "thread_id": 1688542,
+      "stream_handle": "140193731796992",
+      "start_wall_ns": 1790958928410324237,
+      "start_mono_ns": 5205687369210580,
+      "end_wall_ns": 1790958928410338974,
+      "end_mono_ns": 5205687369225312
+    },
+    {
+      "label": "P32/t01/allocate-022",
+      "trial": "t01",
+      "operation": "allocate-022",
+      "thread_id": 1688542,
+      "stream_handle": "140193731796992",
+      "start_wall_ns": 1790958928410410586,
+      "start_mono_ns": 5205687369296922,
+      "end_wall_ns": 1790958928410425382,
+      "end_mono_ns": 5205687369311721
+    },
+    {
+      "label": "P32/t01/allocate-023",
+      "trial": "t01",
+      "operation": "allocate-023",
+      "thread_id": 1688542,
+      "stream_handle": "140193731796992",
+      "start_wall_ns": 1790958928410497194,
+      "start_mono_ns": 5205687369383536,
+      "end_wall_ns": 1790958928410511793,
+      "end_mono_ns": 5205687369398137
+    },
+    {
+      "label": "P32/t01/allocate-024",
+      "trial": "t01",
+      "operation": "allocate-024",
+      "thread_id": 1688542,
+      "stream_handle": "140193731796992",
+      "start_wall_ns": 1790958928410583053,
+      "start_mono_ns": 5205687369469419,
+      "end_wall_ns": 1790958928410598092,
+      "end_mono_ns": 5205687369484432
+    },
+    {
+      "label": "P32/t01/allocate-025",
+      "trial": "t01",
+      "operation": "allocate-025",
+      "thread_id": 1688542,
+      "stream_handle": "140193731796992",
+      "start_wall_ns": 1790958928410671829,
+      "start_mono_ns": 5205687369558165,
+      "end_wall_ns": 1790958928410687246,
+      "end_mono_ns": 5205687369573588
+    },
+    {
+      "label": "P32/t01/allocate-026",
+      "trial": "t01",
+      "operation": "allocate-026",
+      "thread_id": 1688542,
+      "stream_handle": "140193731796992",
+      "start_wall_ns": 1790958928410760214,
+      "start_mono_ns": 5205687369646557,
+      "end_wall_ns": 1790958928410775426,
+      "end_mono_ns": 5205687369661766
+    },
+    {
+      "label": "P32/t01/allocate-027",
+      "trial": "t01",
+      "operation": "allocate-027",
+      "thread_id": 1688542,
+      "stream_handle": "140193731796992",
+      "start_wall_ns": 1790958928410848176,
+      "start_mono_ns": 5205687369734515,
+      "end_wall_ns": 1790958928410863682,
+      "end_mono_ns": 5205687369750023
+    },
+    {
+      "label": "P32/t01/allocate-028",
+      "trial": "t01",
+      "operation": "allocate-028",
+      "thread_id": 1688542,
+      "stream_handle": "140193731796992",
+      "start_wall_ns": 1790958928410936206,
+      "start_mono_ns": 5205687369822543,
+      "end_wall_ns": 1790958928410951355,
+      "end_mono_ns": 5205687369837696
+    },
+    {
+      "label": "P32/t01/allocate-029",
+      "trial": "t01",
+      "operation": "allocate-029",
+      "thread_id": 1688542,
+      "stream_handle": "140193731796992",
+      "start_wall_ns": 1790958928411023990,
+      "start_mono_ns": 5205687369910332,
+      "end_wall_ns": 1790958928411086407,
+      "end_mono_ns": 5205687369972787
+    },
+    {
+      "label": "P32/t01/allocate-030",
+      "trial": "t01",
+      "operation": "allocate-030",
+      "thread_id": 1688542,
+      "stream_handle": "140193731796992",
+      "start_wall_ns": 1790958928411165747,
+      "start_mono_ns": 5205687370052115,
+      "end_wall_ns": 1790958928411181887,
+      "end_mono_ns": 5205687370068252
+    },
+    {
+      "label": "P32/t01/allocate-031",
+      "trial": "t01",
+      "operation": "allocate-031",
+      "thread_id": 1688542,
+      "stream_handle": "140193731796992",
+      "start_wall_ns": 1790958928411257328,
+      "start_mono_ns": 5205687370143692,
+      "end_wall_ns": 1790958928411272560,
+      "end_mono_ns": 5205687370158918
+    },
+    {
+      "label": "P32/t01/completion-wait",
+      "trial": "t01",
+      "operation": "completion-wait",
+      "thread_id": 1688542,
+      "stream_handle": "140193731919872",
+      "start_wall_ns": 1790958928411572096,
+      "start_mono_ns": 5205687370458461,
+      "end_wall_ns": 1790958928434966912,
+      "end_mono_ns": 5205687393853296
+    },
+    {
+      "label": "P32/t01/validate",
+      "trial": "t01",
+      "operation": "validate",
+      "thread_id": 1688542,
+      "stream_handle": "140193731919872",
+      "start_wall_ns": 1790958928435450104,
+      "start_mono_ns": 5205687394336512,
+      "end_wall_ns": 1790958928435648002,
+      "end_mono_ns": 5205687394534442
+    }
+  ],
+  "trials": [
+    {
+      "id": "t00",
+      "mode": "omit",
+      "threads": 1,
+      "address_a": "20617285861376",
+      "tensor_python_owner_released": true,
+      "release": {
+        "thread_id": 1688542,
+        "current_stream": "140193731919872"
+      },
+      "submitting_main_thread": 1688542,
+      "progress_after_release": {
+        "read_start": false,
+        "read_end": false,
+        "done": false,
+        "query_start_ns": 5205687329814847,
+        "query_end_ns": 5205687329885231
+      },
+      "block_after_release": [
+        {
+          "address": 20617285861376,
+          "size": 18874368,
+          "state": "inactive",
+          "requested_size": 4194304,
+          "stream": 140193731796992,
+          "is_expandable": false,
+          "device": 0
+        }
+      ],
+      "block_after_window": [
+        {
+          "address": 20617285861376,
+          "size": 4194816,
+          "state": "active_allocated",
+          "requested_size": 4194304,
+          "stream": 140193731796992,
+          "is_expandable": false,
+          "device": 0
+        }
+      ],
+      "block_after_synchronize": [
+        {
+          "address": 20617285861376,
+          "size": 4194816,
+          "state": "active_allocated",
+          "requested_size": 4194304,
+          "stream": 140193731796992,
+          "is_expandable": false,
+          "device": 0
+        }
+      ],
+      "block_after_poll": [
+        {
+          "address": 20617285861376,
+          "size": 4194816,
+          "state": "active_allocated",
+          "requested_size": 4194304,
+          "stream": 140193731796992,
+          "is_expandable": false,
+          "device": 0
+        }
+      ],
+      "observations": [
+        {
+          "index": 0,
+          "pointer": "20617285861376",
+          "reused": true,
+          "before": {
+            "read_start": false,
+            "read_end": false,
+            "done": false,
+            "query_start_ns": 5205687330006811,
+            "query_end_ns": 5205687330117899
+          },
+          "after": {
+            "read_start": false,
+            "read_end": false,
+            "done": false,
+            "query_start_ns": 5205687330160868,
+            "query_end_ns": 5205687330198164
+          },
+          "allocation_label": "P32/t00/allocate-000",
+          "allocation_start_ns": 5205687330124373,
+          "allocation_end_ns": 5205687330159141
+        },
+        {
+          "index": 1,
+          "pointer": "20617290056192",
+          "reused": false,
+          "before": {
+            "read_start": false,
+            "read_end": false,
+            "done": false,
+            "query_start_ns": 5205687330202419,
+            "query_end_ns": 5205687330240810
+          },
+          "after": {
+            "read_start": false,
+            "read_end": false,
+            "done": false,
+            "query_start_ns": 5205687330263428,
+            "query_end_ns": 5205687330298617
+          },
+          "allocation_label": "P32/t00/allocate-001",
+          "allocation_start_ns": 5205687330244013,
+          "allocation_end_ns": 5205687330262043
+        },
+        {
+          "index": 2,
+          "pointer": "20617294251008",
+          "reused": false,
+          "before": {
+            "read_start": false,
+            "read_end": false,
+            "done": false,
+            "query_start_ns": 5205687330300838,
+            "query_end_ns": 5205687330336405
+          },
+          "after": {
+            "read_start": false,
+            "read_end": false,
+            "done": false,
+            "query_start_ns": 5205687330355354,
+            "query_end_ns": 5205687330390582
+          },
+          "allocation_label": "P32/t00/allocate-002",
+          "allocation_start_ns": 5205687330338815,
+          "allocation_end_ns": 5205687330354291
+        },
+        {
+          "index": 3,
+          "pointer": "20617298445824",
+          "reused": false,
+          "before": {
+            "read_start": false,
+            "read_end": false,
+            "done": false,
+            "query_start_ns": 5205687330391972,
+            "query_end_ns": 5205687330426032
+          },
+          "after": {
+            "read_start": false,
+            "read_end": false,
+            "done": false,
+            "query_start_ns": 5205687330445419,
+            "query_end_ns": 5205687330479746
+          },
+          "allocation_label": "P32/t00/allocate-003",
+          "allocation_start_ns": 5205687330428048,
+          "allocation_end_ns": 5205687330444465
+        },
+        {
+          "index": 4,
+          "pointer": "20617095020544",
+          "reused": false,
+          "before": {
+            "read_start": false,
+            "read_end": false,
+            "done": false,
+            "query_start_ns": 5205687330482028,
+            "query_end_ns": 5205687330516776
+          },
+          "after": {
+            "read_start": false,
+            "read_end": false,
+            "done": false,
+            "query_start_ns": 5205687330537547,
+            "query_end_ns": 5205687330571742
+          },
+          "allocation_label": "P32/t00/allocate-004",
+          "allocation_start_ns": 5205687330519002,
+          "allocation_end_ns": 5205687330536539
+        },
+        {
+          "index": 5,
+          "pointer": "20617099215360",
+          "reused": false,
+          "before": {
+            "read_start": false,
+            "read_end": false,
+            "done": false,
+            "query_start_ns": 5205687330572991,
+            "query_end_ns": 5205687330609265
+          },
+          "after": {
+            "read_start": false,
+            "read_end": false,
+            "done": false,
+            "query_start_ns": 5205687330631210,
+            "query_end_ns": 5205687330667287
+          },
+          "allocation_label": "P32/t00/allocate-005",
+          "allocation_start_ns": 5205687330611514,
+          "allocation_end_ns": 5205687330630181
+        },
+        {
+          "index": 6,
+          "pointer": "20617103410176",
+          "reused": false,
+          "before": {
+            "read_start": false,
+            "read_end": false,
+            "done": false,
+            "query_start_ns": 5205687330668344,
+            "query_end_ns": 5205687330702803
+          },
+          "after": {
+            "read_start": false,
+            "read_end": false,
+            "done": false,
+            "query_start_ns": 5205687330722224,
+            "query_end_ns": 5205687330757120
+          },
+          "allocation_label": "P32/t00/allocate-006",
+          "allocation_start_ns": 5205687330704982,
+          "allocation_end_ns": 5205687330721247
+        },
+        {
+          "index": 7,
+          "pointer": "20617107604992",
+          "reused": false,
+          "before": {
+            "read_start": false,
+            "read_end": false,
+            "done": false,
+            "query_start_ns": 5205687330758082,
+            "query_end_ns": 5205687330793464
+          },
+          "after": {
+            "read_start": false,
+            "read_end": false,
+            "done": false,
+            "query_start_ns": 5205687330814248,
+            "query_end_ns": 5205687330848830
+          },
+          "allocation_label": "P32/t00/allocate-007",
+          "allocation_start_ns": 5205687330795777,
+          "allocation_end_ns": 5205687330813212
+        },
+        {
+          "index": 8,
+          "pointer": "20617115992064",
+          "reused": false,
+          "before": {
+            "read_start": false,
+            "read_end": false,
+            "done": false,
+            "query_start_ns": 5205687330849790,
+            "query_end_ns": 5205687330884009
+          },
+          "after": {
+            "read_start": false,
+            "read_end": false,
+            "done": false,
+            "query_start_ns": 5205687330904338,
+            "query_end_ns": 5205687330938743
+          },
+          "allocation_label": "P32/t00/allocate-008",
+          "allocation_start_ns": 5205687330886233,
+          "allocation_end_ns": 5205687330903423
+        },
+        {
+          "index": 9,
+          "pointer": "20617120186880",
+          "reused": false,
+          "before": {
+            "read_start": false,
+            "read_end": false,
+            "done": false,
+            "query_start_ns": 5205687330939841,
+            "query_end_ns": 5205687330975104
+          },
+          "after": {
+            "read_start": false,
+            "read_end": false,
+            "done": false,
+            "query_start_ns": 5205687330993616,
+            "query_end_ns": 5205687331029380
+          },
+          "allocation_label": "P32/t00/allocate-009",
+          "allocation_start_ns": 5205687330977352,
+          "allocation_end_ns": 5205687330992551
+        },
+        {
+          "index": 10,
+          "pointer": "20617124381696",
+          "reused": false,
+          "before": {
+            "read_start": false,
+            "read_end": false,
+            "done": false,
+            "query_start_ns": 5205687331030414,
+            "query_end_ns": 5205687331064045
+          },
+          "after": {
+            "read_start": false,
+            "read_end": false,
+            "done": false,
+            "query_start_ns": 5205687331084161,
+            "query_end_ns": 5205687331121155
+          },
+          "allocation_label": "P32/t00/allocate-010",
+          "allocation_start_ns": 5205687331066260,
+          "allocation_end_ns": 5205687331083228
+        },
+        {
+          "index": 11,
+          "pointer": "20617128576512",
+          "reused": false,
+          "before": {
+            "read_start": false,
+            "read_end": false,
+            "done": false,
+            "query_start_ns": 5205687331122084,
+            "query_end_ns": 5205687331156228
+          },
+          "after": {
+            "read_start": false,
+            "read_end": false,
+            "done": false,
+            "query_start_ns": 5205687331174499,
+            "query_end_ns": 5205687331210629
+          },
+          "allocation_label": "P32/t00/allocate-011",
+          "allocation_start_ns": 5205687331158332,
+          "allocation_end_ns": 5205687331173445
+        },
+        {
+          "index": 12,
+          "pointer": "20617136963584",
+          "reused": false,
+          "before": {
+            "read_start": false,
+            "read_end": false,
+            "done": false,
+            "query_start_ns": 5205687331211632,
+            "query_end_ns": 5205687331245823
+          },
+          "after": {
+            "read_start": false,
+            "read_end": false,
+            "done": false,
+            "query_start_ns": 5205687331264953,
+            "query_end_ns": 5205687331301205
+          },
+          "allocation_label": "P32/t00/allocate-012",
+          "allocation_start_ns": 5205687331247867,
+          "allocation_end_ns": 5205687331263956
+        },
+        {
+          "index": 13,
+          "pointer": "20617141158400",
+          "reused": false,
+          "before": {
+            "read_start": false,
+            "read_end": false,
+            "done": false,
+            "query_start_ns": 5205687331302181,
+            "query_end_ns": 5205687331336400
+          },
+          "after": {
+            "read_start": false,
+            "read_end": false,
+            "done": false,
+            "query_start_ns": 5205687331354664,
+            "query_end_ns": 5205687331390005
+          },
+          "allocation_label": "P32/t00/allocate-013",
+          "allocation_start_ns": 5205687331338853,
+          "allocation_end_ns": 5205687331353738
+        },
+        {
+          "index": 14,
+          "pointer": "20617145353216",
+          "reused": false,
+          "before": {
+            "read_start": false,
+            "read_end": false,
+            "done": false,
+            "query_start_ns": 5205687331393502,
+            "query_end_ns": 5205687331429885
+          },
+          "after": {
+            "read_start": false,
+            "read_end": false,
+            "done": false,
+            "query_start_ns": 5205687331447613,
+            "query_end_ns": 5205687331482711
+          },
+          "allocation_label": "P32/t00/allocate-014",
+          "allocation_start_ns": 5205687331431956,
+          "allocation_end_ns": 5205687331446695
+        },
+        {
+          "index": 15,
+          "pointer": "20617149548032",
+          "reused": false,
+          "before": {
+            "read_start": false,
+            "read_end": false,
+            "done": false,
+            "query_start_ns": 5205687331483624,
+            "query_end_ns": 5205687331518676
+          },
+          "after": {
+            "read_start": false,
+            "read_end": false,
+            "done": false,
+            "query_start_ns": 5205687331539000,
+            "query_end_ns": 5205687331573193
+          },
+          "allocation_label": "P32/t00/allocate-015",
+          "allocation_start_ns": 5205687331521331,
+          "allocation_end_ns": 5205687331538062
+        },
+        {
+          "index": 16,
+          "pointer": "20617157935104",
+          "reused": false,
+          "before": {
+            "read_start": false,
+            "read_end": false,
+            "done": false,
+            "query_start_ns": 5205687331574056,
+            "query_end_ns": 5205687331614391
+          },
+          "after": {
+            "read_start": false,
+            "read_end": false,
+            "done": false,
+            "query_start_ns": 5205687331633702,
+            "query_end_ns": 5205687331669545
+          },
+          "allocation_label": "P32/t00/allocate-016",
+          "allocation_start_ns": 5205687331616502,
+          "allocation_end_ns": 5205687331632785
+        },
+        {
+          "index": 17,
+          "pointer": "20617162129920",
+          "reused": false,
+          "before": {
+            "read_start": false,
+            "read_end": false,
+            "done": false,
+            "query_start_ns": 5205687331670547,
+            "query_end_ns": 5205687331705657
+          },
+          "after": {
+            "read_start": false,
+            "read_end": false,
+            "done": false,
+            "query_start_ns": 5205687331726508,
+            "query_end_ns": 5205687331763591
+          },
+          "allocation_label": "P32/t00/allocate-017",
+          "allocation_start_ns": 5205687331707757,
+          "allocation_end_ns": 5205687331725478
+        },
+        {
+          "index": 18,
+          "pointer": "20617166324736",
+          "reused": false,
+          "before": {
+            "read_start": false,
+            "read_end": false,
+            "done": false,
+            "query_start_ns": 5205687331764572,
+            "query_end_ns": 5205687331798453
+          },
+          "after": {
+            "read_start": false,
+            "read_end": false,
+            "done": false,
+            "query_start_ns": 5205687331816813,
+            "query_end_ns": 5205687331851532
+          },
+          "allocation_label": "P32/t00/allocate-018",
+          "allocation_start_ns": 5205687331800868,
+          "allocation_end_ns": 5205687331815912
+        },
+        {
+          "index": 19,
+          "pointer": "20617170519552",
+          "reused": false,
+          "before": {
+            "read_start": false,
+            "read_end": false,
+            "done": false,
+            "query_start_ns": 5205687331852503,
+            "query_end_ns": 5205687331888387
+          },
+          "after": {
+            "read_start": false,
+            "read_end": false,
+            "done": false,
+            "query_start_ns": 5205687331908933,
+            "query_end_ns": 5205687331942810
+          },
+          "allocation_label": "P32/t00/allocate-019",
+          "allocation_start_ns": 5205687331890764,
+          "allocation_end_ns": 5205687331907957
+        },
+        {
+          "index": 20,
+          "pointer": "20617178906624",
+          "reused": false,
+          "before": {
+            "read_start": false,
+            "read_end": false,
+            "done": false,
+            "query_start_ns": 5205687331943778,
+            "query_end_ns": 5205687331979194
+          },
+          "after": {
+            "read_start": false,
+            "read_end": false,
+            "done": false,
+            "query_start_ns": 5205687331998028,
+            "query_end_ns": 5205687332040841
+          },
+          "allocation_label": "P32/t00/allocate-020",
+          "allocation_start_ns": 5205687331981451,
+          "allocation_end_ns": 5205687331997108
+        },
+        {
+          "index": 21,
+          "pointer": "20617183101440",
+          "reused": false,
+          "before": {
+            "read_start": false,
+            "read_end": false,
+            "done": false,
+            "query_start_ns": 5205687332041742,
+            "query_end_ns": 5205687332076453
+          },
+          "after": {
+            "read_start": false,
+            "read_end": false,
+            "done": false,
+            "query_start_ns": 5205687332094773,
+            "query_end_ns": 5205687332129404
+          },
+          "allocation_label": "P32/t00/allocate-021",
+          "allocation_start_ns": 5205687332078507,
+          "allocation_end_ns": 5205687332093876
+        },
+        {
+          "index": 22,
+          "pointer": "20617187296256",
+          "reused": false,
+          "before": {
+            "read_start": false,
+            "read_end": false,
+            "done": false,
+            "query_start_ns": 5205687332130286,
+            "query_end_ns": 5205687332164195
+          },
+          "after": {
+            "read_start": false,
+            "read_end": false,
+            "done": false,
+            "query_start_ns": 5205687332182253,
+            "query_end_ns": 5205687332216698
+          },
+          "allocation_label": "P32/t00/allocate-022",
+          "allocation_start_ns": 5205687332166313,
+          "allocation_end_ns": 5205687332181296
+        },
+        {
+          "index": 23,
+          "pointer": "20617191491072",
+          "reused": false,
+          "before": {
+            "read_start": false,
+            "read_end": false,
+            "done": false,
+            "query_start_ns": 5205687332217584,
+            "query_end_ns": 5205687332251328
+          },
+          "after": {
+            "read_start": false,
+            "read_end": false,
+            "done": false,
+            "query_start_ns": 5205687332271003,
+            "query_end_ns": 5205687332304988
+          },
+          "allocation_label": "P32/t00/allocate-023",
+          "allocation_start_ns": 5205687332253386,
+          "allocation_end_ns": 5205687332269955
+        },
+        {
+          "index": 24,
+          "pointer": "20617199878144",
+          "reused": false,
+          "before": {
+            "read_start": false,
+            "read_end": false,
+            "done": false,
+            "query_start_ns": 5205687332305852,
+            "query_end_ns": 5205687332339953
+          },
+          "after": {
+            "read_start": false,
+            "read_end": false,
+            "done": false,
+            "query_start_ns": 5205687332358033,
+            "query_end_ns": 5205687332392427
+          },
+          "allocation_label": "P32/t00/allocate-024",
+          "allocation_start_ns": 5205687332342107,
+          "allocation_end_ns": 5205687332357061
+        },
+        {
+          "index": 25,
+          "pointer": "20617204072960",
+          "reused": false,
+          "before": {
+            "read_start": false,
+            "read_end": false,
+            "done": false,
+            "query_start_ns": 5205687332393436,
+            "query_end_ns": 5205687332428048
+          },
+          "after": {
+            "read_start": false,
+            "read_end": false,
+            "done": false,
+            "query_start_ns": 5205687332445783,
+            "query_end_ns": 5205687332480145
+          },
+          "allocation_label": "P32/t00/allocate-025",
+          "allocation_start_ns": 5205687332430098,
+          "allocation_end_ns": 5205687332444696
+        },
+        {
+          "index": 26,
+          "pointer": "20617208267776",
+          "reused": false,
+          "before": {
+            "read_start": false,
+            "read_end": false,
+            "done": false,
+            "query_start_ns": 5205687332480979,
+            "query_end_ns": 5205687332515614
+          },
+          "after": {
+            "read_start": false,
+            "read_end": false,
+            "done": false,
+            "query_start_ns": 5205687332533580,
+            "query_end_ns": 5205687332569610
+          },
+          "allocation_label": "P32/t00/allocate-026",
+          "allocation_start_ns": 5205687332517726,
+          "allocation_end_ns": 5205687332532607
+        },
+        {
+          "index": 27,
+          "pointer": "20617212462592",
+          "reused": false,
+          "before": {
+            "read_start": false,
+            "read_end": false,
+            "done": false,
+            "query_start_ns": 5205687332570513,
+            "query_end_ns": 5205687332604879
+          },
+          "after": {
+            "read_start": false,
+            "read_end": false,
+            "done": false,
+            "query_start_ns": 5205687332624087,
+            "query_end_ns": 5205687332659890
+          },
+          "allocation_label": "P32/t00/allocate-027",
+          "allocation_start_ns": 5205687332606887,
+          "allocation_end_ns": 5205687332623088
+        },
+        {
+          "index": 28,
+          "pointer": "20617220849664",
+          "reused": false,
+          "before": {
+            "read_start": false,
+            "read_end": false,
+            "done": false,
+            "query_start_ns": 5205687332660760,
+            "query_end_ns": 5205687332694628
+          },
+          "after": {
+            "read_start": false,
+            "read_end": false,
+            "done": false,
+            "query_start_ns": 5205687332712606,
+            "query_end_ns": 5205687332746948
+          },
+          "allocation_label": "P32/t00/allocate-028",
+          "allocation_start_ns": 5205687332696703,
+          "allocation_end_ns": 5205687332711682
+        },
+        {
+          "index": 29,
+          "pointer": "20617225044480",
+          "reused": false,
+          "before": {
+            "read_start": false,
+            "read_end": false,
+            "done": false,
+            "query_start_ns": 5205687332747806,
+            "query_end_ns": 5205687332782303
+          },
+          "after": {
+            "read_start": false,
+            "read_end": false,
+            "done": false,
+            "query_start_ns": 5205687332799995,
+            "query_end_ns": 5205687332835119
+          },
+          "allocation_label": "P32/t00/allocate-029",
+          "allocation_start_ns": 5205687332784310,
+          "allocation_end_ns": 5205687332799100
+        },
+        {
+          "index": 30,
+          "pointer": "20617229239296",
+          "reused": false,
+          "before": {
+            "read_start": false,
+            "read_end": false,
+            "done": false,
+            "query_start_ns": 5205687332835961,
+            "query_end_ns": 5205687332869934
+          },
+          "after": {
+            "read_start": false,
+            "read_end": false,
+            "done": false,
+            "query_start_ns": 5205687332887441,
+            "query_end_ns": 5205687332921724
+          },
+          "allocation_label": "P32/t00/allocate-030",
+          "allocation_start_ns": 5205687332871824,
+          "allocation_end_ns": 5205687332886511
+        },
+        {
+          "index": 31,
+          "pointer": "20617233434112",
+          "reused": false,
+          "before": {
+            "read_start": false,
+            "read_end": false,
+            "done": false,
+            "query_start_ns": 5205687332923852,
+            "query_end_ns": 5205687332958368
+          },
+          "after": {
+            "read_start": false,
+            "read_end": false,
+            "done": false,
+            "query_start_ns": 5205687332976146,
+            "query_end_ns": 5205687333010761
+          },
+          "allocation_label": "P32/t00/allocate-031",
+          "allocation_start_ns": 5205687332960378,
+          "allocation_end_ns": 5205687332975216
+        }
+      ],
+      "allocations_after_completion": [
+        {
+          "pointer": "20617241821184",
+          "reused": false
+        },
+        {
+          "pointer": "20617246016000",
+          "reused": false
+        },
+        {
+          "pointer": "20617250210816",
+          "reused": false
+        },
+        {
+          "pointer": "20617254405632",
+          "reused": false
+        }
+      ],
+      "completion_cache_miss_trigger": null,
+      "statistics_before": {
+        "num_alloc_retries": 0,
+        "num_ooms": 0,
+        "allocated_bytes.all.current": 104859648,
+        "reserved_bytes.all.current": 360710144,
+        "active_bytes.all.current": 104859648
+      },
+      "statistics_after_window": {
+        "num_alloc_retries": 0,
+        "num_ooms": 0,
+        "allocated_bytes.all.current": 239093760,
+        "reserved_bytes.all.current": 360710144,
+        "active_bytes.all.current": 239093760
+      },
+      "trace_entries_for_a": [
+        {
+          "trace_index": 1,
+          "action": "alloc",
+          "addr": 20617285861376,
+          "size": 4194304,
+          "stream": 140193731796992
+        },
+        {
+          "trace_index": 194,
+          "action": "free_requested",
+          "addr": 20617285861376,
+          "size": 4194304,
+          "stream": 140193731796992
+        },
+        {
+          "trace_index": 195,
+          "action": "free_completed",
+          "addr": 20617285861376,
+          "size": 4194304,
+          "stream": 140193731796992
+        },
+        {
+          "trace_index": 197,
+          "action": "alloc",
+          "addr": 20617285861376,
+          "size": 4194304,
+          "stream": 140193731796992
+        }
+      ],
+      "copy_all_elements_correct": true,
+      "snapshot_files": [
+        "t00-released.json.gz",
+        "t00-window.json.gz",
+        "t00-synchronized.json.gz",
+        "t00-polled.json.gz"
+      ]
+    },
+    {
+      "id": "t01",
+      "mode": "omit",
+      "threads": 1,
+      "address_a": "20617285861376",
+      "tensor_python_owner_released": true,
+      "release": {
+        "thread_id": 1688542,
+        "current_stream": "140193731919872"
+      },
+      "submitting_main_thread": 1688542,
+      "progress_after_release": {
+        "read_start": false,
+        "read_end": false,
+        "done": false,
+        "query_start_ns": 5205687367082614,
+        "query_end_ns": 5205687367124037
+      },
+      "block_after_release": [
+        {
+          "address": 20617285861376,
+          "size": 18874368,
+          "state": "inactive",
+          "requested_size": 4194304,
+          "stream": 140193731796992,
+          "is_expandable": false,
+          "device": 0
+        }
+      ],
+      "block_after_window": [
+        {
+          "address": 20617285861376,
+          "size": 4194816,
+          "state": "active_allocated",
+          "requested_size": 4194304,
+          "stream": 140193731796992,
+          "is_expandable": false,
+          "device": 0
+        }
+      ],
+      "block_after_synchronize": [
+        {
+          "address": 20617285861376,
+          "size": 4194816,
+          "state": "active_allocated",
+          "requested_size": 4194304,
+          "stream": 140193731796992,
+          "is_expandable": false,
+          "device": 0
+        }
+      ],
+      "block_after_poll": [
+        {
+          "address": 20617285861376,
+          "size": 4194816,
+          "state": "active_allocated",
+          "requested_size": 4194304,
+          "stream": 140193731796992,
+          "is_expandable": false,
+          "device": 0
+        }
+      ],
+      "observations": [
+        {
+          "index": 0,
+          "pointer": "20617285861376",
+          "reused": true,
+          "before": {
+            "read_start": false,
+            "read_end": false,
+            "done": false,
+            "query_start_ns": 5205687367267879,
+            "query_end_ns": 5205687367308554
+          },
+          "after": {
+            "read_start": false,
+            "read_end": false,
+            "done": false,
+            "query_start_ns": 5205687367340489,
+            "query_end_ns": 5205687367376886
+          },
+          "allocation_label": "P32/t01/allocate-000",
+          "allocation_start_ns": 5205687367313778,
+          "allocation_end_ns": 5205687367338976
+        },
+        {
+          "index": 1,
+          "pointer": "20617290056192",
+          "reused": false,
+          "before": {
+            "read_start": false,
+            "read_end": false,
+            "done": false,
+            "query_start_ns": 5205687367379332,
+            "query_end_ns": 5205687367416299
+          },
+          "after": {
+            "read_start": false,
+            "read_end": false,
+            "done": false,
+            "query_start_ns": 5205687367436899,
+            "query_end_ns": 5205687367473850
+          },
+          "allocation_label": "P32/t01/allocate-001",
+          "allocation_start_ns": 5205687367419269,
+          "allocation_end_ns": 5205687367435785
+        },
+        {
+          "index": 2,
+          "pointer": "20617294251008",
+          "reused": false,
+          "before": {
+            "read_start": false,
+            "read_end": false,
+            "done": false,
+            "query_start_ns": 5205687367475205,
+            "query_end_ns": 5205687367511478
+          },
+          "after": {
+            "read_start": false,
+            "read_end": false,
+            "done": false,
+            "query_start_ns": 5205687367534030,
+            "query_end_ns": 5205687367568927
+          },
+          "allocation_label": "P32/t01/allocate-002",
+          "allocation_start_ns": 5205687367513823,
+          "allocation_end_ns": 5205687367532939
+        },
+        {
+          "index": 3,
+          "pointer": "20617298445824",
+          "reused": false,
+          "before": {
+            "read_start": false,
+            "read_end": false,
+            "done": false,
+            "query_start_ns": 5205687367569956,
+            "query_end_ns": 5205687367605719
+          },
+          "after": {
+            "read_start": false,
+            "read_end": false,
+            "done": false,
+            "query_start_ns": 5205687367624413,
+            "query_end_ns": 5205687367659424
+          },
+          "allocation_label": "P32/t01/allocate-003",
+          "allocation_start_ns": 5205687367607823,
+          "allocation_end_ns": 5205687367623477
+        },
+        {
+          "index": 4,
+          "pointer": "20617095020544",
+          "reused": false,
+          "before": {
+            "read_start": false,
+            "read_end": false,
+            "done": false,
+            "query_start_ns": 5205687367660504,
+            "query_end_ns": 5205687367695692
+          },
+          "after": {
+            "read_start": false,
+            "read_end": false,
+            "done": false,
+            "query_start_ns": 5205687367714635,
+            "query_end_ns": 5205687367749940
+          },
+          "allocation_label": "P32/t01/allocate-004",
+          "allocation_start_ns": 5205687367697829,
+          "allocation_end_ns": 5205687367713451
+        },
+        {
+          "index": 5,
+          "pointer": "20617099215360",
+          "reused": false,
+          "before": {
+            "read_start": false,
+            "read_end": false,
+            "done": false,
+            "query_start_ns": 5205687367751107,
+            "query_end_ns": 5205687367785618
+          },
+          "after": {
+            "read_start": false,
+            "read_end": false,
+            "done": false,
+            "query_start_ns": 5205687367804374,
+            "query_end_ns": 5205687367839788
+          },
+          "allocation_label": "P32/t01/allocate-005",
+          "allocation_start_ns": 5205687367787990,
+          "allocation_end_ns": 5205687367803418
+        },
+        {
+          "index": 6,
+          "pointer": "20617103410176",
+          "reused": false,
+          "before": {
+            "read_start": false,
+            "read_end": false,
+            "done": false,
+            "query_start_ns": 5205687367840734,
+            "query_end_ns": 5205687367875472
+          },
+          "after": {
+            "read_start": false,
+            "read_end": false,
+            "done": false,
+            "query_start_ns": 5205687367894036,
+            "query_end_ns": 5205687367928324
+          },
+          "allocation_label": "P32/t01/allocate-006",
+          "allocation_start_ns": 5205687367877500,
+          "allocation_end_ns": 5205687367893055
+        },
+        {
+          "index": 7,
+          "pointer": "20617107604992",
+          "reused": false,
+          "before": {
+            "read_start": false,
+            "read_end": false,
+            "done": false,
+            "query_start_ns": 5205687367929159,
+            "query_end_ns": 5205687367963099
+          },
+          "after": {
+            "read_start": false,
+            "read_end": false,
+            "done": false,
+            "query_start_ns": 5205687367980685,
+            "query_end_ns": 5205687368023904
+          },
+          "allocation_label": "P32/t01/allocate-007",
+          "allocation_start_ns": 5205687367965085,
+          "allocation_end_ns": 5205687367979801
+        },
+        {
+          "index": 8,
+          "pointer": "20617115992064",
+          "reused": false,
+          "before": {
+            "read_start": false,
+            "read_end": false,
+            "done": false,
+            "query_start_ns": 5205687368024789,
+            "query_end_ns": 5205687368059719
+          },
+          "after": {
+            "read_start": false,
+            "read_end": false,
+            "done": false,
+            "query_start_ns": 5205687368078207,
+            "query_end_ns": 5205687368113250
+          },
+          "allocation_label": "P32/t01/allocate-008",
+          "allocation_start_ns": 5205687368061745,
+          "allocation_end_ns": 5205687368077313
+        },
+        {
+          "index": 9,
+          "pointer": "20617120186880",
+          "reused": false,
+          "before": {
+            "read_start": false,
+            "read_end": false,
+            "done": false,
+            "query_start_ns": 5205687368114322,
+            "query_end_ns": 5205687368149298
+          },
+          "after": {
+            "read_start": false,
+            "read_end": false,
+            "done": false,
+            "query_start_ns": 5205687368168113,
+            "query_end_ns": 5205687368203279
+          },
+          "allocation_label": "P32/t01/allocate-009",
+          "allocation_start_ns": 5205687368151509,
+          "allocation_end_ns": 5205687368167069
+        },
+        {
+          "index": 10,
+          "pointer": "20617124381696",
+          "reused": false,
+          "before": {
+            "read_start": false,
+            "read_end": false,
+            "done": false,
+            "query_start_ns": 5205687368204308,
+            "query_end_ns": 5205687368239349
+          },
+          "after": {
+            "read_start": false,
+            "read_end": false,
+            "done": false,
+            "query_start_ns": 5205687368257334,
+            "query_end_ns": 5205687368291414
+          },
+          "allocation_label": "P32/t01/allocate-010",
+          "allocation_start_ns": 5205687368241369,
+          "allocation_end_ns": 5205687368256430
+        },
+        {
+          "index": 11,
+          "pointer": "20617128576512",
+          "reused": false,
+          "before": {
+            "read_start": false,
+            "read_end": false,
+            "done": false,
+            "query_start_ns": 5205687368292398,
+            "query_end_ns": 5205687368326588
+          },
+          "after": {
+            "read_start": false,
+            "read_end": false,
+            "done": false,
+            "query_start_ns": 5205687368344729,
+            "query_end_ns": 5205687368379039
+          },
+          "allocation_label": "P32/t01/allocate-011",
+          "allocation_start_ns": 5205687368328665,
+          "allocation_end_ns": 5205687368343786
+        },
+        {
+          "index": 12,
+          "pointer": "20617136963584",
+          "reused": false,
+          "before": {
+            "read_start": false,
+            "read_end": false,
+            "done": false,
+            "query_start_ns": 5205687368380185,
+            "query_end_ns": 5205687368415259
+          },
+          "after": {
+            "read_start": false,
+            "read_end": false,
+            "done": false,
+            "query_start_ns": 5205687368434180,
+            "query_end_ns": 5205687368468997
+          },
+          "allocation_label": "P32/t01/allocate-012",
+          "allocation_start_ns": 5205687368417485,
+          "allocation_end_ns": 5205687368433135
+        },
+        {
+          "index": 13,
+          "pointer": "20617141158400",
+          "reused": false,
+          "before": {
+            "read_start": false,
+            "read_end": false,
+            "done": false,
+            "query_start_ns": 5205687368469913,
+            "query_end_ns": 5205687368504327
+          },
+          "after": {
+            "read_start": false,
+            "read_end": false,
+            "done": false,
+            "query_start_ns": 5205687368522338,
+            "query_end_ns": 5205687368557150
+          },
+          "allocation_label": "P32/t01/allocate-013",
+          "allocation_start_ns": 5205687368506397,
+          "allocation_end_ns": 5205687368521334
+        },
+        {
+          "index": 14,
+          "pointer": "20617145353216",
+          "reused": false,
+          "before": {
+            "read_start": false,
+            "read_end": false,
+            "done": false,
+            "query_start_ns": 5205687368558045,
+            "query_end_ns": 5205687368592287
+          },
+          "after": {
+            "read_start": false,
+            "read_end": false,
+            "done": false,
+            "query_start_ns": 5205687368610166,
+            "query_end_ns": 5205687368644642
+          },
+          "allocation_label": "P32/t01/allocate-014",
+          "allocation_start_ns": 5205687368594322,
+          "allocation_end_ns": 5205687368609133
+        },
+        {
+          "index": 15,
+          "pointer": "20617149548032",
+          "reused": false,
+          "before": {
+            "read_start": false,
+            "read_end": false,
+            "done": false,
+            "query_start_ns": 5205687368645491,
+            "query_end_ns": 5205687368679630
+          },
+          "after": {
+            "read_start": false,
+            "read_end": false,
+            "done": false,
+            "query_start_ns": 5205687368697447,
+            "query_end_ns": 5205687368732146
+          },
+          "allocation_label": "P32/t01/allocate-015",
+          "allocation_start_ns": 5205687368681718,
+          "allocation_end_ns": 5205687368696477
+        },
+        {
+          "index": 16,
+          "pointer": "20617157935104",
+          "reused": false,
+          "before": {
+            "read_start": false,
+            "read_end": false,
+            "done": false,
+            "query_start_ns": 5205687368733108,
+            "query_end_ns": 5205687368767865
+          },
+          "after": {
+            "read_start": false,
+            "read_end": false,
+            "done": false,
+            "query_start_ns": 5205687368786508,
+            "query_end_ns": 5205687368821070
+          },
+          "allocation_label": "P32/t01/allocate-016",
+          "allocation_start_ns": 5205687368769816,
+          "allocation_end_ns": 5205687368785389
+        },
+        {
+          "index": 17,
+          "pointer": "20617162129920",
+          "reused": false,
+          "before": {
+            "read_start": false,
+            "read_end": false,
+            "done": false,
+            "query_start_ns": 5205687368822198,
+            "query_end_ns": 5205687368856418
+          },
+          "after": {
+            "read_start": false,
+            "read_end": false,
+            "done": false,
+            "query_start_ns": 5205687368875216,
+            "query_end_ns": 5205687368910067
+          },
+          "allocation_label": "P32/t01/allocate-017",
+          "allocation_start_ns": 5205687368859154,
+          "allocation_end_ns": 5205687368874239
+        },
+        {
+          "index": 18,
+          "pointer": "20617166324736",
+          "reused": false,
+          "before": {
+            "read_start": false,
+            "read_end": false,
+            "done": false,
+            "query_start_ns": 5205687368911029,
+            "query_end_ns": 5205687368947446
+          },
+          "after": {
+            "read_start": false,
+            "read_end": false,
+            "done": false,
+            "query_start_ns": 5205687368965591,
+            "query_end_ns": 5205687368999808
+          },
+          "allocation_label": "P32/t01/allocate-018",
+          "allocation_start_ns": 5205687368949502,
+          "allocation_end_ns": 5205687368964522
+        },
+        {
+          "index": 19,
+          "pointer": "20617170519552",
+          "reused": false,
+          "before": {
+            "read_start": false,
+            "read_end": false,
+            "done": false,
+            "query_start_ns": 5205687369000758,
+            "query_end_ns": 5205687369034954
+          },
+          "after": {
+            "read_start": false,
+            "read_end": false,
+            "done": false,
+            "query_start_ns": 5205687369052642,
+            "query_end_ns": 5205687369086689
+          },
+          "allocation_label": "P32/t01/allocate-019",
+          "allocation_start_ns": 5205687369037004,
+          "allocation_end_ns": 5205687369051688
+        },
+        {
+          "index": 20,
+          "pointer": "20617178906624",
+          "reused": false,
+          "before": {
+            "read_start": false,
+            "read_end": false,
+            "done": false,
+            "query_start_ns": 5205687369087596,
+            "query_end_ns": 5205687369121310
+          },
+          "after": {
+            "read_start": false,
+            "read_end": false,
+            "done": false,
+            "query_start_ns": 5205687369139524,
+            "query_end_ns": 5205687369173224
+          },
+          "allocation_label": "P32/t01/allocate-020",
+          "allocation_start_ns": 5205687369123276,
+          "allocation_end_ns": 5205687369138584
+        },
+        {
+          "index": 21,
+          "pointer": "20617183101440",
+          "reused": false,
+          "before": {
+            "read_start": false,
+            "read_end": false,
+            "done": false,
+            "query_start_ns": 5205687369174116,
+            "query_end_ns": 5205687369208632
+          },
+          "after": {
+            "read_start": false,
+            "read_end": false,
+            "done": false,
+            "query_start_ns": 5205687369226250,
+            "query_end_ns": 5205687369260287
+          },
+          "allocation_label": "P32/t01/allocate-021",
+          "allocation_start_ns": 5205687369210580,
+          "allocation_end_ns": 5205687369225312
+        },
+        {
+          "index": 22,
+          "pointer": "20617187296256",
+          "reused": false,
+          "before": {
+            "read_start": false,
+            "read_end": false,
+            "done": false,
+            "query_start_ns": 5205687369261204,
+            "query_end_ns": 5205687369294995
+          },
+          "after": {
+            "read_start": false,
+            "read_end": false,
+            "done": false,
+            "query_start_ns": 5205687369312668,
+            "query_end_ns": 5205687369346733
+          },
+          "allocation_label": "P32/t01/allocate-022",
+          "allocation_start_ns": 5205687369296922,
+          "allocation_end_ns": 5205687369311721
+        },
+        {
+          "index": 23,
+          "pointer": "20617191491072",
+          "reused": false,
+          "before": {
+            "read_start": false,
+            "read_end": false,
+            "done": false,
+            "query_start_ns": 5205687369347613,
+            "query_end_ns": 5205687369381588
+          },
+          "after": {
+            "read_start": false,
+            "read_end": false,
+            "done": false,
+            "query_start_ns": 5205687369399084,
+            "query_end_ns": 5205687369432671
+          },
+          "allocation_label": "P32/t01/allocate-023",
+          "allocation_start_ns": 5205687369383536,
+          "allocation_end_ns": 5205687369398137
+        },
+        {
+          "index": 24,
+          "pointer": "20617199878144",
+          "reused": false,
+          "before": {
+            "read_start": false,
+            "read_end": false,
+            "done": false,
+            "query_start_ns": 5205687369433576,
+            "query_end_ns": 5205687369467381
+          },
+          "after": {
+            "read_start": false,
+            "read_end": false,
+            "done": false,
+            "query_start_ns": 5205687369485355,
+            "query_end_ns": 5205687369520123
+          },
+          "allocation_label": "P32/t01/allocate-024",
+          "allocation_start_ns": 5205687369469419,
+          "allocation_end_ns": 5205687369484432
+        },
+        {
+          "index": 25,
+          "pointer": "20617204072960",
+          "reused": false,
+          "before": {
+            "read_start": false,
+            "read_end": false,
+            "done": false,
+            "query_start_ns": 5205687369521193,
+            "query_end_ns": 5205687369556010
+          },
+          "after": {
+            "read_start": false,
+            "read_end": false,
+            "done": false,
+            "query_start_ns": 5205687369574493,
+            "query_end_ns": 5205687369609168
+          },
+          "allocation_label": "P32/t01/allocate-025",
+          "allocation_start_ns": 5205687369558165,
+          "allocation_end_ns": 5205687369573588
+        },
+        {
+          "index": 26,
+          "pointer": "20617208267776",
+          "reused": false,
+          "before": {
+            "read_start": false,
+            "read_end": false,
+            "done": false,
+            "query_start_ns": 5205687369610272,
+            "query_end_ns": 5205687369644515
+          },
+          "after": {
+            "read_start": false,
+            "read_end": false,
+            "done": false,
+            "query_start_ns": 5205687369662779,
+            "query_end_ns": 5205687369696836
+          },
+          "allocation_label": "P32/t01/allocate-026",
+          "allocation_start_ns": 5205687369646557,
+          "allocation_end_ns": 5205687369661766
+        },
+        {
+          "index": 27,
+          "pointer": "20617212462592",
+          "reused": false,
+          "before": {
+            "read_start": false,
+            "read_end": false,
+            "done": false,
+            "query_start_ns": 5205687369697797,
+            "query_end_ns": 5205687369732257
+          },
+          "after": {
+            "read_start": false,
+            "read_end": false,
+            "done": false,
+            "query_start_ns": 5205687369751038,
+            "query_end_ns": 5205687369785697
+          },
+          "allocation_label": "P32/t01/allocate-027",
+          "allocation_start_ns": 5205687369734515,
+          "allocation_end_ns": 5205687369750023
+        },
+        {
+          "index": 28,
+          "pointer": "20617220849664",
+          "reused": false,
+          "before": {
+            "read_start": false,
+            "read_end": false,
+            "done": false,
+            "query_start_ns": 5205687369786593,
+            "query_end_ns": 5205687369820483
+          },
+          "after": {
+            "read_start": false,
+            "read_end": false,
+            "done": false,
+            "query_start_ns": 5205687369838864,
+            "query_end_ns": 5205687369873334
+          },
+          "allocation_label": "P32/t01/allocate-028",
+          "allocation_start_ns": 5205687369822543,
+          "allocation_end_ns": 5205687369837696
+        },
+        {
+          "index": 29,
+          "pointer": "20617225044480",
+          "reused": false,
+          "before": {
+            "read_start": false,
+            "read_end": false,
+            "done": false,
+            "query_start_ns": 5205687369874191,
+            "query_end_ns": 5205687369908233
+          },
+          "after": {
+            "read_start": false,
+            "read_end": false,
+            "done": false,
+            "query_start_ns": 5205687369974196,
+            "query_end_ns": 5205687370013020
+          },
+          "allocation_label": "P32/t01/allocate-029",
+          "allocation_start_ns": 5205687369910332,
+          "allocation_end_ns": 5205687369972787
+        },
+        {
+          "index": 30,
+          "pointer": "20617229239296",
+          "reused": false,
+          "before": {
+            "read_start": false,
+            "read_end": false,
+            "done": false,
+            "query_start_ns": 5205687370014199,
+            "query_end_ns": 5205687370049254
+          },
+          "after": {
+            "read_start": false,
+            "read_end": false,
+            "done": false,
+            "query_start_ns": 5205687370069414,
+            "query_end_ns": 5205687370105301
+          },
+          "allocation_label": "P32/t01/allocate-030",
+          "allocation_start_ns": 5205687370052115,
+          "allocation_end_ns": 5205687370068252
+        },
+        {
+          "index": 31,
+          "pointer": "20617233434112",
+          "reused": false,
+          "before": {
+            "read_start": false,
+            "read_end": false,
+            "done": false,
+            "query_start_ns": 5205687370106497,
+            "query_end_ns": 5205687370141242
+          },
+          "after": {
+            "read_start": false,
+            "read_end": false,
+            "done": false,
+            "query_start_ns": 5205687370159968,
+            "query_end_ns": 5205687370194054
+          },
+          "allocation_label": "P32/t01/allocate-031",
+          "allocation_start_ns": 5205687370143692,
+          "allocation_end_ns": 5205687370158918
+        }
+      ],
+      "allocations_after_completion": [
+        {
+          "pointer": "20617241821184",
+          "reused": false
+        },
+        {
+          "pointer": "20617246016000",
+          "reused": false
+        },
+        {
+          "pointer": "20617250210816",
+          "reused": false
+        },
+        {
+          "pointer": "20617254405632",
+          "reused": false
+        }
+      ],
+      "completion_cache_miss_trigger": null,
+      "statistics_before": {
+        "num_alloc_retries": 0,
+        "num_ooms": 0,
+        "allocated_bytes.all.current": 104859648,
+        "reserved_bytes.all.current": 360710144,
+        "active_bytes.all.current": 104859648
+      },
+      "statistics_after_window": {
+        "num_alloc_retries": 0,
+        "num_ooms": 0,
+        "allocated_bytes.all.current": 239093760,
+        "reserved_bytes.all.current": 360710144,
+        "active_bytes.all.current": 239093760
+      },
+      "trace_entries_for_a": [
+        {
+          "trace_index": 318,
+          "action": "alloc",
+          "addr": 20617285861376,
+          "size": 4194304,
+          "stream": 140193731796992
+        },
+        {
+          "trace_index": 511,
+          "action": "free_requested",
+          "addr": 20617285861376,
+          "size": 4194304,
+          "stream": 140193731796992
+        },
+        {
+          "trace_index": 512,
+          "action": "free_completed",
+          "addr": 20617285861376,
+          "size": 4194304,
+          "stream": 140193731796992
+        },
+        {
+          "trace_index": 514,
+          "action": "alloc",
+          "addr": 20617285861376,
+          "size": 4194304,
+          "stream": 140193731796992
+        }
+      ],
+      "copy_all_elements_correct": true,
+      "snapshot_files": [
+        "t01-released.json.gz",
+        "t01-window.json.gz",
+        "t01-synchronized.json.gz",
+        "t01-polled.json.gz"
+      ]
+    }
+  ]
+}

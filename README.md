@@ -401,3 +401,16 @@ See the [reproduction guide](practice_31_multiuser_streams/README.md),
 [measured results](practice_31_multiuser_streams/RESULTS.md),
 [full report retrieval](practice_31_multiuser_streams/README.md#完整报告与大文件), and
 [staged task list](tasks/2026-10-02-practice31-multiuser-streams.md).
+
+## Practice 32: characterize NPU allocator lifetime across streams
+
+Release the last reference to a buffer used on a different NPU stream, then
+observe address assignment without accessing replacement buffers. Across 198
+unprofiled trials, explicit stream recording prevents early reuse; omitting
+recording or returning an execution dependency to the owner permits early
+address assignment. Twelve separate profiler trials distinguish host allocation
+from the old copy's device execution. No conflicting replacement access is tested.
+
+See the [guide](practice_32_allocator_lifetime/README.md),
+[results and evidence limits](practice_32_allocator_lifetime/RESULTS.md), and
+[offline device timeline](practice_32_allocator_lifetime/results/profile-01/index.html).

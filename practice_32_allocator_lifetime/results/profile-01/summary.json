@@ -1,0 +1,613 @@
+{
+  "schema": 1,
+  "analysis_status": "passed",
+  "cases": [
+    {
+      "case": "baseline-t1-omit",
+      "mode": "omit",
+      "threads": 1,
+      "environment": {
+        "ASCEND_HOME_PATH": "/usr/local/Ascend/cann-9.0.0",
+        "ASCEND_RT_VISIBLE_DEVICES": null,
+        "TASK_QUEUE_ENABLE": "1",
+        "PER_STREAM_QUEUE": "0",
+        "PYTORCH_NPU_ALLOC_CONF": "expandable_segments:False,multi_stream_lazy_reclaim:False",
+        "PYTORCH_NO_NPU_MEMORY_CACHING": null,
+        "ASCEND_LAUNCH_BLOCKING": null,
+        "MULTI_STREAM_MEMORY_REUSE": "1"
+      },
+      "repeats": 2,
+      "reuse_trials": 2,
+      "pending_release_trials": 2,
+      "reuse_pending_done_trials": 2,
+      "reuse_pending_copy_end_trials": 2,
+      "reuse_pending_copy_start_trials": 2,
+      "post_completion_reuse_trials": 0,
+      "cache_miss_reuse_trials": 0,
+      "release_states": [
+        "inactive"
+      ],
+      "synchronized_states": [
+        "active_allocated"
+      ],
+      "all_copies_correct": true,
+      "trials": [
+        {
+          "id": "t00",
+          "mode": "omit",
+          "threads": 1,
+          "address_a": "20617285861376",
+          "candidate_count": 32,
+          "terminal_pending_after_release": true,
+          "first_reuse_index": 0,
+          "reuse_while_terminal_marker_pending": true,
+          "reuse_while_copy_end_marker_pending": true,
+          "reuse_while_copy_start_marker_pending": true,
+          "released_states": [
+            "inactive"
+          ],
+          "synchronized_states": [
+            "active_allocated"
+          ],
+          "polled_states": [
+            "active_allocated"
+          ],
+          "reuse_after_completion": false,
+          "cache_miss_reuse_after_completion": false,
+          "release_thread": 1687367,
+          "main_thread": 1687367,
+          "free_requested_verified": true,
+          "correct_output": true,
+          "allocator_actions": [
+            "alloc",
+            "free_requested",
+            "free_completed",
+            "alloc"
+          ],
+          "interpretation": "Address selection and marker progress only; no candidate device access and no demonstrated race."
+        },
+        {
+          "id": "t01",
+          "mode": "omit",
+          "threads": 1,
+          "address_a": "20617285861376",
+          "candidate_count": 32,
+          "terminal_pending_after_release": true,
+          "first_reuse_index": 0,
+          "reuse_while_terminal_marker_pending": true,
+          "reuse_while_copy_end_marker_pending": true,
+          "reuse_while_copy_start_marker_pending": true,
+          "released_states": [
+            "inactive"
+          ],
+          "synchronized_states": [
+            "active_allocated"
+          ],
+          "polled_states": [
+            "active_allocated"
+          ],
+          "reuse_after_completion": false,
+          "cache_miss_reuse_after_completion": false,
+          "release_thread": 1687367,
+          "main_thread": 1687367,
+          "free_requested_verified": true,
+          "correct_output": true,
+          "allocator_actions": [
+            "alloc",
+            "free_requested",
+            "free_completed",
+            "alloc"
+          ],
+          "interpretation": "Address selection and marker progress only; no candidate device access and no demonstrated race."
+        }
+      ]
+    },
+    {
+      "case": "baseline-t1-record",
+      "mode": "record",
+      "threads": 1,
+      "environment": {
+        "ASCEND_HOME_PATH": "/usr/local/Ascend/cann-9.0.0",
+        "ASCEND_RT_VISIBLE_DEVICES": null,
+        "TASK_QUEUE_ENABLE": "1",
+        "PER_STREAM_QUEUE": "0",
+        "PYTORCH_NPU_ALLOC_CONF": "expandable_segments:False,multi_stream_lazy_reclaim:False",
+        "PYTORCH_NO_NPU_MEMORY_CACHING": null,
+        "ASCEND_LAUNCH_BLOCKING": null,
+        "MULTI_STREAM_MEMORY_REUSE": "1"
+      },
+      "repeats": 2,
+      "reuse_trials": 0,
+      "pending_release_trials": 2,
+      "reuse_pending_done_trials": 0,
+      "reuse_pending_copy_end_trials": 0,
+      "reuse_pending_copy_start_trials": 0,
+      "post_completion_reuse_trials": 2,
+      "cache_miss_reuse_trials": 0,
+      "release_states": [
+        "active_pending_free"
+      ],
+      "synchronized_states": [
+        "active_pending_free"
+      ],
+      "all_copies_correct": true,
+      "trials": [
+        {
+          "id": "t00",
+          "mode": "record",
+          "threads": 1,
+          "address_a": "20617285861376",
+          "candidate_count": 32,
+          "terminal_pending_after_release": true,
+          "first_reuse_index": null,
+          "reuse_while_terminal_marker_pending": false,
+          "reuse_while_copy_end_marker_pending": false,
+          "reuse_while_copy_start_marker_pending": false,
+          "released_states": [
+            "active_pending_free"
+          ],
+          "synchronized_states": [
+            "active_pending_free"
+          ],
+          "polled_states": [
+            "active_allocated"
+          ],
+          "reuse_after_completion": true,
+          "cache_miss_reuse_after_completion": false,
+          "release_thread": 1687759,
+          "main_thread": 1687759,
+          "free_requested_verified": true,
+          "correct_output": true,
+          "allocator_actions": [
+            "alloc",
+            "free_requested",
+            "free_completed",
+            "alloc"
+          ],
+          "interpretation": "Address selection and marker progress only; no candidate device access and no demonstrated race."
+        },
+        {
+          "id": "t01",
+          "mode": "record",
+          "threads": 1,
+          "address_a": "20617285861376",
+          "candidate_count": 32,
+          "terminal_pending_after_release": true,
+          "first_reuse_index": null,
+          "reuse_while_terminal_marker_pending": false,
+          "reuse_while_copy_end_marker_pending": false,
+          "reuse_while_copy_start_marker_pending": false,
+          "released_states": [
+            "active_pending_free"
+          ],
+          "synchronized_states": [
+            "active_pending_free"
+          ],
+          "polled_states": [
+            "active_allocated"
+          ],
+          "reuse_after_completion": true,
+          "cache_miss_reuse_after_completion": false,
+          "release_thread": 1687759,
+          "main_thread": 1687759,
+          "free_requested_verified": true,
+          "correct_output": true,
+          "allocator_actions": [
+            "alloc",
+            "free_requested",
+            "free_completed",
+            "alloc"
+          ],
+          "interpretation": "Address selection and marker progress only; no candidate device access and no demonstrated race."
+        }
+      ]
+    },
+    {
+      "case": "baseline-t1-join",
+      "mode": "join",
+      "threads": 1,
+      "environment": {
+        "ASCEND_HOME_PATH": "/usr/local/Ascend/cann-9.0.0",
+        "ASCEND_RT_VISIBLE_DEVICES": null,
+        "TASK_QUEUE_ENABLE": "1",
+        "PER_STREAM_QUEUE": "0",
+        "PYTORCH_NPU_ALLOC_CONF": "expandable_segments:False,multi_stream_lazy_reclaim:False",
+        "PYTORCH_NO_NPU_MEMORY_CACHING": null,
+        "ASCEND_LAUNCH_BLOCKING": null,
+        "MULTI_STREAM_MEMORY_REUSE": "1"
+      },
+      "repeats": 2,
+      "reuse_trials": 2,
+      "pending_release_trials": 2,
+      "reuse_pending_done_trials": 2,
+      "reuse_pending_copy_end_trials": 2,
+      "reuse_pending_copy_start_trials": 2,
+      "post_completion_reuse_trials": 0,
+      "cache_miss_reuse_trials": 0,
+      "release_states": [
+        "inactive"
+      ],
+      "synchronized_states": [
+        "active_allocated"
+      ],
+      "all_copies_correct": true,
+      "trials": [
+        {
+          "id": "t00",
+          "mode": "join",
+          "threads": 1,
+          "address_a": "20617285861376",
+          "candidate_count": 32,
+          "terminal_pending_after_release": true,
+          "first_reuse_index": 0,
+          "reuse_while_terminal_marker_pending": true,
+          "reuse_while_copy_end_marker_pending": true,
+          "reuse_while_copy_start_marker_pending": true,
+          "released_states": [
+            "inactive"
+          ],
+          "synchronized_states": [
+            "active_allocated"
+          ],
+          "polled_states": [
+            "active_allocated"
+          ],
+          "reuse_after_completion": false,
+          "cache_miss_reuse_after_completion": false,
+          "release_thread": 1688151,
+          "main_thread": 1688151,
+          "free_requested_verified": true,
+          "correct_output": true,
+          "allocator_actions": [
+            "alloc",
+            "free_requested",
+            "free_completed",
+            "alloc"
+          ],
+          "interpretation": "Address selection and marker progress only; no candidate device access and no demonstrated race."
+        },
+        {
+          "id": "t01",
+          "mode": "join",
+          "threads": 1,
+          "address_a": "20617285861376",
+          "candidate_count": 32,
+          "terminal_pending_after_release": true,
+          "first_reuse_index": 0,
+          "reuse_while_terminal_marker_pending": true,
+          "reuse_while_copy_end_marker_pending": true,
+          "reuse_while_copy_start_marker_pending": true,
+          "released_states": [
+            "inactive"
+          ],
+          "synchronized_states": [
+            "active_allocated"
+          ],
+          "polled_states": [
+            "active_allocated"
+          ],
+          "reuse_after_completion": false,
+          "cache_miss_reuse_after_completion": false,
+          "release_thread": 1688151,
+          "main_thread": 1688151,
+          "free_requested_verified": true,
+          "correct_output": true,
+          "allocator_actions": [
+            "alloc",
+            "free_requested",
+            "free_completed",
+            "alloc"
+          ],
+          "interpretation": "Address selection and marker progress only; no candidate device access and no demonstrated race."
+        }
+      ]
+    },
+    {
+      "case": "direct-t1-omit",
+      "mode": "omit",
+      "threads": 1,
+      "environment": {
+        "ASCEND_HOME_PATH": "/usr/local/Ascend/cann-9.0.0",
+        "ASCEND_RT_VISIBLE_DEVICES": null,
+        "TASK_QUEUE_ENABLE": "0",
+        "PER_STREAM_QUEUE": "0",
+        "PYTORCH_NPU_ALLOC_CONF": "expandable_segments:False,multi_stream_lazy_reclaim:False",
+        "PYTORCH_NO_NPU_MEMORY_CACHING": null,
+        "ASCEND_LAUNCH_BLOCKING": null,
+        "MULTI_STREAM_MEMORY_REUSE": "1"
+      },
+      "repeats": 2,
+      "reuse_trials": 2,
+      "pending_release_trials": 2,
+      "reuse_pending_done_trials": 2,
+      "reuse_pending_copy_end_trials": 2,
+      "reuse_pending_copy_start_trials": 2,
+      "post_completion_reuse_trials": 0,
+      "cache_miss_reuse_trials": 0,
+      "release_states": [
+        "inactive"
+      ],
+      "synchronized_states": [
+        "active_allocated"
+      ],
+      "all_copies_correct": true,
+      "trials": [
+        {
+          "id": "t00",
+          "mode": "omit",
+          "threads": 1,
+          "address_a": "20617285861376",
+          "candidate_count": 32,
+          "terminal_pending_after_release": true,
+          "first_reuse_index": 0,
+          "reuse_while_terminal_marker_pending": true,
+          "reuse_while_copy_end_marker_pending": true,
+          "reuse_while_copy_start_marker_pending": true,
+          "released_states": [
+            "inactive"
+          ],
+          "synchronized_states": [
+            "active_allocated"
+          ],
+          "polled_states": [
+            "active_allocated"
+          ],
+          "reuse_after_completion": false,
+          "cache_miss_reuse_after_completion": false,
+          "release_thread": 1688542,
+          "main_thread": 1688542,
+          "free_requested_verified": true,
+          "correct_output": true,
+          "allocator_actions": [
+            "alloc",
+            "free_requested",
+            "free_completed",
+            "alloc"
+          ],
+          "interpretation": "Address selection and marker progress only; no candidate device access and no demonstrated race."
+        },
+        {
+          "id": "t01",
+          "mode": "omit",
+          "threads": 1,
+          "address_a": "20617285861376",
+          "candidate_count": 32,
+          "terminal_pending_after_release": true,
+          "first_reuse_index": 0,
+          "reuse_while_terminal_marker_pending": true,
+          "reuse_while_copy_end_marker_pending": true,
+          "reuse_while_copy_start_marker_pending": true,
+          "released_states": [
+            "inactive"
+          ],
+          "synchronized_states": [
+            "active_allocated"
+          ],
+          "polled_states": [
+            "active_allocated"
+          ],
+          "reuse_after_completion": false,
+          "cache_miss_reuse_after_completion": false,
+          "release_thread": 1688542,
+          "main_thread": 1688542,
+          "free_requested_verified": true,
+          "correct_output": true,
+          "allocator_actions": [
+            "alloc",
+            "free_requested",
+            "free_completed",
+            "alloc"
+          ],
+          "interpretation": "Address selection and marker progress only; no candidate device access and no demonstrated race."
+        }
+      ]
+    },
+    {
+      "case": "direct-t1-record",
+      "mode": "record",
+      "threads": 1,
+      "environment": {
+        "ASCEND_HOME_PATH": "/usr/local/Ascend/cann-9.0.0",
+        "ASCEND_RT_VISIBLE_DEVICES": null,
+        "TASK_QUEUE_ENABLE": "0",
+        "PER_STREAM_QUEUE": "0",
+        "PYTORCH_NPU_ALLOC_CONF": "expandable_segments:False,multi_stream_lazy_reclaim:False",
+        "PYTORCH_NO_NPU_MEMORY_CACHING": null,
+        "ASCEND_LAUNCH_BLOCKING": null,
+        "MULTI_STREAM_MEMORY_REUSE": "1"
+      },
+      "repeats": 2,
+      "reuse_trials": 0,
+      "pending_release_trials": 2,
+      "reuse_pending_done_trials": 0,
+      "reuse_pending_copy_end_trials": 0,
+      "reuse_pending_copy_start_trials": 0,
+      "post_completion_reuse_trials": 2,
+      "cache_miss_reuse_trials": 0,
+      "release_states": [
+        "active_pending_free"
+      ],
+      "synchronized_states": [
+        "active_pending_free"
+      ],
+      "all_copies_correct": true,
+      "trials": [
+        {
+          "id": "t00",
+          "mode": "record",
+          "threads": 1,
+          "address_a": "20617285861376",
+          "candidate_count": 32,
+          "terminal_pending_after_release": true,
+          "first_reuse_index": null,
+          "reuse_while_terminal_marker_pending": false,
+          "reuse_while_copy_end_marker_pending": false,
+          "reuse_while_copy_start_marker_pending": false,
+          "released_states": [
+            "active_pending_free"
+          ],
+          "synchronized_states": [
+            "active_pending_free"
+          ],
+          "polled_states": [
+            "active_allocated"
+          ],
+          "reuse_after_completion": true,
+          "cache_miss_reuse_after_completion": false,
+          "release_thread": 1688923,
+          "main_thread": 1688923,
+          "free_requested_verified": true,
+          "correct_output": true,
+          "allocator_actions": [
+            "alloc",
+            "free_requested",
+            "free_completed",
+            "alloc"
+          ],
+          "interpretation": "Address selection and marker progress only; no candidate device access and no demonstrated race."
+        },
+        {
+          "id": "t01",
+          "mode": "record",
+          "threads": 1,
+          "address_a": "20617285861376",
+          "candidate_count": 32,
+          "terminal_pending_after_release": true,
+          "first_reuse_index": null,
+          "reuse_while_terminal_marker_pending": false,
+          "reuse_while_copy_end_marker_pending": false,
+          "reuse_while_copy_start_marker_pending": false,
+          "released_states": [
+            "active_pending_free"
+          ],
+          "synchronized_states": [
+            "active_pending_free"
+          ],
+          "polled_states": [
+            "active_allocated"
+          ],
+          "reuse_after_completion": true,
+          "cache_miss_reuse_after_completion": false,
+          "release_thread": 1688923,
+          "main_thread": 1688923,
+          "free_requested_verified": true,
+          "correct_output": true,
+          "allocator_actions": [
+            "alloc",
+            "free_requested",
+            "free_completed",
+            "alloc"
+          ],
+          "interpretation": "Address selection and marker progress only; no candidate device access and no demonstrated race."
+        }
+      ]
+    },
+    {
+      "case": "direct-t1-join",
+      "mode": "join",
+      "threads": 1,
+      "environment": {
+        "ASCEND_HOME_PATH": "/usr/local/Ascend/cann-9.0.0",
+        "ASCEND_RT_VISIBLE_DEVICES": null,
+        "TASK_QUEUE_ENABLE": "0",
+        "PER_STREAM_QUEUE": "0",
+        "PYTORCH_NPU_ALLOC_CONF": "expandable_segments:False,multi_stream_lazy_reclaim:False",
+        "PYTORCH_NO_NPU_MEMORY_CACHING": null,
+        "ASCEND_LAUNCH_BLOCKING": null,
+        "MULTI_STREAM_MEMORY_REUSE": "1"
+      },
+      "repeats": 2,
+      "reuse_trials": 2,
+      "pending_release_trials": 2,
+      "reuse_pending_done_trials": 2,
+      "reuse_pending_copy_end_trials": 2,
+      "reuse_pending_copy_start_trials": 2,
+      "post_completion_reuse_trials": 0,
+      "cache_miss_reuse_trials": 0,
+      "release_states": [
+        "inactive"
+      ],
+      "synchronized_states": [
+        "active_allocated"
+      ],
+      "all_copies_correct": true,
+      "trials": [
+        {
+          "id": "t00",
+          "mode": "join",
+          "threads": 1,
+          "address_a": "20617285861376",
+          "candidate_count": 32,
+          "terminal_pending_after_release": true,
+          "first_reuse_index": 0,
+          "reuse_while_terminal_marker_pending": true,
+          "reuse_while_copy_end_marker_pending": true,
+          "reuse_while_copy_start_marker_pending": true,
+          "released_states": [
+            "inactive"
+          ],
+          "synchronized_states": [
+            "active_allocated"
+          ],
+          "polled_states": [
+            "active_allocated"
+          ],
+          "reuse_after_completion": false,
+          "cache_miss_reuse_after_completion": false,
+          "release_thread": 1689304,
+          "main_thread": 1689304,
+          "free_requested_verified": true,
+          "correct_output": true,
+          "allocator_actions": [
+            "alloc",
+            "free_requested",
+            "free_completed",
+            "alloc"
+          ],
+          "interpretation": "Address selection and marker progress only; no candidate device access and no demonstrated race."
+        },
+        {
+          "id": "t01",
+          "mode": "join",
+          "threads": 1,
+          "address_a": "20617285861376",
+          "candidate_count": 32,
+          "terminal_pending_after_release": true,
+          "first_reuse_index": 0,
+          "reuse_while_terminal_marker_pending": true,
+          "reuse_while_copy_end_marker_pending": true,
+          "reuse_while_copy_start_marker_pending": true,
+          "released_states": [
+            "inactive"
+          ],
+          "synchronized_states": [
+            "active_allocated"
+          ],
+          "polled_states": [
+            "active_allocated"
+          ],
+          "reuse_after_completion": false,
+          "cache_miss_reuse_after_completion": false,
+          "release_thread": 1689304,
+          "main_thread": 1689304,
+          "free_requested_verified": true,
+          "correct_output": true,
+          "allocator_actions": [
+            "alloc",
+            "free_requested",
+            "free_completed",
+            "alloc"
+          ],
+          "interpretation": "Address selection and marker progress only; no candidate device access and no demonstrated race."
+        }
+      ]
+    }
+  ],
+  "selected_configurations": [
+    "baseline",
+    "direct"
+  ],
+  "excluded_case_statuses": [],
+  "trial_count": 12,
+  "observation": "No candidates were read or written on the NPU; address reuse is not proof of a conflicting device access."
+}

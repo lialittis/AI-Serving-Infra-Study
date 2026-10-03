@@ -1,0 +1,188 @@
+[
+  {
+    "case": "lazy-t1-omit",
+    "command": [
+      "/usr/local/python3.12.13/bin/python",
+      "/data/tianchi/practice_32_allocator_lifetime/probe.py",
+      "--output",
+      "/data/tianchi/practice_32_allocator_lifetime/results/lazy-03/lazy-t1-omit",
+      "--mode",
+      "omit",
+      "--threads",
+      "1",
+      "--owner",
+      "default",
+      "--repeats",
+      "5",
+      "--backlog",
+      "64",
+      "--candidates",
+      "32",
+      "--matrix",
+      "4096"
+    ],
+    "environment": {
+      "TASK_QUEUE_ENABLE": "1",
+      "PER_STREAM_QUEUE": "0",
+      "PYTORCH_NPU_ALLOC_CONF": "expandable_segments:False,multi_stream_lazy_reclaim:True"
+    },
+    "start_ns": 1790958778042533429,
+    "end_ns": 1790958787402153643,
+    "returncode": 0
+  },
+  {
+    "case": "lazy-t1-record",
+    "command": [
+      "/usr/local/python3.12.13/bin/python",
+      "/data/tianchi/practice_32_allocator_lifetime/probe.py",
+      "--output",
+      "/data/tianchi/practice_32_allocator_lifetime/results/lazy-03/lazy-t1-record",
+      "--mode",
+      "record",
+      "--threads",
+      "1",
+      "--owner",
+      "default",
+      "--repeats",
+      "5",
+      "--backlog",
+      "64",
+      "--candidates",
+      "32",
+      "--matrix",
+      "4096"
+    ],
+    "environment": {
+      "TASK_QUEUE_ENABLE": "1",
+      "PER_STREAM_QUEUE": "0",
+      "PYTORCH_NPU_ALLOC_CONF": "expandable_segments:False,multi_stream_lazy_reclaim:True"
+    },
+    "start_ns": 1790958787402615804,
+    "end_ns": 1790958795901568327,
+    "returncode": 0
+  },
+  {
+    "case": "lazy-t1-join",
+    "command": [
+      "/usr/local/python3.12.13/bin/python",
+      "/data/tianchi/practice_32_allocator_lifetime/probe.py",
+      "--output",
+      "/data/tianchi/practice_32_allocator_lifetime/results/lazy-03/lazy-t1-join",
+      "--mode",
+      "join",
+      "--threads",
+      "1",
+      "--owner",
+      "default",
+      "--repeats",
+      "5",
+      "--backlog",
+      "64",
+      "--candidates",
+      "32",
+      "--matrix",
+      "4096"
+    ],
+    "environment": {
+      "TASK_QUEUE_ENABLE": "1",
+      "PER_STREAM_QUEUE": "0",
+      "PYTORCH_NPU_ALLOC_CONF": "expandable_segments:False,multi_stream_lazy_reclaim:True"
+    },
+    "start_ns": 1790958795901984204,
+    "end_ns": 1790958805403648940,
+    "returncode": 0
+  },
+  {
+    "case": "lazy-t2-omit",
+    "command": [
+      "/usr/local/python3.12.13/bin/python",
+      "/data/tianchi/practice_32_allocator_lifetime/probe.py",
+      "--output",
+      "/data/tianchi/practice_32_allocator_lifetime/results/lazy-03/lazy-t2-omit",
+      "--mode",
+      "omit",
+      "--threads",
+      "2",
+      "--owner",
+      "default",
+      "--repeats",
+      "5",
+      "--backlog",
+      "64",
+      "--candidates",
+      "32",
+      "--matrix",
+      "4096"
+    ],
+    "environment": {
+      "TASK_QUEUE_ENABLE": "1",
+      "PER_STREAM_QUEUE": "0",
+      "PYTORCH_NPU_ALLOC_CONF": "expandable_segments:False,multi_stream_lazy_reclaim:True"
+    },
+    "start_ns": 1790958805404026018,
+    "end_ns": 1790958814078249874,
+    "returncode": 0
+  },
+  {
+    "case": "lazy-t2-record",
+    "command": [
+      "/usr/local/python3.12.13/bin/python",
+      "/data/tianchi/practice_32_allocator_lifetime/probe.py",
+      "--output",
+      "/data/tianchi/practice_32_allocator_lifetime/results/lazy-03/lazy-t2-record",
+      "--mode",
+      "record",
+      "--threads",
+      "2",
+      "--owner",
+      "default",
+      "--repeats",
+      "5",
+      "--backlog",
+      "64",
+      "--candidates",
+      "32",
+      "--matrix",
+      "4096"
+    ],
+    "environment": {
+      "TASK_QUEUE_ENABLE": "1",
+      "PER_STREAM_QUEUE": "0",
+      "PYTORCH_NPU_ALLOC_CONF": "expandable_segments:False,multi_stream_lazy_reclaim:True"
+    },
+    "start_ns": 1790958814078675451,
+    "end_ns": 1790958822402290992,
+    "returncode": 0
+  },
+  {
+    "case": "lazy-t2-join",
+    "command": [
+      "/usr/local/python3.12.13/bin/python",
+      "/data/tianchi/practice_32_allocator_lifetime/probe.py",
+      "--output",
+      "/data/tianchi/practice_32_allocator_lifetime/results/lazy-03/lazy-t2-join",
+      "--mode",
+      "join",
+      "--threads",
+      "2",
+      "--owner",
+      "default",
+      "--repeats",
+      "5",
+      "--backlog",
+      "64",
+      "--candidates",
+      "32",
+      "--matrix",
+      "4096"
+    ],
+    "environment": {
+      "TASK_QUEUE_ENABLE": "1",
+      "PER_STREAM_QUEUE": "0",
+      "PYTORCH_NPU_ALLOC_CONF": "expandable_segments:False,multi_stream_lazy_reclaim:True"
+    },
+    "start_ns": 1790958822402691841,
+    "end_ns": 1790958830677710028,
+    "returncode": 0
+  }
+]
