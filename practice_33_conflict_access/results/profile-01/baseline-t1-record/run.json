@@ -1,0 +1,1020 @@
+{
+  "schema": 1,
+  "captured_at_utc": "2026-10-03T15:15:50.404818+00:00",
+  "arguments": {
+    "output": "/data/tianchi/practice_33_conflict_access/results/profile-01/baseline-t1-record",
+    "mode": "record",
+    "repeats": 2,
+    "backlog": 64,
+    "candidates": 8,
+    "matrix": 4096,
+    "profile": true
+  },
+  "pid": 1780040,
+  "torch_version": "2.10.0+cpu",
+  "torch_npu_version": "2.10.0",
+  "torch_git_version": "449b1768410104d3ed79d3bcfe4ba1d65c7f22c0",
+  "torch_npu_git_version": "94f8a8e6b523d7ba553e1b80d5b5248478391526",
+  "device": "Ascend910B2C",
+  "allocator_backend": "native",
+  "environment": {
+    "ASCEND_HOME_PATH": "/usr/local/Ascend/cann-9.0.0",
+    "ASCEND_RT_VISIBLE_DEVICES": null,
+    "TASK_QUEUE_ENABLE": "1",
+    "PER_STREAM_QUEUE": "0",
+    "PYTORCH_NPU_ALLOC_CONF": "expandable_segments:False,multi_stream_lazy_reclaim:False",
+    "PYTORCH_NO_NPU_MEMORY_CACHING": null,
+    "ASCEND_LAUNCH_BLOCKING": null,
+    "MULTI_STREAM_MEMORY_REUSE": "1"
+  },
+  "allow_internal_format": false,
+  "deterministic_algorithms": false,
+  "streams": {
+    "owner": {
+      "handle": "140299693527040",
+      "id": "0"
+    },
+    "consumer": {
+      "handle": "140299703316480",
+      "id": "96"
+    }
+  },
+  "tensor_bytes": 4194304,
+  "matrix": 4096,
+  "sentinel": 777.0,
+  "source_sha256": {
+    "sources/probe.py": "3d6d7167f1326aee539188e966fe7c9643275d9b49000b6e39d2b900502edf0d",
+    "sources/streams.py": "241741b356db5006797dbec119007afb33b73b0e1753bfb06ab27c989c5bfac4",
+    "sources/memory.py": "9689894e9cb47ba6884f191e1b45326576441233475142108b05671866ed4947"
+  },
+  "memory_bound_description": "96 MiB matrices at 4096 FP16; same-size candidates (4 MiB each, <=8); older caches and runtime/workspace additional",
+  "candidate_access": "the write-target candidate is filled with the sentinel value on the owner stream",
+  "records": [
+    {
+      "label": "P33/t00/create-a",
+      "trial": "t00",
+      "operation": "create-a",
+      "thread_id": 1780040,
+      "stream_handle": "140299693527040",
+      "start_wall_ns": 1791040546773394209,
+      "start_mono_ns": 5287305732284273,
+      "end_wall_ns": 1791040546773881245,
+      "end_mono_ns": 5287305732767893
+    },
+    {
+      "label": "P33/t00/backlog",
+      "trial": "t00",
+      "operation": "backlog",
+      "thread_id": 1780040,
+      "stream_handle": "140299703316480",
+      "start_wall_ns": 1791040546774096434,
+      "start_mono_ns": 5287305732982893,
+      "end_wall_ns": 1791040546774435849,
+      "end_mono_ns": 5287305733322282
+    },
+    {
+      "label": "P33/t00/read-start",
+      "trial": "t00",
+      "operation": "read-start",
+      "thread_id": 1780040,
+      "stream_handle": "140299703316480",
+      "start_wall_ns": 1791040546774441589,
+      "start_mono_ns": 5287305733327944,
+      "end_wall_ns": 1791040546774469665,
+      "end_mono_ns": 5287305733356033
+    },
+    {
+      "label": "P33/t00/consumer-copy",
+      "trial": "t00",
+      "operation": "consumer-copy",
+      "thread_id": 1780040,
+      "stream_handle": "140299703316480",
+      "start_wall_ns": 1791040546774472625,
+      "start_mono_ns": 5287305733358959,
+      "end_wall_ns": 1791040546774511500,
+      "end_mono_ns": 5287305733397851
+    },
+    {
+      "label": "P33/t00/read-end",
+      "trial": "t00",
+      "operation": "read-end",
+      "thread_id": 1780040,
+      "stream_handle": "140299703316480",
+      "start_wall_ns": 1791040546774514001,
+      "start_mono_ns": 5287305733400358,
+      "end_wall_ns": 1791040546774538908,
+      "end_mono_ns": 5287305733425288
+    },
+    {
+      "label": "P33/t00/record-storage",
+      "trial": "t00",
+      "operation": "record-storage",
+      "thread_id": 1780040,
+      "stream_handle": "140299703316480",
+      "start_wall_ns": 1791040546774542730,
+      "start_mono_ns": 5287305733429118,
+      "end_wall_ns": 1791040546774585809,
+      "end_mono_ns": 5287305733472221
+    },
+    {
+      "label": "P33/t00/done",
+      "trial": "t00",
+      "operation": "done",
+      "thread_id": 1780040,
+      "stream_handle": "140299703316480",
+      "start_wall_ns": 1791040546774588610,
+      "start_mono_ns": 5287305733474947,
+      "end_wall_ns": 1791040546774616264,
+      "end_mono_ns": 5287305733502634
+    },
+    {
+      "label": "P33/t00/release-a",
+      "trial": "t00",
+      "operation": "release-a",
+      "thread_id": 1780040,
+      "stream_handle": "140299703316480",
+      "start_wall_ns": 1791040546774644547,
+      "start_mono_ns": 5287305733530893,
+      "end_wall_ns": 1791040546774788376,
+      "end_mono_ns": 5287305733674741
+    },
+    {
+      "label": "P33/t00/allocate-000",
+      "trial": "t00",
+      "operation": "allocate-000",
+      "thread_id": 1780040,
+      "stream_handle": "140299693527040",
+      "start_wall_ns": 1791040546775034813,
+      "start_mono_ns": 5287305733921202,
+      "end_wall_ns": 1791040546775068488,
+      "end_mono_ns": 5287305733954848
+    },
+    {
+      "label": "P33/t00/allocate-001",
+      "trial": "t00",
+      "operation": "allocate-001",
+      "thread_id": 1780040,
+      "stream_handle": "140299693527040",
+      "start_wall_ns": 1791040546775232255,
+      "start_mono_ns": 5287305734118626,
+      "end_wall_ns": 1791040546775253987,
+      "end_mono_ns": 5287305734140327
+    },
+    {
+      "label": "P33/t00/allocate-002",
+      "trial": "t00",
+      "operation": "allocate-002",
+      "thread_id": 1780040,
+      "stream_handle": "140299693527040",
+      "start_wall_ns": 1791040546775334429,
+      "start_mono_ns": 5287305734220798,
+      "end_wall_ns": 1791040546775353635,
+      "end_mono_ns": 5287305734240005
+    },
+    {
+      "label": "P33/t00/allocate-003",
+      "trial": "t00",
+      "operation": "allocate-003",
+      "thread_id": 1780040,
+      "stream_handle": "140299693527040",
+      "start_wall_ns": 1791040546775429494,
+      "start_mono_ns": 5287305734315877,
+      "end_wall_ns": 1791040546775448365,
+      "end_mono_ns": 5287305734334715
+    },
+    {
+      "label": "P33/t00/allocate-004",
+      "trial": "t00",
+      "operation": "allocate-004",
+      "thread_id": 1780040,
+      "stream_handle": "140299693527040",
+      "start_wall_ns": 1791040546775522946,
+      "start_mono_ns": 5287305734409279,
+      "end_wall_ns": 1791040546775539952,
+      "end_mono_ns": 5287305734426293
+    },
+    {
+      "label": "P33/t00/allocate-005",
+      "trial": "t00",
+      "operation": "allocate-005",
+      "thread_id": 1780040,
+      "stream_handle": "140299693527040",
+      "start_wall_ns": 1791040546775615368,
+      "start_mono_ns": 5287305734501701,
+      "end_wall_ns": 1791040546775632761,
+      "end_mono_ns": 5287305734519102
+    },
+    {
+      "label": "P33/t00/allocate-006",
+      "trial": "t00",
+      "operation": "allocate-006",
+      "thread_id": 1780040,
+      "stream_handle": "140299693527040",
+      "start_wall_ns": 1791040546775707832,
+      "start_mono_ns": 5287305734594167,
+      "end_wall_ns": 1791040546775724419,
+      "end_mono_ns": 5287305734610762
+    },
+    {
+      "label": "P33/t00/allocate-007",
+      "trial": "t00",
+      "operation": "allocate-007",
+      "thread_id": 1780040,
+      "stream_handle": "140299693527040",
+      "start_wall_ns": 1791040546775798314,
+      "start_mono_ns": 5287305734684649,
+      "end_wall_ns": 1791040546775814828,
+      "end_mono_ns": 5287305734701171
+    },
+    {
+      "label": "P33/t00/write-candidate",
+      "trial": "t00",
+      "operation": "write-candidate",
+      "thread_id": 1780040,
+      "stream_handle": "140299693527040",
+      "start_wall_ns": 1791040546776076623,
+      "start_mono_ns": 5287305734963040,
+      "end_wall_ns": 1791040546776108456,
+      "end_mono_ns": 5287305734994834
+    },
+    {
+      "label": "P33/t00/completion-wait",
+      "trial": "t00",
+      "operation": "completion-wait",
+      "thread_id": 1780040,
+      "stream_handle": "140299703316480",
+      "start_wall_ns": 1791040546776113800,
+      "start_mono_ns": 5287305735000136,
+      "end_wall_ns": 1791040546802160719,
+      "end_mono_ns": 5287305761048561
+    },
+    {
+      "label": "P33/t00/validate",
+      "trial": "t00",
+      "operation": "validate",
+      "thread_id": 1780040,
+      "stream_handle": "140299703316480",
+      "start_wall_ns": 1791040546802316236,
+      "start_mono_ns": 5287305761202636,
+      "end_wall_ns": 1791040546817246789,
+      "end_mono_ns": 5287305776133956
+    },
+    {
+      "label": "P33/t01/create-a",
+      "trial": "t01",
+      "operation": "create-a",
+      "thread_id": 1780040,
+      "stream_handle": "140299693527040",
+      "start_wall_ns": 1791040546823016959,
+      "start_mono_ns": 5287305781903590,
+      "end_wall_ns": 1791040546823176300,
+      "end_mono_ns": 5287305782062714
+    },
+    {
+      "label": "P33/t01/backlog",
+      "trial": "t01",
+      "operation": "backlog",
+      "thread_id": 1780040,
+      "stream_handle": "140299703316480",
+      "start_wall_ns": 1791040546823319148,
+      "start_mono_ns": 5287305782205536,
+      "end_wall_ns": 1791040546823648514,
+      "end_mono_ns": 5287305782534903
+    },
+    {
+      "label": "P33/t01/read-start",
+      "trial": "t01",
+      "operation": "read-start",
+      "thread_id": 1780040,
+      "stream_handle": "140299703316480",
+      "start_wall_ns": 1791040546823653437,
+      "start_mono_ns": 5287305782539780,
+      "end_wall_ns": 1791040546823680584,
+      "end_mono_ns": 5287305782566952
+    },
+    {
+      "label": "P33/t01/consumer-copy",
+      "trial": "t01",
+      "operation": "consumer-copy",
+      "thread_id": 1780040,
+      "stream_handle": "140299703316480",
+      "start_wall_ns": 1791040546823683204,
+      "start_mono_ns": 5287305782569541,
+      "end_wall_ns": 1791040546823707287,
+      "end_mono_ns": 5287305782593628
+    },
+    {
+      "label": "P33/t01/read-end",
+      "trial": "t01",
+      "operation": "read-end",
+      "thread_id": 1780040,
+      "stream_handle": "140299703316480",
+      "start_wall_ns": 1791040546823709658,
+      "start_mono_ns": 5287305782595995,
+      "end_wall_ns": 1791040546823734691,
+      "end_mono_ns": 5287305782621031
+    },
+    {
+      "label": "P33/t01/record-storage",
+      "trial": "t01",
+      "operation": "record-storage",
+      "thread_id": 1780040,
+      "stream_handle": "140299703316480",
+      "start_wall_ns": 1791040546823737559,
+      "start_mono_ns": 5287305782623899,
+      "end_wall_ns": 1791040546823755498,
+      "end_mono_ns": 5287305782641838
+    },
+    {
+      "label": "P33/t01/done",
+      "trial": "t01",
+      "operation": "done",
+      "thread_id": 1780040,
+      "stream_handle": "140299703316480",
+      "start_wall_ns": 1791040546823758468,
+      "start_mono_ns": 5287305782644803,
+      "end_wall_ns": 1791040546823783229,
+      "end_mono_ns": 5287305782669569
+    },
+    {
+      "label": "P33/t01/release-a",
+      "trial": "t01",
+      "operation": "release-a",
+      "thread_id": 1780040,
+      "stream_handle": "140299703316480",
+      "start_wall_ns": 1791040546823808830,
+      "start_mono_ns": 5287305782695228,
+      "end_wall_ns": 1791040546823836131,
+      "end_mono_ns": 5287305782722478
+    },
+    {
+      "label": "P33/t01/allocate-000",
+      "trial": "t01",
+      "operation": "allocate-000",
+      "thread_id": 1780040,
+      "stream_handle": "140299693527040",
+      "start_wall_ns": 1791040546824063084,
+      "start_mono_ns": 5287305782949436,
+      "end_wall_ns": 1791040546824089927,
+      "end_mono_ns": 5287305782976286
+    },
+    {
+      "label": "P33/t01/allocate-001",
+      "trial": "t01",
+      "operation": "allocate-001",
+      "thread_id": 1780040,
+      "stream_handle": "140299693527040",
+      "start_wall_ns": 1791040546824169447,
+      "start_mono_ns": 5287305783055781,
+      "end_wall_ns": 1791040546824187592,
+      "end_mono_ns": 5287305783073933
+    },
+    {
+      "label": "P33/t01/allocate-002",
+      "trial": "t01",
+      "operation": "allocate-002",
+      "thread_id": 1780040,
+      "stream_handle": "140299693527040",
+      "start_wall_ns": 1791040546824262220,
+      "start_mono_ns": 5287305783148562,
+      "end_wall_ns": 1791040546824281673,
+      "end_mono_ns": 5287305783168016
+    },
+    {
+      "label": "P33/t01/allocate-003",
+      "trial": "t01",
+      "operation": "allocate-003",
+      "thread_id": 1780040,
+      "stream_handle": "140299693527040",
+      "start_wall_ns": 1791040546824355716,
+      "start_mono_ns": 5287305783242052,
+      "end_wall_ns": 1791040546824373339,
+      "end_mono_ns": 5287305783259679
+    },
+    {
+      "label": "P33/t01/allocate-004",
+      "trial": "t01",
+      "operation": "allocate-004",
+      "thread_id": 1780040,
+      "stream_handle": "140299693527040",
+      "start_wall_ns": 1791040546824450429,
+      "start_mono_ns": 5287305783336769,
+      "end_wall_ns": 1791040546824467221,
+      "end_mono_ns": 5287305783353559
+    },
+    {
+      "label": "P33/t01/allocate-005",
+      "trial": "t01",
+      "operation": "allocate-005",
+      "thread_id": 1780040,
+      "stream_handle": "140299693527040",
+      "start_wall_ns": 1791040546824540401,
+      "start_mono_ns": 5287305783426773,
+      "end_wall_ns": 1791040546824557764,
+      "end_mono_ns": 5287305783444102
+    },
+    {
+      "label": "P33/t01/allocate-006",
+      "trial": "t01",
+      "operation": "allocate-006",
+      "thread_id": 1780040,
+      "stream_handle": "140299693527040",
+      "start_wall_ns": 1791040546824631453,
+      "start_mono_ns": 5287305783517790,
+      "end_wall_ns": 1791040546824647910,
+      "end_mono_ns": 5287305783534247
+    },
+    {
+      "label": "P33/t01/allocate-007",
+      "trial": "t01",
+      "operation": "allocate-007",
+      "thread_id": 1780040,
+      "stream_handle": "140299693527040",
+      "start_wall_ns": 1791040546824721562,
+      "start_mono_ns": 5287305783607898,
+      "end_wall_ns": 1791040546824738338,
+      "end_mono_ns": 5287305783624689
+    },
+    {
+      "label": "P33/t01/write-candidate",
+      "trial": "t01",
+      "operation": "write-candidate",
+      "thread_id": 1780040,
+      "stream_handle": "140299693527040",
+      "start_wall_ns": 1791040546825092689,
+      "start_mono_ns": 5287305783979051,
+      "end_wall_ns": 1791040546825549113,
+      "end_mono_ns": 5287305784435466
+    },
+    {
+      "label": "P33/t01/completion-wait",
+      "trial": "t01",
+      "operation": "completion-wait",
+      "thread_id": 1780040,
+      "stream_handle": "140299703316480",
+      "start_wall_ns": 1791040546825555933,
+      "start_mono_ns": 5287305784442278,
+      "end_wall_ns": 1791040546851136347,
+      "end_mono_ns": 5287305810022737
+    },
+    {
+      "label": "P33/t01/validate",
+      "trial": "t01",
+      "operation": "validate",
+      "thread_id": 1780040,
+      "stream_handle": "140299703316480",
+      "start_wall_ns": 1791040546851312363,
+      "start_mono_ns": 5287305810198725,
+      "end_wall_ns": 1791040546851635585,
+      "end_mono_ns": 5287305810522028
+    }
+  ],
+  "trials": [
+    {
+      "id": "t00",
+      "mode": "record",
+      "address_a": "20617160032256",
+      "tensor_python_owner_released": true,
+      "release": {
+        "thread_id": 1780040,
+        "current_stream": "140299703316480"
+      },
+      "submitting_main_thread": 1780040,
+      "progress_after_release": {
+        "read_start": false,
+        "read_end": false,
+        "done": false,
+        "query_start_ns": 5287305733680087,
+        "query_end_ns": 5287305733761115
+      },
+      "block_after_release": [
+        {
+          "address": 20617160032256,
+          "size": 4194816,
+          "state": "active_pending_free",
+          "requested_size": 4194304,
+          "stream": 140299693527040,
+          "is_expandable": false,
+          "device": 0
+        }
+      ],
+      "block_after_window": [
+        {
+          "address": 20617160032256,
+          "size": 4194816,
+          "state": "active_pending_free",
+          "requested_size": 4194304,
+          "stream": 140299693527040,
+          "is_expandable": false,
+          "device": 0
+        }
+      ],
+      "block_after_synchronize": [
+        {
+          "address": 20617160032256,
+          "size": 4194816,
+          "state": "active_pending_free",
+          "requested_size": 4194304,
+          "stream": 140299693527040,
+          "is_expandable": false,
+          "device": 0
+        }
+      ],
+      "observations": [
+        {
+          "index": 0,
+          "pointer": "20617164227072",
+          "reused": false,
+          "before": {
+            "read_start": false,
+            "read_end": false,
+            "done": false,
+            "query_start_ns": 5287305733875017,
+            "query_end_ns": 5287305733914744
+          },
+          "after": {
+            "read_start": false,
+            "read_end": false,
+            "done": false,
+            "query_start_ns": 5287305733956553,
+            "query_end_ns": 5287305734071579
+          },
+          "allocation_label": "P33/t00/allocate-000",
+          "allocation_start_ns": 5287305733921202,
+          "allocation_end_ns": 5287305733954848
+        },
+        {
+          "index": 1,
+          "pointer": "20617168421888",
+          "reused": false,
+          "before": {
+            "read_start": false,
+            "read_end": false,
+            "done": false,
+            "query_start_ns": 5287305734076086,
+            "query_end_ns": 5287305734114556
+          },
+          "after": {
+            "read_start": false,
+            "read_end": false,
+            "done": false,
+            "query_start_ns": 5287305734141937,
+            "query_end_ns": 5287305734181178
+          },
+          "allocation_label": "P33/t00/allocate-001",
+          "allocation_start_ns": 5287305734118626,
+          "allocation_end_ns": 5287305734140327
+        },
+        {
+          "index": 2,
+          "pointer": "20617172616704",
+          "reused": false,
+          "before": {
+            "read_start": false,
+            "read_end": false,
+            "done": false,
+            "query_start_ns": 5287305734183823,
+            "query_end_ns": 5287305734218098
+          },
+          "after": {
+            "read_start": false,
+            "read_end": false,
+            "done": false,
+            "query_start_ns": 5287305734241131,
+            "query_end_ns": 5287305734276580
+          },
+          "allocation_label": "P33/t00/allocate-002",
+          "allocation_start_ns": 5287305734220798,
+          "allocation_end_ns": 5287305734240005
+        },
+        {
+          "index": 3,
+          "pointer": "20617086631936",
+          "reused": false,
+          "before": {
+            "read_start": false,
+            "read_end": false,
+            "done": false,
+            "query_start_ns": 5287305734277868,
+            "query_end_ns": 5287305734313569
+          },
+          "after": {
+            "read_start": false,
+            "read_end": false,
+            "done": false,
+            "query_start_ns": 5287305734335823,
+            "query_end_ns": 5287305734369430
+          },
+          "allocation_label": "P33/t00/allocate-003",
+          "allocation_start_ns": 5287305734315877,
+          "allocation_end_ns": 5287305734334715
+        },
+        {
+          "index": 4,
+          "pointer": "20617090826752",
+          "reused": false,
+          "before": {
+            "read_start": false,
+            "read_end": false,
+            "done": false,
+            "query_start_ns": 5287305734371723,
+            "query_end_ns": 5287305734407135
+          },
+          "after": {
+            "read_start": false,
+            "read_end": false,
+            "done": false,
+            "query_start_ns": 5287305734427264,
+            "query_end_ns": 5287305734462184
+          },
+          "allocation_label": "P33/t00/allocate-004",
+          "allocation_start_ns": 5287305734409279,
+          "allocation_end_ns": 5287305734426293
+        },
+        {
+          "index": 5,
+          "pointer": "20617095021568",
+          "reused": false,
+          "before": {
+            "read_start": false,
+            "read_end": false,
+            "done": false,
+            "query_start_ns": 5287305734463397,
+            "query_end_ns": 5287305734499657
+          },
+          "after": {
+            "read_start": false,
+            "read_end": false,
+            "done": false,
+            "query_start_ns": 5287305734520041,
+            "query_end_ns": 5287305734555061
+          },
+          "allocation_label": "P33/t00/allocate-005",
+          "allocation_start_ns": 5287305734501701,
+          "allocation_end_ns": 5287305734519102
+        },
+        {
+          "index": 6,
+          "pointer": "20617099216384",
+          "reused": false,
+          "before": {
+            "read_start": false,
+            "read_end": false,
+            "done": false,
+            "query_start_ns": 5287305734556035,
+            "query_end_ns": 5287305734592080
+          },
+          "after": {
+            "read_start": false,
+            "read_end": false,
+            "done": false,
+            "query_start_ns": 5287305734611706,
+            "query_end_ns": 5287305734645900
+          },
+          "allocation_label": "P33/t00/allocate-006",
+          "allocation_start_ns": 5287305734594167,
+          "allocation_end_ns": 5287305734610762
+        },
+        {
+          "index": 7,
+          "pointer": "20617107603456",
+          "reused": false,
+          "before": {
+            "read_start": false,
+            "read_end": false,
+            "done": false,
+            "query_start_ns": 5287305734646839,
+            "query_end_ns": 5287305734682570
+          },
+          "after": {
+            "read_start": false,
+            "read_end": false,
+            "done": false,
+            "query_start_ns": 5287305734702044,
+            "query_end_ns": 5287305734736156
+          },
+          "allocation_label": "P33/t00/allocate-007",
+          "allocation_start_ns": 5287305734684649,
+          "allocation_end_ns": 5287305734701171
+        }
+      ],
+      "write_index": 0,
+      "write_address_reused": false,
+      "write_pointer": "20617164227072",
+      "observed_original_count": 1048576,
+      "observed_sentinel_count": 0,
+      "observed_other_count": 0,
+      "observed_outcome": "intact",
+      "write_target_all_sentinel": true,
+      "elements": 1048576,
+      "statistics_before": {
+        "num_alloc_retries": 0,
+        "num_ooms": 0,
+        "allocated_bytes.all.current": 104859648,
+        "reserved_bytes.all.current": 234881024,
+        "active_bytes.all.current": 104859648
+      },
+      "statistics_after_window": {
+        "num_alloc_retries": 0,
+        "num_ooms": 0,
+        "allocated_bytes.all.current": 138418176,
+        "reserved_bytes.all.current": 234881024,
+        "active_bytes.all.current": 142612992
+      },
+      "trace_entries_for_a": [
+        {
+          "trace_index": 1,
+          "action": "alloc",
+          "addr": 20617160032256,
+          "size": 4194304,
+          "stream": 140299693527040
+        },
+        {
+          "trace_index": 194,
+          "action": "free_requested",
+          "addr": 20617160032256,
+          "size": 4194304,
+          "stream": 140299693527040
+        }
+      ],
+      "snapshot_files": [
+        "t00-released.json.gz",
+        "t00-window.json.gz",
+        "t00-synchronized.json.gz"
+      ]
+    },
+    {
+      "id": "t01",
+      "mode": "record",
+      "address_a": "20617160032256",
+      "tensor_python_owner_released": true,
+      "release": {
+        "thread_id": 1780040,
+        "current_stream": "140299703316480"
+      },
+      "submitting_main_thread": 1780040,
+      "progress_after_release": {
+        "read_start": false,
+        "read_end": false,
+        "done": false,
+        "query_start_ns": 5287305782726554,
+        "query_end_ns": 5287305782769629
+      },
+      "block_after_release": [
+        {
+          "address": 20617160032256,
+          "size": 4194816,
+          "state": "active_pending_free",
+          "requested_size": 4194304,
+          "stream": 140299693527040,
+          "is_expandable": false,
+          "device": 0
+        }
+      ],
+      "block_after_window": [
+        {
+          "address": 20617160032256,
+          "size": 4194816,
+          "state": "active_pending_free",
+          "requested_size": 4194304,
+          "stream": 140299693527040,
+          "is_expandable": false,
+          "device": 0
+        }
+      ],
+      "block_after_synchronize": [
+        {
+          "address": 20617160032256,
+          "size": 4194816,
+          "state": "active_pending_free",
+          "requested_size": 4194304,
+          "stream": 140299693527040,
+          "is_expandable": false,
+          "device": 0
+        }
+      ],
+      "observations": [
+        {
+          "index": 0,
+          "pointer": "20617164227072",
+          "reused": false,
+          "before": {
+            "read_start": false,
+            "read_end": false,
+            "done": false,
+            "query_start_ns": 5287305782904041,
+            "query_end_ns": 5287305782943877
+          },
+          "after": {
+            "read_start": false,
+            "read_end": false,
+            "done": false,
+            "query_start_ns": 5287305782977777,
+            "query_end_ns": 5287305783014385
+          },
+          "allocation_label": "P33/t01/allocate-000",
+          "allocation_start_ns": 5287305782949436,
+          "allocation_end_ns": 5287305782976286
+        },
+        {
+          "index": 1,
+          "pointer": "20617168421888",
+          "reused": false,
+          "before": {
+            "read_start": false,
+            "read_end": false,
+            "done": false,
+            "query_start_ns": 5287305783018061,
+            "query_end_ns": 5287305783052884
+          },
+          "after": {
+            "read_start": false,
+            "read_end": false,
+            "done": false,
+            "query_start_ns": 5287305783074935,
+            "query_end_ns": 5287305783110204
+          },
+          "allocation_label": "P33/t01/allocate-001",
+          "allocation_start_ns": 5287305783055781,
+          "allocation_end_ns": 5287305783073933
+        },
+        {
+          "index": 2,
+          "pointer": "20617172616704",
+          "reused": false,
+          "before": {
+            "read_start": false,
+            "read_end": false,
+            "done": false,
+            "query_start_ns": 5287305783111527,
+            "query_end_ns": 5287305783146334
+          },
+          "after": {
+            "read_start": false,
+            "read_end": false,
+            "done": false,
+            "query_start_ns": 5287305783168927,
+            "query_end_ns": 5287305783203616
+          },
+          "allocation_label": "P33/t01/allocate-002",
+          "allocation_start_ns": 5287305783148562,
+          "allocation_end_ns": 5287305783168016
+        },
+        {
+          "index": 3,
+          "pointer": "20617086631936",
+          "reused": false,
+          "before": {
+            "read_start": false,
+            "read_end": false,
+            "done": false,
+            "query_start_ns": 5287305783204739,
+            "query_end_ns": 5287305783239908
+          },
+          "after": {
+            "read_start": false,
+            "read_end": false,
+            "done": false,
+            "query_start_ns": 5287305783260745,
+            "query_end_ns": 5287305783299249
+          },
+          "allocation_label": "P33/t01/allocate-003",
+          "allocation_start_ns": 5287305783242052,
+          "allocation_end_ns": 5287305783259679
+        },
+        {
+          "index": 4,
+          "pointer": "20617090826752",
+          "reused": false,
+          "before": {
+            "read_start": false,
+            "read_end": false,
+            "done": false,
+            "query_start_ns": 5287305783300387,
+            "query_end_ns": 5287305783334448
+          },
+          "after": {
+            "read_start": false,
+            "read_end": false,
+            "done": false,
+            "query_start_ns": 5287305783354546,
+            "query_end_ns": 5287305783388909
+          },
+          "allocation_label": "P33/t01/allocate-004",
+          "allocation_start_ns": 5287305783336769,
+          "allocation_end_ns": 5287305783353559
+        },
+        {
+          "index": 5,
+          "pointer": "20617095021568",
+          "reused": false,
+          "before": {
+            "read_start": false,
+            "read_end": false,
+            "done": false,
+            "query_start_ns": 5287305783390175,
+            "query_end_ns": 5287305783424661
+          },
+          "after": {
+            "read_start": false,
+            "read_end": false,
+            "done": false,
+            "query_start_ns": 5287305783445220,
+            "query_end_ns": 5287305783480434
+          },
+          "allocation_label": "P33/t01/allocate-005",
+          "allocation_start_ns": 5287305783426773,
+          "allocation_end_ns": 5287305783444102
+        },
+        {
+          "index": 6,
+          "pointer": "20617099216384",
+          "reused": false,
+          "before": {
+            "read_start": false,
+            "read_end": false,
+            "done": false,
+            "query_start_ns": 5287305783481491,
+            "query_end_ns": 5287305783515642
+          },
+          "after": {
+            "read_start": false,
+            "read_end": false,
+            "done": false,
+            "query_start_ns": 5287305783535172,
+            "query_end_ns": 5287305783570291
+          },
+          "allocation_label": "P33/t01/allocate-006",
+          "allocation_start_ns": 5287305783517790,
+          "allocation_end_ns": 5287305783534247
+        },
+        {
+          "index": 7,
+          "pointer": "20617107603456",
+          "reused": false,
+          "before": {
+            "read_start": false,
+            "read_end": false,
+            "done": false,
+            "query_start_ns": 5287305783571284,
+            "query_end_ns": 5287305783605905
+          },
+          "after": {
+            "read_start": false,
+            "read_end": false,
+            "done": false,
+            "query_start_ns": 5287305783625639,
+            "query_end_ns": 5287305783660595
+          },
+          "allocation_label": "P33/t01/allocate-007",
+          "allocation_start_ns": 5287305783607898,
+          "allocation_end_ns": 5287305783624689
+        }
+      ],
+      "write_index": 0,
+      "write_address_reused": false,
+      "write_pointer": "20617164227072",
+      "observed_original_count": 1048576,
+      "observed_sentinel_count": 0,
+      "observed_other_count": 0,
+      "observed_outcome": "intact",
+      "write_target_all_sentinel": true,
+      "elements": 1048576,
+      "statistics_before": {
+        "num_alloc_retries": 0,
+        "num_ooms": 0,
+        "allocated_bytes.all.current": 104859648,
+        "reserved_bytes.all.current": 234881024,
+        "active_bytes.all.current": 104859648
+      },
+      "statistics_after_window": {
+        "num_alloc_retries": 0,
+        "num_ooms": 0,
+        "allocated_bytes.all.current": 138418176,
+        "reserved_bytes.all.current": 234881024,
+        "active_bytes.all.current": 142612992
+      },
+      "trace_entries_for_a": [
+        {
+          "trace_index": 251,
+          "action": "alloc",
+          "addr": 20617160032256,
+          "size": 4194304,
+          "stream": 140299693527040
+        },
+        {
+          "trace_index": 444,
+          "action": "free_requested",
+          "addr": 20617160032256,
+          "size": 4194304,
+          "stream": 140299693527040
+        }
+      ],
+      "snapshot_files": [
+        "t01-released.json.gz",
+        "t01-window.json.gz",
+        "t01-synchronized.json.gz"
+      ]
+    }
+  ]
+}

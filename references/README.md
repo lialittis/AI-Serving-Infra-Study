@@ -14,3 +14,4 @@
 | [PyTorch CUDA Stream Sanitizer](pytorch_cuda_stream_san/README.md) | 源码结构、数据访问与 happens-before 检测、研究方向 |
 | [vLLM KV offload 同步问题](vllm_syn_issuse_analysis/README.md) | KV 传输、计算、存储覆盖与生命周期之间的同步约束 |
 | [vLLM / vLLM-Ascend Stream 远端源码分析](streams_in_vllm_source_code/README.md) | 当前源码版本与导入路径、创建到结果消费的完整调用链、eager / graph 差异、时序图与运行证据边界 |
+| [跨 stream 调用点审计](cross_stream_call_site_audit/README.md) | 安装版本全量 `record_stream`/wait 站点分类、omit/join 等价判定、`fill_exponential` 结构性候选与 op-plugin 正向对照 |

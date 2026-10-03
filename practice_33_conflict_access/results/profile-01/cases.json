@@ -1,0 +1,86 @@
+[
+  {
+    "case": "baseline-t1-omit",
+    "command": [
+      "/usr/local/python3.12.13/bin/python",
+      "/data/tianchi/practice_33_conflict_access/probe.py",
+      "--output",
+      "/data/tianchi/practice_33_conflict_access/results/profile-01/baseline-t1-omit",
+      "--mode",
+      "omit",
+      "--repeats",
+      "2",
+      "--backlog",
+      "64",
+      "--candidates",
+      "8",
+      "--matrix",
+      "4096",
+      "--profile"
+    ],
+    "environment": {
+      "TASK_QUEUE_ENABLE": "1",
+      "PER_STREAM_QUEUE": "0",
+      "PYTORCH_NPU_ALLOC_CONF": "expandable_segments:False,multi_stream_lazy_reclaim:False"
+    },
+    "start_ns": 1791040530703364901,
+    "end_ns": 1791040542004834158,
+    "returncode": 0
+  },
+  {
+    "case": "baseline-t1-record",
+    "command": [
+      "/usr/local/python3.12.13/bin/python",
+      "/data/tianchi/practice_33_conflict_access/probe.py",
+      "--output",
+      "/data/tianchi/practice_33_conflict_access/results/profile-01/baseline-t1-record",
+      "--mode",
+      "record",
+      "--repeats",
+      "2",
+      "--backlog",
+      "64",
+      "--candidates",
+      "8",
+      "--matrix",
+      "4096",
+      "--profile"
+    ],
+    "environment": {
+      "TASK_QUEUE_ENABLE": "1",
+      "PER_STREAM_QUEUE": "0",
+      "PYTORCH_NPU_ALLOC_CONF": "expandable_segments:False,multi_stream_lazy_reclaim:False"
+    },
+    "start_ns": 1791040542005980467,
+    "end_ns": 1791040554435765458,
+    "returncode": 0
+  },
+  {
+    "case": "baseline-t1-join",
+    "command": [
+      "/usr/local/python3.12.13/bin/python",
+      "/data/tianchi/practice_33_conflict_access/probe.py",
+      "--output",
+      "/data/tianchi/practice_33_conflict_access/results/profile-01/baseline-t1-join",
+      "--mode",
+      "join",
+      "--repeats",
+      "2",
+      "--backlog",
+      "64",
+      "--candidates",
+      "8",
+      "--matrix",
+      "4096",
+      "--profile"
+    ],
+    "environment": {
+      "TASK_QUEUE_ENABLE": "1",
+      "PER_STREAM_QUEUE": "0",
+      "PYTORCH_NPU_ALLOC_CONF": "expandable_segments:False,multi_stream_lazy_reclaim:False"
+    },
+    "start_ns": 1791040554436169448,
+    "end_ns": 1791040566915689602,
+    "returncode": 0
+  }
+]

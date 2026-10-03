@@ -182,6 +182,15 @@ VL 的 prefill / decode 均有实际 kernel 重叠，相对同版本单流分别
 1,031,690 个设备任务、768 条边界要求核验通过；准备成本和单请求延迟另列。
 这验证了元数据路径对提交顺序的影响，未实现 graph、native vLLM 集成或硬件资源竞争计数器分析。
 
+2026-10-03 新增 [Practice 33](practice_33_conflict_access/README.md)：补上 P32 缺失的冲突访问一半。
+候选 B 真实写入复用地址后，omit 组 10/10 轮旧 copy 全量读到哨兵值——无保护的跨 stream 生命周期
+在本硬件上必然产生数据损坏；record 组 0/10 复用、join 组 10/10 提前复用但设备顺序保护完好，
+synced 校验组 10/10 完好。6 轮 profiler 把元素结果与设备任务顺序互证（写入早于旧 copy 约 25.8 ms /
+旧 copy 早于写入约 0.6 µs）。配套[调用点审计](references/cross_stream_call_site_audit/README.md)：
+vllm-ascend 全库 0 处 record_stream，采样同步路径 `fill_exponential` 为 omit 等价结构
+（实践中被调度间隔缓解），op-plugin 4 处显式 recordStream 为正向对照。
+候选 1（fill_exponential 定向实验）、graph update_stream 与 HCCL 路径留待后续。
+
 ## 参考入口
 
 - [vLLM Architecture](https://docs.vllm.ai/en/latest/design/arch_overview/)

@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="zh-CN"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>NPU 地址复用后候选写入与旧 copy 的设备顺序</title>
+<style>
+body{font:16px/1.6 system-ui,sans-serif;color:#24364b;background:#f4f7fb;margin:0}main{max-width:1240px;margin:32px auto;padding:24px;background:white;border-radius:12px}h1{font-size:25px}select{padding:8px;margin:5px;border:1px solid #b5c4d4;border-radius:5px}svg{width:100%;height:auto;border:1px solid #cfd9e4;background:#fcfdff}pre{white-space:pre-wrap;overflow-wrap:anywhere;font:13px/1.5 monospace;background:#eef3f8;padding:14px;max-height:420px;overflow:auto}.status{padding:12px;background:#edf4fb;border-left:4px solid #3778ac}.legend{font-size:14px;color:#4b6176}rect.task{cursor:pointer}rect.task:hover{stroke:#111;stroke-width:2}label{white-space:nowrap}
+</style><main>
+<h1>NPU 地址复用后候选写入与旧 copy 的设备顺序</h1>
+<p>omit/join 组主机提前把 A 的地址交给候选 B，随后 B 在 S0 上被真实写入哨兵值。紫条是候选写入的设备任务，橙条是 S1 上尚未完成的旧 copy。同步后对 observed 逐元素分类：若旧 copy 读到哨兵值，说明它消费了 B 写入后的存储。record 组不提前复用；join 组设备顺序受 wait_event 保护；synced 组写入在全部完成之后。</p>
+<div><label>配置与模式 <select id="case"></select></label><label>重复 <select id="trial"></select></label><label>窗口 <select id="window"><option value="full">完整</option><option value="release">释放与分配</option><option value="conflict">写入与旧 copy</option></select></label></div>
+<p class="status" id="status"></p><p class="legend">红：复用 A 地址并被写入的主机分配　蓝：其他主机分配　灰：A 初始化　橙：旧 copy（S1）　紫：候选写入（S0）　绿：设备事件。点击条目查看原始任务与 flow 身份。</p>
+<svg id="timeline" viewBox="0 0 1200 330" role="img" aria-label="主机分配、候选写入和旧 copy 的设备时间线"></svg>
+<pre id="details">选择一个条目查看证据。</pre><p>所有时间来自同一 Ascend 进程的 profiler trace，展示前先减去本轮起点。设备区间是 profiler 上报值，不等于逐指令内存访问区间；损坏判定以同步后的元素分类为准。profile 数据与无 profiler 的结果分开解释。</p>
+</main><script>
+const DATA=__P33_DATA__;
+const caseSelect=document.querySelector('#case'), trialSelect=document.querySelector('#trial'), windowSelect=document.querySelector('#window');
+DATA.forEach((v,i)=>{const option=document.createElement('option');option.value=i;option.textContent=v.case;caseSelect.append(option)});
+function resetTrial(){trialSelect.replaceChildren();DATA[+caseSelect.value].metadata.trials.forEach((v,i)=>{const option=document.createElement('option');option.value=i;option.textContent=v.id;trialSelect.append(option)});draw()}
+function element(tag,attributes,text){const n=document.createElementNS('http://www.w3.org/2000/svg',tag);Object.entries(attributes||{}).forEach(([k,v])=>n.setAttribute(k,v));if(text!==undefined)n.textContent=text;return n}
+function draw(){
+ const selected=DATA[+caseSelect.value],trial=selected.metadata.trials[+trialSelect.value],evidence=selected.evidence;
+ const row=evidence.trials.find(t=>t.trial===trial.id), tasks=evidence.mapped_tasks.filter(t=>t.trial===trial.id);
+ const scopes=evidence.host_scopes,records=selected.metadata.records.filter(r=>r.trial===trial.id);
+ const base=Math.min(...records.map(r=>Number(scopes[r.label].start_us)));
+ const relative=value=>Number(value)-base;
+ const allocations=trial.observations.map(o=>({start:relative(scopes[o.allocation_label].start_us),end:relative(scopes[o.allocation_label].end_us),name:`B${o.index}`,color:(o.reused&&o.index===trial.write_index)?'#c74948':o.reused?'#e08a89':'#357daf',detail:o,lane:0}));
+ const release=records.find(r=>r.operation==='release-a'),releaseStart=relative(scopes[release.label].start_us);
+ const ownerTask=tasks.find(t=>t.operation==='write-candidate'),consumerTask=tasks.find(t=>t.operation==='consumer-copy');
+ const ownerPhysical=ownerTask?.physical_stream,consumerPhysical=consumerTask?.physical_stream;
+ const colors={create:'#8794a3','consumer-copy':'#de8f32','write-candidate':'#7a3a9a'};
+ const bars=allocations.concat(tasks.map(task=>({start:relative(task.device_start_us),end:relative(task.device_end_us),name:task.operation,color:task.task_name.includes('EVENT')?'#389d73':colors[task.operation],detail:task,lane:task.operation==='consumer-copy'?2:1})));
+ const writeStart=Number(row.device_write_interval_us[0])-base,writeEnd=Number(row.device_write_interval_us[1])-base;
+ const copyStart=Number(row.device_copy_interval_us[0])-base,copyEnd=Number(row.device_copy_interval_us[1])-base;
+ let left=0,right=Math.max(...bars.map(b=>b.end),copyEnd,writeEnd)+500;
+ if(windowSelect.value==='release'){left=Math.max(0,releaseStart-100);right=Math.max(releaseStart+1000,...allocations.map(b=>b.end))+100}
+ if(windowSelect.value==='conflict'){const lo=Math.min(copyStart,writeStart),hi=Math.max(copyEnd,writeEnd);left=Math.max(0,lo-1000);right=hi+1000}
+ const width=960,x=value=>190+(value-left)/(right-left)*width;
+ const svg=document.querySelector('#timeline');svg.replaceChildren();
+ ['Host S0 分配 B',`设备 owner stream ${ownerPhysical??'未知'}`,`设备 consumer stream ${consumerPhysical??'未知'}`].forEach((label,lane)=>{svg.append(element('text',{x:12,y:95+lane*70,'font-size':14},label));svg.append(element('line',{x1:190,x2:1150,y1:105+lane*70,y2:105+lane*70,stroke:'#d5dfe8'}))});
+ for(let i=0;i<=6;i++){let value=left+(right-left)*i/6;svg.append(element('line',{x1:x(value),x2:x(value),y1:50,y2:280,stroke:'#e5ebf1'}));svg.append(element('text',{x:x(value),y:305,'text-anchor':'middle','font-size':12},`${(value/1000).toFixed(2)} ms`))}
+ bars.forEach(bar=>{if(bar.end<left||bar.start>right)return;const n=element('rect',{class:'task',x:x(Math.max(left,bar.start)),y:80+bar.lane*70,width:Math.max(1.5,x(Math.min(right,bar.end))-x(Math.max(left,bar.start))),height:24,rx:2,fill:bar.color});n.append(element('title',{},`${bar.name}: ${bar.start.toFixed(3)}–${bar.end.toFixed(3)} µs`));n.addEventListener('click',()=>document.querySelector('#details').textContent=JSON.stringify({case:selected.case,trial:trial.id,address_a:trial.address_a,...bar.detail},null,2));svg.append(n)});
+ if(left<=releaseStart&&releaseStart<=right){svg.append(element('line',{x1:x(releaseStart),x2:x(releaseStart),y1:45,y2:275,stroke:'#9a3a78','stroke-dasharray':'4 3'}));svg.append(element('text',{x:x(releaseStart)+4,y:38,'font-size':12},'释放 A'))}
+ const counts=`原始 ${trial.observed_original_count} / 哨兵 ${trial.observed_sentinel_count} / 其他 ${trial.observed_other_count}`;
+ document.querySelector('#status').textContent=`${selected.case} / ${trial.id}：写入 ${trial.write_address_reused?'复用地址 B'+trial.write_index:'未复用地址 B'+trial.write_index}；设备顺序 ${row.device_order}；observed 分类 ${trial.observed_outcome}（${counts}）。`;
+ document.querySelector('#details').textContent=JSON.stringify({case:selected.case,mode:trial.mode,allocator:selected.metadata.allocator_backend,environment:selected.metadata.environment,address_a:trial.address_a,device_order:row.device_order,copy_interval:row.device_copy_interval_us,write_interval:row.device_write_interval_us,observed_outcome:trial.observed_outcome,unresolved_device_task_flows:evidence.unresolved_device_task_flows.length},null,2);
+}
+caseSelect.addEventListener('change',resetTrial);trialSelect.addEventListener('change',draw);windowSelect.addEventListener('change',draw);resetTrial();
+</script></html>

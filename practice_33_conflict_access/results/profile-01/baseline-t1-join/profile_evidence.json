@@ -1,0 +1,480 @@
+{
+  "schema": 1,
+  "analysis_status": "passed",
+  "mode": "join",
+  "trials": [
+    {
+      "trial": "t00",
+      "copy_tasks": [
+        {
+          "trial": "t00",
+          "label": "P33/t00/consumer-copy",
+          "operation": "consumer-copy",
+          "task_index": 1294,
+          "task_name": "aclnnInplaceCopy_TensorMoveAiCore_TensorMove",
+          "task_type": "AI_VECTOR_CORE",
+          "physical_stream": "44",
+          "task_id": "79",
+          "device_start_us": "1791040559221832.022",
+          "device_end_us": "1791040559221840.842",
+          "host_index": 142,
+          "host_name": "aclnnInplaceCopy",
+          "cann_index": 1844,
+          "cann_name": "Node@launch",
+          "connection_id": "336",
+          "torch_flow": {
+            "id": "1791040559221832022",
+            "start_index": 3122,
+            "end_index": 3123
+          },
+          "cann_flow": {
+            "id": "1443109011456",
+            "start_index": 2572,
+            "end_index": 1295
+          }
+        }
+      ],
+      "write_tasks": [
+        {
+          "trial": "t00",
+          "label": "P33/t00/write-candidate",
+          "operation": "write-candidate",
+          "task_index": 1300,
+          "task_name": "aclnnInplaceFillScalar_FillAiCore_Fill",
+          "task_type": "AI_VECTOR_CORE",
+          "physical_stream": "46",
+          "task_id": "11",
+          "device_start_us": "1791040559221841.462",
+          "device_end_us": "1791040559221850.483",
+          "host_index": 230,
+          "host_name": "aclnnInplaceFillScalar",
+          "cann_index": 1902,
+          "cann_name": "Node@launch",
+          "connection_id": "394",
+          "torch_flow": {
+            "id": "1791040559221841462",
+            "start_index": 3130,
+            "end_index": 3131
+          },
+          "cann_flow": {
+            "id": "1692217114624",
+            "start_index": 2576,
+            "end_index": 1301
+          }
+        }
+      ],
+      "device_copy_interval_us": [
+        "1791040559221832.022",
+        "1791040559221840.842"
+      ],
+      "device_write_interval_us": [
+        "1791040559221841.462",
+        "1791040559221850.483"
+      ],
+      "device_order": "copy_completed_before_write_started",
+      "write_address_reused": true,
+      "observed_outcome": "intact",
+      "observed_sentinel_count": 0,
+      "first_reuse_index": 0
+    },
+    {
+      "trial": "t01",
+      "copy_tasks": [
+        {
+          "trial": "t01",
+          "label": "P33/t01/consumer-copy",
+          "operation": "consumer-copy",
+          "task_index": 1458,
+          "task_name": "aclnnInplaceCopy_TensorMoveAiCore_TensorMove",
+          "task_type": "AI_VECTOR_CORE",
+          "physical_stream": "44",
+          "task_id": "147",
+          "device_start_us": "1791040559275859.922",
+          "device_end_us": "1791040559275868.802",
+          "host_index": 401,
+          "host_name": "aclnnInplaceCopy",
+          "cann_index": 2396,
+          "cann_name": "Node@launch",
+          "connection_id": "1048",
+          "torch_flow": {
+            "id": "1791040559275859922",
+            "start_index": 3286,
+            "end_index": 3287
+          },
+          "cann_flow": {
+            "id": "4501125726208",
+            "start_index": 2655,
+            "end_index": 1459
+          }
+        }
+      ],
+      "write_tasks": [
+        {
+          "trial": "t01",
+          "label": "P33/t01/write-candidate",
+          "operation": "write-candidate",
+          "task_index": 1464,
+          "task_name": "aclnnInplaceFillScalar_FillAiCore_Fill",
+          "task_type": "AI_VECTOR_CORE",
+          "physical_stream": "46",
+          "task_id": "25",
+          "device_start_us": "1791040559275869.422",
+          "device_end_us": "1791040559275878.523",
+          "host_index": 489,
+          "host_name": "aclnnInplaceFillScalar",
+          "cann_index": 2454,
+          "cann_name": "Node@launch",
+          "connection_id": "1106",
+          "torch_flow": {
+            "id": "1791040559275869422",
+            "start_index": 3294,
+            "end_index": 3295
+          },
+          "cann_flow": {
+            "id": "4750233829376",
+            "start_index": 2659,
+            "end_index": 1465
+          }
+        }
+      ],
+      "device_copy_interval_us": [
+        "1791040559275859.922",
+        "1791040559275868.802"
+      ],
+      "device_write_interval_us": [
+        "1791040559275869.422",
+        "1791040559275878.523"
+      ],
+      "device_order": "copy_completed_before_write_started",
+      "write_address_reused": true,
+      "observed_outcome": "intact",
+      "observed_sentinel_count": 0,
+      "first_reuse_index": 0
+    }
+  ],
+  "mapped_tasks": [
+    {
+      "trial": "t00",
+      "label": "P33/t00/create-a",
+      "operation": "create-a",
+      "task_index": 1158,
+      "task_name": "aclnnInplaceFillScalar_FillAiCore_Fill",
+      "task_type": "AI_VECTOR_CORE",
+      "physical_stream": "46",
+      "task_id": "8",
+      "device_start_us": "1791040559193666.336",
+      "device_end_us": "1791040559193679.576",
+      "host_index": 2,
+      "host_name": "aclnnInplaceFillScalar",
+      "cann_index": 1516,
+      "cann_name": "Node@launch",
+      "connection_id": "8",
+      "torch_flow": {
+        "id": "1791040559193666336",
+        "start_index": 2988,
+        "end_index": 2989
+      },
+      "cann_flow": {
+        "id": "34359738368",
+        "start_index": 2504,
+        "end_index": 1159
+      }
+    },
+    {
+      "trial": "t00",
+      "label": "P33/t00/consumer-copy",
+      "operation": "consumer-copy",
+      "task_index": 1294,
+      "task_name": "aclnnInplaceCopy_TensorMoveAiCore_TensorMove",
+      "task_type": "AI_VECTOR_CORE",
+      "physical_stream": "44",
+      "task_id": "79",
+      "device_start_us": "1791040559221832.022",
+      "device_end_us": "1791040559221840.842",
+      "host_index": 142,
+      "host_name": "aclnnInplaceCopy",
+      "cann_index": 1844,
+      "cann_name": "Node@launch",
+      "connection_id": "336",
+      "torch_flow": {
+        "id": "1791040559221832022",
+        "start_index": 3122,
+        "end_index": 3123
+      },
+      "cann_flow": {
+        "id": "1443109011456",
+        "start_index": 2572,
+        "end_index": 1295
+      }
+    },
+    {
+      "trial": "t00",
+      "label": "P33/t00/write-candidate",
+      "operation": "write-candidate",
+      "task_index": 1300,
+      "task_name": "aclnnInplaceFillScalar_FillAiCore_Fill",
+      "task_type": "AI_VECTOR_CORE",
+      "physical_stream": "46",
+      "task_id": "11",
+      "device_start_us": "1791040559221841.462",
+      "device_end_us": "1791040559221850.483",
+      "host_index": 230,
+      "host_name": "aclnnInplaceFillScalar",
+      "cann_index": 1902,
+      "cann_name": "Node@launch",
+      "connection_id": "394",
+      "torch_flow": {
+        "id": "1791040559221841462",
+        "start_index": 3130,
+        "end_index": 3131
+      },
+      "cann_flow": {
+        "id": "1692217114624",
+        "start_index": 2576,
+        "end_index": 1301
+      }
+    },
+    {
+      "trial": "t01",
+      "label": "P33/t01/create-a",
+      "operation": "create-a",
+      "task_index": 1322,
+      "task_name": "aclnnInplaceFillScalar_FillAiCore_Fill",
+      "task_type": "AI_VECTOR_CORE",
+      "physical_stream": "46",
+      "task_id": "22",
+      "device_start_us": "1791040559248184.875",
+      "device_end_us": "1791040559248190.956",
+      "host_index": 261,
+      "host_name": "aclnnInplaceFillScalar",
+      "cann_index": 2068,
+      "cann_name": "Node@launch",
+      "connection_id": "617",
+      "torch_flow": {
+        "id": "1791040559248184875",
+        "start_index": 3152,
+        "end_index": 3153
+      },
+      "cann_flow": {
+        "id": "2649994821632",
+        "start_index": 2587,
+        "end_index": 1323
+      }
+    },
+    {
+      "trial": "t01",
+      "label": "P33/t01/consumer-copy",
+      "operation": "consumer-copy",
+      "task_index": 1458,
+      "task_name": "aclnnInplaceCopy_TensorMoveAiCore_TensorMove",
+      "task_type": "AI_VECTOR_CORE",
+      "physical_stream": "44",
+      "task_id": "147",
+      "device_start_us": "1791040559275859.922",
+      "device_end_us": "1791040559275868.802",
+      "host_index": 401,
+      "host_name": "aclnnInplaceCopy",
+      "cann_index": 2396,
+      "cann_name": "Node@launch",
+      "connection_id": "1048",
+      "torch_flow": {
+        "id": "1791040559275859922",
+        "start_index": 3286,
+        "end_index": 3287
+      },
+      "cann_flow": {
+        "id": "4501125726208",
+        "start_index": 2655,
+        "end_index": 1459
+      }
+    },
+    {
+      "trial": "t01",
+      "label": "P33/t01/write-candidate",
+      "operation": "write-candidate",
+      "task_index": 1464,
+      "task_name": "aclnnInplaceFillScalar_FillAiCore_Fill",
+      "task_type": "AI_VECTOR_CORE",
+      "physical_stream": "46",
+      "task_id": "25",
+      "device_start_us": "1791040559275869.422",
+      "device_end_us": "1791040559275878.523",
+      "host_index": 489,
+      "host_name": "aclnnInplaceFillScalar",
+      "cann_index": 2454,
+      "cann_name": "Node@launch",
+      "connection_id": "1106",
+      "torch_flow": {
+        "id": "1791040559275869422",
+        "start_index": 3294,
+        "end_index": 3295
+      },
+      "cann_flow": {
+        "id": "4750233829376",
+        "start_index": 2659,
+        "end_index": 1465
+      }
+    }
+  ],
+  "host_scopes": {
+    "P33/t00/create-a": {
+      "start_us": "1791040559193342.442",
+      "end_us": "1791040559193989.024"
+    },
+    "P33/t00/backlog": {
+      "start_us": "1791040559194251.344",
+      "end_us": "1791040559194593.959"
+    },
+    "P33/t00/read-start": {
+      "start_us": "1791040559194612.010",
+      "end_us": "1791040559194637.024"
+    },
+    "P33/t00/consumer-copy": {
+      "start_us": "1791040559194644.294",
+      "end_us": "1791040559194672.354"
+    },
+    "P33/t00/read-end": {
+      "start_us": "1791040559194678.351",
+      "end_us": "1791040559194700.211"
+    },
+    "P33/t00/done": {
+      "start_us": "1791040559194707.444",
+      "end_us": "1791040559194729.694"
+    },
+    "P33/t00/owner-joins-consumer": {
+      "start_us": "1791040559194763.495",
+      "end_us": "1791040559194795.604"
+    },
+    "P33/t00/release-a": {
+      "start_us": "1791040559194822.722",
+      "end_us": "1791040559194834.972"
+    },
+    "P33/t00/allocate-000": {
+      "start_us": "1791040559195094.581",
+      "end_us": "1791040559195119.239"
+    },
+    "P33/t00/allocate-001": {
+      "start_us": "1791040559195284.743",
+      "end_us": "1791040559195302.430"
+    },
+    "P33/t00/allocate-002": {
+      "start_us": "1791040559195383.224",
+      "end_us": "1791040559195397.871"
+    },
+    "P33/t00/allocate-003": {
+      "start_us": "1791040559195493.359",
+      "end_us": "1791040559195513.355"
+    },
+    "P33/t00/allocate-004": {
+      "start_us": "1791040559195597.821",
+      "end_us": "1791040559195612.173"
+    },
+    "P33/t00/allocate-005": {
+      "start_us": "1791040559195688.094",
+      "end_us": "1791040559195703.176"
+    },
+    "P33/t00/allocate-006": {
+      "start_us": "1791040559195779.378",
+      "end_us": "1791040559195792.909"
+    },
+    "P33/t00/allocate-007": {
+      "start_us": "1791040559195868.047",
+      "end_us": "1791040559195879.642"
+    },
+    "P33/t00/write-candidate": {
+      "start_us": "1791040559196151.984",
+      "end_us": "1791040559196178.679"
+    },
+    "P33/t00/completion-wait": {
+      "start_us": "1791040559196188.177",
+      "end_us": "1791040559222043.532"
+    },
+    "P33/t00/validate": {
+      "start_us": "1791040559222229.903",
+      "end_us": "1791040559238997.865"
+    },
+    "P33/t01/create-a": {
+      "start_us": "1791040559248062.810",
+      "end_us": "1791040559248176.947"
+    },
+    "P33/t01/backlog": {
+      "start_us": "1791040559248309.910",
+      "end_us": "1791040559248722.156"
+    },
+    "P33/t01/read-start": {
+      "start_us": "1791040559248737.930",
+      "end_us": "1791040559248782.419"
+    },
+    "P33/t01/consumer-copy": {
+      "start_us": "1791040559248792.196",
+      "end_us": "1791040559248816.921"
+    },
+    "P33/t01/read-end": {
+      "start_us": "1791040559248822.783",
+      "end_us": "1791040559248843.356"
+    },
+    "P33/t01/done": {
+      "start_us": "1791040559248849.536",
+      "end_us": "1791040559248870.521"
+    },
+    "P33/t01/owner-joins-consumer": {
+      "start_us": "1791040559248901.118",
+      "end_us": "1791040559248926.639"
+    },
+    "P33/t01/release-a": {
+      "start_us": "1791040559248956.684",
+      "end_us": "1791040559248971.781"
+    },
+    "P33/t01/allocate-000": {
+      "start_us": "1791040559249289.041",
+      "end_us": "1791040559249323.380"
+    },
+    "P33/t01/allocate-001": {
+      "start_us": "1791040559249479.631",
+      "end_us": "1791040559249505.444"
+    },
+    "P33/t01/allocate-002": {
+      "start_us": "1791040559249638.999",
+      "end_us": "1791040559249669.994"
+    },
+    "P33/t01/allocate-003": {
+      "start_us": "1791040559249802.724",
+      "end_us": "1791040559249823.832"
+    },
+    "P33/t01/allocate-004": {
+      "start_us": "1791040559249903.771",
+      "end_us": "1791040559249916.371"
+    },
+    "P33/t01/allocate-005": {
+      "start_us": "1791040559250001.406",
+      "end_us": "1791040559250013.721"
+    },
+    "P33/t01/allocate-006": {
+      "start_us": "1791040559250102.120",
+      "end_us": "1791040559250115.459"
+    },
+    "P33/t01/allocate-007": {
+      "start_us": "1791040559250210.001",
+      "end_us": "1791040559250222.580"
+    },
+    "P33/t01/write-candidate": {
+      "start_us": "1791040559250659.216",
+      "end_us": "1791040559250693.271"
+    },
+    "P33/t01/completion-wait": {
+      "start_us": "1791040559250708.269",
+      "end_us": "1791040559275935.748"
+    },
+    "P33/t01/validate": {
+      "start_us": "1791040559276145.200",
+      "end_us": "1791040559276526.908"
+    }
+  },
+  "unresolved_device_task_flows": [],
+  "source": {
+    "trace": "practice_33_conflict_access/results/profile-01/baseline-t1-join/profiler/fe561f2e72a8_1780603_20261003151559087_ascend_pt/ASCEND_PROFILER_OUTPUT/trace_view.json",
+    "trace_sha256": "c40b058074f848779afc056eb1c53413ef5e1a73b555864af4aa26a9c631f8ec",
+    "metadata_sha256": "ea6c8146513698cdcdd0525ffd0802b84789ca5a74a09520f5e453c489f4c5cd"
+  },
+  "limit": "Profiler-reported device intervals for the old copy and the candidate write. They do not reconstruct instruction-level memory accesses, and the element classification in run.json remains the corruption evidence."
+}

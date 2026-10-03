@@ -414,3 +414,20 @@ from the old copy's device execution. No conflicting replacement access is teste
 See the [guide](practice_32_allocator_lifetime/README.md),
 [results and evidence limits](practice_32_allocator_lifetime/RESULTS.md), and
 [offline device timeline](practice_32_allocator_lifetime/results/profile-01/index.html).
+
+## Practice 33: write the reused address and observe the actual conflict
+
+Extend Practice 32 with the missing half: the candidate buffer is genuinely
+written on the owner stream. Across 40 unprofiled trials the omit group shows
+10/10 full corruption — the pending consumer copy reads the candidate's sentinel
+values everywhere — while `record_stream` (no reuse) and `wait_event` ordering
+(reuse but device-ordered) both stay intact in 10/10 trials, as does the
+synced-write checker control. Six profiler trials tie element outcomes to device
+task order: the candidate write completes ~25.8 ms before the old copy starts in
+omit trials, and the old copy completes before the write in join trials.
+
+See the [guide](practice_33_conflict_access/README.md),
+[results](practice_33_conflict_access/RESULTS.md), the
+[interactive conflict timeline](practice_33_conflict_access/results/profile-01/index.html),
+and the companion [cross-stream call-site audit](references/cross_stream_call_site_audit/README.md)
+locating which installed vLLM/torch-npu sites rely on ordering instead of recording.
