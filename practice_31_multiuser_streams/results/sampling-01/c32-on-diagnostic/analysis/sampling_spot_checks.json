@@ -1,0 +1,62 @@
+{
+  "case": "c32-on-diagnostic",
+  "checked_tasks": [
+    "k:1220311",
+    "k:1220313",
+    "k:1220317",
+    "k:1220321",
+    "k:1220323",
+    "k:1220325",
+    "k:1220331",
+    "k:1220333",
+    "k:1220337",
+    "k:1221043"
+  ],
+  "stream_wait_steps": 199,
+  "stream_wait_relation": "auxiliary waits on itself",
+  "representative_stream_api": [
+    {
+      "kind": "stream_api",
+      "pid": 1839753,
+      "tid": 1839753,
+      "wall_ns": 1791068843819046073,
+      "mono_ns": 5315602777932447,
+      "operation": "Stream.wait_stream",
+      "key": "3cca836032e6c5a7a7c4:55",
+      "stream": {
+        "handle": "139803558928384",
+        "runtime_stream_id": 44,
+        "query_return": 0,
+        "python_stream_id": "96",
+        "device": "npu:0",
+        "object_id": "139773709793808"
+      },
+      "self_stream": {
+        "handle": "139803558928384",
+        "runtime_stream_id": 44,
+        "query_return": 0,
+        "python_stream_id": "96",
+        "device": "npu:0",
+        "object_id": "139773709779920"
+      },
+      "event_handle": "",
+      "start_ns": 1791068843819042914,
+      "q_wait": false
+    },
+    {
+      "kind": "stream_api",
+      "pid": 1839753,
+      "tid": 1839753,
+      "wall_ns": 1791068843837119040,
+      "mono_ns": 5315602796005481,
+      "operation": "Event.synchronize",
+      "key": "3cca836032e6c5a7a7c4:55",
+      "stream": null,
+      "self_stream": null,
+      "event_handle": "139775871269888",
+      "start_ns": 1791068843837110791,
+      "q_wait": true
+    }
+  ],
+  "status": "passed"
+}

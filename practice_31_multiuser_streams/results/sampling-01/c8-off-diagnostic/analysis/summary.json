@@ -1,0 +1,1565 @@
+{
+  "schema": 1,
+  "case": "c8-off-diagnostic",
+  "phase": "diagnostic",
+  "concurrency": 8,
+  "metrics": {
+    "requests": 24,
+    "failed": 0,
+    "trials": [
+      {
+        "repetition": 0,
+        "requests": 24,
+        "peak_http_inflight": 8,
+        "generated_tokens": 1536,
+        "window_s": 4.154996789,
+        "output_tokens_per_s": 369.67537593926164
+      }
+    ],
+    "ttft_ms": {
+      "n": 24,
+      "median": 41.730906000000004,
+      "min": 37.169204,
+      "max": 59.844122
+    },
+    "latency_ms": {
+      "n": 24,
+      "median": 1380.5178194999999,
+      "min": 1374.482845,
+      "max": 1399.249748
+    }
+  },
+  "validation": {
+    "status": "passed",
+    "phase": "diagnostic",
+    "concurrency": 8,
+    "requests": 24
+  },
+  "sampling": {
+    "temperature": 0.8,
+    "top_p": 0.9
+  },
+  "precompute": false,
+  "streams": [
+    {
+      "stream": "44",
+      "tasks": 1755,
+      "compute_tasks": 1365,
+      "types": {
+        "DSA_SQE": 195,
+        "AI_VECTOR_CORE": 1170,
+        "EVENT_RECORD": 195,
+        "PCIE_DMA_SQE": 195
+      },
+      "compute_busy_us": "35166.163",
+      "observed_python_objects": [
+        {
+          "kind": "stream_identity",
+          "pid": 1833298,
+          "tid": 1833298,
+          "wall_ns": 1791068442035473592,
+          "mono_ns": 5315200994360779,
+          "handle": "140344652402688",
+          "runtime_stream_id": 44,
+          "query_return": 0,
+          "python_stream_id": "96",
+          "device": "npu:0",
+          "origin": "observed_existing_object",
+          "creation_proven": false
+        }
+      ],
+      "identity_basis": "runtime ID equality (TP1, one device)",
+      "creation_proven": false
+    },
+    {
+      "stream": "46",
+      "tasks": 81323,
+      "compute_tasks": 73527,
+      "types": {
+        "EVENT_RECORD": 396,
+        "AI_VECTOR_CORE": 49350,
+        "AI_CORE": 18915,
+        "MIX_AIC": 4680,
+        "MIX_AIV": 390,
+        "EVENT_WAIT": 195,
+        "AI_CPU": 192,
+        "PLACE_HOLDER_SQE": 2,
+        "PCIE_DMA_SQE": 2205,
+        "SDMA_SQE": 4998
+      },
+      "compute_busy_us": "733572.019",
+      "observed_python_objects": [
+        {
+          "kind": "stream_identity",
+          "pid": 1833298,
+          "tid": 1833298,
+          "wall_ns": 1791068442035612846,
+          "mono_ns": 5315200994499234,
+          "handle": "140344602390528",
+          "runtime_stream_id": 46,
+          "query_return": 0,
+          "python_stream_id": "0",
+          "device": "npu:0",
+          "origin": "observed_existing_object",
+          "creation_proven": false
+        }
+      ],
+      "identity_basis": "runtime ID equality (TP1, one device)",
+      "creation_proven": false
+    }
+  ],
+  "coverage": {
+    "requests_mapped": 24,
+    "requests_expected": 24,
+    "csv_rows": 74892,
+    "csv_matched": 74892,
+    "compute_tasks": 74892,
+    "compute_attributed": 74892,
+    "scopes_expected": 1170,
+    "scopes_found": 1170,
+    "scheduler_steps": 195,
+    "worker_steps": 195,
+    "observer_errors": [],
+    "identity_issues": [],
+    "flow_issues": [],
+    "unclassified_csv_rows": [],
+    "compute_csv_classified": true,
+    "same_stream_compute_overlaps": []
+  },
+  "analysis_status": "passed",
+  "device_metrics": {
+    "compute_union_us": "743898.131",
+    "compute_overlap_us": "24840.051",
+    "overlap_fraction": 0.03339173734259591,
+    "peak_compute_streams": 2,
+    "copy_compute_overlap_us": "556.778",
+    "batch_histogram": {
+      "1": 3,
+      "8": 189,
+      "7": 3
+    },
+    "physical_streams": 2,
+    "compute_streams": 2
+  },
+  "raw_sources": [
+    {
+      "path": "profiler/rank0_1833298_20261003230044438_ascend_pt/ASCEND_PROFILER_OUTPUT/trace_view.json",
+      "sha256": "0a03623b08c51aef2ff58c4be629850b52d067fdfb93a439860800b3865de4d4",
+      "bytes": 382220686
+    },
+    {
+      "path": "profiler/rank0_1833298_20261003230044438_ascend_pt/ASCEND_PROFILER_OUTPUT/kernel_details.csv",
+      "sha256": "2f98784fd6cce07c0cfdb935b3b15d44c7c5a9e38804c602f63cb24192a9aee9",
+      "bytes": 18453206
+    }
+  ],
+  "sampling_analysis": {
+    "precompute": false,
+    "expected_steps": 195,
+    "validated_steps": 195,
+    "issues": [],
+    "synchronization_kind": "device_event_wait",
+    "random_forward_overlap_us": "0",
+    "overlapping_steps": 0,
+    "batch_phase_groups": [
+      {
+        "batch": 1,
+        "phase": "prefill",
+        "steps": 3,
+        "overlapping_steps": 0,
+        "random_forward_overlap_us": "0",
+        "dsa_forward_overlap_us": "0",
+        "other_random_forward_overlap_us": "0",
+        "native_submission_delta_us": {
+          "n": 3,
+          "min": 18352.134,
+          "median": 18420.44,
+          "max": 19208.089,
+          "sum": 55980.663
+        },
+        "q_end_minus_forward_start_us": {
+          "n": 3,
+          "min": 18435.837,
+          "median": 18500.96,
+          "max": 19295.231,
+          "sum": 56232.028
+        },
+        "synchronization_duration_us": {
+          "n": 3,
+          "min": 0.0,
+          "median": 0.0,
+          "max": 0.02,
+          "sum": 0.02
+        }
+      },
+      {
+        "batch": 7,
+        "phase": "decode",
+        "steps": 3,
+        "overlapping_steps": 0,
+        "random_forward_overlap_us": "0",
+        "dsa_forward_overlap_us": "0",
+        "other_random_forward_overlap_us": "0",
+        "native_submission_delta_us": {
+          "n": 3,
+          "min": 16820.123,
+          "median": 16843.383,
+          "max": 17269.87,
+          "sum": 50933.376000000004
+        },
+        "q_end_minus_forward_start_us": {
+          "n": 3,
+          "min": 16994.64,
+          "median": 17023.46,
+          "max": 17445.118,
+          "sum": 51463.21799999999
+        },
+        "synchronization_duration_us": {
+          "n": 3,
+          "min": 0.02,
+          "median": 0.02,
+          "max": 0.02,
+          "sum": 0.06
+        }
+      },
+      {
+        "batch": 8,
+        "phase": "decode",
+        "steps": 186,
+        "overlapping_steps": 0,
+        "random_forward_overlap_us": "0",
+        "dsa_forward_overlap_us": "0",
+        "other_random_forward_overlap_us": "0",
+        "native_submission_delta_us": {
+          "n": 186,
+          "min": 16443.287,
+          "median": 17266.6105,
+          "max": 27910.292,
+          "sum": 3310802.98
+        },
+        "q_end_minus_forward_start_us": {
+          "n": 186,
+          "min": 16641.326,
+          "median": 17455.278,
+          "max": 28104.684,
+          "sum": 3346514.551
+        },
+        "synchronization_duration_us": {
+          "n": 186,
+          "min": 0.0,
+          "median": 0.02,
+          "max": 0.02,
+          "sum": 2.7600000000000002
+        }
+      },
+      {
+        "batch": 8,
+        "phase": "decode+prefill",
+        "steps": 3,
+        "overlapping_steps": 0,
+        "random_forward_overlap_us": "0",
+        "dsa_forward_overlap_us": "0",
+        "other_random_forward_overlap_us": "0",
+        "native_submission_delta_us": {
+          "n": 3,
+          "min": 16326.943,
+          "median": 16630.768,
+          "max": 17693.88,
+          "sum": 50651.591
+        },
+        "q_end_minus_forward_start_us": {
+          "n": 3,
+          "min": 16520.201,
+          "median": 16818.953,
+          "max": 17890.355,
+          "sum": 51229.509000000005
+        },
+        "synchronization_duration_us": {
+          "n": 3,
+          "min": 0.02,
+          "median": 0.02,
+          "max": 0.02,
+          "sum": 0.06
+        }
+      }
+    ],
+    "output_equality_required": false,
+    "note": "q_ready metadata is captured at Python producer return, not evidence of device completion; device event and native wait establish completion.",
+    "overlap_patterns": [
+      {
+        "tasks": [
+          {
+            "stage": "inline_exponential",
+            "name": "aclnnInplaceUniform_DSARandomUniform_DSARandomUniform",
+            "core_type": "DSA_SQE"
+          },
+          {
+            "stage": "sampling_math",
+            "name": "aclnnApplyTopKTopPCustom_SortAiCore_Sort",
+            "core_type": "MIX_AIV"
+          }
+        ],
+        "intervals": 190,
+        "overlap_us": "7884.316",
+        "example": {
+          "interval": {
+            "start_us": "1791068444595960.537",
+            "end_us": "1791068444595993.118",
+            "tasks": [
+              "k:1101824",
+              "k:1101826"
+            ],
+            "streams": [
+              "44",
+              "46"
+            ]
+          },
+          "tasks": [
+            {
+              "id": "k:1101824",
+              "trace_index": 1101824,
+              "name": "aclnnApplyTopKTopPCustom_SortAiCore_Sort",
+              "stream": "46",
+              "task_id": "55624",
+              "task_type": "MIX_AIV",
+              "start_us": "1791068444595767.149",
+              "end_us": "1791068444595993.118",
+              "duration_us": "225.969",
+              "scope": "P31/2116167a9827abcf76ea:1/sampling_math",
+              "step": "2116167a9827abcf76ea:1",
+              "stage": "sampling_math",
+              "csv_row": 821,
+              "is_compute": true,
+              "is_copy": false,
+              "host_index": 6552,
+              "cann_index": 1270703,
+              "host_flow": "1791068444595767149",
+              "cann_flow": "718990410252288",
+              "connection_id": "167403",
+              "core_type": "MIX_AIV",
+              "requests": [
+                "p31-measure-sampling-01-c8-off-diagnostic-b0-u00-r00",
+                "p31-measure-sampling-01-c8-off-diagnostic-b0-u04-r00",
+                "p31-measure-sampling-01-c8-off-diagnostic-b0-u01-r00",
+                "p31-measure-sampling-01-c8-off-diagnostic-b0-u07-r00",
+                "p31-measure-sampling-01-c8-off-diagnostic-b0-u03-r00",
+                "p31-measure-sampling-01-c8-off-diagnostic-b0-u06-r00",
+                "p31-measure-sampling-01-c8-off-diagnostic-b0-u05-r00",
+                "p31-measure-sampling-01-c8-off-diagnostic-b0-u02-r00"
+              ]
+            },
+            {
+              "id": "k:1101826",
+              "trace_index": 1101826,
+              "name": "aclnnInplaceUniform_DSARandomUniform_DSARandomUniform",
+              "stream": "44",
+              "task_id": "1180",
+              "task_type": "DSA_SQE",
+              "start_us": "1791068444595960.537",
+              "end_us": "1791068444596075.781",
+              "duration_us": "115.244",
+              "scope": "P31/2116167a9827abcf76ea:1/inline_exponential",
+              "step": "2116167a9827abcf76ea:1",
+              "stage": "inline_exponential",
+              "csv_row": 822,
+              "is_compute": true,
+              "is_copy": false,
+              "host_index": 6560,
+              "cann_index": 1270722,
+              "host_flow": "1791068444595960537",
+              "cann_flow": "719072014630912",
+              "connection_id": "167422",
+              "core_type": "DSA_SQE",
+              "requests": [
+                "p31-measure-sampling-01-c8-off-diagnostic-b0-u00-r00",
+                "p31-measure-sampling-01-c8-off-diagnostic-b0-u04-r00",
+                "p31-measure-sampling-01-c8-off-diagnostic-b0-u01-r00",
+                "p31-measure-sampling-01-c8-off-diagnostic-b0-u07-r00",
+                "p31-measure-sampling-01-c8-off-diagnostic-b0-u03-r00",
+                "p31-measure-sampling-01-c8-off-diagnostic-b0-u06-r00",
+                "p31-measure-sampling-01-c8-off-diagnostic-b0-u05-r00",
+                "p31-measure-sampling-01-c8-off-diagnostic-b0-u02-r00"
+              ]
+            }
+          ]
+        }
+      },
+      {
+        "tasks": [
+          {
+            "stage": "inline_exponential",
+            "name": "aclnnInplaceUniform_DSARandomUniform_DSARandomUniform",
+            "core_type": "DSA_SQE"
+          },
+          {
+            "stage": "sampling_math",
+            "name": "aclnnSoftmax_SoftmaxAiCore_SoftmaxV2",
+            "core_type": "AI_VECTOR_CORE"
+          }
+        ],
+        "intervals": 193,
+        "overlap_us": "7575.544",
+        "example": {
+          "interval": {
+            "start_us": "1791068444573374.734",
+            "end_us": "1791068444573385.974",
+            "tasks": [
+              "k:1100956",
+              "k:1100958"
+            ],
+            "streams": [
+              "44",
+              "46"
+            ]
+          },
+          "tasks": [
+            {
+              "id": "k:1100956",
+              "trace_index": 1100956,
+              "name": "aclnnInplaceUniform_DSARandomUniform_DSARandomUniform",
+              "stream": "44",
+              "task_id": "1171",
+              "task_type": "DSA_SQE",
+              "start_us": "1791068444573370.654",
+              "end_us": "1791068444573385.974",
+              "duration_us": "15.32",
+              "scope": "P31/d0cdde6a3f1d364a36c7:1/inline_exponential",
+              "step": "d0cdde6a3f1d364a36c7:1",
+              "stage": "inline_exponential",
+              "csv_row": 392,
+              "is_compute": true,
+              "is_copy": false,
+              "host_index": 3264,
+              "cann_index": 1268632,
+              "host_flow": "1791068444573370654",
+              "cann_flow": "710095532982272",
+              "connection_id": "165332",
+              "core_type": "DSA_SQE",
+              "requests": [
+                "p31-measure-sampling-01-c8-off-diagnostic-b0-u00-r00"
+              ]
+            },
+            {
+              "id": "k:1100958",
+              "trace_index": 1100958,
+              "name": "aclnnSoftmax_SoftmaxAiCore_SoftmaxV2",
+              "stream": "46",
+              "task_id": "55178",
+              "task_type": "AI_VECTOR_CORE",
+              "start_us": "1791068444573374.734",
+              "end_us": "1791068444573456.017",
+              "duration_us": "81.283",
+              "scope": "P31/d0cdde6a3f1d364a36c7:1/sampling_math",
+              "step": "d0cdde6a3f1d364a36c7:1",
+              "stage": "sampling_math",
+              "csv_row": 393,
+              "is_compute": true,
+              "is_copy": false,
+              "host_index": 3259,
+              "cann_index": 1268621,
+              "host_flow": "1791068444573374734",
+              "cann_flow": "710048288342016",
+              "connection_id": "165321",
+              "core_type": "AI_VECTOR_CORE",
+              "requests": [
+                "p31-measure-sampling-01-c8-off-diagnostic-b0-u00-r00"
+              ]
+            }
+          ]
+        }
+      },
+      {
+        "tasks": [
+          {
+            "stage": "inline_exponential",
+            "name": "aclnnInplaceUniform_DSARandomUniform_DSARandomUniform",
+            "core_type": "DSA_SQE"
+          },
+          {
+            "stage": "sampling_math",
+            "name": "aclnnApplyTopKTopPCustom_ApplyTopKTopPCustom_ApplyTopKTopPCustom",
+            "core_type": "MIX_AIV"
+          }
+        ],
+        "intervals": 192,
+        "overlap_us": "5633.024",
+        "example": {
+          "interval": {
+            "start_us": "1791068444573370.654",
+            "end_us": "1791068444573373.374",
+            "tasks": [
+              "k:1100954",
+              "k:1100956"
+            ],
+            "streams": [
+              "44",
+              "46"
+            ]
+          },
+          "tasks": [
+            {
+              "id": "k:1100954",
+              "trace_index": 1100954,
+              "name": "aclnnApplyTopKTopPCustom_ApplyTopKTopPCustom_ApplyTopKTopPCustom",
+              "stream": "46",
+              "task_id": "55177",
+              "task_type": "MIX_AIV",
+              "start_us": "1791068444573349.213",
+              "end_us": "1791068444573373.374",
+              "duration_us": "24.161",
+              "scope": "P31/d0cdde6a3f1d364a36c7:1/sampling_math",
+              "step": "d0cdde6a3f1d364a36c7:1",
+              "stage": "sampling_math",
+              "csv_row": 391,
+              "is_compute": true,
+              "is_copy": false,
+              "host_index": 3256,
+              "cann_index": 1268616,
+              "host_flow": "1791068444573349213",
+              "cann_flow": "710026813505536",
+              "connection_id": "165316",
+              "core_type": "MIX_AIV",
+              "requests": [
+                "p31-measure-sampling-01-c8-off-diagnostic-b0-u00-r00"
+              ]
+            },
+            {
+              "id": "k:1100956",
+              "trace_index": 1100956,
+              "name": "aclnnInplaceUniform_DSARandomUniform_DSARandomUniform",
+              "stream": "44",
+              "task_id": "1171",
+              "task_type": "DSA_SQE",
+              "start_us": "1791068444573370.654",
+              "end_us": "1791068444573385.974",
+              "duration_us": "15.32",
+              "scope": "P31/d0cdde6a3f1d364a36c7:1/inline_exponential",
+              "step": "d0cdde6a3f1d364a36c7:1",
+              "stage": "inline_exponential",
+              "csv_row": 392,
+              "is_compute": true,
+              "is_copy": false,
+              "host_index": 3264,
+              "cann_index": 1268632,
+              "host_flow": "1791068444573370654",
+              "cann_flow": "710095532982272",
+              "connection_id": "165332",
+              "core_type": "DSA_SQE",
+              "requests": [
+                "p31-measure-sampling-01-c8-off-diagnostic-b0-u00-r00"
+              ]
+            }
+          ]
+        }
+      },
+      {
+        "tasks": [
+          {
+            "stage": "inline_exponential",
+            "name": "aclnnNeg_NegAiCore_Neg",
+            "core_type": "AI_VECTOR_CORE"
+          },
+          {
+            "stage": "sampling_math",
+            "name": "aclnnSoftmax_SoftmaxAiCore_SoftmaxV2",
+            "core_type": "AI_VECTOR_CORE"
+          }
+        ],
+        "intervals": 157,
+        "overlap_us": "1517.196",
+        "example": {
+          "interval": {
+            "start_us": "1791068444573385.994",
+            "end_us": "1791068444573393.875",
+            "tasks": [
+              "k:1100958",
+              "k:1100960"
+            ],
+            "streams": [
+              "44",
+              "46"
+            ]
+          },
+          "tasks": [
+            {
+              "id": "k:1100958",
+              "trace_index": 1100958,
+              "name": "aclnnSoftmax_SoftmaxAiCore_SoftmaxV2",
+              "stream": "46",
+              "task_id": "55178",
+              "task_type": "AI_VECTOR_CORE",
+              "start_us": "1791068444573374.734",
+              "end_us": "1791068444573456.017",
+              "duration_us": "81.283",
+              "scope": "P31/d0cdde6a3f1d364a36c7:1/sampling_math",
+              "step": "d0cdde6a3f1d364a36c7:1",
+              "stage": "sampling_math",
+              "csv_row": 393,
+              "is_compute": true,
+              "is_copy": false,
+              "host_index": 3259,
+              "cann_index": 1268621,
+              "host_flow": "1791068444573374734",
+              "cann_flow": "710048288342016",
+              "connection_id": "165321",
+              "core_type": "AI_VECTOR_CORE",
+              "requests": [
+                "p31-measure-sampling-01-c8-off-diagnostic-b0-u00-r00"
+              ]
+            },
+            {
+              "id": "k:1100960",
+              "trace_index": 1100960,
+              "name": "aclnnNeg_NegAiCore_Neg",
+              "stream": "44",
+              "task_id": "1172",
+              "task_type": "AI_VECTOR_CORE",
+              "start_us": "1791068444573385.994",
+              "end_us": "1791068444573393.875",
+              "duration_us": "7.881",
+              "scope": "P31/d0cdde6a3f1d364a36c7:1/inline_exponential",
+              "step": "d0cdde6a3f1d364a36c7:1",
+              "stage": "inline_exponential",
+              "csv_row": 394,
+              "is_compute": true,
+              "is_copy": false,
+              "host_index": 3266,
+              "cann_index": 1268637,
+              "host_flow": "1791068444573385994",
+              "cann_flow": "710117007818752",
+              "connection_id": "165337",
+              "core_type": "AI_VECTOR_CORE",
+              "requests": [
+                "p31-measure-sampling-01-c8-off-diagnostic-b0-u00-r00"
+              ]
+            }
+          ]
+        }
+      },
+      {
+        "tasks": [
+          {
+            "stage": "inline_exponential",
+            "name": "aclnnAdds_AddAiCore_Add",
+            "core_type": "AI_VECTOR_CORE"
+          },
+          {
+            "stage": "sampling_math",
+            "name": "aclnnSoftmax_SoftmaxAiCore_SoftmaxV2",
+            "core_type": "AI_VECTOR_CORE"
+          }
+        ],
+        "intervals": 144,
+        "overlap_us": "1092.847",
+        "example": {
+          "interval": {
+            "start_us": "1791068444573393.895",
+            "end_us": "1791068444573400.435",
+            "tasks": [
+              "k:1100958",
+              "k:1100962"
+            ],
+            "streams": [
+              "44",
+              "46"
+            ]
+          },
+          "tasks": [
+            {
+              "id": "k:1100958",
+              "trace_index": 1100958,
+              "name": "aclnnSoftmax_SoftmaxAiCore_SoftmaxV2",
+              "stream": "46",
+              "task_id": "55178",
+              "task_type": "AI_VECTOR_CORE",
+              "start_us": "1791068444573374.734",
+              "end_us": "1791068444573456.017",
+              "duration_us": "81.283",
+              "scope": "P31/d0cdde6a3f1d364a36c7:1/sampling_math",
+              "step": "d0cdde6a3f1d364a36c7:1",
+              "stage": "sampling_math",
+              "csv_row": 393,
+              "is_compute": true,
+              "is_copy": false,
+              "host_index": 3259,
+              "cann_index": 1268621,
+              "host_flow": "1791068444573374734",
+              "cann_flow": "710048288342016",
+              "connection_id": "165321",
+              "core_type": "AI_VECTOR_CORE",
+              "requests": [
+                "p31-measure-sampling-01-c8-off-diagnostic-b0-u00-r00"
+              ]
+            },
+            {
+              "id": "k:1100962",
+              "trace_index": 1100962,
+              "name": "aclnnAdds_AddAiCore_Add",
+              "stream": "44",
+              "task_id": "1173",
+              "task_type": "AI_VECTOR_CORE",
+              "start_us": "1791068444573393.895",
+              "end_us": "1791068444573400.435",
+              "duration_us": "6.54",
+              "scope": "P31/d0cdde6a3f1d364a36c7:1/inline_exponential",
+              "step": "d0cdde6a3f1d364a36c7:1",
+              "stage": "inline_exponential",
+              "csv_row": 395,
+              "is_compute": true,
+              "is_copy": false,
+              "host_index": 3268,
+              "cann_index": 1268641,
+              "host_flow": "1791068444573393895",
+              "cann_flow": "710134187687936",
+              "connection_id": "165341",
+              "core_type": "AI_VECTOR_CORE",
+              "requests": [
+                "p31-measure-sampling-01-c8-off-diagnostic-b0-u00-r00"
+              ]
+            }
+          ]
+        }
+      },
+      {
+        "tasks": [
+          {
+            "stage": "inline_exponential",
+            "name": "aclnnGeScalar_GreaterEqual_GreaterEqual",
+            "core_type": "AI_VECTOR_CORE"
+          },
+          {
+            "stage": "sampling_math",
+            "name": "aclnnSoftmax_SoftmaxAiCore_SoftmaxV2",
+            "core_type": "AI_VECTOR_CORE"
+          }
+        ],
+        "intervals": 76,
+        "overlap_us": "702.569",
+        "example": {
+          "interval": {
+            "start_us": "1791068444573400.455",
+            "end_us": "1791068444573409.255",
+            "tasks": [
+              "k:1100958",
+              "k:1100964"
+            ],
+            "streams": [
+              "44",
+              "46"
+            ]
+          },
+          "tasks": [
+            {
+              "id": "k:1100958",
+              "trace_index": 1100958,
+              "name": "aclnnSoftmax_SoftmaxAiCore_SoftmaxV2",
+              "stream": "46",
+              "task_id": "55178",
+              "task_type": "AI_VECTOR_CORE",
+              "start_us": "1791068444573374.734",
+              "end_us": "1791068444573456.017",
+              "duration_us": "81.283",
+              "scope": "P31/d0cdde6a3f1d364a36c7:1/sampling_math",
+              "step": "d0cdde6a3f1d364a36c7:1",
+              "stage": "sampling_math",
+              "csv_row": 393,
+              "is_compute": true,
+              "is_copy": false,
+              "host_index": 3259,
+              "cann_index": 1268621,
+              "host_flow": "1791068444573374734",
+              "cann_flow": "710048288342016",
+              "connection_id": "165321",
+              "core_type": "AI_VECTOR_CORE",
+              "requests": [
+                "p31-measure-sampling-01-c8-off-diagnostic-b0-u00-r00"
+              ]
+            },
+            {
+              "id": "k:1100964",
+              "trace_index": 1100964,
+              "name": "aclnnGeScalar_GreaterEqual_GreaterEqual",
+              "stream": "44",
+              "task_id": "1174",
+              "task_type": "AI_VECTOR_CORE",
+              "start_us": "1791068444573400.455",
+              "end_us": "1791068444573409.255",
+              "duration_us": "8.8",
+              "scope": "P31/d0cdde6a3f1d364a36c7:1/inline_exponential",
+              "step": "d0cdde6a3f1d364a36c7:1",
+              "stage": "inline_exponential",
+              "csv_row": 396,
+              "is_compute": true,
+              "is_copy": false,
+              "host_index": 3271,
+              "cann_index": 1268645,
+              "host_flow": "1791068444573400455",
+              "cann_flow": "710151367557120",
+              "connection_id": "165345",
+              "core_type": "AI_VECTOR_CORE",
+              "requests": [
+                "p31-measure-sampling-01-c8-off-diagnostic-b0-u00-r00"
+              ]
+            }
+          ]
+        }
+      },
+      {
+        "tasks": [
+          {
+            "stage": "inline_exponential",
+            "name": "aclnnInplaceMaskedFillScalar_MaskedFillAiCore_MaskedFill",
+            "core_type": "AI_VECTOR_CORE"
+          },
+          {
+            "stage": "sampling_math",
+            "name": "aclnnSoftmax_SoftmaxAiCore_SoftmaxV2",
+            "core_type": "AI_VECTOR_CORE"
+          }
+        ],
+        "intervals": 39,
+        "overlap_us": "299.871",
+        "example": {
+          "interval": {
+            "start_us": "1791068444573409.275",
+            "end_us": "1791068444573421.616",
+            "tasks": [
+              "k:1100958",
+              "k:1100966"
+            ],
+            "streams": [
+              "44",
+              "46"
+            ]
+          },
+          "tasks": [
+            {
+              "id": "k:1100958",
+              "trace_index": 1100958,
+              "name": "aclnnSoftmax_SoftmaxAiCore_SoftmaxV2",
+              "stream": "46",
+              "task_id": "55178",
+              "task_type": "AI_VECTOR_CORE",
+              "start_us": "1791068444573374.734",
+              "end_us": "1791068444573456.017",
+              "duration_us": "81.283",
+              "scope": "P31/d0cdde6a3f1d364a36c7:1/sampling_math",
+              "step": "d0cdde6a3f1d364a36c7:1",
+              "stage": "sampling_math",
+              "csv_row": 393,
+              "is_compute": true,
+              "is_copy": false,
+              "host_index": 3259,
+              "cann_index": 1268621,
+              "host_flow": "1791068444573374734",
+              "cann_flow": "710048288342016",
+              "connection_id": "165321",
+              "core_type": "AI_VECTOR_CORE",
+              "requests": [
+                "p31-measure-sampling-01-c8-off-diagnostic-b0-u00-r00"
+              ]
+            },
+            {
+              "id": "k:1100966",
+              "trace_index": 1100966,
+              "name": "aclnnInplaceMaskedFillScalar_MaskedFillAiCore_MaskedFill",
+              "stream": "44",
+              "task_id": "1175",
+              "task_type": "AI_VECTOR_CORE",
+              "start_us": "1791068444573409.275",
+              "end_us": "1791068444573421.616",
+              "duration_us": "12.341",
+              "scope": "P31/d0cdde6a3f1d364a36c7:1/inline_exponential",
+              "step": "d0cdde6a3f1d364a36c7:1",
+              "stage": "inline_exponential",
+              "csv_row": 397,
+              "is_compute": true,
+              "is_copy": false,
+              "host_index": 3273,
+              "cann_index": 1268649,
+              "host_flow": "1791068444573409275",
+              "cann_flow": "710168547426304",
+              "connection_id": "165349",
+              "core_type": "AI_VECTOR_CORE",
+              "requests": [
+                "p31-measure-sampling-01-c8-off-diagnostic-b0-u00-r00"
+              ]
+            }
+          ]
+        }
+      },
+      {
+        "tasks": [
+          {
+            "stage": "inline_exponential",
+            "name": "aclnnInplaceMaskedFillScalar_MaskedFillAiCore_MaskedFill",
+            "core_type": "AI_VECTOR_CORE"
+          },
+          {
+            "stage": "sampling_math",
+            "name": "aclnnApplyTopKTopPCustom_SortAiCore_Sort",
+            "core_type": "MIX_AIV"
+          }
+        ],
+        "intervals": 2,
+        "overlap_us": "32.881",
+        "example": {
+          "interval": {
+            "start_us": "1791068445955640.857",
+            "end_us": "1791068445955661.398",
+            "tasks": [
+              "k:1151405",
+              "k:1151415"
+            ],
+            "streams": [
+              "44",
+              "46"
+            ]
+          },
+          "tasks": [
+            {
+              "id": "k:1151405",
+              "trace_index": 1151405,
+              "name": "aclnnApplyTopKTopPCustom_SortAiCore_Sort",
+              "stream": "46",
+              "task_id": "16749",
+              "task_type": "MIX_AIV",
+              "start_us": "1791068445955416.628",
+              "end_us": "1791068445955683.659",
+              "duration_us": "267.031",
+              "scope": "P31/e3ce4764d70b2dd3320d:1/sampling_math",
+              "step": "e3ce4764d70b2dd3320d:1",
+              "stage": "sampling_math",
+              "csv_row": 25354,
+              "is_compute": true,
+              "is_copy": false,
+              "host_index": 210647,
+              "cann_index": 1408257,
+              "host_flow": "1791068445955416628",
+              "cann_flow": "1309780341686272",
+              "connection_id": "304957",
+              "core_type": "MIX_AIV",
+              "requests": [
+                "p31-measure-sampling-01-c8-off-diagnostic-b0-u00-r01"
+              ]
+            },
+            {
+              "id": "k:1151415",
+              "trace_index": 1151415,
+              "name": "aclnnInplaceMaskedFillScalar_MaskedFillAiCore_MaskedFill",
+              "stream": "44",
+              "task_id": "1760",
+              "task_type": "AI_VECTOR_CORE",
+              "start_us": "1791068445955640.857",
+              "end_us": "1791068445955661.398",
+              "duration_us": "20.541",
+              "scope": "P31/e3ce4764d70b2dd3320d:1/inline_exponential",
+              "step": "e3ce4764d70b2dd3320d:1",
+              "stage": "inline_exponential",
+              "csv_row": 25359,
+              "is_compute": true,
+              "is_copy": false,
+              "host_index": 210664,
+              "cann_index": 1408293,
+              "host_flow": "1791068445955640857",
+              "cann_flow": "1309934960508928",
+              "connection_id": "304993",
+              "core_type": "AI_VECTOR_CORE",
+              "requests": [
+                "p31-measure-sampling-01-c8-off-diagnostic-b0-u00-r01"
+              ]
+            }
+          ]
+        }
+      },
+      {
+        "tasks": [
+          {
+            "stage": "inline_exponential",
+            "name": "aclnnInplaceMuls_MulAiCore_Mul",
+            "core_type": "AI_VECTOR_CORE"
+          },
+          {
+            "stage": "sampling_math",
+            "name": "aclnnApplyTopKTopPCustom_SortAiCore_Sort",
+            "core_type": "MIX_AIV"
+          }
+        ],
+        "intervals": 2,
+        "overlap_us": "21.540",
+        "example": {
+          "interval": {
+            "start_us": "1791068445955669.698",
+            "end_us": "1791068445955677.298",
+            "tasks": [
+              "k:1151405",
+              "k:1151419"
+            ],
+            "streams": [
+              "44",
+              "46"
+            ]
+          },
+          "tasks": [
+            {
+              "id": "k:1151405",
+              "trace_index": 1151405,
+              "name": "aclnnApplyTopKTopPCustom_SortAiCore_Sort",
+              "stream": "46",
+              "task_id": "16749",
+              "task_type": "MIX_AIV",
+              "start_us": "1791068445955416.628",
+              "end_us": "1791068445955683.659",
+              "duration_us": "267.031",
+              "scope": "P31/e3ce4764d70b2dd3320d:1/sampling_math",
+              "step": "e3ce4764d70b2dd3320d:1",
+              "stage": "sampling_math",
+              "csv_row": 25354,
+              "is_compute": true,
+              "is_copy": false,
+              "host_index": 210647,
+              "cann_index": 1408257,
+              "host_flow": "1791068445955416628",
+              "cann_flow": "1309780341686272",
+              "connection_id": "304957",
+              "core_type": "MIX_AIV",
+              "requests": [
+                "p31-measure-sampling-01-c8-off-diagnostic-b0-u00-r01"
+              ]
+            },
+            {
+              "id": "k:1151419",
+              "trace_index": 1151419,
+              "name": "aclnnInplaceMuls_MulAiCore_Mul",
+              "stream": "44",
+              "task_id": "1762",
+              "task_type": "AI_VECTOR_CORE",
+              "start_us": "1791068445955669.698",
+              "end_us": "1791068445955677.298",
+              "duration_us": "7.6",
+              "scope": "P31/e3ce4764d70b2dd3320d:1/inline_exponential",
+              "step": "e3ce4764d70b2dd3320d:1",
+              "stage": "inline_exponential",
+              "csv_row": 25361,
+              "is_compute": true,
+              "is_copy": false,
+              "host_index": 210668,
+              "cann_index": 1408301,
+              "host_flow": "1791068445955669698",
+              "cann_flow": "1309969320247296",
+              "connection_id": "305001",
+              "core_type": "AI_VECTOR_CORE",
+              "requests": [
+                "p31-measure-sampling-01-c8-off-diagnostic-b0-u00-r01"
+              ]
+            }
+          ]
+        }
+      },
+      {
+        "tasks": [
+          {
+            "stage": "inline_exponential",
+            "name": "aclnnGeScalar_GreaterEqual_GreaterEqual",
+            "core_type": "AI_VECTOR_CORE"
+          },
+          {
+            "stage": "sampling_math",
+            "name": "aclnnApplyTopKTopPCustom_SortAiCore_Sort",
+            "core_type": "MIX_AIV"
+          }
+        ],
+        "intervals": 2,
+        "overlap_us": "17.642",
+        "example": {
+          "interval": {
+            "start_us": "1791068445955632.076",
+            "end_us": "1791068445955640.837",
+            "tasks": [
+              "k:1151405",
+              "k:1151413"
+            ],
+            "streams": [
+              "44",
+              "46"
+            ]
+          },
+          "tasks": [
+            {
+              "id": "k:1151405",
+              "trace_index": 1151405,
+              "name": "aclnnApplyTopKTopPCustom_SortAiCore_Sort",
+              "stream": "46",
+              "task_id": "16749",
+              "task_type": "MIX_AIV",
+              "start_us": "1791068445955416.628",
+              "end_us": "1791068445955683.659",
+              "duration_us": "267.031",
+              "scope": "P31/e3ce4764d70b2dd3320d:1/sampling_math",
+              "step": "e3ce4764d70b2dd3320d:1",
+              "stage": "sampling_math",
+              "csv_row": 25354,
+              "is_compute": true,
+              "is_copy": false,
+              "host_index": 210647,
+              "cann_index": 1408257,
+              "host_flow": "1791068445955416628",
+              "cann_flow": "1309780341686272",
+              "connection_id": "304957",
+              "core_type": "MIX_AIV",
+              "requests": [
+                "p31-measure-sampling-01-c8-off-diagnostic-b0-u00-r01"
+              ]
+            },
+            {
+              "id": "k:1151413",
+              "trace_index": 1151413,
+              "name": "aclnnGeScalar_GreaterEqual_GreaterEqual",
+              "stream": "44",
+              "task_id": "1759",
+              "task_type": "AI_VECTOR_CORE",
+              "start_us": "1791068445955632.076",
+              "end_us": "1791068445955640.837",
+              "duration_us": "8.761",
+              "scope": "P31/e3ce4764d70b2dd3320d:1/inline_exponential",
+              "step": "e3ce4764d70b2dd3320d:1",
+              "stage": "inline_exponential",
+              "csv_row": 25358,
+              "is_compute": true,
+              "is_copy": false,
+              "host_index": 210662,
+              "cann_index": 1408289,
+              "host_flow": "1791068445955632076",
+              "cann_flow": "1309917780639744",
+              "connection_id": "304989",
+              "core_type": "AI_VECTOR_CORE",
+              "requests": [
+                "p31-measure-sampling-01-c8-off-diagnostic-b0-u00-r01"
+              ]
+            }
+          ]
+        }
+      },
+      {
+        "tasks": [
+          {
+            "stage": "inline_exponential",
+            "name": "aclnnLog_LogAiCore_Log",
+            "core_type": "AI_VECTOR_CORE"
+          },
+          {
+            "stage": "sampling_math",
+            "name": "aclnnApplyTopKTopPCustom_SortAiCore_Sort",
+            "core_type": "MIX_AIV"
+          }
+        ],
+        "intervals": 2,
+        "overlap_us": "16.761",
+        "example": {
+          "interval": {
+            "start_us": "1791068445955661.438",
+            "end_us": "1791068445955669.658",
+            "tasks": [
+              "k:1151405",
+              "k:1151417"
+            ],
+            "streams": [
+              "44",
+              "46"
+            ]
+          },
+          "tasks": [
+            {
+              "id": "k:1151405",
+              "trace_index": 1151405,
+              "name": "aclnnApplyTopKTopPCustom_SortAiCore_Sort",
+              "stream": "46",
+              "task_id": "16749",
+              "task_type": "MIX_AIV",
+              "start_us": "1791068445955416.628",
+              "end_us": "1791068445955683.659",
+              "duration_us": "267.031",
+              "scope": "P31/e3ce4764d70b2dd3320d:1/sampling_math",
+              "step": "e3ce4764d70b2dd3320d:1",
+              "stage": "sampling_math",
+              "csv_row": 25354,
+              "is_compute": true,
+              "is_copy": false,
+              "host_index": 210647,
+              "cann_index": 1408257,
+              "host_flow": "1791068445955416628",
+              "cann_flow": "1309780341686272",
+              "connection_id": "304957",
+              "core_type": "MIX_AIV",
+              "requests": [
+                "p31-measure-sampling-01-c8-off-diagnostic-b0-u00-r01"
+              ]
+            },
+            {
+              "id": "k:1151417",
+              "trace_index": 1151417,
+              "name": "aclnnLog_LogAiCore_Log",
+              "stream": "44",
+              "task_id": "1761",
+              "task_type": "AI_VECTOR_CORE",
+              "start_us": "1791068445955661.438",
+              "end_us": "1791068445955669.658",
+              "duration_us": "8.22",
+              "scope": "P31/e3ce4764d70b2dd3320d:1/inline_exponential",
+              "step": "e3ce4764d70b2dd3320d:1",
+              "stage": "inline_exponential",
+              "csv_row": 25360,
+              "is_compute": true,
+              "is_copy": false,
+              "host_index": 210666,
+              "cann_index": 1408297,
+              "host_flow": "1791068445955661438",
+              "cann_flow": "1309952140378112",
+              "connection_id": "304997",
+              "core_type": "AI_VECTOR_CORE",
+              "requests": [
+                "p31-measure-sampling-01-c8-off-diagnostic-b0-u00-r01"
+              ]
+            }
+          ]
+        }
+      },
+      {
+        "tasks": [
+          {
+            "stage": "inline_exponential",
+            "name": "aclnnNeg_NegAiCore_Neg",
+            "core_type": "AI_VECTOR_CORE"
+          },
+          {
+            "stage": "sampling_math",
+            "name": "aclnnApplyTopKTopPCustom_SortAiCore_Sort",
+            "core_type": "MIX_AIV"
+          }
+        ],
+        "intervals": 2,
+        "overlap_us": "16.180",
+        "example": {
+          "interval": {
+            "start_us": "1791068445955617.396",
+            "end_us": "1791068445955625.456",
+            "tasks": [
+              "k:1151405",
+              "k:1151409"
+            ],
+            "streams": [
+              "44",
+              "46"
+            ]
+          },
+          "tasks": [
+            {
+              "id": "k:1151405",
+              "trace_index": 1151405,
+              "name": "aclnnApplyTopKTopPCustom_SortAiCore_Sort",
+              "stream": "46",
+              "task_id": "16749",
+              "task_type": "MIX_AIV",
+              "start_us": "1791068445955416.628",
+              "end_us": "1791068445955683.659",
+              "duration_us": "267.031",
+              "scope": "P31/e3ce4764d70b2dd3320d:1/sampling_math",
+              "step": "e3ce4764d70b2dd3320d:1",
+              "stage": "sampling_math",
+              "csv_row": 25354,
+              "is_compute": true,
+              "is_copy": false,
+              "host_index": 210647,
+              "cann_index": 1408257,
+              "host_flow": "1791068445955416628",
+              "cann_flow": "1309780341686272",
+              "connection_id": "304957",
+              "core_type": "MIX_AIV",
+              "requests": [
+                "p31-measure-sampling-01-c8-off-diagnostic-b0-u00-r01"
+              ]
+            },
+            {
+              "id": "k:1151409",
+              "trace_index": 1151409,
+              "name": "aclnnNeg_NegAiCore_Neg",
+              "stream": "44",
+              "task_id": "1757",
+              "task_type": "AI_VECTOR_CORE",
+              "start_us": "1791068445955617.396",
+              "end_us": "1791068445955625.456",
+              "duration_us": "8.06",
+              "scope": "P31/e3ce4764d70b2dd3320d:1/inline_exponential",
+              "step": "e3ce4764d70b2dd3320d:1",
+              "stage": "inline_exponential",
+              "csv_row": 25356,
+              "is_compute": true,
+              "is_copy": false,
+              "host_index": 210657,
+              "cann_index": 1408281,
+              "host_flow": "1791068445955617396",
+              "cann_flow": "1309883420901376",
+              "connection_id": "304981",
+              "core_type": "AI_VECTOR_CORE",
+              "requests": [
+                "p31-measure-sampling-01-c8-off-diagnostic-b0-u00-r01"
+              ]
+            }
+          ]
+        }
+      },
+      {
+        "tasks": [
+          {
+            "stage": "inline_exponential",
+            "name": "aclnnAdds_AddAiCore_Add",
+            "core_type": "AI_VECTOR_CORE"
+          },
+          {
+            "stage": "sampling_math",
+            "name": "aclnnApplyTopKTopPCustom_SortAiCore_Sort",
+            "core_type": "MIX_AIV"
+          }
+        ],
+        "intervals": 2,
+        "overlap_us": "13.660",
+        "example": {
+          "interval": {
+            "start_us": "1791068445955625.476",
+            "end_us": "1791068445955632.056",
+            "tasks": [
+              "k:1151405",
+              "k:1151411"
+            ],
+            "streams": [
+              "44",
+              "46"
+            ]
+          },
+          "tasks": [
+            {
+              "id": "k:1151405",
+              "trace_index": 1151405,
+              "name": "aclnnApplyTopKTopPCustom_SortAiCore_Sort",
+              "stream": "46",
+              "task_id": "16749",
+              "task_type": "MIX_AIV",
+              "start_us": "1791068445955416.628",
+              "end_us": "1791068445955683.659",
+              "duration_us": "267.031",
+              "scope": "P31/e3ce4764d70b2dd3320d:1/sampling_math",
+              "step": "e3ce4764d70b2dd3320d:1",
+              "stage": "sampling_math",
+              "csv_row": 25354,
+              "is_compute": true,
+              "is_copy": false,
+              "host_index": 210647,
+              "cann_index": 1408257,
+              "host_flow": "1791068445955416628",
+              "cann_flow": "1309780341686272",
+              "connection_id": "304957",
+              "core_type": "MIX_AIV",
+              "requests": [
+                "p31-measure-sampling-01-c8-off-diagnostic-b0-u00-r01"
+              ]
+            },
+            {
+              "id": "k:1151411",
+              "trace_index": 1151411,
+              "name": "aclnnAdds_AddAiCore_Add",
+              "stream": "44",
+              "task_id": "1758",
+              "task_type": "AI_VECTOR_CORE",
+              "start_us": "1791068445955625.476",
+              "end_us": "1791068445955632.056",
+              "duration_us": "6.58",
+              "scope": "P31/e3ce4764d70b2dd3320d:1/inline_exponential",
+              "step": "e3ce4764d70b2dd3320d:1",
+              "stage": "inline_exponential",
+              "csv_row": 25357,
+              "is_compute": true,
+              "is_copy": false,
+              "host_index": 210659,
+              "cann_index": 1408285,
+              "host_flow": "1791068445955625476",
+              "cann_flow": "1309900600770560",
+              "connection_id": "304985",
+              "core_type": "AI_VECTOR_CORE",
+              "requests": [
+                "p31-measure-sampling-01-c8-off-diagnostic-b0-u00-r01"
+              ]
+            }
+          ]
+        }
+      },
+      {
+        "tasks": [
+          {
+            "stage": "inline_exponential",
+            "name": "aclnnLog_LogAiCore_Log",
+            "core_type": "AI_VECTOR_CORE"
+          },
+          {
+            "stage": "sampling_math",
+            "name": "aclnnSoftmax_SoftmaxAiCore_SoftmaxV2",
+            "core_type": "AI_VECTOR_CORE"
+          }
+        ],
+        "intervals": 1,
+        "overlap_us": "8.100",
+        "example": {
+          "interval": {
+            "start_us": "1791068444573421.656",
+            "end_us": "1791068444573429.756",
+            "tasks": [
+              "k:1100958",
+              "k:1100968"
+            ],
+            "streams": [
+              "44",
+              "46"
+            ]
+          },
+          "tasks": [
+            {
+              "id": "k:1100958",
+              "trace_index": 1100958,
+              "name": "aclnnSoftmax_SoftmaxAiCore_SoftmaxV2",
+              "stream": "46",
+              "task_id": "55178",
+              "task_type": "AI_VECTOR_CORE",
+              "start_us": "1791068444573374.734",
+              "end_us": "1791068444573456.017",
+              "duration_us": "81.283",
+              "scope": "P31/d0cdde6a3f1d364a36c7:1/sampling_math",
+              "step": "d0cdde6a3f1d364a36c7:1",
+              "stage": "sampling_math",
+              "csv_row": 393,
+              "is_compute": true,
+              "is_copy": false,
+              "host_index": 3259,
+              "cann_index": 1268621,
+              "host_flow": "1791068444573374734",
+              "cann_flow": "710048288342016",
+              "connection_id": "165321",
+              "core_type": "AI_VECTOR_CORE",
+              "requests": [
+                "p31-measure-sampling-01-c8-off-diagnostic-b0-u00-r00"
+              ]
+            },
+            {
+              "id": "k:1100968",
+              "trace_index": 1100968,
+              "name": "aclnnLog_LogAiCore_Log",
+              "stream": "44",
+              "task_id": "1176",
+              "task_type": "AI_VECTOR_CORE",
+              "start_us": "1791068444573421.656",
+              "end_us": "1791068444573429.756",
+              "duration_us": "8.1",
+              "scope": "P31/d0cdde6a3f1d364a36c7:1/inline_exponential",
+              "step": "d0cdde6a3f1d364a36c7:1",
+              "stage": "inline_exponential",
+              "csv_row": 398,
+              "is_compute": true,
+              "is_copy": false,
+              "host_index": 3275,
+              "cann_index": 1268653,
+              "host_flow": "1791068444573421656",
+              "cann_flow": "710185727295488",
+              "connection_id": "165353",
+              "core_type": "AI_VECTOR_CORE",
+              "requests": [
+                "p31-measure-sampling-01-c8-off-diagnostic-b0-u00-r00"
+              ]
+            }
+          ]
+        }
+      },
+      {
+        "tasks": [
+          {
+            "stage": "inline_exponential",
+            "name": "aclnnInplaceMuls_MulAiCore_Mul",
+            "core_type": "AI_VECTOR_CORE"
+          },
+          {
+            "stage": "sampling_math",
+            "name": "aclnnSoftmax_SoftmaxAiCore_SoftmaxV2",
+            "core_type": "AI_VECTOR_CORE"
+          }
+        ],
+        "intervals": 1,
+        "overlap_us": "7.920",
+        "example": {
+          "interval": {
+            "start_us": "1791068444573432.496",
+            "end_us": "1791068444573440.416",
+            "tasks": [
+              "k:1100958",
+              "k:1100970"
+            ],
+            "streams": [
+              "44",
+              "46"
+            ]
+          },
+          "tasks": [
+            {
+              "id": "k:1100958",
+              "trace_index": 1100958,
+              "name": "aclnnSoftmax_SoftmaxAiCore_SoftmaxV2",
+              "stream": "46",
+              "task_id": "55178",
+              "task_type": "AI_VECTOR_CORE",
+              "start_us": "1791068444573374.734",
+              "end_us": "1791068444573456.017",
+              "duration_us": "81.283",
+              "scope": "P31/d0cdde6a3f1d364a36c7:1/sampling_math",
+              "step": "d0cdde6a3f1d364a36c7:1",
+              "stage": "sampling_math",
+              "csv_row": 393,
+              "is_compute": true,
+              "is_copy": false,
+              "host_index": 3259,
+              "cann_index": 1268621,
+              "host_flow": "1791068444573374734",
+              "cann_flow": "710048288342016",
+              "connection_id": "165321",
+              "core_type": "AI_VECTOR_CORE",
+              "requests": [
+                "p31-measure-sampling-01-c8-off-diagnostic-b0-u00-r00"
+              ]
+            },
+            {
+              "id": "k:1100970",
+              "trace_index": 1100970,
+              "name": "aclnnInplaceMuls_MulAiCore_Mul",
+              "stream": "44",
+              "task_id": "1177",
+              "task_type": "AI_VECTOR_CORE",
+              "start_us": "1791068444573432.496",
+              "end_us": "1791068444573440.416",
+              "duration_us": "7.92",
+              "scope": "P31/d0cdde6a3f1d364a36c7:1/inline_exponential",
+              "step": "d0cdde6a3f1d364a36c7:1",
+              "stage": "inline_exponential",
+              "csv_row": 399,
+              "is_compute": true,
+              "is_copy": false,
+              "host_index": 3277,
+              "cann_index": 1268657,
+              "host_flow": "1791068444573432496",
+              "cann_flow": "710202907164672",
+              "connection_id": "165357",
+              "core_type": "AI_VECTOR_CORE",
+              "requests": [
+                "p31-measure-sampling-01-c8-off-diagnostic-b0-u00-r00"
+              ]
+            }
+          ]
+        }
+      }
+    ]
+  }
+}

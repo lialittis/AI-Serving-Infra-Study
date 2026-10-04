@@ -1,0 +1,1409 @@
+[
+  {
+    "key": "f19161dcf75c91a95aa2:1",
+    "batch": 8,
+    "phases": [
+      "decode"
+    ],
+    "model_stream": "46",
+    "random_stream": "44",
+    "q_metadata": {
+      "shape": [
+        8,
+        151936
+      ],
+      "dtype": "torch.float32",
+      "device": "npu:0",
+      "data_ptr": "20846697512960",
+      "storage_ptr": "20846697512960"
+    },
+    "q_event_handle": null,
+    "q_identity_checked": false,
+    "q_scope": {
+      "label": "P31/f19161dcf75c91a95aa2:1/inline_exponential",
+      "step": "f19161dcf75c91a95aa2:1",
+      "stage": "inline_exponential",
+      "start_us": "1791068444617078.241",
+      "end_us": "1791068444617561.830",
+      "pid": 1833298,
+      "tid": 1833298
+    },
+    "forward_scope": {
+      "label": "P31/f19161dcf75c91a95aa2:1/forward",
+      "step": "f19161dcf75c91a95aa2:1",
+      "stage": "forward",
+      "start_us": "1791068444599392.482",
+      "end_us": "1791068444615980.080",
+      "pid": 1833298,
+      "tid": 1833298
+    },
+    "synchronization": {
+      "kind": "device_event_wait",
+      "task": "k:1102620",
+      "start_us": "1791068444617473.197",
+      "end_us": "1791068444617473.217",
+      "duration_us": "0.02",
+      "ready_event": "k:1102618",
+      "consumer": "k:1102622",
+      "note": "device interval; not CPU blocked time"
+    },
+    "random_compute_tasks": [
+      "k:1102600",
+      "k:1102606",
+      "k:1102608",
+      "k:1102610",
+      "k:1102612",
+      "k:1102614",
+      "k:1102616"
+    ],
+    "forward_compute_tasks": 339,
+    "q_start_us": "1791068444617271.769",
+    "q_end_us": "1791068444617450.136",
+    "forward_start_us": "1791068444599454.396",
+    "forward_end_us": "1791068444615963.977",
+    "q_native_submit_start_us": "1791068444617249.600",
+    "forward_native_submit_start_us": "1791068444599445.227",
+    "native_submission_delta_us": "17804.373",
+    "q_end_minus_forward_start_us": "17995.740",
+    "same_step_random_forward_overlap_us": "0",
+    "dsa_forward_overlap_us": "0",
+    "other_random_forward_overlap_us": "0",
+    "consumer": "k:1102622",
+    "task_evidence": [
+      {
+        "task": {
+          "id": "k:1102600",
+          "trace_index": 1102600,
+          "name": "aclnnInplaceUniform_DSARandomUniform_DSARandomUniform",
+          "stream": "44",
+          "task_id": "1189",
+          "task_type": "DSA_SQE",
+          "start_us": "1791068444617271.769",
+          "end_us": "1791068444617387.013",
+          "duration_us": "115.244",
+          "scope": "P31/f19161dcf75c91a95aa2:1/inline_exponential",
+          "step": "f19161dcf75c91a95aa2:1",
+          "stage": "inline_exponential",
+          "csv_row": 1205,
+          "is_compute": true,
+          "is_copy": false,
+          "host_index": 9746,
+          "cann_index": 1272868,
+          "host_flow": "1791068444617271769",
+          "cann_flow": "728289014448128",
+          "connection_id": "169568",
+          "core_type": "DSA_SQE",
+          "requests": [
+            "p31-measure-sampling-01-c8-off-diagnostic-b0-u00-r00",
+            "p31-measure-sampling-01-c8-off-diagnostic-b0-u04-r00",
+            "p31-measure-sampling-01-c8-off-diagnostic-b0-u01-r00",
+            "p31-measure-sampling-01-c8-off-diagnostic-b0-u07-r00",
+            "p31-measure-sampling-01-c8-off-diagnostic-b0-u03-r00",
+            "p31-measure-sampling-01-c8-off-diagnostic-b0-u06-r00",
+            "p31-measure-sampling-01-c8-off-diagnostic-b0-u05-r00",
+            "p31-measure-sampling-01-c8-off-diagnostic-b0-u02-r00"
+          ]
+        },
+        "host_operator": {
+          "name": "aclnnInplaceUniform",
+          "start_us": "1791068444617227.298",
+          "end_us": "1791068444617230.875",
+          "pid": 1833298,
+          "tid": 1833298,
+          "args": {
+            "Sequence number": -1,
+            "Fwd thread id": 0
+          }
+        },
+        "native_submission": {
+          "name": "Node@launch",
+          "start_us": "1791068444617249.600",
+          "end_us": "1791068444617263.464",
+          "pid": 1877297407,
+          "tid": 1833690,
+          "args": {
+            "Thread Id": 1833690,
+            "Mode": "launch",
+            "level": "node",
+            "id": "0",
+            "item_id": "aclnnInplaceUniform_DSARandomUniform_DSARandomUniform",
+            "connection_id": 169568
+          }
+        }
+      },
+      {
+        "task": {
+          "id": "k:1102606",
+          "trace_index": 1102606,
+          "name": "aclnnNeg_NegAiCore_Neg",
+          "stream": "44",
+          "task_id": "1190",
+          "task_type": "AI_VECTOR_CORE",
+          "start_us": "1791068444617387.053",
+          "end_us": "1791068444617396.454",
+          "duration_us": "9.401",
+          "scope": "P31/f19161dcf75c91a95aa2:1/inline_exponential",
+          "step": "f19161dcf75c91a95aa2:1",
+          "stage": "inline_exponential",
+          "csv_row": 1208,
+          "is_compute": true,
+          "is_copy": false,
+          "host_index": 9748,
+          "cann_index": 1272873,
+          "host_flow": "1791068444617387053",
+          "cann_flow": "728310489284608",
+          "connection_id": "169573",
+          "core_type": "AI_VECTOR_CORE",
+          "requests": [
+            "p31-measure-sampling-01-c8-off-diagnostic-b0-u00-r00",
+            "p31-measure-sampling-01-c8-off-diagnostic-b0-u04-r00",
+            "p31-measure-sampling-01-c8-off-diagnostic-b0-u01-r00",
+            "p31-measure-sampling-01-c8-off-diagnostic-b0-u07-r00",
+            "p31-measure-sampling-01-c8-off-diagnostic-b0-u03-r00",
+            "p31-measure-sampling-01-c8-off-diagnostic-b0-u06-r00",
+            "p31-measure-sampling-01-c8-off-diagnostic-b0-u05-r00",
+            "p31-measure-sampling-01-c8-off-diagnostic-b0-u02-r00"
+          ]
+        },
+        "host_operator": {
+          "name": "aclnnNeg",
+          "start_us": "1791068444617235.409",
+          "end_us": "1791068444617236.520",
+          "pid": 1833298,
+          "tid": 1833298,
+          "args": {
+            "Sequence number": -1,
+            "Fwd thread id": 0
+          }
+        },
+        "native_submission": {
+          "name": "Node@launch",
+          "start_us": "1791068444617270.299",
+          "end_us": "1791068444617273.929",
+          "pid": 1877297407,
+          "tid": 1833690,
+          "args": {
+            "Thread Id": 1833690,
+            "Mode": "launch",
+            "level": "node",
+            "id": "0",
+            "item_id": "aclnnNeg_NegAiCore_Neg",
+            "connection_id": 169573
+          }
+        }
+      },
+      {
+        "task": {
+          "id": "k:1102608",
+          "trace_index": 1102608,
+          "name": "aclnnAdds_AddAiCore_Add",
+          "stream": "44",
+          "task_id": "1191",
+          "task_type": "AI_VECTOR_CORE",
+          "start_us": "1791068444617396.494",
+          "end_us": "1791068444617404.974",
+          "duration_us": "8.48",
+          "scope": "P31/f19161dcf75c91a95aa2:1/inline_exponential",
+          "step": "f19161dcf75c91a95aa2:1",
+          "stage": "inline_exponential",
+          "csv_row": 1209,
+          "is_compute": true,
+          "is_copy": false,
+          "host_index": 9750,
+          "cann_index": 1272877,
+          "host_flow": "1791068444617396494",
+          "cann_flow": "728327669153792",
+          "connection_id": "169577",
+          "core_type": "AI_VECTOR_CORE",
+          "requests": [
+            "p31-measure-sampling-01-c8-off-diagnostic-b0-u00-r00",
+            "p31-measure-sampling-01-c8-off-diagnostic-b0-u04-r00",
+            "p31-measure-sampling-01-c8-off-diagnostic-b0-u01-r00",
+            "p31-measure-sampling-01-c8-off-diagnostic-b0-u07-r00",
+            "p31-measure-sampling-01-c8-off-diagnostic-b0-u03-r00",
+            "p31-measure-sampling-01-c8-off-diagnostic-b0-u06-r00",
+            "p31-measure-sampling-01-c8-off-diagnostic-b0-u05-r00",
+            "p31-measure-sampling-01-c8-off-diagnostic-b0-u02-r00"
+          ]
+        },
+        "host_operator": {
+          "name": "aclnnInplaceAdds",
+          "start_us": "1791068444617239.122",
+          "end_us": "1791068444617242.252",
+          "pid": 1833298,
+          "tid": 1833298,
+          "args": {
+            "Sequence number": -1,
+            "Fwd thread id": 0
+          }
+        },
+        "native_submission": {
+          "name": "Node@launch",
+          "start_us": "1791068444617282.798",
+          "end_us": "1791068444617285.162",
+          "pid": 1877297407,
+          "tid": 1833690,
+          "args": {
+            "Thread Id": 1833690,
+            "Mode": "launch",
+            "level": "node",
+            "id": "0",
+            "item_id": "aclnnAdds_AddAiCore_Add",
+            "connection_id": 169577
+          }
+        }
+      },
+      {
+        "task": {
+          "id": "k:1102610",
+          "trace_index": 1102610,
+          "name": "aclnnGeScalar_GreaterEqual_GreaterEqual",
+          "stream": "44",
+          "task_id": "1192",
+          "task_type": "AI_VECTOR_CORE",
+          "start_us": "1791068444617404.994",
+          "end_us": "1791068444617414.515",
+          "duration_us": "9.521",
+          "scope": "P31/f19161dcf75c91a95aa2:1/inline_exponential",
+          "step": "f19161dcf75c91a95aa2:1",
+          "stage": "inline_exponential",
+          "csv_row": 1210,
+          "is_compute": true,
+          "is_copy": false,
+          "host_index": 9753,
+          "cann_index": 1272881,
+          "host_flow": "1791068444617404994",
+          "cann_flow": "728344849022976",
+          "connection_id": "169581",
+          "core_type": "AI_VECTOR_CORE",
+          "requests": [
+            "p31-measure-sampling-01-c8-off-diagnostic-b0-u00-r00",
+            "p31-measure-sampling-01-c8-off-diagnostic-b0-u04-r00",
+            "p31-measure-sampling-01-c8-off-diagnostic-b0-u01-r00",
+            "p31-measure-sampling-01-c8-off-diagnostic-b0-u07-r00",
+            "p31-measure-sampling-01-c8-off-diagnostic-b0-u03-r00",
+            "p31-measure-sampling-01-c8-off-diagnostic-b0-u06-r00",
+            "p31-measure-sampling-01-c8-off-diagnostic-b0-u05-r00",
+            "p31-measure-sampling-01-c8-off-diagnostic-b0-u02-r00"
+          ]
+        },
+        "host_operator": {
+          "name": "aclnnGeScalar",
+          "start_us": "1791068444617246.256",
+          "end_us": "1791068444617247.504",
+          "pid": 1833298,
+          "tid": 1833298,
+          "args": {
+            "Sequence number": -1,
+            "Fwd thread id": 0
+          }
+        },
+        "native_submission": {
+          "name": "Node@launch",
+          "start_us": "1791068444617288.599",
+          "end_us": "1791068444617291.027",
+          "pid": 1877297407,
+          "tid": 1833690,
+          "args": {
+            "Thread Id": 1833690,
+            "Mode": "launch",
+            "level": "node",
+            "id": "0",
+            "item_id": "aclnnGeScalar_GreaterEqual_GreaterEqual",
+            "connection_id": 169581
+          }
+        }
+      },
+      {
+        "task": {
+          "id": "k:1102612",
+          "trace_index": 1102612,
+          "name": "aclnnInplaceMaskedFillScalar_MaskedFillAiCore_MaskedFill",
+          "stream": "44",
+          "task_id": "1193",
+          "task_type": "AI_VECTOR_CORE",
+          "start_us": "1791068444617414.555",
+          "end_us": "1791068444617432.275",
+          "duration_us": "17.72",
+          "scope": "P31/f19161dcf75c91a95aa2:1/inline_exponential",
+          "step": "f19161dcf75c91a95aa2:1",
+          "stage": "inline_exponential",
+          "csv_row": 1211,
+          "is_compute": true,
+          "is_copy": false,
+          "host_index": 9755,
+          "cann_index": 1272885,
+          "host_flow": "1791068444617414555",
+          "cann_flow": "728362028892160",
+          "connection_id": "169585",
+          "core_type": "AI_VECTOR_CORE",
+          "requests": [
+            "p31-measure-sampling-01-c8-off-diagnostic-b0-u00-r00",
+            "p31-measure-sampling-01-c8-off-diagnostic-b0-u04-r00",
+            "p31-measure-sampling-01-c8-off-diagnostic-b0-u01-r00",
+            "p31-measure-sampling-01-c8-off-diagnostic-b0-u07-r00",
+            "p31-measure-sampling-01-c8-off-diagnostic-b0-u03-r00",
+            "p31-measure-sampling-01-c8-off-diagnostic-b0-u06-r00",
+            "p31-measure-sampling-01-c8-off-diagnostic-b0-u05-r00",
+            "p31-measure-sampling-01-c8-off-diagnostic-b0-u02-r00"
+          ]
+        },
+        "host_operator": {
+          "name": "aclnnInplaceMaskedFillScalar",
+          "start_us": "1791068444617251.671",
+          "end_us": "1791068444617252.531",
+          "pid": 1833298,
+          "tid": 1833298,
+          "args": {
+            "Sequence number": -1,
+            "Fwd thread id": 0
+          }
+        },
+        "native_submission": {
+          "name": "Node@launch",
+          "start_us": "1791068444617294.427",
+          "end_us": "1791068444617296.957",
+          "pid": 1877297407,
+          "tid": 1833690,
+          "args": {
+            "Thread Id": 1833690,
+            "Mode": "launch",
+            "level": "node",
+            "id": "0",
+            "item_id": "aclnnInplaceMaskedFillScalar_MaskedFillAiCore_MaskedFill",
+            "connection_id": 169585
+          }
+        }
+      },
+      {
+        "task": {
+          "id": "k:1102614",
+          "trace_index": 1102614,
+          "name": "aclnnLog_LogAiCore_Log",
+          "stream": "44",
+          "task_id": "1194",
+          "task_type": "AI_VECTOR_CORE",
+          "start_us": "1791068444617432.295",
+          "end_us": "1791068444617441.015",
+          "duration_us": "8.72",
+          "scope": "P31/f19161dcf75c91a95aa2:1/inline_exponential",
+          "step": "f19161dcf75c91a95aa2:1",
+          "stage": "inline_exponential",
+          "csv_row": 1212,
+          "is_compute": true,
+          "is_copy": false,
+          "host_index": 9757,
+          "cann_index": 1272889,
+          "host_flow": "1791068444617432295",
+          "cann_flow": "728379208761344",
+          "connection_id": "169589",
+          "core_type": "AI_VECTOR_CORE",
+          "requests": [
+            "p31-measure-sampling-01-c8-off-diagnostic-b0-u00-r00",
+            "p31-measure-sampling-01-c8-off-diagnostic-b0-u04-r00",
+            "p31-measure-sampling-01-c8-off-diagnostic-b0-u01-r00",
+            "p31-measure-sampling-01-c8-off-diagnostic-b0-u07-r00",
+            "p31-measure-sampling-01-c8-off-diagnostic-b0-u03-r00",
+            "p31-measure-sampling-01-c8-off-diagnostic-b0-u06-r00",
+            "p31-measure-sampling-01-c8-off-diagnostic-b0-u05-r00",
+            "p31-measure-sampling-01-c8-off-diagnostic-b0-u02-r00"
+          ]
+        },
+        "host_operator": {
+          "name": "aclnnInplaceLog",
+          "start_us": "1791068444617255.223",
+          "end_us": "1791068444617256.480",
+          "pid": 1833298,
+          "tid": 1833298,
+          "args": {
+            "Sequence number": -1,
+            "Fwd thread id": 0
+          }
+        },
+        "native_submission": {
+          "name": "Node@launch",
+          "start_us": "1791068444617299.726",
+          "end_us": "1791068444617301.912",
+          "pid": 1877297407,
+          "tid": 1833690,
+          "args": {
+            "Thread Id": 1833690,
+            "Mode": "launch",
+            "level": "node",
+            "id": "0",
+            "item_id": "aclnnLog_LogAiCore_Log",
+            "connection_id": 169589
+          }
+        }
+      },
+      {
+        "task": {
+          "id": "k:1102616",
+          "trace_index": 1102616,
+          "name": "aclnnInplaceMuls_MulAiCore_Mul",
+          "stream": "44",
+          "task_id": "1195",
+          "task_type": "AI_VECTOR_CORE",
+          "start_us": "1791068444617441.035",
+          "end_us": "1791068444617450.136",
+          "duration_us": "9.101",
+          "scope": "P31/f19161dcf75c91a95aa2:1/inline_exponential",
+          "step": "f19161dcf75c91a95aa2:1",
+          "stage": "inline_exponential",
+          "csv_row": 1213,
+          "is_compute": true,
+          "is_copy": false,
+          "host_index": 9759,
+          "cann_index": 1272893,
+          "host_flow": "1791068444617441035",
+          "cann_flow": "728396388630528",
+          "connection_id": "169593",
+          "core_type": "AI_VECTOR_CORE",
+          "requests": [
+            "p31-measure-sampling-01-c8-off-diagnostic-b0-u00-r00",
+            "p31-measure-sampling-01-c8-off-diagnostic-b0-u04-r00",
+            "p31-measure-sampling-01-c8-off-diagnostic-b0-u01-r00",
+            "p31-measure-sampling-01-c8-off-diagnostic-b0-u07-r00",
+            "p31-measure-sampling-01-c8-off-diagnostic-b0-u03-r00",
+            "p31-measure-sampling-01-c8-off-diagnostic-b0-u06-r00",
+            "p31-measure-sampling-01-c8-off-diagnostic-b0-u05-r00",
+            "p31-measure-sampling-01-c8-off-diagnostic-b0-u02-r00"
+          ]
+        },
+        "host_operator": {
+          "name": "aclnnInplaceMuls",
+          "start_us": "1791068444617258.922",
+          "end_us": "1791068444617259.648",
+          "pid": 1833298,
+          "tid": 1833298,
+          "args": {
+            "Sequence number": -1,
+            "Fwd thread id": 0
+          }
+        },
+        "native_submission": {
+          "name": "Node@launch",
+          "start_us": "1791068444617305.438",
+          "end_us": "1791068444617307.401",
+          "pid": 1877297407,
+          "tid": 1833690,
+          "args": {
+            "Thread Id": 1833690,
+            "Mode": "launch",
+            "level": "node",
+            "id": "0",
+            "item_id": "aclnnInplaceMuls_MulAiCore_Mul",
+            "connection_id": 169593
+          }
+        }
+      },
+      {
+        "task": {
+          "id": "k:1102622",
+          "trace_index": 1102622,
+          "name": "aclnnInplaceDiv_RealDivAiCore_RealDiv",
+          "stream": "46",
+          "task_id": "56044",
+          "task_type": "AI_VECTOR_CORE",
+          "start_us": "1791068444617538.839",
+          "end_us": "1791068444617548.240",
+          "duration_us": "9.401",
+          "scope": "P31/f19161dcf75c91a95aa2:1/inline_exponential",
+          "step": "f19161dcf75c91a95aa2:1",
+          "stage": "inline_exponential",
+          "csv_row": 1214,
+          "is_compute": true,
+          "is_copy": false,
+          "host_index": 9767,
+          "cann_index": 1272901,
+          "host_flow": "1791068444617538839",
+          "cann_flow": "728430748368896",
+          "connection_id": "169601",
+          "core_type": "AI_VECTOR_CORE",
+          "requests": [
+            "p31-measure-sampling-01-c8-off-diagnostic-b0-u00-r00",
+            "p31-measure-sampling-01-c8-off-diagnostic-b0-u04-r00",
+            "p31-measure-sampling-01-c8-off-diagnostic-b0-u01-r00",
+            "p31-measure-sampling-01-c8-off-diagnostic-b0-u07-r00",
+            "p31-measure-sampling-01-c8-off-diagnostic-b0-u03-r00",
+            "p31-measure-sampling-01-c8-off-diagnostic-b0-u06-r00",
+            "p31-measure-sampling-01-c8-off-diagnostic-b0-u05-r00",
+            "p31-measure-sampling-01-c8-off-diagnostic-b0-u02-r00"
+          ]
+        },
+        "host_operator": {
+          "name": "aclnnInplaceDiv",
+          "start_us": "1791068444617514.187",
+          "end_us": "1791068444617517.669",
+          "pid": 1833298,
+          "tid": 1833298,
+          "args": {
+            "Sequence number": -1,
+            "Fwd thread id": 0
+          }
+        },
+        "native_submission": {
+          "name": "Node@launch",
+          "start_us": "1791068444617525.269",
+          "end_us": "1791068444617527.537",
+          "pid": 1877297407,
+          "tid": 1833690,
+          "args": {
+            "Thread Id": 1833690,
+            "Mode": "launch",
+            "level": "node",
+            "id": "0",
+            "item_id": "aclnnInplaceDiv_RealDivAiCore_RealDiv",
+            "connection_id": 169601
+          }
+        }
+      },
+      {
+        "task": {
+          "id": "k:1102618",
+          "trace_index": 1102618,
+          "name": "EVENT_RECORD",
+          "stream": "44",
+          "task_id": "1196",
+          "task_type": "EVENT_RECORD",
+          "start_us": "1791068444617450.176",
+          "end_us": "1791068444617450.176",
+          "duration_us": "0.0",
+          "scope": "P31/f19161dcf75c91a95aa2:1/inline_exponential",
+          "step": "f19161dcf75c91a95aa2:1",
+          "stage": "inline_exponential",
+          "csv_row": null,
+          "is_compute": false,
+          "is_copy": false,
+          "host_index": 9762,
+          "cann_index": 1272896,
+          "host_flow": "1791068444617450176",
+          "cann_flow": "728409273532416",
+          "connection_id": "169596",
+          "requests": [
+            "p31-measure-sampling-01-c8-off-diagnostic-b0-u00-r00",
+            "p31-measure-sampling-01-c8-off-diagnostic-b0-u04-r00",
+            "p31-measure-sampling-01-c8-off-diagnostic-b0-u01-r00",
+            "p31-measure-sampling-01-c8-off-diagnostic-b0-u07-r00",
+            "p31-measure-sampling-01-c8-off-diagnostic-b0-u03-r00",
+            "p31-measure-sampling-01-c8-off-diagnostic-b0-u06-r00",
+            "p31-measure-sampling-01-c8-off-diagnostic-b0-u05-r00",
+            "p31-measure-sampling-01-c8-off-diagnostic-b0-u02-r00"
+          ]
+        },
+        "host_operator": {
+          "name": "record_event",
+          "start_us": "1791068444617368.940",
+          "end_us": "1791068444617373.441",
+          "pid": 1833298,
+          "tid": 1833298,
+          "args": {
+            "Sequence number": -1,
+            "Fwd thread id": 0
+          }
+        },
+        "native_submission": {
+          "name": "AscendCL@aclrtRecordEvent",
+          "start_us": "1791068444617380.192",
+          "end_us": "1791068444617384.390",
+          "pid": 1877297407,
+          "tid": 1833690,
+          "args": {
+            "Thread Id": 1833690,
+            "Mode": "ACL_RTS",
+            "level": "acl",
+            "id": "aclrtRecordEvent",
+            "item_id": "0",
+            "connection_id": 169596
+          }
+        }
+      },
+      {
+        "task": {
+          "id": "k:1102620",
+          "trace_index": 1102620,
+          "name": "EVENT_WAIT",
+          "stream": "46",
+          "task_id": "56043",
+          "task_type": "EVENT_WAIT",
+          "start_us": "1791068444617473.197",
+          "end_us": "1791068444617473.217",
+          "duration_us": "0.02",
+          "scope": "P31/f19161dcf75c91a95aa2:1/inline_exponential",
+          "step": "f19161dcf75c91a95aa2:1",
+          "stage": "inline_exponential",
+          "csv_row": null,
+          "is_compute": false,
+          "is_copy": false,
+          "host_index": 9764,
+          "cann_index": 1272897,
+          "host_flow": "1791068444617473197",
+          "cann_flow": "728413568499712",
+          "connection_id": "169597",
+          "requests": [
+            "p31-measure-sampling-01-c8-off-diagnostic-b0-u00-r00",
+            "p31-measure-sampling-01-c8-off-diagnostic-b0-u04-r00",
+            "p31-measure-sampling-01-c8-off-diagnostic-b0-u01-r00",
+            "p31-measure-sampling-01-c8-off-diagnostic-b0-u07-r00",
+            "p31-measure-sampling-01-c8-off-diagnostic-b0-u03-r00",
+            "p31-measure-sampling-01-c8-off-diagnostic-b0-u06-r00",
+            "p31-measure-sampling-01-c8-off-diagnostic-b0-u05-r00",
+            "p31-measure-sampling-01-c8-off-diagnostic-b0-u02-r00"
+          ]
+        },
+        "host_operator": {
+          "name": "wait_event",
+          "start_us": "1791068444617449.910",
+          "end_us": "1791068444617454.219",
+          "pid": 1833298,
+          "tid": 1833298,
+          "args": {
+            "Sequence number": -1,
+            "Fwd thread id": 0
+          }
+        },
+        "native_submission": {
+          "name": "AscendCL@aclrtStreamWaitEvent",
+          "start_us": "1791068444617460.750",
+          "end_us": "1791068444617463.973",
+          "pid": 1877297407,
+          "tid": 1833690,
+          "args": {
+            "Thread Id": 1833690,
+            "Mode": "ACL_RTS",
+            "level": "acl",
+            "id": "aclrtStreamWaitEvent",
+            "item_id": "0",
+            "connection_id": 169597
+          }
+        }
+      },
+      {
+        "task": {
+          "id": "k:1101888",
+          "trace_index": 1101888,
+          "name": "aclnnInplaceCopy_CastAiCore_Cast",
+          "stream": "46",
+          "task_id": "55660",
+          "task_type": "AI_VECTOR_CORE",
+          "start_us": "1791068444599454.396",
+          "end_us": "1791068444599455.236",
+          "duration_us": "0.84",
+          "scope": "P31/f19161dcf75c91a95aa2:1/forward",
+          "step": "f19161dcf75c91a95aa2:1",
+          "stage": "forward",
+          "csv_row": 850,
+          "is_compute": true,
+          "is_copy": false,
+          "host_index": 6854,
+          "cann_index": 1270869,
+          "host_flow": "1791068444599454396",
+          "cann_flow": "719703374823424",
+          "connection_id": "167569",
+          "core_type": "AI_VECTOR_CORE",
+          "requests": [
+            "p31-measure-sampling-01-c8-off-diagnostic-b0-u00-r00",
+            "p31-measure-sampling-01-c8-off-diagnostic-b0-u04-r00",
+            "p31-measure-sampling-01-c8-off-diagnostic-b0-u01-r00",
+            "p31-measure-sampling-01-c8-off-diagnostic-b0-u07-r00",
+            "p31-measure-sampling-01-c8-off-diagnostic-b0-u03-r00",
+            "p31-measure-sampling-01-c8-off-diagnostic-b0-u06-r00",
+            "p31-measure-sampling-01-c8-off-diagnostic-b0-u05-r00",
+            "p31-measure-sampling-01-c8-off-diagnostic-b0-u02-r00"
+          ]
+        },
+        "host_operator": {
+          "name": "aclnnInplaceCopy",
+          "start_us": "1791068444599433.527",
+          "end_us": "1791068444599437.951",
+          "pid": 1833298,
+          "tid": 1833298,
+          "args": {
+            "Sequence number": -1,
+            "Fwd thread id": 0
+          }
+        },
+        "native_submission": {
+          "name": "Node@launch",
+          "start_us": "1791068444599445.227",
+          "end_us": "1791068444599447.527",
+          "pid": 1877297407,
+          "tid": 1833690,
+          "args": {
+            "Thread Id": 1833690,
+            "Mode": "launch",
+            "level": "node",
+            "id": "0",
+            "item_id": "aclnnInplaceCopy_CastAiCore_Cast",
+            "connection_id": 167569
+          }
+        }
+      }
+    ]
+  },
+  {
+    "key": "d0cdde6a3f1d364a36c7:1",
+    "batch": 1,
+    "phases": [
+      "prefill"
+    ],
+    "model_stream": "46",
+    "random_stream": "44",
+    "q_metadata": {
+      "shape": [
+        1,
+        151936
+      ],
+      "dtype": "torch.float32",
+      "device": "npu:0",
+      "data_ptr": "20772609327104",
+      "storage_ptr": "20772609327104"
+    },
+    "q_event_handle": null,
+    "q_identity_checked": false,
+    "q_scope": {
+      "label": "P31/d0cdde6a3f1d364a36c7:1/inline_exponential",
+      "step": "d0cdde6a3f1d364a36c7:1",
+      "stage": "inline_exponential",
+      "start_us": "1791068444573126.139",
+      "end_us": "1791068444573751.477",
+      "pid": 1833298,
+      "tid": 1833298
+    },
+    "forward_scope": {
+      "label": "P31/d0cdde6a3f1d364a36c7:1/forward",
+      "step": "d0cdde6a3f1d364a36c7:1",
+      "stage": "forward",
+      "start_us": "1791068444553972.497",
+      "end_us": "1791068444572077.792",
+      "pid": 1833298,
+      "tid": 1833298
+    },
+    "synchronization": {
+      "kind": "device_event_wait",
+      "task": "k:1100974",
+      "start_us": "1791068444573641.744",
+      "end_us": "1791068444573641.744",
+      "duration_us": "0.0",
+      "ready_event": "k:1100972",
+      "consumer": "k:1100976",
+      "note": "device interval; not CPU blocked time"
+    },
+    "random_compute_tasks": [
+      "k:1100956",
+      "k:1100960",
+      "k:1100962",
+      "k:1100964",
+      "k:1100966",
+      "k:1100968",
+      "k:1100970"
+    ],
+    "forward_compute_tasks": 363,
+    "q_start_us": "1791068444573370.654",
+    "q_end_us": "1791068444573440.416",
+    "forward_start_us": "1791068444554145.185",
+    "forward_end_us": "1791068444571995.059",
+    "q_native_submit_start_us": "1791068444573344.558",
+    "forward_native_submit_start_us": "1791068444554136.469",
+    "native_submission_delta_us": "19208.089",
+    "q_end_minus_forward_start_us": "19295.231",
+    "same_step_random_forward_overlap_us": "0",
+    "dsa_forward_overlap_us": "0",
+    "other_random_forward_overlap_us": "0",
+    "consumer": "k:1100976",
+    "task_evidence": [
+      {
+        "task": {
+          "id": "k:1100956",
+          "trace_index": 1100956,
+          "name": "aclnnInplaceUniform_DSARandomUniform_DSARandomUniform",
+          "stream": "44",
+          "task_id": "1171",
+          "task_type": "DSA_SQE",
+          "start_us": "1791068444573370.654",
+          "end_us": "1791068444573385.974",
+          "duration_us": "15.32",
+          "scope": "P31/d0cdde6a3f1d364a36c7:1/inline_exponential",
+          "step": "d0cdde6a3f1d364a36c7:1",
+          "stage": "inline_exponential",
+          "csv_row": 392,
+          "is_compute": true,
+          "is_copy": false,
+          "host_index": 3264,
+          "cann_index": 1268632,
+          "host_flow": "1791068444573370654",
+          "cann_flow": "710095532982272",
+          "connection_id": "165332",
+          "core_type": "DSA_SQE",
+          "requests": [
+            "p31-measure-sampling-01-c8-off-diagnostic-b0-u00-r00"
+          ]
+        },
+        "host_operator": {
+          "name": "aclnnInplaceUniform",
+          "start_us": "1791068444573322.627",
+          "end_us": "1791068444573326.206",
+          "pid": 1833298,
+          "tid": 1833298,
+          "args": {
+            "Sequence number": -1,
+            "Fwd thread id": 0
+          }
+        },
+        "native_submission": {
+          "name": "Node@launch",
+          "start_us": "1791068444573344.558",
+          "end_us": "1791068444573361.992",
+          "pid": 1877297407,
+          "tid": 1833690,
+          "args": {
+            "Thread Id": 1833690,
+            "Mode": "launch",
+            "level": "node",
+            "id": "0",
+            "item_id": "aclnnInplaceUniform_DSARandomUniform_DSARandomUniform",
+            "connection_id": 165332
+          }
+        }
+      },
+      {
+        "task": {
+          "id": "k:1100960",
+          "trace_index": 1100960,
+          "name": "aclnnNeg_NegAiCore_Neg",
+          "stream": "44",
+          "task_id": "1172",
+          "task_type": "AI_VECTOR_CORE",
+          "start_us": "1791068444573385.994",
+          "end_us": "1791068444573393.875",
+          "duration_us": "7.881",
+          "scope": "P31/d0cdde6a3f1d364a36c7:1/inline_exponential",
+          "step": "d0cdde6a3f1d364a36c7:1",
+          "stage": "inline_exponential",
+          "csv_row": 394,
+          "is_compute": true,
+          "is_copy": false,
+          "host_index": 3266,
+          "cann_index": 1268637,
+          "host_flow": "1791068444573385994",
+          "cann_flow": "710117007818752",
+          "connection_id": "165337",
+          "core_type": "AI_VECTOR_CORE",
+          "requests": [
+            "p31-measure-sampling-01-c8-off-diagnostic-b0-u00-r00"
+          ]
+        },
+        "host_operator": {
+          "name": "aclnnNeg",
+          "start_us": "1791068444573333.279",
+          "end_us": "1791068444573336.572",
+          "pid": 1833298,
+          "tid": 1833298,
+          "args": {
+            "Sequence number": -1,
+            "Fwd thread id": 0
+          }
+        },
+        "native_submission": {
+          "name": "Node@launch",
+          "start_us": "1791068444573371.622",
+          "end_us": "1791068444573377.127",
+          "pid": 1877297407,
+          "tid": 1833690,
+          "args": {
+            "Thread Id": 1833690,
+            "Mode": "launch",
+            "level": "node",
+            "id": "0",
+            "item_id": "aclnnNeg_NegAiCore_Neg",
+            "connection_id": 165337
+          }
+        }
+      },
+      {
+        "task": {
+          "id": "k:1100962",
+          "trace_index": 1100962,
+          "name": "aclnnAdds_AddAiCore_Add",
+          "stream": "44",
+          "task_id": "1173",
+          "task_type": "AI_VECTOR_CORE",
+          "start_us": "1791068444573393.895",
+          "end_us": "1791068444573400.435",
+          "duration_us": "6.54",
+          "scope": "P31/d0cdde6a3f1d364a36c7:1/inline_exponential",
+          "step": "d0cdde6a3f1d364a36c7:1",
+          "stage": "inline_exponential",
+          "csv_row": 395,
+          "is_compute": true,
+          "is_copy": false,
+          "host_index": 3268,
+          "cann_index": 1268641,
+          "host_flow": "1791068444573393895",
+          "cann_flow": "710134187687936",
+          "connection_id": "165341",
+          "core_type": "AI_VECTOR_CORE",
+          "requests": [
+            "p31-measure-sampling-01-c8-off-diagnostic-b0-u00-r00"
+          ]
+        },
+        "host_operator": {
+          "name": "aclnnInplaceAdds",
+          "start_us": "1791068444573340.980",
+          "end_us": "1791068444573341.712",
+          "pid": 1833298,
+          "tid": 1833298,
+          "args": {
+            "Sequence number": -1,
+            "Fwd thread id": 0
+          }
+        },
+        "native_submission": {
+          "name": "Node@launch",
+          "start_us": "1791068444573383.385",
+          "end_us": "1791068444573387.132",
+          "pid": 1877297407,
+          "tid": 1833690,
+          "args": {
+            "Thread Id": 1833690,
+            "Mode": "launch",
+            "level": "node",
+            "id": "0",
+            "item_id": "aclnnAdds_AddAiCore_Add",
+            "connection_id": 165341
+          }
+        }
+      },
+      {
+        "task": {
+          "id": "k:1100964",
+          "trace_index": 1100964,
+          "name": "aclnnGeScalar_GreaterEqual_GreaterEqual",
+          "stream": "44",
+          "task_id": "1174",
+          "task_type": "AI_VECTOR_CORE",
+          "start_us": "1791068444573400.455",
+          "end_us": "1791068444573409.255",
+          "duration_us": "8.8",
+          "scope": "P31/d0cdde6a3f1d364a36c7:1/inline_exponential",
+          "step": "d0cdde6a3f1d364a36c7:1",
+          "stage": "inline_exponential",
+          "csv_row": 396,
+          "is_compute": true,
+          "is_copy": false,
+          "host_index": 3271,
+          "cann_index": 1268645,
+          "host_flow": "1791068444573400455",
+          "cann_flow": "710151367557120",
+          "connection_id": "165345",
+          "core_type": "AI_VECTOR_CORE",
+          "requests": [
+            "p31-measure-sampling-01-c8-off-diagnostic-b0-u00-r00"
+          ]
+        },
+        "host_operator": {
+          "name": "aclnnGeScalar",
+          "start_us": "1791068444573346.952",
+          "end_us": "1791068444573347.725",
+          "pid": 1833298,
+          "tid": 1833298,
+          "args": {
+            "Sequence number": -1,
+            "Fwd thread id": 0
+          }
+        },
+        "native_submission": {
+          "name": "Node@launch",
+          "start_us": "1791068444573393.219",
+          "end_us": "1791068444573397.316",
+          "pid": 1877297407,
+          "tid": 1833690,
+          "args": {
+            "Thread Id": 1833690,
+            "Mode": "launch",
+            "level": "node",
+            "id": "0",
+            "item_id": "aclnnGeScalar_GreaterEqual_GreaterEqual",
+            "connection_id": 165345
+          }
+        }
+      },
+      {
+        "task": {
+          "id": "k:1100966",
+          "trace_index": 1100966,
+          "name": "aclnnInplaceMaskedFillScalar_MaskedFillAiCore_MaskedFill",
+          "stream": "44",
+          "task_id": "1175",
+          "task_type": "AI_VECTOR_CORE",
+          "start_us": "1791068444573409.275",
+          "end_us": "1791068444573421.616",
+          "duration_us": "12.341",
+          "scope": "P31/d0cdde6a3f1d364a36c7:1/inline_exponential",
+          "step": "d0cdde6a3f1d364a36c7:1",
+          "stage": "inline_exponential",
+          "csv_row": 397,
+          "is_compute": true,
+          "is_copy": false,
+          "host_index": 3273,
+          "cann_index": 1268649,
+          "host_flow": "1791068444573409275",
+          "cann_flow": "710168547426304",
+          "connection_id": "165349",
+          "core_type": "AI_VECTOR_CORE",
+          "requests": [
+            "p31-measure-sampling-01-c8-off-diagnostic-b0-u00-r00"
+          ]
+        },
+        "host_operator": {
+          "name": "aclnnInplaceMaskedFillScalar",
+          "start_us": "1791068444573350.442",
+          "end_us": "1791068444573351.279",
+          "pid": 1833298,
+          "tid": 1833298,
+          "args": {
+            "Sequence number": -1,
+            "Fwd thread id": 0
+          }
+        },
+        "native_submission": {
+          "name": "Node@launch",
+          "start_us": "1791068444573401.711",
+          "end_us": "1791068444573405.265",
+          "pid": 1877297407,
+          "tid": 1833690,
+          "args": {
+            "Thread Id": 1833690,
+            "Mode": "launch",
+            "level": "node",
+            "id": "0",
+            "item_id": "aclnnInplaceMaskedFillScalar_MaskedFillAiCore_MaskedFill",
+            "connection_id": 165349
+          }
+        }
+      },
+      {
+        "task": {
+          "id": "k:1100968",
+          "trace_index": 1100968,
+          "name": "aclnnLog_LogAiCore_Log",
+          "stream": "44",
+          "task_id": "1176",
+          "task_type": "AI_VECTOR_CORE",
+          "start_us": "1791068444573421.656",
+          "end_us": "1791068444573429.756",
+          "duration_us": "8.1",
+          "scope": "P31/d0cdde6a3f1d364a36c7:1/inline_exponential",
+          "step": "d0cdde6a3f1d364a36c7:1",
+          "stage": "inline_exponential",
+          "csv_row": 398,
+          "is_compute": true,
+          "is_copy": false,
+          "host_index": 3275,
+          "cann_index": 1268653,
+          "host_flow": "1791068444573421656",
+          "cann_flow": "710185727295488",
+          "connection_id": "165353",
+          "core_type": "AI_VECTOR_CORE",
+          "requests": [
+            "p31-measure-sampling-01-c8-off-diagnostic-b0-u00-r00"
+          ]
+        },
+        "host_operator": {
+          "name": "aclnnInplaceLog",
+          "start_us": "1791068444573355.502",
+          "end_us": "1791068444573356.145",
+          "pid": 1833298,
+          "tid": 1833298,
+          "args": {
+            "Sequence number": -1,
+            "Fwd thread id": 0
+          }
+        },
+        "native_submission": {
+          "name": "Node@launch",
+          "start_us": "1791068444573410.628",
+          "end_us": "1791068444573414.127",
+          "pid": 1877297407,
+          "tid": 1833690,
+          "args": {
+            "Thread Id": 1833690,
+            "Mode": "launch",
+            "level": "node",
+            "id": "0",
+            "item_id": "aclnnLog_LogAiCore_Log",
+            "connection_id": 165353
+          }
+        }
+      },
+      {
+        "task": {
+          "id": "k:1100970",
+          "trace_index": 1100970,
+          "name": "aclnnInplaceMuls_MulAiCore_Mul",
+          "stream": "44",
+          "task_id": "1177",
+          "task_type": "AI_VECTOR_CORE",
+          "start_us": "1791068444573432.496",
+          "end_us": "1791068444573440.416",
+          "duration_us": "7.92",
+          "scope": "P31/d0cdde6a3f1d364a36c7:1/inline_exponential",
+          "step": "d0cdde6a3f1d364a36c7:1",
+          "stage": "inline_exponential",
+          "csv_row": 399,
+          "is_compute": true,
+          "is_copy": false,
+          "host_index": 3277,
+          "cann_index": 1268657,
+          "host_flow": "1791068444573432496",
+          "cann_flow": "710202907164672",
+          "connection_id": "165357",
+          "core_type": "AI_VECTOR_CORE",
+          "requests": [
+            "p31-measure-sampling-01-c8-off-diagnostic-b0-u00-r00"
+          ]
+        },
+        "host_operator": {
+          "name": "aclnnInplaceMuls",
+          "start_us": "1791068444573360.682",
+          "end_us": "1791068444573361.276",
+          "pid": 1833298,
+          "tid": 1833298,
+          "args": {
+            "Sequence number": -1,
+            "Fwd thread id": 0
+          }
+        },
+        "native_submission": {
+          "name": "Node@launch",
+          "start_us": "1791068444573418.115",
+          "end_us": "1791068444573434.342",
+          "pid": 1877297407,
+          "tid": 1833690,
+          "args": {
+            "Thread Id": 1833690,
+            "Mode": "launch",
+            "level": "node",
+            "id": "0",
+            "item_id": "aclnnInplaceMuls_MulAiCore_Mul",
+            "connection_id": 165357
+          }
+        }
+      },
+      {
+        "task": {
+          "id": "k:1100976",
+          "trace_index": 1100976,
+          "name": "aclnnInplaceDiv_RealDivAiCore_RealDiv",
+          "stream": "46",
+          "task_id": "55180",
+          "task_type": "AI_VECTOR_CORE",
+          "start_us": "1791068444573710.447",
+          "end_us": "1791068444573717.947",
+          "duration_us": "7.5",
+          "scope": "P31/d0cdde6a3f1d364a36c7:1/inline_exponential",
+          "step": "d0cdde6a3f1d364a36c7:1",
+          "stage": "inline_exponential",
+          "csv_row": 400,
+          "is_compute": true,
+          "is_copy": false,
+          "host_index": 3285,
+          "cann_index": 1268665,
+          "host_flow": "1791068444573710447",
+          "cann_flow": "710237266903040",
+          "connection_id": "165365",
+          "core_type": "AI_VECTOR_CORE",
+          "requests": [
+            "p31-measure-sampling-01-c8-off-diagnostic-b0-u00-r00"
+          ]
+        },
+        "host_operator": {
+          "name": "aclnnInplaceDiv",
+          "start_us": "1791068444573685.480",
+          "end_us": "1791068444573687.996",
+          "pid": 1833298,
+          "tid": 1833298,
+          "args": {
+            "Sequence number": -1,
+            "Fwd thread id": 0
+          }
+        },
+        "native_submission": {
+          "name": "Node@launch",
+          "start_us": "1791068444573696.948",
+          "end_us": "1791068444573702.881",
+          "pid": 1877297407,
+          "tid": 1833690,
+          "args": {
+            "Thread Id": 1833690,
+            "Mode": "launch",
+            "level": "node",
+            "id": "0",
+            "item_id": "aclnnInplaceDiv_RealDivAiCore_RealDiv",
+            "connection_id": 165365
+          }
+        }
+      },
+      {
+        "task": {
+          "id": "k:1100972",
+          "trace_index": 1100972,
+          "name": "EVENT_RECORD",
+          "stream": "44",
+          "task_id": "1178",
+          "task_type": "EVENT_RECORD",
+          "start_us": "1791068444573556.941",
+          "end_us": "1791068444573556.961",
+          "duration_us": "0.02",
+          "scope": "P31/d0cdde6a3f1d364a36c7:1/inline_exponential",
+          "step": "d0cdde6a3f1d364a36c7:1",
+          "stage": "inline_exponential",
+          "csv_row": null,
+          "is_compute": false,
+          "is_copy": false,
+          "host_index": 3280,
+          "cann_index": 1268660,
+          "host_flow": "1791068444573556941",
+          "cann_flow": "710215792066560",
+          "connection_id": "165360",
+          "requests": [
+            "p31-measure-sampling-01-c8-off-diagnostic-b0-u00-r00"
+          ]
+        },
+        "host_operator": {
+          "name": "record_event",
+          "start_us": "1791068444573528.745",
+          "end_us": "1791068444573533.547",
+          "pid": 1833298,
+          "tid": 1833298,
+          "args": {
+            "Sequence number": -1,
+            "Fwd thread id": 0
+          }
+        },
+        "native_submission": {
+          "name": "AscendCL@aclrtRecordEvent",
+          "start_us": "1791068444573539.792",
+          "end_us": "1791068444573547.073",
+          "pid": 1877297407,
+          "tid": 1833690,
+          "args": {
+            "Thread Id": 1833690,
+            "Mode": "ACL_RTS",
+            "level": "acl",
+            "id": "aclrtRecordEvent",
+            "item_id": "0",
+            "connection_id": 165360
+          }
+        }
+      },
+      {
+        "task": {
+          "id": "k:1100974",
+          "trace_index": 1100974,
+          "name": "EVENT_WAIT",
+          "stream": "46",
+          "task_id": "55179",
+          "task_type": "EVENT_WAIT",
+          "start_us": "1791068444573641.744",
+          "end_us": "1791068444573641.744",
+          "duration_us": "0.0",
+          "scope": "P31/d0cdde6a3f1d364a36c7:1/inline_exponential",
+          "step": "d0cdde6a3f1d364a36c7:1",
+          "stage": "inline_exponential",
+          "csv_row": null,
+          "is_compute": false,
+          "is_copy": false,
+          "host_index": 3282,
+          "cann_index": 1268661,
+          "host_flow": "1791068444573641744",
+          "cann_flow": "710220087033856",
+          "connection_id": "165361",
+          "requests": [
+            "p31-measure-sampling-01-c8-off-diagnostic-b0-u00-r00"
+          ]
+        },
+        "host_operator": {
+          "name": "wait_event",
+          "start_us": "1791068444573619.835",
+          "end_us": "1791068444573624.053",
+          "pid": 1833298,
+          "tid": 1833298,
+          "args": {
+            "Sequence number": -1,
+            "Fwd thread id": 0
+          }
+        },
+        "native_submission": {
+          "name": "AscendCL@aclrtStreamWaitEvent",
+          "start_us": "1791068444573629.857",
+          "end_us": "1791068444573633.580",
+          "pid": 1877297407,
+          "tid": 1833690,
+          "args": {
+            "Thread Id": 1833690,
+            "Mode": "ACL_RTS",
+            "level": "acl",
+            "id": "aclrtStreamWaitEvent",
+            "item_id": "0",
+            "connection_id": 165361
+          }
+        }
+      },
+      {
+        "task": {
+          "id": "k:1100202",
+          "trace_index": 1100202,
+          "name": "aclnnInplaceCopy_CastAiCore_Cast",
+          "stream": "46",
+          "task_id": "54777",
+          "task_type": "AI_VECTOR_CORE",
+          "start_us": "1791068444554145.185",
+          "end_us": "1791068444554146.245",
+          "duration_us": "1.06",
+          "scope": "P31/d0cdde6a3f1d364a36c7:1/forward",
+          "step": "d0cdde6a3f1d364a36c7:1",
+          "stage": "forward",
+          "csv_row": 15,
+          "is_compute": true,
+          "is_copy": false,
+          "host_index": 327,
+          "cann_index": 1266455,
+          "host_flow": "1791068444554145185",
+          "cann_flow": "700745389178880",
+          "connection_id": "163155",
+          "core_type": "AI_VECTOR_CORE",
+          "requests": [
+            "p31-measure-sampling-01-c8-off-diagnostic-b0-u00-r00"
+          ]
+        },
+        "host_operator": {
+          "name": "aclnnInplaceCopy",
+          "start_us": "1791068444554125.657",
+          "end_us": "1791068444554129.661",
+          "pid": 1833298,
+          "tid": 1833298,
+          "args": {
+            "Sequence number": -1,
+            "Fwd thread id": 0
+          }
+        },
+        "native_submission": {
+          "name": "Node@launch",
+          "start_us": "1791068444554136.469",
+          "end_us": "1791068444554139.399",
+          "pid": 1877297407,
+          "tid": 1833690,
+          "args": {
+            "Thread Id": 1833690,
+            "Mode": "launch",
+            "level": "node",
+            "id": "0",
+            "item_id": "aclnnInplaceCopy_CastAiCore_Cast",
+            "connection_id": 163155
+          }
+        }
+      }
+    ]
+  }
+]

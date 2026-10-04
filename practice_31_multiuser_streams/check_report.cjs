@@ -20,6 +20,19 @@ const path=require('path'),fs=require('fs');
    if(!(await page.locator('#detail').textContent()).includes('native_submission'))throw Error('Missing exact flow evidence');
    const shared=await page.evaluate(()=>P31.data.tasks.some(t=>t.requests.length>1));
    if(await page.evaluate(()=>P31.data.concurrency>1)){if(!shared)throw Error('Expected observed shared batch');}
+   if(await page.evaluate(()=>!!P31.data.sampling_analysis)){
+    if(!await page.locator('#samplingSection').isVisible())throw Error('Missing sampling section');
+    await page.locator('#samplingExample').click();
+    if(!await page.locator('#step').inputValue())throw Error('Sampling example did not select step');
+    if(!(await page.locator('#samplingDetail').textContent()).includes('native_submission_delta_us'))throw Error('Missing submission evidence');
+    const valid=await page.evaluate(()=>{
+     const d=P31.data,s=d.sampling_analysis;
+     return s.validated_steps===d.steps.length&&!s.issues.length&&d.device_metrics.compute_streams===2
+       &&s.synchronization_kind===(d.precompute?'host_event_synchronize':'device_event_wait')
+       &&(!d.precompute||d.scopes.filter(s=>s.stage==='q_wait').length===d.steps.length);
+    });
+    if(!valid)throw Error('Sampling coverage or synchronization mismatch');
+   }
   }
   await page.locator('#fit').click();await page.setViewportSize({width:760,height:900});
   const caseName=path.basename(path.dirname(path.dirname(report)));

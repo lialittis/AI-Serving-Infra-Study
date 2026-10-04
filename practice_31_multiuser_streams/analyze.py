@@ -20,8 +20,14 @@ def read(path):
     return json.loads(path.read_text())
 
 
+def compute_core(core, is_copy=False):
+    # DSARandomUniform is an accelerator compute task in kernel_details.csv;
+    # its DSA_SQE core label is distinct from both AI cores and SDMA copies.
+    return (core.startswith(("AI_", "MIX_")) or core == "DSA_SQE") and not is_copy
+
+
 def dump(path, data):
-    path.write_text(json.dumps(data, ensure_ascii=False, indent=2) + "\n")
+    path.write_text(json.dumps(data, ensure_ascii=False, indent=2, default=str) + "\n")
 
 
 def length(intervals):
@@ -135,6 +141,8 @@ def analyze_case(case):
     requests = read(case / "requests.json")
     result = dict(schema=1, case=case.name, phase=command["phase"], concurrency=command["concurrency"],
                   requests=requests, metrics=request_metrics(requests), validation=read(case / "status.json"))
+    if command.get("sampling", {}).get("temperature", 0) > 0:
+        result.update(sampling=command["sampling"], precompute=command["precompute"])
     if command["phase"] == "benchmark":
         return result
     records = [json.loads(line) for p in sorted((case / "observer").glob("*.jsonl")) for line in p.read_text().splitlines()]
@@ -236,7 +244,7 @@ def analyze_case(case):
                 raise ValueError("CSV duplicated or duration mismatch")
             used.add(j)
             core = rows[j]["Accelerator Core"].strip()
-            t.update(csv_row=j, core_type=core, is_compute=core.startswith(("AI_", "MIX_")) and not t["is_copy"])
+            t.update(csv_row=j, core_type=core, is_compute=compute_core(core, t["is_copy"]))
         t["requests"] = [mapping.get(r, r) for r in record.get("scheduled", {})]
         tasks.append(t)
         for pair in (host, cann):
@@ -320,6 +328,12 @@ def analyze_case(case):
                                       physical_streams=len(inventory), compute_streams=sum(s["compute_tasks"] > 0 for s in inventory)),
                   raw_sources=[dict(path=str(p.relative_to(case)), sha256=hashlib.sha256(p.read_bytes()).hexdigest(), bytes=p.stat().st_size)
                                for p in (trace, csv_path)])
+    if "sampling" in result:
+        from sampling_analysis import analyze_sampling
+        detail = analyze_sampling(result, records, events, result["precompute"])
+        result.update(sampling_analysis=detail["summary"], sampling_steps=detail["steps"], sampling_examples=detail["examples"])
+        if detail["summary"]["issues"] or detail["summary"]["validated_steps"] != len(steps):
+            result["analysis_status"] = "incomplete"
     return result
 
 
@@ -328,8 +342,12 @@ def export(case, result):
     output.mkdir(exist_ok=True)
     raw = json.dumps(result, ensure_ascii=False, separators=(",", ":"), default=str).encode()
     (output / "analysis.json.gz").write_bytes(gzip.compress(raw, mtime=0))
-    summary = {k: v for k, v in result.items() if k not in ("requests", "tasks", "hosts", "steps", "scopes", "stream_observations", "overlap_evidence")}
+    summary = {k: v for k, v in result.items() if k not in ("requests", "tasks", "hosts", "steps", "scopes", "stream_observations", "overlap_evidence", "sampling_steps", "sampling_examples")}
     dump(output / "summary.json", summary)
+    if "sampling_analysis" in result:
+        dump(output / "sampling_examples.json", result["sampling_examples"])
+        with gzip.open(output / "sampling_steps.json.gz", "wt") as f:
+            json.dump(result["sampling_steps"], f)
     if "tasks" in result:
         columns = ["id", "name", "stream", "task_id", "task_type", "start_us", "end_us", "is_compute", "is_copy", "step", "stage", "requests", "trace_index", "csv_row", "host_flow", "cann_flow"]
         with gzip.open(output / "tasks.csv.gz", "wt") as f:

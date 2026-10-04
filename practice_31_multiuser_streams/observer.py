@@ -78,6 +78,22 @@ def open_scope(frame, stage):
     _local.scopes[id(frame)] = (ctx, label, stage, time.time_ns())
 
 
+def close_scope(frame):
+    opened = _local.scopes.pop(id(frame), None)
+    if opened:
+        ctx, label, stage, start = opened
+        ctx.__exit__(None, None, None)
+        emit("scope", label=label, key=_local.key, stage=stage, start_ns=start,
+             end_ns=time.time_ns(), scheduled=_local.scheduled)
+
+
+def tensor_metadata(t):
+    if t is None:
+        return None
+    return dict(shape=list(t.shape), dtype=str(t.dtype), device=str(t.device),
+                data_ptr=str(t.data_ptr()), storage_ptr=str(t.untyped_storage().data_ptr()))
+
+
 def handle(frame, event, result):
     mod = frame.f_globals.get("__name__", "")
     name = frame.f_code.co_name
@@ -85,6 +101,7 @@ def handle(frame, event, result):
     if not hasattr(_local, "scopes"):
         _local.scopes = {}
         _local.active = False
+        _local.api_calls = {}
     if mod == "vllm.entrypoints.openai.completion.serving" and name in ("create_completion", "_create_completion"):
         body = v.get("request")
         rid = getattr(body, "request_id", None)
@@ -140,23 +157,57 @@ def handle(frame, event, result):
             if _local.active:
                 open_scope(frame, stage)
         else:
-            opened = _local.scopes.pop(id(frame), None)
-            if opened:
-                ctx, label, stage, start = opened
-                ctx.__exit__(None, None, None)
-                emit("scope", label=label, key=_local.key, stage=stage, start_ns=start,
-                     end_ns=time.time_ns(), scheduled=_local.scheduled)
+            close_scope(frame)
             if name in ("execute_model", "sample_tokens"):
                 _local.active = False
+    elif mod == "vllm_ascend.sample.sampler" and _local.active:
+        if name in ("do_async_exponential", "random_sample"):
+            if event == "call":
+                open_scope(frame, "async_exponential" if name == "do_async_exponential" else "inline_exponential")
+            else:
+                event_obj = getattr(v.get("self"), "async_exponential_event", None)
+                emit("q_ready", key=_local.key, mode="on" if name == "do_async_exponential" else "off",
+                     q=tensor_metadata(v.get("q")), generator_count=len(v.get("generators", {})),
+                     event_handle=str(event_obj.npu_event) if event_obj is not None else None)
+                close_scope(frame)
+        elif name == "forward_native":
+            if event == "call":
+                obj = v.get("self")
+                q = getattr(obj, "q", None)
+                _local.q_consumer_event = getattr(obj, "async_event", None) if q is not None else None
+                if q is not None:
+                    emit("q_consume", key=_local.key, q=tensor_metadata(q),
+                         event_handle=str(_local.q_consumer_event.npu_event))
+                open_scope(frame, "sampling_math")
+            else:
+                close_scope(frame)
+                _local.q_consumer_event = None
     elif mod in ("vllm_ascend.utils", "torch_npu.npu", "torch_npu.npu.streams"):
         if event == "return" and name in ("current_stream", "global_stream", "prefetch_stream", "__new__"):
             desc = describe_stream(result)
             if desc and (_local.active or name != "current_stream"):
-                emit("stream_use", operation=name, key=getattr(_local, "key", None), stream=desc)
+                emit("stream_use", operation=name, key=getattr(_local, "key", None) if _local.active else None, stream=desc)
         elif event == "call" and _local.active and name in ("set_stream", "wait", "record", "wait_event", "wait_stream", "synchronize"):
-            emit("stream_api", operation=frame.f_code.co_qualname, key=_local.key,
+            # Wrappers may sit between forward_native and Event.synchronize.
+            # Match the actual consumer event, not the immediate caller frame.
+            expected_event = getattr(_local, "q_consumer_event", None)
+            q_wait = (name == "synchronize" and expected_event is not None
+                      and str(getattr(v.get("self"), "npu_event", "")) == str(expected_event.npu_event))
+            if q_wait:
+                open_scope(frame, "q_wait")
+            info = dict(operation=frame.f_code.co_qualname, key=_local.key,
                  stream=describe_stream(v.get("stream")), self_stream=describe_stream(v.get("self")),
-                 event_handle=str(getattr(v.get("event", v.get("self")), "npu_event", "")))
+                 event_handle=str(getattr(v.get("event", v.get("self")), "npu_event", "")),
+                 start_ns=time.time_ns(), q_wait=q_wait)
+            _local.api_calls[id(frame)] = info
+            emit("stream_api", **info)
+        elif event == "return":
+            info = _local.api_calls.pop(id(frame), None)
+            if info:
+                emit("stream_api_return", **info, end_ns=time.time_ns(),
+                     event_handle_after=str(getattr(v.get("event", v.get("self")), "npu_event", "")))
+                if info["q_wait"]:
+                    close_scope(frame)
     # Both the engine process and the API process flush after profile shutdown.
     if event == "return" and ((name == "profile" and v.get("is_start") is False and mod.startswith("vllm"))
                                or (name == "stop_profile" and mod.startswith("vllm"))):
@@ -165,7 +216,8 @@ def handle(frame, event, result):
 
 NAMES = {"create_completion", "_create_completion", "assign_request_id", "add_request", "schedule", "execute_model",
          "sample_tokens", "_model_forward", "_sample", "current_stream", "global_stream", "prefetch_stream",
-         "__new__", "set_stream", "wait", "record", "wait_event", "wait_stream", "synchronize", "profile", "stop_profile"}
+         "__new__", "set_stream", "wait", "record", "wait_event", "wait_stream", "synchronize", "profile", "stop_profile",
+         "do_async_exponential", "random_sample", "forward_native"}
 
 
 def profile(frame, event, result):

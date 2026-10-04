@@ -39,6 +39,42 @@ def audit(case):
                              note='requests is batch membership, not proof of per-request tensor reads/writes'))
     output=case/'analysis/raw_spot_checks.json'
     output.write_text(json.dumps(dict(case=case.name,examples=examples),ensure_ascii=False,indent=2,default=str)+'\n')
+    if 'sampling_analysis' in data:
+        records=[]
+        for path in (case/'observer').glob('*.jsonl'):
+            records.extend(json.loads(line) for line in path.read_text().splitlines())
+        sampling_steps={s['key']:s for s in data['sampling_steps']}
+        waits=[r for r in records if r['kind']=='stream_api' and r['operation']=='Stream.wait_stream' and r.get('key') in sampling_steps]
+        assert len(waits)==len(sampling_steps)
+        assert len({r['key'] for r in waits})==len(sampling_steps)
+        for call in waits:
+            s=sampling_steps[call['key']]
+            assert str(call['stream']['runtime_stream_id'])==s['random_stream']
+            assert str(call['self_stream']['runtime_stream_id'])==(s['random_stream'] if data['precompute'] else s['model_stream'])
+        checked=[]
+        for example in data['sampling_examples']:
+            for evidence in example['task_evidence']:
+                t=evidence['task'];raw=events[t['trace_index']]
+                assert raw['name']==t['name']
+                assert str(raw['args']['Physic Stream Id'])==t['stream']
+                assert str(raw['args']['Task Id'])==t['task_id']
+                assert Decimal(str(raw['ts']))==Decimal(t['start_us'])
+                if t['is_compute']:
+                    row=rows[t['csv_row']]
+                    assert row['Name']==t['name'] and row['Accelerator Core'].strip()==t['core_type']
+                    assert Decimal(row['Start Time(us)'])==Decimal(t['start_us'])
+                checked.append(t['id'])
+            sync=example['synchronization']
+            if 'native_trace_index' in sync:
+                raw=events[sync['native_trace_index']]
+                assert raw['name']==sync['name'] and Decimal(str(raw['ts']))==Decimal(sync['start_us'])
+        selected={s['key'] for s in data['sampling_examples']}
+        result=dict(case=case.name,checked_tasks=sorted(set(checked)),stream_wait_steps=len(waits),
+                    stream_wait_relation='auxiliary waits on itself' if data['precompute'] else 'model waits on auxiliary',
+                    representative_stream_api=[r for r in records if r['kind']=='stream_api' and r.get('key') in selected
+                                               and (r['operation']=='Stream.wait_stream' or r.get('q_wait'))],
+                    status='passed')
+        (case/'analysis/sampling_spot_checks.json').write_text(json.dumps(result,indent=2)+'\n')
     for example in examples:
         t=example['task']
         print(case.name,example['phase'],'requests='+str(len(t['requests'])),t['name'],

@@ -19,6 +19,16 @@
 
 固定独立 HTTP 请求形式，改用随机采样，逐项对比异步 exponential 预计算开/关。参考 P17，添加32用户档位并匹配服务容量；不设置 per-request seed，以免走入不同 sampler 分支。验证多 stream/计算重叠分析在真实正对照下的响应；不保证该负载必然重叠。
 
+- [x] eager + temperature=0.8/top_p=0.9；只切换提前生成，不设 per-request seed。
+- [x] 8／32独立用户、统一32序列容量；独立服务 ABBA benchmark 与开／关诊断。
+- [x] 核对 q 元数据、event 身份、host CANN 同步与设备 EVENT_WAIT；按实际 batch/phase 分组。
+- [x] 将全窗口重叠、同 step q/forward 重叠、DSA 与其他随机计算分别计量。
+- [x] 完成720请求、787诊断 step、302,069计算任务关联及结果笔记。
+- [x] 17项测试、四组原始证据抽查／离线浏览器检查、221个归档文件哈希验证；大文件排除。
+- [ ] 若要确认性能收益：隔离 host 后台分析、增加独立服务重复，并降低诊断插桩对提交时序的影响。
+
+结论见 [P31b 结果](../practice_31_multiuser_streams/SAMPLING_RESULTS.md)：两组都有 stream44/46；C8 提前生成后 q 在模型首 kernel 前已完成，未重叠；C32 开启后164/199 steps发生 q/forward 重叠，累计10.351 ms。关闭组的重叠对象是采样排序／top-p／softmax。总重叠更多不能直接推导吞吐更高。
+
 ## P31a 结果与独立后续问题
 
 正式180个测量请求完成；45个诊断请求、274,410个计算 kernel 全部关联。1/2/4/8用户均出现目标 HTTP 在途并发；多用户进入共享批次，四档位诊断计算都在物理 stream46 上，跨 stream 计算重叠为0。无插桩吞吐约91→645 tokens/s。详见 [结果](../practice_31_multiuser_streams/RESULTS.md)。

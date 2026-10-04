@@ -12,7 +12,8 @@
 
 ## 从哪里开始
 
-- [实验结果](RESULTS.md)：真实采集结果、限制和下一步。
+- [P31a 实验结果](RESULTS.md)：greedy 多用户基线。
+- [P31b 提前生成开／关](SAMPLING_RESULTS.md)：固定 eager 随机采样，对比提交时机、同步和真实重叠；入口为 `run_sampling.py`。
 - 完整交互报告：本地 `results/formal-01/index.html`，选择并发档位、请求和调度 step；Git 不包含这些大文件，[恢复方法见下](#完整报告与大文件)。
 - `run.py`：服务生命周期、独立 HTTP/SSE 客户端和固定输入。
 - `observer.py`：仅在 diagnostic 服务中启用的 host 元数据观测。
@@ -88,7 +89,7 @@ tar -xzf /tmp/p31-formal-evidence.tgz -C practice_31_multiuser_streams/results
 3. **调度 → 执行**：在关闭 async scheduling 的 TP1 eager 配置下，用完整 scheduled-token 映射及该映射的出现次数匹配 scheduler 与 worker。两个序列都采集并校验。扩展异步执行时必须重新核对该契约。
 4. **执行 → kernel**：`record_function` 标注 execute/forward/sample/sampler；使用 `async_npu`、`HostToDevice` 和 CANN connection ID 关联。重复 flow ID 使用 task-queue enqueue/dequeue 证据消歧。设备任务再用名称、stream、Task ID、开始时间、时长校验 `kernel_details.csv`。不按最近时间猜测归属。
 5. **Stream 身份**：对框架已返回的 stream 对象读取 Python ID、handle，并查询 `aclrtStreamGetId`。报告分别保留这些身份和 profiler Stream ID。本版没有 native create/destroy 全生命周期审计，不声称已证明所有 stream 的创建位置或 handle generation。
-6. **重叠**：仅核对 CSV 中的计算任务；copy、event、notify 不纳入计算重叠。区间扫描统计至少两条不同计算 stream 同时活跃的时间并集，三条 stream 同时执行不会重复累加。copy/compute 重叠另算。NPU 上报区间重叠不等于 SM/AICore 资源占用或性能收益。
+6. **重叠**：仅核对 CSV 中的计算任务；copy、event、notify 不纳入计算重叠。P31b 的 `DSA_SQE` 随机数任务列入计算并单独区分于 AI Core／Vector。区间扫描统计至少两条不同计算 stream 同时活跃的时间并集，三条 stream 同时执行不会重复累加。copy/compute 重叠另算。NPU 上报区间重叠不等于 SM/AICore 资源占用或性能收益。
 7. **计时**：客户端同时保存 wall 和 monotonic 纳秒时钟；延迟使用 monotonic。trace 大时间戳使用 Decimal，HTML 在转换为浮点前减去 epoch。SSE chunk 可能携带多个 token，报告不把 chunk 间隔伪装成逐 token 延迟。
 
 观测器只读取 host 元数据，不取设备张量值、不创建 stream、不插入设备等待；元数据先缓存，在 profiler 停止后写出。Python hook 和 profiler 会改变 CPU 提交速度、批次形态和时序。因此性能只看 benchmark，诊断结果只证明该诊断运行内的实际行为。

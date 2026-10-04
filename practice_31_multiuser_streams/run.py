@@ -96,7 +96,7 @@ def request(base, payload, user, round_index, repetition):
     return record
 
 
-def cycle(base, inputs, concurrency, rounds, tokens, tag, repetition):
+def cycle(base, inputs, concurrency, rounds, tokens, tag, repetition, sampling=None):
     barrier = threading.Barrier(concurrency)
     def user_loop(user):
         records = []
@@ -106,6 +106,8 @@ def cycle(base, inputs, concurrency, rounds, tokens, tag, repetition):
                            temperature=0, ignore_eos=True, stream=True, n=1,
                            return_token_ids=True, stream_options={"include_usage": True},
                            request_id="%s-u%02d-r%02d" % (tag, user, r))
+            if sampling:
+                payload.update(sampling)
             records.append(request(base, payload, user, r, repetition))
             if records[-1]["status"] != "passed":
                 break
@@ -118,10 +120,11 @@ def service_command(args, directory, phase):
     command = [sys.executable, "-m", "vllm.entrypoints.cli.main", "serve", args.model,
                "--served-model-name", "p31", "--host", "127.0.0.1", "--port", str(args.port),
                "--tensor-parallel-size", "1", "--dtype", "bfloat16", "--enforce-eager",
-               "--max-model-len", "512", "--max-num-seqs", "8", "--max-num-batched-tokens", "1024",
+               "--max-model-len", "512", "--max-num-seqs", str(getattr(args, "max_num_seqs", 8)),
+               "--max-num-batched-tokens", str(getattr(args, "max_num_batched_tokens", 1024)),
                "--gpu-memory-utilization", "0.3", "--block-size", "128", "--seed", "123",
                "--no-enable-prefix-caching", "--no-enable-chunked-prefill", "--no-async-scheduling",
-               "--additional-config", '{"enable_async_exponential":false}']
+               "--additional-config", json.dumps({"enable_async_exponential": getattr(args, "precompute", False)})]
     if phase == "diagnostic":
         command += ["--profiler-config", json.dumps(dict(profiler="torch", torch_profiler_dir=str(directory / "profiler"),
                                                        torch_profiler_with_stack=False, ignore_frontend=True))]
@@ -143,8 +146,8 @@ def stop_owned(process):
         pass
 
 
-def run_case(args, out, inputs, concurrency, phase):
-    directory = out / ("c%d-%s" % (concurrency, phase))
+def run_case(args, out, inputs, concurrency, phase, case_name=None):
+    directory = out / (case_name or "c%d-%s" % (concurrency, phase))
     directory.mkdir()
     with socket.socket() as sock:
         sock.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
@@ -157,6 +160,8 @@ def run_case(args, out, inputs, concurrency, phase):
         env["PYTHONPATH"] = str(HERE) + os.pathsep + env.get("PYTHONPATH", "")
     command = service_command(args, directory, phase)
     save(directory / "command.json", dict(argv=command, phase=phase, concurrency=concurrency,
+                                         sampling=getattr(args, "sampling", {"temperature": 0}),
+                                         precompute=getattr(args, "precompute", False),
                                          environment={k: v for k, v in env.items() if k.startswith(("P31", "ASCEND", "VLLM"))
                                                       or k in ("PYTHONPATH", "LD_PRELOAD")},
                                          removed_environment_keys=sorted(set(os.environ) - set(env))))
@@ -182,7 +187,8 @@ def run_case(args, out, inputs, concurrency, phase):
                 if time.monotonic() > deadline:
                     raise TimeoutError("Service startup timeout")
                 time.sleep(1)
-            warm = cycle(base, inputs, concurrency, args.warmup, args.output_tokens, "p31-warmup-" + directory.name, -1)
+            warm = cycle(base, inputs, concurrency, args.warmup, args.output_tokens, "p31-warmup-" + directory.name, -1,
+                         getattr(args, "sampling", None))
             save(directory / "warmup.json", warm)
             if any(r["status"] != "passed" for r in warm):
                 raise RuntimeError("Warmup request failed")
@@ -192,7 +198,8 @@ def run_case(args, out, inputs, concurrency, phase):
             repeats = args.repeats if phase == "benchmark" else 1
             for rep in range(repeats):
                 tag = "p31-measure-%s-%s-b%d" % (out.name, directory.name, rep)
-                records += cycle(base, inputs, concurrency, args.rounds, args.output_tokens, tag, rep)
+                records += cycle(base, inputs, concurrency, args.rounds, args.output_tokens, tag, rep,
+                                 getattr(args, "sampling", None))
                 save(directory / "requests.json", records)
                 if len(records) != (rep + 1) * concurrency * args.rounds or any(r["status"] != "passed" for r in records):
                     raise RuntimeError("Measured request failed")

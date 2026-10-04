@@ -1,0 +1,341 @@
+{
+  "case": "c8-off-diagnostic",
+  "examples": [
+    {
+      "phase": "prefill",
+      "task": {
+        "id": "k:1101026",
+        "trace_index": 1101026,
+        "name": "aclnnAddmm_MatMulCommon_MatMulV2",
+        "stream": "46",
+        "task_id": "55224",
+        "task_type": "AI_CORE",
+        "start_us": "1791068444578409.815",
+        "end_us": "1791068444578429.596",
+        "duration_us": "19.781",
+        "scope": "P31/2116167a9827abcf76ea:1/forward",
+        "step": "2116167a9827abcf76ea:1",
+        "stage": "forward",
+        "csv_row": 423,
+        "is_compute": true,
+        "is_copy": false,
+        "host_index": 3660,
+        "cann_index": 1268812,
+        "host_flow": "1791068444578409815",
+        "cann_flow": "710868627095552",
+        "connection_id": "165512",
+        "core_type": "AI_CORE",
+        "requests": [
+          "p31-measure-sampling-01-c8-off-diagnostic-b0-u00-r00",
+          "p31-measure-sampling-01-c8-off-diagnostic-b0-u04-r00",
+          "p31-measure-sampling-01-c8-off-diagnostic-b0-u01-r00",
+          "p31-measure-sampling-01-c8-off-diagnostic-b0-u07-r00",
+          "p31-measure-sampling-01-c8-off-diagnostic-b0-u03-r00",
+          "p31-measure-sampling-01-c8-off-diagnostic-b0-u06-r00",
+          "p31-measure-sampling-01-c8-off-diagnostic-b0-u05-r00",
+          "p31-measure-sampling-01-c8-off-diagnostic-b0-u02-r00"
+        ]
+      },
+      "raw_device": {
+        "name": "aclnnAddmm_MatMulCommon_MatMulV2",
+        "pid": 1877297568,
+        "tid": 46,
+        "ts": "1791068444578409.815",
+        "dur": "19.781",
+        "ph": "X",
+        "args": {
+          "Model Id": 4294967295,
+          "Task Type": "AI_CORE",
+          "Physic Stream Id": 46,
+          "Task Id": 55224,
+          "Batch Id": 0,
+          "Subtask Id": 4294967295,
+          "connection_id": 165512
+        }
+      },
+      "csv_row": {
+        "Device_id": "0",
+        "Model ID": "4294967295",
+        "Task ID": "55224",
+        "Stream ID": "46",
+        "Name": "aclnnAddmm_MatMulCommon_MatMulV2",
+        "Type": "MatMulV2",
+        "OP State": "dynamic",
+        "Accelerator Core": "AI_CORE",
+        "Start Time(us)": "1791068444578409.815\t",
+        "Duration(us)": "19.781",
+        "Wait Time(us)": "2.130000",
+        "Block Num": "24",
+        "Mix Block Num": "0",
+        "HF32 Eligible": "NO",
+        "Input Shapes": "\"897,896;1152,896;1152\"",
+        "Input Data Types": "DT_BF16;DT_BF16;FLOAT",
+        "Input Formats": "ND;ND;ND",
+        "Output Shapes": "\"897,1152\"",
+        "Output Data Types": "DT_BF16",
+        "Output Formats": "ND",
+        "Context ID": "N/A"
+      },
+      "raw_host": {
+        "ph": "X",
+        "name": "aclnnAddmm",
+        "pid": 1833298,
+        "tid": 1833298,
+        "ts": "1791068444578385.227",
+        "dur": "3.302",
+        "cat": "cpu_op",
+        "args": {
+          "Sequence number": -1,
+          "Fwd thread id": 0
+        }
+      },
+      "raw_native": {
+        "name": "Node@launch",
+        "pid": 1877297407,
+        "tid": 1833690,
+        "ts": "1791068444578399.980",
+        "dur": "3.132",
+        "ph": "X",
+        "args": {
+          "Thread Id": 1833690,
+          "Mode": "launch",
+          "level": "node",
+          "id": "0",
+          "item_id": "aclnnAddmm_MatMulCommon_MatMulV2",
+          "connection_id": 165512
+        }
+      },
+      "scheduler": {
+        "kind": "schedule",
+        "pid": 1833298,
+        "tid": 1833298,
+        "wall_ns": 1791068444575095462,
+        "mono_ns": 5315203533981838,
+        "key": "2116167a9827abcf76ea:1",
+        "scheduled": {
+          "cmpl-p31-measure-sampling-01-c8-off-diagnostic-b0-u00-r00-0-aef62e77": 1,
+          "cmpl-p31-measure-sampling-01-c8-off-diagnostic-b0-u04-r00-0-842c231d": 128,
+          "cmpl-p31-measure-sampling-01-c8-off-diagnostic-b0-u01-r00-0-94796978": 128,
+          "cmpl-p31-measure-sampling-01-c8-off-diagnostic-b0-u07-r00-0-9977c3ac": 128,
+          "cmpl-p31-measure-sampling-01-c8-off-diagnostic-b0-u03-r00-0-841463c8": 128,
+          "cmpl-p31-measure-sampling-01-c8-off-diagnostic-b0-u06-r00-0-a9ab2586": 128,
+          "cmpl-p31-measure-sampling-01-c8-off-diagnostic-b0-u05-r00-0-a85be16f": 128,
+          "cmpl-p31-measure-sampling-01-c8-off-diagnostic-b0-u02-r00-0-809d0e55": 128
+        },
+        "requests": {
+          "cmpl-p31-measure-sampling-01-c8-off-diagnostic-b0-u00-r00-0-aef62e77": {
+            "computed_before": 128,
+            "prompt_tokens": 128,
+            "phase": "decode"
+          },
+          "cmpl-p31-measure-sampling-01-c8-off-diagnostic-b0-u04-r00-0-842c231d": {
+            "computed_before": 0,
+            "prompt_tokens": 128,
+            "phase": "prefill"
+          },
+          "cmpl-p31-measure-sampling-01-c8-off-diagnostic-b0-u01-r00-0-94796978": {
+            "computed_before": 0,
+            "prompt_tokens": 128,
+            "phase": "prefill"
+          },
+          "cmpl-p31-measure-sampling-01-c8-off-diagnostic-b0-u07-r00-0-9977c3ac": {
+            "computed_before": 0,
+            "prompt_tokens": 128,
+            "phase": "prefill"
+          },
+          "cmpl-p31-measure-sampling-01-c8-off-diagnostic-b0-u03-r00-0-841463c8": {
+            "computed_before": 0,
+            "prompt_tokens": 128,
+            "phase": "prefill"
+          },
+          "cmpl-p31-measure-sampling-01-c8-off-diagnostic-b0-u06-r00-0-a9ab2586": {
+            "computed_before": 0,
+            "prompt_tokens": 128,
+            "phase": "prefill"
+          },
+          "cmpl-p31-measure-sampling-01-c8-off-diagnostic-b0-u05-r00-0-a85be16f": {
+            "computed_before": 0,
+            "prompt_tokens": 128,
+            "phase": "prefill"
+          },
+          "cmpl-p31-measure-sampling-01-c8-off-diagnostic-b0-u02-r00-0-809d0e55": {
+            "computed_before": 0,
+            "prompt_tokens": 128,
+            "phase": "prefill"
+          }
+        },
+        "start_ns": 1791068444574514429,
+        "end_ns": 1791068444575093620
+      },
+      "note": "requests is batch membership, not proof of per-request tensor reads/writes"
+    },
+    {
+      "phase": "decode",
+      "task": {
+        "id": "k:1101896",
+        "trace_index": 1101896,
+        "name": "aclnnAddmm_MatMulCommon_MatMulV2",
+        "stream": "46",
+        "task_id": "55664",
+        "task_type": "AI_CORE",
+        "start_us": "1791068444599600.182",
+        "end_us": "1791068444599611.723",
+        "duration_us": "11.541",
+        "scope": "P31/f19161dcf75c91a95aa2:1/forward",
+        "step": "f19161dcf75c91a95aa2:1",
+        "stage": "forward",
+        "csv_row": 854,
+        "is_compute": true,
+        "is_copy": false,
+        "host_index": 6870,
+        "cann_index": 1270886,
+        "host_flow": "1791068444599600182",
+        "cann_flow": "719776389267456",
+        "connection_id": "167586",
+        "core_type": "AI_CORE",
+        "requests": [
+          "p31-measure-sampling-01-c8-off-diagnostic-b0-u00-r00",
+          "p31-measure-sampling-01-c8-off-diagnostic-b0-u04-r00",
+          "p31-measure-sampling-01-c8-off-diagnostic-b0-u01-r00",
+          "p31-measure-sampling-01-c8-off-diagnostic-b0-u07-r00",
+          "p31-measure-sampling-01-c8-off-diagnostic-b0-u03-r00",
+          "p31-measure-sampling-01-c8-off-diagnostic-b0-u06-r00",
+          "p31-measure-sampling-01-c8-off-diagnostic-b0-u05-r00",
+          "p31-measure-sampling-01-c8-off-diagnostic-b0-u02-r00"
+        ]
+      },
+      "raw_device": {
+        "name": "aclnnAddmm_MatMulCommon_MatMulV2",
+        "pid": 1877297568,
+        "tid": 46,
+        "ts": "1791068444599600.182",
+        "dur": "11.541",
+        "ph": "X",
+        "args": {
+          "Model Id": 4294967295,
+          "Task Type": "AI_CORE",
+          "Physic Stream Id": 46,
+          "Task Id": 55664,
+          "Batch Id": 0,
+          "Subtask Id": 4294967295,
+          "connection_id": 167586
+        }
+      },
+      "csv_row": {
+        "Device_id": "0",
+        "Model ID": "4294967295",
+        "Task ID": "55664",
+        "Stream ID": "46",
+        "Name": "aclnnAddmm_MatMulCommon_MatMulV2",
+        "Type": "MatMulV2",
+        "OP State": "dynamic",
+        "Accelerator Core": "AI_CORE",
+        "Start Time(us)": "1791068444599600.182\t",
+        "Duration(us)": "11.541",
+        "Wait Time(us)": "1.550000",
+        "Block Num": "24",
+        "Mix Block Num": "0",
+        "HF32 Eligible": "NO",
+        "Input Shapes": "\"8,896;1152,896;1152\"",
+        "Input Data Types": "DT_BF16;DT_BF16;FLOAT",
+        "Input Formats": "ND;ND;ND",
+        "Output Shapes": "\"8,1152\"",
+        "Output Data Types": "DT_BF16",
+        "Output Formats": "ND",
+        "Context ID": "N/A"
+      },
+      "raw_host": {
+        "ph": "X",
+        "name": "aclnnAddmm",
+        "pid": 1833298,
+        "tid": 1833298,
+        "ts": "1791068444599574.929",
+        "dur": "3.498",
+        "cat": "cpu_op",
+        "args": {
+          "Sequence number": -1,
+          "Fwd thread id": 0
+        }
+      },
+      "raw_native": {
+        "name": "Node@launch",
+        "pid": 1877297407,
+        "tid": 1833690,
+        "ts": "1791068444599588.113",
+        "dur": "2.175",
+        "ph": "X",
+        "args": {
+          "Thread Id": 1833690,
+          "Mode": "launch",
+          "level": "node",
+          "id": "0",
+          "item_id": "aclnnAddmm_MatMulCommon_MatMulV2",
+          "connection_id": 167586
+        }
+      },
+      "scheduler": {
+        "kind": "schedule",
+        "pid": 1833298,
+        "tid": 1833298,
+        "wall_ns": 1791068444597312636,
+        "mono_ns": 5315203556199014,
+        "key": "f19161dcf75c91a95aa2:1",
+        "scheduled": {
+          "cmpl-p31-measure-sampling-01-c8-off-diagnostic-b0-u00-r00-0-aef62e77": 1,
+          "cmpl-p31-measure-sampling-01-c8-off-diagnostic-b0-u04-r00-0-842c231d": 1,
+          "cmpl-p31-measure-sampling-01-c8-off-diagnostic-b0-u01-r00-0-94796978": 1,
+          "cmpl-p31-measure-sampling-01-c8-off-diagnostic-b0-u07-r00-0-9977c3ac": 1,
+          "cmpl-p31-measure-sampling-01-c8-off-diagnostic-b0-u03-r00-0-841463c8": 1,
+          "cmpl-p31-measure-sampling-01-c8-off-diagnostic-b0-u06-r00-0-a9ab2586": 1,
+          "cmpl-p31-measure-sampling-01-c8-off-diagnostic-b0-u05-r00-0-a85be16f": 1,
+          "cmpl-p31-measure-sampling-01-c8-off-diagnostic-b0-u02-r00-0-809d0e55": 1
+        },
+        "requests": {
+          "cmpl-p31-measure-sampling-01-c8-off-diagnostic-b0-u00-r00-0-aef62e77": {
+            "computed_before": 129,
+            "prompt_tokens": 128,
+            "phase": "decode"
+          },
+          "cmpl-p31-measure-sampling-01-c8-off-diagnostic-b0-u04-r00-0-842c231d": {
+            "computed_before": 128,
+            "prompt_tokens": 128,
+            "phase": "decode"
+          },
+          "cmpl-p31-measure-sampling-01-c8-off-diagnostic-b0-u01-r00-0-94796978": {
+            "computed_before": 128,
+            "prompt_tokens": 128,
+            "phase": "decode"
+          },
+          "cmpl-p31-measure-sampling-01-c8-off-diagnostic-b0-u07-r00-0-9977c3ac": {
+            "computed_before": 128,
+            "prompt_tokens": 128,
+            "phase": "decode"
+          },
+          "cmpl-p31-measure-sampling-01-c8-off-diagnostic-b0-u03-r00-0-841463c8": {
+            "computed_before": 128,
+            "prompt_tokens": 128,
+            "phase": "decode"
+          },
+          "cmpl-p31-measure-sampling-01-c8-off-diagnostic-b0-u06-r00-0-a9ab2586": {
+            "computed_before": 128,
+            "prompt_tokens": 128,
+            "phase": "decode"
+          },
+          "cmpl-p31-measure-sampling-01-c8-off-diagnostic-b0-u05-r00-0-a85be16f": {
+            "computed_before": 128,
+            "prompt_tokens": 128,
+            "phase": "decode"
+          },
+          "cmpl-p31-measure-sampling-01-c8-off-diagnostic-b0-u02-r00-0-809d0e55": {
+            "computed_before": 128,
+            "prompt_tokens": 128,
+            "phase": "decode"
+          }
+        },
+        "start_ns": 1791068444596901718,
+        "end_ns": 1791068444597310792
+      },
+      "note": "requests is batch membership, not proof of per-request tensor reads/writes"
+    }
+  ]
+}

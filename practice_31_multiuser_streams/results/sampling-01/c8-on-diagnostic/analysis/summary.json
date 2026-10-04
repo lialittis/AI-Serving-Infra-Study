@@ -1,0 +1,289 @@
+{
+  "schema": 1,
+  "case": "c8-on-diagnostic",
+  "phase": "diagnostic",
+  "concurrency": 8,
+  "metrics": {
+    "requests": 24,
+    "failed": 0,
+    "trials": [
+      {
+        "repetition": 0,
+        "requests": 24,
+        "peak_http_inflight": 8,
+        "generated_tokens": 1536,
+        "window_s": 4.020199068,
+        "output_tokens_per_s": 382.0706323291949
+      }
+    ],
+    "ttft_ms": {
+      "n": 24,
+      "median": 41.698219,
+      "min": 37.084695,
+      "max": 58.824494
+    },
+    "latency_ms": {
+      "n": 24,
+      "median": 1333.6773825,
+      "min": 1330.190143,
+      "max": 1355.199834
+    }
+  },
+  "validation": {
+    "status": "passed",
+    "phase": "diagnostic",
+    "concurrency": 8,
+    "requests": 24
+  },
+  "sampling": {
+    "temperature": 0.8,
+    "top_p": 0.9
+  },
+  "precompute": true,
+  "streams": [
+    {
+      "stream": "44",
+      "tasks": 1950,
+      "compute_tasks": 1365,
+      "types": {
+        "EVENT_RECORD": 390,
+        "DSA_SQE": 195,
+        "AI_VECTOR_CORE": 1170,
+        "PCIE_DMA_SQE": 195
+      },
+      "compute_busy_us": "36896.043",
+      "observed_python_objects": [
+        {
+          "kind": "stream_identity",
+          "pid": 1834786,
+          "tid": 1834786,
+          "wall_ns": 1791068568638848683,
+          "mono_ns": 5315327597735732,
+          "handle": "139968661413888",
+          "runtime_stream_id": 44,
+          "query_return": 0,
+          "python_stream_id": "96",
+          "device": "npu:0",
+          "origin": "observed_existing_object",
+          "creation_proven": false
+        }
+      ],
+      "identity_basis": "runtime ID equality (TP1, one device)",
+      "creation_proven": false
+    },
+    {
+      "stream": "46",
+      "tasks": 81128,
+      "compute_tasks": 73527,
+      "types": {
+        "EVENT_RECORD": 396,
+        "AI_VECTOR_CORE": 49350,
+        "AI_CORE": 18915,
+        "MIX_AIC": 4680,
+        "MIX_AIV": 390,
+        "AI_CPU": 192,
+        "PLACE_HOLDER_SQE": 2,
+        "PCIE_DMA_SQE": 2205,
+        "SDMA_SQE": 4998
+      },
+      "compute_busy_us": "724658.412",
+      "observed_python_objects": [
+        {
+          "kind": "stream_identity",
+          "pid": 1834786,
+          "tid": 1834786,
+          "wall_ns": 1791068568639007079,
+          "mono_ns": 5315327597893557,
+          "handle": "139940935905280",
+          "runtime_stream_id": 46,
+          "query_return": 0,
+          "python_stream_id": "0",
+          "device": "npu:0",
+          "origin": "observed_existing_object",
+          "creation_proven": false
+        }
+      ],
+      "identity_basis": "runtime ID equality (TP1, one device)",
+      "creation_proven": false
+    }
+  ],
+  "coverage": {
+    "requests_mapped": 24,
+    "requests_expected": 24,
+    "csv_rows": 74892,
+    "csv_matched": 74892,
+    "compute_tasks": 74892,
+    "compute_attributed": 74892,
+    "scopes_expected": 1365,
+    "scopes_found": 1365,
+    "scheduler_steps": 195,
+    "worker_steps": 195,
+    "observer_errors": [],
+    "identity_issues": [],
+    "flow_issues": [],
+    "unclassified_csv_rows": [],
+    "compute_csv_classified": true,
+    "same_stream_compute_overlaps": []
+  },
+  "analysis_status": "passed",
+  "device_metrics": {
+    "compute_union_us": "761554.455",
+    "compute_overlap_us": "0",
+    "overlap_fraction": 0.0,
+    "peak_compute_streams": 1,
+    "copy_compute_overlap_us": "0",
+    "batch_histogram": {
+      "1": 3,
+      "8": 189,
+      "7": 3
+    },
+    "physical_streams": 2,
+    "compute_streams": 2
+  },
+  "raw_sources": [
+    {
+      "path": "profiler/rank0_1834786_20261003230251097_ascend_pt/ASCEND_PROFILER_OUTPUT/trace_view.json",
+      "sha256": "ef0b908e11685f72a9e8a6ab9a7075d3a4257244abb2e76f0c2f4e8a6e6fcbbf",
+      "bytes": 382847019
+    },
+    {
+      "path": "profiler/rank0_1834786_20261003230251097_ascend_pt/ASCEND_PROFILER_OUTPUT/kernel_details.csv",
+      "sha256": "7c8f2b3d45fff835962e01ae8f7dc0c16a50fcea8f65d19a06c41738303442b1",
+      "bytes": 18452761
+    }
+  ],
+  "sampling_analysis": {
+    "precompute": true,
+    "expected_steps": 195,
+    "validated_steps": 195,
+    "issues": [],
+    "synchronization_kind": "host_event_synchronize",
+    "random_forward_overlap_us": "0",
+    "overlapping_steps": 0,
+    "batch_phase_groups": [
+      {
+        "batch": 1,
+        "phase": "prefill",
+        "steps": 3,
+        "overlapping_steps": 0,
+        "random_forward_overlap_us": "0",
+        "dsa_forward_overlap_us": "0",
+        "other_random_forward_overlap_us": "0",
+        "native_submission_delta_us": {
+          "n": 3,
+          "min": -495.012,
+          "median": -401.483,
+          "max": -394.649,
+          "sum": -1291.144
+        },
+        "q_end_minus_forward_start_us": {
+          "n": 3,
+          "min": -387.535,
+          "median": -324.813,
+          "max": -322.472,
+          "sum": -1034.82
+        },
+        "synchronization_duration_us": {
+          "n": 3,
+          "min": 1.71,
+          "median": 1.835,
+          "max": 2.101,
+          "sum": 5.646
+        }
+      },
+      {
+        "batch": 7,
+        "phase": "decode",
+        "steps": 3,
+        "overlapping_steps": 0,
+        "random_forward_overlap_us": "0",
+        "dsa_forward_overlap_us": "0",
+        "other_random_forward_overlap_us": "0",
+        "native_submission_delta_us": {
+          "n": 3,
+          "min": -403.61,
+          "median": -401.886,
+          "max": -394.503,
+          "sum": -1199.999
+        },
+        "q_end_minus_forward_start_us": {
+          "n": 3,
+          "min": -227.889,
+          "median": -226.629,
+          "max": -212.188,
+          "sum": -666.706
+        },
+        "synchronization_duration_us": {
+          "n": 3,
+          "min": 1.517,
+          "median": 1.629,
+          "max": 1.672,
+          "sum": 4.818
+        }
+      },
+      {
+        "batch": 8,
+        "phase": "decode",
+        "steps": 186,
+        "overlapping_steps": 0,
+        "random_forward_overlap_us": "0",
+        "dsa_forward_overlap_us": "0",
+        "other_random_forward_overlap_us": "0",
+        "native_submission_delta_us": {
+          "n": 186,
+          "min": -1159.325,
+          "median": -393.2335,
+          "max": -380.134,
+          "sum": -74376.079
+        },
+        "q_end_minus_forward_start_us": {
+          "n": 186,
+          "min": -968.098,
+          "median": -193.94799999999998,
+          "max": -171.047,
+          "sum": -37301.197
+        },
+        "synchronization_duration_us": {
+          "n": 186,
+          "min": 1.343,
+          "median": 1.649,
+          "max": 1.928,
+          "sum": 305.542
+        }
+      },
+      {
+        "batch": 8,
+        "phase": "decode+prefill",
+        "steps": 3,
+        "overlapping_steps": 0,
+        "random_forward_overlap_us": "0",
+        "dsa_forward_overlap_us": "0",
+        "other_random_forward_overlap_us": "0",
+        "native_submission_delta_us": {
+          "n": 3,
+          "min": -422.302,
+          "median": -401.774,
+          "max": -389.961,
+          "sum": -1214.037
+        },
+        "q_end_minus_forward_start_us": {
+          "n": 3,
+          "min": -227.509,
+          "median": -199.128,
+          "max": -192.807,
+          "sum": -619.444
+        },
+        "synchronization_duration_us": {
+          "n": 3,
+          "min": 1.5,
+          "median": 1.559,
+          "max": 1.676,
+          "sum": 4.734999999999999
+        }
+      }
+    ],
+    "output_equality_required": false,
+    "note": "q_ready metadata is captured at Python producer return, not evidence of device completion; device event and native wait establish completion.",
+    "overlap_patterns": []
+  }
+}

@@ -1,9 +1,23 @@
 {
   "remote_root": "/data/tianchi/practice_31_multiuser_streams/results",
   "excluded": [
-    {"run": "smoke-01", "reason": "First benchmark passed; sequential service port preflight lacked SO_REUSEADDR and rejected TCP TIME_WAIT. No formal results used."},
-    {"run": "smoke-02", "reason": "All smoke requests passed and CSV/kernel correlation worked, but frontend mapping hook missed the _create_completion wrapper. Analysis marked incomplete; not used for final request attribution."},
-    {"run": "smoke-03", "reason": "Corrected smoke validation passed at concurrency 1/2. Four output tokens and one request per user; qualification only, excluded from formal 64-token performance comparison."}
+    {
+      "run": "smoke-01",
+      "reason": "First benchmark passed; sequential service port preflight lacked SO_REUSEADDR and rejected TCP TIME_WAIT. No formal results used."
+    },
+    {
+      "run": "smoke-02",
+      "reason": "All smoke requests passed and CSV/kernel correlation worked, but frontend mapping hook missed the _create_completion wrapper. Analysis marked incomplete; not used for final request attribution."
+    },
+    {
+      "run": "smoke-03",
+      "reason": "Corrected smoke validation passed at concurrency 1/2. Four output tokens and one request per user; qualification only, excluded from formal 64-token performance comparison."
+    },
+    {
+      "run": "sampling-smoke-01",
+      "reason": "Eight-user eager random-sampling off/on qualification only: one round, four output tokens. All five steps per setting validated after adding CSV-backed DSA_SQE classification. Excluded from formal 64-token benchmark."
+    }
   ],
-  "formal_run": "formal-01"
+  "formal_run": "formal-01",
+  "sampling_formal_run": "sampling-01"
 }

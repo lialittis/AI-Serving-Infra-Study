@@ -1,0 +1,104 @@
+{
+  "schema": 2,
+  "experiment": "P31b",
+  "start_ns": 1791068229469697668,
+  "arguments": {
+    "output": "/data/tianchi/practice_31_multiuser_streams/results/sampling-01",
+    "model": "/data/huggingface_home/hub/Qwen2.5-0.5B-Instruct",
+    "concurrency": [
+      8,
+      32
+    ],
+    "phase": "both",
+    "rounds": 3,
+    "output_tokens": 64,
+    "input_tokens": 128,
+    "warmup": 2,
+    "port": 8031,
+    "sampling": {
+      "temperature": 0.8,
+      "top_p": 0.9
+    },
+    "max_num_seqs": 32,
+    "max_num_batched_tokens": 4096,
+    "repeats": 1
+  },
+  "cases": [
+    [
+      8,
+      "benchmark",
+      false,
+      "c8-off-b0-benchmark"
+    ],
+    [
+      8,
+      "benchmark",
+      true,
+      "c8-on-b1-benchmark"
+    ],
+    [
+      8,
+      "benchmark",
+      true,
+      "c8-on-b2-benchmark"
+    ],
+    [
+      8,
+      "benchmark",
+      false,
+      "c8-off-b3-benchmark"
+    ],
+    [
+      8,
+      "diagnostic",
+      false,
+      "c8-off-diagnostic"
+    ],
+    [
+      8,
+      "diagnostic",
+      true,
+      "c8-on-diagnostic"
+    ],
+    [
+      32,
+      "benchmark",
+      false,
+      "c32-off-b0-benchmark"
+    ],
+    [
+      32,
+      "benchmark",
+      true,
+      "c32-on-b1-benchmark"
+    ],
+    [
+      32,
+      "benchmark",
+      true,
+      "c32-on-b2-benchmark"
+    ],
+    [
+      32,
+      "benchmark",
+      false,
+      "c32-off-b3-benchmark"
+    ],
+    [
+      32,
+      "diagnostic",
+      true,
+      "c32-on-diagnostic"
+    ],
+    [
+      32,
+      "diagnostic",
+      false,
+      "c32-off-diagnostic"
+    ]
+  ],
+  "per_request_seed": false,
+  "benchmark_order": "off,on,on,off",
+  "output_equality_expected": false,
+  "only_treatment": "enable_async_exponential"
+}

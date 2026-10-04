@@ -7,6 +7,7 @@ body{font:15px system-ui;margin:24px;color:#142538;background:#f3f6fb;line-heigh
 <section><div class="controls"><label>请求 <select id="request"></select></label><label>调度 step <select id="step"></select></label><button id="fit">全局视图</button><button id="focus">放大所选范围</button></div>
 <p class="muted">绿色：HTTP 请求；紫色：调度；蓝色：host 提交范围；橙色：NPU 计算；灰色：拷贝/事件。点击区间或表格查看证据。用户筛选会保留其参与的完整共享批次。</p><canvas id="timeline"></canvas><p id="range"></p></section>
 <section><h2>跨 stream 计算重叠证据</h2><select id="overlap"></select><p id="overlapText"></p></section>
+<section id="samplingSection" hidden><h2>随机分支提交与同步</h2><button id="samplingExample">定位代表性 step</button><p id="samplingNote"></p><pre id="samplingDetail"></pre></section>
 <section><h2>任务明细</h2><label>名称过滤 <input id="search" placeholder="例如 MatMul / MEMCPY / EVENT"></label><button id="prev">上一页</button><button id="next">下一页</button><span id="count"></span><table><thead><tr><th>trace index</th><th>kernel / task</th><th>stream / task ID</th><th>类型</th><th>相对开始 µs</th><th>时长 µs</th><th>共享请求数</th></tr></thead><tbody id="tasks"></tbody></table></section>
 <section><h2>所选证据</h2><pre id="detail">点击时间线区间或任务。</pre></section>
 <section><h2>Stream 清单与关联覆盖率</h2><pre id="coverage"></pre></section>
@@ -40,7 +41,7 @@ function draw(){
  const rid=$('request').value,key=$('step').value,chosen=selected(),keys=new Set(chosen.map(t=>t.step));
  for(const user of [...new Set(requests.map(r=>r.user))])lanes.push({label:'HTTP user '+user,items:requests.filter(r=>r.user===user).map(r=>({a:wall(r.start_ns),b:wall(r.end_ns),c:!rid||rid===r.client_request_id?'#209178':'#b5d9cd',value:r}))});
  lanes.push({label:'scheduler',items:steps.filter(s=>(!rid||s.requests.includes(rid))&&(!key||s.key===key)&&s.scheduler).map(s=>({a:wall(s.scheduler.start_ns),b:wall(s.scheduler.end_ns),c:'#a052c5',value:s}))});
- for(const stage of ['execute','forward','sample'])lanes.push({label:'host '+stage,items:scopes.filter(s=>s.stage===stage&&(!rid||keys.has(s.step))&&(!key||s.step===key)).map(s=>({a:us(s.start_us),b:us(s.end_us),c:'#397dcc',value:s}))});
+ for(const stage of ['execute','async_exponential','forward','sample','sampling_math','inline_exponential','q_wait'].filter(stage=>scopes.some(s=>s.stage===stage)))lanes.push({label:'host '+stage,items:scopes.filter(s=>s.stage===stage&&(!rid||keys.has(s.step))&&(!key||s.step===key)).map(s=>({a:us(s.start_us),b:us(s.end_us),c:stage==='q_wait'?'#b24d53':'#397dcc',value:s}))});
  for(const [field,title] of [['host_index','CPU op'],['cann_index','CANN submit']]){
   const linked=new Map();for(const t of chosen){const id=t[field];if(id===null||id===undefined)continue;if(!linked.has(id))linked.set(id,[]);linked.get(id).push(t.id);}
   const groups=new Map();for(const [id,taskIds] of linked){const h=D.hosts[String(id)],thread=String(h.tid);if(!groups.has(thread))groups.set(thread,[]);groups.get(thread).push({a:us(h.start_us),b:us(h.end_us),c:field==='host_index'?'#699bd5':'#2967a9',value:{trace_index:id,host:h,linked_device_tasks:taskIds}});}
@@ -55,14 +56,16 @@ function draw(){
 }
 function table(){const query=$('search').value.toLowerCase(),ts=selected().filter(t=>t.name.toLowerCase().includes(query));page=Math.max(0,Math.min(page,Math.max(0,Math.ceil(ts.length/100)-1)));$('count').textContent=` ${ts.length} 条，第 ${page+1} / ${Math.max(1,Math.ceil(ts.length/100))} 页`;
 $('tasks').innerHTML=ts.slice(page*100,(page+1)*100).map(t=>`<tr data-task="${t.id}"><td>${t.trace_index}</td><td>${esc(t.name)}</td><td>${esc(t.stream)} / ${esc(t.task_id)}</td><td>${t.is_compute?'compute':t.is_copy?'copy':esc(t.task_type)}</td><td>${us(t.start_us).toFixed(3)}</td><td>${esc(t.duration_us)}</td><td>${t.requests.length}</td></tr>`).join('');}
-function update(){draw();table();}
-function focus(){let ts=selected();if($('step').value&&ts.length){view=[Math.min(...ts.map(t=>us(t.start_us))),Math.max(...ts.map(t=>us(t.end_us)))];}else if($('request').value){const r=requests.find(r=>r.client_request_id===$('request').value);view=[wall(r.start_ns),wall(r.end_ns)];}else view=[...whole];let pad=Math.max(1,(view[1]-view[0])*.02);view=[view[0]-pad,view[1]+pad];draw();}
+function update(){draw();table();if(D.sampling_analysis){const s=(D.sampling_steps||[]).find(s=>s.key===$('step').value);$('samplingDetail').textContent=JSON.stringify(s||D.sampling_analysis,null,2);}}
+function focus(){let ts=selected();if($('step').value&&ts.length){const spans=ts.concat(scopes.filter(s=>s.step===$('step').value));view=[Math.min(...spans.map(t=>us(t.start_us))),Math.max(...spans.map(t=>us(t.end_us)))];}else if($('request').value){const r=requests.find(r=>r.client_request_id===$('request').value);view=[wall(r.start_ns),wall(r.end_ns)];}else view=[...whole];let pad=Math.max(1,(view[1]-view[0])*.02);view=[view[0]-pad,view[1]+pad];draw();}
 $('request').onchange=()=>{choices();page=0;update();};$('step').onchange=()=>{page=0;update();focus();};$('focus').onclick=focus;$('fit').onclick=()=>{view=[...whole];draw();};$('search').oninput=()=>{page=0;table();};$('prev').onclick=()=>{page--;table();};$('next').onclick=()=>{page++;table();};
 $('tasks').onclick=e=>{let tr=e.target.closest('[data-task]');if(tr)taskDetail(byTask.get(tr.dataset.task));};
 $('timeline').onclick=e=>{const b=e.target.getBoundingClientRect(),x=e.clientX-b.left,y=e.clientY-b.top;let h=hit.findLast(r=>x>=r.x&&x<=r.x+r.w&&y>=r.y&&y<=r.y+r.h);if(h){if(h.value.id?.startsWith('k:'))taskDetail(h.value);else show(h.value);}};
 const overlaps=D.overlap_evidence||[];$('overlap').innerHTML='<option value="">选择重叠区间</option>'+overlaps.map((o,i)=>`<option value="${i}">${i}: ${esc(o.start_us)} – ${esc(o.end_us)} µs · streams ${esc(o.streams.join(','))}</option>`).join('');
 $('overlapText').textContent=D.phase==='benchmark'?'benchmark 不采集设备重叠。':overlaps.length?`${overlaps.length} 个不重复计时的区间，可定位具体 kernel。`:(D.analysis_status==='passed'?'完整采集窗口内，跨 stream 的计算 kernel 重叠为 0。':'证据不完整，不能据此断言没有重叠。');
 $('overlap').onchange=()=>{if($('overlap').value==='')return;const o=overlaps[+$('overlap').value];$('request').value='';choices();$('step').value='';view=[us(o.start_us)-5,us(o.end_us)+5];update();show({overlap:o,tasks:o.tasks.map(id=>byTask.get(id))});};
+if(D.sampling_analysis){$('samplingSection').hidden=false;$('samplingNote').textContent=`提前生成 ${D.precompute?'开启':'关闭'}；q 同步方式 ${D.sampling_analysis.synchronization_kind}。native_submission_delta_us = q 首次 native 提交 − 模型首次 native 提交；负值表示 q 先提交。q_end_minus_forward_start_us 为负表示 q 在模型首 kernel 前已完成。`;
+$('samplingExample').onclick=()=>{const example=D.sampling_examples[0];if(!example)return;$('request').value='';choices();$('step').value=example.key;page=0;update();focus();$('timeline').scrollIntoView({block:'center'});};}
 choices();update();window.addEventListener('resize',draw);$('loading').textContent='数据已加载；报告无需网络。';window.P31={data:D,selected,focus};
 })().catch(e=>{document.getElementById('loading').textContent='读取失败：'+e;console.error(e);});
 </script></html>

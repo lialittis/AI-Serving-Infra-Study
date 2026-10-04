@@ -39,7 +39,7 @@ def main():
         retained.append(dict(path=str(relative),bytes=path.stat().st_size,sha256=digest(path)))
     # Analysis can improve after collection. Preserve the code that generated
     # this archive separately from the immutable collection-time snapshot.
-    for name in ('analyze.py','render.py','viewer.html','archive.py','audit_raw.py','check_report.cjs'):
+    for name in ('analyze.py','sampling_analysis.py','render.py','viewer.html','archive.py','audit_raw.py','check_report.cjs'):
         path=Path(__file__).with_name(name)
         if not path.exists():continue
         relative=Path('analysis_sources')/name
